@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="view_product_margin_form_view" model="ir.ui.view">
+            <field name="name">product.margin.form.inherit</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="priority" eval="20"/>
+            <field name="arch" type="xml">
+                <field name="price_extra" position="after">
+                    <field name="theoretical_margin" colspan="2" 
+                                                    widget="progressbar"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>
+

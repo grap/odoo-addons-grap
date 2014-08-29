@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ********************************************************************** -->
+<!--GRAP - Change Views module for Odoo                                     -->
+<!--Copyright (C) 2013 GRAP (http://www.grap.coop)                          -->
+<!--@author Julien WESTE                                                    -->
+<!--@author Sylvain LE GAL (https://twitter.com/legalsylvain)               -->
+
+<!--This program is free software: you can redistribute it and/or modify    -->
+<!--it under the terms of the GNU Affero General Public License as          -->
+<!--published by the Free Software Foundation, either version 3 of the      -->
+<!--License, or (at your option) any later version.                         -->
+
+<!--This program is distributed in the hope that it will be useful,         -->
+<!--but WITHOUT ANY WARRANTY; without even the implied warranty of          -->
+<!--MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the           -->
+<!--GNU Affero General Public License for more details.                     -->
+
+<!--You should have received a copy of the GNU Affero General Public License-->
+<!--along with this program.  If not, see <http://www.gnu.org/licenses/>.   -->
+<!-- ********************************************************************** -->
+<openerp>
+    <data>
+
+        <!-- View 'Tree' of the Object product.product : (Tactile view) -->
+        <record id="view_product_product_tactile_tree" model="ir.ui.view">
+            <field name="name">view.product.product.tree</field>
+            <field name="model">product.product</field>
+            <field name="arch" type="xml">
+                <tree string="Product (Tactile)" editable="bottom">
+                    <field name="code" />
+                    <field name="name" />
+                    <field name="available_in_pos"/>
+                    <field name="pos_categ_id" options="{'quick_create':false}"/>
+                    <field name="ean13"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Action 'Tree' of the Object product.product (Tactile view) -->
+        <record id="action_product_product_tactile_tree" model="ir.actions.act_window">
+            <field name="name">Products (Tactile Information)</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.product</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_product_product_tactile_tree"/>
+            <field name="context">{"search_default_filter_to_sell":1}</field>
+        </record>
+
+        <!-- Menu of the Object product.product (Tactile view) -->
+        <menuitem id="menu_product_product_tactile" 
+            name="Products (Tactile View)" 
+            parent="point_of_sale.menu_point_of_sale_product" sequence="3" 
+            action="action_product_product_tactile_tree"/>
+
+        <record id="point_of_sale.product_normal_action" model="ir.actions.act_window">
+            <field name="domain" eval="[('available_in_pos','=', True)]"/>
+        </record>
+
+        <!-- View 'Tree' of the Object pos.category -->
+        <record id="view_pos_category_tree" model="ir.ui.view">
+            <field name="name">pos.category.tree</field>
+            <field name="model">pos.category</field>
+            <field name="inherit_id" ref="pos_multicompany.view_pos_category_tree"/>
+            <field name="arch" type="xml">
+                <field name="is_default" position="after">
+                    <field name="product_qty"/>
+                </field>
+                <field name="is_default" position="attributes">
+                    <attribute name="groups">base.group_no_one</attribute>
+                </field>
+            </field>
+        </record>
+
+        <!-- View 'Form' of the Object pos.category -->
+        <record id="view_pos_category_form" model="ir.ui.view">
+            <field name="name">pos.category.form</field>
+            <field name="model">pos.category</field>
+            <field name="priority" eval="1"/>
+            <field name="arch" type="xml">
+                <form string="Product" version="7.0">
+                    <sheet>
+                        <group>
+                            <group>
+                                <label for="name" string="Category Name"/>
+                                <h1>
+                                    <field name="name"/>
+                                </h1>
+                            </group>
+                            <group>
+                                <field name="image" widget="image" />
+                            </group>
+                            <field name="parent_id"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="complete_name" string="Complete Name" />
+                            <field name="product_qty" />
+                        </group>
+                        <notebook>
+                            <page string="Product List">
+                                <field name="product_ids">
+                                    <tree>
+                                        <field name="name"/>
+                                        <field name="list_price"/>
+                                        <field name="sale_ok"/>
+                                        <field name="available_in_pos"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_pos_order_filter_grap" model="ir.ui.view">
+            <field name="name">pos.order.list.select.grap</field>
+            <field name="model">pos.order</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_order_filter"/>
+            <field name="arch" type="xml">
+                <data>
+                    <filter string="Posted" position="after">
+                            <filter icon="terp-go-month" string="Today" name="Today" domain="[('date_order','&gt;=',(context_today()).strftime('%%Y-%%m-%%d'))]"/>
+                            <filter icon="terp-go-month" string="Yesterday" name="Yesterday" domain="[('date_order','&lt;', ((context_today()).strftime('%%Y-%%m-%%d 00:00:00'))), ('date_order','&gt;=', ((context_today()+datetime.timedelta(days=-1)).strftime('%%Y-%%m-%%d')))]"/>
+                    </filter>
+                    <field name="user_id" position="after">
+                        <field name="partner_id"/>
+                    </field>
+                </data>
+            </field>
+        </record>
+
+        <record id="view_pos_order_form" model="ir.ui.view">
+            <field name="name">pos.order</field>
+            <field name="model">pos.order</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+            <field name="arch" type="xml">
+                    <field name="product_id" position="attributes">
+                        <attribute name="options">{"quick_create": false}</attribute>
+                    </field>
+                    <field name="state" position="before">
+                        <button name="%(point_of_sale.action_pos_discount)d" string="Discount" icon="gtk-remove" type="action" states="draft" />
+                    </field>
+                    <xpath expr="//field[@name='lines']/tree" position="attributes">
+                        <attribute name="class">grap_change_views__view_pos_order_form</attribute>
+                        <attribute name="version">7.0</attribute>
+                    </xpath>
+            </field>
+        </record>
+
+        <record id="view_pos_order_tree" model="ir.ui.view">
+            <field name="name">pos.order.tree</field>
+            <field name="model">pos.order</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_order_tree"/>
+            <field name="arch" type="xml">
+                    <field name="pos_reference" position="replace"/>
+                    <field name="user_id" position="replace"/>
+            </field>
+        </record>
+
+        <record id="product_normal_form_view" model="ir.ui.view">
+            <field name="name">product.normal.form.inherit</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="point_of_sale.product_normal_form_view"/>
+            <field name="priority" eval="20"/>
+            <field name="arch" type="xml">
+                <data>
+                    <field name="income_pdt" position="attributes">
+                        <attribute name="groups">account.group_account_manager</attribute>
+                    </field>
+                    <field name="expense_pdt" position="attributes">
+                        <attribute name="groups">account.group_account_manager</attribute>
+                    </field>
+                </data>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="point_of_sale.action_pos_pos_form">
+            <field name="context">{"search_default_Today":1}</field>
+        </record>
+
+        <record model="ir.ui.menu" id="point_of_sale.menu_point_config_product">
+            <field name="groups_id" eval="[(6, 0, [ref('base.group_no_one')])]" />
+        </record>
+
+        <record model="ir.ui.menu" id="point_of_sale.menu_point_root">
+            <field name="action" ref="point_of_sale.action_pos_pos_form" />
+        </record>
+
+<!--_______________________Vues Reporting (Point de vente) ____________________________-->
+        <record model="ir.ui.menu" id="point_of_sale.menu_pos_details">
+        <field eval="[(6, 0, [ref('base.group_no_one')])]" name="groups_id"/>
+        </record>
+
+    </data>
+</openerp>
+

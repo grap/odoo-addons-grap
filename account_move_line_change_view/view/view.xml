@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+        <record id="view_account_move_line_tree" model="ir.ui.view">
+            <field name="name">account.move.line.tree</field>
+            <field name="model">account.move.line</field>
+            <field name="arch" type="xml">
+                <tree string="Account Move Lines">
+                    <field name="journal_id"/>
+                    <field name="move_id"/>
+                    <field name="date" />
+                    <field name="period_id" />
+                    <field name="name" />
+                    <field name="ref" />
+                    <field name="account_id" />
+                    <field name="partner_id" />
+                    <field name="debit" sum="Total Debit"/>
+                    <field name="credit" sum="Total Credit"/>
+                    <field name="reconcile"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                </tree>
+            </field>
+        </record>
+
+    </data>
+</openerp>
+
+

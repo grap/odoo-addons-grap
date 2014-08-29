@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!-- *********************************************************************** -->
+<!-- See __openerp__.py file for Copyright and Licence Informations.         -->
+<!-- *********************************************************************** -->
+<openerp>
+    <data>
+
+<!-- Model : account.move -->
+        <record id="view_account_move_form" model="ir.ui.view">
+            <field name="name">account.move.form</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form" />
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page string="Merge Informations" attrs="{'invisible':[('merged_move_quantity','=',0)]}">
+                        <group>
+                            <field name="merged_move_quantity" />
+                        </group>
+                        <group>
+                            <field name="merged_narration" nolabel="1"/>
+                        </group>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+
+
+    </data>
+</openerp>
+
+

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_account_move_line_filter" model="ir.ui.view">
+            <field name="name">account.move.line.search</field>
+            <field name="model">account.move.line</field>
+            <field name="inherit_id" ref="account.view_account_move_line_filter"/>
+            <field name="arch" type="xml">
+                <data>
+                    <field name="journal_id" position="after">
+                        <field name="ref"/>
+                        <field name="debit"/>
+                        <field name="credit"/>
+                    </field>
+                </data>
+            </field>
+        </record>
+
+        <record id="view_bank_statement_periodic_form" model="ir.ui.view">
+            <field name="name">account.bank.statement.reconcile.form</field>
+            <field name="model">account.bank.statement</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Bank Statement" version="7.0" context="{'statement_id': active_id}">
+                    <header>
+                        <button name="button_cancel" states="confirm" string="Cancel" type="object" icon="gtk-cancel"/>
+                        <button name="button_dummy" states="draft" string="Compute" type="object" icon="terp-stock_format-scientific"/>
+                        <button name="button_confirm_bank" states="draft" string="Confirm" type="object" class="oe_highlight"/>
+                        <field name="state" widget="statusbar" nolabel="1" />
+                    </header>
+                    <group col="6" colspan="4">
+                        <field name="name" select="1"/>
+                        <field name="date" select="1" on_change="onchange_date(date, company_id)"/>
+                        <field name="journal_id" domain="[('type', '=', 'bank')]" on_change="onchange_journal_id(journal_id,move_line_ids)" widget="selection"/>
+                        <newline/>
+                        <field name="period_id"/>
+                        <field name="balance_start"/>
+                        <field name="balance_end_real"/>
+                        <field name="currency" invisible="1"/>
+                        <field name='company_id' widget="selection" groups="base.group_multi_company" />
+                        <field name="account_id" invisible="1"/>
+                    </group>
+                    <notebook colspan="4">
+                        <page string="Journal Entries">
+                            <field colspan="4" name="move_line_ids" nolabel="1" widget="many2many" domain="[('journal_id','=',journal_id),('account_id','=',account_id),('statement_id', '=', False)]">
+                                <tree string="Statement lines">
+                                    <field name="date"/>
+                                    <field name="period_id"/>
+                                    <field name="journal_id"/>
+                                    <field name="ref"/>
+                                    <field name="name"/>
+                                    <field name="account_id"/>
+                                    <field name="partner_id"/>
+                                    <field name="debit"/>
+                                    <field name="credit"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                    <group col="8" colspan="4">
+                        <field name="theorical_balance_end"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_bank_statement_periodic_tree" model="ir.actions.act_window">
+            <field name="name">Bank Statements</field>
+            <field name="res_model">account.bank.statement</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,graph</field>
+            <field name="domain">[('journal_id.type', '=', 'bank')]</field>
+            <field name="search_view_id" ref="account.view_bank_statement_search"/>
+            <field name="view_id" ref="view_bank_statement_periodic_form"/>
+            <field name="context">{'journal_type':'bank'}</field>
+        </record>
+        
+        
+        <menuitem name="Statements Reconciliation" action="action_bank_statement_periodic_tree" id="menu_menu_Bank_process" parent="account.menu_finance_bank_and_cash" sequence="7"/>
+        
+    </data>
+</openerp>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- *********************************************************************** -->
+<!-- See __openerp__.py file for Copyright and Licence Informations.         -->
+<!-- *********************************************************************** -->
+<openerp>
+    <data>
+        <menuitem id="menu_account_merge_pattern"
+            name="Account Merge Pattern"
+            parent="account.menu_finance_periodical_processing"
+            action="action_account_merge_pattern_tree"
+            sequence="30"/>
+    </data>
+</openerp>

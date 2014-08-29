@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- menuitem for specific action of module 'grap_ethiquette' -->
+        <menuitem id="menu_grap_ethiquette" 
+            name="GRAP - Ethiquette" 
+            parent="base.menu_base_partner" sequence="60"/>
+
+        <!-- menuitem for managing 'grap.ethiquette.type' -->
+        <menuitem id="menu_grap_ethiquette_type" 
+            name="Managing Type" 
+            parent="menu_grap_ethiquette" sequence="1" 
+            action="action_view_grap_ethiquette_type_tree"/>
+
+        <!-- menuitem for managing 'grap.ethiquette.label' -->
+        <menuitem id="menu_grap_ethiquette_label" 
+            name="Managing labels" 
+            parent="menu_grap_ethiquette" sequence="2" 
+            action="action_view_grap_ethiquette_label_kanban"/>
+
+
+        <!-- menuitem for managing 'product.product' Food View -->
+        <menuitem id="menu_product_product_food" 
+            name="Products (Food View)" 
+            parent="base.menu_product" sequence="2" 
+            action="action_view_product_product_food_tree"/>
+            
+        <!-- menuitem for managing 'product.product' Origin View -->
+        <menuitem id="menu_product_product_origin" 
+            name="Products (Origin View)" 
+            parent="base.menu_product" sequence="3" 
+            action="action_view_product_product_origin_tree"/>
+
+        <!-- menuitem for managing 'product.by.country' -->
+        <menuitem id="menu_product_by_country" 
+            name="Product by country" 
+            parent="base.next_id_64" sequence="1" 
+            action="action_product_by_country"/>
+            
+        <!-- menuitem for managing 'product.by.department' -->
+        <menuitem id="menu_product_by_department" 
+            name="Product by department" 
+            parent="base.next_id_64" sequence="2" 
+            action="action_product_by_department"/>
+    </data>
+
+</openerp>

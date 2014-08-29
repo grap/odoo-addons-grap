@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ********************************************************************** -->
+<!-- See __openerp__.py file for Copyright and Licence Informations.         -->
+<!-- ********************************************************************** -->
+<openerp>
+    <data>
+
+<!-- View : stock.inventory -->
+        <record id="view_inventory_form_valuation" model="ir.ui.view">
+            <field name="name">stock.inventory.form.valuation</field>
+            <field name="model">stock.inventory</field>
+            <field name="inherit_id" ref="stock.view_inventory_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='inventory_line_id']/tree/field[@name='product_uom']" position="after">
+                    <field name="price_unit"/>
+                    <field name="valuation" sum="Total Valuation"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_inventory_tree_valuation" model="ir.ui.view">
+            <field name="name">stock.inventory.tree.valuation</field>
+            <field name="model">stock.inventory</field>
+            <field name="inherit_id" ref="stock.view_inventory_tree"/>
+            <field name="arch" type="xml">
+                <field name='date' position="after">
+                    <field name="valuation" sum="Total Valuation"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>

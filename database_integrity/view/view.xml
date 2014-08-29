@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ********************************************************************** -->
+<!--    Database Integrity module for OpenERP                               -->
+<!--    Copyright (C) 2014 GRAP (http://www.grap.coop)                      -->
+<!--    @author Sylvain LE GAL (https://twitter.com/legalsylvain)           -->
+
+<!--This program is free software: you can redistribute it and/or modify    -->
+<!--it under the terms of the GNU Affero General Public License as          -->
+<!--published by the Free Software Foundation, either version 3 of the      -->
+<!--License, or (at your option) any later version.                         -->
+
+<!--This program is distributed in the hope that it will be useful,         -->
+<!--but WITHOUT ANY WARRANTY; without even the implied warranty of          -->
+<!--MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the           -->
+<!--GNU Affero General Public License for more details.                     -->
+
+<!--You should have received a copy of the GNU Affero General Public License-->
+<!--along with this program.  If not, see <http://www.gnu.org/licenses/>.   -->
+<!-- ********************************************************************** -->
+<openerp>
+    <data>
+
+        <record id="view_database_integrity_sequence_wizard_form" model="ir.ui.view">
+            <field name="name">database.integrity.sequence.wizard.form</field>
+            <field name="model">database.integrity.sequence.wizard</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+            <form string="Database Sequences" version="7.0">
+                <group>
+                    <field name="line_ids" nolabel="1" col="4"/>
+                </group>
+                <footer>
+                    <div >
+                        <p><b>Warning:</b> By clicking on 'Fix Invalid Sequences' button, You'll execute a non reversible request on database. Like: 
+                        "ALTER SEQUENCE sequence_name RESTART WITH max_id". 
+                        Please Be sure to know what you do.
+                        </p>
+                    </div>
+                    <button string="Fix Invalid Sequences" name="fix_invalid_sequence" type="object" class="oe_highlight" />
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+            </field>
+        </record>
+
+        <record id="view_database_integrity_sequence_wizard_line_tree" model="ir.ui.view">
+            <field name="name">database.integrity.sequence.wizard.line.tree</field>
+            <field name="model">database.integrity.sequence.wizard.line</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Sequence Information" colors="red:state == 'invalid';" >
+                    <field name="table_name"/>
+                    <field name="field_name"/>
+                    <field name="sequence_name"/>
+                    <field name="sequence_value"/>
+                    <field name="max_id"/>
+                    <field name="state" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+    </data>
+</openerp>

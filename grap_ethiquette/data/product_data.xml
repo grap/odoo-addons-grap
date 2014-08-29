@@ -1,0 +1,7 @@
+<openerp>
+    <data>
+        <record id="product.decimal_stock_weight" model="decimal.precision">
+            <field name="digits">4</field>
+        </record>
+    </data>
+</openerp>

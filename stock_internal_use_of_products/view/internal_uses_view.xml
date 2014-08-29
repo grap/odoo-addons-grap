@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+<!-- Model : internal.use -->
+         <record id="view_internal_use_search" model="ir.ui.view">
+            <field name="name">internal.use.search</field>
+            <field name="model">internal.use</field>
+            <field name="arch" type="xml">
+                <search string="Search Internal Uses">
+                    <field name="name" string="Reference"/>
+                    <field name="date_done" string="Date"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                    <field name="state"/>
+                    <group expand="0" string="Group By...">
+                        <filter string="Status" domain="[]" context="{'group_by':'state'}"/>
+                        <filter string="Date" domain="[]" context="{'group_by':'date_done'}"/>
+                        <filter string="Case" domain="[]" context="{'group_by':'internal_use_case'}"/>
+                    </group>
+                </search>
+
+            </field>
+        </record>
+
+        <record id="view_internal_use_tree" model="ir.ui.view">
+            <field name="name">internal.use.tree</field>
+            <field name="model">internal.use</field>
+            <field name="arch" type="xml">
+                <tree string="Internal Uses" colors="grey:state == 'cancel';blue:state == 'draft'">
+                    <field name="internal_use_case"/>
+                    <field name="name"/>
+                    <field name="date_done"/>
+                    <field name="amount" sum="Total"/>
+                    <field name="description"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="view_internal_use_form" model="ir.ui.view">
+            <field name="name">internal.use.form</field>
+            <field name="model">internal.use</field>
+            <field name="priority" eval="6"/>
+            <field name="arch" type="xml">
+                <form string="Internal Uses" version="7.0">
+                    <header>
+                        <button name="action_confirm" states="draft" string="Confirm Use" type="object" class="oe_highlight" groups="stock.group_stock_user"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,done"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <label string="Internal use"/>
+                                <field name="name" class="oe_inline" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="internal_use_case"/>
+                                <field name="date_done"/>
+                            </group>
+                            <group>
+                                <field name="description"/>
+                                <field name="company_id" groups="base.group_multi_company"/>
+                            </group>
+                        </group>
+                        <group>
+                            <separator string="Cost based on standard price" colspan="2"/>
+                            <field name="amount" sum="total"/>
+                        </group>
+                        <notebook>
+                            <page string="Products">
+                                <field name="line_ids">
+                                    <tree string="Lines" editable="bottom" class="stock_internal_use_of_products__view_internal_use_form">
+                                        <field name="product_id" 
+                                            on_change="on_change_product_id(product_id)" 
+                                            domain="[('type','&lt;&gt;','service'),('purchase_ok','=','True')]"/>
+                                        <field name="product_qty"/>
+                                        <field name="product_uom_id"/>
+                                        <field name="price_unit"/>
+                                        <field name="subtotal"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Posted Moves" 
+                                    attrs="{'invisible': [('state','&lt;&gt;','done')]}">
+                                <group>
+                                    <field name="picking_id" />
+                                    <field name="stock_move_ids"/>
+                                </group>
+                            </page>
+                            <page string="Account Moves" 
+                                    attrs="{'invisible': [('state','&lt;&gt;','done')]}" 
+                                    groups="account.group_account_manager">
+                                <group>
+                                    <field name="account_move_id"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+<!-- Model : internal.use.line -->
+         <record id="view_internal_use_line_search" model="ir.ui.view">
+            <field name="name">internal.use.line.search</field>
+            <field name="model">internal.use.line</field>
+            <field name="arch" type="xml">
+                <search string="Search Internal Use Lines">
+                    <field name="name" string="Reference"/>
+                    <field name="internal_use_case" string="Reference"/>
+                    <field name="product_id" string="Reference"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                    <field name="state"/>
+                    <group expand="0" string="Group By...">
+                        <filter string="Status" domain="[]" context="{'group_by':'state'}"/>
+                        <filter string="Case" domain="[]" context="{'group_by':'internal_use_case'}"/>
+                    </group>
+                </search>
+
+            </field>
+        </record>
+        
+        <record id="internal_use_line_tree" model="ir.ui.view">
+            <field name="name">internal.use.line.tree</field>
+            <field name="model">internal.use.line</field>
+            <field name="arch" type="xml">
+                <tree string="Internal Use Lines" create="false">
+                    <field name="product_id"/>
+                    <field name="product_qty"/>
+                    <field name="product_uom_id" groups="product.group_uom"/>
+                    <field name="internal_use_case"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="internal_use_line_form" model="ir.ui.view">
+            <field name="name">internal.use.line.form</field>
+            <field name="model">internal.use.line</field>
+            <field name="arch" type="xml">
+                <form string="Internal Use Lines" version="7.0">
+                    <group col="4">
+                        <field name="product_id" on_change="on_change_product_id(product_id)" domain="[('type','&lt;&gt;','service'),('purchase_ok','=','True')]"/>
+                        <field name="product_qty"/>
+                        <field name="product_uom_id" groups="product.group_uom"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+<!-- Model : internal.use.case -->
+        <record id="view_internal_use_config_tree" model="ir.ui.view">
+            <field name="name">internal.use.case.tree</field>
+            <field name="model">internal.use.case</field>
+            <field name="arch" type="xml">
+                <tree string="Internal Use Cases">
+                    <field name="name"/>
+                    <field name="location_from"/>
+                    <field name="location_to"/>
+                    <field name="expense_account"/>
+                    <field name="journal"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_internal_use_config_form" model="ir.ui.view">
+            <field name="name">internal.use.case.form</field>
+            <field name="model">internal.use.case</field>
+            <field name="arch" type="xml">
+                <form string="Internal Use Cases" version="7.0">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                            <group>
+                                <field name="company_id" groups="base.group_multi_company" widget="selection"/>
+                            </group>
+                            <group>
+                                <field name="active"/>
+                            </group>
+                        </group>
+                        <group>
+                            <separator string="Location information" colspan="2"/>
+                            <field name="location_from" domain="[('usage','=','internal')]"/>
+                            <field name="location_to" domain="[('usage','=','inventory')]"/>
+                            <field name="expense_account" domain="[('type','!=','view'),('type','!=','consolidation')]"/>
+                            <field name="journal"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</openerp>

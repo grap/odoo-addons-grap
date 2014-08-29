@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record id="property_action_report_pos_receipt" model="ir.property">
+            <field name="name">webkit_header</field>
+            <field name="fields_id" model="ir.model.fields" 
+                search="[('name', '=', u'webkit_header'),('model', '=', u'ir.actions.report.xml')]"/>
+            <field name="type">many2one</field>
+            <field name="res_id" model="ir.actions.report.xml" ref="action_report_pos_receipt"/>
+            <field name="value_reference" model="ir.header_webkit" ref="ir_header_webkit_pos_receipt"/>
+        </record>
+    </data>
+</openerp>

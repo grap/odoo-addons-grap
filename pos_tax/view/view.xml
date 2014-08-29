@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ********************************************************************** -->
+<!-- See __openerp__.py file for Copyright and Licence Informations.         -->
+<!-- ********************************************************************** -->
+<openerp>
+    <data>
+
+<!-- View : pos.order.line -->
+        <record id="view_pos_pos_form_tax" model="ir.ui.view">
+            <field name="name">pos.order.tax</field>
+            <field name="model">pos.order</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+            <field name="arch" type="xml">
+                <field name="price_subtotal_incl" position="after">
+                    <field name="pol_tax_rel_id" groups="base.group_no_one"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>

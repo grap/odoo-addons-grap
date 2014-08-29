@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ********************************************************************** -->
+<!--GRAP - Change Point Of Sale Receipt module for Odoo                     -->
+<!--Copyright (C) 2014 GRAP (http://www.grap.coop)                          -->
+<!--@author Sylvain LE GAL (https://twitter.com/legalsylvain)               -->
+
+<!--This program is free software: you can redistribute it and/or modify    -->
+<!--it under the terms of the GNU Affero General Public License as          -->
+<!--published by the Free Software Foundation, either version 3 of the      -->
+<!--License, or (at your option) any later version.                         -->
+
+<!--This program is distributed in the hope that it will be useful,         -->
+<!--but WITHOUT ANY WARRANTY; without even the implied warranty of          -->
+<!--MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the           -->
+<!--GNU Affero General Public License for more details.                     -->
+
+<!--You should have received a copy of the GNU Affero General Public License-->
+<!--along with this program.  If not, see <http://www.gnu.org/licenses/>.   -->
+<!-- ********************************************************************** -->
+<openerp>
+    <data>
+        <record id="view_pos_order_form" model="ir.ui.view" >
+            <field name="name">view.pos_order.form</field>
+            <field name="model">pos.order</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+            <field name="arch" type="xml">
+                <button name="%(point_of_sale.action_report_pos_receipt)d" position="replace" />
+                <button name="%(point_of_sale.action_pos_payment)d" position="before">
+                    <button name="%(action_report_pos_receipt)d" type="action" states="draft" string="Print"/>
+                    <button name="%(action_report_pos_receipt)d" type="action" states="paid,done,invoiced" class="oe_highlight" string="Print"/>
+                </button>
+            </field>
+        </record>
+
+        <record id="view_res_company_form" model="ir.ui.view" >
+            <field name="name">res.company.form</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@string='Report Footer Configuration']" position="after">
+                    <group string="Pos Receipt">
+                        <field widget="image" name="pos_receipt_logo"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

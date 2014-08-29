@@ -1,0 +1,191 @@
+# -*- encoding: utf-8 -*-
+##############################################################################
+#
+#    Pos Invoicing module for OpenERP
+#    Copyright (C) 2013-2014 GRAP (http://www.grap.coop)
+#    @author Julien WESTE
+#    @author Sylvain LE GAL (https://twitter.com/legalsylvain)
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+##############################################################################
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* pos_invoicing
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-14 08:29+0000\n"
+"PO-Revision-Date: 2014-04-14 08:29+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: pos_invoicing
+#: code:addons/pos_invoicing/model/point_of_sale.py:55
+#, python-format
+msgid "Your ending balance is too different from the theoretical cash closing (%.2f), the maximum allowed is: %.2f. You can contact your manager to force it."
+msgstr "Votre balance de fin est trop différente du solde de clôture (%.2f), le maximum autorisé est de: %.2f. Contactez votre manager pour forcer la clôture."
+
+#. module: pos_invoicing
+#: model:ir.model,name:pos_invoicing.model_pos_session
+msgid "pos.session"
+msgstr "pos.session"
+
+#. module: pos_invoicing
+#: view:pos.invoice.draft.order:0
+msgid "You'll have to check and validate the invoice and register the payments against it."
+msgstr "Vous devrez vérifier et valider la facture, puis saisir les paiements dessus."
+
+#. module: pos_invoicing
+#: field:account.invoice,forbid_payment:0
+msgid "Forbid Payment"
+msgstr "Interdire le paiement"
+
+#. module: pos_invoicing
+#: view:account.invoice:0
+msgid "{'invisible': ['|','|', ('forbid_payment','=',True), ('state','!=','open'), ('sent','=',True)]}"
+msgstr "{'invisible': ['|','|', ('forbid_payment','=',True), ('state','!=','open'), ('sent','=',True)]}"
+
+#. module: pos_invoicing
+#: view:pos.order:0
+msgid "{'forbid_payment' : True}"
+msgstr "{'forbid_payment' : True}"
+
+#. module: pos_invoicing
+#: model:ir.actions.act_window,name:pos_invoicing.action_invoice_draft_order
+msgid "Invoice Draft Order"
+msgstr "Facturer une commande PdV brouillon"
+
+#. module: pos_invoicing
+#: help:account.invoice,forbid_payment:0
+msgid "Indicates an\n"
+"             invoice where no payment should be registered. eg: invoice from \n"
+"             POS are already paid."
+msgstr "Indique une\n"
+"             facture qui n'attend pas de paiement. ex: facture issue du point \n"
+"             de vente (qui sont déjà réglées)."
+
+#. module: pos_invoicing
+#: view:account.invoice:0
+msgid "{'invisible': ['|', ('forbid_payment','=',True), ('state','not in',('draft','proforma2','open'))]}"
+msgstr "{'invisible': ['|', ('forbid_payment','=',True), ('state','not in',('draft','proforma2','open'))]}"
+
+#. module: pos_invoicing
+#: view:pos.invoice.draft.order:0
+msgid "You are about to validate this POS Order without payment and to create an invoice."
+msgstr "Vous êtes sur le point de valider cette commande sans paiement et de créer une facture."
+
+#. module: pos_invoicing
+#: model:ir.model,name:pos_invoicing.model_pos_invoice_draft_order
+msgid "pos.invoice.draft.order"
+msgstr "pos.invoice.draft.order"
+
+#. module: pos_invoicing
+#: view:account.invoice:0
+msgid "{'invisible': ['|', ('forbid_payment','=',True), ('state','not in',('open','proforma2','paid'))]}"
+msgstr "{'invisible': ['|', ('forbid_payment','=',True), ('state','not in',('open','proforma2','paid'))]}"
+
+#. module: pos_invoicing
+#: view:pos.order:0
+msgid "Invoice (pay latter)"
+msgstr "Facture (règlement différé)"
+
+#. module: pos_invoicing
+#: code:addons/pos_invoicing/model/point_of_sale.py:65
+#, python-format
+msgid "Point of Sale Loss"
+msgstr "Pertes Point de Vente"
+
+#. module: pos_invoicing
+#: code:addons/pos_invoicing/model/point_of_sale.py:61
+#, python-format
+msgid "Point of Sale Profit"
+msgstr "Profit Point de Vente"
+
+#. module: pos_invoicing
+#: view:pos.invoice.draft.order:0
+msgid "Do you confirm?"
+msgstr "Merci de confirmer."
+
+#. module: pos_invoicing
+#: code:addons/pos_invoicing/model/point_of_sale.py:54
+#: code:addons/pos_invoicing/model/point_of_sale.py:57
+#: code:addons/pos_invoicing/model/point_of_sale.py:67
+#, python-format
+msgid "Error!"
+msgstr "Erreur!"
+
+#. module: pos_invoicing
+#: model:ir.model,name:pos_invoicing.model_pos_config
+msgid "pos.config"
+msgstr "pos.config"
+
+#. module: pos_invoicing
+#: view:account.invoice:0
+msgid "{'invisible': ['|','|', ('forbid_payment','=',True), ('state','!=','open'), ('sent','=',False)]}"
+msgstr "{'invisible': ['|','|', ('forbid_payment','=',True), ('state','!=','open'), ('sent','=',False)]}"
+
+#. module: pos_invoicing
+#: code:addons/pos_invoicing/model/point_of_sale.py:58
+#, python-format
+msgid "The type of the journal for your payment method should be bank or cash "
+msgstr "Le type du journal de paiement doit être Banque ou Liquidités"
+
+#. module: pos_invoicing
+#: view:pos.invoice.draft.order:0
+msgid "OK"
+msgstr "OK"
+
+#. module: pos_invoicing
+#: model:ir.model,name:pos_invoicing.model_account_voucher
+msgid "Accounting Voucher"
+msgstr "Justificatif comptable"
+
+#. module: pos_invoicing
+#: code:addons/pos_invoicing/model/point_of_sale.py:68
+#, python-format
+msgid "Please set your profit and loss accounts on your payment method '%s'. This will allow OpenERP to post the difference of %.2f in your ending balance. To close this session, you can update the 'Closing Cash Control' to avoid any difference."
+msgstr "Renseignez les comptes de pertes et profits sur votre méthode de paiement '%s'. Ainsi, OpenERP pourra enregistrer la différence de %.2f dans votre balance de clôture. Pour clôturer cette session, vous pouvez modifier le solde de clôture pour éviter la différence."
+
+#. module: pos_invoicing
+#: model:ir.model,name:pos_invoicing.model_account_invoice
+msgid "Invoice"
+msgstr "Facture"
+
+#. module: pos_invoicing
+#: view:pos.invoice.draft.order:0
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: pos_invoicing
+#: model:ir.model,name:pos_invoicing.model_pos_order
+msgid "Point of Sale"
+msgstr "Point de Vente"
+
+#. module: pos_invoicing
+#: view:pos.invoice.draft.order:0
+msgid "or"
+msgstr "ou"
+
+#. module: pos_invoicing
+#: view:pos.invoice.draft.order:0
+msgid "Invoice Draft Orders"
+msgstr "Facturer des commandes PdV brouillon"
+

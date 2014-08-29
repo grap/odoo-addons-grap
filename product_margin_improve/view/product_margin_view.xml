@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+<!--    Views for model product.product-->
+    <record model="ir.ui.view" id="view_product_margin_graph">
+            <field name="name">product.margin.graph.improve</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product_margin.view_product_margin_graph"/>
+            <field name="priority" eval="50"/>
+            <field name="arch" type="xml">
+                <field name="turnover" position="replace">
+                    <field name="avg_margin_rate" operator="+"/>
+                </field>
+                <field name="total_cost" position="replace"/>
+            </field>
+    </record>
+
+     <record id="view_product_margin_form" model="ir.ui.view">
+            <field name="name">product.margin.form.improve</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product_margin.view_product_margin_form"/>
+            <field name="priority">50</field>
+            <field name="arch" type="xml">
+                <notebook position="replace">
+                    <group col="8">
+                        <group string="Analysis Criteria" colspan="8" col="6">
+                            <field name="date_from"/>
+                            <field name="date_to"/>
+                            <newline/>
+                            <field name="invoice_state"/>
+                            <field name="pos_state"/>
+                        </group>
+                        <separator string="Results" colspan="8"/>
+                        <group colspan="8" col="6">
+                            <field name="inventory_losses"/>
+                        </group>
+                        <group colspan="8" col="8">
+                            <group string="Invoices">
+                                <field name="sale_list_price" string="Catalog Price" readonly="1"/>
+                                <field name="sale_avg_price"/>
+                                <field name="sale_num_invoiced"/>
+                                <field name="sale_expected"/>
+                                <field name="sale_income"/>
+                                <field name="sales_gap"/>
+                            </group>
+                            <group string="POS">
+                                <field name="pos_list_price" string="Catalog Price" readonly="1"/>
+                                <field name="pos_avg_price"/>
+                                <field name="pos_num_sales"/>
+                                <field name="pos_sale_expected"/>
+                                <field name="pos_income"/>
+                                <field name="pos_gap"/>
+                            </group>
+                            <group string="Total Sales">
+                                <field name="total_list_price" string="Catalog Price" readonly="1"/>
+                                <field name="total_avg_price"/>
+                                <field name="total_num_sales"/>
+                                <field name="total_sale_expected"/>
+                                <field name="total_income"/>
+                                <field name="total_gap"/>
+                            </group>
+                            <group string="Total Sales (losses included)">
+                                <field name="total_li_list_price" string="Catalog Price" readonly="1"/>
+                                <field name="total_li_avg_price"/>
+                                <field name="total_li_num_sales"/>
+                                <field name="total_li_sale_expected"/>
+                                <field name="total_li_income"/>
+                                <field name="total_li_gap"/>
+                            </group>
+                        </group>
+                        <group colspan="8" col="8">
+                            <group string="Purchases">
+                                <field name="standard_price" string="Standard Price" readonly="1"/>
+                                <field name="purchase_avg_price"/>
+                                <field name="purchase_num_invoiced"/>
+                                <field name="normal_cost"/>
+                                <field name="total_cost"/>
+                                <field name="purchase_gap"/>
+                            </group>
+                            <group string="Margin">
+                                <field name="expected_unit_margin"/>
+                                <field name="unit_margin"/>
+                                <field name="expected_margin"/>
+                                <field name="total_margin"/>
+                                <field name="expected_margin_rate"/>
+                                <field name="avg_margin_rate"/>
+                            </group>
+                            <group string="Margin (losses included)">
+                                <field name="li_expected_unit_margin"/>
+                                <field name="li_unit_margin"/>
+                                <field name="li_expected_margin"/>
+                                <field name="li_total_margin"/>
+                                <field name="li_expected_margin_rate"/>
+                                <field name="li_avg_margin_rate"/>
+                            </group>
+                        </group>
+                    </group>
+                </notebook>
+            </field>
+        </record>
+
+        <record id="view_product_margin_tree" model="ir.ui.view">
+            <field name="name">product.margin.tree.improve</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product_margin.view_product_margin_tree"/>
+            <field name="priority" eval="50"/>
+            <field name="arch" type="xml">
+                <tree string="Product Margins" position="attributes">
+                    <attribute name="colors">red:expected_margin_rate&lt;0;darkred:avg_margin_rate&lt;0;orangered:li_avg_margin_rate&lt;0;</attribute>
+                </tree>
+                <field name="sale_num_invoiced" position="replace"/>
+                <field name="name" position="after">
+                    <field name="total_num_sales" />
+                    <field name="inventory_losses"/>
+                </field>
+                <field name="sale_avg_price" position="replace">
+                    <field name="standard_price"/>
+                    <field name="purchase_avg_price"/>
+                    <field name="total_list_price"/>
+                    <field name="total_avg_price"/>
+                    <field name="total_li_avg_price"/>
+                </field>
+                <field name="default_code" position="replace"/>
+                <field name="turnover" position="replace"/>
+                <field name="total_cost" position="replace"/>
+                <field name="purchase_num_invoiced" position="replace"/>
+                <field name="total_margin" position="replace"/>
+                <field name="expected_margin" position="replace"/>
+                <field name="total_margin_rate" position="replace"/>
+                <field name="expected_margin_rate" position="replace"/>
+                <field name="sales_gap" position="after">
+                    <field name="expected_margin_rate"/>
+                    <field name="avg_margin_rate"/>
+                    <field name="li_avg_margin_rate"/>
+                </field>
+                <field name="sales_gap" position="replace">
+                    <field name="total_gap"/>
+                </field>
+            </field>
+        </record>
+
+<!--    Views for model product.category-->
+        <record model="ir.ui.view" id="view_product_margin_categ_graph">
+            <field name="name">product.margin.categ.graph</field>
+            <field name="model">product.category</field>
+            <field name="priority" eval="50"/>
+            <field name="arch" type="xml">
+                <graph string="Product Margins" type="bar">
+                    <field name="name"/>
+<!--                    <field name="avg_margin_rate" operator="+"/>-->
+                </graph>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="view_product_margin_categ_tree">
+            <field name="name">product.margin.categ.tree</field>
+            <field name="model">product.category</field>
+            <field name="priority" eval="50"/>
+            <field name="arch" type="xml">
+                <tree string="Product Margins">
+                    <field name="name"/>
+                    <field name="total_gap"/>
+                    <field name="expected_margin_rate"/>
+                    <field name="avg_margin_rate"/>
+                    <field name="li_avg_margin_rate"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="view_product_margin_categ_form">
+            <field name="name">product.margin.categ.form</field>
+            <field name="model">product.category</field>
+            <field name="priority" eval="50"/>
+            <field name="arch" type="xml">
+                <form string="Product Margins">
+                    <field name="name"/>
+                    <field name="total_gap"/>
+                    <field name="expected_margin_rate"/>
+                    <field name="avg_margin_rate"/>
+                    <field name="li_avg_margin_rate"/>
+                </form>
+            </field>
+        </record>
+    </data>
+</openerp>

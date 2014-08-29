@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_grap_ethiquette_label_all,grap.ethiquette.label,model_grap_ethiquette_label,,1,0,0,0
+access_grap_ethiquette_label_manager,grap.ethiquette.label,model_grap_ethiquette_label,group_manager,1,1,1,1
+access_grap_ethiquette_label_reader,grap.ethiquette.type,model_grap_ethiquette_type,group_reader,1,1,1,1
+product_by_department_reader,product_by_department reader,model_product_by_department,base.group_sale_salesman,1,0,0,0
+product_by_country_reader,product_by_country reader,model_product_by_country,base.group_sale_salesman,1,0,0,0

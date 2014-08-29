@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+
+        <!-- Resource: product.uom.categ -->
+        <record id="cat_cash_product" model="product.category">
+            <field name="parent_id" ref="product.product_category_all"/>
+            <field name="name">Cash Products</field>
+        </record>
+        <record id="cat_income_product" model="product.category">
+            <field name="parent_id" ref="cat_cash_product"/>
+            <field name="name">Cash Income</field>
+        </record>
+        <record id="cat_expense_product" model="product.category">
+            <field name="parent_id" ref="cat_cash_product"/>
+            <field name="name">Cash Expense</field>
+        </record>
+    </data>
+</openerp>

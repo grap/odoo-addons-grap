@@ -1,0 +1,594 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* grap_ethiquette
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-02-19 22:38+0000\n"
+"PO-Revision-Date: 2014-02-19 22:38+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: grap_ethiquette
+#: view:grap.ethiquette.type:0
+#: model:ir.model,name:grap_ethiquette.model_grap_ethiquette_type
+msgid "Ethiquette Type"
+msgstr "Type d'Ethiquette"
+
+#. module: grap_ethiquette
+#: selection:product.product,ethiquette_local:0
+#: selection:product.product,ethiquette_organic:0
+#: selection:product.product,ethiquette_packaging:0
+#: selection:product.product,ethiquette_social:0
+msgid "Unknown"
+msgstr "Inconnu"
+
+#. module: grap_ethiquette
+#: view:product.product:0
+msgid "Origin information"
+msgstr "Information sur la provenance"
+
+#. module: grap_ethiquette
+#: field:grap.ethiquette.label,short_name:0
+msgid "Short name"
+msgstr "Nom court"
+
+#. module: grap_ethiquette
+#: help:product.product,ethiquette_category:0
+msgid "Extra - Hight Quality : product without default ; Quality I - Good Quality : Product with little defaults ; Quality II - Normal Quality : Product with default ; Quality III - Bad Quality : Use this option only in specific situation. "
+msgstr "Extra - Qualité Supérieur : Produit sans défaut ; Qualité I - Bonne Qualité : Produit présentant de légers défauts ; Qualité II - Qualité Normale : Produit avec des défauts ; Qualité III - Mauvaise Qualité : Utilisez cette option seulement dans certains cas spécifique. "
+
+#. module: grap_ethiquette
+#: field:product.by.department,department_id:0
+msgid "Department"
+msgstr "Département"
+
+#. module: grap_ethiquette
+#: field:product.product,ethiquette_price_weight_net:0
+msgid "Price by weight net"
+msgstr "Prix au poid net"
+
+#. module: grap_ethiquette
+#: field:grap.ethiquette.label,minimum_social_notation:0
+msgid "Minimum Social Notation"
+msgstr "Note minimum équitable"
+
+#. module: grap_ethiquette
+#: model:ir.ui.menu,name:grap_ethiquette.menu_grap_ethiquette_label
+msgid "Managing labels"
+msgstr "Gérer les labels"
+
+#. module: grap_ethiquette
+#: view:product.product:0
+msgid "Product (Origin)"
+msgstr "Produits (Origine)"
+
+#. module: grap_ethiquette
+#: field:grap.ethiquette.type,company_id:0
+#: field:product.by.country,company_id:0
+#: field:product.by.department,company_id:0
+msgid "Company"
+msgstr "Société"
+
+#. module: grap_ethiquette
+#: model:ir.module.category,name:grap_ethiquette.module_category
+msgid "Ethiquette"
+msgstr "Ethiquette"
+
+#. module: grap_ethiquette
+#: view:grap.ethiquette.print.wizard.line:0
+msgid "Other parameters"
+msgstr "Autres paramètres"
+
+#. module: grap_ethiquette
+#: field:product.product,ethiquette_price_volume:0
+msgid "Price by volume"
+msgstr "Prix au volume"
+
+#. module: grap_ethiquette
+#: field:grap.ethiquette.print.wizard.line,quantity:0
+msgid "Quantity"
+msgstr "Quantité"
+
+#. module: grap_ethiquette
+#: selection:product.product,ethiquette_edition_state:0
+msgid "Compulsory"
+msgstr "Obligatoire"
+
+#. module: grap_ethiquette
+#: help:res.company,ethiquette_color:0
+msgid "Color of the ethiquette. Format #RRGGBB"
+msgstr "Couleur de l'éthiquette. Format #RRGGBB"
+
+#. module: grap_ethiquette
+#: model:ir.actions.act_window,name:grap_ethiquette.action_view_grap_ethiquette_label_kanban
+msgid "Etical labels"
+msgstr "Labels éthiques"
+
+#. module: grap_ethiquette
+#: code:addons/grap_ethiquette/account_invoice.py:24
+#, python-format
+msgid " - Country : "
+msgstr " - Pays : "
+
+#. module: grap_ethiquette
+#: view:product.product:0
+msgid "Product (Food)"
+msgstr "Produits (Alimentaire)"
+
+#. module: grap_ethiquette
+#: model:ir.actions.act_window,name:grap_ethiquette.action_grap_ethiquette_print_wizard
+msgid "Print Labels"
+msgstr "Imprimer les étiquettes"
+
+#. module: grap_ethiquette
+#: field:product.product,ethiquette_edition_state:0
+msgid "Edition state"
+msgstr "Etat de l'impression"
+
+#. module: grap_ethiquette
+#: view:product.product:0
+msgid "Print information"
+msgstr "Information liée à l'impression"
+
+#. module: grap_ethiquette
+#: field:product.product,ethiquette_origin:0
+msgid "Origin Complement"
+msgstr "Origine (Complément)"
+
+#. module: grap_ethiquette
+#: view:grap.ethiquette.print.wizard.line:0
+msgid "Products information"
+msgstr "Information sur les produits"
+
+#. module: grap_ethiquette
+#: model:ir.model,name:grap_ethiquette.model_grap_ethiquette_label
+#: field:product.product,ethiquette_label_ids:0
+msgid "Labels"
+msgstr "Labels"
+
+#. module: grap_ethiquette
+#: help:grap.ethiquette.label,mandatory_on_invoice:0
+msgid "By checking this field, the label will be printed on all the customers invoices."
+msgstr "En cochant cette case, ce label sera imprimé sur les factures clients."
+
+#. module: grap_ethiquette
+#: field:grap.ethiquette.print.wizard,offset:0
+msgid "Offset : Label number not to print"
+msgstr "Offset : Nombre d'étiquette à ne pas imprimer"
+
+#. module: grap_ethiquette
+#: field:res.company,ethiquette_color:0
+msgid "Ethiquette Color"
+msgstr "Couleur de l'éthiquette"
+
+#. module: grap_ethiquette
+#: field:product.product,ethiquette_organic:0
+msgid "Organic notation"
+msgstr "Note bio"
+
+#. module: grap_ethiquette
+#: model:ir.model,name:grap_ethiquette.model_grap_ethiquette_print_wizard
+msgid "Labels to print"
+msgstr "Etiquette à imprimer"
+
+#. module: grap_ethiquette
+#: field:product.by.country,quantity:0
+#: field:product.by.department,quantity:0
+msgid "Number of product"
+msgstr "Nombre de produits"
+
+#. module: grap_ethiquette
+#: view:grap.ethiquette.label:0
+#: view:grap.ethiquette.type:0
+msgid "Label"
+msgstr "Label"
+
+#. module: grap_ethiquette
+#: selection:product.product,ethiquette_edition_state:0
+msgid "Recommended"
+msgstr "Conseillé"
+
+#. module: grap_ethiquette
+#: view:grap.ethiquette.print.wizard:0
+msgid "Print"
+msgstr "Imprimer"
+
+#. module: grap_ethiquette
+#: view:product.product:0
+msgid "Food information"
+msgstr "Information alimentaire"
+
+#. module: grap_ethiquette
+#: help:product.product,ethiquette_type:0
+msgid "select the type of product"
+msgstr "Sélectionner le type de produit"
+
+#. module: grap_ethiquette
+#: model:ir.actions.act_window,name:grap_ethiquette.action_view_grap_ethiquette_type_tree
+#: field:product.product,ethiquette_type:0
+msgid "Type of Ethiquette"
+msgstr "Couleur d'éthiquette"
+
+#. module: grap_ethiquette
+#: view:grap.ethiquette.label:0
+#: view:grap.ethiquette.type:0
+msgid "Product Name"
+msgstr "Nom du produit"
+
+#. module: grap_ethiquette
+#: model:ir.actions.report.xml,name:grap_ethiquette.report_grap_ethiquette_report_html
+msgid "GRAP Ethiquette"
+msgstr "GRAP Ethiquette"
+
+#. module: grap_ethiquette
+#: field:product.product,ethiquette_social:0
+msgid "Social notation"
+msgstr "Note social"
+
+#. module: grap_ethiquette
+#: model:ir.actions.act_window,name:grap_ethiquette.action_view_product_product_food_tree
+msgid "Products (Food Information)"
+msgstr "Produits (Alimentaire)"
+
+#. module: grap_ethiquette
+#: view:grap.ethiquette.print.wizard:0
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: grap_ethiquette
+#: model:ir.ui.menu,name:grap_ethiquette.menu_product_product_origin
+msgid "Products (Origin View)"
+msgstr "Produits (Vue Origine)"
+
+#. module: grap_ethiquette
+#: field:product.product,ethiquette_maker:0
+msgid "Maker"
+msgstr "Producteur"
+
+#. module: grap_ethiquette
+#: field:grap.ethiquette.print.wizard.line,wizard_id:0
+msgid "Wizard Reference"
+msgstr "Wizard Reference"
+
+#. module: grap_ethiquette
+#: field:product.product,ethiquette_local:0
+msgid "Local notation"
+msgstr "Note local"
+
+#. module: grap_ethiquette
+#: selection:product.product,ethiquette_category:0
+msgid "Extra"
+msgstr "Extra"
+
+#. module: grap_ethiquette
+#: selection:product.product,ethiquette_edition_state:0
+msgid "Up to date"
+msgstr "A jour"
+
+#. module: grap_ethiquette
+#: model:ir.model,name:grap_ethiquette.model_account_invoice_line
+msgid "Invoice Line"
+msgstr "Lignes de facture"
+
+#. module: grap_ethiquette
+#: help:product.product,ethiquette_origin:0
+msgid "Production location complementary information"
+msgstr "Information complémentaire lié à l'origine du produi"
+
+#. module: grap_ethiquette
+#: view:product.product:0
+#: field:product.product,ethiquette_spider_chart:0
+msgid "Spider Chart"
+msgstr "Graphique radar"
+
+#. module: grap_ethiquette
+#: model:ir.ui.menu,name:grap_ethiquette.menu_grap_ethiquette_type
+msgid "Managing Type"
+msgstr "Couleur d'éthiquette"
+
+#. module: grap_ethiquette
+#: field:grap.ethiquette.label,logo:0
+msgid "Logo"
+msgstr "Logo"
+
+#. module: grap_ethiquette
+#: field:product.product,ethiquette_category:0
+msgid "Food category of the product"
+msgstr "Catégorie Fruits & Légumes"
+
+#. module: grap_ethiquette
+#: field:grap.ethiquette.label,mandatory_on_invoice:0
+msgid "Mandatory on invoice"
+msgstr "Obligatoire sur facture"
+
+#. module: grap_ethiquette
+#: model:ir.ui.menu,name:grap_ethiquette.menu_product_product_food
+msgid "Products (Food View)"
+msgstr "Produits (Vue Alimentaire)"
+
+#. module: grap_ethiquette
+#: help:grap.ethiquette.print.wizard.line,product_id:0
+msgid "Product to print"
+msgstr "Produit à imprimer"
+
+#. module: grap_ethiquette
+#: model:res.groups,name:grap_ethiquette.group_reader
+msgid "Reader"
+msgstr "Lecteur"
+
+#. module: grap_ethiquette
+#: model:ir.actions.act_window,name:grap_ethiquette.action_product_by_country
+#: model:ir.model,name:grap_ethiquette.model_product_by_country
+#: model:ir.ui.menu,name:grap_ethiquette.menu_product_by_country
+#: view:product.by.country:0
+msgid "Product by country"
+msgstr "Produits par pays"
+
+#. module: grap_ethiquette
+#: code:addons/grap_ethiquette/account_invoice.py:27
+#, python-format
+msgid " - Category : "
+msgstr " - Catégorie : "
+
+#. module: grap_ethiquette
+#: view:res.company:0
+msgid "Grap Ethiquette"
+msgstr "Grap Ethiquette"
+
+#. module: grap_ethiquette
+#: help:product.product,ethiquette_origin_country:0
+msgid "Country of production of the product"
+msgstr "Pays de production du pays"
+
+#. module: grap_ethiquette
+#: field:grap.ethiquette.print.wizard,wizard_line_ids:0
+msgid "Products list"
+msgstr "Liste de produits"
+
+#. module: grap_ethiquette
+#: help:res.company,ethiquette_image:0
+msgid "This field will be printed on ethiquette. Size : 210px * 210px"
+msgstr "Cette image sera imprimée sur l'éthiquette : Taille : 210px * 210px"
+
+#. module: grap_ethiquette
+#: field:grap.ethiquette.label,active:0
+msgid "Active"
+msgstr "Actif"
+
+#. module: grap_ethiquette
+#: field:product.uom.categ,ethiquette_printable:0
+msgid "Print on ethiquette"
+msgstr "Imprimer sur l'éthiquette"
+
+#. module: grap_ethiquette
+#: selection:product.product,ethiquette_category:0
+msgid "Category III"
+msgstr "Catégorie III"
+
+#. module: grap_ethiquette
+#: field:product.product,ethiquette_origin_department:0
+msgid "Origin Department"
+msgstr "Origine (Département)"
+
+#. module: grap_ethiquette
+#: field:product.product,ethiquette_image:0
+msgid "Image on the label printed"
+msgstr "Image imprimé sur l'éthiquette"
+
+#. module: grap_ethiquette
+#: field:grap.ethiquette.label,minimum_packaging_notation:0
+msgid "Minimum Packaging Notation"
+msgstr "Note minimum emballage"
+
+#. module: grap_ethiquette
+#: model:ir.model,name:grap_ethiquette.model_res_company
+msgid "Companies"
+msgstr "Sociétés"
+
+#. module: grap_ethiquette
+#: model:ir.model,name:grap_ethiquette.model_grap_ethiquette_print_wizard_line
+msgid "Information about a product to print"
+msgstr "Informations sur le produit à imprimer"
+
+#. module: grap_ethiquette
+#: model:ir.actions.act_window,name:grap_ethiquette.action_view_product_product_origin_tree
+msgid "Products (Origin Information)"
+msgstr "Produits (Origine)"
+
+#. module: grap_ethiquette
+#: field:product.product,ethiquette_packaging:0
+msgid "Packaging notation"
+msgstr "Note emballage"
+
+#. module: grap_ethiquette
+#: help:grap.ethiquette.type,ethiquette_color:0
+msgid "Color of the type of ethiquette. Format #RRGGBB"
+msgstr "Couleur de l'éthiquette : Format #RRGGBB"
+
+#. module: grap_ethiquette
+#: model:ir.actions.act_window,name:grap_ethiquette.action_product_by_department
+#: model:ir.model,name:grap_ethiquette.model_product_by_department
+#: model:ir.ui.menu,name:grap_ethiquette.menu_product_by_department
+#: view:product.by.department:0
+msgid "Product by department"
+msgstr "Produits par département"
+
+#. module: grap_ethiquette
+#: field:grap.ethiquette.print.wizard,border:0
+msgid "Design a border for labels"
+msgstr "Dessiner un contour autour des étiquettes"
+
+#. module: grap_ethiquette
+#: code:addons/grap_ethiquette/account_invoice.py:33
+#, python-format
+msgid " - Label : "
+msgstr " - Labels : "
+
+#. module: grap_ethiquette
+#: field:product.by.department,state_id:0
+msgid "State"
+msgstr "Région"
+
+#. module: grap_ethiquette
+#: model:ir.ui.menu,name:grap_ethiquette.menu_grap_ethiquette
+msgid "GRAP - Ethiquette"
+msgstr "GRAP - Ethiquette"
+
+#. module: grap_ethiquette
+#: field:grap.ethiquette.type,name:0
+msgid "Type Name"
+msgstr "Nom"
+
+#. module: grap_ethiquette
+#: view:grap.ethiquette.label:0
+msgid "Information"
+msgstr "Information"
+
+#. module: grap_ethiquette
+#: help:product.product,ethiquette_origin_department:0
+msgid "Department of production of the product"
+msgstr "Département de production du pays"
+
+#. module: grap_ethiquette
+#: selection:product.product,ethiquette_edition_state:0
+msgid "Do not print"
+msgstr "Ne pas imprimer"
+
+#. module: grap_ethiquette
+#: view:grap.ethiquette.label:0
+msgid "General information"
+msgstr "Informations générales"
+
+#. module: grap_ethiquette
+#: selection:product.product,ethiquette_category:0
+msgid "Category II"
+msgstr "Catégorie II"
+
+#. module: grap_ethiquette
+#: view:grap.ethiquette.label:0
+#: view:grap.ethiquette.print.wizard.line:0
+#: field:grap.ethiquette.print.wizard.line,product_id:0
+#: model:ir.model,name:grap_ethiquette.model_product_product
+msgid "Product"
+msgstr "Produit"
+
+#. module: grap_ethiquette
+#: view:grap.ethiquette.label:0
+msgid "Notation information"
+msgstr "Notation"
+
+#. module: grap_ethiquette
+#: view:product.product:0
+msgid "Notation"
+msgstr "Notation"
+
+#. module: grap_ethiquette
+#: model:ir.model,name:grap_ethiquette.model_product_uom_categ
+msgid "Product uom categ"
+msgstr "Catégorie d'UdM du produit"
+
+#. module: grap_ethiquette
+#: field:account.invoice.line,extra_food_info:0
+msgid "Extra information for invoices"
+msgstr "Information complémentaire sur facture"
+
+#. module: grap_ethiquette
+#: field:product.product,ethiquette_origin_country:0
+msgid "Origin Country"
+msgstr "Origine (Pays)"
+
+#. module: grap_ethiquette
+#: help:grap.ethiquette.label,active:0
+msgid "By unchecking the active field you can disable a label without deleting it."
+msgstr "En décochant ce champs, vous pouvez désactiver ce label sans le supprimer."
+
+#. module: grap_ethiquette
+#: code:addons/grap_ethiquette/product.py:164
+#: constraint:product.product:0
+#, python-format
+msgid "Error ! Department must belong to the country."
+msgstr "Erreur ! Le département doit appartenir au pays."
+
+#. module: grap_ethiquette
+#: field:grap.ethiquette.label,name:0
+msgid "Name"
+msgstr "Nom"
+
+#. module: grap_ethiquette
+#: field:product.by.country,country_id:0
+#: field:product.by.department,country_id:0
+msgid "Country"
+msgstr "Pays"
+
+#. module: grap_ethiquette
+#: field:product.product,ethiquette_printed_origin:0
+msgid "Text about origin"
+msgstr "Texte relatif à l'origine"
+
+#. module: grap_ethiquette
+#: field:grap.ethiquette.print.wizard.line,print_unit_price:0
+msgid "Print unit price"
+msgstr "Imprimer le prix"
+
+#. module: grap_ethiquette
+#: field:res.company,ethiquette_image:0
+msgid "Ethiquette logo"
+msgstr "Logo de l'éthiquette"
+
+#. module: grap_ethiquette
+#: field:grap.ethiquette.type,ethiquette_color:0
+msgid "Color"
+msgstr "Couleur"
+
+#. module: grap_ethiquette
+#: selection:product.product,ethiquette_category:0
+msgid "Category I"
+msgstr "Catégorie I"
+
+#. module: grap_ethiquette
+#: view:grap.ethiquette.print.wizard:0
+msgid "form string"
+msgstr "form string"
+
+#. module: grap_ethiquette
+#: field:grap.ethiquette.label,minimum_organic_notation:0
+msgid "Minimum Organic Notation"
+msgstr "Note minimum bio"
+
+#. module: grap_ethiquette
+#: model:res.groups,name:grap_ethiquette.group_manager
+msgid "Manager"
+msgstr "Manager"
+
+#. module: grap_ethiquette
+#: model:ir.ui.menu,name:grap_ethiquette.menu_grap_ethiquette_print_wizard
+msgid "Print product labels"
+msgstr "Imprimer les étiquettes"
+
+#. module: grap_ethiquette
+#: field:grap.ethiquette.label,minimum_local_notation:0
+msgid "Minimum Local Notation"
+msgstr "Note minimum local"
+
+#. module: grap_ethiquette
+#: view:grap.ethiquette.print.wizard:0
+msgid "Products"
+msgstr "Produits"
+
+#. module: grap_ethiquette
+#: view:grap.ethiquette.print.wizard:0
+msgid "Printing parameters"
+msgstr "Imprimer les paramètres"
+
+#. module: grap_ethiquette
+#: field:product.product,ethiquette_color:0
+msgid "Color of the background of the ethiquette"
+msgstr "Couleur de l'éthiquette"
+

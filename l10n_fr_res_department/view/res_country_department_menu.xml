@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <menuitem id="menu_res_country_department"
+            parent="base.menu_localisation"
+            action="action_view_country_department_tree" 
+            sequence="2" 
+            groups="base.group_no_one"/>
+    </data>
+</openerp>

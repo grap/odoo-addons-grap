@@ -1,0 +1,177 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* manage_accounts_integrity
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-01-07 23:14+0000\n"
+"PO-Revision-Date: 2014-01-07 23:14+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: manage_accounts_integrity
+#: code:addons/manage_accounts_integrity/model/account_account.py:175
+#, python-format
+msgid "You cannot change the code of account which contains journal items!"
+msgstr "Vous ne pouvez pas changer le code d'un compte qui possède des écritures !"
+
+#. module: manage_accounts_integrity
+#: model:res.groups,name:manage_accounts_integrity.res_group_manage_accounts_integrity_manager
+msgid "check_correct_accounts manager"
+msgstr "check_correct_accounts manager"
+
+#. module: manage_accounts_integrity
+#: view:account.account:0
+msgid "View associated entries"
+msgstr "Voir les écritures associées"
+
+#. module: manage_accounts_integrity
+#: view:account.account:0
+msgid "View associated accounts"
+msgstr "Voir les comptes associés"
+
+#. module: manage_accounts_integrity
+#: model:ir.actions.act_window,name:manage_accounts_integrity.action_account_account_change_move_line
+msgid "DESCRIPTION ACTION"
+msgstr "DESCRIPTION ACTION"
+
+#. module: manage_accounts_integrity
+#: view:account.account:0
+msgid "Change move lines"
+msgstr "Changer les écritures comptables"
+
+#. module: manage_accounts_integrity
+#: view:account.account.change.move.line:0
+msgid "Member"
+msgstr "Membre"
+
+#. module: manage_accounts_integrity
+#: view:account.account:0
+msgid "PROBLEMS : With childs and with moves"
+msgstr "PROBLEME : Avec des comptes enfants et des écritures"
+
+#. module: manage_accounts_integrity
+#: code:addons/manage_accounts_integrity/model/account_account_change_move_line.py:59
+#, python-format
+msgid "Source and destination account must be belong to the same company."
+msgstr "Les comptes comptables sources et de destinations doivent appartenir à la même société."
+
+#. module: manage_accounts_integrity
+#: code:addons/manage_accounts_integrity/model/account_account.py:160
+#, python-format
+msgid "You cannot change the type of account to '%s' type as it contains journal items!"
+msgstr "Vous ne pouvez pas changer le type de compte en '%s' car il contient des écritures comptables!"
+
+#. module: manage_accounts_integrity
+#: model:ir.actions.act_window,name:manage_accounts_integrity.action_view_account_account_associated_tree
+msgid "Account associated"
+msgstr "Compte associé"
+
+#. module: manage_accounts_integrity
+#: view:account.account:0
+msgid "PROBLEMS : View / consolidation with moves"
+msgstr "PROBLEME : Type 'vue' / 'consolidation' avec des écritures comptables"
+
+#. module: manage_accounts_integrity
+#: code:addons/manage_accounts_integrity/model/account_account.py:29
+#: code:addons/manage_accounts_integrity/model/account_account.py:62
+#: code:addons/manage_accounts_integrity/model/account_account.py:97
+#, python-format
+msgid "expression is not what we expect !"
+msgstr "L'expression n'est pas celle attendue !"
+
+#. module: manage_accounts_integrity
+#: view:account.account:0
+msgid "With properties"
+msgstr "Avec des propriétés"
+
+#. module: manage_accounts_integrity
+#: view:account.account.change.move.line:0
+msgid "Source Information"
+msgstr "Information de la source"
+
+#. module: manage_accounts_integrity
+#: model:ir.actions.act_window,name:manage_accounts_integrity.action_view_account_move_line_associated_tree
+msgid "Account move lines associated"
+msgstr "Ecritures comptables associées"
+
+#. module: manage_accounts_integrity
+#: view:account.account:0
+msgid "Delete all properties"
+msgstr "Supprimer toutes les propriétés"
+
+#. module: manage_accounts_integrity
+#: view:account.account:0
+msgid "Properties"
+msgstr "Propriétés"
+
+#. module: manage_accounts_integrity
+#: model:ir.model,name:manage_accounts_integrity.model_account_account
+msgid "Account"
+msgstr "Compte"
+
+#. module: manage_accounts_integrity
+#: code:addons/manage_accounts_integrity/model/account_account.py:157
+#, python-format
+msgid "You cannot change the type of account from 'Closed' to any other type as it contains journal items!"
+msgstr "Vous ne pouvez pas changer le type d'un compte de 'Fermé' à un autre type car il contient des écritures comptables!"
+
+#. module: manage_accounts_integrity
+#: code:addons/manage_accounts_integrity/model/account_account.py:175
+#, python-format
+msgid "Warning !"
+msgstr "Attention !"
+
+#. module: manage_accounts_integrity
+#: view:account.account:0
+msgid "Childs"
+msgstr "Enfant"
+
+#. module: manage_accounts_integrity
+#: model:ir.model,name:manage_accounts_integrity.model_account_account_change_move_line
+msgid "DESCRIPTION"
+msgstr "DESCRIPTION"
+
+#. module: manage_accounts_integrity
+#: view:account.account:0
+msgid "Accounts"
+msgstr "Comptes"
+
+#. module: manage_accounts_integrity
+#: code:addons/manage_accounts_integrity/model/account_account.py:157
+#: code:addons/manage_accounts_integrity/model/account_account.py:160
+#, python-format
+msgid "Warning!"
+msgstr "Attention!"
+
+#. module: manage_accounts_integrity
+#: view:account.account.change.move.line:0
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: manage_accounts_integrity
+#: view:account.account.change.move.line:0
+msgid "Apply"
+msgstr "Valider"
+
+#. module: manage_accounts_integrity
+#: view:account.account:0
+msgid "Moves"
+msgstr "Ecritures"
+
+#. module: manage_accounts_integrity
+#: view:account.account:0
+msgid "Integrity"
+msgstr "Contrôle d'intégrité"
+
+#. module: manage_accounts_integrity
+#: view:account.account.change.move.line:0
+msgid "Destination Information"
+msgstr "Information de destination"
+

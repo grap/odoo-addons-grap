@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!-- *********************************************************************** -->
+<!-- See __openerp__.py file for Copyright and Licence Informations.         -->
+<!-- *********************************************************************** -->
+<openerp>
+    <data>
+        <record id="action_account_merge_pattern_tree" model="ir.actions.act_window">
+            <field name="name">Account Merge Patterns</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.merge.pattern</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help">Display and manage account Merge Patterns.</field>
+        </record>
+    </data>
+</openerp>
+
+

@@ -1,0 +1,28 @@
+@charset "utf-8";
+
+/* GENERAL - field type date */
+.openerp .oe_form_editable .oe_form .oe_form_field_date input {width: 115px;} /* initial value 100px */ 
+
+/* point_of_sale - view_pos_order_form                                        */
+
+.grap_change_views__view_pos_order_form [data-id="product_id"]          {width: 50%;}
+.grap_change_views__view_pos_order_form [data-id="qty"]                 {width: 10%;}
+.grap_change_views__view_pos_order_form [data-id="price_unit"]          {width: 10%;}
+.grap_change_views__view_pos_order_form [data-id="discount"]            {width: 10%;}
+.grap_change_views__view_pos_order_form [data-id="price_subtotal"]      {width: 10%;}
+.grap_change_views__view_pos_order_form [data-id="price_subtotal_incl"] {width: 10%;}
+
+/* account - view_account_move_form                                           */
+
+.grap_change_views__view_account_move_form [data-id="invoice"]              {width: 3%;}
+.grap_change_views__view_account_move_form [data-id="name"]                 {width: 18%;}
+.grap_change_views__view_account_move_form [data-id="partner_id"]           {width: 12%;}
+.grap_change_views__view_account_move_form [data-id="account_id"]           {width: 18%;}
+.grap_change_views__view_account_move_form [data-id="date_maturity"]        {width: 7%;}
+.grap_change_views__view_account_move_form [data-id="debit"]                {width: 8%;}
+.grap_change_views__view_account_move_form [data-id="credit"]               {width: 8%;}
+.grap_change_views__view_account_move_form [data-id="tax_code_id"]          {width: 10%;}
+.grap_change_views__view_account_move_form [data-id="tax_amount"]           {width: 5%;}
+.grap_change_views__view_account_move_form [data-id="state"]                {width: 5%;}
+.grap_change_views__view_account_move_form [data-id="reconcile_id"]         {width: 3%;}
+.grap_change_views__view_account_move_form [data-id="reconcile_partial_id"] {width: 3%;}

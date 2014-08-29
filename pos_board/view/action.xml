@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ********************************************************************** -->
+<!--    Point of Sale Board module for Odoo                                 -->
+<!--    Copyright (C) 2014 GRAP (http://www.grap.coop)                      -->
+<!--    @author Julien WESTE                                                -->
+<!--    @author Sylvain LE GAL (https://twitter.com/legalsylvain)           -->
+
+<!--This program is free software: you can redistribute it and/or modify    -->
+<!--it under the terms of the GNU Affero General Public License as          -->
+<!--published by the Free Software Foundation, either version 3 of the      -->
+<!--License, or (at your option) any later version.                         -->
+
+<!--This program is distributed in the hope that it will be useful,         -->
+<!--but WITHOUT ANY WARRANTY; without even the implied warranty of          -->
+<!--MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the           -->
+<!--GNU Affero General Public License for more details.                     -->
+
+<!--You should have received a copy of the GNU Affero General Public License-->
+<!--along with this program.  If not, see <http://www.gnu.org/licenses/>.   -->
+<!-- ********************************************************************** -->
+<openerp>
+    <data>
+        <record id="pos_sale_by_day" model="ir.actions.act_window">
+            <field name="name">Sale Dashboard by day</field>
+            <field name="res_model">pos.board.load.daily</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">graph</field>
+            <field name="view_id" ref="pos_sale_by_day_graph"/>
+            <field name="domain">[('date','>',(context_today()-datetime.timedelta(days=30)).strftime('%Y-%m-%d'))]</field>
+        </record>
+        <record id="pos_sale_by_week" model="ir.actions.act_window">
+            <field name="name">Sale Dashboard by week</field>
+            <field name="res_model">pos.board.load.weekly</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">graph</field>
+            <field name="view_id" ref="pos_sale_by_week_graph"/>
+            <field name="domain">[('date','>',(context_today()-datetime.timedelta(days=168)).strftime('%Y-%m-%d'))]</field>
+        </record>
+        <record id="pos_sale_by_month" model="ir.actions.act_window">
+            <field name="name">Sale Dashboard by month</field>
+            <field name="res_model">pos.board.load.monthly</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">graph</field>
+            <field name="view_id" ref="pos_sale_by_month_graph"/>
+            <field name="domain">[('date','>',(context_today()-relativedelta(months=14)).strftime('%Y-%m-%d'))]</field>
+        </record>
+        <record id="pos_sale_by_day_simple" model="ir.actions.act_window">
+            <field name="name">Sale Dashboard by day simple</field>
+            <field name="res_model">pos.board.load.daily.simple</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">graph</field>
+            <field name="view_id" ref="pos_sale_by_day_graph_simple"/>
+        </record>
+        <record id="pos_nb_sale_by_day" model="ir.actions.act_window">
+            <field name="name">Nb Sale Dashboard by day</field>
+            <field name="res_model">pos.board.load.daily.simple</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">graph</field>
+            <field name="view_id" ref="pos_nb_sale_by_day_graph"/>
+        </record>
+        <record id="pos_avg_amount_by_day" model="ir.actions.act_window">
+            <field name="name">Avg Amount Dashboard by day</field>
+            <field name="res_model">pos.board.load.daily.simple</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">graph</field>
+            <field name="view_id" ref="pos_avg_amount_by_day_graph"/>
+        </record>
+    </data>
+</openerp>

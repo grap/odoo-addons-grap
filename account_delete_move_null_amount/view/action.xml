@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!-- *********************************************************************** -->
+<!-- See __openerp__.py file for Copyright and Licence Informations.         -->
+<!-- *********************************************************************** -->
+<openerp>
+    <data>
+
+        <record id="action_account_move_null_amount_tree" model="ir.actions.act_window">
+            <field name="name">Account Move with Null Amounts</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.period</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_account_move_null_amount_tree" />
+        </record>
+        
+        <record id="action_view_delete_account_move_null_amount_wizard_form" model="ir.actions.act_window">
+            <field name="name">Delete Account Moves Null Amount</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">delete.account.move.null.amount.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_delete_account_move_null_amount_wizard_form"/>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</openerp>
+
+

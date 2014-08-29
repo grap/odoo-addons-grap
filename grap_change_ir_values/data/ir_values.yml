@@ -1,0 +1,9 @@
+- 
+  Creating a ir.values record
+- 
+  !record {model: ir.values, id: ir_valuesnotification_email_send_comment}:
+    key: default
+    key2:
+    model: res.partner
+    name: notification_email_send
+    value: "S'comment'\np0\n."

@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!-- *********************************************************************** -->
+<!-- See __openerp__.py file for Copyright and Licence Informations.         -->
+<!-- *********************************************************************** -->
+<openerp>
+    <data>
+        <record id="view_account_period_form" model="ir.ui.view">
+            <field name="name">account.period.form</field>
+            <field name="model">account.period</field>
+            <field name="inherit_id" ref="account.view_account_period_form" />
+            <field name="arch" type="xml">
+                <field name="company_id" position="after">
+                    <label for="account_move_null_amount_quantity" string="Quantity of moves with null amount" colspan="1"/>
+                    <div colspan="1">
+                        <field name="account_move_null_amount_quantity" class="oe_inline"/>
+                        <button 
+                            name="%(action_view_delete_account_move_null_amount_wizard_form)d"
+                            string="Delete Account Moves"
+                            type="action" 
+                            groups="account_delete_account_move_null_period.group_account_move_null_amount_manager"
+                            attrs="{'invisible':[('account_move_null_amount_quantity', '=', 0)]}"
+                            class="oe_link"/>
+                    </div>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>

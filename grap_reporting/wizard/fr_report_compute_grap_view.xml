@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <menuitem icon="terp-account" id="menu_finance_management_reports" name="Rapports de Gestion" sequence="13"
+            groups="account.group_account_invoice"
+            parent="account.menu_finance_reporting"/>
+
+<!--________________________________SIG_________________________________________________________________-->
+        <record id="sig_report_view" model="ir.ui.view">
+            <field name="name">Soldes Intermédiaires de Gestion</field>
+            <field name="model">account.sig.report</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+            	<form string='Soldes Intermédiaires de Gestion'>
+	               <field name="date_start"/>
+	               <field name="date_stop"/>
+	               <separator colspan="4"/>
+                    <group colspan="4" col="6">
+                        <button special="cancel" string="Cancel" icon="gtk-cancel"/>
+                        <button name="print_sig_report" string="Print" type="object" icon="gtk-ok"/>
+                    </group>
+	             </form>
+            </field>
+        </record>
+
+
+        <record id="action_account_report_sig" model="ir.actions.act_window">
+             <field name="name">Soldes Intermédiaires de Gestion</field>
+            <field name="res_model">account.sig.report</field>
+             <field name="type">ir.actions.act_window</field>
+             <field name="view_type">form</field>
+             <field name="view_mode">form</field>
+            <field name="view_id" ref="sig_report_view"/>
+             <field name="target">new</field>
+<!--             <field name="groups" model="res.groups" ref="account.group_account_invoice"/>-->
+        </record>
+
+        <menuitem icon="terp-account" id="menu_account_report_sig" name="Soldes Intermediaires de Gestion" groups="account.group_account_invoice" sequence="13" parent="menu_finance_management_reports" action="action_account_report_sig"/>
+        
+        
+<!--________________________________Tréso_________________________________________________________________-->
+        <record id="treso_report_view" model="ir.ui.view">
+            <field name="name">Tresorerie</field>
+            <field name="model">account.treso.report</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+            	<form string='Tresorerie'>
+	               <field name="date_start"/>
+	               <field name="date_stop"/>
+	               <separator colspan="4"/>
+                    <group colspan="4" col="6">
+                        <button special="cancel" string="Cancel" icon="gtk-cancel"/>
+                        <button name="print_treso_report" string="Print" type="object" icon="gtk-ok"/>
+                    </group>
+	             </form>
+            </field>
+        </record>
+
+
+        <record id="action_account_report_treso" model="ir.actions.act_window">
+            <field name="name">Tresorerie</field>
+            <field name="res_model">account.treso.report</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="treso_report_view"/>
+            <field name="target">new</field>
+<!--             <field name="groups" model="res.groups" ref="account.group_account_invoice"/>-->
+        </record>
+
+        <menuitem icon="terp-account" id="menu_account_report_treso" name="Tresorerie" groups="account.group_account_invoice" sequence="14" parent="menu_finance_management_reports" action="action_account_report_treso"/>
+
+    </data>
+</openerp>

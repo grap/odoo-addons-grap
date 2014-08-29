@@ -1,0 +1,492 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* product_margin_improve
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-06-10 12:34+0000\n"
+"PO-Revision-Date: 2014-06-10 12:34+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: product_margin_improve
+#: view:product.product:0
+msgid "Analysis Criteria"
+msgstr "Critères d'analyse"
+
+#. module: product_margin_improve
+#: field:product.category,avg_margin_rate:0
+#: field:product.product,avg_margin_rate:0
+#: field:product.product,li_avg_margin_rate:0
+msgid "Avg Margin (%)"
+msgstr "Marge moy %"
+
+#. module: product_margin_improve
+#: field:product.category,li_avg_margin_rate:0
+msgid "Avg Margin Losses Included (%)"
+msgstr "Marge Moy (pertes incl) (%)"
+
+#. module: product_margin_improve
+#: field:product.product,pos_avg_price:0
+msgid "Avg. POS Unit Price"
+msgstr "Prix Ventes Moy PdV"
+
+#. module: product_margin_improve
+#: help:product.product,pos_avg_price:0
+msgid "Avg. Price in POS"
+msgstr "Prix de Vente Moyen dans le Point de Vente"
+
+#. module: product_margin_improve
+#: help:product.product,total_avg_price:0
+msgid "Avg. Sale Price"
+msgstr "Prix de Vente Moyen toutes ventes confondues"
+
+#. module: product_margin_improve
+#: help:product.product,li_unit_margin:0
+msgid "Avg. Sale Price (losses included) - Avg. Purchase Price"
+msgstr "Prix de Vente moyen (pertes incluses) - Prix d'Achat moyen"
+
+#. module: product_margin_improve
+#: help:product.product,unit_margin:0
+msgid "Avg. Sale Price - Avg. Purchase Price"
+msgstr "Prix de Vente moyen - Prix d'Achat moyen"
+
+#. module: product_margin_improve
+#: field:product.product,total_avg_price:0
+msgid "Avg. Sale Unit Price"
+msgstr "Prix Ventes Moy"
+
+#. module: product_margin_improve
+#: field:product.product,total_li_avg_price:0
+msgid "Avg. Sale Unit Price (losses included)"
+msgstr "Prix Ventes Moy (pertes incl)"
+
+#. module: product_margin_improve
+#: view:product.product:0
+msgid "Catalog Price"
+msgstr "Prix catalogue"
+
+#. module: product_margin_improve
+#: help:product.product,expected_unit_margin:0
+#: help:product.product,li_expected_unit_margin:0
+msgid "Catalog Price - Standard Price"
+msgstr "Prix catalogue - Prix standard"
+
+#. module: product_margin_improve
+#: help:product.product,pos_list_price:0
+#: help:product.product,sale_list_price:0
+#: help:product.product,total_li_list_price:0
+#: help:product.product,total_list_price:0
+msgid "Catalog Price."
+msgstr "Prix catalogue"
+
+#. module: product_margin_improve
+#: model:ir.actions.act_window,name:product_margin_improve.product_margin_categ_act_window
+#: model:ir.ui.menu,name:product_margin_improve.menu_action_product_margin_categ
+msgid "Category Margins"
+msgstr "Marges par catégorie"
+
+#. module: product_margin_improve
+#: selection:product.category,pos_state:0
+#: selection:product.margin,pos_state:0
+#: selection:product.product,pos_state:0
+msgid "Done"
+msgstr "Comptabilisé"
+
+#. module: product_margin_improve
+#: selection:product.category,pos_state:0
+#: selection:product.margin,pos_state:0
+#: selection:product.product,pos_state:0
+msgid "Done and Paid"
+msgstr "Comptabilisé et Payé"
+
+#. module: product_margin_improve
+#: selection:product.category,pos_state:0
+#: selection:product.margin,pos_state:0
+#: selection:product.product,pos_state:0
+msgid "Draft, Done and Paid"
+msgstr "Brouillon, Comptabilisé et Payé"
+
+#. module: product_margin_improve
+#: selection:product.category,invoice_state:0
+msgid "Draft, Open, Verified and Paid"
+msgstr "Brouillon, Ouverte, Vérifiée et Payée"
+
+#. module: product_margin_improve
+#: field:product.category,expected_margin:0
+#: field:product.category,li_expected_margin:0
+#: field:product.product,li_expected_margin:0
+msgid "Expected Margin"
+msgstr "Marge attendue"
+
+#. module: product_margin_improve
+#: field:product.category,expected_margin_rate:0
+#: field:product.category,li_expected_margin_rate:0
+#: field:product.product,li_expected_margin_rate:0
+msgid "Expected Margin (%)"
+msgstr "Marge attendue (%)"
+
+#. module: product_margin_improve
+#: help:product.category,pos_gap:0
+#: help:product.category,sales_gap:0
+#: help:product.category,total_gap:0
+#: help:product.category,total_li_gap:0
+#: help:product.product,pos_gap:0
+#: help:product.product,total_gap:0
+#: help:product.product,total_li_gap:0
+msgid "Expected Sale - Income"
+msgstr "Ventes attendues - Chiffre d'Affaire réel"
+
+#. module: product_margin_improve
+#: field:product.product,expected_unit_margin:0
+#: field:product.product,li_expected_unit_margin:0
+msgid "Expected Unit Margin"
+msgstr "Marge Unit. attendue"
+
+#. module: product_margin_improve
+#: help:product.category,li_expected_margin:0
+#: help:product.product,li_expected_margin:0
+msgid "Expected Unit Margin * Qty Sold (loss included)"
+msgstr "Marge unitaire attendue * Quantité totale vendue (Pertes Incluses)"
+
+#. module: product_margin_improve
+#: help:product.category,expected_margin_rate:0
+msgid "Expected margin * 100 / Expected Sale"
+msgstr "Marge attendue * 100 / Ventes attendues"
+
+#. module: product_margin_improve
+#: help:product.category,li_expected_margin_rate:0
+#: help:product.product,li_expected_margin_rate:0
+msgid "Expected margin * 100 / Expected Sale (losses included)"
+msgstr "Marge attendue * 100 / Ventes attendues (Pertes Incluses)"
+
+#. module: product_margin_improve
+#: field:product.category,pos_income:0
+#: field:product.product,pos_income:0
+msgid "Income"
+msgstr "CA PdV"
+
+#. module: product_margin_improve
+#: field:product.category,sale_income:0
+#: field:product.product,sale_income:0
+msgid "Income"
+msgstr "CA Ventes"
+
+#. module: product_margin_improve
+#: field:product.category,total_income:0
+#: field:product.product,total_income:0
+msgid "Income"
+msgstr "CA total"
+
+#. module: product_margin_improve
+#: field:product.category,total_li_income:0
+#: field:product.product,total_li_income:0
+msgid "Income"
+msgstr "CA total (pertes incl)"
+
+#. module: product_margin_improve
+#: field:product.product,inventory_losses:0
+msgid "Inventory Losses"
+msgstr "Pertes d'inventaire"
+
+#. module: product_margin_improve
+#: field:product.product,sale_list_price:0
+msgid "Invoice Sale Price"
+msgstr "Prix de Vente factures"
+
+#. module: product_margin_improve
+#: field:product.category,invoice_state:0
+msgid "Invoice State"
+msgstr "État des factures"
+
+#. module: product_margin_improve
+#: view:product.product:0
+msgid "Invoices"
+msgstr "Factures"
+
+#. module: product_margin_improve
+#: view:product.product:0
+msgid "Margin"
+msgstr "Marge"
+
+#. module: product_margin_improve
+#: view:product.product:0
+msgid "Margin (losses included)"
+msgstr "Marge (pertes incl)"
+
+#. module: product_margin_improve
+#: field:product.category,date_from:0
+msgid "Margin Date From"
+msgstr "Margin Date From"
+
+#. module: product_margin_improve
+#: field:product.category,date_to:0
+msgid "Margin Date To"
+msgstr "Date de fin"
+
+#. module: product_margin_improve
+#: help:product.category,purchase_gap:0
+msgid "Normal Cost - Total Cost"
+msgstr "Coût total attendu - Coût total réel"
+
+#. module: product_margin_improve
+#: selection:product.category,invoice_state:0
+msgid "Open, Verified and Paid"
+msgstr "Ouverte, Vérifiée et Payée"
+
+#. module: product_margin_improve
+#: view:product.product:0
+msgid "POS"
+msgstr "PdV"
+
+#. module: product_margin_improve
+#: field:product.product,pos_sale_expected:0
+msgid "POS Expected Sale"
+msgstr "Ventes attendues PdV"
+
+#. module: product_margin_improve
+#: field:product.category,pos_gap:0
+#: field:product.product,pos_gap:0
+msgid "POS Gap"
+msgstr "Différence PdV"
+
+#. module: product_margin_improve
+#: field:product.margin,pos_state:0
+msgid "POS Order State"
+msgstr "Etat de la Commande PdV"
+
+#. module: product_margin_improve
+#: field:product.product,pos_list_price:0
+msgid "POS Sale Price"
+msgstr "Prix de Vente PdV"
+
+#. module: product_margin_improve
+#: field:product.category,pos_state:0
+#: field:product.product,pos_state:0
+msgid "POS State"
+msgstr "Etats PdV"
+
+#. module: product_margin_improve
+#: selection:product.category,invoice_state:0
+msgid "Paid"
+msgstr "Payée"
+
+#. module: product_margin_improve
+#: code:_description:0
+#: model:ir.model,name:product_margin_improve.model_product_product
+#, python-format
+msgid "Product"
+msgstr "Produit"
+
+#. module: product_margin_improve
+#: code:_description:0
+#: model:ir.model,name:product_margin_improve.model_product_category
+#, python-format
+msgid "Product Category"
+msgstr "Catégorie de produits"
+
+#. module: product_margin_improve
+#: code:_description:0
+#: model:ir.model,name:product_margin_improve.model_product_margin
+#, python-format
+msgid "Product Margin"
+msgstr "Marge de l'article"
+
+#. module: product_margin_improve
+#: view:product.category:0
+#: view:product.product:0
+msgid "Product Margins"
+msgstr "Marges par articles"
+
+#. module: product_margin_improve
+#: field:product.category,purchase_gap:0
+msgid "Purchase Gap"
+msgstr "Différence d'Achats"
+
+#. module: product_margin_improve
+#: view:product.product:0
+msgid "Purchases"
+msgstr "Achats"
+
+#. module: product_margin_improve
+#: field:product.product,pos_num_sales:0
+msgid "Qty Sold"
+msgstr "Ventes PdV"
+
+#. module: product_margin_improve
+#: field:product.product,total_li_num_sales:0
+msgid "Qty Sold"
+msgstr "Ventes total (pertes incl)"
+
+#. module: product_margin_improve
+#: field:product.product,total_num_sales:0
+msgid "Qty Sold"
+msgstr "Ventes total"
+
+#. module: product_margin_improve
+#: help:product.category,expected_margin:0
+msgid "Qty Sold * Expected Unit Margin"
+msgstr "Qté vendue * Marge unitaire attendue"
+
+#. module: product_margin_improve
+#: help:product.category,total_margin:0
+msgid "Qty Sold * Unit Margin"
+msgstr "Qté vendue * Marge unitaire"
+
+#. module: product_margin_improve
+#: view:product.product:0
+msgid "Results"
+msgstr "Résultats"
+
+#. module: product_margin_improve
+#: field:product.product,total_li_list_price:0
+msgid "Sale Price (loss included)"
+msgstr "Sale Price (loss included)"
+
+#. module: product_margin_improve
+#: field:product.category,sales_gap:0
+msgid "Sales Gap"
+msgstr "Différence de Ventes facturées"
+
+#. module: product_margin_improve
+#: view:product.product:0
+msgid "Standard Price"
+msgstr "Prix Standard"
+
+#. module: product_margin_improve
+#: help:product.category,total_cost:0
+msgid "Sum of Multiplication of Invoice price and quantity of Supplier Invoices "
+msgstr "Somme des multiplications du prix facturé par les quantité dans les factures d'achat"
+
+#. module: product_margin_improve
+#: help:product.product,pos_sale_expected:0
+#: help:product.product,total_sale_expected:0
+msgid "Sum of Multiplication of Sale Catalog price and quantity sold"
+msgstr "Somme des multiplications du Prix Catalogue par les Quantités Vendues"
+
+#. module: product_margin_improve
+#: help:product.product,total_li_sale_expected:0
+msgid "Sum of Multiplication of Sale Catalog price and quantity sold (loss included)"
+msgstr "Somme des multiplications du Prix Catalogue par les Quantités Vendues (pertes incl)"
+
+#. module: product_margin_improve
+#: help:product.product,pos_num_sales:0
+msgid "Sum of Quantity Sold in POS"
+msgstr "Somme des Ventes dans le Point de Vente"
+
+#. module: product_margin_improve
+#: help:product.product,total_num_sales:0
+msgid "Sum of all Quantity Sold"
+msgstr "Somme de toutes les Ventes"
+
+#. module: product_margin_improve
+#: help:product.product,total_li_num_sales:0
+msgid "Sum of all Quantity Sold + Inventory losses"
+msgstr "Somme de toutes les Ventes + Pertes d'inventaire"
+
+#. module: product_margin_improve
+#: help:product.category,total_income:0
+#: help:product.category,total_li_income:0
+#: help:product.product,total_income:0
+#: help:product.product,total_li_income:0
+msgid "Sum of real incomes"
+msgstr "Somme des Chiffres d'affaire réels"
+
+#. module: product_margin_improve
+#: help:product.category,pos_income:0
+#: help:product.product,pos_income:0
+msgid "Sum of real incomes in POS"
+msgstr "Somme des Ventes du Point de Vente"
+
+#. module: product_margin_improve
+#: help:product.category,sale_income:0
+#: help:product.product,sale_income:0
+msgid "Sum of real incomes in Sale Invoices"
+msgstr "Somme des Ventes sur Factures"
+
+#. module: product_margin_improve
+#: field:product.category,total_cost:0
+msgid "Total Cost"
+msgstr "Coût total"
+
+#. module: product_margin_improve
+#: field:product.product,total_li_sale_expected:0
+#: field:product.product,total_sale_expected:0
+msgid "Total Expected Sale"
+msgstr "Total des Ventes attendues"
+
+#. module: product_margin_improve
+#: field:product.category,total_gap:0
+#: field:product.category,total_li_gap:0
+#: field:product.product,total_gap:0
+#: field:product.product,total_li_gap:0
+msgid "Total Gap"
+msgstr "Différence Totale"
+
+#. module: product_margin_improve
+#: help:product.product,total_li_avg_price:0
+msgid "Total Income / Qty Sold (losses included)"
+msgstr "Chiffre d'Affaire Total / Quantité Vendue (pertes incl)"
+
+#. module: product_margin_improve
+#: field:product.category,li_total_margin:0
+#: field:product.category,total_margin:0
+#: field:product.product,li_total_margin:0
+msgid "Total Margin"
+msgstr "Marge Totale"
+
+#. module: product_margin_improve
+#: field:product.product,total_list_price:0
+msgid "Total Sale Price"
+msgstr "Prix de Vente"
+
+#. module: product_margin_improve
+#: view:product.product:0
+msgid "Total Sales"
+msgstr "Ventes totales"
+
+#. module: product_margin_improve
+#: view:product.product:0
+msgid "Total Sales (losses included)"
+msgstr "Ventes totales (pertes incl)"
+
+#. module: product_margin_improve
+#: field:product.product,li_unit_margin:0
+#: field:product.product,unit_margin:0
+msgid "Unit Margin"
+msgstr "Marge Unitaire"
+
+#. module: product_margin_improve
+#: help:product.category,li_avg_margin_rate:0
+#: help:product.product,li_avg_margin_rate:0
+msgid "Unit Margin (losses included) / Catalog price"
+msgstr "Marge Unitaire (losses included) / Prix Catalogue"
+
+#. module: product_margin_improve
+#: help:product.category,li_total_margin:0
+#: help:product.product,li_total_margin:0
+msgid "Unit Margin * Qty Sold (losses included)"
+msgstr "Marge Unitaire * Quantités vendues (pertes incl)"
+
+#. module: product_margin_improve
+#: help:product.category,avg_margin_rate:0
+#: help:product.product,avg_margin_rate:0
+msgid "Unit Margin / Catalog price"
+msgstr "Marge Unitaire / Prix Catalogue"
+
+#. module: product_margin_improve
+#: selection:product.category,invoice_state:0
+msgid "Verified and Paid"
+msgstr "Vérifiée et Payée"
+
+#. module: product_margin_improve
+#: view:product.product:0
+msgid "red:expected_margin_rate<0;darkred:avg_margin_rate<0;orangered:li_avg_margin_rate<0;"
+msgstr "red:expected_margin_rate<0;darkred:avg_margin_rate<0;orangered:li_avg_margin_rate<0;"
+

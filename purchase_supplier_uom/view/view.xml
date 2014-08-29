@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ********************************************************************** -->
+<!-- See __openerp__.py file for Copyright and Licence Informations.        -->
+<!-- ********************************************************************** -->
+
+<openerp>
+    <data>
+        <record id="product_form_view" model="ir.ui.view">
+            <field name="name">product.product.form</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="purchase.view_product_supplier_inherit" />
+            <field name="arch" type="xml">
+                <field name="seller_ids" position="attributes">
+                        <attribute name="context">{'uom_id': uom_po_id}</attribute>
+                </field>
+            </field>
+        </record>
+
+        <record id="product_supplierinfo_tree_view_package" model="ir.ui.view">
+            <field name="name">product.supplierinfo.tree.view</field>
+            <field name="model">product.supplierinfo</field>
+            <field name="inherit_id" ref="product.product_supplierinfo_tree_view" />
+            <field name="arch" type="xml">
+                <field name="min_qty" position="after">
+                        <field name="product_uom"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="product_supplierinfo_form_view_uom" model="ir.ui.view">
+            <field name="name">product.supplierinfo.form.view</field>
+            <field name="model">product.supplierinfo</field>
+            <field name="inherit_id" ref="product.product_supplierinfo_form_view" />
+            <field name="arch" type="xml">
+                <field name="product_uom" position="attributes">
+                    <attribute name = "required">1</attribute>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>

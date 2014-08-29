@@ -1,0 +1,158 @@
+/******************************************************************************
+    Point Of Sale - Restaurant module for OpenERP
+    Copyright (C) 2014 GRAP (http://www.grap.coop)
+    @author Sylvain LE GAL (https://twitter.com/legalsylvain)
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+******************************************************************************/
+
+/*  ********* Current table name  ********* */
+
+.point-of-sale #rightheader #table-name{
+    width:100px;
+}
+.point-of-sale #rightheader #remove-table-button{
+    width:80px;
+}
+
+/*  ********* Current covers quantity  ********* */
+.point-of-sale #rightheader #covers-quantity{
+    width:50px;
+}
+
+/*  ********* Table / Covers PopUp  ********* */
+.point-of-sale .modal-dialog .popup-select-table,
+        .point-of-sale .modal-dialog .popup-select-covers{
+    margin-left:0;
+    margin-top:0;
+    left:5%;
+    width: 90%;
+    top:5%;
+    height:85%;
+}
+.point-of-sale .modal-dialog .popup-select-table .table-header,
+        .point-of-sale .modal-dialog .popup-select-table .covers-header{
+    height:65px;
+}
+
+.point-of-sale .modal-dialog .popup-select-table #table-cancel,
+        .point-of-sale .modal-dialog .popup-select-covers #covers-cancel{
+    top: 0px;
+    position: absolute;
+    right: 10px;
+}
+/*  ********* table / Covers List  ********* */
+
+.point-of-sale .table-list,
+        .point-of-sale .covers-list {
+    padding:10px !important;
+}
+
+.point-of-sale .table-list-container,
+        .point-of-sale .covers-list-container {
+    position:absolute;
+    top:70px;
+    bottom:0px;
+    left:0px;
+    right:0px;
+}
+
+.point-of-sale .table-list-scroller,
+        .point-of-sale .covers-list-scroller{
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+        -ms-box-sizing: border-box;
+            box-sizing: border-box;
+    width:100%;
+    height:100%;
+    overflow: hidden;
+}
+
+/*  ********* Table Scrollbar  ********* */
+/*    Fix incorrect display of buttons.*/
+/*    TODO: found why it is necessary and remove top,bottom and left values*/
+.point-of-sale .table-list-container .scrollbar .up-button,
+        .point-of-sale .covers-list-container .scrollbar .up-button{
+    top: -10px;
+    left: -5px;
+}
+.point-of-sale .table-list-container .scrollbar .down-button,
+        .point-of-sale .covers-list-container .scrollbar .down-button {
+    left: -5px;
+    bottom: -5px;
+}
+
+/*  ********* Table / Covers Item ********* */
+
+.point-of-sale .table,
+        .point-of-sale .covers {
+    position:relative;
+    vertical-align: top;
+    display: inline-block;
+    font-size: 11px;
+    margin: 5px !important;
+    width: 150px;
+    height:150px;
+    background:#fff;
+    border: 1px solid #fff;
+    border-radius: 3px;
+    overflow: hidden;
+    -webkit-box-shadow: 0px 2px 0px #dad8e4, 0px 1px 8px #636480; 
+       -moz-box-shadow: 0px 2px 0px #dad8e4, 0px 1px 8px #636480; 
+            box-shadow: 0px 2px 0px #dad8e4, 0px 1px 8px #636480; 
+}
+
+.point-of-sale .table .table-name,
+        .point-of-sale .covers .covers-quantity{
+    position: absolute;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+        -ms-box-sizing: border-box;
+            box-sizing: border-box;
+    text-align:center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background: -webkit-linear-gradient(-90deg,rgba(255,255,255,0),rgba(255,255,255,1), rgba(255,255,255,1));
+    background:    -moz-linear-gradient(-90deg,rgba(255,255,255,0),rgba(255,255,255,1), rgba(255,255,255,1));
+    background:     -ms-linear-gradient(-90deg,rgba(255,255,255,0),rgba(255,255,255,1), rgba(255,255,255,1));
+    padding: 3px;
+    width:100%;
+}
+.point-of-sale .covers .covers-quantity{
+    font-size: 40px;
+    height: 100%;
+}
+.point-of-sale .covers .covers-quantity .covers-text,
+        .point-of-sale .table .table-name .table-text{
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+}
+
+.point-of-sale .table .table-name{
+    font-size: 22px;
+    top:64px;
+    height: 86px;
+}
+
+.point-of-sale .table .table-img {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 150px;
+    height: 64px;
+    background: white;
+    text-align: center;
+}

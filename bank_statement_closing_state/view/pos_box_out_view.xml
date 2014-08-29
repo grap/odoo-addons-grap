@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_pos_box_out_grap" model="ir.ui.view">
+            <field name="name">Box Out GRAP</field>
+            <field name="model">pos.box.out</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_box_out"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <data>
+                    <field name="journal_id" position="replace">
+                        <field name="statement_id"/>
+                    </field>
+                </data>
+            </field>
+        </record>
+    </data>
+</openerp>

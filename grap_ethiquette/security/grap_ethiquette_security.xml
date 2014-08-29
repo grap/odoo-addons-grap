@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="module_category" model="ir.module.category">
+            <field name="name">GRAP - Ethiquette</field>
+            <field name="sequence">500</field>
+        </record>
+
+
+    </data>
+</openerp>

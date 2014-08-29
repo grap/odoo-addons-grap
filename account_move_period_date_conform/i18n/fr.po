@@ -1,0 +1,118 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* account_move_period_date_conform
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-02-11 21:30+0000\n"
+"PO-Revision-Date: 2014-02-11 21:30+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: account_move_period_date_conform
+#: model:ir.actions.act_window,name:account_move_period_date_conform.action_view_fix_account_move_period_wizard_form
+msgid "Fix Account Moves Period"
+msgstr "Corriger la période des pièces comptables"
+
+#. module: account_move_period_date_conform
+#: field:fix.account.move.period.line.wizard,account_move_id:0
+msgid "Account Move to fix"
+msgstr "Pièce comptable à corriger"
+
+#. module: account_move_period_date_conform
+#: view:account.period:0
+msgid "Account moves with incorrect period"
+msgstr "Pièces comptables avec une date incorrecte"
+
+#. module: account_move_period_date_conform
+#: view:account.period:0
+msgid "special"
+msgstr "spécial"
+
+#. module: account_move_period_date_conform
+#: field:fix.account.move.period.wizard,line_ids:0
+msgid "Account Moves list"
+msgstr "Liste des pièces comptables"
+
+#. module: account_move_period_date_conform
+#: field:fix.account.move.period.line.wizard,company_id:0
+msgid "Company"
+msgstr "Société"
+
+#. module: account_move_period_date_conform
+#: model:ir.model,name:account_move_period_date_conform.model_fix_account_move_period_line_wizard
+msgid "Information about an account move to fix"
+msgstr "Information sur une pièce comptable à corriger"
+
+#. module: account_move_period_date_conform
+#: field:fix.account.move.period.line.wizard,old_fiscalyear_id:0
+msgid "Old Fiscal Year"
+msgstr "Ancienne année fiscale"
+
+#. module: account_move_period_date_conform
+#: view:account.period:0
+#: view:fix.account.move.period.wizard:0
+msgid "Fix Account Moves"
+msgstr "Corriger les pièces comptables"
+
+#. module: account_move_period_date_conform
+#: field:fix.account.move.period.line.wizard,date:0
+msgid "Move Date"
+msgstr "Date de la pièce"
+
+#. module: account_move_period_date_conform
+#: field:account.period,account_move_incorrect_date_quantity:0
+msgid "Quantity of moves with incorrect period"
+msgstr "Nombre de pièces comptables avec une période incorrecte"
+
+#. module: account_move_period_date_conform
+#: field:fix.account.move.period.line.wizard,new_period_id:0
+msgid "New Period"
+msgstr "Nouvelle période"
+
+#. module: account_move_period_date_conform
+#: model:ir.model,name:account_move_period_date_conform.model_fix_account_move_period_wizard
+msgid "Fix account move Period"
+msgstr "Corriger la période de l'écriture"
+
+#. module: account_move_period_date_conform
+#: view:fix.account.move.period.wizard:0
+msgid "Apply"
+msgstr "Appliquer"
+
+#. module: account_move_period_date_conform
+#: field:fix.account.move.period.line.wizard,new_fiscalyear_id:0
+msgid "New Fiscal Year"
+msgstr "Nouvelle année fiscale"
+
+#. module: account_move_period_date_conform
+#: model:ir.actions.act_window,name:account_move_period_date_conform.action_account_period_fix_period_tree
+#: model:ir.ui.menu,name:account_move_period_date_conform.menu_account_fix_period_account_move
+msgid "Fix Periods"
+msgstr "Corriger les périodes"
+
+#. module: account_move_period_date_conform
+#: view:fix.account.move.period.wizard:0
+msgid "or"
+msgstr "ou"
+
+#. module: account_move_period_date_conform
+#: field:fix.account.move.period.line.wizard,old_period_id:0
+msgid "Old Period"
+msgstr "Ancienne période"
+
+#. module: account_move_period_date_conform
+#: view:fix.account.move.period.wizard:0
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: account_move_period_date_conform
+#: view:fix.account.move.period.line.wizard:0
+msgid "Account informations"
+msgstr "Informations comptables"

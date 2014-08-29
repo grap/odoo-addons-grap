@@ -1,0 +1,51 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data >
+        <record id="rule_sale_pos_report" model="ir.rule">
+        <field name="name" >Sale Point of Sale Report</field>
+            <field name="model_id" ref="model_sale_pos_report" />
+            <field name="domain_force">
+                ['|','|',
+                    ('company_id', '=', user.company_id.id),
+                    ('company_id', 'in', [c.id for c in user.company_id.child_ids]),
+                    ('company_id','=',False)]
+            </field>
+        </record>
+<!--	-->
+<!--	noupdate="0"-->
+<!--        <record id="rule_pos_report_multi_company" model="ir.rule">-->
+<!--            <field name="name">Pos Order Report</field>-->
+<!--            <field name="model_id" ref="point_of_sale.model_report_pos_order" />-->
+<!--            <field name="global" eval="True" />-->
+<!--            <field name="domain_force">[('company_id', '=', user.company_id.id)]</field>-->
+<!--        </record>-->
+<!--		<record id="pos_board_rule_daily" model="ir.rule">-->
+<!--			<field name="name" >POS Board Multi Company Daily</field>-->
+<!--			<field name="domain_force">-->
+<!--			    ['|','|',('company_id','=',user.company_id.id),('company_id','in',[c.id for c in user.company_id.fiscal_childs]),('company_id','=',False)]-->
+<!--		    </field>-->
+<!--			<field model="ir.model" name="model_id" search="[('model', '=', u'pos.board.load.daily')]"/>-->
+<!--		</record>-->
+<!--		<record id="pos_board_rule_weekly" model="ir.rule">-->
+<!--			<field name="name" >POS Board Multi Company Weekly</field>-->
+<!--			<field name="domain_force">-->
+<!--			    ['|','|',('company_id','=',user.company_id.id),('company_id','in',[c.id for c in user.company_id.fiscal_childs]),('company_id','=',False)]-->
+<!--		    </field>-->
+<!--			<field model="ir.model" name="model_id" search="[('model', '=', u'pos.board.load.weekly')]"/>-->
+<!--		</record>-->
+<!--		<record id="pos_board_rule_monthly" model="ir.rule">-->
+<!--			<field name="name" >POS Board Multi Company Monthly</field>-->
+<!--			<field name="domain_force">-->
+<!--			    ['|','|',('company_id','=',user.company_id.id),('company_id','in',[c.id for c in user.company_id.fiscal_childs]),('company_id','=',False)]-->
+<!--		    </field>-->
+<!--			<field model="ir.model" name="model_id" search="[('model', '=', u'pos.board.load.monthly')]"/>-->
+<!--		</record>-->
+<!--		<record id="pos_board_rule_daily_simple" model="ir.rule">-->
+<!--			<field name="name" >POS Board Multi Company Daily Simple</field>-->
+<!--			<field name="domain_force">-->
+<!--			    ['|','|',('company_id','=',user.company_id.id),('company_id','in',[c.id for c in user.company_id.fiscal_childs]),('company_id','=',False)]-->
+<!--		    </field>-->
+<!--			<field model="ir.model" name="model_id" search="[('model', '=', u'pos.board.load.daily.simple')]"/>-->
+<!--		</record>-->
+	</data>
+</openerp>

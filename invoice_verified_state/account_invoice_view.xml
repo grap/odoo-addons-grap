@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="view_account_invoice_tree_account" model="ir.ui.view">
+            <field name="name">view.account.invoice.tree.account</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_tree"/>
+            <field name="arch" type="xml">
+                <field name="state" position="after">
+                    <button name="invoice_open" states="verified" string="Confirm" icon="terp-camera_test"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_account_invoice_form_account" model="ir.ui.view">
+            <field name="name">view.account.invoice.form.account</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="arch" type="xml">
+                <button name="action_cancel_draft" position="attributes">
+                    <attribute name="states">cancel,verified</attribute>
+                </button>
+                <button name="invoice_open" position="attributes">
+                    <attribute name="states">verified,proforma2</attribute>
+                    <attribute name="groups">account.group_account_manager</attribute>
+                </button>
+                <button name="invoice_open" position="before">
+                    <button name="invoice_verify" states="draft" string="Verified" icon="gtk-paste-v" class="oe_highlight"/>
+                </button>
+            </field>
+        </record>
+
+        <record id="view_account_invoice_form_voucher" model="ir.ui.view">
+            <field name="name">view.account.invoice.form.voucher</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account_voucher.view_invoice_customer"/>
+            <field name="arch" type="xml">
+                <button name="invoice_pay_customer" position="attributes">
+                    <attribute name="groups">account.group_account_manager</attribute>
+                </button>
+            </field>
+        </record>
+
+        <record id="view_account_invoice_filter_account" model="ir.ui.view">
+            <field name="name">view.account.invoice.filter.account</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.view_account_invoice_filter"/>
+            <field name="arch" type="xml">
+                    <filter name="proforma" position="after">
+                    <filter name="verified" string="Verified" domain="[('state','=','verified')]" help="Verified Invoices"/>
+                </filter>
+            </field>
+        </record>
+
+    </data>
+</openerp>

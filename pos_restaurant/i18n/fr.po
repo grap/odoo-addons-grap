@@ -1,0 +1,210 @@
+##############################################################################
+#
+#    Point Of Sale - Restaurant module for OpenERP
+#    Copyright (C) 2013-2014 GRAP (http://www.grap.coop)
+#    @author Sylvain LE GAL (https://twitter.com/legalsylvain)
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+##############################################################################
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* pos_restaurant
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-16 15:38+0000\n"
+"PO-Revision-Date: 2014-04-16 15:38+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: pos_restaurant
+#: field:pos.table,active:0
+msgid "Active"
+msgstr "Active"
+
+#. module: pos_restaurant
+#: help:pos.table,active:0
+msgid "By unchecking the active field you can disable a table without deleting it."
+msgstr "En décochant cette case, vous pouvez désactiver une table, sans la supprimer."
+
+#. module: pos_restaurant
+#. openerp-web
+#: code:addons/pos_restaurant/static/src/xml/pr.xml:42
+#: code:addons/pos_restaurant/static/src/xml/pr.xml:99
+#, python-format
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: pos_restaurant
+#: field:pos.table,company_id:0
+msgid "Company"
+msgstr "Société"
+
+#. module: pos_restaurant
+#. openerp-web
+#: code:addons/pos_restaurant/static/src/js/pr.js:51
+#: field:pos.order,covers:0
+#, python-format
+msgid "Covers"
+msgstr "Couverts"
+
+#. module: pos_restaurant
+#. openerp-web
+#: code:addons/pos_restaurant/static/src/xml/pr.xml:39
+#, python-format
+msgid "Covers Quantity Selection"
+msgstr "Sélection du nombre de couverts"
+
+#. module: pos_restaurant
+#: help:pos.order,covers:0
+msgid "Covers in a restaurant"
+msgstr "Nombre de couverts dans la restauration"
+
+#. module: pos_restaurant
+#. openerp-web
+#: code:addons/pos_restaurant/static/src/js/pr.js:182
+#, python-format
+msgid "Del."
+msgstr "Suppr."
+
+#. module: pos_restaurant
+#: model:ir.actions.act_window,help:pos_restaurant.action_view_pos_table
+msgid "Display and manage tables in restaurant."
+msgstr "Afficher et gérer les tables d'un restaurant."
+
+#. module: pos_restaurant
+#: field:pos.table,image:0
+msgid "Image"
+msgstr "Image"
+
+#. module: pos_restaurant
+#: model:res.groups,name:pos_restaurant.res_group_restaurant_manager
+msgid "Manager"
+msgstr "Responsable"
+
+#. module: pos_restaurant
+#: field:sale.shop,max_covers:0
+msgid "Max Covers"
+msgstr "Nombre de couverts maximum"
+
+#. module: pos_restaurant
+#: field:pos.table,name:0
+msgid "Name"
+msgstr "Nom"
+
+#. module: pos_restaurant
+#: code:_description:0
+#: model:ir.model,name:pos_restaurant.model_pos_order
+#, python-format
+msgid "Point of Sale"
+msgstr "Point de Vente"
+
+#. module: pos_restaurant
+#: model:ir.module.category,name:pos_restaurant.ir_module_category_restaurant
+#: model:ir.ui.menu,name:pos_restaurant.menu_pos_restaurant
+msgid "Restaurant"
+msgstr "Restaurant"
+
+#. module: pos_restaurant
+#: code:_description:0
+#: model:ir.model,name:pos_restaurant.model_pos_table
+#, python-format
+msgid "Restaurant table"
+msgstr "Table de restaurant"
+
+#. module: pos_restaurant
+#: model:ir.ui.menu,name:pos_restaurant.menu_table
+msgid "Restaurant tables"
+msgstr "Tables de restaurant"
+
+#. module: pos_restaurant
+#: code:_description:0
+#: model:ir.model,name:pos_restaurant.model_sale_shop
+#, python-format
+msgid "Sales Shop"
+msgstr "Magasin"
+
+#. module: pos_restaurant
+#: model:ir.module.category,description:pos_restaurant.ir_module_category_restaurant
+msgid "Select the level of access of restaurant informations in Point Of Sale"
+msgstr "Sélectionner le niveau d'accès aux informations liées à au restaurant dans le point de vente."
+
+#. module: pos_restaurant
+#: help:pos.table,shop_id:0
+msgid "Select the shop"
+msgstr "Choisir le magasin"
+
+#. module: pos_restaurant
+#: field:pos.table,shop_id:0
+msgid "Shop"
+msgstr "Magasin"
+
+#. module: pos_restaurant
+#. openerp-web
+#: code:addons/pos_restaurant/static/src/js/pr.js:171
+#: field:pos.order,table_id:0
+#, python-format
+msgid "Table"
+msgstr "Table"
+
+#. module: pos_restaurant
+#. openerp-web
+#: code:addons/pos_restaurant/static/src/xml/pr.xml:96
+#, python-format
+msgid "Table Selection"
+msgstr "Sélection d'une table"
+
+#. module: pos_restaurant
+#: sql_constraint:pos.table:0
+msgid "Table name must be unique by shop!"
+msgstr "Les noms de table doivent être unique par magasin!"
+
+#. module: pos_restaurant
+#: model:ir.actions.act_window,name:pos_restaurant.action_view_pos_table
+#: view:pos.table:0
+msgid "Tables"
+msgstr "Tables"
+
+#. module: pos_restaurant
+#: model:res.groups,comment:pos_restaurant.res_group_restaurant_manager
+msgid "The user can see and manage Restaurant field. (Covers, Table, etc.)"
+msgstr "L'utilisateur peut voir et modifier ou supprimer les champs liés à la restauration. (Couverts, Table, etc.)"
+
+#. module: pos_restaurant
+#: model:res.groups,comment:pos_restaurant.res_group_restaurant_user
+msgid "The user can see and use Restaurant field. (Covers, Table, etc.)"
+msgstr "L'utilisateur peut voir et utiliser les champs liés à la restauration. (Couverts, Table, etc.)"
+
+#. module: pos_restaurant
+#: help:sale.shop,max_covers:0
+msgid "This is the number of buttons displayed in the front-end point of sale."
+msgstr "C'est le nombre de boutons affichée dans le point de vente tactile."
+
+#. module: pos_restaurant
+#: model:res.groups,name:pos_restaurant.res_group_restaurant_user
+msgid "User"
+msgstr "Utilisateur"
+
+#. module: pos_restaurant
+#: help:pos.order,table_id:0
+msgid "select the table where the customers is."
+msgstr "Sélectionner la table où les clients se trouvent."
+

@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data>
+        <record id="rule_product_by_department" model="ir.rule">
+        <field name="name" >Access to Product by department</field>
+        <field name="domain_force">
+            ['|','|',('company_id','=',user.company_id.id),('company_id','in',[c.id for c in user.company_id.fiscal_childs]),('company_id','=',False)]
+        </field>
+        <field model="ir.model" name="model_id" search="[('model', '=', u'product.by.department')]"/>
+        </record>
+        
+        <record id="rule_product_by_country" model="ir.rule">
+        <field name="name" >Access to Product by country</field>
+        <field name="domain_force">
+            ['|','|',('company_id','=',user.company_id.id),('company_id','in',[c.id for c in user.company_id.fiscal_childs]),('company_id','=',False)]
+        </field>
+        <field model="ir.model" name="model_id" search="[('model', '=', u'product.by.country')]"/>
+        </record>
+    </data>
+
+</openerp>

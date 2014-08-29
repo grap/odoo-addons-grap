@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="action_view_account_move_line_associated_tree" model="ir.actions.act_window">
+            <field name="name">Account move lines associated</field>
+            <field name="res_model">account.move.line</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,graph</field>
+            <field name="domain">[('account_id','=', active_id)]</field>
+        </record>
+
+        <record id="action_view_account_account_associated_tree" model="ir.actions.act_window">
+            <field name="name">Account associated</field>
+            <field name="res_model">account.account</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,graph</field>
+            <field name="view_id" ref="account.view_account_list" />
+            <field name="domain">[('parent_id','=', active_id)]</field>
+        </record>
+
+    </data>
+</openerp>

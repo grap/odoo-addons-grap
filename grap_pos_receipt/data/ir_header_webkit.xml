@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record id="ir_header_webkit_pos_receipt" model="ir.header_webkit">
+            <field name="name">Webkit template for pos receipt</field>
+            <field name="orientation">Portrait</field>
+            <field name="format">A7</field>
+            <field name="margin_top" eval="0.01" />
+            <field name="margin_bottom" eval="0.01"/>
+            <field name="margin_left" eval="0.01" />
+            <field name="margin_right" eval="0.01"/>
+        </record>
+    </data>
+</openerp>

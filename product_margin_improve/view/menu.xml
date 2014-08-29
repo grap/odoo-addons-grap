@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+  <menuitem icon="STOCK_JUSTIFY_FILL" action="product_margin_categ_act_window" id="menu_action_product_margin_categ" name="Category Margins" sequence="5" parent="base.next_id_73"/>
+
+</data>
+</openerp>

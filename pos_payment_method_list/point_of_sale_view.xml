@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+        <record id="view_pos_pos_form_inherit" model="ir.ui.view">
+            <field name="name">pos.order.inherit</field>
+            <field name="model">pos.order</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <button string="Payment" position="attributes">
+                        <attribute name="context">{'pos_session_id' : session_id, 'journal_pos_mode' : True}</attribute>
+                    </button>
+                </data>
+            </field>
+        </record>
+
+
+    </data>
+</openerp>
+
+

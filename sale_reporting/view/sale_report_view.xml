@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+<!--____________________________Model sale.report_________________________________-->
+        <record id="view_order_product_search_inherit" model="ir.ui.view">
+            <field name="name">sale.report.search.inherit</field>
+            <field name="model">sale.report</field>
+            <field name="inherit_id" ref="sale.view_order_product_search"/>
+            <field name="arch" type="xml">
+                <data>
+                    <filter string="My Sales" position="after">
+                        <filter icon="terp-go-year" string="This Year" name="year" domain="[('year','=',time.strftime('%%Y'))]" help="sale orders created during current year"/>
+                    </filter>
+                    <filter string="Category of Product" position="after">
+                        <filter string="Category2" icon="terp-go-year" context="{'group_by':'categ_id2'}" help="Category 2"/>
+                        <filter string="Parent Category" icon="terp-go-year" context="{'group_by':'categ_id3'}" help="Category 3"/>
+                    </filter>
+                </data>
+            </field>
+        </record>
+        
+        <record id="view_order_product_tree_inherit" model="ir.ui.view">
+            <field name="name">sale.report.tree.inherit</field>
+            <field name="model">sale.report</field>
+            <field name="inherit_id" ref="sale.view_order_product_tree"/>
+            <field name="arch" type="xml">
+                <data>
+                    <field name="product_uom_qty" position="after">
+                        <field name="total_discount"/>
+                        <field name="average_price"/>
+                    </field>
+                    <field name="delay" position="replace"/>
+                </data>
+            </field>
+        </record>
+
+        <record id="view_order_product_tree_inherit_inherit" model="ir.ui.view">
+            <field name="name">sale_stock.report.tree.inherit</field>
+            <field name="model">sale.report</field>
+            <field name="inherit_id" ref="sale_stock.view_order_product_tree_inherit"/>
+            <field name="arch" type="xml">
+                <data>
+                    <field name="shipped_qty_1" position="replace"/>
+                </data>
+            </field>
+        </record>
+
+        <record id="sale.action_order_report_all" model="ir.actions.act_window">
+            <field name="context">{'search_default_year':1,'group_by_no_leaf':1,'group_by':['categ_id','product_id']}</field>
+        </record>
+
+    </data>
+</openerp>

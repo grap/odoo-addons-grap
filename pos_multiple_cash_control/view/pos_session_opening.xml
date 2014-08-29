@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="pos_session_opening_form_view_inherit">
+            <field name="name">pos.session.opening.inherit</field>
+            <field name="model">pos.session.opening</field>
+            <field name="inherit_id" ref="point_of_sale.pos_session_opening_form_view"/>
+            <field name="arch" type="xml">
+                <button name="open_session_cb" position="attributes">
+                    <attribute name="attrs">{'invisible' : [('pos_state', '=', 'opened')]}</attribute>
+                </button>
+                <button name="open_existing_session_cb_close" string="Close Session" position="replace">
+                </button>
+            </field>
+        </record>
+
+    </data>
+</openerp>

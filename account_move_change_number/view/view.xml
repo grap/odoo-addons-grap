@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+<!--        <record id="ir_action_server_rename_account_move" model="ir.actions.server">-->
+<!--            <field name="name">TEST NAME</field>-->
+<!--            <field name="condition">True</field>-->
+<!--            <field name="type">account.move</field>-->
+<!--            <field name="model_id" ref="model_account_move" />-->
+<!--            <field name="state">code</field>-->
+<!--            <field name="code">self.rename_account_move(cr, uid, context.get('active_ids', []), context=context)</field>-->
+<!--        </record>-->
+
+        <record id="view_account_move_form" model="ir.ui.view">
+            <field name="name">account.move.form</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form" />
+            <field name="arch" type="xml">
+                <button name="button_cancel" position="after">
+                    <button name="rename_account_move_change_number" 
+                        string="Rename Account Move (change Number)" type="object" states="posted" 
+                        groups="account_move_change_number.res_group_account_move_change_number_manager"/>
+                </button>
+            </field>
+        </record>
+
+
+    </data>
+</openerp>
+
+

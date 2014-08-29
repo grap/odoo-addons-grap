@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+<!-- View : change.account.move.line.wizard.line -->
+        <record id="change_account_move_line_wizard_line_tree" model="ir.ui.view">
+            <field name="name">change.account.move.line.wizard.line.tree</field>
+            <field name="model">change.account.move.line.wizard.line</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Partners information" editable="top">
+                    <field name="company_id"/>
+                    <field name="move_number"/>
+                    <field name="partner_id" domain="[('company_id','=',company_id)]"/>
+                </tree>
+            </field>
+        </record>
+
+<!-- View : change.account.move.line.wizard -->
+        <record id="view_change_account_move_line_wizard_form" model="ir.ui.view">
+            <field name="name">change.account.move.line.wizard.form</field>
+            <field name="model">change.account.move.line.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Member" version="7.0">
+                    <group>
+                        <separator string="Source Information" colspan="2"/>
+                        <field name="source_account_id"/>
+                        <field name="source_company_id" groups="base.group_multi_company"/>
+                        <field name="source_type"/>
+                        <field name="source_move_number"/>
+                        <field name="source_reconciled_move_number"/>
+                        <field name="source_closed_period_move_number"/>
+                        <field name="change_view_type"/>
+                        <field name="source_invoice_number"/>
+                        <p attrs="{'invisible': [('source_reconciled_move_number','=','0')]}" colspan="2">
+                            <span class="oe_highlight">Warning : reconciled moves.</span>There are some reconciled account move lines. These lines will be unreconciled and reconciled again.
+                        </p>
+                        <p attrs="{'invisible': [('source_closed_period_move_number','=','0')]}" colspan="2">
+                            <span class="oe_highlight">Warning : Closed periods.</span>There are some account move lines in closed period. These periods will be reopened and reclosed.
+                        </p>
+                    </group>
+                    <group>
+                        <separator string="Destination Information" colspan="2"/>
+                        <field name="destination_account_id"
+                            on_change="onchange_destination_account_id(
+                                destination_account_id,
+                                destination_company_id,
+                                destination_type,
+                                destination_move_number,
+                                context)"/>
+                        <field name="destination_company_id" groups="base.group_multi_company"/>
+                        <field name="destination_type"/>
+                        <field name="destination_move_number"/>
+                        <field name="line_ids" />
+                    </group>
+                    <footer>
+                        <button name="button_change_move_line" string="Apply" type="object" class="oe_highlight"/>
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</openerp>

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ********************************************************************** -->
+<!--Point Of Sale - Restaurant module for OpenERP                           -->
+<!--Copyright (C) 2014 GRAP (http://www.grap.coop)                          -->
+<!--@author Sylvain LE GAL (https://twitter.com/legalsylvain)               -->
+
+<!--This program is free software: you can redistribute it and/or modify    -->
+<!--it under the terms of the GNU Affero General Public License as          -->
+<!--published by the Free Software Foundation, either version 3 of the      -->
+<!--License, or (at your option) any later version.                         -->
+
+<!--This program is distributed in the hope that it will be useful,         -->
+<!--but WITHOUT ANY WARRANTY; without even the implied warranty of          -->
+<!--MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the           -->
+<!--GNU Affero General Public License for more details.                     -->
+
+<!--You should have received a copy of the GNU Affero General Public License-->
+<!--along with this program.  If not, see <http://www.gnu.org/licenses/>.   -->
+<!-- ********************************************************************** -->
+<openerp>
+    <data>
+
+<!-- View : pos.order -->
+        <record id="view_pos_order_tree" model="ir.ui.view">
+            <field name="name">pos.order.tree</field>
+            <field name="model">pos.order</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_order_tree" />
+            <field name="arch" type="xml">
+                <field name="partner_id" position="after">
+                    <field name="table_id" />
+                    <field name="covers" />
+                </field>
+            </field>
+        </record>
+
+        <record id="view_pos_order_form" model="ir.ui.view">
+            <field name="name">pos.order.form</field>
+            <field name="model">pos.order</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_pos_form" />
+            <field name="arch" type="xml">
+                <field name="partner_id" position="after">
+                    <field name="table_id" 
+                        options="{'quick_create':false}"/>
+                    <field name="covers" />
+                </field>
+            </field>
+        </record>
+
+<!-- View : sale.shop -->
+        <record id="view_sale_shop_form" model="ir.ui.view">
+            <field name="name">sale.shop.form</field>
+            <field name="model">sale.shop</field>
+            <field name="inherit_id" ref="sale.view_shop_form" />
+            <field name="arch" type="xml">
+                <field name="pricelist_id" position="after">
+                    <field name="max_covers" />
+                </field>
+            </field>
+        </record>
+
+<!-- View : pos.table -->
+        <record id="view_pos_table_tree" model="ir.ui.view">
+            <field name="name">pos.table.tree</field>
+            <field name="model">pos.table</field>
+            <field name="arch" type="xml">
+                <tree string="Tables">
+                    <field name="name"/>
+                    <field name="shop_id"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                    <field name="active"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_pos_table_search" model="ir.ui.view">
+            <field name="name">pos.table.search</field>
+            <field name="model">pos.table</field>
+            <field name="arch" type="xml">
+                <search>
+                   <field name="name" />
+                    <field name="shop_id"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="view_pos_table_form" model="ir.ui.view">
+            <field name="name">pos.table.form</field>
+            <field name="model">pos.table</field>
+            <field name="arch" type="xml">
+                <form string="Tables" version="7.0">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="image" widget="image" class="oe_avatar oe_left"/>
+                            </group>
+                            <group>
+                                <field name="name"/>
+                                <field name="shop_id"/>
+                                <field name="company_id" groups="base.group_multi_company"/>
+                                <field name="active"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_pos_table_kanban" model="ir.ui.view">
+            <field name="name">pos.table.kanban</field>
+            <field name="model">pos.table</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="name"/>
+                        <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_box oe_kanban_color_border">
+                                <div style="height:150px;width:150px;overflow:hidden;">
+                                    <div style="height:40px;width:150px;border-bottom:1px solid #999999;padding-left:5px;">
+                                        <a type="edit">
+                                            <ul>
+                                                <li><field name="name"/></li>
+                                                <li><field name="shop_id"/></li>
+                                            </ul>
+                                        </a>
+                                    </div>
+                                    <div style="height:110px;width:150px;text-align:center;vertical-align:middle;padding: 5px 5px 5px 5px">
+                                        <img t-att-src="kanban_image('pos.table', 'image', record.id.value)" width="95"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                </templates>
+                </kanban>
+            </field>
+        </record>
+
+    </data>
+</openerp>

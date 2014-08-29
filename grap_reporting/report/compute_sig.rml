@@ -1,0 +1,620 @@
+<?xml version="1.0"?>
+<document filename="test.pdf">
+  <template pageSize="(595.0,842.0)" title="Test" author="Martin Simon" allowSplitting="20">
+    <pageTemplate id="first">
+      <frame id="first" x1="57.0" y1="57.0" width="481" height="728"/>
+    </pageTemplate>
+  </template>
+  <stylesheet>
+    <blockTableStyle id="Standard_Outline">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <blockTableStyle id="Tableau1">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+      <blockBackground colorName="#e6e6e6" start="0,0" stop="0,-1"/>
+      <blockBackground colorName="#e6e6e6" start="1,0" stop="1,-1"/>
+      <blockBackground colorName="#e6e6e6" start="2,0" stop="2,-1"/>
+      <blockBackground colorName="#e6e6e6" start="0,1" stop="0,-1"/>
+      <blockBackground colorName="#e6e6e6" start="1,1" stop="1,-1"/>
+      <blockBackground colorName="#e6e6e6" start="2,1" stop="2,-1"/>
+    </blockTableStyle>
+    <blockTableStyle id="Tableau2">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,0" stop="0,-1"/>
+      <lineStyle kind="LINEABOVE" colorName="#000000" start="0,0" stop="-1,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="-1,-1"/>
+      <lineStyle kind="LINEAFTER" colorName="#000000" start="1,0" stop="-1,-1"/>
+<!--      <blockBackground colorName="#cccccc" start="0,-1" stop="-1,-1"/>-->
+    </blockTableStyle>
+    <blockTableStyle id="Tableau3">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,0" stop="0,-1"/>
+      <lineStyle kind="LINEABOVE" colorName="#000000" start="0,0" stop="-1,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="-1,-1"/>
+      <lineStyle kind="LINEAFTER" colorName="#000000" start="1,0" stop="-1,-1"/>
+<!--      <blockBackground colorName="#e6e6e6" start="0,-1" stop="-1,-1"/>-->
+<!--      <blockBackground colorName="#e6e6e6" start="0,0" stop="-1,0"/>-->
+    </blockTableStyle>
+    <initialize>
+      <paraStyle name="all" alignment="justify"/>
+    </initialize>
+    <paraStyle name="P1" fontName="Helvetica" fontSize="7.0" leading="9" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P3" fontName="Helvetica-Bold" fontSize="12.0" leading="15" alignment="LEFT" spaceBefore="0.0" spaceAfter="6.0" backColor="#e6e6e6"/>
+    <paraStyle name="P4" fontName="Helvetica-Bold" fontSize="12.0" leading="15" alignment="RIGHT" spaceBefore="0.0" spaceAfter="6.0" backColor="#e6e6e6"/>
+    <paraStyle name="P5" fontName="Helvetica" fontSize="8.0" leading="10" alignment="RIGHT" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P8" fontName="Helvetica-Bold" fontSize="15.0" leading="19" alignment="RIGHT" spaceBefore="0.0" spaceAfter="6.0" backColor="#cccccc"/>
+    <paraStyle name="P9" fontName="Helvetica-Bold" fontSize="15.0" leading="19" alignment="LEFT" spaceBefore="0.0" spaceAfter="6.0" backColor="#cccccc"/>
+    <paraStyle name="P11" fontName="Helvetica" fontSize="7.0" leading="9" alignment="RIGHT" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P14" fontName="Helvetica-Bold" fontSize="16.0" leading="20" alignment="LEFT" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P19" fontName="Helvetica-Bold" fontSize="12.0" leading="15" alignment="LEFT" spaceBefore="0.0" spaceAfter="3.0"/>
+    <paraStyle name="P20" rightIndent="0.0" leftIndent="0.0" fontName="Helvetica" fontSize="7.0" leading="9" alignment="LEFT" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="Standard" fontName="Helvetica"/>
+    <paraStyle name="Heading" fontName="Helvetica" fontSize="14.0" leading="17" spaceBefore="12.0" spaceAfter="14.0"/>
+    <paraStyle name="Text body" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="List" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="Caption" fontName="Helvetica" fontSize="12.0" leading="15" spaceBefore="6.0" spaceAfter="6.0"/>
+    <paraStyle name="Index" fontName="Helvetica"/>
+    <paraStyle name="Horizontal Line" fontName="Helvetica" fontSize="6.0" leading="8" spaceBefore="0.0" spaceAfter="14.0"/>
+    <paraStyle name="Sender" fontName="Helvetica"/>
+    <paraStyle name="Table Contents" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="Footer" fontName="Helvetica"/>
+    <paraStyle name="Header" fontName="Helvetica"/>
+    <paraStyle name="Heading 1" fontName="Helvetica-Bold" fontSize="24.0" leading="29" spaceBefore="12.0" spaceAfter="14.0"/>
+    <paraStyle name="Table Heading" fontName="Helvetica" alignment="CENTER" spaceBefore="0.0" spaceAfter="6.0"/>
+    <images/>
+  </stylesheet>
+
+
+
+
+
+
+
+  <story>
+    <para style="P1">[[ _load('sig',data['form'])]]</para>
+    <para style="P1">[[ _set_variable('sig_CA', sig_rv+sig_pv+sig_panex or 0)]]</para>
+    <para style="P1">[[ _set_variable('sig_rm', sig_rv-sig_ra+sig_rs)]]</para>
+    <para style="P1">[[ _set_variable('sig_pm', sig_pv-sig_pa+sig_ps)]]</para>
+    <para style="P1">[[ _set_variable('sig_marge', sig_pm+sig_rm+sig_panex-sig_pi-sig_pc)]]</para>
+    <para style="P1">[[ _set_variable('sig_VA', sig_marge-sig_en-sig_ma-sig_as-sig_pu-sig_pt-sig_lo-sig_pr-sig_di-sig_de)]]</para>
+    <para style="P1">[[ _set_variable('sig_VA2', sig_VA-sig_contrib)]]</para>
+    <para style="P1">[[ _set_variable('sig_EBE', sig_VA2+sig_sub-sig_sal-sig_im-sig_par)]]</para>
+    <para style="P1">[[ _set_variable('sig_resEx', sig_EBE-sig_dot+sig_pd-sig_transex)]]</para>
+    <para style="P1">[[ _set_variable('sig_resCour', sig_resEx+sig_pf-sig_cf)]]</para>
+    <para style="P1">[[ _set_variable('sig_resultat', sig_resCour+sig_pe-sig_ce)]]</para>
+
+<!--    <para style="P1">[[ _set_pourcentage('pourc_ca', sig_CA, sig_CA)]]</para>-->
+<!--    <para style="P1">[[ _set_variable('pourc_ca', "{0:.0f}%".format(float(sig_CA)/sig_CA * 100))]]</para>-->
+<!--    <para style="P1">[[ _set_variable('pourc_ca', "coin")]]</para>-->
+
+
+
+
+    <blockTable colWidths="346.0,166.0" style="Tableau1">
+      <tr>
+        <td>
+          <para style="P14">Soldes Intermédiaires de Gestion</para>
+          <para style="P19">[[ company.name ]]</para>
+        </td>
+        <td>
+          <para style="P5">[[ _dates(date_start,date_stop)]]</para>
+          <para style="P5">Tenue de Compte : [[ company.currency_id.name ]]</para>
+          <para style="P5">Imprimé le : [[ time.strftime('%d-%m-%Y') ]]</para>
+        </td>
+      </tr>
+    </blockTable>
+    <para style="P14">
+      <font color="white"> </font>
+    </para>
+    <blockTable colWidths="279.0,114.0,90.0" style="Tableau2">
+      <tr>
+        <td>
+          <para style="P9">Chiffre d'Affaire</para>
+        </td>
+        <td>
+          <para style="P8">[[sig_CA or 0]]</para>
+        </td>
+        <td>
+          <para style="P8">[[_pourcentage(sig_CA, sig_CA)]]</para>
+        </td>
+      </tr>
+    </blockTable>
+    <blockTable colWidths="279.0,114.0,90.0" style="Tableau3">
+      <tr><td></td><td></td><td></td></tr>
+      <tr>
+        <td>
+          <para style="P3">Activités de Revente</para>
+        </td>
+        <td>
+          <para style="P4">[[(sig_rv or sig_ra or sig_rs or removeParentNode('tr')) and '']]</para>
+        </td>
+        <td>
+          <para style="P4"></para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P20">Ventes de Marchandises </para>
+        </td>
+        <td>
+          <para style="P11">[[sig_rv or removeParentNode('tr')]]</para>
+        </td>
+        <td>
+          <para style="P11">[[_pourcentage(sig_rv, sig_CA)]]</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P20">Achats de Marchandises</para>
+        </td>
+        <td>
+          <para style="P11">[[sig_ra or removeParentNode('tr')]]</para>
+        </td>
+        <td>
+          <para style="P11">[[_pourcentage(sig_ra, sig_CA)]]</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P20">Variation des stocks</para>
+        </td>
+        <td>
+          <para style="P11">[[sig_rs or removeParentNode('tr')]]</para>
+        </td>
+        <td>
+          <para style="P11">[[_pourcentage(sig_rs, sig_CA)]]</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P3">Marge sur Revente</para>
+        </td>
+        <td>
+          <para style="P4">[[(sig_rv or sig_ra or sig_rs) and sig_rm or removeParentNode('tr')]] ([[_pourcentage(sig_rm, sig_rv)]])</para>
+        </td>
+        <td>
+          <para style="P4">[[_pourcentage(sig_rm, sig_CA)]]</para>
+        </td>
+      </tr>
+    </blockTable>
+    <blockTable colWidths="279.0,114.0,90.0" style="Tableau3">
+      <tr><td></td><td></td><td></td></tr>
+      <tr>
+        <td>
+          <para style="P3">Activités de Production</para>
+        </td>
+        <td>
+          <para style="P4">[[(sig_pv or sig_pa or sig_ps or removeParentNode('tr')) and '']]</para>
+        </td>
+        <td>
+          <para style="P4"></para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P20">Production vendue</para>
+        </td>
+        <td>
+          <para style="P11">[[sig_pv or removeParentNode('tr')]]</para>
+        </td>
+        <td>
+          <para style="P11">[[_pourcentage(sig_pv, sig_CA)]]</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P20">Achats de Matière Première</para>
+        </td>
+        <td>
+          <para style="P11">[[sig_pa or removeParentNode('tr')]]</para>
+        </td>
+        <td>
+          <para style="P11">[[_pourcentage(sig_pa, sig_CA)]]</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P20">Variation des stocks</para>
+        </td>
+        <td>
+          <para style="P11">[[sig_ps or removeParentNode('tr')]]</para>
+        </td>
+        <td>
+          <para style="P11">[[_pourcentage(sig_ps, sig_CA)]]</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P3">Marge sur Production</para>
+        </td>
+        <td>
+          <para style="P4">[[(sig_pv or sig_pa or sig_ps) and sig_pm or removeParentNode('tr')]] ([[_pourcentage(sig_pm, sig_pv)]])</para>
+        </td>
+        <td>
+          <para style="P4">[[_pourcentage(sig_pm, sig_CA)]]</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P3">Produits Annexes</para>
+        </td>
+        <td>
+          <para style="P4">[[sig_panex or removeParentNode('tr')]]</para>
+        </td>
+        <td>
+          <para style="P4">[[_pourcentage(sig_panex, sig_CA)]]</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P3">Produits Consommés</para>
+        </td>
+        <td>
+          <para style="P4">[[sig_pc or removeParentNode('tr')]]</para>
+        </td>
+        <td>
+          <para style="P4">[[_pourcentage(sig_pc, sig_CA)]]</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P3">Pertes d'Inventaire</para>
+        </td>
+        <td>
+          <para style="P4">[[sig_pi or removeParentNode('tr')]]</para>
+        </td>
+        <td>
+          <para style="P4">[[_pourcentage(sig_pi, sig_CA)]]</para>
+        </td>
+      </tr>
+    </blockTable>
+    <blockTable colWidths="279.0,114.0,90.0" style="Tableau3">
+      <tr><td></td><td></td><td></td></tr>
+      <tr>
+        <td>
+          <para style="P9">Marge Globale</para>
+        </td>
+        <td>
+          <para style="P8">[[sig_marge]]</para>
+        </td>
+        <td>
+          <para style="P8">[[_pourcentage(sig_marge, sig_CA)]]</para>
+        </td>
+      </tr>
+    </blockTable>
+    <blockTable colWidths="279.0,114.0,90.0" style="Tableau2">
+      <tr><td></td><td></td><td></td></tr>
+      <tr>
+        <td>
+          <para style="P20">Énergie</para>
+        </td>
+        <td>
+          <para style="P11">[[sig_en or removeParentNode('tr')]]</para>
+        </td>
+        <td>
+          <para style="P11">[[_pourcentage(sig_en, sig_CA)]]</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P20">Matériel</para>
+        </td>
+        <td>
+          <para style="P11">[[sig_ma or removeParentNode('tr')]]</para>
+        </td>
+        <td>
+          <para style="P11">[[_pourcentage(sig_ma, sig_CA)]]</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P20">Prestations</para>
+        </td>
+        <td>
+          <para style="P11">[[sig_pr or removeParentNode('tr')]]</para>
+        </td>
+        <td>
+          <para style="P11">[[_pourcentage(sig_pr, sig_CA)]]</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P20">Assurance</para>
+        </td>
+        <td>
+          <para style="P11">[[sig_as or removeParentNode('tr')]]</para>
+        </td>
+        <td>
+          <para style="P11">[[_pourcentage(sig_as, sig_CA)]]</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P20">Publicité</para>
+        </td>
+        <td>
+          <para style="P11">[[sig_pu or removeParentNode('tr')]]</para>
+        </td>
+        <td>
+          <para style="P11">[[_pourcentage(sig_pu, sig_CA)]]</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P20">Déplacements</para>
+        </td>
+        <td>
+          <para style="P11">[[sig_de or removeParentNode('tr')]]</para>
+        </td>
+        <td>
+          <para style="P11">[[_pourcentage(sig_de, sig_CA)]]</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P20">Poste et Télécom</para>
+        </td>
+        <td>
+          <para style="P11">[[sig_pt or removeParentNode('tr')]]</para>
+        </td>
+        <td>
+          <para style="P11">[[_pourcentage(sig_pt, sig_CA)]]</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P20">Locations</para>
+        </td>
+        <td>
+          <para style="P11">[[sig_lo or removeParentNode('tr')]]</para>
+        </td>
+        <td>
+          <para style="P11">[[_pourcentage(sig_lo, sig_CA)]]</para>
+        </td>
+      </tr>
+<!--      <tr>-->
+<!--        <td>-->
+<!--          <para style="P20">Cotisations</para>-->
+<!--        </td>-->
+<!--        <td>-->
+<!--          <para style="P11">[[sig_co or removeParentNode('tr')]]</para>-->
+<!--        </td>-->
+<!--        <td>-->
+<!--          <para style="P8">[[_pourcentage(sig_CA, sig_CA)]]</para>-->
+<!--        </td>-->
+<!--      </tr>-->
+      <tr>
+        <td>
+          <para style="P20">Charges diverses</para>
+        </td>
+        <td>
+          <para style="P11">[[sig_di or removeParentNode('tr')]]</para>
+        </td>
+        <td>
+          <para style="P11">[[_pourcentage(sig_di, sig_CA)]]</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P9">Valeur ajoutée</para>
+        </td>
+        <td>
+          <para style="P8">[[sig_VA]]</para>
+        </td>
+        <td>
+          <para style="P8">[[_pourcentage(sig_VA, sig_CA)]]</para>
+        </td>
+      </tr>
+    </blockTable>
+    <blockTable colWidths="279.0,114.0,90.0" style="Tableau2">
+      <tr><td></td><td></td><td></td></tr>
+      <tr>
+        <td>
+          <para style="P20">Contribution GRAP</para>
+        </td>
+        <td>
+          <para style="P11">[[sig_contrib or removeParentNode('tr')]]</para>
+        </td>
+        <td>
+          <para style="P11">[[_pourcentage(sig_contrib, sig_CA)]]</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P9">Valeur ajoutée 2</para>
+        </td>
+        <td>
+          <para style="P8">[[sig_VA2]]</para>
+        </td>
+        <td>
+          <para style="P8">[[_pourcentage(sig_VA2, sig_CA)]]</para>
+        </td>
+      </tr>
+    </blockTable>
+    <blockTable colWidths="279.0,114.0,90.0" style="Tableau2">
+      <tr><td></td><td></td><td></td></tr>
+      <tr>
+        <td>
+          <para style="P20">Subventions</para>
+        </td>
+        <td>
+          <para style="P11">[[sig_sub or removeParentNode('tr')]]</para>
+        </td>
+        <td>
+          <para style="P11">[[_pourcentage(sig_sub, sig_CA)]]</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P20">Salaires</para>
+        </td>
+        <td>
+          <para style="P11">[[sig_sal or removeParentNode('tr')]]</para>
+        </td>
+        <td>
+          <para style="P11">[[_pourcentage(sig_sal, sig_CA)]]</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P20">Impôts</para>
+        </td>
+        <td>
+          <para style="P11">[[sig_im or removeParentNode('tr')]]</para>
+        </td>
+        <td>
+          <para style="P11">[[_pourcentage(sig_im, sig_CA)]]</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P20">Participation</para>
+        </td>
+        <td>
+          <para style="P11">[[sig_par or removeParentNode('tr')]]</para>
+        </td>
+        <td>
+          <para style="P11">[[_pourcentage(sig_par, sig_CA)]]</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P9">Excédent Brut d'Exploitation</para>
+        </td>
+        <td>
+          <para style="P8">[[sig_EBE]]</para>
+        </td>
+        <td>
+          <para style="P8">[[_pourcentage(sig_EBE, sig_CA)]]</para>
+        </td>
+      </tr>
+    </blockTable>
+    <blockTable colWidths="279.0,114.0,90.0" style="Tableau2">
+      <tr><td></td><td></td><td></td></tr>
+      <tr>
+        <td>
+          <para style="P20">Dotations aux amortissements, aux dépréciations et aux provisions</para>
+        </td>
+        <td>
+          <para style="P11">[[sig_dot or removeParentNode('tr')]]</para>
+        </td>
+        <td>
+          <para style="P11">[[_pourcentage(sig_dot, sig_CA)]]</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P20">Transferts de charges d'exploitation</para>
+        </td>
+        <td>
+          <para style="P11">[[sig_transex or removeParentNode('tr')]]</para>
+        </td>
+        <td>
+          <para style="P11">[[_pourcentage(sig_transex, sig_CA)]]</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P20">Produits divers</para>
+        </td>
+        <td>
+          <para style="P11">[[sig_pd or removeParentNode('tr')]]</para>
+        </td>
+        <td>
+          <para style="P11">[[_pourcentage(sig_pd, sig_CA)]]</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P9">Résultat d'Exploitation</para>
+        </td>
+        <td>
+          <para style="P8">[[sig_resEx]]</para>
+        </td>
+        <td>
+          <para style="P8">[[_pourcentage(sig_resEx, sig_CA)]]</para>
+        </td>
+      </tr>
+    </blockTable>
+    <blockTable colWidths="279.0,114.0,90.0" style="Tableau2">
+      <tr><td></td><td></td><td></td></tr>
+      <tr>
+        <td>
+          <para style="P20">Produits Financiers</para>
+        </td>
+        <td>
+          <para style="P11">[[sig_pf or removeParentNode('tr')]]</para>
+        </td>
+        <td>
+          <para style="P11">[[_pourcentage(sig_pf, sig_CA)]]</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P20">Charges Financières</para>
+        </td>
+        <td>
+          <para style="P11">[[sig_cf or removeParentNode('tr')]]</para>
+        </td>
+        <td>
+          <para style="P11">[[_pourcentage(sig_cf, sig_CA)]]</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P9">Résultat Courant</para>
+        </td>
+        <td>
+          <para style="P8">[[sig_resCour]]</para>
+        </td>
+        <td>
+          <para style="P8">[[_pourcentage(sig_resCour, sig_CA)]]</para>
+        </td>
+      </tr>
+    </blockTable>
+    <blockTable colWidths="279.0,114.0,90.0" style="Tableau2">
+      <tr><td></td><td></td><td></td></tr>
+      <tr>
+        <td>
+          <para style="P20">Produits Exceptionnels</para>
+        </td>
+        <td>
+          <para style="P11">[[sig_pe or removeParentNode('tr')]]</para>
+        </td>
+        <td>
+          <para style="P8">[[_pourcentage(sig_pe, sig_CA)]]</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P20">Charges Exceptionnelles</para>
+        </td>
+        <td>
+          <para style="P11">[[sig_ce or removeParentNode('tr')]]</para>
+        </td>
+        <td>
+          <para style="P8">[[_pourcentage(sig_ce, sig_CA)]]</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P9">Résultat Net</para>
+        </td>
+        <td>
+          <para style="P8">[[sig_resultat]]</para>
+        </td>
+        <td>
+          <para style="P8">[[_pourcentage(sig_resultat, sig_CA)]]</para>
+        </td>
+      </tr>
+    </blockTable>
+    <para style="Standard">
+      <font color="white"> </font>
+    </para>
+  </story>
+</document>
+

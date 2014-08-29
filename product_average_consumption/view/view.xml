@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- *********************************************************************** -->
+<!-- See __openerp__.py file for Copyright and Licence Informations.         -->
+<!-- *********************************************************************** -->
+
+<openerp>
+    <data>
+        <record id="view_account_move_form" model="ir.ui.view">
+            <field name="name">product.consumption.form</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="stock.view_normal_procurement_locations_form"/>
+            <field name="arch" type="xml">
+                <group string="Stock and Expected Variations" position="after">
+                    <group name="Consumption" string="Consumption figures">
+                        <field name="nb_days"/>
+                        <field name="total_consumption"/>
+                        <field name="average_consumption"/>
+                    </group>
+                </group>
+            </field>
+        </record>
+    </data>
+</openerp>

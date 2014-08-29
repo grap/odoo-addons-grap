@@ -1,0 +1,345 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* pos_multiple_cash_control
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-12-19 17:12+0000\n"
+"PO-Revision-Date: 2013-12-19 17:12+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: pos_multiple_cash_control
+#: view:pos.session:0
+msgid "control"
+msgstr "contrôle"
+
+#. module: pos_multiple_cash_control
+#: constraint:pos.session:0
+msgid "You cannot create two active sessions with the same responsible!"
+msgstr "Vous ne pouvez pas créer deux sessions actives avec le même responsable !"
+
+#. module: pos_multiple_cash_control
+#: model:ir.model,name:pos_multiple_cash_control.model_pos_session
+msgid "pos.session"
+msgstr "pos.session"
+
+#. module: pos_multiple_cash_control
+#: view:pos.session:0
+msgid "false"
+msgstr "false"
+
+#. module: pos_multiple_cash_control
+#: model:ir.model,name:pos_multiple_cash_control.model_pos_session_opening
+msgid "pos.session.opening"
+msgstr "pos.session.opening"
+
+#. module: pos_multiple_cash_control
+#: view:account.bank.statement.line:0
+msgid "Other operations"
+msgstr "Opérations diverses"
+
+#. module: pos_multiple_cash_control
+#: view:pos.cash.controls:0
+msgid "Closing Cashbox Lines"
+msgstr "Décompte de clôture"
+
+#. module: pos_multiple_cash_control
+#: view:pos.cash.controls:0
+#: field:pos.cash.controls,opening_details_ids:0
+msgid "Opening Cash Control"
+msgstr "Fonds de caisse"
+
+#. module: pos_multiple_cash_control
+#: code:addons/pos_multiple_cash_control/pos_box_out.py:84
+#, python-format
+msgid "Please check that expense account is set to %s"
+msgstr "Veuillez vérifier que le compte de dépense est défini pour %s"
+
+#. module: pos_multiple_cash_control
+#: view:pos.box.out:0
+msgid "Output Operation"
+msgstr "Opération de sortie"
+
+#. module: pos_multiple_cash_control
+#: model:ir.model,name:pos_multiple_cash_control.model_pos_cash_controls
+msgid "pos.cash.controls"
+msgstr "pos.cash.controls"
+
+#. module: pos_multiple_cash_control
+#: view:account.bank.statement.line:0
+msgid "Customer operations"
+msgstr "Opérations Clients"
+
+#. module: pos_multiple_cash_control
+#: field:pos.cash.controls,state:0
+msgid "State"
+msgstr "Etat"
+
+#. module: pos_multiple_cash_control
+#: view:pos.session:0
+msgid "Opening Balance"
+msgstr "Solde d'ouverture"
+
+#. module: pos_multiple_cash_control
+#: constraint:pos.config:0
+msgid "You cannot have two cash controls in one Point Of Sale !"
+msgstr "Vous ne pouvez pas avoir deux contrôles de caisse dans un point de vente !"
+
+#. module: pos_multiple_cash_control
+#: help:pos.cash.controls,closing_total:0
+msgid "Computed using the cash control lines"
+msgstr "Calculé en se basant sur les lignes de caisses"
+
+#. module: pos_multiple_cash_control
+#: view:pos.box.entries:0
+msgid "Fill in this form if you put money in the cash register:"
+msgstr "Remplissez ce formulaire si vous ajoutez de l'argent en caisse"
+
+#. module: pos_multiple_cash_control
+#: view:pos.session:0
+msgid "put_money_in"
+msgstr "put_money_in"
+
+#. module: pos_multiple_cash_control
+#: field:pos.box.out,ref:0
+msgid "Ref"
+msgstr "Ref"
+
+#. module: pos_multiple_cash_control
+#: code:addons/pos_multiple_cash_control/pos_box_entries.py:84
+#, python-format
+msgid "Please check that income account is set to %s"
+msgstr "Merci de vérifier que le compte de recettes est défini à %s"
+
+#. module: pos_multiple_cash_control
+#: view:account.bank.statement.line:0
+msgid "Supplier operations"
+msgstr "Opérations fournisseurs"
+
+#. module: pos_multiple_cash_control
+#: code:addons/pos_multiple_cash_control/pos_box_entries.py:79
+#: code:addons/pos_multiple_cash_control/pos_box_entries.py:84
+#: code:addons/pos_multiple_cash_control/pos_box_out.py:79
+#: code:addons/pos_multiple_cash_control/pos_box_out.py:84
+#, python-format
+msgid "Error !"
+msgstr "Erreur !"
+
+#. module: pos_multiple_cash_control
+#: view:pos.session:0
+msgid "oe_edit_only"
+msgstr "oe_edit_only"
+
+#. module: pos_multiple_cash_control
+#: view:pos.cash.controls:0
+#: field:pos.cash.controls,journal_id:0
+msgid "Journal"
+msgstr "Journal"
+
+#. module: pos_multiple_cash_control
+#: constraint:pos.session:0
+msgid "You cannot create two active sessions related to the same point of sale!"
+msgstr "Vous ne pouvez pas créer deux sessions actives associées au même point de vente !"
+
+#. module: pos_multiple_cash_control
+#: view:pos.box.entries:0
+msgid "Put Money"
+msgstr "Ajouter la monnaie"
+
+#. module: pos_multiple_cash_control
+#: model:ir.actions.act_window,help:pos_multiple_cash_control.action_view_account_bank_statement_line_tree
+msgid "Display cashs manipulation."
+msgstr "Afficher les opérations liées aux caisses"
+
+#. module: pos_multiple_cash_control
+#: view:pos.cash.controls:0
+msgid "Closing Subtotal"
+msgstr "Sous-total de clôture"
+
+#. module: pos_multiple_cash_control
+#: model:ir.model,name:pos_multiple_cash_control.model_pos_box_out
+msgid "Pos Box Out"
+msgstr "Sortie de caisse du PdV"
+
+#. module: pos_multiple_cash_control
+#: view:pos.box.out:0
+msgid "Take Money"
+msgstr "Prendre la monnaie"
+
+#. module: pos_multiple_cash_control
+#: help:pos.cash.controls,opening_total:0
+msgid "Computed using the cash control at the opening."
+msgstr "Computed using the cash control at the opening."
+
+#. module: pos_multiple_cash_control
+#: view:pos.session:0
+msgid "Closing Balance"
+msgstr "Solde de clôture"
+
+#. module: pos_multiple_cash_control
+#: view:pos.box.out:0
+msgid "Describe why you take money from the cash register:"
+msgstr "Motif du retrait de liquide de la caisse enregitreuse"
+
+#. module: pos_multiple_cash_control
+#: view:pos.session:0
+msgid "print"
+msgstr "imprimer"
+
+#. module: pos_multiple_cash_control
+#: view:pos.cash.controls:0
+msgid "Caisse"
+msgstr "Caisse"
+
+#. module: pos_multiple_cash_control
+#: view:pos.cash.controls:0
+msgid "Opening Cashbox Lines"
+msgstr "Décompte du fonds de caisse"
+
+#. module: pos_multiple_cash_control
+#: code:addons/pos_multiple_cash_control/pos_box_entries.py:79
+#: code:addons/pos_multiple_cash_control/pos_box_out.py:79
+#, python-format
+msgid "You have to open at least one cashbox"
+msgstr "Vous devez ouvrir au moins une caisse"
+
+#. module: pos_multiple_cash_control
+#: field:pos.cash.controls,closing_total:0
+msgid "Ending Balance"
+msgstr "Balance de clôture"
+
+#. module: pos_multiple_cash_control
+#: view:pos.session:0
+msgid "take_money_out"
+msgstr "take_money_out"
+
+#. module: pos_multiple_cash_control
+#: view:pos.session:0
+msgid "Take Money Out"
+msgstr "Retirer de l'argent"
+
+#. module: pos_multiple_cash_control
+#: view:pos.session:0
+msgid "Put Money In"
+msgstr "Faire une entrée de liquide"
+
+#. module: pos_multiple_cash_control
+#: view:pos.session:0
+msgid "object"
+msgstr "Objet"
+
+#. module: pos_multiple_cash_control
+#: code:addons/pos_multiple_cash_control/point_of_sale.py:307
+#, python-format
+msgid "Error!"
+msgstr "Erreur!"
+
+#. module: pos_multiple_cash_control
+#: field:pos.cash.controls,details_ids:0
+msgid "Cash Control"
+msgstr "Contrôle de caisse"
+
+#. module: pos_multiple_cash_control
+#: model:ir.model,name:pos_multiple_cash_control.model_pos_config
+msgid "pos.config"
+msgstr "pos.config"
+
+#. module: pos_multiple_cash_control
+#: view:pos.session.opening:0
+msgid "{'invisible' : [('pos_state', '=', 'opened')]}"
+msgstr "{'invisible' : [('pos_state', '=', 'opened')]}"
+
+#. module: pos_multiple_cash_control
+#: field:pos.cash.controls,opening_total:0
+msgid "Starting Balance"
+msgstr "Solde d'ouverture"
+
+#. module: pos_multiple_cash_control
+#: field:pos.box.out,session_id:0
+msgid "session"
+msgstr "session"
+
+#. module: pos_multiple_cash_control
+#: view:pos.cash.controls:0
+msgid "Opening Subtotal"
+msgstr "Sous-total d'ouverture"
+
+#. module: pos_multiple_cash_control
+#: view:account.bank.statement.line:0
+#: model:ir.actions.act_window,name:pos_multiple_cash_control.action_view_account_bank_statement_line_tree
+#: model:ir.ui.menu,name:pos_multiple_cash_control.menu_cash_register_operation
+msgid "Cash register operations"
+msgstr "Opérations de caisses"
+
+#. module: pos_multiple_cash_control
+#: field:pos.session,cash_controls_list:0
+msgid "Control List"
+msgstr "Liste de controle"
+
+#. module: pos_multiple_cash_control
+#: code:addons/pos_multiple_cash_control/point_of_sale.py:308
+#, python-format
+msgid "You cannot confirm all orders of this session, because they have not the 'paid' status"
+msgstr "Vous ne pouvez pas confirmer toues les ventes, car certaines ne sont pas au statut payé"
+
+#. module: pos_multiple_cash_control
+#: model:ir.model,name:pos_multiple_cash_control.model_pos_box_entries
+msgid "Pos Box Entries"
+msgstr "Entrées de caisse de point de vente"
+
+#. module: pos_multiple_cash_control
+#: model:ir.model,name:pos_multiple_cash_control.model_account_bank_statement
+msgid "Bank Statement"
+msgstr "Relevé bancaire"
+
+#. module: pos_multiple_cash_control
+#: view:account.bank.statement.line:0
+msgid "Group by..."
+msgstr "Regroupé par"
+
+#. module: pos_multiple_cash_control
+#: code:addons/pos_multiple_cash_control/pos_session_opening.py:32
+#: field:pos.cash.controls,pos_session_id:0
+#, python-format
+msgid "Session"
+msgstr "Session"
+
+#. module: pos_multiple_cash_control
+#: view:pos.session.opening:0
+msgid "Close Session"
+msgstr "Fermer la session"
+
+#. module: pos_multiple_cash_control
+#: view:pos.cash.controls:0
+msgid "POS Cash Controls"
+msgstr "Contrôles de caisse"
+
+#. module: pos_multiple_cash_control
+#: view:pos.box.entries:0
+#: view:pos.box.out:0
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: pos_multiple_cash_control
+#: field:pos.cash.controls,cash_register_id:0
+msgid "Cash Register"
+msgstr "Caisse"
+
+#. module: pos_multiple_cash_control
+#: view:account.bank.statement.line:0
+#: view:pos.cash.controls:0
+msgid "Total"
+msgstr "Total"
+
+#. module: pos_multiple_cash_control
+#: view:pos.cash.controls:0
+msgid "Closing Cash Control"
+msgstr "Contrôle de clôture"
+

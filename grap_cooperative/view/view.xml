@@ -1,0 +1,676 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ********************************************************************** -->
+<!--    GRAP - Cooperative module for Odoo                                  -->
+<!--    Copyright (C) 2014 GRAP (http://www.grap.coop)                      -->
+<!--    @author Sylvain LE GAL (https://twitter.com/legalsylvain)           -->
+
+<!--This program is free software: you can redistribute it and/or modify    -->
+<!--it under the terms of the GNU Affero General Public License as          -->
+<!--published by the Free Software Foundation, either version 3 of the      -->
+<!--License, or (at your option) any later version.                         -->
+
+<!--This program is distributed in the hope that it will be useful,         -->
+<!--but WITHOUT ANY WARRANTY; without even the implied warranty of          -->
+<!--MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the           -->
+<!--GNU Affero General Public License for more details.                     -->
+
+<!--You should have received a copy of the GNU Affero General Public License-->
+<!--along with this program.  If not, see <http://www.gnu.org/licenses/>.   -->
+<!-- ********************************************************************** -->
+<openerp>
+    <data>
+<!-- View : grap.member -->
+        <record id="view_grap_member_search" model="ir.ui.view">
+            <field name="name">grap.member.search</field>
+            <field name="model">grap.member</field>
+            <field name="arch" type="xml">
+                <search string="Member"> 
+                   <field name="name" string="Member" />
+                    <field name="college_id"/>
+                    <field name="date_capital_entry"/>
+                    <filter name="filter_shareholder" string="Shareholder" domain="[('share_number','>', 0)]"/>
+                   <group expand='0' string='Group by...'>
+                       <filter string='College' context="{'group_by' : 'college_id'}"/>
+                   </group>
+                </search>
+            </field>
+        </record>
+        
+        <record id="view_grap_member_tree" model="ir.ui.view">
+            <field name="name">grap.member.tree</field>
+            <field name="model">grap.member</field>
+            <field name="arch" type="xml">
+                <tree string="Members">
+                    <field name="name"/>
+                    <field name="zip"/>
+                    <field name="city"/>
+                    <field name="working_email"/>
+                    <field name="college_id"/>
+                    <field name="date_capital_entry" string="Date" />
+                    <field name="share_number" string="Shares" sum="Total of Share"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_grap_member_form" model="ir.ui.view">
+            <field name="name">grap.member.form</field>
+            <field name="model">grap.member</field>
+            <field name="arch" type="xml">
+                <form string="Member" version="7.0">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="image" widget="image" class="oe_avatar oe_left"/>
+                            </group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <separator string="Contact information" colspan="2"/>
+                                <field name="working_email"/>
+                                <field name="working_phone"/>
+                                <field name="street"/>
+                                <field name="zip"/>
+                                <field name="city"/>
+                            </group>
+                            <group>
+                                <separator string="GRAP information" colspan="2"/>
+                                    <field name="college_id" 
+                                        options="{'quick_create':false}"/>
+                                    <field name="date_capital_entry" 
+                                        attrs="{'invisible':[('college_id','=',False)]}"/>
+                                    <field name="share_number"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+<!-- View : grap.people -->
+        <record id="view_grap_people_search" model="ir.ui.view">
+            <field name="name">grap.people.search</field>
+            <field name="model">grap.people</field>
+            <field name="arch" type="xml">
+                <search string="People"> 
+                   <field name="name" string="People" />
+                   <field name="mandate_ids" string="Mandates" />
+                   <field name="working_email" string="Email" />
+                   <filter name="filter_related_to_activity" string="Related to an activity" domain="[('activity_ids','!=', False)]"/>
+                   <group expand='0' string='Group by...'>
+                       <filter string='College' context="{'group_by' : 'college_id'}"/>
+                   </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="view_grap_people_tree" model="ir.ui.view">
+            <field name="name">grap.people.tree</field>
+            <field name="model">grap.people</field>
+            <field name="arch" type="xml">
+                <tree string="People">
+                    <field name="name"/>
+                    <field name="working_email"/>
+                    <field name="working_phone"/>
+                    <field name="private_phone"/>
+                    <field name="mandate_ids" widget="many2many_tags"/>
+                    <field name="college_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_grap_people_form" model="ir.ui.view">
+            <field name="name">grap.people.form</field>
+            <field name="model">grap.people</field>
+            <field name="arch" type="xml">
+                <form string="People" version="7.0">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="image" widget="image" class="oe_avatar oe_left"/>
+                            </group>
+                            <group>
+                                <field name="first_name"/>
+                                <field name="last_name"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <separator string="Contact information" colspan="2"/>
+                                <field name="working_email"/>
+                                <field name="working_phone"/>
+                                <field name="private_phone"/>
+                                <field name="street"/>
+                                <field name="zip"/>
+                                <field name="city"/>
+                            </group>
+                            <group>
+                                <separator string="GRAP information" colspan="2"/>
+                                    <field name="mandate_ids" 
+                                        widget="many2many_tags" 
+                                        options="{'quick_create':false}"/>
+                                    <field name="college_id" 
+                                        options="{'quick_create':false}"/>
+                                    <field name="date_capital_entry" 
+                                        attrs="{'invisible':[('college_id','=',False)]}"/>
+                                    <field name="share_number"/>
+                            </group>
+                        </group>
+                        <notebook colspan="4">
+                            <page string="Activities">
+                                <field name="activity_ids">
+                                    <tree string="Activities" editable="bottom">
+                                        <field name="activity_id"/>
+                                        <field name="fte" sum="Total FTE"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_grap_people_kanban" model="ir.ui.view">
+            <field name="name">grap.people.kanban</field>
+            <field name="model">grap.people</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="name"/>
+                        <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_box oe_kanban_color_border">
+                                <div style="height:150px;width:150px;overflow:hidden;">
+                                    <div style="height:40px;width:150px;border-bottom:1px solid #999999;padding-left:5px;">
+                                        <a type="edit">
+                                            <ul>
+                                                <li><field name="last_name"/></li>
+                                                <li><field name="first_name"/></li>
+                                            </ul>
+                                        </a>
+                                    </div>
+                                    <div style="height:110px;width:150px;text-align:center;vertical-align:middle;padding: 5px 5px 5px 5px">
+                                        <img t-att-src="kanban_image('grap.people', 'image', record.id.value)" width="95"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                </templates>
+                </kanban>
+            </field>
+        </record>
+
+<!-- View : grap.activity -->
+        <record id="view_grap_activity_search" model="ir.ui.view">
+            <field name="name">grap.activity.search</field>
+            <field name="model">grap.activity</field>
+            <field name="arch" type="xml">
+                <search string="Activity"> 
+                   <field name="name" string="Activity" />
+                   <field name="category_ids" string="Category" />
+                   <filter name="filter_progress_validated_working" string="In progress, validated or working" domain="[('state','in', ('progress', 'validated', 'working'))]"/>
+                   <group expand='0' string='Group by...'>
+                       <filter string='Type' context="{'group_by' : ''}"/>
+                       <filter string='College' context="{'group_by' : 'college_id'}"/>
+                       <filter string='State' context="{'group_by' : 'state'}"/>
+                   </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="view_grap_activity_tree" model="ir.ui.view">
+            <field name="name">grap.activity.tree</field>
+            <field name="model">grap.activity</field>
+            <field name="arch" type="xml">
+                <tree string="Activities">
+                    <field name="name"/>
+                    <field name="zip"/>
+                    <field name="city"/>
+                    <field name="category_ids" widget="many2many_tags"/>
+                    <field name="college_id" />
+                    <field name="type_id"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_grap_activity_form" model="ir.ui.view">
+            <field name="name">grap.activity.form</field>
+            <field name="model">grap.activity</field>
+            <field name="arch" type="xml">
+                <form string="Activity" version="7.0">
+                    <header>
+                        <button name="state_previous" string="Previous State" type="object"
+                            states="progress,validated,working,obsolete" 
+                            groups="grap_cooperative.res_group_grap_cooperative_manager"/>
+                        <button name="state_next" string="Next State" type="object"
+                            states="draft,progress,validated,working"
+                            groups="grap_cooperative.res_group_grap_cooperative_manager"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="image" widget="image" class="oe_avatar oe_left"/>
+                            </group>
+                            <group>
+                                <field name="activity_name"/>
+                                <field name="category_ids"
+                                    widget="many2many_tags" 
+                                    options="{'quick_create':false}"/>
+                                <field name="fte"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <separator string="Contact information" colspan="2"/>
+                                <field name="working_email"/>
+                                <field name="web_site"/>
+                                <field name="working_phone"/>
+                                <field name="street"/>
+                                <field name="zip"/>
+                                <field name="city"/>
+                            </group>
+                            <group>
+                                <separator string="GRAP information" colspan="2"/>
+                                    <field name="type_id"
+                                        options="{'quick_create':false}"/>
+                                    <field name="college_id" />
+                                    <field name="date_capital_entry" 
+                                        attrs="{'invisible':[('college_id','=',False)]}"/>
+                                    <field name="share_number"/>
+                                    <field name="date_validated" 
+                                        attrs="{'invisible':[('state','in',['draft','progress'])]}"/>
+                                    <field name="date_in" 
+                                        attrs="{'invisible':[('state','not in',['working','obsolete'])]}"/>
+                                    <field name="date_out" 
+                                        attrs="{'invisible':[('state','not in',['obsolete'])]}"/>
+                            </group>
+                        </group>
+                        <notebook colspan="4">
+                            <page string="Workers">
+                                <field name="people_ids">
+                                    <tree editable="bottom">
+                                        <field name="people_id"/>
+                                        <field name="fte"/>
+                                        <field name="working_email"/>
+                                        <field name="working_phone"/>
+                                        <field name="private_phone"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+<!--        <record id="view_grap_activity_people_tree" model="ir.ui.view">-->
+<!--            <field name="name">grap.activity.people.tree</field>-->
+<!--            <field name="model">grap.activity.people</field>-->
+<!--            <field name="type">tree</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <tree string="Workers" editable="bottom">-->
+<!--                    <field name="people_id"/>-->
+<!--                    <field name="fte"/>-->
+<!--                    <field name="working_email"/>-->
+<!--                    <field name="working_phone"/>-->
+<!--                    <field name="private_phone"/>-->
+<!--                </tree>-->
+<!--            </field>-->
+<!--        </record>-->
+
+<!--        <record id="view_grap_activity_people_form" model="ir.ui.view">-->
+<!--            <field name="name">grap.activity.people.form</field>-->
+<!--            <field name="model">grap.activity.people</field>-->
+<!--            <field name="type">form</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <form string="Workers" version="7.0">-->
+<!--                    <field name="people_id"/>-->
+<!--                    <field name="fte"/>-->
+<!--                </form>-->
+<!--            </field>-->
+<!--        </record>-->
+
+        <record id="view_grap_activity_kanban" model="ir.ui.view">
+            <field name="name">grap.activity.kanban</field>
+            <field name="model">grap.activity</field>
+            <field name="arch" type="xml">
+                <kanban >
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_box oe_kanban_color_border">
+                                <div style="height:150px; width:200px; overflow:hidden;">
+                                    <div style="height:40px; width:200px; border-bottom:1px solid #999999;">
+                                        <div style="width:200px; text-align:center;">
+                                            <a type="edit">
+                                                <field name="name"/>
+                                            </a>
+                                        </div>
+                                        <div style="width:200px; text-align:center; font-style:italic;color:gray;">
+                                            (<field name="state" />)
+                                        </div>
+                                    </div>
+                                    <div style="height:110px; width:200px;">
+                                        <table>
+                                            <tr>
+                                                <td style="width:150px; text-align:center;">
+                                                    <div style="padding: 5px 5px 5px 5px;">
+                                                        <img t-att-src="kanban_image('grap.activity', 'image', record.id.value)" width="100"/>
+                                                    </div>
+                                                </td>
+                                                <td style="width:50px;text-align:center;vertical-align:middle;">
+                                                    <b><t t-esc="record.fte.string"/></b><br />
+                                                    <field name="fte"/>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+<!-- View : grap.college -->
+        <record id="view_grap_college_tree" model="ir.ui.view">
+            <field name="name">grap.college.tree</field>
+            <field name="model">grap.college</field>
+            <field name="arch" type="xml">
+                <tree string="Colleges">
+                    <field name="name"/>
+                    <field name="percentage"/>
+                    <field name="member_count"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_grap_college_form" model="ir.ui.view">
+            <field name="name">grap.college.form</field>
+            <field name="model">grap.college</field>
+            <field name="arch" type="xml">
+                <form string="College" version="7.0">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                            <group>
+                                <field name="percentage"/>
+                            </group>
+                        </group>
+                        <notebook colspan="4">
+                            <page string="Members">
+                                <field name="member_ids"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+<!-- View : grap.mandate -->
+        <record id="view_grap_mandate_tree" model="ir.ui.view">
+            <field name="name">grap.mandate.tree</field>
+            <field name="model">grap.mandate</field>
+            <field name="arch" type="xml">
+                <tree string="Mandates">
+                    <field name="name"/>
+                    <field name="people_count"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_grap_mandate_form" model="ir.ui.view">
+            <field name="name">grap.mandate.form</field>
+            <field name="model">grap.mandate</field>
+            <field name="arch" type="xml">
+                <form string="Mandate" version="7.0">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                            <group>
+                                <field name="people_count"/>
+                            </group>
+                        </group>
+                        <notebook colspan="4">
+                            <page string="People">
+                                <field name="people_ids"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+<!-- View : grap.category -->
+        <record id="view_grap_category_tree" model="ir.ui.view">
+            <field name="name">grap.category.tree</field>
+            <field name="model">grap.category</field>
+            <field name="arch" type="xml">
+                <tree string="Categories">
+                    <field name="name"/>
+                    <field name="activity_count"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_grap_category_form" model="ir.ui.view">
+            <field name="name">grap.category.form</field>
+            <field name="model">grap.category</field>
+            <field name="arch" type="xml">
+                <form string="Category" version="7.0">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                            <group>
+                                <field name="activity_count"/>
+                            </group>
+                        </group>
+                        <notebook colspan="4">
+                            <page string="Activities">
+                                <field name="activity_ids"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+<!-- View : grap.type -->
+        <record id="view_grap_type_tree" model="ir.ui.view">
+            <field name="name">grap.type.tree</field>
+            <field name="model">grap.type</field>
+            <field name="arch" type="xml">
+                <tree string="Types">
+                    <field name="name"/>
+                    <field name="activity_count"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_grap_type_form" model="ir.ui.view">
+            <field name="name">grap.type.form</field>
+            <field name="model">grap.type</field>
+            <field name="arch" type="xml">
+                <form string="Type" version="7.0">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                            <group>
+                                <field name="activity_count"/>
+                            </group>
+                        </group>
+                        <notebook colspan="4">
+                            <page string="Activities">
+                                <field name="activity_ids"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+<!-- View : grap.todo.task -->
+         <record id="todo_task_search" model="ir.ui.view">
+            <field name="name">grap.todo.task.search</field>
+            <field name="model">grap.todo.task</field>
+            <field name="arch" type="xml">
+                <search string="Search Tasks">
+                    <field name="name" string="Name"/>
+                    <field name="state"/>
+                    <field name="importance"/>
+                    <field name="worker_ids"/>
+                    <field name="applicant_ids"/>
+                    <filter name="filter_todo" string="To do" domain="[('state', 'not in', ('6_canceled', '5_done'))]"/>
+                    <group expand="0" string="Group By...">
+                        <filter string="Status" domain="[]" context="{'group_by':'state'}"/>
+                        <filter string="Importance" domain="[]" context="{'group_by':'importance'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="view_grap_todo_task_tree" model="ir.ui.view">
+            <field name="name">grap.todo.task.tree</field>
+            <field name="model">grap.todo.task</field>
+            <field name="arch" type="xml">
+                <tree string="Todo Tasks"
+                    colors="
+                    blue: state in ('1_draft', 'draft');
+                    DarkBlue: state in ('2_qualified', 'qualified');
+                    brown:state in ('3_in_progress', 'in_progress');
+                    green:state in ('4_waiting_migration', 'waiting_migration');
+                    black:state in ('5_done', 'done');
+                    gray:state in ('6_canceled', 'canceled');">
+                    <field name="name"/>
+                    <field name="importance"/>
+                    <field name="applicant_ids"/>
+                    <field name="worker_ids"/>
+                    <field name="left_days"/>
+                    <field name="stop_date"/>
+                    <field name="state" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_grap_todo_task_form" model="ir.ui.view">
+            <field name="name">grap.todo.task.form</field>
+            <field name="model">grap.todo.task</field>
+            <field name="arch" type="xml">
+                <form string="Todo Task" version="7.0">
+                    <header>
+                        <button name="state_previous" string="Previous State" type="object"
+                            states="2_qualified,3_in_progress,4_waiting_migration,5_done,6_canceled" 
+                            groups="grap_cooperative.res_group_grap_cooperative_manager"/>
+                        <button name="state_next" string="Next State" type="object"
+                            states="1_draft,2_qualified,3_in_progress,4_waiting_migration,5_done" 
+                            groups="grap_cooperative.res_group_grap_cooperative_manager"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="importance"/>
+                                <field name="start_date"/>
+                                <field name="stop_date"/>
+                            </group>
+                            <group>
+                                <field name="applicant_ids" widget="many2many_tags"/>
+                                <field name="worker_ids" widget="many2many_tags"/>
+                                <field name="total_days"/>
+                                <field name="made_days"/>
+                                <field name="left_days"/>
+                            </group>
+                        </group>
+                        <notebook colspan="4">
+                            <page string="Note">
+                                <group>
+                                    <group>
+                                        <field name="note" widget="html"/>
+                                        <field name="internal_note" widget="html"/>
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+<!-- View : grap.timesheet -->
+        <record id="view_timesheet_search" model="ir.ui.view">
+            <field name="name">grap.timesheet.search</field>
+            <field name="model">grap.timesheet</field>
+            <field name="arch" type="xml">
+                <search string="Search Tasks">
+                    <field name="worker_id"/>
+                    <field name="date"/>
+                    <filter name="filter_today" string="Today" domain="[('date', '>=', time.strftime('%%Y-%%m-%%d 00:00:00'))]" />
+                </search>
+            </field>
+        </record>
+
+        <record id="view_timesheet_tree" model="ir.ui.view">
+            <field name="name">grap.timesheet.tree</field>
+            <field name="model">grap.timesheet</field>
+            <field name="arch" type="xml">
+                <tree string="TimeSheet" editable="top">
+                    <field name="type_id"/>
+                    <field name="activity_ids" widget="many2many_tags"/>
+                    <field name="amount" widget="float_time"/>
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="worker_id"/>
+                </tree>
+            </field>
+        </record>
+
+
+<!-- View : grap.timesheet -->
+        <record id="view_timesheet_type_tree" model="ir.ui.view">
+            <field name="name">grap.timesheet.type.tree</field>
+            <field name="model">grap.timesheet.type</field>
+            <field name="arch" type="xml">
+                <tree string="TimeSheet Type">
+                    <field name="complete_name"/>
+                    <field name="parent_id"/>
+                    <field name="active" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_timesheet_type_form" model="ir.ui.view">
+            <field name="name">grap.timesheet.type.form</field>
+            <field name="model">grap.timesheet.type</field>
+            <field name="arch" type="xml">
+                <form string="Member" version="7.0">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="active" />
+                            </group>
+                            <group>
+                                <field name="parent_id"/>
+                                <field name="complete_name" />
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</openerp>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <menuitem
+            action="product_cash_products"
+            id="menu_pos_cash_products"
+            groups="account.group_account_manager"
+            parent="point_of_sale.menu_point_of_sale_product" sequence="2"/>
+
+    </data>
+</openerp>

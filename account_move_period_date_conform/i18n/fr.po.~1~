@@ -1,0 +1,332 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* grap_change_views
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-07-04 11:05+0000\n"
+"PO-Revision-Date: 2014-07-04 11:05+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: grap_change_views
+#: view:account.move:0
+#: view:hr.expense.expense:0
+#: view:pos.order:0
+msgid "7.0"
+msgstr "7.0"
+
+#. module: grap_change_views
+#: view:pos.category:0
+msgid "Category Name"
+msgstr "Nom de la catégorie"
+
+#. module: grap_change_views
+#: view:account.move.line:0
+#: view:ir.values:0
+msgid "Company"
+msgstr "Société"
+
+#. module: grap_change_views
+#: view:pos.category:0
+msgid "Complete Name"
+msgstr "Nom Complet"
+
+#. module: grap_change_views
+#: field:pos.category,complete_name_order:0
+msgid "Complete Name Stored"
+msgstr "Nom complet stocké"
+
+#. module: grap_change_views
+#: view:product.product:0
+msgid "Consumption"
+msgstr "Consommation"
+
+#. module: grap_change_views
+#: view:product.product:0
+msgid "Counter-Part Locations Properties"
+msgstr "Proprietés des emplacements de contrepartie"
+
+#. module: grap_change_views
+#: view:account.move:0
+msgid "Date Ech."
+msgstr "Date Ech."
+
+#. module: grap_change_views
+#: view:pos.order:0
+msgid "Discount"
+msgstr "Remise"
+
+#. module: grap_change_views
+#: code:_description:0
+#: model:ir.model,name:grap_change_views.model_hr_expense_line
+#, python-format
+msgid "Expense Line"
+msgstr "Lignes de frais"
+
+#. module: grap_change_views
+#: view:product.product:0
+msgid "Extra-Information"
+msgstr "Extra-Information"
+
+#. module: grap_change_views
+#: view:product.product:0
+msgid "Food information"
+msgstr "Information alimentaire"
+
+#. module: grap_change_views
+#: help:stock.move,sequence:0
+msgid "Gives the sequence order when displaying a list of stock_moves."
+msgstr "Gives the sequence order when displaying a list of stock_moves."
+
+#. module: grap_change_views
+#: view:product.product:0
+msgid "In HR Expense"
+msgstr "Note de frais"
+
+#. module: grap_change_views
+#: view:product.product:0
+msgid "Incoming quantity"
+msgstr "Quantité entrante"
+
+#. module: grap_change_views
+#: view:product.product:0
+msgid "Information"
+msgstr "Information"
+
+#. module: grap_change_views
+#: view:res.partner:0
+msgid "Internal Notes"
+msgstr "Notes internes"
+
+#. module: grap_change_views
+#: code:_description:0
+#: model:ir.model,name:grap_change_views.model_account_invoice_line
+#, python-format
+msgid "Invoice Line"
+msgstr "Lignes de facture"
+
+#. module: grap_change_views
+#: view:account.move:0
+msgid "Let. Cplt."
+msgstr "Let. Cplt."
+
+#. module: grap_change_views
+#: view:account.move:0
+msgid "Let. Part."
+msgstr "Let. Part."
+
+#. module: grap_change_views
+#: view:ir.values:0
+msgid "Name"
+msgstr "Nom"
+
+#. module: grap_change_views
+#: view:product.product:0
+msgid "Notation"
+msgstr "Notation"
+
+#. module: grap_change_views
+#: view:account.move:0
+msgid "Num. Fact."
+msgstr "Num. Fact."
+
+#. module: grap_change_views
+#: view:product.product:0
+msgid "Origin information"
+msgstr "Information sur la provenance"
+
+#. module: grap_change_views
+#: view:product.product:0
+msgid "Outgoing quantity"
+msgstr "Quantité sortante"
+
+#. module: grap_change_views
+#: view:product.product:0
+msgid "Packaging"
+msgstr "Colisage"
+
+#. module: grap_change_views
+#: model:ir.model,name:grap_change_views.model_pos_category
+msgid "PoS Category"
+msgstr "Catégorie PdV"
+
+#. module: grap_change_views
+#: code:_description:0
+#: model:ir.model,name:grap_change_views.model_pos_order
+#: view:res.partner:0
+#, python-format
+msgid "Point of Sale"
+msgstr "Point de Vente"
+
+#. module: grap_change_views
+#: code:_description:0
+#, python-format
+msgid "Point of Sale Category"
+msgstr "Catégorie de point de vente"
+
+#. module: grap_change_views
+#: view:pos.order:0
+msgid "Posted"
+msgstr "Comptabilisé"
+
+#. module: grap_change_views
+#: view:product.product:0
+msgid "Print information"
+msgstr "Information liée à l'impression"
+
+#. module: grap_change_views
+#: view:pos.category:0
+#: view:product.product:0
+msgid "Product"
+msgstr "Produit"
+
+#. module: grap_change_views
+#: model:ir.actions.act_window,name:grap_change_views.action_view_old_product_form
+#: model:ir.ui.menu,name:grap_change_views.menu_view_old_product_form
+msgid "Product (Admin)"
+msgstr "Product (Admin)"
+
+#. module: grap_change_views
+#: view:product.product:0
+msgid "Product (Price)"
+msgstr "Produit (Prix)"
+
+#. module: grap_change_views
+#: view:product.product:0
+msgid "Product (Tactile)"
+msgstr "Produit (Tactile)"
+
+#. module: grap_change_views
+#: view:pos.category:0
+msgid "Product List"
+msgstr "Liste des produits"
+
+#. module: grap_change_views
+#: field:pos.category,product_qty:0
+msgid "Product Number"
+msgstr "Nombre de produits"
+
+#. module: grap_change_views
+#: field:pos.category,product_ids:0
+msgid "Products"
+msgstr "Produits"
+
+#. module: grap_change_views
+#: model:ir.actions.act_window,name:grap_change_views.action_view_product_product_price_tree
+msgid "Products (Price Information)"
+msgstr "Produits (Information relative au prix)"
+
+#. module: grap_change_views
+#: model:ir.ui.menu,name:grap_change_views.menu_product_product_price
+msgid "Products (Price View)"
+msgstr "Produits (Vue Prix)"
+
+#. module: grap_change_views
+#: model:ir.actions.act_window,name:grap_change_views.action_product_product_tactile_tree
+msgid "Products (Tactile Information)"
+msgstr "Produits (Information tactile)"
+
+#. module: grap_change_views
+#: model:ir.ui.menu,name:grap_change_views.menu_product_product_tactile
+msgid "Products (Tactile View)"
+msgstr "Produits (Vue Tactile)"
+
+#. module: grap_change_views
+#: view:product.product:0
+msgid "Purchase / Produce"
+msgstr "Achat / Production"
+
+#. module: grap_change_views
+#: view:res.partner:0
+msgid "Put an internal note..."
+msgstr "Mettre une note interne..."
+
+#. module: grap_change_views
+#: view:hr.expense.expense:0
+msgid "Quantite ou Prix TTC"
+msgstr "Quantite ou Prix TTC"
+
+#. module: grap_change_views
+#: view:product.product:0
+msgid "Sale"
+msgstr "Vente"
+
+#. module: grap_change_views
+#: view:product.product:0
+msgid "Sellers"
+msgstr "Fournisseurs"
+
+#. module: grap_change_views
+#: field:stock.move,sequence:0
+msgid "Sequence"
+msgstr "Sequence"
+
+#. module: grap_change_views
+#: view:product.product:0
+msgid "Spider Chart"
+msgstr "Graphique radar"
+
+#. module: grap_change_views
+#: view:product.product:0
+msgid "Stock"
+msgstr "Stock"
+
+#. module: grap_change_views
+#: code:_description:0
+#: model:ir.model,name:grap_change_views.model_stock_move
+#, python-format
+msgid "Stock Move"
+msgstr "Mouvement de stock"
+
+#. module: grap_change_views
+#: model:ir.actions.act_window,name:grap_change_views.act_stock_product_location_open
+msgid "Stock by Location"
+msgstr "Stock par emplacement"
+
+#. module: grap_change_views
+#: view:product.product:0
+msgid "Tactile point of sale"
+msgstr "Point de vente tactile"
+
+#. module: grap_change_views
+#: view:account.move:0
+msgid "Taxe Cpte."
+msgstr "Taxe Cpte."
+
+#. module: grap_change_views
+#: view:account.move:0
+msgid "Taxe Mont."
+msgstr "Taxe Mont."
+
+#. module: grap_change_views
+#: view:pos.order:0
+msgid "Today"
+msgstr "Quotidien"
+
+#. module: grap_change_views
+#: view:ir.values:0
+msgid "User"
+msgstr "Utilisateur"
+
+#. module: grap_change_views
+#: view:pos.order:0
+msgid "Yesterday"
+msgstr "Hier"
+
+#. module: grap_change_views
+#: model:ir.actions.act_window,help:grap_change_views.action_view_old_product_form
+msgid "display obsolete view for products."
+msgstr "display obsolete view for products."
+
+
+#. module: grap_change_views
+#: view:product.product:0
+msgid "update"
+msgstr "mettre à jour"

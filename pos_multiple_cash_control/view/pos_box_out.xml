@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!--  Box Entries -->
+
+        <record id="view_pos_box_out" model="ir.ui.view">
+            <field name="name">Box Out</field>
+            <field name="model">pos.box.out</field>
+            <field name="arch" type="xml">
+                <form string="Output Operation" version="7.0">
+                    <separator string="Describe why you take money from the cash register:"/>
+                    <p>Please write the name of the statement on the invoice, if you have some</p>
+                    <group col="4">
+                        <field name="statement_id"/>
+                        <field name="amount"/>
+                        <field name="product_id" widget = "selection" domain="[('expense_pdt', '=', True)]" on_change="onchange_product_id(product_id)"/>
+                        <field name="amount_VAT"/>
+                        <field name="tax_name"/>
+                    </group>
+                    <footer>
+                        <button name="get_out" string="Take Money"
+                            type="object" class="oe_highlight"/> 
+                         <button icon="gtk-stop" special="cancel"
+                            string="Cancel" class="oe_link"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</openerp>

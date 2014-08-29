@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="product_cash_products" model="ir.actions.act_window">
+            <field name="name">Cash Products</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.product</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,kanban</field>
+            <field name="domain" eval="['|',('income_pdt','=',True),('expense_pdt','=',True)]"/>
+<!--            <field name="view_id" ref="cash_product_tree_view"/>-->
+<!--            <field name="search_view_id" ref="cash_product_search_form_view"/>-->
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a new product.
+              </p><p>
+                You must define a product for everything you sell through
+                the point of sale interface.
+              </p><p>
+                Do not forget to set the price and the point of sale category
+                in which it should appear. If a product has no point of sale
+                category, you can not sell it through the point of sale
+                interface.
+              </p>
+            </field>
+        </record>
+
+    </data>
+</openerp>

@@ -1,0 +1,45 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* invoice_verified_state
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 6.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-04-23 16:33+0000\n"
+"PO-Revision-Date: 2013-04-23 16:33+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: invoice_verified_state
+#: view:account.invoice:0
+#: view:view.account.invoice.tree.account
+msgid "Verified"
+msgstr "Vérifiée"
+
+#. module: invoice_verified_state
+#: code:addons/invoice_verified_state/account_invoice.py:37
+#, python-format
+msgid "Error!"
+msgstr "Erreur!"
+
+#. module: invoice_verified_state
+#: view:account.invoice:0
+msgid "Verified Invoices"
+msgstr "Factures Vérifiées"
+
+#. module: invoice_verified_state
+#: view:account.invoice:0
+msgid "Confirm"
+msgstr "Confirmer"
+
+#. module: invoice_verified_state
+#: code:addons/invoice_verified_state/account_invoice.py:37
+#, python-format
+msgid "Verify a supplier invoice requires to set \"invoice date\" and \"due date\" fields."
+msgstr "Vérifier une facture fournisseur demande de renseigner les champs \"date de facture\" et \"date d'échéance\"."
+

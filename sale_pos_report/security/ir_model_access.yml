@@ -1,0 +1,45 @@
+# -*- encoding: utf-8 -*-
+##############################################################################
+#
+#    Sale / Point Of Sale Report module for OpenERP
+#    Copyright (C) 2013-2014 GRAP (http://www.grap.coop)
+#    @author Julien WESTE
+#    @author Sylvain LE GAL (https://twitter.com/legalsylvain)
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+##############################################################################
+- 
+  Creating a ir.model.access record
+- 
+  !record {model: ir.model.access, id: access_sale_pos_report_sale}:
+    name: sale.pos.report Sale
+    model_id: model_sale_pos_report
+    group_id: point_of_sale.group_pos_user
+    perm_read: 1
+    perm_write: 0
+    perm_create: 0
+    perm_unlink: 0
+
+- 
+  Creating a ir.model.access record
+- 
+  !record {model: ir.model.access, id: access_sale_pos_report_pos}:
+    name: sale.pos.report Point Of Sale
+    model_id: model_sale_pos_report
+    group_id: base.group_sale_salesman
+    perm_read: 1
+    perm_write: 0
+    perm_create: 0
+    perm_unlink: 0

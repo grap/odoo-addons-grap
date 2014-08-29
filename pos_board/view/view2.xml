@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ********************************************************************** -->
+<!--    Point of Sale Board module for Odoo                                 -->
+<!--    Copyright (C) 2014 GRAP (http://www.grap.coop)                      -->
+<!--    @author Julien WESTE                                                -->
+<!--    @author Sylvain LE GAL (https://twitter.com/legalsylvain)           -->
+
+<!--This program is free software: you can redistribute it and/or modify    -->
+<!--it under the terms of the GNU Affero General Public License as          -->
+<!--published by the Free Software Foundation, either version 3 of the      -->
+<!--License, or (at your option) any later version.                         -->
+
+<!--This program is distributed in the hope that it will be useful,         -->
+<!--but WITHOUT ANY WARRANTY; without even the implied warranty of          -->
+<!--MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the           -->
+<!--GNU Affero General Public License for more details.                     -->
+
+<!--You should have received a copy of the GNU Affero General Public License-->
+<!--along with this program.  If not, see <http://www.gnu.org/licenses/>.   -->
+<!-- ********************************************************************** -->
+<openerp>
+    <data>
+<!--______________________Models pos.board.X_________________________-->
+        <record id="board_pos" model="ir.ui.view">
+            <field name="name">board.pos.form</field>
+            <field name="model">board.board</field>
+            <field name="arch" type="xml">
+                <form string="Point of Sale board">
+                    <board style="1-1">
+                        <column>
+                            <action name="%(pos_sale_by_day)d" string="Sales by day"/>
+                            <action name="%(pos_sale_by_week)d" string="Sales by week"/>
+                        </column>
+                        <column>
+                            <action name="%(pos_sale_by_month)d" string="Sales by month"/>
+                        </column>
+                    </board>
+                </form>
+            </field>
+        </record>
+        <record id="board_pos_simple" model="ir.ui.view">
+            <field name="name">board.pos.form</field>
+            <field name="model">board.board</field>
+            <field name="arch" type="xml">
+                <form string="Point of Sale board simple">
+                    <board style="1">
+                        <column>
+                            <action name="%(pos_sale_by_day_simple)d" string="Sales by day"/>
+                            <action name="%(pos_nb_sale_by_day)d" string="Nb of sales by day"/>
+                            <action name="%(pos_avg_amount_by_day)d" string="Average Amount by day"/>
+                        </column>
+                    </board>
+                </form>
+            </field>
+        </record>
+    </data>
+</openerp>

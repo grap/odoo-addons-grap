@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- *********************************************************************** -->
+<!-- See __openerp__.py file for Copyright and Licence Informations.         -->
+<!-- *********************************************************************** -->
+<openerp>
+    <data>
+        <menuitem id="menu_account_delete_account_move_null_amount"
+            name="Account Move with Null Amount"
+            parent="account.menu_finance_periodical_processing"
+            action="action_account_move_null_amount_tree"
+            sequence="35"/>
+    </data>
+</openerp>

@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<!-- *********************************************************************** -->
+<!-- See __openerp__.py file for Copyright and Licence Informations.         -->
+<!-- *********************************************************************** -->
+<openerp>
+    <data>
+
+        <record id="view_account_period_fix_period_tree" model="ir.ui.view">
+            <field name="name">account.period.tree</field>
+            <field name="model">account.period</field>
+            <field name="priority" eval="50"/>
+            <field name="arch" type="xml">
+                <tree string="Account Period" 
+                    colors="red:account_move_incorrect_date_quantity != 0;black:account_move_incorrect_date_quantity == 0">
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="date_start"/>
+                    <field name="date_stop"/>
+                    <field name="special" string="special"/>
+                    <field name="state" />
+                    <field name="account_move_incorrect_date_quantity" />
+                    <field name="company_id" groups="base.group_multi_company"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_fix_account_move_period_wizard_form" model="ir.ui.view">
+            <field name="name">fix.account.move.period.wizard.form</field>
+            <field name="model">fix.account.move.period.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Fix Account Moves" version="7.0">
+                    <group>
+                        <field name="line_ids" nolabel="1" />
+                    </group>
+                    <footer>
+                        <button name="apply_period_change" string="Apply" type="object" class="oe_highlight"/>
+                        <label string="or" />
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_fix_account_move_period_line_wizard_tree" model="ir.ui.view">
+            <field name="name">fix.account.move.period.line.wizard.tree</field>
+            <field name="model">fix.account.move.period.line.wizard</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Account informations" editable="top"
+                    colors="red:old_fiscalyear_id != new_fiscalyear_id">
+                    <field name="account_move_id"/>
+                    <field name="date" />
+                    <field name="company_id" groups="base.group_multi_company" />
+                    <field name="old_period_id" />
+                    <field name="old_fiscalyear_id" invisible="True"/>
+                    <field name="new_period_id" />
+                    <field name="new_fiscalyear_id" invisible="True"/>
+                </tree>
+            </field>
+        </record>
+
+    </data>
+</openerp>

@@ -1,0 +1,71 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* pos_both_mode
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-07-08 17:24+0000\n"
+"PO-Revision-Date: 2014-07-08 17:24+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: pos_both_mode
+#: view:pos.session:0
+msgid "Continue Old Selling"
+msgstr "Continuer à vendre (Interface Normale)"
+
+#. module: pos_both_mode
+#: view:pos.session:0
+msgid "Continue Tactile Selling"
+msgstr "Continuer à vendre (Interface Tactile)"
+
+#. module: pos_both_mode
+#: code:addons/pos_both_mode/model/pos_session.py:64
+#, python-format
+msgid "Error!"
+msgstr "Erreur !"
+
+#. module: pos_both_mode
+#: code:addons/pos_both_mode/model/pos_session.py:46
+#: code:addons/pos_both_mode/model/pos_session.py:70
+#: code:addons/pos_both_mode/model/pos_session_opening.py:37
+#, python-format
+msgid "Orders"
+msgstr "Ventes"
+
+#. module: pos_both_mode
+#: view:pos.session.opening:0
+msgid "Start Old Selling"
+msgstr "Commencer à vendre (Interface Normale)"
+
+#. module: pos_both_mode
+#: view:pos.session.opening:0
+msgid "Start Tactile Selling"
+msgstr "Commencer à vendre (Interface Tactile)"
+
+#. module: pos_both_mode
+#: model:res.groups,name:pos_both_mode.group_pos_tacile
+msgid "Tactile Point of Sale"
+msgstr "Point de Vente Tactile"
+
+#. module: pos_both_mode
+#: view:pos.session:0
+msgid "Validate & Open Session (Old)"
+msgstr "Valider et Ouvrir l'interface normale"
+
+#. module: pos_both_mode
+#: view:pos.session:0
+msgid "Validate & Open Tactile Session"
+msgstr "Valider & Ouvrir l'interface tactile"
+
+#. module: pos_both_mode
+#: code:addons/pos_both_mode/model/pos_session.py:64
+#, python-format
+msgid "You cannot use the  session of another users. This session is owned by %s. Please first close this one to use this point of sale"
+msgstr "Vous ne pouvez pas utiliser la session d'un autre utilisateur. La session est à %s. Merci de fermer d'abord cette session pour utiliser le point de vente."

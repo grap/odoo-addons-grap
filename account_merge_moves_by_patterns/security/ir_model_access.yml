@@ -1,0 +1,33 @@
+################################################################################
+#    See __openerp__.py file for Copyright and Licence Informations.
+################################################################################
+
+################################################################################
+# Reader Access
+################################################################################
+
+- 
+  Creating a ir.model.access record
+- 
+  !record {model: ir.model.access, id: ir_model_access_account_merge_pattern_reader}:
+    group_id: account.group_account_manager
+    model_id: account_merge_moves_by_patterns.model_account_merge_pattern
+    name: Account Merge Pattern reader
+    perm_create: false
+    perm_write: false
+    perm_read: true
+
+################################################################################
+# Manager Access
+################################################################################
+
+- 
+  Creating a ir.model.access record
+- 
+  !record {model: ir.model.access, id: ir_model_access_account_merge_pattern_manager}:
+    group_id: account_merge_moves_by_patterns.group_account_merge_manager
+    model_id: account_merge_moves_by_patterns.model_account_merge_pattern
+    name: Account Merge Pattern manager
+    perm_create: true
+    perm_write: true
+    perm_read: true

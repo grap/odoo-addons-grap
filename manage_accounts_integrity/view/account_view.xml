@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+<!-- View : account.account -->
+
+        <record id="view_account_account_search" model="ir.ui.view">
+            <field name="name">account.account.search</field>
+            <field name="model">account.account</field>
+            <field name="inherit_id" ref="account.view_account_search"/>
+            <field name="arch" type="xml">
+                <search string="Accounts">
+                    <field name="name" position="after">
+                        <filter name="filter_with_childs_and_moves" string="PROBLEMS : With childs and with moves" domain="[('child_number','>','0'), ('move_number','>','0')]"/>
+                        <filter name="filter_view_consolidation_with_moves" string="PROBLEMS : View / consolidation with moves" domain="[('type','in',['consolidation', 'view']), ('move_number','>','0')]"/>
+                        <filter name="filter_with_properties" string="With properties" domain="[('account_ir_property_number','>','0')]"/>
+                    </field>
+                </search>
+            </field>
+        </record>
+
+        <record id="view_account_account_view" model="ir.ui.view">
+            <field name="inherit_id" ref="account.view_account_list" />
+            <field name="name">account.account.view</field>
+            <field name="model">account.account</field>
+            <field name="arch" type="xml">
+                    <field name="company_id" position="after">
+                        <field name="child_number" string="Childs"/>
+                        <field name="move_number" string="Moves"/>
+                        <field name="account_ir_property_number" string="Properties"/>
+                    </field>
+            </field>
+        </record>
+
+        <record id="view_account_account_form" model="ir.ui.view">
+            <field name="name">account.account.form</field>
+            <field name="model">account.account</field>
+            <field name="inherit_id" ref="account.view_account_form"/>
+            <field name="arch" type="xml">
+                <field name="note" position="after">
+                    <notebook>
+                        <page string="Integrity">
+                            <group col="5">
+                                <group colspan="2" col="4">
+                                    <field name="child_number" />
+                                    <button name="%(action_view_account_account_associated_tree)d" 
+                                        type="action" string="View direct childs accounts" colspan="2"/>
+                                </group>
+                                <group colspan="2" col="4">
+                                    <field name="move_number" />
+                                    <field name="invoice_number" />
+                                    <field name="voucher_line_number" />
+                                    <button name="%(action_view_account_move_line_associated_tree)d" 
+                                        type="action" string="View associated move lines" colspan="2"/>
+                                </group>
+                                <group colspan="1" col="2">
+                                    <button name="%(action_change_account_move_line_wizard)d" 
+                                        type="action" string="Change move lines" 
+                                        groups="manage_accounts_integrity.res_group_manage_accounts_integrity_manager"
+                                        attrs="{'invisible': [('invoice_number', '=', 0), ('move_number', '=', 0), ('voucher_line_number', '=', 0)]}" colspan="2"/>
+                                </group>
+                            </group>
+                            <group col="5">
+                                <group colspan="4">
+                                    <field name="account_ir_property" />
+                                </group>
+                                <group colspan="1">
+                                    <button name="button_delete_properties" 
+                                        groups="manage_accounts_integrity.res_group_manage_accounts_integrity_manager"
+                                        string="Delete all properties" type="object"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>

@@ -1,0 +1,37 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* taxes_required
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-01-09 00:10+0000\n"
+"PO-Revision-Date: 2014-01-09 00:10+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: taxes_required
+#: model:ir.model,name:taxes_required.model_product_product
+msgid "Product"
+msgstr "Produit"
+
+#. module: taxes_required
+#: constraint:product.product:0
+msgid "Error: You must define a purchase tax if the product can be purchased."
+msgstr "Erreur : Vous devez définir une taxe à l'achat si le produit peut être acheté ou figurer sur une note de frais."
+
+#. module: taxes_required
+#: model:ir.model,name:taxes_required.model_product_template
+msgid "Product Template"
+msgstr "Modèle de produit"
+
+#. module: taxes_required
+#: constraint:product.product:0
+msgid "Error: You must define a sale tax if the product can be sold."
+msgstr "Erreur : Vous devez définir une taxe à la vente si le produit peut être vendu."
+

@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ********************************************************************** -->
+<!--GRAP - Change Views module for Odoo                                     -->
+<!--Copyright (C) 2013 GRAP (http://www.grap.coop)                          -->
+<!--@author Julien WESTE                                                    -->
+<!--@author Sylvain LE GAL (https://twitter.com/legalsylvain)               -->
+
+<!--This program is free software: you can redistribute it and/or modify    -->
+<!--it under the terms of the GNU Affero General Public License as          -->
+<!--published by the Free Software Foundation, either version 3 of the      -->
+<!--License, or (at your option) any later version.                         -->
+
+<!--This program is distributed in the hope that it will be useful,         -->
+<!--but WITHOUT ANY WARRANTY; without even the implied warranty of          -->
+<!--MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the           -->
+<!--GNU Affero General Public License for more details.                     -->
+
+<!--You should have received a copy of the GNU Affero General Public License-->
+<!--along with this program.  If not, see <http://www.gnu.org/licenses/>.   -->
+<!-- ********************************************************************** -->
+<openerp>
+    <data>
+        <!-- Model 'ir.values' -->
+        <record id="view_ir_values_search" model="ir.ui.view">
+            <field name="name">ir.values.search</field>
+            <field name="model">ir.values</field>
+            <field name="inherit_id" ref="base.values_view_search_action" />
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@string='Type']" position="after">
+                    <filter string="Name" context="{'group_by': 'name'}" />
+                    <filter string="Company" context="{'group_by': 'company_id'}" />
+                    <filter string="User" context="{'group_by': 'user_id'}" />
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_ir_values_tree" model="ir.ui.view">
+            <field name="name">ir.values.tree</field>
+            <field name="model">ir.values</field>
+            <field name="inherit_id" ref="base.values_view_tree_action"/>
+            <field name="arch" type="xml">
+                    <field name="model" position="replace" />
+                    <field name="name" position="after">
+                        <field name="model" />
+                        <field name="value" />
+                        <field name="company_id" />
+                        <field name="user_id" />
+                    </field>
+                    <field name="key2" position="before">
+                        <field name="key" />
+                    </field>
+            </field>
+        </record>
+
+<!--         Model 'res.partner' -->
+        <record id="view_res_partner_form" model="ir.ui.view">
+            <field name="name">res.partner.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <field name="ref" position="attributes">
+                        <attribute name="groups">base.group_no_one</attribute>
+                    </field>
+                    <field name="category_id" position="attributes">
+                        <attribute name="groups">base.group_no_one</attribute>
+                    </field>
+                    <field name="title" position="attributes">
+                        <attribute name="groups">base.group_no_one</attribute>
+                    </field>
+                    <field name="user_id" position="attributes">
+                        <attribute name="groups">base.group_no_one</attribute>
+                    </field>
+                    <field name="date" position="attributes">
+                        <attribute name="groups">base.group_no_one</attribute>
+                    </field>
+                    <xpath expr="//page[@string='Internal Notes']" position="replace" />
+                </data>
+            </field>
+        </record>
+
+        <record id="view_res_partner_mail_form" model="ir.ui.view">
+            <field name="name">res.partner.mail.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="mail.view_emails_partner_info_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <field name="notification_email_send" position="attributes">
+                        <attribute name="groups">base.group_no_one</attribute>
+                    </field>
+                </data>
+            </field>
+        </record>
+
+        <record id="view_res_partner_email_template_form" model="ir.ui.view">
+            <field name="name">res.partner.mail.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="email_template.res_partner_opt_out_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <field name="opt_out" position="attributes">
+                        <attribute name="groups">base.group_no_one</attribute>
+                    </field>
+                </data>
+            </field>
+        </record>
+
+        <record id="view_res_partner_account_form" model="ir.ui.view">
+            <field name="name">res.partner.account.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="account.view_partner_property_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <field name="property_account_receivable" position="attributes">
+                        <attribute name="groups">account.group_account_manager</attribute>
+                    </field>
+                    <field name="property_account_payable" position="attributes">
+                        <attribute name="groups">account.group_account_manager</attribute>
+                    </field>
+                    <field name="bank_ids" position="attributes">
+                        <attribute name="groups">account.group_account_manager</attribute>
+                    </field>
+                    <field name="last_reconciliation_date" position="attributes">
+                        <attribute name="groups">account.group_account_manager</attribute>
+                    </field>
+                    <field name="credit_limit" position="attributes">
+                        <attribute name="groups">account.group_account_manager</attribute>
+                    </field>
+                    <xpath expr="//page[@string='Accounting']" position="after">
+                        <page string="Internal Notes">
+                            <field name="comment" placeholder="Put an internal note..."/>
+                        </page>
+                    </xpath>
+                </data>
+            </field>
+        </record>
+
+        <record id="view_res_partner_base_vat_form" model="ir.ui.view">
+            <field name="name">res.partner.base.vat.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base_vat.view_partner_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="//label[@for='vat']" position="attributes">
+                        <attribute name="groups">account.group_account_manager</attribute>
+                    </xpath>
+                    <xpath expr="//div[@name='vat_info']" position="attributes">
+                        <attribute name="groups">account.group_account_manager</attribute>
+                    </xpath>
+                    <field name="vat" position="attributes">
+                        <attribute name="groups">account.group_account_manager</attribute>
+                    </field>
+                    <button name="button_check_vat" position="attributes">
+                        <attribute name="groups">account.group_account_manager</attribute>
+                    </button>
+                    <field name="vat_subjected" position="attributes">
+                        <attribute name="groups">account.group_account_manager</attribute>
+                    </field>
+                </data>
+            </field>
+        </record>
+
+        <record id="view_res_partner_stock_form" model="ir.ui.view">
+            <field name="name">view.res.partner.stock.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="stock.view_partner_property_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <field name="property_stock_customer" position="attributes">
+                        <attribute name="groups">base.group_no_one</attribute>
+                    </field>
+                    <field name="property_stock_supplier" position="attributes">
+                        <attribute name="groups">base.group_no_one</attribute>
+                    </field>
+                </data>
+            </field>
+        </record>
+
+        <record id="view_res_partner_delivery_form" model="ir.ui.view">
+            <field name="name">view.res.partner.delivery.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="delivery.view_partner_property_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <field name="property_delivery_carrier" position="attributes">
+                        <attribute name="groups">base.group_no_one</attribute>
+                    </field>
+                    <field name="property_stock_supplier" position="attributes">
+                        <attribute name="groups">base.group_no_one</attribute>
+                    </field>
+                </data>
+            </field>
+        </record>
+
+        <record id="view_res_partner_pos_form" model="ir.ui.view">
+            <field name="name">view.res.partner.pos.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="point_of_sale.view_partner_property_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <page string="Point of Sale" position="attributes">
+                        <attribute name="groups">base.group_no_one</attribute>
+                    </page>
+                </data>
+            </field>
+        </record>
+
+<!--_______________________Vues Workflow__________________________-->
+
+    <record id="base.view_workflow_workitem_form" model="ir.ui.view">
+      <field name="name">workflow.workitem.form</field>
+      <field name="model">workflow.workitem</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Workflow Workitems">
+          <field name="wkf_id"/>  
+          <field name="act_id"/>
+          <field name="subflow_id"/>
+          <field name="inst_id"/>
+          <field name="state"/>
+        </form>
+      </field>
+    </record>
+
+    <record id="base.view_workflow_instance_form" model="ir.ui.view">
+      <field name="name">workflow.instance.form</field>
+      <field name="model">workflow.instance</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Workflow Instances">
+          <field name="wkf_id"/>
+          <field name="res_id"/>
+          <field name="res_type"/>
+          <field name="state"/>
+        </form>
+      </field>
+    </record>
+
+    </data>
+</openerp>

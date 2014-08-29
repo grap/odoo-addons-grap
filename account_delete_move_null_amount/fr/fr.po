@@ -1,0 +1,119 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* account_delete_move_null_amount
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-03-17 20:27+0000\n"
+"PO-Revision-Date: 2014-03-17 20:27+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: account_delete_move_null_amount
+#: view:account.period:0
+msgid "Account Period"
+msgstr "Période comptable"
+
+#. module: account_delete_move_null_amount
+#: model:ir.model,name:account_delete_move_null_amount.model_account_period
+msgid "Account period"
+msgstr "Période"
+
+#. module: account_delete_move_null_amount
+#: model:ir.actions.act_window,name:account_delete_move_null_amount.action_account_move_null_amount_tree
+msgid "Account Move with Null Amounts"
+msgstr "Account Move with Null Amounts"
+
+#. module: account_delete_move_null_amount
+#: view:account.period:0
+msgid "special"
+msgstr "spécial"
+
+#. module: account_delete_move_null_amount
+#: model:ir.ui.menu,name:account_delete_move_null_amount.menu_account_delete_account_move_null_amount
+msgid "Account Move with Null Amount"
+msgstr "Pièce comptable à montant nul"
+
+#. module: account_delete_move_null_amount
+#: field:delete.account.move.null.amount.wizard,line_ids:0
+msgid "Account Moves list"
+msgstr "Liste des pièces comptables"
+
+#. module: account_delete_move_null_amount
+#: field:delete.account.move.null.amount.wizard.line,company_id:0
+msgid "Company"
+msgstr "Société"
+
+#. module: account_delete_move_null_amount
+#: model:res.groups,name:account_delete_move_null_amount.group_group_account_move_null_amount_manager
+msgid "Delete Account Move With Null Amount Manager"
+msgstr "Supprimer les pièces à montant nul Manager"
+
+#. module: account_delete_move_null_amount
+#: model:ir.actions.act_window,name:account_delete_move_null_amount.action_view_delete_account_move_null_amount_wizard_form
+msgid "Delete Account Moves Null Amount"
+msgstr "Supprimer les pièces à montant nul"
+
+#. module: account_delete_move_null_amount
+#: field:delete.account.move.null.amount.wizard.line,date:0
+msgid "Move Date"
+msgstr "Date de la pièce"
+
+#. module: account_delete_move_null_amount
+#: view:account.period:0
+#: view:delete.account.move.null.amount.wizard:0
+msgid "Delete Account Moves"
+msgstr "Supprimer les pièces comptables"
+
+#. module: account_delete_move_null_amount
+#: model:ir.model,name:account_delete_move_null_amount.model_delete_account_move_null_amount_wizard_line
+msgid "Information about an account move to delete"
+msgstr "Information sur about an account move to delete"
+
+#. module: account_delete_move_null_amount
+#: field:delete.account.move.null.amount.wizard.line,account_move_id:0
+msgid "Account Move to delete"
+msgstr "Pièce comptable à supprimer"
+
+#. module: account_delete_move_null_amount
+#: view:account.period:0
+#: field:account.period,account_move_null_amount_quantity:0
+msgid "Quantity of moves with null amount"
+msgstr "Pièces comptables à montant nul"
+
+#. module: account_delete_move_null_amount
+#: view:delete.account.move.null.amount.wizard:0
+msgid "Delete"
+msgstr "Supprimer"
+
+#. module: account_delete_move_null_amount
+#: field:delete.account.move.null.amount.wizard.line,period_id:0
+msgid "Period"
+msgstr "Période"
+
+#. module: account_delete_move_null_amount
+#: view:delete.account.move.null.amount.wizard:0
+msgid "or"
+msgstr "ou"
+
+#. module: account_delete_move_null_amount
+#: view:delete.account.move.null.amount.wizard:0
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: account_delete_move_null_amount
+#: view:delete.account.move.null.amount.wizard.line:0
+msgid "Account informations"
+msgstr "Information sur le compte"
+
+#. module: account_delete_move_null_amount
+#: field:delete.account.move.null.amount.wizard.line,journal_id:0
+msgid "Journal"
+msgstr "Journal"
+
