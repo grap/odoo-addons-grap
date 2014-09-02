@@ -30,8 +30,8 @@ class product_template(Model):
 
     _columns = {
         'tax_group_id': fields.many2one(
-            'tax.group', 'Tax Group',
-            domain="[('company_id', '=', company_id)]", required=True,
+            'tax.group', 'Tax Group', required=True,
+            domain="[('company_id', '=', company_id)]",
             help="Specify the combination of taxes for this product."
             " This field is required. If you dont find the correct Tax"
             " Group, Please create a new one or ask to your account"

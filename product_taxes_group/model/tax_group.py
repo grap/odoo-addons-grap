@@ -45,7 +45,7 @@ class tax_group(Model):
             cr, uid, ['|', ('active', '=', False), ('active', '=', True)],
             context=context)
         for tg in self.browse(cr, uid, tg_ids, context=context):
-            if (tg.company_id == values[0] and
+            if (tg.company_id.id == values[0] and
                 sorted([x.id for x in tg.customer_tax_ids]) == values[1] and
                     sorted([x.id for x in tg.supplier_tax_ids]) == values[2]):
                 return tg.id
@@ -132,7 +132,7 @@ class tax_group(Model):
                         list_res.values().index(res)]})
 
     def _get_product_qty(self, cr, uid, ids, name, args, context=None):
-        res = {}
+        res = dict([(id, 0) for id in ids])
         pp_obj = self.pool['product.product']
         result = pp_obj.read_group(
             cr, uid, [
@@ -144,7 +144,7 @@ class tax_group(Model):
         return res
 
     def _get_product_ids(self, cr, uid, ids, name, args, context=None):
-        res = {}
+        res = dict([(id, []) for id in ids])
         pp_obj = self.pool['product.product']
         for id in ids:
             pp_ids = pp_obj.search(
@@ -186,6 +186,8 @@ class tax_group(Model):
 
     _defaults = {
         'active': True,
+        'company_id': lambda s, cr, uid, c: (
+            s.pool.get('res.users')._get_company(cr, uid, context=c)),
     }
 
     def write(self, cr, uid, ids, vals, context=None):
