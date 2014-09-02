@@ -66,9 +66,13 @@ Copyright, Authors and Licence:
         'stock',
     ],
     'data': [
-        'security/ir.model.access.yml',
+        'security/ir_model_access.yml',
         'view/action.xml',
         'view/view.xml',
         'view/menu.xml',
+    ],
+    'demo': [
+        'demo/account_tax.yml',
+        'demo/tax_group.yml',
     ],
 }
