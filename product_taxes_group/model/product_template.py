@@ -43,10 +43,10 @@ class product_template(Model):
         if 'tax_group_id' in vals:
             # update or replace 'taxes_id' and 'supplier_taxes_id'
             tg = tg_obj.browse(cr, uid, vals['tax_group_id'], context=context)
-            vals['supplier_taxes_id'] = [(6, 0, [
-                x.id for x in tg.supplier_tax_ids])]
-            vals['taxes_id'] = [(6, 0, [
-                x.id for x in tg.customer_tax_ids])]
+            vals['supplier_taxes_id'] = [[6, 0, [
+                x.id for x in tg.supplier_tax_ids]]]
+            vals['taxes_id'] = [[6, 0, [
+                x.id for x in tg.customer_tax_ids]]]
         elif 'supplier_taxes_id' in vals.keys() or 'taxes_id' in vals.keys():
             if not ids:
                 # product template creation mode

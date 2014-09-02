@@ -20,6 +20,7 @@
 #
 ##############################################################################
 
+from openerp.osv import osv
 from openerp.tests.common import TransactionCase
 
 
@@ -28,37 +29,99 @@ class TestProductTaxesGroup(TransactionCase):
 
     def setUp(self):
         super(TestProductTaxesGroup, self).setUp()
-        self.im_obj = self.registry('ir.module.module')
+        cr, uid = self.cr, self.uid
+        self.imd_obj = self.registry('ir.model.data')
+        self.pp_obj = self.registry('product.product')
+        self.tg_obj = self.registry('tax.group')
+        self.wctg_obj = self.registry('wizard.change.tax.group')
+        self.main_company_id = self.imd_obj.get_object_reference(
+            cr, uid, 'base', 'main_company')[1]
+        self.tg1_id = self.imd_obj.get_object_reference(
+            cr, uid, 'product_taxes_group', 'tax_group_1')[1]
+        self.tg2_id = self.imd_obj.get_object_reference(
+            cr, uid, 'product_taxes_group', 'tax_group_2')[1]
+        self.pp1_id = self.imd_obj.get_object_reference(
+            cr, uid, 'product_taxes_group', 'product_product_1')[1]
+        self.at_purchase_1_id = self.imd_obj.get_object_reference(
+            cr, uid, 'product_taxes_group', 'account_tax_purchase_1')[1]
+        self.at_sale_1_id = self.imd_obj.get_object_reference(
+            cr, uid, 'product_taxes_group', 'account_tax_sale_1')[1]
+        self.at_sale_2_id = self.imd_obj.get_object_reference(
+            cr, uid, 'product_taxes_group', 'account_tax_sale_2')[1]
 
     # Test Section
-    def test_01_direct_parent(self):
-        """Test if the compute of the field direct_parent_ids is correct."""
+    def test_01_change_group(self):
+        """Test if the behaviour when when we change tax group for products."""
         cr, uid = self.cr, self.uid
-#        # compute expected values
-#        cr.execute("""SELECT module_id
-#            FROM ir_module_module_dependency immd
-#            INNER JOIN ir_module_module imm on imm.id = immd.module_id
-#            WHERE immd.name='base'
-#            AND imm.state not in ('uninstalled', 'uninstallable')""")
-#        expected_parent_ids = [x[0] for x in cr.fetchall()]
-
-#        # Get values
-#        base_id = self.im_obj.search(cr, uid, [('name', '=', 'base')])
-#        tmp = self.im_obj.browse(
-#            cr, uid, base_id)
-#        parent_ids = [x.id for x in tmp[0].direct_parent_ids]
-
+        wctg_id = self.wctg_obj.create(cr, uid, {
+            'old_tax_group_id': self.tg1_id, 'new_tax_group_id': self.tg2_id})
+        self.wctg_obj.change_tax_group(cr, uid, [wctg_id])
+        pp = self.pp_obj.browse(cr, uid, self.pp1_id)
         self.assertEqual(
-            0, 0,
-            "Incorrect computation of 'direct_parent_id's fields.")
+            pp.tax_group_id.id, self.tg2_id,
+            "Tax Group change has failed for product.")
 
-#    def test_02_all_parent(self):
-#        cr, uid = self.cr, self.uid
-#        base_id = self.im_obj.search(cr, uid, [('name', '=', 'base')])
-#        tmp = self.im_obj.browse(
-#            cr, uid, base_id)
-#        parent_ids = [x.id for x in tmp[0].all_parent_ids]
+    def test_02_check_coherent_vals_tax_group_exist(self):
+        """Test if the behaviour of the function product.template
+        check_coherent_vals() when the combination exist."""
+        cr, uid = self.cr, self.uid
+        vals = {
+            'name': 'Product Product Name',
+            'company_id': self.main_company_id,
+            'supplier_taxes_id': [self.at_purchase_1_id],
+            'taxes_id': [self.at_sale_1_id, self.at_sale_2_id],
+        }
+        pp_id = self.pp_obj.create(cr, uid, vals)
+        pp = self.pp_obj.browse(cr, uid, pp_id)
+        self.assertEqual(
+            pp.tax_group_id.id, self.tg1_id,
+            "Recovery of Correct Tax Group failed during creation.")
+        vals = {
+            'supplier_taxes_id': [[6, 0, []]],
+            'taxes_id': [[6, 0, [self.at_sale_2_id]]],
+        }
+        self.pp_obj.write(cr, uid, pp_id, vals)
+        pp = self.pp_obj.browse(cr, uid, pp_id)
+        self.assertEqual(
+            pp.tax_group_id.id, self.tg2_id,
+            "Recovery of Correct Tax Group failed during update.")
 
-#        self.assertNotEqual(
-#            sorted(parent_ids), [],
-#            "Incorrect computation of 'direct_parent_id's fields.")
+    def test_03_check_coherent_vals_tax_group_doesnt_exist(self):
+        """Test if the behaviour of the function product.template
+        check_coherent_vals() when the combination doesn't exist."""
+        cr, uid = self.cr, self.uid
+        vals = {
+            'name': 'Product Product Name',
+            'company_id': self.main_company_id,
+            'supplier_taxes_id': [self.at_purchase_1_id],
+            'taxes_id': [self.at_sale_1_id],
+        }
+        count_1 = len(self.tg_obj.search(cr, uid, []))
+        self.pp_obj.create(cr, uid, vals)
+        count_2 = len(self.tg_obj.search(cr, uid, []))
+        self.assertEqual(
+            count_1 + 1, count_2,
+            "New combination must create new Tax Group.")
+
+    def test_04_update_tax_group(self):
+        """Test if changing a Tax Group change the product."""
+        cr, uid = self.cr, self.uid
+        self.tg_obj.write(cr, uid, [self.tg1_id], {
+            'customer_tax_ids': [[6, 0, [self.at_sale_1_id]]]})
+        pp = self.pp_obj.browse(cr, uid, self.pp1_id)
+        self.assertEqual(
+            [
+                [x.id for x in pp.taxes_id],
+                [x.id for x in pp.supplier_taxes_id]],
+            [[self.at_sale_1_id], [self.at_purchase_1_id]],
+            "Update taxes in Tax Group must update associated Products.")
+
+    def test_05_unlink_tax_group(self):
+        """Test if unlinking a Tax Group with product fails."""
+        cr, uid = self.cr, self.uid
+        try:
+            self.tg_obj.unlink(cr, uid, [self.tg1_id])
+        except osv.except_osv:
+            error = True
+        self.assertEquals(
+            error, True, "Unlinking Tax Group with Products must fails!")

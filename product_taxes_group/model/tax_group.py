@@ -197,7 +197,7 @@ class tax_group(Model):
         if 'supplier_tax_ids' in vals or 'customer_tax_ids' in vals:
             for tg in self.browse(cr, uid, ids, context=context):
                 pt_obj.write(
-                    cr, uid, [x.product_tmpl_id for x in tg.product_ids],
+                    cr, uid, [x.product_tmpl_id.id for x in tg.product_ids],
                     {'tax_group_id': tg.id}, context=context)
         return res
 

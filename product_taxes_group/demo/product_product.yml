@@ -20,23 +20,11 @@
 #
 ##############################################################################
 
-- !record {model: tax.group, id: tax_group_1}:
-    name: Demo Tax Group 1
+- !record {model: product.product, id: product_product_1}:
+    name: Demo Service Product With Tax Group
     company_id: base.main_company
-    supplier_tax_ids:
-        - product_taxes_group.account_tax_purchase_1
-    customer_tax_ids:
-        - product_taxes_group.account_tax_sale_1
-        - product_taxes_group.account_tax_sale_2
-
-- !record {model: tax.group, id: tax_group_2}:
-    name: Demo Tax Group 2
-    company_id: base.main_company
-    customer_tax_ids:
-        - product_taxes_group.account_tax_sale_2
-
-- !record {model: tax.group, id: tax_group_2}:
-    name: Demo Tax Group 2
-    company_id: base.main_company
-    supplier_tax_ids:
-        - product_taxes_group.account_tax_purchase_1
+    categ_id: product.product_category_all
+    type: service
+    standard_price: 20.0
+    list_price: 30.0
+    tax_group_id: product_taxes_group.tax_group_1

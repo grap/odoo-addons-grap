@@ -74,5 +74,6 @@ Copyright, Authors and Licence:
     'demo': [
         'demo/account_tax.yml',
         'demo/tax_group.yml',
+        'demo/product_product.yml',
     ],
 }

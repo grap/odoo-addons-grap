@@ -20,5 +20,20 @@
 #
 ##############################################################################
 
-- !record {model: account.tax, id: account_tax_1}:
-    name: Demo Purchase Tax
+- !record {model: account.tax, id: account_tax_purchase_1}:
+    name: Demo Purchase Tax 10%
+    company_id: base.main_company
+    type_tax_use: purchase
+    amount: 0.1
+
+- !record {model: account.tax, id: account_tax_sale_1}:
+    name: Demo Sale Tax 10%
+    company_id: base.main_company
+    type_tax_use: sale
+    amount: 0.1
+
+- !record {model: account.tax, id: account_tax_sale_2}:
+    name: Demo Sale Tax 3%
+    company_id: base.main_company
+    type_tax_use: sale
+    amount: 0.03
