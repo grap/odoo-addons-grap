@@ -91,6 +91,7 @@
             </field>
         </record>
 
+
 <!-- Define: wizard.tax.group -->
         <record id="view_change_tax_group" model="ir.ui.view">
             <field name="name">Change Tax Group</field>
