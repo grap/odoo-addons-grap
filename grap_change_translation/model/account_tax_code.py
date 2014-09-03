@@ -20,14 +20,13 @@
 #
 ##############################################################################
 
-import account_payment_term
-import account_tax
-import account_tax_code
-import pos_category
-import product_category
-import product_pricelist
-import product_template
-import product_ul
-import product_uom
-import res_partner_category
-import stock_location
+from openerp.osv.orm import Model
+from openerp.osv import fields
+
+
+class account_tax_code(Model):
+    _inherit = 'account.tax.code'
+    _columns = {
+        'name': fields.char(
+            'Tax Case Name', size=64, required=True, translate=False),
+    }
