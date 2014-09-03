@@ -5,20 +5,17 @@ stock.access_product_category_stock_manager,product.category stock_manager,produ
 purchase.access_product_category_purchase_manager,product.category purchase_manager,product.model_product_category,purchase.group_purchase_manager,1,0,0,0
 sale.access_product_category_sale_manager,product.category salemanager,product.model_product_category,base.group_sale_manager,1,0,0,0
 point_of_sale.access_product_category_manager,product.category manager,product.model_product_category,point_of_sale.group_pos_manager,1,0,0,0
-mrp.access_product_category_mrp_manager,product.category mrp_manager,product.model_product_category,mrp.group_mrp_manager,1,0,0,0
 access_product_category_manager,grap_change_access__product_category_manager,product.model_product_category,base.group_no_one,1,1,1,1
 
 stock.access_product_uom_stock_manager,product.uom stock_manager,product.model_product_uom,stock.group_stock_manager,1,0,0,0
 sale.access_product_uom_sale_manager,product.uom salemanager,product.model_product_uom,base.group_sale_manager,1,0,0,0
 point_of_sale.access_product_uom_manager,product.uom manager,product.model_product_uom,point_of_sale.group_pos_manager,1,0,0,0
 purchase.access_product_uom_purchase_manager,product.uom purchase_manager,product.model_product_uom,purchase.group_purchase_manager,1,0,0,0
-mrp.access_product_uom_mrp_manager,product.uom mrp_manager,product.model_product_uom,mrp.group_mrp_manager,1,0,0,0
 access_product_uom_manager,grap_change_access__product_uom_manager,product.model_product_uom,base.group_no_one,1,1,1,1
 
 stock.access_product_uom_categ_stock_manager,product.uom.categ stock_manager,product.model_product_uom_categ,stock.group_stock_manager,1,0,0,0
 sale.access_product_uom_categ_sale_manager,product.uom.categ salemanager,product.model_product_uom_categ,base.group_sale_manager,1,0,0,0
 purchase.access_product_uom_categ_purchase_manager,product.uom.categ purchase_manager,product.model_product_uom_categ,purchase.group_purchase_manager,1,0,0,0
-mrp.access_product_uom_categ_mrp_manager,product.uom.categ mrp_manager,product.model_product_uom_categ,mrp.group_mrp_manager,1,0,0,0
 access_product_uom_categ_manager,grap_change_access__product_uom_categ_manager,product.model_product_uom_categ,base.group_no_one,1,1,1,1
 
 sale.access_sale_shop_manager,account.journal sale order.user,sale.model_sale_shop,base.group_sale_manager,1,0,0,0
@@ -28,25 +25,21 @@ access_sale_shop_manager,grap_change_access__sale_shop_manager,sale.model_sale_s
 stock.access_product_pricelist_stock_manager,product.pricelist stock_manager,product.model_product_pricelist,stock.group_stock_manager,1,0,0,0
 sale.access_product_pricelist_sale_manager,product.pricelist salemanager,product.model_product_pricelist,base.group_sale_manager,1,0,0,0
 purchase.access_product_pricelist_purchase_manager,product.pricelist purchase_manager,product.model_product_pricelist,purchase.group_purchase_manager,1,0,0,0
-mrp.access_product_pricelist_mrp_manager,product.pricelist mrp_manager,product.model_product_pricelist,mrp.group_mrp_manager,1,0,0,0
 access_product_pricelist_manager,grap_change_access__product_pricelist_manager,product.model_product_pricelist,base.group_no_one,1,1,1,1
 
 stock.access_product_pricelist_version_stock_manager,product.pricelist.version stock_manager,product.model_product_pricelist_version,stock.group_stock_manager,1,0,0,0
 sale.access_product_pricelist_version_sale_manager,product.pricelist.version sale_manager,product.model_product_pricelist_version,base.group_sale_manager,1,0,0,0
 purchase.access_product_pricelist_version_purchase_manager,product.pricelist.version purchase_manager,product.model_product_pricelist_version,purchase.group_purchase_manager,1,0,0,0
-mrp.access_product_pricelist_version_mrp_manager,product.pricelist.version mrp_manager,product.model_product_pricelist_version,mrp.group_mrp_manager,1,0,0,0
 access_product_pricelist_version_manager,grap_change_access__product_pricelist_version_manager,product.model_product_pricelist_version,base.group_no_one,1,1,1,1
 
 stock.access_product_pricelist_item_sale_manager,product.pricelist.item salemanager,product.model_product_pricelist_item,base.group_sale_manager,1,0,0,0
 stock.access_product_pricelist_item_stock_manager,product.pricelist.item stock_manager,product.model_product_pricelist_item,stock.group_stock_manager,1,0,0,0
 purchase.access_product_pricelist_item_purchase_manager,product.pricelist.item purchase_manager,product.model_product_pricelist_item,purchase.group_purchase_manager,1,0,0,0
-mrp.access_product_pricelist_item_mrp_manager,product.pricelist.item mrp_manager,product.model_product_pricelist_item,mrp.group_mrp_manager,1,0,0,0
 access_product_pricelist_item_manager,grap_change_access__product_pricelist_version_manager,product.model_product_pricelist_item,base.group_no_one,1,1,1,1
 
 stock.access_product_pricelist_type_stock_manager,product.pricelist.type stock_manager,product.model_product_pricelist_type,base.group_sale_manager,1,0,0,0
 sale.access_product_pricelist_type_sale_manager,product.pricelist.type salemanager,product.model_product_pricelist_type,stock.group_stock_manager,1,0,0,0
 purchase.access_product_pricelist_type_purchase_manager,product.pricelist.type purchase_manager,product.model_product_pricelist_type,purchase.group_purchase_manager,1,0,0,0
-mrp.access_product_pricelist_type_mrp_manager,product.pricelist.type mrp_manager,product.model_product_pricelist_type,mrp.group_mrp_manager,1,0,0,0
 access_product_pricelist_type_manager,grap_change_access__product_pricelist_version_manager,product.model_product_pricelist_type,base.group_no_one,1,1,1,1
 
 stock.access_stock_warehouse_manager,stock.warehouse.manager,stock.model_stock_warehouse,stock.group_stock_manager,1,0,0,0

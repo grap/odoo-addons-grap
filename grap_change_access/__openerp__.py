@@ -57,7 +57,6 @@ Copyright, Author and Licence :
         'point_of_sale',
         'base',
         'purchase',
-        'mrp',
         'sale',
         'procurement',
         'account_fiscal_company',
