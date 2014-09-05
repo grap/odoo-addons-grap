@@ -23,22 +23,24 @@
 {
     'name': 'Parent Dependencies of Modules',
     'version': '0.1',
-    'summary': 'Display the parent dependencies of a module',
+    'summary': """allows to see the list of modules dependencies of a given"""
+    """ module, at the full depth of the dependency tree""",
     'category': 'Tools',
     'description': """
-Display the parent dependencies of a module
-===========================================
+allows to see the list of modules dependencies of a given module, at the"""
+    """ full depth of the dependency tree
+========================================================================"""
+    """==================================
 
 Functionality:
 --------------
-    * This module display to the admin user, the possibility to see the list"""
-    """ of the modules that depends (directly or indirectly) on a module.
+    * This module allows to see the list of modules dependencies of a"""
+    """ given module, at the full depth of the dependency tree.
 
 Copyright, Authors and Licence:
 -------------------------------
     * Copyright: 2014, GRAP: Groupement Régional Alimentaire de Proximité;
-    * Author: Sylvain LE GAL (https://twitter.com/legalsylvain);
-    * Licence: AGPL-3 (http://www.gnu.org/licenses/);""",
+    * Author: Sylvain LE GAL (https://twitter.com/legalsylvain);""",
     'author': 'GRAP',
     'website': 'http://www.grap.coop',
     'license': 'AGPL-3',

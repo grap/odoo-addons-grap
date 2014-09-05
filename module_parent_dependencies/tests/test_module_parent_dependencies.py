@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Database Integrity module for OpenERP
+#    Module - Parent Dependencies module for Odoo
 #    Copyright (C) 2014 GRAP (http://www.grap.coop)
 #    @author Sylvain LE GAL (https://twitter.com/legalsylvain)
 #
@@ -24,7 +24,7 @@ from openerp.tests.common import TransactionCase
 
 
 class TestmoduleParentDependencies(TransactionCase):
-    """Tests for 'DataBase Integrity' Module"""
+    """Tests for 'Parent Dependencies module' Module"""
 
     def setUp(self):
         super(TestmoduleParentDependencies, self).setUp()
