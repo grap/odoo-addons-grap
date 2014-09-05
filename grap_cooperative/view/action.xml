@@ -105,5 +105,13 @@
             <field name="help">Display and manage timesheet Types.</field>
         </record>
 
+        <record id="action_grap_timesheet_group" model="ir.actions.act_window">
+            <field name="name">time Sheet Groups</field>
+            <field name="res_model">grap.timesheet.group</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help">Display and manage timesheet Groups.</field>
+        </record>
+
     </data>
 </openerp>

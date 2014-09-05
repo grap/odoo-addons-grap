@@ -73,6 +73,14 @@
     name: grap_timesheet_type all
     perm_read: true
 
+- 
+  Creating a ir.model.access record
+- 
+  !record {model: ir.model.access, id: ir_model_access_grap_timesheet_group_all}:
+    model_id: grap_cooperative.model_grap_timesheet_group
+    name: grap_timesheet_group all
+    perm_read: true
+
 ################################################################################
 # Manager Access
 ################################################################################
@@ -81,9 +89,33 @@
   Creating a ir.model.access record
 - 
   !record {model: ir.model.access, id: ir_model_access_grap_timesheet_manager}:
-    group_id: res_group_grap_cooperative_manager
+    group_id: res_group_grap_computer_manager
     model_id: grap_cooperative.model_grap_timesheet
     name: grap_timesheet manager
+    perm_create: true
+    perm_read: true
+    perm_write: true
+    perm_unlink: true
+
+- 
+  Creating a ir.model.access record
+- 
+  !record {model: ir.model.access, id: ir_model_access_grap_timesheet_type_manager}:
+    group_id: res_group_grap_computer_manager
+    model_id: grap_cooperative.model_grap_timesheet_type
+    name: grap_timesheet_type manager
+    perm_create: true
+    perm_read: true
+    perm_write: true
+    perm_unlink: true
+
+- 
+  Creating a ir.model.access record
+- 
+  !record {model: ir.model.access, id: ir_model_access_grap_timesheet_group_manager}:
+    group_id: res_group_grap_computer_manager
+    model_id: grap_cooperative.model_grap_timesheet_group
+    name: grap_timesheet_group manager
     perm_create: true
     perm_read: true
     perm_write: true

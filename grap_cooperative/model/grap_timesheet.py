@@ -29,6 +29,25 @@ class grap_timesheet(Model):
     _name = 'grap.timesheet'
     _order = 'date desc, id desc'
 
+    def _get_timesheet_group_id(
+            self, cr, uid, ids, fields, args, context=None):
+        return dict([(id, False) for id in ids])
+
+    def _set_timesheet_group_id(
+            self, cr, uid, id, field_name, field_value, args, context=None):
+        pass
+
+    ### Views section
+    def on_change_timesheet_group_id(
+            self, cr, uid, ids, timesheet_group_id, context=None):
+        if not timesheet_group_id:
+            values = {}
+        else:
+            gtg_obj = self.pool['grap.timesheet.group']
+            gtg = gtg_obj.browse(cr, uid, timesheet_group_id, context=context)
+            values = {'activity_ids': [x.id for x in gtg.activity_ids]}
+        return {'value': values}
+
     # Columns section
     _columns = {
         'name': fields.char('Name', size=256, required=True),
@@ -43,6 +62,10 @@ class grap_timesheet(Model):
             'Activities'),
         'type_id': fields.many2one(
             'grap.timesheet.type', 'Work Type', required=True),
+        'timesheet_group_id': fields.function(
+            _get_timesheet_group_id, type='many2one',
+            fnct_inv=_set_timesheet_group_id,
+            relation='grap.timesheet.group', string='Group'),
     }
 
     # Default Section

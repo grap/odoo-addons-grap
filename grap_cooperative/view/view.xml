@@ -628,6 +628,7 @@
             <field name="arch" type="xml">
                 <tree string="TimeSheet" editable="top">
                     <field name="type_id"/>
+                    <field name="timesheet_group_id" on_change="on_change_timesheet_group_id(timesheet_group_id)"/>
                     <field name="activity_ids" widget="many2many_tags"/>
                     <field name="amount" widget="float_time"/>
                     <field name="name"/>
@@ -638,7 +639,7 @@
         </record>
 
 
-<!-- View : grap.timesheet -->
+<!-- View : grap.timesheet.type -->
         <record id="view_timesheet_type_tree" model="ir.ui.view">
             <field name="name">grap.timesheet.type.tree</field>
             <field name="model">grap.timesheet.type</field>
@@ -655,7 +656,7 @@
             <field name="name">grap.timesheet.type.form</field>
             <field name="model">grap.timesheet.type</field>
             <field name="arch" type="xml">
-                <form string="Member" version="7.0">
+                <form string="TimeSheet Type" version="7.0">
                     <sheet>
                         <group>
                             <group>
@@ -665,6 +666,37 @@
                             <group>
                                 <field name="parent_id"/>
                                 <field name="complete_name" />
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+<!-- View : grap.timesheet.group -->
+        <record id="view_timesheet_group_tree" model="ir.ui.view">
+            <field name="name">grap.timesheet.group.tree</field>
+            <field name="model">grap.timesheet.group</field>
+            <field name="arch" type="xml">
+                <tree string="TimeSheet Group">
+                    <field name="name"/>
+                    <field name="activity_ids"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_timesheet_group_form" model="ir.ui.view">
+            <field name="name">grap.timesheet.group.form</field>
+            <field name="model">grap.timesheet.group</field>
+            <field name="arch" type="xml">
+                <form string="TimeSheet Group" version="7.0">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                            <group>
+                                <field name="activity_ids" widget="many2many_tags" />
                             </group>
                         </group>
                     </sheet>

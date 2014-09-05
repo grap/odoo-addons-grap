@@ -20,15 +20,18 @@
 #
 ##############################################################################
 
-from . import grap_member
-from . import grap_college
-from . import grap_activity
-from . import grap_activity_people
-from . import grap_people
-from . import grap_mandate
-from . import grap_category
-from . import grap_type
-from . import grap_todo_task
-from . import grap_timesheet
-from . import grap_timesheet_type
-from . import grap_timesheet_group
+from openerp.osv import fields
+from openerp.osv.orm import Model
+
+
+class grap_timesheet_type(Model):
+    _description = 'Time Sheet Group'
+    _name = 'grap.timesheet.group'
+
+    # Columns section
+    _columns = {
+        'name': fields.char('Name', size=256, required=True),
+        'activity_ids': fields.many2many(
+            'grap.activity', 'grap_activity_timesheet_group_rel',
+            'activity_id', 'grap_timesheet_group_id', 'Activities'),
+    }
