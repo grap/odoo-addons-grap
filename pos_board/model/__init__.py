@@ -25,4 +25,5 @@ from . import pos_board_load_daily
 from . import pos_board_load_daily_simple
 from . import pos_board_load_monthly
 from . import pos_board_load_weekly
+from . import pos_board_payment_report
 from . import pos_order_report

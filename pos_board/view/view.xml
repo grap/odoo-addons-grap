@@ -115,5 +115,47 @@
                 </graph>
             </field>
         </record>
+
+<!--______________________Models pos.board.payment.report_________________________-->
+    <record id="view_pos_board_payment_report_search" model="ir.ui.view">
+        <field name="name">pos.board.payment.report.search</field>
+        <field name="model">pos.board.payment.report</field>
+        <field name="arch" type="xml">
+            <search string="Payment Analysis">
+                <group expand="1" string="Group By...">
+                    <filter name="group_by_company_id" string="Company" context="{'group_by':'company_id'}" groups="base.group_multi_company" />
+                    <filter name="group_by_journal_id" string="Journal" context="{'group_by':'journal_id'}"/>
+                    <filter name="group_by_month" string="Month" context="{'group_by':'month'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_pos_board_payment_report_tree" model="ir.ui.view">
+        <field eval="1" name="priority"/>
+        <field name="name">pos.board.payment.report.tree</field>
+        <field name="model">pos.board.payment.report</field>
+        <field name="arch" type="xml">
+            <tree string="Payment Analysis" create="false">
+                <field name="company_id" groups="base.group_multi_company"/>
+                <field name="journal_id"/>
+                <field name="month"/>
+                <field name="quantity" sum="# of Lines"/>
+                <field name="average"/>
+                <field name="total" sum="Total"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_pos_board_payment_report_graph" model="ir.ui.view">
+         <field name="name">pos.board.payment.report.graph</field>
+         <field name="model">pos.board.payment.report</field>
+         <field name="arch" type="xml">
+                <graph string="Payment Analysis" type="pie">
+                    <field name="journal_id"/>
+                    <field name="total" operator="+"/>
+                </graph>
+         </field>
+    </record>
     </data>
 </openerp>

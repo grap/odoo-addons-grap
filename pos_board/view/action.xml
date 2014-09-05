@@ -65,5 +65,15 @@
             <field name="view_mode">graph</field>
             <field name="view_id" ref="pos_avg_amount_by_day_graph"/>
         </record>
+
+        <record id="action_pos_board_payment_report" model="ir.actions.act_window">
+            <field name="name">Payment Analysis</field>
+            <field name="res_model">pos.board.payment.report</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,graph</field>
+            <field name="search_view_id" ref="view_pos_board_payment_report_search"/>
+            <field name="context">{'search_default_group_by_journal_id': 1}</field>
+            <field name="view_id" ref="view_pos_board_payment_report_tree"/>
+        </record>
     </data>
 </openerp>

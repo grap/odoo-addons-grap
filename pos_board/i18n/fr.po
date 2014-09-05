@@ -1,3 +1,25 @@
+# -*- encoding: utf-8 -*-
+##############################################################################
+#
+#    Sale / Point Of Sale Report module for OpenERP
+#    Copyright (C) 2014 GRAP (http://www.grap.coop)
+#    @author Julien WESTE
+#    @author Sylvain LE GAL (https://twitter.com/legalsylvain)
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+##############################################################################
 # Translation of OpenERP Server.
 # This file contains the translation of the following modules:
 #	* pos_board
@@ -6,8 +28,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-03 16:18+0000\n"
-"PO-Revision-Date: 2014-04-03 16:18+0000\n"
+"POT-Creation-Date: 2014-09-05 16:08+0000\n"
+"PO-Revision-Date: 2014-09-05 16:08+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,20 +38,14 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: pos_board
-#: view:report.pos.order:0
-#: field:report.pos.order,categ_id:0
-msgid "Category"
-msgstr "Categorie Produit"
+#: view:pos.board.payment.report:0
+msgid "# of Lines"
+msgstr "# de lignes"
 
 #. module: pos_board
-#: model:ir.ui.menu,name:pos_board.menu_pos_board_periodic
-msgid "Periodic analyse"
-msgstr "Graphe j/s/m"
-
-#. module: pos_board
-#: view:board.board:0
-msgid "Nb of sales by day"
-msgstr "Nb de Ventes par jour"
+#: field:pos.board.payment.report,average:0
+msgid "Average"
+msgstr "Moyenne"
 
 #. module: pos_board
 #: view:board.board:0
@@ -37,19 +53,20 @@ msgid "Average Amount by day"
 msgstr "Panier moyen par jour"
 
 #. module: pos_board
-#: view:board.board:0
-msgid "Point of Sale board simple"
-msgstr "Tableau de Bord PdV simplifié"
+#: field:pos.board.load.daily.simple,avg_amount:0
+msgid "Average amount"
+msgstr "Panier moyen"
 
 #. module: pos_board
-#: view:board.board:0
-msgid "Sales by month"
-msgstr "CA mensuel"
+#: model:ir.actions.act_window,name:pos_board.pos_avg_amount_by_day
+msgid "Avg Amount Dashboard by day"
+msgstr "Tableau de bord Panier moyen par jour"
 
 #. module: pos_board
-#: model:ir.ui.menu,name:pos_board.menu_pos_board_daily
-msgid "Daily analyse"
-msgstr "Graphe par jour"
+#: view:report.pos.order:0
+#: field:report.pos.order,categ_id:0
+msgid "Category"
+msgstr "Categorie Produit"
 
 #. module: pos_board
 #: view:report.pos.order:0
@@ -62,39 +79,10 @@ msgid "Category 3"
 msgstr "Categorie parente"
 
 #. module: pos_board
-#: field:pos.board.load.daily.simple,nb_orders:0
-msgid "Nb of orders"
-msgstr "Nombre de Ventes"
-
-#. module: pos_board
-#: model:ir.actions.act_window,name:pos_board.pos_sale_by_day
-msgid "Sale Dashboard by day"
-msgstr "Tableau de Bord PdV par jour"
-
-#. module: pos_board
-#: model:ir.model,name:pos_board.model_day_interval
-msgid "Day Interval with Y-1"
-msgstr "Décallage avec N-1"
-
-#. module: pos_board
-#: model:ir.actions.act_window,name:pos_board.pos_sale_by_day_simple
-msgid "Sale Dashboard by day simple"
-msgstr "Tableau de Bord PdV simplifié"
-
-#. module: pos_board
-#: view:board.board:0
-msgid "Sales by day"
-msgstr "CA par jour"
-
-#. module: pos_board
-#: field:pos.board.load.weekly,week:0
-msgid "Week"
-msgstr "Semaine"
-
-#. module: pos_board
-#: model:ir.model,name:pos_board.model_report_pos_order
-msgid "Point of Sale Orders Statistics"
-msgstr "Statistiques des commandes du point de vente"
+#: view:report.pos.order:0
+#: field:report.pos.order,categ_id2:0
+msgid "Category2"
+msgstr "Categorie intermédiaire"
 
 #. module: pos_board
 #: view:report.pos.order:0
@@ -103,51 +91,19 @@ msgid "Category3"
 msgstr "Categorie parente"
 
 #. module: pos_board
-#: view:report.pos.order:0
-#: field:report.pos.order,categ_id2:0
-msgid "Category2"
-msgstr "Categorie intermédiaire"
-
-#. module: pos_board
-#: model:ir.actions.act_window,name:pos_board.pos_sale_by_month
-msgid "Sale Dashboard by month"
-msgstr "Tableau de Bord PdV par mois"
-
-#. module: pos_board
-#: model:ir.actions.act_window,name:pos_board.open_board_pos
-msgid "POS Dashboard"
-msgstr "Tableau de Bord PdV"
-
-#. module: pos_board
 #: field:pos.board.load.daily,company_id:0
 #: field:pos.board.load.daily.simple,company_id:0
 #: field:pos.board.load.monthly,company_id:0
 #: field:pos.board.load.weekly,company_id:0
+#: view:pos.board.payment.report:0
+#: field:pos.board.payment.report,company_id:0
 msgid "Company"
 msgstr "Activité"
 
 #. module: pos_board
-#: field:pos.board.load.daily,amount_tax_excluded:0
-#: field:pos.board.load.daily.simple,amount_tax_excluded:0
-#: field:pos.board.load.monthly,amount_tax_excluded:0
-#: field:pos.board.load.weekly,amount_tax_excluded:0
-msgid "CA HT"
-msgstr "CA HT"
-
-#. module: pos_board
-#: model:ir.model,name:pos_board.model_pos_board_load_monthly
-msgid "POS Board Load Monthly"
-msgstr "Chargement Tableau de Bord PdV"
-
-#. module: pos_board
-#: view:pos.board.load.monthly:0
-msgid "POS Sales by month"
-msgstr "CA mensuel"
-
-#. module: pos_board
-#: model:ir.model,name:pos_board.model_pos_board_load_weekly
-msgid "POS Board Load Weekly"
-msgstr "Chargement Tableau de Bord PdV"
+#: model:ir.ui.menu,name:pos_board.menu_pos_board_daily
+msgid "Daily analyse"
+msgstr "Graphe par jour"
 
 #. module: pos_board
 #: field:pos.board.load.daily,date:0
@@ -160,49 +116,22 @@ msgid "Date"
 msgstr "Date"
 
 #. module: pos_board
-#: model:ir.actions.act_window,name:pos_board.pos_avg_amount_by_day
-msgid "Avg Amount Dashboard by day"
-msgstr "Tableau de bord Panier moyen par jour"
+#: view:pos.board.payment.report:0
+msgid "Group By..."
+msgstr "Grouper Par..."
 
 #. module: pos_board
-#: model:ir.actions.act_window,name:pos_board.open_board_pos_simple
-msgid "POS Dashboard Simple"
-msgstr "Tableau de Bord PdV simplifié"
+#: view:pos.board.payment.report:0
+#: field:pos.board.payment.report,journal_id:0
+msgid "Journal"
+msgstr "Moyen de Paiement"
 
 #. module: pos_board
-#: field:pos.board.load.daily.simple,avg_amount:0
-msgid "Average amount"
-msgstr "Panier moyen"
-
-#. module: pos_board
-#: view:pos.board.load.weekly:0
-msgid "POS Sales by week"
-msgstr "CA hebdomadaire"
-
-#. module: pos_board
-#: view:pos.board.load.daily:0
-msgid "POS Sales by day"
-msgstr "CA journalier"
-
-#. module: pos_board
-#: view:report.pos.order:0
-msgid "This Year"
-msgstr "Année en cours"
-
-#. module: pos_board
-#: model:ir.actions.act_window,name:pos_board.pos_sale_by_week
-msgid "Sale Dashboard by week"
-msgstr "Tableau de Bord PdV par semaine"
-
-#. module: pos_board
-#: model:ir.model,name:pos_board.model_pos_board_load_daily_simple
-msgid "POS Board Load Daily Simple"
-msgstr "Tableau de Bord PdV simplifié"
-
-#. module: pos_board
-#: view:report.pos.order:0
-msgid "Year"
-msgstr "Année"
+#: field:pos.board.load.monthly,month:0
+#: view:pos.board.payment.report:0
+#: field:pos.board.payment.report,month:0
+msgid "Month"
+msgstr "mois"
 
 #. module: pos_board
 #: model:ir.actions.act_window,name:pos_board.pos_nb_sale_by_day
@@ -210,41 +139,22 @@ msgid "Nb Sale Dashboard by day"
 msgstr "Tableau de bord Nombre de ventes par jour"
 
 #. module: pos_board
-#: model:ir.model,name:pos_board.model_pos_board_load_daily
-msgid "POS Board Load Daily"
-msgstr "Tableau de Bord PdV"
-
-#. module: pos_board
-#: view:pos.board.load.daily.simple:0
-msgid "POS Number of Sales by day"
-msgstr "Nombre de Ventes par jour"
-
-#. module: pos_board
-#: view:pos.board.load.daily.simple:0
-msgid "POS Sales by day simple"
-msgstr "CA journalier"
+#: field:pos.board.load.daily.simple,nb_orders:0
+msgid "Nb of orders"
+msgstr "Nombre de Ventes"
 
 #. module: pos_board
 #: view:board.board:0
-msgid "Point of Sale board"
-msgstr "Tableau de Bord PdV"
+msgid "Nb of sales by day"
+msgstr "Nb de Ventes par jour"
 
 #. module: pos_board
-#: field:pos.board.load.daily,amount_tax_excluded_n_1:0
-#: field:pos.board.load.monthly,amount_tax_excluded_n_1:0
-#: field:pos.board.load.weekly,amount_tax_excluded_n_1:0
-msgid "CA N-1"
-msgstr "CA N-1"
-
-#. module: pos_board
-#: field:pos.board.load.monthly,month:0
-msgid "Month"
-msgstr "mois"
-
-#. module: pos_board
-#: view:board.board:0
-msgid "Sales by week"
-msgstr "CA hebdomadaire"
+#: field:pos.board.load.daily,amount_tax_excluded:0
+#: field:pos.board.load.daily.simple,amount_tax_excluded:0
+#: field:pos.board.load.monthly,amount_tax_excluded:0
+#: field:pos.board.load.weekly,amount_tax_excluded:0
+msgid "Net Sales"
+msgstr "Vente HT"
 
 #. module: pos_board
 #: view:pos.board.load.daily.simple:0
@@ -252,7 +162,160 @@ msgid "POS Average amount by day"
 msgstr "Panier moyen par jour"
 
 #. module: pos_board
+#: code:_description:0
+#: model:ir.model,name:pos_board.model_pos_board_load_daily
+#, python-format
+msgid "POS Board Load Daily"
+msgstr "Tableau de Bord PdV"
+
+#. module: pos_board
+#: code:_description:0
+#: model:ir.model,name:pos_board.model_pos_board_load_daily_simple
+#, python-format
+msgid "POS Board Load Daily Simple"
+msgstr "Tableau de Bord PdV simplifié"
+
+#. module: pos_board
+#: code:_description:0
+#: model:ir.model,name:pos_board.model_pos_board_load_monthly
+#, python-format
+msgid "POS Board Load Monthly"
+msgstr "Chargement Tableau de Bord PdV"
+
+#. module: pos_board
+#: code:_description:0
+#: model:ir.model,name:pos_board.model_pos_board_load_weekly
+#, python-format
+msgid "POS Board Load Weekly"
+msgstr "Chargement Tableau de Bord PdV"
+
+#. module: pos_board
+#: model:ir.actions.act_window,name:pos_board.open_board_pos
+msgid "POS Dashboard"
+msgstr "Tableau de Bord PdV"
+
+#. module: pos_board
+#: model:ir.actions.act_window,name:pos_board.open_board_pos_simple
+msgid "POS Dashboard Simple"
+msgstr "Tableau de Bord PdV simplifié"
+
+#. module: pos_board
+#: view:pos.board.load.daily.simple:0
+msgid "POS Number of Sales by day"
+msgstr "Nombre de Ventes par jour"
+
+#. module: pos_board
+#: view:pos.board.load.daily:0
+msgid "POS Sales by day"
+msgstr "CA journalier"
+
+#. module: pos_board
+#: view:pos.board.load.daily.simple:0
+msgid "POS Sales by day simple"
+msgstr "CA journalier"
+
+#. module: pos_board
+#: view:pos.board.load.monthly:0
+msgid "POS Sales by month"
+msgstr "CA mensuel"
+
+#. module: pos_board
+#: view:pos.board.load.weekly:0
+msgid "POS Sales by week"
+msgstr "CA hebdomadaire"
+
+#. module: pos_board
 #: view:report.pos.order:0
 msgid "POS ordered created during current year"
 msgstr "Commandes en PdV enregistrées cette année"
+
+#. module: pos_board
+#: model:ir.actions.act_window,name:pos_board.action_pos_board_payment_report
+#: model:ir.ui.menu,name:pos_board.menu_pos_board_payement_report
+#: view:pos.board.payment.report:0
+msgid "Payment Analysis"
+msgstr "Analyse des moyens de paiement"
+
+#. module: pos_board
+#: model:ir.ui.menu,name:pos_board.menu_pos_board_periodic
+msgid "Periodic analyse"
+msgstr "Graphe j/s/m"
+
+#. module: pos_board
+#: code:_description:0
+#: model:ir.model,name:pos_board.model_report_pos_order
+#, python-format
+msgid "Point of Sale Orders Statistics"
+msgstr "Statistiques des commandes du point de vente"
+
+#. module: pos_board
+#: view:board.board:0
+msgid "Point of Sale board"
+msgstr "Tableau de Bord PdV"
+
+#. module: pos_board
+#: view:board.board:0
+msgid "Point of Sale board simple"
+msgstr "Tableau de Bord PdV simplifié"
+
+#. module: pos_board
+#: field:pos.board.payment.report,quantity:0
+msgid "Quantity"
+msgstr "Quantité"
+
+#. module: pos_board
+#: model:ir.actions.act_window,name:pos_board.pos_sale_by_day
+msgid "Sale Dashboard by day"
+msgstr "Tableau de Bord PdV par jour"
+
+#. module: pos_board
+#: model:ir.actions.act_window,name:pos_board.pos_sale_by_day_simple
+msgid "Sale Dashboard by day simple"
+msgstr "Tableau de Bord PdV simplifié"
+
+#. module: pos_board
+#: model:ir.actions.act_window,name:pos_board.pos_sale_by_month
+msgid "Sale Dashboard by month"
+msgstr "Tableau de Bord PdV par mois"
+
+#. module: pos_board
+#: model:ir.actions.act_window,name:pos_board.pos_sale_by_week
+msgid "Sale Dashboard by week"
+msgstr "Tableau de Bord PdV par semaine"
+
+#. module: pos_board
+#: view:board.board:0
+msgid "Sales by day"
+msgstr "CA par jour"
+
+#. module: pos_board
+#: view:board.board:0
+msgid "Sales by month"
+msgstr "CA mensuel"
+
+#. module: pos_board
+#: view:board.board:0
+msgid "Sales by week"
+msgstr "CA hebdomadaire"
+
+#. module: pos_board
+#: view:report.pos.order:0
+msgid "This Year"
+msgstr "Année en cours"
+
+#. module: pos_board
+#: view:pos.board.payment.report:0
+#: field:pos.board.payment.report,total:0
+msgid "Total"
+msgstr "Total"
+
+#. module: pos_board
+#: field:pos.board.load.weekly,week:0
+msgid "Week"
+msgstr "Semaine"
+
+#. module: pos_board
+#: view:report.pos.order:0
+msgid "Year"
+msgstr "Année"
 

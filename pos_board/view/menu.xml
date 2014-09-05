@@ -31,5 +31,10 @@
             parent="point_of_sale.menu_point_rep" 
             action="open_board_pos"/>
 
+        <menuitem id="menu_pos_board_payement_report" 
+            name="Payment Analysis" groups="point_of_sale.group_pos_user" sequence="10" 
+            parent="point_of_sale.menu_point_rep" 
+            action="action_pos_board_payment_report"/>
+
     </data>
 </openerp>

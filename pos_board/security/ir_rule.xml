@@ -46,5 +46,10 @@
             <field model="ir.model" name="model_id" search="[('model', '=', u'pos.board.load.daily.simple')]"/>
             <field name="domain_force">[('company_id', '=', user.company_id.id)]</field>
         </record>
+        <record id="pos_board_rule_payment_report" model="ir.rule">
+            <field name="name" >POS Board Multi Company Payment Report</field>
+            <field model="ir.model" name="model_id" search="[('model', '=', u'pos.board.payment.report')]"/>
+            <field name="domain_force">[('company_id', '=', user.company_id.id)]</field>
+        </record>
     </data>
 </openerp>
