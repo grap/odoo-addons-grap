@@ -145,11 +145,10 @@
                                         <field name="virtual_available"/>
                                     </group>
                                     <group string="Purchase / Produce">
+                                        <field name="tax_group_id" colspan="2" quick_create="false"/>
                                         <field name="property_account_expense" 
                                             domain="[('type','=','other')]" 
                                             groups="account.group_account_manager"/>
-                                        <field name="supplier_taxes_id" widget="many2many_tags"
-                                            attrs="{'readonly':[('purchase_ok','=',0)]}"/>
                                         <field name="standard_price"/>
                                         <field name="uom_po_id"/>
                                     </group>
@@ -157,8 +156,6 @@
                                         <field name="property_account_income" 
                                             domain="[('type','=','other')]" 
                                             groups="account.group_account_manager"/>
-                                        <field name="taxes_id" widget="many2many_tags" 
-                                            attrs="{'readonly':[('sale_ok','=',0)]}"/>
                                         <field name="list_price"/>
                                         <field name="theoretical_margin" widget="progressbar"/>
                                         <field name="pos_categ_id"/>
@@ -202,6 +199,8 @@
                                     <field name="valuation" />
                                     <field name="property_stock_account_input" />
                                     <field name="property_stock_account_output" />
+                                    <field name="supplier_taxes_id" widget="many2many_tags"/>
+                                    <field name="taxes_id" widget="many2many_tags"/>
                                 </group>
                             </page>
                             <page string="Food information" groups="grap_ethiquette.group_reader">
