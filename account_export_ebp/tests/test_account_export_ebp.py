@@ -33,7 +33,7 @@ class TestAccountExportEBP(TransactionCase):
         self.am_obj = self.registry('account.move')
         self.aml_obj = self.registry('account.move.line')
         self.webp_obj = self.registry('account.export.ebp')
-        self.afy_obj =  self.registry('account.fiscalyear')
+        self.afy_obj = self.registry('account.fiscalyear')
 
     ### Test Section
     def test_01_export_ref_null(self):
