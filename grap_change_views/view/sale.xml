@@ -28,11 +28,11 @@
                 <tree string="Product (Price)" editable="bottom">
                     <field name="code" />
                     <field name="name" />
-                    <field name="supplier_taxes_id" widget="many2many_tags"/>
-                    <field name="taxes_id" widget="many2many_tags"/>
+                    <field name="tax_group_id"/>
                     <field name="standard_price"/>
                     <field name="list_price"/>
                     <field name="theoretical_margin" widget="progressbar"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
                 </tree>
             </field>
         </record>

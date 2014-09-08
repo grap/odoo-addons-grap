@@ -63,6 +63,7 @@ Copyright, Authors and Licence:
         'sale_stock',
         'stock',
         'pos_multicompany',
+        'product_taxes_group',
         ],
     'data': [
         'view/account.xml',
