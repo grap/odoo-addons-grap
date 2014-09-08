@@ -21,8 +21,11 @@
 #
 ##############################################################################
 
-import point_of_sale
-import pos_box_entries
-import pos_box_out
-import pos_session_opening
-import product_product
+from . import account_cash_statement
+from . import pos_box_entries
+from . import pos_box_out
+from . import pos_session_opening
+from . import pos_config
+from . import pos_session
+from . import pos_cash_controls
+from . import product_product

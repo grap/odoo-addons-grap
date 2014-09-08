@@ -1,8 +1,9 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Module - Parent Dependencies module for Odoo
-#    Copyright (C) 2014 GRAP (http://www.grap.coop)
+#    Point Of Sale - Multiple Cash Control module for Odoo
+#    Copyright (C) 2013 GRAP (http://www.grap.coop)
+#    @author Julien WESTE
 #    @author Sylvain LE GAL (https://twitter.com/legalsylvain)
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -20,4 +21,9 @@
 #
 ##############################################################################
 
-from . import model
+
+from . import test_pos_multiple_cash_control
+
+fast_suite = [
+    test_pos_multiple_cash_control,
+]

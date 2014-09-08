@@ -22,12 +22,28 @@
 ##############################################################################
 
 {
-    'name': 'GRAP - POS Multiple Cash Control',
+    'name': 'Point Of Sale - Multiple Cash Control',
     'version': '2.0',
     'category': 'Point of Sale',
     'description': """
 Allow the cash control on all cash registers for a session
 ==========================================================
+
+Functionnality:
+---------------
+    * Add extra constraint on product if income_pdt or expense_pdt:
+        * This product are manage by account manager only;
+        * this product must have account_income (or account_expense);
+        * This product must have only one VAT (if expense_pdt);
+        * this product can not be 'sale_ok' or 'purchase_ok';
+    * Add extra functionnality on pos_session:
+        * It's now allowed to control all the payment method when user"""
+    """open or close his session;
+
+TODO:
+-----
+    * description;
+    * test;
 
 Copyright, Author and Licence :
 -------------------------------
@@ -43,6 +59,7 @@ Copyright, Author and Licence :
     'depends': [
         'account',
         'point_of_sale',
+        'purchase',
     ],
     'data': [
         'view/pos_box_out.xml',
@@ -56,4 +73,9 @@ Copyright, Author and Licence :
         'view/action.xml',
         'view/menu.xml',
     ],
+    'demo': [
+        'demo/res_users.xml',
+        'demo/account_journal.yml',
+        'demo/account_tax.yml',
+    ]
 }
