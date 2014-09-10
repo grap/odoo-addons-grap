@@ -32,7 +32,7 @@ from openerp.osv.orm import Model
 
 
 class ir_module_repository(Model):
-    _description = "Odoo Repository that contains a bunch of Modules"
+    _description = "Modules Repository"
     _name = 'ir.module.repository'
     _order = 'name'
 
@@ -122,9 +122,8 @@ class ir_module_repository(Model):
                 id = imr_curr.get(path, False)
                 if not id:
                     # Create new repository
-                    name = path[len(imm_obj._TEMP):].strip('/')
                     id = self.create(cr, uid, {
-                        'name': name,
+                        'name': 'TEMPORARY NAME',
                         'path': path,
                         }, context=context)
                     imr_curr[path] = id
@@ -134,17 +133,42 @@ class ir_module_repository(Model):
 
         # Update information of All repositories
         ids = self.search(cr, uid, [], context=context)
+        path_list = []
         for imr in self.browse(cr, uid, ids, context=context):
-            vals = self._read_git_information(
-                cr, uid, imr, context=context)
-            if not vals:
-                vals = self._read_bazaar_information(
+            if imr.module_qty == 0:
+                # Delete Obsolete repository, that is not linked to any modules
+                self.unlink(cr, uid, [imr.id], context=context)
+            else:
+                path_list.append(imr.path)
+                vals = self._read_git_information(
                     cr, uid, imr, context=context)
-            if not vals:
+                if not vals:
+                    vals = self._read_bazaar_information(
+                        cr, uid, imr, context=context)
+                if not vals:
+                    vals = {
+                        'url': '', 'branch': '', 'revision': '',
+                        'type': 'unknown', 'local_modification_qty': 0}
+                self.write(cr, uid, [imr.id], vals, context=context)
+
+        # Compute Friendly name
+        if len(path_list) > 0:
+            common_path = ''
+            for i in range(0, len(path_list[0])):
+                common = True
+                for item in path_list:
+                    common = common and (item[0:i] == path_list[0][0:i])
+                if common:
+                    common_path = path_list[0][0:i]
+                else:
+                    break
+
+            ids = self.search(cr, uid, [], context=context)
+            for imr in self.browse(cr, uid, ids, context=context):
                 vals = {
-                    'url': '', 'branch': '', 'revision': '', 'type': 'unknown',
-                    'local_modification_qty': 0}
-            self.write(cr, uid, [imr.id], vals, context=context)
+                    'name': imr.path[len(common_path):].strip('/')
+                }
+                self.write(cr, uid, [imr.id], vals, context=context)
 
     # Private section
     def _parse(self, my_string, begin_string, end_string, strip=False):

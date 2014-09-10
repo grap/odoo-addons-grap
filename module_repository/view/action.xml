@@ -21,7 +21,7 @@
     <data>
 
         <record id="action_ir_module_repository" model="ir.actions.act_window">
-            <field name="name">Projects</field>
+            <field name="name">Repository</field>
             <field name="res_model">ir.module.repository</field>
             <field name="view_type">form</field>
             <field name="view_mode">kanban,tree,form</field>

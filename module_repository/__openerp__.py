@@ -51,12 +51,6 @@ Technical Information:
         * Automaticly, when you install or update this module;
         * Manualy, when you click on 'Update Module List';
 
-TODO
-- Gérer le _TEMP;
-- Gérer le FR;
-- Gérer l'import conditionnel;
-- Gérer l'ir.rule pour le nouveau model;
-
 Copyright, Authors and Licence:
 -------------------------------
     * Copyright: 2014, GRAP: Groupement Régional Alimentaire de Proximité;
@@ -68,6 +62,7 @@ Copyright, Authors and Licence:
         'base',
     ],
     'data': [
+        'security/ir_model_access.yml',
         'view/view.xml',
         'view/action.xml',
         'view/menu.xml',
