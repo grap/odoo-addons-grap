@@ -21,28 +21,8 @@
 ##############################################################################
 
 
-from openerp.osv import fields
-from openerp.osv.orm import Model
+from . import test_module_repository
 
-
-class ir_module_module(Model):
-    _inherit = 'ir.module.module'
-
-    # Overload Section
-    def update_list(self, cr, uid, context=None):
-        imr_obj = self.pool['ir.module.repository']
-
-        # Call Parent function
-        res = super(ir_module_module, self).update_list(
-            cr, uid, context=context)
-
-        # Update all Repositories
-        imr_obj.update_information(cr, uid, context=context)
-
-        return res
-
-    # Column Section
-    _columns = {
-        'repository_id': fields.many2one(
-            'ir.module.repository', 'Repository', readonly=True),
-    }
+fast_suite = [
+    test_module_repository,
+]

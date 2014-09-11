@@ -32,9 +32,9 @@ Allows to see Repository Informations of Modules
 Functionality:
 --------------
     * Allow to see information of repositories used by a given Database:
-        * Name of the folder;
+        * Name of the folder of the repository;
         * URL and name of the current Branch and revision ID;
-        * Number of files with uncommitted modification;
+        * Number of files with unstaged / uncommitted modifications;
         * Number of installed modules and total modules available;
     * Versioning System covered:
         * Bazaar;
@@ -45,10 +45,8 @@ Technical Information:
     * This module create a new model ir.module.repository for each"""
     """ Repository defined in the addons_path parameters in the"""
     """ configuration file;
-    * User has to set up an extra root_folder parameter after installing"""
-    """ the module;
-    * Information update is realized:
-        * Automaticly, when you install or update this module;
+    * Informations update is realized:
+        * Automaticly, when you install or update a module;
         * Manualy, when you click on 'Update Module List';
 
 Copyright, Authors and Licence:
@@ -68,11 +66,13 @@ Copyright, Authors and Licence:
         'view/menu.xml',
     ],
     'images': [
+        'static/src/img/screenshots/ir_module_repository_kanban.png',
+        'static/src/img/screenshots/ir_module_module_kanban.png',
     ],
     'external_dependencies': {
         'python': ['git', 'bzrlib'],
     },
     'css': [
         'static/src/css/css.css',
-    ]
+    ],
 }

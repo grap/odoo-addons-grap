@@ -36,3 +36,13 @@
 .openerp .oe_kanban_view .oe_kanban_ir_module_repository_color_unused {
   background-color: #F0F0F0;
 }
+
+.openerp .oe_kanban_view .oe_kanban_ir_module_repository li{
+    width:330px;
+    overflow:hidden;
+}
+
+.openerp .oe_kanban_view .oe_kanban_ir_module_repository .local_modification{
+    color:red;
+    font-weight: bold;
+}

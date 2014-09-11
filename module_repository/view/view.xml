@@ -65,7 +65,7 @@
                 </form>
             </field>
         </record>
-<!--#{kanban_getcolor(record.color.raw_value)}-->
+
         <record id="view_ir_module_repository_kanban" model="ir.ui.view">
             <field name="name">view.ir.module.repository.tree</field>
             <field name="model">ir.module.repository</field>
@@ -85,13 +85,13 @@
                                 <div class="oe_kanban_ir_module_repository">
                                     <a type="open">
                                         <t t-if="record.type.raw_value == 'git'">
-                                            <img t-att-src='_s + "/module_repository/static/src/img/git.png"' class="oe_kanban_image"/>
+                                            <img t-att-src='_s + "/module_repository/static/src/img/version_control/git.png"' class="oe_kanban_image"/>
                                         </t>
                                         <t t-if="record.type.raw_value == 'bazaar'">
-                                            <img t-att-src='_s + "/module_repository/static/src/img/bazaar.png"' class="oe_kanban_image"/>
+                                            <img t-att-src='_s + "/module_repository/static/src/img/version_control/bazaar.png"' class="oe_kanban_image"/>
                                         </t>
                                         <t t-if="record.type.raw_value == 'unknown'">
-                                            <img t-att-src='_s + "/module_repository/static/src/img/unknown.png"' class="oe_kanban_image"/>
+                                            <img t-att-src='_s + "/module_repository/static/src/img/version_control/unknown.png"' class="oe_kanban_image"/>
                                         </t>
                                     </a>
                                     <div class="oe_kanban_details">
@@ -105,7 +105,7 @@
                                         </h4>
                                         <ul>
                                             <t t-if="record.url.raw_value">
-                                                <li style="width:330px;overflow:hidden;">
+                                                <li>
                                                     <a t-att-href="record.url.raw_value" target="_blank"><field name="url"/></a>
                                                 </li>
                                             </t>
@@ -115,7 +115,7 @@
                                             <li t-if="record.revision.raw_value">
                                                 <span>Revision: </span><field name="revision"/>
                                                 <t t-if="record.local_modification_qty.raw_value != 0">
-                                                    <span style="color:red; font-weight: bold;">Local Changes: <field name="local_modification_qty"/></span>
+                                                    <span class="local_modification">Local Changes: <field name="local_modification_qty"/></span>
                                                 </t>
                                             </li>
                                         </ul>
@@ -139,5 +139,17 @@
                 </xpath>
             </field>
         </record>
+
+        <record id="view_ir_module_module_form" model="ir.ui.view">
+            <field name="name">ir.module.module.form</field>
+            <field name="model">ir.module.module</field>
+            <field name="inherit_id" ref="base.module_form" />
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="repository_id"/>
+                </field>
+            </field>
+        </record>
+
     </data>
 </openerp>
