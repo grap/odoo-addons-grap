@@ -24,10 +24,19 @@
 # Reader Access
 ###############################################################################
 
-- !record {model: ir.model.access, id: ir_model_access_restaurant_user}:
+- !record {model: ir.model.access, id: ir_model_access_table_user}:
     group_id: res_group_restaurant_user
     model_id: pos_restaurant.model_pos_table
     name: Point Of Sale - Restaurant User
+    perm_read: true
+    perm_create: false
+    perm_write: false
+    perm_unlink: false
+
+- !record {model: ir.model.access, id: ir_model_access_covers_report_user}:
+    group_id: res_group_restaurant_user
+    model_id: pos_restaurant.model_pos_covers_report
+    name: Point Of Sale - Covers Report User
     perm_read: true
     perm_create: false
     perm_write: false
@@ -38,7 +47,7 @@
 ###############################################################################
 
 
-- !record {model: ir.model.access, id: ir_model_access_restaurant_manager}:
+- !record {model: ir.model.access, id: ir_model_access_table_manager}:
     group_id: res_group_restaurant_manager
     model_id: pos_restaurant.model_pos_table
     name: Point Of Sale - Restaurant Manager

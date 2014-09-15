@@ -19,6 +19,7 @@
 <!-- ********************************************************************** -->
 <openerp>
     <data>
+<!-- Menu: Point Of Sale -->
         <menuitem id="menu_pos_restaurant"
             name="Restaurant"
             parent="point_of_sale.menu_point_root"
@@ -29,6 +30,43 @@
             parent="menu_pos_restaurant"
             action="action_view_pos_table"
             sequence="1"/>
+
+<!-- Menu: DashBoard -->
+        <menuitem id="menu_pos_restaurant_dashboard"
+            name="Restaurant"
+            parent="point_of_sale.menu_point_rep"
+            groups="res_group_restaurant_user"
+            sequence="5"/>
+
+        <menuitem id="menu_pos_covers_report_agregate"
+            name="Covers / Overview"
+            parent="menu_pos_restaurant_dashboard"
+            sequence="1"
+            action="action_pos_covers_report_agregate"/>
+
+        <menuitem id="menu_pos_covers_day_report"
+            name="Covers / Day"
+            parent="menu_pos_restaurant_dashboard"
+            sequence="2"
+            action="action_pos_covers_day_report"/>
+
+        <menuitem id="menu_pos_covers_week_report"
+            name="Covers / Week"
+            parent="menu_pos_restaurant_dashboard"
+            sequence="3"
+            action="action_pos_covers_week_report"/>
+
+        <menuitem id="menu_pos_covers_month_report"
+            name="Covers / Month"
+            parent="menu_pos_restaurant_dashboard"
+            sequence="4"
+            action="action_pos_covers_month_report"/>
+
+        <menuitem id="menu_pos_covers_week_day_report"
+            name="Covers / Week Day"
+            parent="menu_pos_restaurant_dashboard"
+            sequence="4"
+            action="action_pos_covers_week_day_report"/>
     </data>
 
 </openerp>

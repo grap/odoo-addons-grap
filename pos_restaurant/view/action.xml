@@ -20,6 +20,7 @@
 <openerp>
     <data>
 
+<!-- Model: pos.table -->
         <record id="action_view_pos_table" model="ir.actions.act_window">
             <field name="name">Tables</field>
             <field name="type">ir.actions.act_window</field>
@@ -28,6 +29,79 @@
             <field name="view_mode">tree,form,kanban</field>
             <field name="help">Display and manage tables in restaurant.</field>
         </record>
+
+
+
+<!-- Model: pos.covers.report -->
+        <record id="action_pos_covers_day_report" model="ir.actions.act_window">
+            <field name="name">Covers / Day</field>
+            <field name="res_model">pos.covers.report</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">graph,tree</field>
+            <field name="view_id" ref="view_pos_covers_day_report_graph"/>
+        </record>
+
+        <record id="action_pos_covers_day_report_30_days" model="ir.actions.act_window">
+            <field name="name">Covers / Day (Last 30 Days)</field>
+            <field name="res_model">pos.covers.report</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">graph,tree</field>
+            <field name="view_id" ref="view_pos_covers_day_report_graph"/>
+            <field name="domain">[('date','>',(context_today()-datetime.timedelta(days=30)).strftime('%Y-%m-%d'))]</field>
+        </record>
+
+        <record id="action_pos_covers_week_report" model="ir.actions.act_window">
+            <field name="name">Covers / Week</field>
+            <field name="res_model">pos.covers.report</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">graph,tree</field>
+            <field name="view_id" ref="view_pos_covers_week_report_graph"/>
+        </record>
+
+        <record id="action_pos_covers_week_report_12_weeks" model="ir.actions.act_window">
+            <field name="name">Covers / Week (Last 12 Weeks)</field>
+            <field name="res_model">pos.covers.report</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">graph,tree</field>
+            <field name="view_id" ref="view_pos_covers_week_report_graph"/>
+            <field name="domain">[('date','>',(context_today()-datetime.timedelta(weeks=12)).strftime('%Y-%m-%d'))]</field>
+        </record>
+
+        <record id="action_pos_covers_month_report" model="ir.actions.act_window">
+            <field name="name">Covers / Month</field>
+            <field name="res_model">pos.covers.report</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">graph,tree</field>
+            <field name="view_id" ref="view_pos_covers_month_report_graph"/>
+        </record>
+
+        <record id="action_pos_covers_month_report_6_months" model="ir.actions.act_window">
+            <field name="name">Covers / Month (Last 6 Months)</field>
+            <field name="res_model">pos.covers.report</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">graph,tree</field>
+            <field name="view_id" ref="view_pos_covers_month_report_graph"/>
+            <field name="domain">[('month','>',(context_today()-datetime.timedelta(days=180)).strftime('%Y-%m-%d'))]</field>
+        </record>
+
+        <record id="action_pos_covers_week_day_report" model="ir.actions.act_window">
+            <field name="name">Covers / Week Day</field>
+            <field name="res_model">pos.covers.report</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">graph,tree</field>
+            <field name="view_id" ref="view_pos_covers_week_day_report_graph"/>
+        </record>
+
+        <record id="action_pos_covers_week_day_report_6_months" model="ir.actions.act_window">
+            <field name="name">Covers / Week Day (Last 6 Months)</field>
+            <field name="res_model">pos.covers.report</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">graph,tree</field>
+            <field name="view_id" ref="view_pos_covers_week_day_report_graph"/>
+            <field name="domain">[('week_date','>',(context_today()-datetime.timedelta(days=180)).strftime('%Y-%m-%d'))]</field>
+        </record>
+
+
 
     </data>
 </openerp>

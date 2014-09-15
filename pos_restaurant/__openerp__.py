@@ -56,6 +56,8 @@ Copyright, Authors and Licence:
         'security/ir_model_access.yml',
         'view/view.xml',
         'view/action.xml',
+        'view/view_agregate.xml',
+        'view/action_agregate.xml',
         'view/menu.xml',
     ],
     'qweb': [
@@ -66,5 +68,11 @@ Copyright, Authors and Licence:
     ],
     'css': [
         'static/src/css/pr.css',
+    ],
+    'images': [
+        'static/src/img/screenshots/covers_daily_evolution.png',
+        'static/src/img/screenshots/covers_monthly_evolution.png',
+        'static/src/img/screenshots/covers_weekly_distribution.png',
+        'static/src/img/screenshots/covers_weekly_evolution.png',
     ],
 }

@@ -20,7 +20,7 @@
 <openerp>
     <data>
 
-<!-- View : pos.order -->
+<!-- Model: pos.order -->
         <record id="view_pos_order_tree" model="ir.ui.view">
             <field name="name">pos.order.tree</field>
             <field name="model">pos.order</field>
@@ -46,7 +46,7 @@
             </field>
         </record>
 
-<!-- View : sale.shop -->
+<!-- Model: sale.shop -->
         <record id="view_sale_shop_form" model="ir.ui.view">
             <field name="name">sale.shop.form</field>
             <field name="model">sale.shop</field>
@@ -58,7 +58,7 @@
             </field>
         </record>
 
-<!-- View : pos.table -->
+<!-- Model: pos.table -->
         <record id="view_pos_table_tree" model="ir.ui.view">
             <field name="name">pos.table.tree</field>
             <field name="model">pos.table</field>
@@ -133,6 +133,90 @@
                 </kanban>
             </field>
         </record>
+
+<!-- Model: pos.covers.report -->
+    <record id="view_pos_covers_report_search" model="ir.ui.view">
+        <field name="name">pos.covers.report.search</field>
+        <field name="model">pos.covers.report</field>
+        <field name="arch" type="xml">
+            <search string="Covers">
+                <filter name="user_id" string="User" />
+                <filter name="shop_id" string="Shop" />
+                <filter name="company_id" string="Company" groups="base.group_multi_company"/>
+                <group expand="0" string="Group By...">
+                    <filter name="group_by_company_id" string="Company" context="{'group_by':'company_id'}" groups="base.group_multi_company" />
+                    <filter name="group_by_shop_id" string="Shop" context="{'group_by':'shop_id'}"/>
+                    <filter name="group_by_user_id" string="User" context="{'group_by':'user_id'}"/>
+                    <filter name="group_by_day" string="Day" context="{'group_by':'day'}"/>
+                    <filter name="group_by_week" string="Week" context="{'group_by':'week'}"/>
+                    <filter name="group_by_week_day" string="Week Day" context="{'group_by':'week_day'}"/>
+                    <filter name="group_by_month" string="Month" context="{'group_by':'month'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_pos_covers_report_tree" model="ir.ui.view">
+        <field name="name">pos.covers.report.tree</field>
+        <field name="model">pos.covers.report</field>
+        <field name="arch" type="xml">
+            <tree string="Covers" create="false">
+                <field name="company_id" groups="base.group_multi_company"/>
+                <field name="shop_id"/>
+                <field name="user_id"/>
+                <field name="date"/>
+                <field name="week" invisible="1"/>
+                <field name="week_date"/>
+                <field name="week_day"/>
+                <field name="month"/>
+                <field name="covers_total" sum="Total"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_pos_covers_day_report_graph" model="ir.ui.view">
+         <field name="name">pos.covers.day.report.graph</field>
+         <field name="model">pos.covers.report</field>
+         <field name="arch" type="xml">
+                <graph string="Covers / Day" type="bar">
+                    <field name="day"/>
+                    <field name="covers_total" operator="+"/>
+                </graph>
+         </field>
+    </record>
+
+    <record id="view_pos_covers_week_report_graph" model="ir.ui.view">
+         <field name="name">pos.covers.week.report.graph</field>
+         <field name="model">pos.covers.report</field>
+         <field name="arch" type="xml">
+                <graph string="Covers / Week" type="bar">
+                    <field name="week"/>
+                    <field name="covers_total" operator="+"/>
+                </graph>
+         </field>
+    </record>
+
+    <record id="view_pos_covers_week_day_report_graph" model="ir.ui.view">
+         <field name="name">pos.covers.week.day.report.graph</field>
+         <field name="model">pos.covers.report</field>
+         <field name="arch" type="xml">
+                <graph string="Covers / Week Day" type="bar">
+                    <field name="week_day"/>
+                    <field name="covers_total" operator="+"/>
+                </graph>
+         </field>
+    </record>
+
+    <record id="view_pos_covers_month_report_graph" model="ir.ui.view">
+         <field name="name">pos.covers.month.report.graph</field>
+         <field name="model">pos.covers.report</field>
+         <field name="arch" type="xml">
+                <graph string="Covers / Month" type="bar">
+                    <field name="month"/>
+                    <field name="covers_total" operator="+"/>
+                </graph>
+         </field>
+    </record>
 
     </data>
 </openerp>

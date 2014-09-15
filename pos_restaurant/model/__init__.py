@@ -20,6 +20,7 @@
 #
 ##############################################################################
 
-import sale_shop
-import pos_order
-import pos_table
+from . import sale_shop
+from . import pos_order
+from . import pos_table
+from . import pos_covers_report

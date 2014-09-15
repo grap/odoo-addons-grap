@@ -25,3 +25,7 @@
     domain_force: '[(''company_id'', ''='', user.company_id.id)]'
     model_id: pos_restaurant.model_pos_table
 
+- !record {model: ir.rule, id: ir_rule_pos_covers_report}:
+    name: Point Of Sale - Covers Report
+    domain_force: '[(''company_id'', ''='', user.company_id.id)]'
+    model_id: pos_restaurant.model_pos_covers_report
