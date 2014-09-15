@@ -71,6 +71,7 @@ Copyright, Authors and Licence:
     ],
     'external_dependencies': {
         'python': ['git', 'bzrlib'],
+        'bin': ['bzr'],
     },
     'css': [
         'static/src/css/css.css',
