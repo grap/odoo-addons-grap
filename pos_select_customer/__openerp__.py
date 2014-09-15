@@ -23,23 +23,32 @@
 
 {
     'name': 'Point Of Sale - Select Customers',
-    'summary': 'Allow users to select a customer in Point Of Sale',
+    'summary': 'Allow users to select a customer in Front End Point Of Sale',
     'version': '0.1',
     'category': 'sale',
     'description': """
-Allow users to select a customer in Point Of Sale
-=================================================
+Allow users to select a customer in Front End Point Of Sale
+===========================================================
 
 Functionality:
 --------------
-    * Allow user to set a customer to a pos order;
+    * Allow user to set a customer to a pos order in front end views;
 
-Maybe in a While:
------------------
-    * Possibility to create customers;
-    * Possibility to change price if customer has a list price different as"""
-    """ the default list price; (Big stuff);
+Possible improvements and fix:
+------------------------------
+    * This module displays all the customers. That can be long to display
+      if there are a lot of customers in database; Display only 80 could be a
+      solution;
+    * Images of customers are loaded each time; Similar behaviour as
+      products image management (with cache) could be developped;
+
+NON Covered features:
+---------------------
+    * Possibility to create customers in front end views;
+    * Possibility to change price if customer has a list price different as
+      the default list price; (Big stuff);
     * Possibility to see if the partner has not the default price list;
+    * Possibility to invoice in front-end views;
 
 Copyright, Authors and Licence:
 -------------------------------
