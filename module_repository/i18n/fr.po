@@ -1,13 +1,13 @@
 # Translation of OpenERP Server.
 # This file contains the translation of the following modules:
-#	* pos_restaurant
+#	* module_repository
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-15 14:20+0000\n"
-"PO-Revision-Date: 2014-09-15 14:20+0000\n"
+"POT-Creation-Date: 2014-09-10 18:37+0000\n"
+"PO-Revision-Date: 2014-09-10 18:37+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -15,298 +15,122 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
-#. module: pos_restaurant
-#: field:pos.table,active:0
-msgid "Active"
-msgstr "Active"
+#. module: module_repository
+#: selection:ir.module.repository,type:0
+msgid "Bazaar"
+msgstr "Bazaar"
 
-#. module: pos_restaurant
-#: help:pos.table,active:0
-msgid "By unchecking the active field you can disable a table without deleting it."
-msgstr "En décochant cette case, vous pouvez désactiver une table, sans la supprimer."
+#. module: module_repository
+#: field:ir.module.repository,branch:0
+msgid "Branch"
+msgstr "Branche"
 
-#. module: pos_restaurant
-#. openerp-web
-#: code:addons/pos_restaurant/static/src/xml/pr.xml:42
-#: code:addons/pos_restaurant/static/src/xml/pr.xml:99
-#, python-format
-msgid "Cancel"
-msgstr "Annuler"
+#. module: module_repository
+#: view:ir.module.repository:0
+msgid "Branch:"
+msgstr "Branche :"
 
-#. module: pos_restaurant
-#: view:pos.covers.report:0
-#: field:pos.covers.report,company_id:0
-#: field:pos.table,company_id:0
-msgid "Company"
-msgstr "Société"
+#. module: module_repository
+#: field:ir.module.repository,path:0
+msgid "Complete path of the Repository"
+msgstr "Chemin complet du dépôt"
 
-#. module: pos_restaurant
-#. openerp-web
-#: code:addons/pos_restaurant/static/src/js/pr.js:51
-#: view:pos.covers.report:0
-#: field:pos.order,covers:0
-#, python-format
-msgid "Covers"
-msgstr "Couverts"
+#. module: module_repository
+#: selection:ir.module.repository,type:0
+msgid "Git"
+msgstr "Git"
 
-#. module: pos_restaurant
-#: view:board.board:0
-msgid "Covers (Last 12 Weeks)"
-msgstr "Couverts (sur les 12 dernières semaine)"
+#. module: module_repository
+#: view:ir.module.repository:0
+msgid "Local Changes:"
+msgstr "Changements Locaux :"
 
-#. module: pos_restaurant
-#: view:board.board:0
-msgid "Covers (Last 30 Days)"
-msgstr "Couverts (sur les 30 derniers jours)"
-
-#. module: pos_restaurant
-#: view:board.board:0
-msgid "Covers (Last 6 Months)"
-msgstr "Couverts (sur les 6 derniers mois)"
-
-#. module: pos_restaurant
-#: model:ir.actions.act_window,name:pos_restaurant.action_pos_covers_day_report
-#: model:ir.ui.menu,name:pos_restaurant.menu_pos_covers_day_report
-#: view:pos.covers.report:0
-msgid "Covers / Day"
-msgstr "Couverts / Jour"
-
-#. module: pos_restaurant
-#: model:ir.actions.act_window,name:pos_restaurant.action_pos_covers_day_report_30_days
-msgid "Covers / Day (Last 30 Days)"
-msgstr "Couverts / Jour (Sur les 30 derniers jours)"
-
-#. module: pos_restaurant
-#: model:ir.actions.act_window,name:pos_restaurant.action_pos_covers_month_report
-#: model:ir.ui.menu,name:pos_restaurant.menu_pos_covers_month_report
-#: view:pos.covers.report:0
-msgid "Covers / Month"
-msgstr "Couverts / Mois"
-
-#. module: pos_restaurant
-#: model:ir.actions.act_window,name:pos_restaurant.action_pos_covers_month_report_6_months
-msgid "Covers / Month (Last 6 Months)"
-msgstr "Couverts / Mois (sur 6 derniers mois)"
-
-#. module: pos_restaurant
-#: view:board.board:0
-#: model:ir.ui.menu,name:pos_restaurant.menu_pos_covers_report_agregate
-msgid "Covers / Overview"
-msgstr "Couverts / Vue d'ensemble"
-
-#. module: pos_restaurant
-#: model:ir.actions.act_window,name:pos_restaurant.action_pos_covers_week_report
-#: model:ir.ui.menu,name:pos_restaurant.menu_pos_covers_week_report
-#: view:pos.covers.report:0
-msgid "Covers / Week"
-msgstr "Couverts / Semaine"
-
-#. module: pos_restaurant
-#: model:ir.actions.act_window,name:pos_restaurant.action_pos_covers_week_report_12_weeks
-msgid "Covers / Week (Last 12 Weeks)"
-msgstr "Couverts / Semaine (sur 12 dernières semaines)"
-
-#. module: pos_restaurant
-#: model:ir.actions.act_window,name:pos_restaurant.action_pos_covers_week_day_report
-#: model:ir.ui.menu,name:pos_restaurant.menu_pos_covers_week_day_report
-#: view:pos.covers.report:0
-msgid "Covers / Week Day"
-msgstr "Couverts / Hebdomadaire"
-
-#. module: pos_restaurant
-#: model:ir.actions.act_window,name:pos_restaurant.action_pos_covers_week_day_report_6_months
-msgid "Covers / Week Day (Last 6 Months)"
-msgstr "Couverts / hebdomadaire (sur les 6 derniers mois)"
-
-#. module: pos_restaurant
-#. openerp-web
-#: code:addons/pos_restaurant/static/src/xml/pr.xml:39
-#, python-format
-msgid "Covers Quantity Selection"
-msgstr "Sélection du nombre de couverts"
-
-#. module: pos_restaurant
-#: field:pos.covers.report,covers_total:0
-msgid "Covers Total"
-msgstr "Total des couverts"
-
-#. module: pos_restaurant
-#: help:pos.order,covers:0
-msgid "Covers in a restaurant"
-msgstr "Nombre de couverts dans la restauration"
-
-#. module: pos_restaurant
-#: field:pos.covers.report,date:0
-msgid "Date"
-msgstr "Date"
-
-#. module: pos_restaurant
-#: view:pos.covers.report:0
-#: field:pos.covers.report,day:0
-msgid "Day"
-msgstr "Jour"
-
-#. module: pos_restaurant
-#. openerp-web
-#: code:addons/pos_restaurant/static/src/js/pr.js:182
-#, python-format
-msgid "Del."
-msgstr "Suppr."
-
-#. module: pos_restaurant
-#: model:ir.actions.act_window,help:pos_restaurant.action_view_pos_table
-msgid "Display and manage tables in restaurant."
-msgstr "Afficher et gérer les tables du restaurant."
-
-#. module: pos_restaurant
-#: view:pos.covers.report:0
-msgid "Group By..."
-msgstr "Regrouper Par..."
-
-#. module: pos_restaurant
-#: field:pos.table,image:0
-msgid "Image"
-msgstr "Image"
-
-#. module: pos_restaurant
-#: model:res.groups,name:pos_restaurant.res_group_restaurant_manager
-msgid "Manager"
-msgstr "Manager"
-
-#. module: pos_restaurant
-#: field:sale.shop,max_covers:0
-msgid "Max Covers"
-msgstr "Nombre de couverts maximum"
-
-#. module: pos_restaurant
-#: view:pos.covers.report:0
-#: field:pos.covers.report,month:0
-msgid "Month"
-msgstr "Mois"
-
-#. module: pos_restaurant
-#: field:pos.table,name:0
-msgid "Name"
-msgstr "Nom"
-
-#. module: pos_restaurant
+#. module: module_repository
 #: code:_description:0
-#: model:ir.model,name:pos_restaurant.model_pos_order
+#: model:ir.model,name:module_repository.model_ir_module_module
 #, python-format
-msgid "Point of Sale"
-msgstr "Point de Vente"
+msgid "Module"
+msgstr "Module"
 
-#. module: pos_restaurant
-#: model:ir.module.category,name:pos_restaurant.ir_module_category_restaurant
-#: model:ir.ui.menu,name:pos_restaurant.menu_pos_restaurant
-#: model:ir.ui.menu,name:pos_restaurant.menu_pos_restaurant_dashboard
-msgid "Restaurant"
-msgstr "Restaurant"
+#. module: module_repository
+#: view:ir.module.repository:0
+#: field:ir.module.repository,module_ids:0
+msgid "Modules"
+msgstr "Modules"
 
-#. module: pos_restaurant
+#. module: module_repository
 #: code:_description:0
-#: model:ir.model,name:pos_restaurant.model_pos_table
+#: model:ir.model,name:module_repository.model_ir_module_repository
 #, python-format
-msgid "Restaurant table"
-msgstr "Table de restaurant"
+msgid "Modules Repository"
+msgstr "Dépôt de Modules"
 
-#. module: pos_restaurant
-#: model:ir.ui.menu,name:pos_restaurant.menu_table
-msgid "Restaurant tables"
-msgstr "Tables de restaurant"
+#. module: module_repository
+#: field:ir.module.repository,name:0
+msgid "Name of the Repository"
+msgstr "Nom du dépôt"
 
-#. module: pos_restaurant
-#: code:_description:0
-#: model:ir.model,name:pos_restaurant.model_sale_shop
-#, python-format
-msgid "Sales Shop"
-msgstr "Magasin"
+#. module: module_repository
+#: field:ir.module.repository,installed_module_qty:0
+msgid "Quantity of Installed Modules"
+msgstr "Nombre de Modules Installés"
 
-#. module: pos_restaurant
-#: model:ir.module.category,description:pos_restaurant.ir_module_category_restaurant
-msgid "Select the level of access of restaurant informations in Point Of Sale"
-msgstr "Sélectionner le niveau d'accès aux informations liées à au restaurant dans le point de vente."
+#. module: module_repository
+#: field:ir.module.repository,local_modification_qty:0
+msgid "Quantity of Local Modifications"
+msgstr "Nombre de Modifications Locales"
 
-#. module: pos_restaurant
-#: help:pos.table,shop_id:0
-msgid "Select the shop"
-msgstr "Choisir le magasin"
+#. module: module_repository
+#: field:ir.module.repository,module_qty:0
+msgid "Quantity of Modules"
+msgstr "Nombre de Modules"
 
-#. module: pos_restaurant
-#: view:pos.covers.report:0
-#: field:pos.covers.report,shop_id:0
-#: field:pos.table,shop_id:0
-msgid "Shop"
-msgstr "Magasin"
+#. module: module_repository
+#: view:ir.module.repository:0
+#: model:ir.ui.menu,name:module_repository.menu_ir_module_repository
+msgid "Repositories"
+msgstr "Dépôts"
 
-#. module: pos_restaurant
-#. openerp-web
-#: code:addons/pos_restaurant/static/src/js/pr.js:171
-#: field:pos.order,table_id:0
-#, python-format
-msgid "Table"
-msgstr "Table"
+#. module: module_repository
+#: model:ir.actions.act_window,name:module_repository.action_ir_module_repository
+#: view:ir.module.module:0
+#: field:ir.module.module,repository_id:0
+#: view:ir.module.repository:0
+msgid "Repository"
+msgstr "Dépôt"
 
-#. module: pos_restaurant
-#. openerp-web
-#: code:addons/pos_restaurant/static/src/xml/pr.xml:96
-#, python-format
-msgid "Table Selection"
-msgstr "Sélection d'une table"
+#. module: module_repository
+#: field:ir.module.repository,revision:0
+msgid "Revision"
+msgstr "Révision"
 
-#. module: pos_restaurant
-#: sql_constraint:pos.table:0
-msgid "Table name must be unique by shop!"
-msgstr "Les noms de table doivent être unique par magasin!"
+#. module: module_repository
+#: view:ir.module.repository:0
+msgid "Revision:"
+msgstr "Révision :"
 
-#. module: pos_restaurant
-#: model:ir.actions.act_window,name:pos_restaurant.action_view_pos_table
-#: view:pos.table:0
-msgid "Tables"
-msgstr "Tables"
+#. module: module_repository
+#: field:ir.module.repository,state:0
+msgid "State"
+msgstr "Etat"
 
-#. module: pos_restaurant
-#: model:res.groups,comment:pos_restaurant.res_group_restaurant_manager
-msgid "The user can see and manage Restaurant field. (Covers, Table, etc.)"
-msgstr "L'utilisateur peut voir et modifier ou supprimer les champs liés à la restauration. (Couverts, Table, etc.)"
+#. module: module_repository
+#: field:ir.module.repository,type:0
+msgid "Type of Repository"
+msgstr "Type de dépôt"
 
-#. module: pos_restaurant
-#: model:res.groups,comment:pos_restaurant.res_group_restaurant_user
-msgid "The user can see and use Restaurant field. (Covers, Table, etc.)"
-msgstr "L'utilisateur peut voir et utiliser les champs liés à la restauration. (Couverts, Table, etc.)"
+#. module: module_repository
+#: help:ir.module.repository,type:0
+msgid "Type of Repository: Git, Bazaar, etc..."
+msgstr "Type de dépôt : Git, Bazaar, etc..."
 
-#. module: pos_restaurant
-#: help:sale.shop,max_covers:0
-msgid "This is the number of buttons displayed in the front-end point of sale."
-msgstr "C'est le nombre de boutons affichée dans le point de vente tactile."
+#. module: module_repository
+#: field:ir.module.repository,url:0
+msgid "URL"
+msgstr "URL"
 
-#. module: pos_restaurant
-#: view:pos.covers.report:0
-msgid "Total"
-msgstr "Total"
-
-#. module: pos_restaurant
-#: view:pos.covers.report:0
-#: field:pos.covers.report,user_id:0
-#: model:res.groups,name:pos_restaurant.res_group_restaurant_user
-msgid "User"
-msgstr "Utilisateur"
-
-#. module: pos_restaurant
-#: view:pos.covers.report:0
-#: field:pos.covers.report,week:0
-#: field:pos.covers.report,week_date:0
-msgid "Week"
-msgstr "Semaine"
-
-#. module: pos_restaurant
-#: view:pos.covers.report:0
-#: field:pos.covers.report,week_day:0
-msgid "Week Day"
-msgstr "Jour de la semaine"
-
-#. module: pos_restaurant
-#: help:pos.order,table_id:0
-msgid "select the table where the customers is."
-msgstr "Sélectionner la table où les clients se trouvent."
+#. module: module_repository
+#: selection:ir.module.repository,type:0
+msgid "Unknown"
+msgstr "Inconnu"
 
