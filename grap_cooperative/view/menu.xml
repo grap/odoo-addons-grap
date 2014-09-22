@@ -98,5 +98,11 @@
             sequence="3"
             groups="res_group_grap_cooperative_manager"/>
 
+        <menuitem id="menu_timesheet_report"
+            parent="menu_timesheet"
+            action="action_grap_timesheet_report" 
+            sequence="4"
+            groups="res_group_grap_cooperative_manager"/>
+
     </data>
 </openerp>

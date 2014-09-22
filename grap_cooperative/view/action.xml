@@ -113,5 +113,14 @@
             <field name="help">Display and manage timesheet Groups.</field>
         </record>
 
+        <record id="action_grap_timesheet_report" model="ir.actions.act_window">
+            <field name="name">time Sheet Report</field>
+            <field name="res_model">grap.timesheet.report</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,graph</field>
+<!--            <field name="view_id" ref="pos_sale_by_day_graph"/>-->
+<!--            <field name="domain">[('date','>',(context_today()-datetime.timedelta(days=30)).strftime('%Y-%m-%d'))]</field>-->
+        </record>
+
     </data>
 </openerp>

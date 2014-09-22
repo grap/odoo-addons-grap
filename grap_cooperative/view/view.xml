@@ -704,5 +704,50 @@
             </field>
         </record>
 
+<!-- View : grap.timesheet.group -->
+        <record id="view_timesheet_report_search" model="ir.ui.view">
+            <field name="name">grap.timesheet.report.search</field>
+            <field name="model">grap.timesheet.report</field>
+            <field name="arch" type="xml">
+                <search string="TimeSheet Report"> 
+                   <field name="worker_id"/>
+                    <field name="type_id"/>
+                    <field name="activity_id"/>
+                   <group expand='0' string='Group by...'>
+                       <filter string='Date' context="{'group_by' : 'date'}"/>
+                       <filter string='Worker' context="{'group_by' : 'worker_id'}"/>
+                       <filter string='Activity' context="{'group_by' : 'activity_id'}"/>
+                       <filter string='Type' context="{'group_by' : 'type_id'}"/>
+                   </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="view_timesheet_report_tree" model="ir.ui.view">
+            <field name="name">grap.timesheet.report.tree</field>
+            <field name="model">grap.timesheet.report</field>
+        <field name="arch" type="xml">
+            <tree string="ThimeSheet Report" create="false">
+                <field name="date"/>
+                <field name="worker_id"/>
+                <field name="activity_id"/>
+                <field name="type_id"/>
+                <field name="name"/>
+                <field name="amount" sum="# of Lines"/>
+            </tree>
+        </field>
+    </record>
+
+        <record id="view_timesheet_report_graph" model="ir.ui.view">
+            <field name="name">grap.timesheet.report.graph</field>
+            <field name="model">grap.timesheet.report</field>
+         <field name="arch" type="xml">
+                <graph string="ThimeSheet Report" type="bar">
+                    <field name="week"/>
+                    <field name="amount" operator="+"/>
+                </graph>
+         </field>
+    </record>
+
     </data>
 </openerp>

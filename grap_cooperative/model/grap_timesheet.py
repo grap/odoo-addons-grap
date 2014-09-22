@@ -29,6 +29,17 @@ class grap_timesheet(Model):
     _name = 'grap.timesheet'
     _order = 'date desc, id desc'
 
+    # Fields Function Section
+    def _get_activity(
+            self, cr, uid, ids, fields, args, context=None):
+        res = {}
+        for gt in self.browse(cr, uid, ids, context=context):
+            res[gt.id] = {
+                'activity_qty': len(gt.activity_ids),
+                'amount_per_activity': gt.amount / len(gt.activity_ids),
+            }
+        return res
+
     def _get_timesheet_group_id(
             self, cr, uid, ids, fields, args, context=None):
         return dict([(id, False) for id in ids])
@@ -36,17 +47,6 @@ class grap_timesheet(Model):
     def _set_timesheet_group_id(
             self, cr, uid, id, field_name, field_value, args, context=None):
         pass
-
-    ### Views section
-    def on_change_timesheet_group_id(
-            self, cr, uid, ids, timesheet_group_id, context=None):
-        if not timesheet_group_id:
-            values = {}
-        else:
-            gtg_obj = self.pool['grap.timesheet.group']
-            gtg = gtg_obj.browse(cr, uid, timesheet_group_id, context=context)
-            values = {'activity_ids': [x.id for x in gtg.activity_ids]}
-        return {'value': values}
 
     # Columns section
     _columns = {
@@ -66,6 +66,20 @@ class grap_timesheet(Model):
             _get_timesheet_group_id, type='many2one',
             fnct_inv=_set_timesheet_group_id,
             relation='grap.timesheet.group', string='Group'),
+        'activity_qty': fields.function(
+            _get_activity, type='integer', string='Activities Quantity',
+            multi='activity', store={
+                    'grap.timesheet': (
+                        lambda self, cr, uid, ids, context=None: ids, [
+                            'activity_ids',
+                        ], 10)}),
+        'amount_per_activity': fields.function(
+            _get_activity, type='float', string='Amount Per Activity',
+            multi='activity', store={
+                    'grap.timesheet': (
+                        lambda self, cr, uid, ids, context=None: ids, [
+                            'activity_ids',
+                        ], 10)}),
     }
 
     # Default Section
@@ -78,3 +92,13 @@ class grap_timesheet(Model):
         'amount': 0.00,
     }
 
+    # Views section
+    def on_change_timesheet_group_id(
+            self, cr, uid, ids, timesheet_group_id, context=None):
+        if not timesheet_group_id:
+            values = {}
+        else:
+            gtg_obj = self.pool['grap.timesheet.group']
+            gtg = gtg_obj.browse(cr, uid, timesheet_group_id, context=context)
+            values = {'activity_ids': [x.id for x in gtg.activity_ids]}
+        return {'value': values}
