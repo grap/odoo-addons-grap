@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ********************************************************************** -->
+<!--    Tools - Repository of Modules for Odoo                              -->
+<!--    Copyright (C) 2014- Today GRAP (http://www.grap.coop)               -->
+<!--    @author Sylvain LE GAL (https://twitter.com/legalsylvain)           -->
+
+<!--This program is free software: you can redistribute it and/or modify    -->
+<!--it under the terms of the GNU Affero General Public License as          -->
+<!--published by the Free Software Foundation, either version 3 of the      -->
+<!--License, or (at your option) any later version.                         -->
+
+<!--This program is distributed in the hope that it will be useful,         -->
+<!--but WITHOUT ANY WARRANTY; without even the implied warranty of          -->
+<!--MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the           -->
+<!--GNU Affero General Public License for more details.                     -->
+
+<!--You should have received a copy of the GNU Affero General Public License-->
+<!--along with this program.  If not, see <http://www.gnu.org/licenses/>.   -->
+<!-- ********************************************************************** -->
+<openerp>
+    <data>
+
+<!-- Model: sale.order -->
+        <record id="view_sale_order_form" model="ir.ui.view">
+            <field name="name">view.sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form" />
+            <field name="arch" type="xml">
+                <field name="company_id" position="after">
+                    <field name="moment_id"/>
+                    <field name="group_id"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_sale_order_search" model="ir.ui.view">
+            <field name="name">view.sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+            <field name="arch" type="xml">
+                <field name="partner_id" position="after">
+                    <field name="moment_id"/>
+                    <field name="group_id"/>
+                </field>
+            </field>
+        </record>
+
+<!-- Model: sale.recovery.moment.group -->
+        <record id="view_sale_recovery_moment_group_search" model="ir.ui.view">
+            <field name="name">view.sale.recovery.moment.group.search</field>
+            <field name="model">sale.recovery.moment.group</field>
+            <field name="arch" type="xml">
+                <search string="Search Recovery Moment Group">
+                    <field name="name"/>
+                    <filter name="futur" string="Futur" domain="[('state','=','futur')]"/>
+                    <filter name="pending" string="Pending" domain="[('state','not in',('futur','finished_recovery'))]"/>
+                    <filter name="finished" string="Finished" domain="[('state','=','finished_recovery')]"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="view_sale_recovery_moment_group_tree" model="ir.ui.view">
+            <field name="name">view.sale.recovery.moment.group.tree</field>
+            <field name="model">sale.recovery.moment.group</field>
+            <field name="arch" type="xml">
+                <tree string="Recovery Moment Group" colors="blue:state == 'futur';black:state == 'pending_sale'; marron:state in ('finished_sale', 'pending_recovery');gray:state=='finished_recovery'">
+                    <field name="name"/>
+                    <field name="min_sale_date"/>
+                    <field name="max_sale_date"/>
+                    <field name="order_qty"/>
+                    <field name="state"/>
+                    <field name="excl_total"/>
+                    <field name="incl_total"/>
+                    <field name="shop_id"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_sale_recovery_moment_group_form" model="ir.ui.view">
+            <field name="name">view.sale.recovery.moment.group.form</field>
+            <field name="model">sale.recovery.moment.group</field>
+            <field name="arch" type="xml">
+                <form string="Recovery Moment Group" version="7.0">
+                    <header>
+<!--                        <button name="state_previous" string="Previous State" type="object"-->
+<!--                            states="progress,validated,working,obsolete" -->
+<!--                            groups="grap_cooperative.res_group_grap_cooperative_manager"/>-->
+<!--                        <button name="state_next" string="Next State" type="object"-->
+<!--                            states="draft,progress,validated,working"-->
+<!--                            groups="grap_cooperative.res_group_grap_cooperative_manager"/>-->
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        <group col="4">
+                            <field name="min_sale_date"/>
+                            <field name="max_sale_date"/>
+                            <field name="shop_id"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        <field name="order_qty"/>
+                        </group>
+                        <notebook>
+                            <page string="Moments">
+                                <group col="4">
+                                    <field name="min_recovery_date"/>
+                                    <field name="max_recovery_date"/>
+                                    <field name="moment_ids" nolabel="1" colspan="4"/>
+                                </group>
+                            </page>
+                            <page string="Orders">
+                                <group col="4">
+                                    <field name="excl_total"/>
+                                    <field name="incl_total"/>
+                                    <field name="order_ids" nolabel="1" />
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_sale_recovery_moment_group_kanban" model="ir.ui.view">
+            <field name="name">view.sale.recovery.group.kanban</field>
+            <field name="model">sale.recovery.moment.group</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <templates>
+                        <field name="state"/>
+                        <field name="order_qty"/>
+                        <field name="picking_qty"/>
+                        <field name="excl_total"/>
+                        <field name="incl_total"/>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_sale_recovery_moment_group_color_#{record.state.raw_value}">
+                                <div class="oe_kanban_sale_recovery_moment_group">
+<!--                            <div class="oe_kanban_box oe_kanban_color_border">-->
+<!--                                <div class="oe_kanban_details">-->
+                                    <h4 class="oe_partner_heading"><a type="open"><field name="name"/></a></h4>
+                                    <ul>
+                                        <li>From <field name="min_sale_date"/> to <field name="max_sale_date"/></li>
+                                        <li>
+                                            <a name="%(action_sale_order_recovery_moment_group)d" type="action" t-if="record.order_qty.value>0">
+                                                <t t-esc="record.order_qty.value"/> Orders
+                                            </a>
+                                        </li>
+                                        <li><t t-esc="record.excl_total.value"/> Total (VAT Excl.) / <t t-esc="record.incl_total.value"/> Total (VAT Incl.)</li>
+                                        <li><t t-esc="record.picking_qty.value"/> Picking</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+<!-- Model: sale.recovery.moment -->
+        <record id="view_sale_recovery_moment_tree" model="ir.ui.view">
+            <field name="name">Recovery Moment</field>
+            <field name="model">sale.recovery.moment</field>
+            <field name="arch" type="xml">
+                <tree string="Sale Recovery Moment" editable="bottom">
+                    <field name="place_id"/>
+                    <field name="min_recovery_date"/>
+                    <field name="max_recovery_date"/>
+                    <field name="duration"/>
+                    <field name="description"/>
+                    <field name="order_qty"/>
+                </tree>
+            </field>
+        </record>
+
+<!-- Model: sale.recovery.place -->
+        <record id="view_sale_recovery_place_tree" model="ir.ui.view">
+            <field name="name">view.sale.recovery.place.tree</field>
+            <field name="model">sale.recovery.place</field>
+            <field name="arch" type="xml">
+                <tree string="Recovery Places" colors="gray:active == False;">
+                    <field name="name" />
+                    <field name="complete_name" />
+                    <field name="shop_id"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                    <field name="active" invisible="1" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_sale_recovery_place_form" model="ir.ui.view">
+            <field name="name">view.sale.recovery.place.form</field>
+            <field name="model">sale.recovery.place</field>
+            <field name="arch" type="xml">
+                <form string="Recovery Places" version="7.0">
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="complete_name"/>
+                            </h1>
+                            <label for="name" class="oe_edit_only"/>
+                            <h2><field name="name"/></h2>
+                        </div>
+                        <group col="4">
+                            <field name="shop_id"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="active"/>
+                            <separator colspan="4"/>
+                            <field name="street" placeholder="Street..."/>
+                            <field name="street2" placeholder="Street...(Complement)"/>
+                            <field name="city" placeholder="City" style="width: 40%%"/>
+                            <field name="zip" placeholder="ZIP" style="width: 20%%"/>
+                            <field name="state_id" placeholder="State" style="width: 37%%" 
+                                on_change="onchange_state_id(state_id)"/>
+                            <field name="country_id" placeholder="Country"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</openerp>
