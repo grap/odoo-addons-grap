@@ -4,12 +4,12 @@
     'version': '1.0',
     'category': 'web',
     'description': """
-Simply replace the weird tree view by a classical form view for account move line
-=================================================================================
+Replace the weird tree view by a form view for account move line
+================================================================
 
 Contacts :
 ----------
-    * Sylvain LE GAL (https://twitter.com/legalsylvain); 
+    * Sylvain LE GAL (https://twitter.com/legalsylvain);
     * <informatique@grap.coop> for any help or question about this module.
     """,
     'author': 'GRAP',

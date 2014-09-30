@@ -80,7 +80,6 @@ class sale_recovery_moment_group(Model):
                 for order in srm.order_ids:
                     excl_total += order.amount_untaxed
                     incl_total += order.amount_total
-                    
             res[srmg.id] = {
                 'excl_total': excl_total,
                 'incl_total': incl_total,
@@ -100,7 +99,6 @@ class sale_recovery_moment_group(Model):
 #                for order in srm.order_ids:
 #                    excl_total += order.amount_untaxed
 #                    incl_total += order.amount_total
-                    
             res[srmg.id] = {
                 'picking_ids': picking_ids,
                 'picking_qty': picking_qty,

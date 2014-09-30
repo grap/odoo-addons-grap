@@ -23,23 +23,13 @@
 from openerp.osv.orm import Model
 from openerp.osv import fields
 from openerp import tools
-from openerp.tools.translate import _
+
 
 class pos_covers_report(Model):
     _name = 'pos.covers.report'
     _auto = False
     _table = 'pos_covers_report'
 
-#    _WEEK_DAY_SELECTION = [
-#        ('1', _('Monday')),
-#        ('2', _('Tuesday')),
-#        ('3', _('Wednesday')),
-#        ('4', _('Tuesday')),
-#        ('5', _('Friday')),
-#        ('6', _('Saturday')),
-#        ('7', _('Sonday')),
-#    ]
-#_WEEK_DAY_SELECTION, 
     _columns = {
         'company_id': fields.many2one(
             'res.company', 'Company', readonly=True),
@@ -67,7 +57,7 @@ class pos_covers_report(Model):
         tools.drop_view_if_exists(cr, self._table)
         cr.execute("""
             CREATE OR REPLACE VIEW %s AS (
-                SELECT 
+                SELECT
                     req.id,
                     req.company_id,
                     req.shop_id,

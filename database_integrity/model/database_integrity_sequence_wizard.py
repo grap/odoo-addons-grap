@@ -22,9 +22,9 @@
 
 from openerp.osv.orm import TransientModel
 from openerp.osv import fields
-#from openerp.osv import osv
 from openerp.exceptions import AccessError
 from openerp.tools.translate import _
+
 
 class database_integrity_sequence_wizard(TransientModel):
     _name = 'database.integrity.sequence.wizard'

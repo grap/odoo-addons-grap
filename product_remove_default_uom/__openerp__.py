@@ -6,26 +6,14 @@
     'description': """
 Product : sets default uom and purchase uom to None
 ===================================================
+
+TODO:
+    * Move into other grap_xxx module;
     """,
-    'author': 'Sylvain LE GAL / Julien WESTE - Groupement Régional Alimentaire de Proximité (GRAP)',
+    'author': 'GRAP',
     'website': 'http://www.grap.coop',
     'license': 'AGPL-3',
     'depends': [
         'product',
-        #'point_of_sale',
     ],
-    'init_xml': [],
-    'update_xml': [
-        #'point_of_sale_view.xml',
-    ],
-    'demo_xml': [],
-    'js': [],
-    'css': [],
-    'qweb': [],
-    'images': [],
-    'post_load': '',
-    'application': True,
-    'complexity': "easy",
-    'installable': True,
-    'auto_install': False,
 }

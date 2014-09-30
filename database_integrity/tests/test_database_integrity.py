@@ -24,6 +24,7 @@ from openerp.tests.common import TransactionCase
 from psycopg2 import IntegrityError
 from openerp.exceptions import AccessError
 
+
 class TestDatabaseIntegrity(TransactionCase):
     """Tests for 'DataBase Integrity' Module"""
 
@@ -83,7 +84,7 @@ class TestDatabaseIntegrity(TransactionCase):
 
     def test_04_sequence_integrity_invalid_fix(self):
         """Test the wizard fix."""
-        cr, uid = self.cr, self.uid
+        cr = self.cr
 
         # Test if the sequence is now correct
         cr.execute("SELECT last_value FROM res_partner_id_seq;")
@@ -99,7 +100,8 @@ class TestDatabaseIntegrity(TransactionCase):
     def test_05_access(self):
         """Test if the wizard can be launched by basic user.."""
         cr, uid = self.cr, self.uid
-        uid = self.imd_obj.get_object_reference(cr, uid, 'base', 'user_demo')[1]
+        uid = self.imd_obj.get_object_reference(
+            cr, uid, 'base', 'user_demo')[1]
         disw_id = self.disw_obj.create(cr, uid, {})
         error = False
         try:

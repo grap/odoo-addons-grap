@@ -31,7 +31,7 @@ Intend to prevent data loss if Network is down
 
 Functionality:
 --------------
-    * 
+    * TODO
 
 Maybe in a While:
 -----------------
@@ -39,7 +39,6 @@ Maybe in a While:
     """of the interface;
     * Disable possibility to hard close the window;
     * Inform the user if the network is down;
-    * 
 
 Copyright, Authors and Licence:
 -------------------------------

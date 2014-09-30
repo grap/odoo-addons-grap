@@ -2,6 +2,7 @@
 
 from openerp.osv.orm import Model
 
+
 class product_template(Model):
     _inherit = "product.template"
 

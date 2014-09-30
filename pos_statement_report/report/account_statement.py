@@ -19,7 +19,6 @@
 #
 ##############################################################################
 
-import time
 from point_of_sale.report import account_statement
 from report import report_sxw
 
@@ -48,5 +47,3 @@ report_sxw.report_sxw(
     parser=account_statement,
     header='internal',
     )
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

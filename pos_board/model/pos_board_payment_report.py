@@ -31,8 +31,10 @@ class pos_board_payment_report(Model):
     _table = 'pos_board_payment_report'
 
     _columns = {
-        'company_id': fields.many2one('res.company', 'Company', readonly=True),
-        'journal_id': fields.many2one('account.journal', 'Journal', readonly=True),
+        'company_id': fields.many2one(
+            'res.company', 'Company', readonly=True),
+        'journal_id': fields.many2one(
+            'account.journal', 'Journal', readonly=True),
         'month': fields.date('Month', size=7, readonly=True),
         'total': fields.float('Total', readonly=True),
         'average': fields.float('Average', readonly=True),

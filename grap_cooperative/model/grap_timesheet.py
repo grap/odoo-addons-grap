@@ -69,17 +69,17 @@ class grap_timesheet(Model):
         'activity_qty': fields.function(
             _get_activity, type='integer', string='Activities Quantity',
             multi='activity', store={
-                    'grap.timesheet': (
-                        lambda self, cr, uid, ids, context=None: ids, [
-                            'activity_ids',
-                        ], 10)}),
+                'grap.timesheet': (
+                    lambda self, cr, uid, ids, context=None: ids, [
+                        'activity_ids',
+                    ], 10)}),
         'amount_per_activity': fields.function(
             _get_activity, type='float', string='Amount Per Activity',
             multi='activity', store={
-                    'grap.timesheet': (
-                        lambda self, cr, uid, ids, context=None: ids, [
-                            'activity_ids',
-                        ], 10)}),
+                'grap.timesheet': (
+                    lambda self, cr, uid, ids, context=None: ids, [
+                        'activity_ids',
+                    ], 10)}),
     }
 
     # Default Section

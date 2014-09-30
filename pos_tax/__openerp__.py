@@ -17,7 +17,7 @@ session closure.
 Copyright, Author and Licence :
 -------------------------------
     * Copyright : 2014, Groupement Régional Alimentaire de Proximité;
-    * Author : 
+    * Author :
         * Julien WESTE;
         * Sylvain LE GAL (https://twitter.com/legalsylvain);
     * Licence : AGPL-3 (http://www.gnu.org/licenses/)
