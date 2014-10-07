@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ********************************************************************** -->
+<!--    Sale - eShop for Odoo                                               -->
+<!--    Copyright (C) 2014- Today GRAP (http://www.grap.coop)               -->
+<!--    @author Sylvain LE GAL (https://twitter.com/legalsylvain)           -->
+
+<!--This program is free software: you can redistribute it and/or modify    -->
+<!--it under the terms of the GNU Affero General Public License as          -->
+<!--published by the Free Software Foundation, either version 3 of the      -->
+<!--License, or (at your option) any later version.                         -->
+
+<!--This program is distributed in the hope that it will be useful,         -->
+<!--but WITHOUT ANY WARRANTY; without even the implied warranty of          -->
+<!--MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the           -->
+<!--GNU Affero General Public License for more details.                     -->
+
+<!--You should have received a copy of the GNU Affero General Public License-->
+<!--along with this program.  If not, see <http://www.gnu.org/licenses/>.   -->
+<!-- ********************************************************************** -->
+<openerp>
+    <data>
+
+<!-- Model: product.product -->
+        <record id="view_product_product_tree" model="ir.ui.view">
+            <field name="name">view.product.product.tree</field>
+            <field name="model">product.product</field>
+            <field eval="5" name="priority"/>
+            <field name="arch" type="xml">
+                <tree string="Products" editable="bottom"
+                        colors="black:eshop_state == 'available'; blue:eshop_state == 'disabled'; gray: eshop_state == 'unavailable'">
+                    <field name="name" readonly="1"/>
+                    <field name="eshop_minimum_qty"/>
+                    <field name="eshop_rounded_qty"/>
+                    <field name="eshop_category_id" on_change="onchange_eshop_category_id(eshop_category_id)"/>
+                    <field name="eshop_ok"/>
+                    <field name="eshop_state"/>
+                    <field name="sale_ok" on_change="onchange_sale_ok(sale_ok)"/>
+                    <field name="company_id" groups="base.group_multi_company" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_product_product_form" model="ir.ui.view">
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view" />
+            <field name="arch" type="xml">
+                <field name="categ_id" position="after">
+                </field>
+                <field name="sale_ok" position="attributes">
+                    <attribute name="on_change">onchange_sale_ok(sale_ok)</attribute>
+                </field>
+                <field name="sale_ok" position="before">
+                    <field name="eshop_ok"/>
+                    <label for="eshop_ok"/>
+                </field>
+                <xpath expr="//group[@name='sale']" position="after">
+                    <group name="eShop" col="4">
+                        <field name="eshop_category_id" colspan="4"/>
+                        <field name="eshop_minimum_qty"/>
+                        <field name="eshop_rounded_qty"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+
+<!-- Model: res.partner -->
+        <record id="view_res_partner_form" model="ir.ui.view">
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form" />
+            <field name="arch" type="xml">
+                <field name="email" position="after">
+                    <field name="eshop_active"/>
+                    <field name="eshop_password"/>
+                    <button name="button_generate_eshop_password"
+                            string="Generate Password"
+                            type="object" colspan="2"
+                            attrs="{'invisible':[('eshop_active','=', False)]}"/>
+                </field>
+            </field>
+        </record>
+
+
+<!-- Model: eshop.category -->
+        <record id="view_eshop_category_search" model="ir.ui.view">
+            <field name="model">eshop.category</field>
+            <field name="arch" type="xml">
+                <search string="eShop Categories">
+                    <field name="name"/>
+                    <field name="parent_id"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="view_eshop_category_tree" model="ir.ui.view">
+            <field name="model">eshop.category</field>
+            <field name="arch" type="xml">
+                <tree string="eShop Categories">
+                    <field name="complete_name"/>
+                    <field name="product_qty"/>
+                    <field name="available_product_qty"/>
+                    <field name="company_id" groups="base.group_multi_company" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_eshop_category_form" model="ir.ui.view">
+            <field name="model">eshop.category</field>
+            <field name="arch" type="xml">
+                <form string="eShop Categories" version="7.0">
+                    <sheet>
+                        <field name="image_medium" widget="image" class="oe_avatar oe_left"/>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1><field name="name"/></h1>
+                            <label for="parent_id" class="oe_edit_only"/>
+                            <h2><field name="parent_id"/></h2>
+                            <group col="4">
+                                <field name="type"/>
+                                <field name="company_id" groups="base.group_multi_company"/>
+                            </group>
+                        </div>
+                        <div class="oe_right oe_button_box">
+                            <group>
+                                <field name="available_product_qty"/>
+                                <field name="product_qty"/>
+                            </group>
+                        </div>
+                        <notebook>
+                            <page string="Childs Categories" attrs="{'invisible':[('type','=','normal')]}">
+                                <group>
+                                    <field name="child_ids" nolabel="1"/>
+                                </group>
+                            </page>
+                            <page string="Products" attrs="{'invisible':[('type','=','view')]}">
+                                <button name="%(action_change_product_category)d"
+                                    string="Move to other eShop Category"
+                                    type="action"
+                                    attrs="{'invisible':[('product_qty','=',0)]}"/>
+                                <group>
+                                    <field name="product_ids" nolabel="1"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+<!--        <record id="view_eshop_category_form" model="ir.ui.view">-->
+<!--            <field name="model">eshop.category</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <kanban>-->
+<!--                    <field name="name"/>-->
+<!--                    <field name="type"/>-->
+<!--                    <field name="state"/>-->
+<!--                    <field name="installed_module_qty"/>-->
+<!--                    <field name="module_qty"/>-->
+<!--                    <field name="url"/>-->
+<!--                    <field name="branch"/>-->
+<!--                    <field name="revision"/>-->
+<!--                    <templates>-->
+<!--                        <t t-name="kanban-box">-->
+<!--                            <div t-attf-class="oe_kanban_ir_module_repository_color_#{record.state.raw_value}">-->
+<!--                                <div class="oe_kanban_ir_module_repository">-->
+<!--                                    <a type="open">-->
+<!--                                        <t t-if="record.type.raw_value == 'git'">-->
+<!--                                            <img t-att-src='_s + "/module_repository/static/src/img/version_control/git.png"' class="oe_kanban_image"/>-->
+<!--                                        </t>-->
+<!--                                        <t t-if="record.type.raw_value == 'bazaar'">-->
+<!--                                            <img t-att-src='_s + "/module_repository/static/src/img/version_control/bazaar.png"' class="oe_kanban_image"/>-->
+<!--                                        </t>-->
+<!--                                        <t t-if="record.type.raw_value == 'unknown'">-->
+<!--                                            <img t-att-src='_s + "/module_repository/static/src/img/version_control/unknown.png"' class="oe_kanban_image"/>-->
+<!--                                        </t>-->
+<!--                                    </a>-->
+<!--                                    <div class="oe_kanban_details">-->
+<!--                                        <h4 class="oe_partner_heading">-->
+<!--                                            <a type="open"><field name="name"/></a>-->
+<!--                                            <span> ( </span>-->
+<!--                                            <field name="installed_module_qty"/>-->
+<!--                                            <span> / </span>-->
+<!--                                            <field name="module_qty"/>-->
+<!--                                            <span> ) </span>-->
+<!--                                        </h4>-->
+<!--                                        <ul>-->
+<!--                                            <t t-if="record.url.raw_value">-->
+<!--                                                <li>-->
+<!--                                                    <a t-att-href="record.url.raw_value" target="_blank"><field name="url"/></a>-->
+<!--                                                </li>-->
+<!--                                            </t>-->
+<!--                                            <li t-if="record.branch.raw_value">-->
+<!--                                                <span>Branch: </span><field name="branch"/>-->
+<!--                                            </li>-->
+<!--                                            <li t-if="record.revision.raw_value">-->
+<!--                                                <span>Revision: </span><field name="revision"/>-->
+<!--                                                <t t-if="record.local_modification_qty.raw_value != 0">-->
+<!--                                                    <span class="local_modification">Local Changes: <field name="local_modification_qty"/></span>-->
+<!--                                                </t>-->
+<!--                                            </li>-->
+<!--                                        </ul>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </t>-->
+<!--                    </templates>-->
+<!--                </kanban>-->
+<!--            </field>-->
+<!--        </record>-->
+
+    </data>
+</openerp>

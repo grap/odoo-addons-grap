@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Sale - Recovery Moment Module for Odoo
+#    Sale - eShop for Odoo
 #    Copyright (C) 2014 GRAP (http://www.grap.coop)
 #    @author Sylvain LE GAL (https://twitter.com/legalsylvain)
 #
@@ -21,41 +21,26 @@
 ##############################################################################
 
 {
-    'name': 'Sale - Recovery Moment',
+    'name': 'eShop',
     'version': '0.1',
-    'summary': """Manage Recovery Moments and Places for Sale Order""",
+    'summary': "Allow connection to Odoo eShop Project",
     'category': 'Sale',
     'description': """
-Manage Recovery Moments and Places for Sale Order
-=================================================
+Allow connection to Odoo eShop Project
+======================================
 
 Functionality:
 --------------
-    * XXX;
+    * Create a new category eshop_category for products;
+    * Add fields 'eShop Category' and 'eShop Available' on product;
 
 Technical Information:
 ----------------------
-    * XXX;
+    * TODO
 
 TODO:
 -----
-    * Possibility to create a moment group based on existing moment group,
-    by sliding by a number of days;
-    * maybe a link on stock.picking.out better;
-    * make the link between stock.picking and moment group by sale_id;
-    * finish color management for kanban view;
-    * make company_id a related field on both moment and moment group object;
-
-    * Make demo data for stock;
-    * Realize some test;
-    * fr translation;
-    * ir access;
-    * ir rules;
-    * ir group;
-
-Technical Limits:
-    * This module displays some Total or sale Order; This amount will be wrong
-    in a multicurrencies context for the instance;
+    * Add a button move into other category on eshop.category;
 
 Copyright, Authors and Licence:
 -------------------------------
@@ -66,27 +51,19 @@ Copyright, Authors and Licence:
     'license': 'AGPL-3',
     'depends': [
         'sale',
-        'stock',
     ],
     'data': [
         'security/ir_module_category.yml',
         'security/res_groups.yml',
         'security/ir_model_access.yml',
-        'data/ir_sequence_type.yml',
-        'data/ir_sequence.yml',
-        'view/action.xml',
+        'view/wizard_view.xml',
+        'view/wizard_action.xml',
         'view/view.xml',
+        'view/action.xml',
         'view/menu.xml',
     ],
     'demo': [
-        'demo/sale_recovery_place.yml',
-        'demo/sale_recovery_moment_group.yml',
-        'demo/sale_recovery_moment.yml',
-        'demo/sale_order.yml',
-    ],
-    'css': [
-        'static/src/css/css.css',
-    ],
-    'images': [
+        'demo/eshop_category.yml',
+        'demo/product_product.yml',
     ],
 }

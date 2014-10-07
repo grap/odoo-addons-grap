@@ -119,6 +119,6 @@ class sale_recovery_moment(Model):
         (
             _check_recovery_dates,
             'Error ! The minimum date of Recovery must be before the maximum'
-            'date of Recovery.',
+            ' date of Recovery.',
             ['min_recovery_date', 'max_recovery_date']),
     ]

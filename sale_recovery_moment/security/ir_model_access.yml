@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Tools - Repository of Modules for Odoo
+#    Sale - eShop for Odoo
 #    Copyright (C) 2014 GRAP (http://www.grap.coop)
 #    @author Sylvain LE GAL (https://twitter.com/legalsylvain)
 #
@@ -20,25 +20,58 @@
 #
 ##############################################################################
 
-- 
-  Creating a ir.model.access record
-- 
-  !record {model: ir.model.access, id: ir_model_access_repository_reader}:
-    model_id: module_repository.model_ir_module_repository
-    name: Module Repository Reader
+- !record {model: ir.model.access, id: ir_model_access_recovery_moment_reader}:
+    group_id: sale_recovery_moment.res_groups_recovery_user
+    model_id: sale_recovery_moment.model_sale_recovery_moment
+    name: Recovery Moment Reader
     perm_read: true
     perm_create: false
     perm_write: false
     perm_unlink: false
 
+- !record {model: ir.model.access, id: ir_model_access_recovery_moment_manager}:
+    group_id: sale_recovery_moment.res_groups_recovery_manager
+    model_id: sale_recovery_moment.model_sale_recovery_moment
+    name: Recovery Moment Manager
+    perm_read: true
+    perm_create: true
+    perm_write: true
+    perm_unlink: true
 
-- 
-  Creating a ir.model.access record
-- 
-  !record {model: ir.model.access, id: ir_model_access_repository_manager}:
-    group_id: base.group_system
-    model_id: module_repository.model_ir_module_repository
-    name: Module Repository Manager
+
+- !record {model: ir.model.access, id: ir_model_access_recovery_moment_group_reader}:
+    group_id: sale_recovery_moment.res_groups_recovery_user
+    model_id: sale_recovery_moment.model_sale_recovery_moment_group
+    name: Recovery Moment Group Reader
+    perm_read: true
+    perm_create: false
+    perm_write: false
+    perm_unlink: false
+
+- !record {model: ir.model.access, id: ir_model_access_recovery_moment_group_manager}:
+    group_id: sale_recovery_moment.res_groups_recovery_manager
+    model_id: sale_recovery_moment.model_sale_recovery_moment_group
+    name: Recovery Moment Group Manager
+    perm_read: true
+    perm_create: true
+    perm_write: true
+    perm_unlink: true
+
+
+
+- !record {model: ir.model.access, id: ir_model_access_recovery_moment_place_reader}:
+    group_id: sale_recovery_moment.res_groups_recovery_user
+    model_id: sale_recovery_moment.model_sale_recovery_place
+    name: Recovery Place Reader
+    perm_read: true
+    perm_create: false
+    perm_write: false
+    perm_unlink: false
+
+- !record {model: ir.model.access, id: ir_model_access_recovery_moment_place_manager}:
+    group_id: sale_recovery_moment.res_groups_recovery_manager
+    model_id: sale_recovery_moment.model_sale_recovery_place
+    name: Recovery Place Manager
     perm_read: true
     perm_create: true
     perm_write: true

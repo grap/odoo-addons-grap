@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- ********************************************************************** -->
-<!--    Sale - Recovery Moment Module for Odoo                              -->
+<!--    Sale - eShop for Odoo                                               -->
 <!--    Copyright (C) 2014- Today GRAP (http://www.grap.coop)               -->
 <!--    @author Sylvain LE GAL (https://twitter.com/legalsylvain)           -->
 
@@ -17,23 +17,23 @@
 <!--You should have received a copy of the GNU Affero General Public License-->
 <!--along with this program.  If not, see <http://www.gnu.org/licenses/>.   -->
 <!-- ********************************************************************** -->
-<!-- ********************************************************************** -->
 <openerp>
     <data>
 
-        <menuitem id="menu_sale_recovery"
-            name="Recovery Sales" sequence="80"
-            parent="base.menu_base_config" />
+        <record id="action_eshop_category" model="ir.actions.act_window">
+            <field name="name">eShop Categories</field>
+            <field name="res_model">eshop.category</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
 
-        <menuitem id="menu_sale_recovery_place"
-            name="Recovery Place" sequence="1"
-            parent="menu_sale_recovery"
-            action="action_sale_recovery_place"/>
-
-        <menuitem id="menu_sale_recovery_moment_group"
-            name="Recovery Moment Group" sequence="2"
-            parent="menu_sale_recovery"
-            action="action_sale_recovery_moment_group"/>
+        <record id="action_product_product" model="ir.actions.act_window">
+            <field name="name">Products (eShop)</field>
+            <field name="res_model">product.product</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_product_product_form" />
+        </record>
 
     </data>
 </openerp>

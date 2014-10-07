@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- ********************************************************************** -->
-<!--    Sale - Recovery Moment Module for Odoo                              -->
+<!--    Sale - eShop for Odoo                                               -->
 <!--    Copyright (C) 2014- Today GRAP (http://www.grap.coop)               -->
 <!--    @author Sylvain LE GAL (https://twitter.com/legalsylvain)           -->
 
@@ -17,23 +17,26 @@
 <!--You should have received a copy of the GNU Affero General Public License-->
 <!--along with this program.  If not, see <http://www.gnu.org/licenses/>.   -->
 <!-- ********************************************************************** -->
-<!-- ********************************************************************** -->
 <openerp>
     <data>
 
-        <menuitem id="menu_sale_recovery"
-            name="Recovery Sales" sequence="80"
-            parent="base.menu_base_config" />
-
-        <menuitem id="menu_sale_recovery_place"
-            name="Recovery Place" sequence="1"
-            parent="menu_sale_recovery"
-            action="action_sale_recovery_place"/>
-
-        <menuitem id="menu_sale_recovery_moment_group"
-            name="Recovery Moment Group" sequence="2"
-            parent="menu_sale_recovery"
-            action="action_sale_recovery_moment_group"/>
+<!-- Define: wizard.change.product.category -->
+        <record id="view_change_product_category" model="ir.ui.view">
+            <field name="model">wizard.change.product.category</field>
+            <field name="arch" type="xml">
+                <form string="Move to other eShop Category" version="7.0">
+                    <group>
+                        <field name="old_eshop_category_id"/>
+                        <field name="new_eshop_category_id"/>
+                    </group>
+                    <footer>
+                        <button name="change_product_category" string="_Apply" type="object" class="oe_highlight"/>
+                        <label string="or"/>
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
 
     </data>
 </openerp>

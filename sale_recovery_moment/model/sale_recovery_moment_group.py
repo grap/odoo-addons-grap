@@ -24,6 +24,8 @@ from datetime import datetime
 
 from openerp.osv import fields
 from openerp.osv.orm import Model
+from openerp.osv.orm import except_orm
+from openerp.tools.translate import _
 
 
 class sale_recovery_moment_group(Model):
@@ -38,6 +40,49 @@ class sale_recovery_moment_group(Model):
         ('pending_recovery', 'Pending Recovery'),
         ('finished_recovery', 'Finished Recovery')
     ]
+
+    # Search Functions Section
+    def _search_type(self, cr, uid, obj, name, arg, context=None):
+        now = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        if arg[0][1] not in ('=', 'in'):
+            raise except_orm(
+                _("The Operator %s is not implemented !") % (arg[0][1]),
+                str(arg))
+        if arg[0][1] == '=':
+            lst = [arg[0][2]]
+        else:
+            lst = arg[0][2]
+        sql_lst = []
+        if 'futur' in lst:
+            sql_lst.append(
+                "('%s' < min_sale_date)" % (now))
+        if 'pending_sale' in lst:
+            sql_lst.append((
+                "(min_sale_date < '%s'"
+                + " AND '%s' < max_sale_date)") % (now, now))
+        if 'finished_sale' in lst:
+            sql_lst.append((
+                "(max_sale_date < '%s'"
+                + " AND '%s'<min_recovery_date)") % (now, now))
+        if 'pending_recovery' in lst:
+            sql_lst.append((
+                "(min_recovery_date < '%s'"
+                + " AND '%s' < max_recovery_date)") % (now, now))
+        if 'finished_recovery' in lst:
+            sql_lst.append(
+                "(max_recovery_date < '%s')" % (now))
+
+        where = sql_lst[0]
+        for item in sql_lst[1:]:
+            where += " OR %s" % (item)
+        sql_req = """
+            SELECT id
+            FROM sale_recovery_moment_group
+            WHERE %s;""" % (where)
+        print sql_req
+        cr.execute(sql_req)
+        res = cr.fetchall()
+        return [('id', 'in', map(lambda x:x[0], res))]
 
     # Field Functions Section
     def _get_date(self, cr, uid, ids, field_name, arg, context=None):
@@ -115,12 +160,13 @@ class sale_recovery_moment_group(Model):
             'Maximum date for the Sale', required=True),
         'min_recovery_date': fields.function(
             _get_date, multi='date', type='datetime',
-            string='Minimum date for the recovery'),
+            string='Minimum date for the Recovery', store=True),
         'max_recovery_date': fields.function(
             _get_date, multi='date', type='datetime',
-            string='Maximum date for the recovery'),
+            string='Maximum date for the Recovery', store=True),
         'state': fields.function(
             _get_date, multi='date', type='selection', string='State',
+            fnct_search=_search_type,
             selection=_STATE_SELECTION),
         'moment_ids': fields.one2many(
             'sale.recovery.moment', 'group_id', 'Recovery Moments'),
@@ -193,6 +239,6 @@ class sale_recovery_moment_group(Model):
         (
             _check_sale_dates,
             'Error ! The minimum date of Sale must be before the maximum'
-            'date of Sale.',
+            ' date of Sale.',
             ['min_sale_date', 'max_sale_date']),
     ]

@@ -53,7 +53,7 @@
                 <search string="Search Recovery Moment Group">
                     <field name="name"/>
                     <filter name="futur" string="Futur" domain="[('state','=','futur')]"/>
-                    <filter name="pending" string="Pending" domain="[('state','not in',('futur','finished_recovery'))]"/>
+                    <filter name="pending" string="Pending" domain="[('state','in',('pending_sale', 'finished_sale', 'pending_recovery'))]"/>
                     <filter name="finished" string="Finished" domain="[('state','=','finished_recovery')]"/>
                 </search>
             </field>
