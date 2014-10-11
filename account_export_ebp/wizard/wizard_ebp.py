@@ -306,9 +306,9 @@ class account_export_ebp(osv.TransientModel):
                 account_nb = normalize(line.account_id.code)
                 if (data['form']['company_suffix']
                     and line.company_id
-                    and line.company_id.product_code_prefix
+                    and line.company_id.code
                     and (line.account_id.type in ('payable', 'receivable'))):
-                    account_nb = account_nb + line.company_id.product_code_prefix
+                    account_nb = account_nb + line.company_id.code
                 if (data['form']['partner_accounts']
                     and line.partner_id
                     and line.partner_id.ref_nb
@@ -343,12 +343,12 @@ class account_export_ebp(osv.TransientModel):
                     moves_data[account_nb] = {
                         'date' : move.date,
                         'journal' : move.journal_id.code,
-                        'ref' : normalize(((line.company_id.product_code_prefix + ' ') if line.company_id.product_code_prefix else '') + line.name + ((' (' + move.ref + ')') if move.ref else '')),
+                        'ref' : normalize(((line.company_id.code + ' ') if line.company_id.code else '') + line.name + ((' (' + move.ref + ')') if move.ref else '')),
                         'name' : normalize(move.name),
                         'credit' : line.credit,
                         'debit' : line.debit,
                         'date_maturity' : line.date_maturity,
-                        'analytic': line.company_id.product_code_prefix
+                        'analytic': line.company_id.code
                     }
                 else:
                     moves_data[account_nb]['credit'] += line.credit

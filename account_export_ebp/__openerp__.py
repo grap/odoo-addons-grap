@@ -43,7 +43,7 @@ A menu allow the user to see the list of all past exports and download again old
 ''',
     'depends' : [
         'account_accountant',
-        'product_unique_default_code',
+        'base_fiscal_company',
     ],
     'update_xml' : [
         'view/view.xml',
