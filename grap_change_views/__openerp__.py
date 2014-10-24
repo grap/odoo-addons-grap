@@ -51,7 +51,7 @@ Copyright, Authors and Licence:
         'base_vat',
         'delivery',
         'email_template',
-        'grap_ethiquette',
+        'sale_food',
         'point_of_sale',
         'pos_both_mode',
         'product',
@@ -64,8 +64,9 @@ Copyright, Authors and Licence:
         'stock',
         'pos_multicompany',
         'product_taxes_group',
-        ],
+    ],
     'data': [
+        'security/res_groups.yml',
         'view/account.xml',
         'view/base.xml',
         'view/grap_change_views.xml',
@@ -74,7 +75,7 @@ Copyright, Authors and Licence:
         'view/purchase.xml',
         'view/sale.xml',
         'view/stock.xml',
-        ],
+    ],
     'css': [
         'static/src/css/css.css'
     ],

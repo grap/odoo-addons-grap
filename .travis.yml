@@ -1,12 +1,11 @@
-
 language: python
 
 python:
   - "2.7"
 
 env:
-  - VERSION="7.0" ODOO_REPO="odoo/odoo" EXCLUDE="account_delete_move_null_amount,account_export_ebp,account_group_move_lines,account_merge_moves_by_patterns,account_move_change_number,account_move_period_date_conform,account_statement_reconciliation,backup_files,bank_statement_closing_state,database_integrity,grap_change_mail_management_purchase,grap_ethiquette,grap_reporting,invoice_verified_state,l10n_fr_res_department,l10n_fr_res_state,mail_send_bcc,manage_accounts_integrity,pos_payment_method_list,pos_rewrite_create_aml,pos_tax,product_average_consumption,product_categ_search_complete_name,product_category_recursive_property,product_improved_search,product_margin_improve,product_remove_default_uom,product_theoretical_margin,purchase_compute_order_pos,purchase_compute_order_sale,purchase_compute_order,purchase_package_qty,purchase_supplier_uom,sale_reporting,stock_internal_use_of_products,stock_inventory_improve,stock_inventory_sum_duplicates,stock_inventory_valuation"
-  - VERSION="7.0" ODOO_REPO="OCA/OCB" EXCLUDE="account_delete_move_null_amount,account_export_ebp,account_group_move_lines,account_merge_moves_by_patterns,account_move_change_number,account_move_period_date_conform,account_statement_reconciliation,backup_files,bank_statement_closing_state,database_integrity,grap_change_mail_management_purchase,grap_ethiquette,grap_reporting,invoice_verified_state,l10n_fr_res_department,l10n_fr_res_state,mail_send_bcc,manage_accounts_integrity,pos_payment_method_list,pos_rewrite_create_aml,pos_tax,product_average_consumption,product_categ_search_complete_name,product_category_recursive_property,product_improved_search,product_margin_improve,product_remove_default_uom,product_theoretical_margin,purchase_compute_order_pos,purchase_compute_order_sale,purchase_compute_order,purchase_package_qty,purchase_supplier_uom,sale_reporting,stock_internal_use_of_products,stock_inventory_improve,stock_inventory_sum_duplicates,stock_inventory_valuation"
+  - VERSION="7.0" ODOO_REPO="odoo/odoo"
+  - VERSION="7.0" ODOO_REPO="OCA/OCB"
 
 virtualenv:
   system_site_packages: true
@@ -23,7 +22,6 @@ install:
   - printf '[options]\n\nrunning_env = dev' > ${HOME}/.openerp_serverrc
 
 script:
-  - travis_run_flake8
   - travis_run_tests ${VERSION}
 
 after_success:

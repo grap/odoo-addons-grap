@@ -212,7 +212,7 @@ class ir_module_repository(Model):
             repo = git.Repo(repository.path)
         except:
             repo = False
-        if repo and repo.path != '/.git':
+        if repo:
             url = self._parse(
                 repo.git.remote(verbose=True), 'origin\t', ' (fetch)')
             branch = self._parse(

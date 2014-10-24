@@ -82,11 +82,8 @@
                     <field name="product_manager" position="attributes">
                         <attribute name="groups">base.group_no_one</attribute>
                     </field>
-                    <group name="Weights" position="attributes">
-                        <attribute name="groups"/>
-                    </group>
                     <field name="image_medium" position="attributes">
-                        <attribute name="groups">pos_both_mode.group_pos_tactile</attribute>
+                        <attribute name="groups">grap_change_views.group_product_image_manager</attribute>
                     </field>
                 </data>
             </field>
@@ -101,11 +98,17 @@
                     <sheet>
                         <group col="6">
                             <group colspan="4" col="4">
-                                <group colspan="4">
-                                    <label for="name" class="oe_edit_only"/>
-                                    <h2><field name="name"/></h2>
-                                    <label for="categ_id" class="oe_edit_only"/>
-                                    <h2><field name="categ_id"/></h2>
+                                <group colspan="4" col="8">
+                                    <group colspan="1" col="1">
+                                        <field name="image_medium" widget="image" nolabel="1"
+                                            groups="grap_change_views.group_product_image_manager" class="oe_avatar"/>
+                                    </group>
+                                    <group colspan="7">
+                                        <label for="name" class="oe_edit_only"/>
+                                        <h2><field name="name"/></h2>
+                                        <label for="categ_id" class="oe_edit_only"/>
+                                        <h2><field name="categ_id"/></h2>
+                                    </group>
                                 </group>
                                 <group colspan="4">
                                     <group>
@@ -163,12 +166,12 @@
                                     </group>
                                 </group>
                                 <group col="6">
-                                    <group string="Consumption">
+                                    <group string="Consumption" colspan="2">
                                         <field name="nb_days"/>
                                         <field name="total_consumption"/>
                                         <field name="average_consumption"/>
                                     </group>
-                                    <group string="Sellers">
+                                    <group string="Sellers" colspan="4">
                                         <field name="seller_ids" nolabel="1" context="{'uom_id': uom_po_id}"/>
                                     </group>
                                 </group>
@@ -204,51 +207,51 @@
                                     <field name="taxes_id" widget="many2many_tags"/>
                                 </group>
                             </page>
-                            <page string="Food information" groups="grap_ethiquette.group_reader">
+                            <page string="Food information" groups="sale_food.group_food_user">
                                 <group colspan="4">
                                     <group>
                                         <separator string="Origin information" colspan="2"/>
-                                        <field name="ethiquette_origin_country" options="{'quick_create':false}"
-                                            on_change="onchange_ethiquette_origin_country(
-                                                ethiquette_origin_country, 
-                                                ethiquette_origin_department)"/>
-                                        <field name="ethiquette_origin_department" options="{'quick_create':false}"
-                                            on_change="onchange_ethiquette_origin_department(
-                                                ethiquette_origin_country, 
-                                                ethiquette_origin_department)"/>
-                                        <field name="ethiquette_origin"/>
-                                        <field name="ethiquette_maker"/>
+                                        <field name="country_id" options="{'quick_create':false}"
+                                            on_change="onchange_country_id(
+                                                country_id,
+                                                department_id)"/>
+                                        <field name="department_id" options="{'quick_create':false}"
+                                            on_change="onchange_department_id(
+                                                country_id, 
+                                                department_id)"/>
+                                        <field name="origin_description"/>
+                                        <field name="maker_description"/>
                                     </group>
                                     <group>
                                         <separator string="Food information" colspan="2"/>
-                                        <field name="ethiquette_category"/>
-                                        <field name="ethiquette_label_ids" options="{'quick_create':false}"
+                                        <field name="fresh_category"/>
+                                        <field name="label_ids" options="{'quick_create':false}"
                                             widget="many2many_tags"
-                                            on_change="onchange_ethiquette_label_ids(
-                                                ethiquette_label_ids, 
-                                                ethiquette_social, 
-                                                ethiquette_local, 
-                                                ethiquette_organic, 
-                                                ethiquette_packaging, context)"/>
+                                            on_change="onchange_label_ids(
+                                                label_ids,
+                                                social_notation,
+                                                local_notation,
+                                                organic_notation,
+                                                packaging_notation, context)"/>
                                     </group>
                                 </group>
                                 <group colspan="4" col="4">
                                     <group colspan="2">
                                         <separator string="Print information" colspan="2"/>
-                                        <field name="ethiquette_edition_state"/>
-                                        <field name="ethiquette_type" options="{'quick_create':false}"/>
+                                        <field name="pricetag_state"/>
+                                        <field name="pricetag_type_id" options="{'quick_create':false}"/>
                                     </group>
                                     <group colspan="2" col="4">
                                         <group colspan="2">
                                             <separator string="Notation" colspan="2"/>
-                                            <field name="ethiquette_local"/>
-                                            <field name="ethiquette_social"/>
-                                            <field name="ethiquette_packaging"/>
-                                            <field name="ethiquette_organic"/>
+                                            <field name="local_notation"/>
+                                            <field name="social_notation"/>
+                                            <field name="packaging_notation"/>
+                                            <field name="organic_notation"/>
                                         </group>
                                         <group colspan="2">
                                             <separator string="Spider Chart" colspan="2"/>
-                                            <field name="ethiquette_spider_chart" widget='image' nolabel="1" readonly="1" 
+                                            <field name="spider_chart_image" widget='image' nolabel="1" readonly="1" 
                                                 img_height="120" img_width="120" colspan="2"/>
                                         </group>
                                     </group>
