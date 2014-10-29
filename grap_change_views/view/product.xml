@@ -240,6 +240,7 @@
                                         <separator string="Print information" colspan="2"/>
                                         <field name="pricetag_state"/>
                                         <field name="pricetag_type_id" options="{'quick_create':false}"/>
+                                        <field name="pricetag_organic_text_ignore"/>
                                     </group>
                                     <group colspan="2" col="4">
                                         <group colspan="2">
