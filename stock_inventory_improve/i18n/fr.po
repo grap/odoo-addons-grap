@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-11 14:19+0000\n"
-"PO-Revision-Date: 2014-06-11 14:19+0000\n"
+"POT-Creation-Date: 2014-11-06 22:27+0000\n"
+"PO-Revision-Date: 2014-11-06 22:27+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,10 +16,10 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: stock_inventory_improve
-#: code:addons/stock_inventory_improve/model/product_uom.py:30
+#: code:addons/stock_inventory_improve/model/product_uom.py:53
 #, python-format
-msgid "Conversion error for product \"%s\"!"
-msgstr "Erreur de conversion d'unité pour le produit \"%s\"!"
+msgid "Conversion error for product '%s'!"
+msgstr "Erreur de conversion d'unité pour le produit '%s'!"
 
 #. module: stock_inventory_improve
 #: help:stock.fill.inventory,set_account_zero:0
@@ -49,13 +49,18 @@ msgid "Product Unit of Measure"
 msgstr "Unité de mesure du produit"
 
 #. module: stock_inventory_improve
+#: view:stock.inventory:0
+msgid "Reset Price Unit"
+msgstr "Réinitialiser le Prix Unitaire"
+
+#. module: stock_inventory_improve
 #: field:stock.fill.inventory,set_account_zero:0
 #: field:stock.inventory,set_account_zero:0
 msgid "Set account valuation to zero"
 msgstr "Ramener la balance du compte à 0"
 
 #. module: stock_inventory_improve
-#: code:addons/stock_inventory_improve/model/product_uom.py:30
+#: code:addons/stock_inventory_improve/model/product_uom.py:54
 #, python-format
 msgid "The UoM defined here (%s) doesn't belong the same category as the Uom defined in the Product form (%s)."
 msgstr "L'UdM définie ici (%s) n'appartient pas à la même catégorie que l'UdM définie dans la fiche produit (%s)."
