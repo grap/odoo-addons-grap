@@ -204,5 +204,9 @@
             <field eval="[(6, 0, [ref('base.group_no_one')])]" name="groups_id"/>
         </record>
 
+        <record model="ir.ui.menu" id="account.menu_board_account">
+            <field eval="[(6, 0, [ref('base.group_no_one')])]" name="groups_id"/>
+        </record>
+
     </data>
 </openerp>

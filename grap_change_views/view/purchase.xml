@@ -27,6 +27,20 @@
             <field eval="[(6, 0, [ref('base.group_no_one')])]" name="groups_id"/>
         </record>
 
+        <record model="ir.ui.menu" id="purchase.menu_action_purchase_order_report_all">
+            <field eval="[(6, 0, [ref('base.group_no_one')])]" name="groups_id"/>
+        </record>
+
+        <record model="ir.ui.menu" id="product_margin.menu_action_product_margin">
+            <field eval="[(6, 0, [ref('base.group_no_one')])]" name="groups_id"/>
+        </record>
+
+        <record model="ir.ui.menu" id="product_margin_improve.menu_action_product_margin_categ">
+            <field eval="[(6, 0, [ref('base.group_no_one')])]" name="groups_id"/>
+        </record>
+
+
+
 <!--_______________________Vues Reporting (Entrepot) ____________________________-->
         <record model="ir.ui.menu" id="purchase.menu_action_stock_move_report_po">
             <field eval="[(6, 0, [ref('base.group_no_one')])]" name="groups_id"/>
