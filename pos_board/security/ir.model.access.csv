@@ -1,6 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_board_pos_load_daily,board.pos.load.daily,model_pos_board_load_daily,point_of_sale.group_pos_user,1,0,0,0
-access_board_pos_load_weekly,board.pos.load.weekly,model_pos_board_load_weekly,point_of_sale.group_pos_user,1,0,0,0
-access_board_pos_load_monthly,board.pos.load.monthly,model_pos_board_load_monthly,point_of_sale.group_pos_user,1,0,0,0
-access_board_pos_load_daily_simple,board.pos.load.daily.simple,model_pos_board_load_daily_simple,point_of_sale.group_pos_user,1,0,0,0
-access_pos_board_payment_report,pos.board.payment.report,model_pos_board_payment_report,point_of_sale.group_pos_user,1,0,0,0
