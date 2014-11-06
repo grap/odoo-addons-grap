@@ -115,10 +115,12 @@
                                         <field name="type"/>
                                         <field name="uom_id" on_change="onchange_uom(uom_id,uom_po_id)" groups="product.group_uom"/>
                                         <field name="ean13"/>
+                                        <field name="administrative_ok" />
                                     </group>
                                     <group>
                                         <field name="purchase_ok"/>
-                                        <field name="sale_ok"/>
+                                        <field name="sale_ok" on_change="onchange_sale_ok(sale_ok)"/>
+                                         <field name="eshop_ok" groups="sale_eshop.res_groups_eshop_user"/>
                                         <field name="available_in_pos" string="Tactile point of sale"/>
                                     </group>
                                 </group>
@@ -256,6 +258,14 @@
                                                 img_height="120" img_width="120" colspan="2"/>
                                         </group>
                                     </group>
+                                </group>
+                            </page>
+                            <page string="eShop" groups="sale_eshop.res_groups_eshop_user">
+                                <group name="eShop" col="4">
+                                    <field name="eshop_category_id" colspan="4"/>
+                                    <field name="eshop_minimum_qty"/>
+                                    <field name="eshop_rounded_qty"/>
+                                    <field name="description" colspan="4"/>
                                 </group>
                             </page>
                         </notebook>

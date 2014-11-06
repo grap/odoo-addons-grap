@@ -55,6 +55,8 @@ Copyright, Authors and Licence:
         'point_of_sale',
         'pos_both_mode',
         'product',
+        'product_margin',
+        'product_margin_improve',
         'product_average_consumption',
         'product_theoretical_margin',
         'procurement',
@@ -64,6 +66,9 @@ Copyright, Authors and Licence:
         'stock',
         'pos_multicompany',
         'product_taxes_group',
+        'sale_eshop',
+        'pos_multiple_cash_control',
+        'product_fiscal_company',
     ],
     'data': [
         'security/res_groups.yml',
