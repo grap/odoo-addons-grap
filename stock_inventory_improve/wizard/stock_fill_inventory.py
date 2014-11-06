@@ -19,52 +19,50 @@
 #
 ##############################################################################
 
-from openerp.osv import fields, osv, orm
-from openerp.tools.translate import _
-from openerp.tools import mute_logger
+from openerp.osv.orm import TransientModel
+from openerp.osv import fields
 
-class stock_fill_inventory(osv.osv_memory):
-    _inherit = "stock.fill.inventory"
 
-    def _default_location(self, cr, uid, ids, context=None):
-        try:
-            location = self.pool.get('ir.model.data').get_object(cr, uid, 'stock', 'stock_location_stock')
-            with mute_logger('openerp.osv.orm'):
-                location.check_access_rule('read', context=context)
-            location_id = location.id
-        except (ValueError, orm.except_orm), e:
-            return False
-        return location_id or False
+class stock_fill_inventory(TransientModel):
+    _inherit = 'stock.fill.inventory'
 
     _columns = {
-        'set_account_zero': fields.boolean("Set account valuation to zero",help="If checked, the balance of the inventory account will be reseted to 0 after validating the inventory"),
+        'set_account_zero': fields.boolean(
+            "Set account valuation to zero",
+            help="""If checked, the balance of the inventory account will be"""
+            """ reseted to 0 after validating the inventory"""),
     }
 
-    def fill_inventory(self, cr, uid, ids, context=None):
-        """ To Import stock inventory according to products available in the selected locations.
-        @param self: The object pointer.
-        @param cr: A database cursor
-        @param uid: ID of the user currently logged in
-        @param ids: the ID or list of IDs if we want more than one
-        @param context: A standard dictionary
-        @return:
-        """
-        if context is None:
-            context = {}
+    # OverWrite Section
+    def _default_location(self, cr, uid, ids, context=None):
+        sl_obj = self.pool['stock.location']
+        sl_ids = sl_obj.search(cr, uid, [
+            ('usage', '=', 'internal'),
+            ('chained_location_type', '=', 'none')], context=context)
+        if len(sl_ids) > 0:
+            return sl_ids[0]
+        return False
 
+    _defaults = {
+        'location_id': _default_location,
+    }
+
+    # Overload Section
+    def fill_inventory(self, cr, uid, ids, context=None):
+        si_id = context['active_ids'][0]
+        assert(len(ids) == 1)
         res = super(stock_fill_inventory, self).fill_inventory(
-                                                cr, uid, ids, context=context)
-        inventory_obj = self.pool.get('stock.inventory')
-        if ids and len(ids):
-            ids = ids[0]
-        else:
-             return {'type': 'ir.actions.act_window_close'}
-        fill_inventory = self.browse(cr, uid, ids, context=context)
-        
-        if fill_inventory.set_stock_zero and fill_inventory.set_account_zero:
-            inventory_id = context['active_ids'][0]
-            inventory_obj.write(cr, uid, inventory_id, {
+            cr, uid, ids, context=context)
+
+        # manage account to zero
+        si_obj = self.pool['stock.inventory']
+        sfi = self.browse(cr, uid, ids[0], context=context)
+
+        if sfi.set_stock_zero and sfi.set_account_zero:
+            si_obj.write(cr, uid, si_id, {
                 'set_account_zero': True,
             }, context=context)
+
+        # Fix price_unit to 0
+        si_obj.reset_price_unit(cr, uid, [si_id], context=context)
         return res
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
