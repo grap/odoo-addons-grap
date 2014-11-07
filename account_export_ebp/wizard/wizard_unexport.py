@@ -21,23 +21,15 @@
 #
 ##############################################################################
 
-import base64
-import cStringIO
-import os
-import codecs
-import smbc
-from unidecode import unidecode
-
-import tools
-from tools.translate import _
-from openerp.osv import fields, osv
+from openerp.osv import osv
 import logging
 _logger = logging.getLogger(__name__)
+
 
 class account_unexport_ebp(osv.TransientModel):
     _name = "account.unexport.ebp"
 
-#Columns Section
+    # Columns Section
     _columns = {
     }
 
@@ -46,6 +38,8 @@ class account_unexport_ebp(osv.TransientModel):
             context = {}
         unexport_ids = context.get('active_ids', False)
         am_obj = self.pool.get('account.move')
-        am_obj.write(cr, uid, unexport_ids, {'exported_ebp_id': False}, context=context)
-        #TODO: find the file in ebp.export model and remove the move lines
+        am_obj.write(cr, uid, unexport_ids, {
+            'exported_ebp_id': False,
+        }, context=context)
+        # TODO: find the file in ebp.export model and remove the move lines
         return ids

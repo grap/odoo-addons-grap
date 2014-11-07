@@ -35,15 +35,17 @@ class TestAccountExportEBP(TransactionCase):
         self.webp_obj = self.registry('account.export.ebp')
         self.afy_obj = self.registry('account.fiscalyear')
 
-    ### Test Section
+    # Test Section
     def test_01_export_ref_null(self):
         """Test the export if move ref is null"""
         cr, uid = self.cr, self.uid
         # Get a demo account move
-        ai_id = self.imd_obj.get_object_reference(cr, uid, 'account', 'test_invoice_1')[1]
+        ai_id = self.imd_obj.get_object_reference(
+            cr, uid, 'account', 'test_invoice_1')[1]
         ai = self.ai_obj.browse(cr, uid, ai_id)
         am = ai.move_id
-        afy_id = self.imd_obj.get_object_reference(cr, uid, 'account', 'data_fiscalyear')[1]
+        afy_id = self.imd_obj.get_object_reference(
+            cr, uid, 'account', 'data_fiscalyear')[1]
 
         # Setting 'ref' field to Null
         aml_ids = [aml.id for aml in am.line_id]

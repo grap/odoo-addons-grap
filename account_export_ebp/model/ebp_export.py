@@ -21,35 +21,42 @@
 #
 ##############################################################################
 
-from openerp.osv.orm import Model
 from openerp.osv import fields
-from openerp.tools.translate import _
+from openerp.osv.orm import Model
+
 
 class ebp_export(Model):
     _name = "ebp.export"
 
     def _get_name(self, cr, uid, ids, name, args, context):
-        if context is None:
-            context = {}
-        res={}
-        for id in ids:
-            res[id] = 'export_' + str(id)
-        return res
+        return {x: 'export_' + str(x) for x in ids}
 
     _columns = {
-        'company_id': fields.many2one('res.company', 'Company', required=True,
+        'company_id': fields.many2one(
+            'res.company', 'Company', required=True,
             help="The company this fiscal year belongs to."),
-        'fiscalyear_id': fields.many2one('account.fiscalyear', 'Fiscal year', required=True,),
-        'exported_moves': fields.integer("Number of moves exported", readonly = True),
-        'ignored_moves': fields.integer("Number of moves ignored", readonly = True,),
-        'exported_lines': fields.integer("Number of lines exported", readonly = True),
-        'exported_accounts': fields.integer("Number of accounts exported", readonly = True),
-        'exported_moves_ids': fields.one2many('account.move', 'exported_ebp_id', 'Exported Moves'),
-        'data_moves': fields.binary('Moves file', readonly=True),
-        'data_accounts': fields.binary('Accounts file', readonly=True),
-        'data_balance': fields.binary('Balance file', readonly=True),
-        'date': fields.date('Date', required=True),
-        'name': fields.function(_get_name, 'Name', type='char', store=True)
+        'fiscalyear_id': fields.many2one(
+            'account.fiscalyear', 'Fiscal year', required=True,),
+        'exported_moves': fields.integer(
+            'Number of moves exported', readonly=True),
+        'ignored_moves': fields.integer(
+            'Number of moves ignored', readonly=True),
+        'exported_lines': fields.integer(
+            'Number of lines exported', readonly=True),
+        'exported_accounts': fields.integer(
+            'Number of accounts exported', readonly=True),
+        'exported_moves_ids': fields.one2many(
+            'account.move', 'exported_ebp_id', 'Exported Moves'),
+        'data_moves': fields.binary(
+            'Moves file', readonly=True),
+        'data_accounts': fields.binary(
+            'Accounts file', readonly=True),
+        'data_balance': fields.binary(
+            'Balance file', readonly=True),
+        'date': fields.date(
+            'Date', required=True),
+        'name': fields.function(
+            _get_name, 'Name', type='char', store=True)
     }
     _defaults = {
         'exported_moves': lambda * a: 0,

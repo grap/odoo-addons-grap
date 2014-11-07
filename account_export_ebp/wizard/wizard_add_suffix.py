@@ -23,17 +23,19 @@
 
 import unidecode
 from openerp.osv.orm import TransientModel
-from openerp.osv import fields, osv
+from openerp.osv import fields
 
 
 class account_add_suffix(TransientModel):
     _name = "account.add.suffix"
 
     _columns = {
-        'line_ids': fields.one2many('account.add.suffix.line', 'account_add_suffix_id', 'Add Suffix Lines'),
+        'line_ids': fields.one2many(
+            'account.add.suffix.line', 'account_add_suffix_id',
+            'Add Suffix Lines'),
     }
 
-#View Section
+    # View Section
     def affect_suffix(self, cr, uid, ids, context=None):
         if context is None:
             context = {}
@@ -42,37 +44,38 @@ class account_add_suffix(TransientModel):
         for suf in self.browse(cr, uid, ids, context=context):
             for line in suf.line_ids:
                 if line.suffix:
-                    rp_obj.write(cr, uid, line.partner_id.id, {'ref_nb': line.suffix}, context=context)
+                    rp_obj.write(cr, uid, line.partner_id.id, {
+                        'ref_nb': line.suffix,
+                    }, context=context)
         return True
 
-    ### Overloading section
+    # Overloading section
     def default_get(self, cr, uid, fields, context=None):
         rp_obj = self.pool.get('res.partner')
         line_ids = []
-        
-        res = super(account_add_suffix, self).default_get(cr, uid, fields, context=context)
-        
+        res = super(account_add_suffix, self).default_get(
+            cr, uid, fields, context=context)
+
         partner_ids = context.get('active_ids', False)
         if not partner_ids:
             return res
-        
         existing_suffixes = {}
         sql_req = """
-            SELECT rp.company_id, rp.ref_nb from res_partner rp 
+            SELECT rp.company_id, rp.ref_nb from res_partner rp
             WHERE ref_nb is not Null """
         cr.execute(sql_req)
         result = cr.dictfetchall()
         for item in result:
             existing_suffixes.setdefault(item['company_id'], [])
             existing_suffixes[item['company_id']] += [item['ref_nb']]
-        
-        am_ids = map(lambda x:x[0], cr.fetchall())
-        
+
         for partner in rp_obj.browse(cr, uid, partner_ids, context=context):
             if partner.ref_nb:
                 suffix = partner.ref_nb
             else:
-                suffix = self._get_suffix(partner.name, existing_suffixes.get(partner.company_id.id, []))
+                suffix = self._get_suffix(
+                    partner.name, existing_suffixes.get(
+                        partner.company_id.id, []))
                 if suffix:
                     existing_suffixes.setdefault(partner.company_id.id, [])
                     existing_suffixes[partner.company_id.id] += [suffix]
@@ -80,23 +83,24 @@ class account_add_suffix(TransientModel):
                 'partner_id': partner.id,
                 'company_id': partner.company_id.id,
                 'suffix': suffix,
-                }))
+            }))
             res.update({'line_ids': line_ids})
         return res
 
-#Private Section
+    # Private Section
     def _get_suffix(self, name, existing_suffixes):
-        #remove special caracters
+        # remove special caracters
         name2 = ''.join(e for e in name if e.isalnum())
-#        if nothing remains, return False
+        # if nothing remains, return False
         if not name2:
             return False
-#        first try: return the 4 fisrt caracters
+        # first try: return the 4 fisrt caracters
         suffix = name2[:min(4, len(name2))].upper()
         suffix = unidecode.unidecode(suffix)
         if suffix and not(suffix in existing_suffixes):
             return suffix
-#        second try: look for different words in the name and try taking caracters from them
+        # second try: look for different words in the name
+        # and try taking caracters from them
         for sep in [' ', """'""", '-']:
             if sep in name:
                 names = name.split(sep)
@@ -105,7 +109,9 @@ class account_add_suffix(TransientModel):
                 for j in range(1, len(names)):
                     for n in range(3, 0, -1):
                         if len(names[0]) >= n:
-                            suffix = names[0][:n].upper() + names[j][:(4-n)].upper()
+                            suffix = (
+                                names[0][:n].upper()
+                                + names[j][:(4 - n)].upper())
                             suffix = unidecode.unidecode(suffix)
                             if suffix and not(suffix in existing_suffixes):
                                 return suffix
@@ -134,8 +140,12 @@ class account_add_suffix_line(TransientModel):
     _name = "account.add.suffix.line"
 
     _columns = {
-        'account_add_suffix_id': fields.many2one('account.add.suffix', 'Add Suffix Id', ),
-        'partner_id': fields.many2one('res.partner', 'Partner', ),
-        'company_id': fields.many2one('res.company', 'Company', readonly=True),
-        'suffix': fields.char('Suggested EBP Suffix', size=4),
+        'account_add_suffix_id': fields.many2one(
+            'account.add.suffix', 'Add Suffix Id'),
+        'partner_id': fields.many2one(
+            'res.partner', 'Partner'),
+        'company_id': fields.many2one(
+            'res.company', 'Company', readonly=True),
+        'suffix': fields.char(
+            'Suggested EBP Suffix', size=4),
     }

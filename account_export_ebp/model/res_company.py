@@ -21,22 +21,28 @@
 #
 ##############################################################################
 
-"""Parameters for EBP export"""
+from osv import fields
+from openerp.osv.orm import Model
 
-from osv import fields, osv
 
-class res_company(osv.osv):
+class res_company(Model):
     """Add parameters to export accounting moves to EBP's software"""
     _inherit = 'res.company'
     _columns = {
-        'ebp_uri': fields.char('EBP Share URI', size=256,
-            help="The URI of the network share containing the company's EBP folder. Format: smb://SERVER/SHARE/DIR"),
-        'ebp_domain': fields.char('EBP User Domain', size=256,
-            help="The domain of the user to access the company's EBP folder."),
-        'ebp_username': fields.char('EBP User Name', size=256,
-            help="The name of the user to access the company's EBP folder."),
-        'ebp_password': fields.char('EBP User Password', size=256,
-            help="The password of the user to access the company's EBP folder."),
+        'ebp_uri': fields.char(
+            'EBP Share URI', size=256,
+            help="""The URI of the network share containing the company's"""
+            """ EBP folder. Format: smb://SERVER/SHARE/DIR"""),
+        'ebp_domain': fields.char(
+            'EBP User Domain', size=256,
+            help="""The domain of the user to access the company's EBP"""
+            """ folder."""),
+        'ebp_username': fields.char(
+            'EBP User Name', size=256,
+            help="""The name of the user to access the company's EBP"""
+            """ folder."""),
+        'ebp_password': fields.char(
+            'EBP User Password', size=256,
+            help="""The password of the user to access the company's"""
+            """ EBP folder."""),
     }
-res_company()
-

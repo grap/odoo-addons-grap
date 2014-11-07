@@ -22,17 +22,23 @@
 ##############################################################################
 
 from osv import fields, osv
-from tools.translate import _
 
 
 class account_fiscalyear(osv.osv):
     _inherit = "account.fiscalyear"
     _columns = {
         # make the company id mandatory
-        'company_id': fields.many2one('res.company', 'Company', required=True,
+        'company_id': fields.many2one(
+            'res.company', 'Company', required=True,
             help="The company this fiscal year belongs to."),
-        'ebp_nb': fields.integer('EBP Fiscal Year Number',
-            help="""This value should reflect the number of the fiscal year as used by the EBP accounting software. This should be set to the number of fiscal years recorded in EBP accounting before this one - So for the first year the number is 0, for the second year the number is 1 and so on. This is used for exporting accounting moves to EBP."""),
+        'ebp_nb': fields.integer(
+            'EBP Fiscal Year Number',
+            help="""This value should reflect the number of the fiscal year"""
+            """ as used by the EBP accounting software. This should be set"""
+            """ to the number of fiscal years recorded in EBP accounting"""
+            """ before this one - So for the first year the number is 0,"""
+            """ for the second year the number is 1 and so on. This is used"""
+            """ for exporting accounting moves to EBP."""),
     }
     _defaults = {
         'ebp_nb': lambda * a: 0
