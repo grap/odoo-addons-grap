@@ -88,16 +88,16 @@ class grap_todo_task(Model):
     # State section
     def state_previous(self, cr, uid, ids, context=None):
         for activity in self.browse(cr, uid, ids, context=context):
-            for index in range(len(_GRAP_TODO_TASK_STATE)-1):
-                if activity.state == _GRAP_TODO_TASK_STATE[index+1][0]:
+            for index in range(len(_GRAP_TODO_TASK_STATE) - 1):
+                if activity.state == _GRAP_TODO_TASK_STATE[index + 1][0]:
                     self.write(cr, uid, activity.id, {
                         'state': _GRAP_TODO_TASK_STATE[index][0]})
             return False
 
     def state_next(self, cr, uid, ids, context=None):
         for activity in self.browse(cr, uid, ids, context=context):
-            for index in range(len(_GRAP_TODO_TASK_STATE)-1):
+            for index in range(len(_GRAP_TODO_TASK_STATE) - 1):
                 if activity.state == _GRAP_TODO_TASK_STATE[index][0]:
                     self.write(cr, uid, activity.id, {
-                        'state': _GRAP_TODO_TASK_STATE[index+1][0]})
+                        'state': _GRAP_TODO_TASK_STATE[index + 1][0]})
             return False
