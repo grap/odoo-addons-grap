@@ -1,25 +1,45 @@
 # -*- encoding: utf-8 -*-
-################################################################################
-#    See Copyright and Licence Informations undermentioned.
-################################################################################
+##############################################################################
+#
+#    Product - Search On Complete Category Name Module for Odoo
+#    Copyright (C) 2013-Today GRAP (http://www.grap.coop)
+#    @author Julien WESTE
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+##############################################################################
 {
-    'name': 'Product Category - search on complete name',
-    'version': '0.1',
-    'category': 'Sale',
+    'name': 'Product - Search On Complete Category Name',
+    'version': '0.2',
+    'category': 'Product',
     'description': """
-Search the product_category on the complete name, that's to say the name containing all parents
-=============================================
+Search the product_category on the complete name, that's to say the
+name containing all parents
+===================================================================
+===========================
 
 Copyright and Licence :
 -----------------------
     * 2014, Groupement Régional Alimentaire de Proximité (http://www.grap.coop/)
     * Licence : AGPL-3 (http://www.gnu.org/licenses/)
 
-Contacts :
-----------
-    * Sylvain LE GAL (https://twitter.com/legalsylvain); 
-    * <informatique@grap.coop> for any help or question about this module.
-
+Copyright, Author and Licence :
+-------------------------------
+    * Copyright : 2013, Groupement Régional Alimentaire de Proximité;
+    * Author :
+        * Julien WESTE;
+    * Licence : AGPL-3 (http://www.gnu.org/licenses/)
     """,
     'author': 'GRAP',
     'website': 'http://www.grap.coop',
@@ -27,12 +47,7 @@ Contacts :
     'depends': [
         'product',
     ],
-    'init_xml': [],
-    'demo_xml': [],
-    'update_xml': [
+    'data': [
         'view/product_view.xml',
     ],
-    'application' : True,
-    'installable': True,
-    'auto_install': False,
 }
