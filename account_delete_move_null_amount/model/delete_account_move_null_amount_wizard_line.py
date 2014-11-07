@@ -20,4 +20,27 @@
 #
 ##############################################################################
 
-from . import model
+from openerp.osv.orm import TransientModel
+from openerp.osv import fields
+
+
+class delete_account_move_null_amount_wizard_line(TransientModel):
+    _name = 'delete.account.move.null.amount.wizard.line'
+    _description = "Information about an account move to delete"
+
+    # Columns section
+    _columns = {
+        'wizard_id': fields.many2one(
+            'delete.account.move.null.amount.wizard', 'Wizard Reference',
+            select=True),
+        'account_move_id': fields.many2one(
+            'account.move', 'Account Move to delete', readonly=True),
+        'period_id': fields.many2one(
+            'account.period', 'Period', readonly=True),
+        'journal_id': fields.many2one(
+            'account.journal', 'Journal', readonly=True),
+        'company_id': fields.many2one(
+            'res.company', 'Company', readonly=True),
+        'date': fields.date(
+            'Move Date', readonly=True),
+    }
