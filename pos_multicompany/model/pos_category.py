@@ -75,7 +75,7 @@ class pos_category(Model):
             _check_is_default_company_id,
             'There is only one default pos category by company!',
             ['is_default', 'company_id']),
-        ]
+    ]
 
     # Default Section
     def _get_default_company_id(self, cr, uid, context=None):
