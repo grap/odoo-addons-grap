@@ -29,11 +29,6 @@ name containing all parents
 ===================================================================
 ===========================
 
-Copyright and Licence :
------------------------
-    * 2014, Groupement Régional Alimentaire de Proximité (http://www.grap.coop/)
-    * Licence : AGPL-3 (http://www.gnu.org/licenses/)
-
 Copyright, Author and Licence :
 -------------------------------
     * Copyright : 2013, Groupement Régional Alimentaire de Proximité;
