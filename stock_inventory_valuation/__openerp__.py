@@ -1,22 +1,39 @@
 # -*- encoding: utf-8 -*-
-################################################################################
-#    See Copyright and Licence Informations undermentioned.
-################################################################################
+##############################################################################
+#
+#    Stock Inventory - Valuation Module for Odoo
+#    Copyright (C) 2013-Today GRAP (http://www.grap.coop)
+#    @author Sylvain LE GAL (https://twitter.com/legalsylvain)
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+##############################################################################
 
 {
-    'name': 'Stock Inventory Valuation',
-    'version': '0.1',
+    'name': 'Stock Inventory - Valuation',
+    'version': '1.0',
     'category': 'Stock',
     'description': """
 Stores the product standard price on the inventory.line, so as to be able to
 calculate the total valuation of one inventory.
-=======================================================
-
+============================================================================
+===============================================
 
 Copyright, Author and Licence :
 -------------------------------
     * Copyright : 2014, Groupement Régional Alimentaire de Proximité;
-    * Author : 
+    * Author :
         * Julien WESTE;
         * Sylvain LE GAL (https://twitter.com/legalsylvain);
     * Licence : AGPL-3 (http://www.gnu.org/licenses/)
@@ -30,14 +47,5 @@ Copyright, Author and Licence :
     'data': [
         'data/stock_inventory_report.xml',
         'view/view.xml',
-        ],
-    'demo': [],
-    'js': [],
-    'css': [],
-    'qweb': [],
-    'images': [],
-    'post_load': '',
-    'application' : True,
-    'installable': True,
-    'auto_install': False,
+    ],
 }
