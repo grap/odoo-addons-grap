@@ -55,7 +55,7 @@ class TestPosInvoicing(TransactionCase):
         # Opening Session
         ps_id = self.ps_obj.create(cr, uid, {
             'config_id': pc_id,
-            })
+        })
         # create Pos Order
         po_id = self.po_obj.create(cr, uid, {
             'partner_id': rp_c2c_id,
@@ -64,7 +64,7 @@ class TestPosInvoicing(TransactionCase):
                 'qty': 100,
                 'price_unit': 10,
             }]],
-            })
+        })
         # Realize Partial Payment
         self.po_obj.add_payment(cr, uid, po_id, {
             'journal': aj_id,

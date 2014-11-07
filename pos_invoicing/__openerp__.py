@@ -67,7 +67,7 @@ Copyright, Authors and Licence:
         'account',
         'account_voucher',
         'point_of_sale',
-        ],
+    ],
     'data': [
         'view/pos_invoice_draft_order_view.xml',
         'view/action.xml',
