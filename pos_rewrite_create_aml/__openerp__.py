@@ -1,23 +1,41 @@
 # -*- encoding: utf-8 -*-
-################################################################################
-#    See Copyright and Licence Informations undermentioned.
-################################################################################
+##############################################################################
+#
+#    Point Of Sale - Rewrite create_aml Module for Odoo
+#    Copyright (C) 2013-Today GRAP (http://www.grap.coop)
+#    @author Julien WESTE
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+##############################################################################
 {
-    'name': 'POS Rewrite Create_aml',
+    'name': 'Point Of Sale - Rewrite create_aml',
     'version': '0.1',
     'category': 'Point of Sale',
     'license': 'AGPL-3',
     'description': """
-The purpose of this module is to rewrite the awful _create_account_move_line 
+The purpose of this module is to rewrite the awful _create_account_move_line
 function of model pos_order, so that it can be easily modified by inheritance
 in other modules
-==========================================================================
 
-Contacts :
-----------
-    * Sylvain LE GAL (https://twitter.com/legalsylvain); 
-    * <informatique@grap.coop> for any help or question about this module.
 
+Copyright, Author and Licence:
+------------------------------
+    * Copyright : 2014, Groupement Régional Alimentaire de Proximité;
+    * Author :
+        * Julien WESTE;
+    * Licence : AGPL-3 (http://www.gnu.org/licenses/)
     """,
     'author': 'GRAP',
     'website': 'http://www.grap.coop',
@@ -25,10 +43,4 @@ Contacts :
     'depends': [
         'point_of_sale',
     ],
-    'init_xml': [],
-    'demo_xml': [],
-    'update_xml': [],
-    'application' : True,
-    'installable': True,
-    'auto_install': False,
 }
