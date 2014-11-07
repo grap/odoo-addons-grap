@@ -132,8 +132,8 @@ class pos_box_out(osv.osv_memory):
         if not product_id:
             return {'value': {
                 'taxe_name': '',
-                }}
+            }}
         pp = pp_obj.browse(cr, uid, product_id, context=context)
         return {'value': {
             'tax_name': ','.join([tax.name for tax in pp.taxes_id]),
-            }}
+        }}

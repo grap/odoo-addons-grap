@@ -56,7 +56,7 @@ class TestPosMultipleCashControl(TransactionCase):
         cr, uid = self.cr, self.uid
         self.ru_obj.write(cr, uid, [uid], {
             'groups_id': [(6, 0, [self.account_group_id])],
-            })
+        })
 
         vals = {
             'name': 'Test Product',
@@ -90,7 +90,7 @@ class TestPosMultipleCashControl(TransactionCase):
         # Try to create Income Product with right
         self.ru_obj.write(cr, uid, [uid], {
             'groups_id': [(6, 0, [self.account_manager_group_id])],
-            })
+        })
         error = False
         try:
             self.pp_obj.create(cr, uid, vals)
@@ -107,7 +107,7 @@ class TestPosMultipleCashControl(TransactionCase):
         cr, uid = self.cr, self.uid
         self.ru_obj.write(cr, uid, [uid], {
             'groups_id': [(6, 0, [self.account_manager_group_id])],
-            })
+        })
 
         vals = {
             'name': 'Test Product',
@@ -192,5 +192,3 @@ class TestPosMultipleCashControl(TransactionCase):
             'config_id': self.pc_id,
         })
         self.ps_obj.open_cb(cr, uid, [ps_id])
-
-        # Take money In
