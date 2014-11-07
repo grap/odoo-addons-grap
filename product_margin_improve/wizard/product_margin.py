@@ -19,34 +19,31 @@
 #
 ##############################################################################
 
-import time
-
 from openerp.osv import fields, osv
-from openerp.tools.translate import _
+
 
 class product_margin(osv.osv_memory):
     _inherit = 'product.margin'
     _columns = {
-        'pos_state':fields.selection([
-           ('done','Done'),
-           ('done_paid','Done and Paid'),
-           ('draft_done_paid','Draft, Done and Paid'),
-        ],'POS Order State', select=True, required=True),
-        'invoice_state':fields.selection([
-           ('paid','Paid'),
-           ('verified_paid','Verified and Paid'),
-           ('open_verified_paid','Open, Verified and Paid'),
-           ('draft_open_verified_paid','Draft, Open, Verified and Paid'),
-        ],'Invoice State', select=True, required=True),
+        'pos_state': fields.selection([
+            ('done', 'Done'),
+            ('done_paid', 'Done and Paid'),
+            ('draft_done_paid', 'Draft, Done and Paid'),
+        ], 'POS Order State', select=True, required=True),
+        'invoice_state': fields.selection([
+            ('paid', 'Paid'),
+            ('verified_paid', 'Verified and Paid'),
+            ('open_verified_paid', 'Open, Verified and Paid'),
+            ('draft_open_verified_paid', 'Draft, Open, Verified and Paid'),
+        ], 'Invoice State', select=True, required=True),
     }
 
     _defaults = {
         'pos_state': "done_paid",
         'invoice_state': "open_verified_paid",
     }
-    
-    #Overwrite section
-    
+
+    # Overwrite section
     def action_open_window(self, cr, uid, ids, context=None):
         """
             @param cr: the current row, from the database cursor,
@@ -57,12 +54,12 @@ class product_margin(osv.osv_memory):
         """
         if context is None:
             context = {}
-        res = super(product_margin, self).action_open_window(cr, uid, ids,
-                                                                context=context)
+        res = super(product_margin, self).action_open_window(
+            cr, uid, ids, context=context)
         if not res:
             return False
 
-        if context.get('mode','product') == 'category':
+        if context.get('mode', 'product') == 'category':
             graph_view = 'product.margin.categ.graph'
             form_view = 'product.margin.categ.form'
             tree_view = 'product.margin.categ.tree'
@@ -72,14 +69,22 @@ class product_margin(osv.osv_memory):
             form_view = 'product.margin.form.improve'
             tree_view = 'product.margin.tree'
             model = 'product.product'
-        cr.execute('select id,name from ir_ui_view where name=%s and type=%s', (graph_view, 'graph'))
+        cr.execute(
+            'select id,name from ir_ui_view where name=%s and type=%s',
+            (graph_view, 'graph'))
         view_res3 = cr.fetchone()[0]
-        cr.execute('select id,name from ir_ui_view where name=%s and type=%s', (form_view, 'form'))
+        cr.execute(
+            'select id,name from ir_ui_view where name=%s and type=%s',
+            (form_view, 'form'))
         view_res2 = cr.fetchone()[0]
-        cr.execute('select id,name from ir_ui_view where name=%s and type=%s', (tree_view, 'tree'))
+        cr.execute(
+            'select id,name from ir_ui_view where name=%s and type=%s',
+            (tree_view, 'tree'))
         view_res = cr.fetchone()[0]
 
-        res['views'] = [(view_res,'tree'), (view_res2,'form'), (view_res3,'graph')]
+        res['views'] = [
+            (view_res, 'tree'),
+            (view_res2, 'form'),
+            (view_res3, 'graph')]
         res['res_model'] = model
         return res
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
