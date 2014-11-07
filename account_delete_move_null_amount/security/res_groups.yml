@@ -20,7 +20,7 @@
 #
 ##############################################################################
 
-- !record {model: res.groups, id: group_group_account_move_null_amount_manager}:
+- !record {model: res.groups, id: res_groups_account_move_null_amount_manager}:
     category_id: base.module_category_usability
     name: Delete Account Move With Null Amount Manager
     users:

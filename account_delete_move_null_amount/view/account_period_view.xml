@@ -32,7 +32,7 @@
                             name="%(action_view_delete_account_move_null_amount_wizard_form)d"
                             string="Delete Account Moves"
                             type="action" 
-                            groups="account_delete_account_move_null_period.group_account_move_null_amount_manager"
+                            groups="account_delete_move_null_amount.res_groups_account_move_null_amount_manager"
                             attrs="{'invisible':[('account_move_null_amount_quantity', '=', 0)]}"
                             class="oe_link"/>
                     </div>

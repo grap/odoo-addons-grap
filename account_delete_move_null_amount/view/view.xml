@@ -59,7 +59,6 @@
         <record id="view_delete_account_move_null_amount_wizard_line_tree" model="ir.ui.view">
             <field name="name">delete.account.move.null.amount.wizard.line.tree</field>
             <field name="model">delete.account.move.null.amount.wizard.line</field>
-            <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="Account informations" editable="top" >
                     <field name="account_move_id"/>

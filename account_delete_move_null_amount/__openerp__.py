@@ -51,9 +51,9 @@ Copyright, Author and Licence :
     ],
     'data': [
         'security/res_groups.yml',
-        'view/account_period_view.xml',
         'view/view.xml',
         'view/action.xml',
         'view/menu.xml',
+        'view/account_period_view.xml',
     ],
 }
