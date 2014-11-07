@@ -60,7 +60,7 @@ class ir_backup(Model):
             if not path.exists(ib.local_folder):
                 raise osv.except_osv(
                     _("Local Folder Doesn't Exist!"),
-                    _("'%s' is unreachable!" %(ib.local_folder)))
+                    _("'%s' is unreachable!" % (ib.local_folder)))
             try:
                 filename = ib.local_folder + "/" + "test.txt"
                 fo = open(filename, "wb")
@@ -94,7 +94,7 @@ class ir_backup(Model):
 
     def execute_backup(self, cr, uid, ids, context=None):
         try:
-            currdir=os.getcwd()
+            currdir = os.getcwd()
             for ib in self.browse(cr, uid, ids, context=context):
                 os.chdir(ib.local_folder)
                 # connexion
@@ -102,7 +102,7 @@ class ir_backup(Model):
                     self._ftp_backup(cr, uid, ib, context=context)
                 else:
                     raise NotImplementedError(
-                        "Connexion Type '%s' is not implemented" %(
+                        "Connexion Type '%s' is not implemented" % (
                             ib.connexion_type))
         finally:
             os.chdir(currdir)
@@ -121,22 +121,21 @@ class ir_backup(Model):
 
     def _ftp_backup(self, cr, uid, ir_backup, context=None):
             ftp = self._ftp_connect(cr, uid, ir_backup, context=context)
-            data = []
             items = []
             tmp_ls = []
             ftp.retrlines('MLSD', tmp_ls.append)
             for entry in tmp_ls:
                 values = {}
                 tmp = entry.split("; ", 1)
-                values['name']= tmp[1]
+                values['name'] = tmp[1]
                 for vals in tmp[0].split(";"):
                     values[vals.split("=")[0]] = vals.split("=")[1]
                 if values['name'] not in ('.', '..'):
                     items.append(values)
             # TODO check datetime
-            
+
             # TODO write a function to get file
-            ## TODO write a recursive function to get folder
+            # TODO write a recursive function to get folder
             for item in items:
                 if item['type'] == 'file':
                     print "***********"
@@ -145,6 +144,6 @@ class ir_backup(Model):
                         os.path.normpath(ir_backup.local_folder),
                         os.path.normpath(item['name'])))
                     ftp.retrbinary(
-                        'RETR %s' %(item['name']),
+                        'RETR %s' % (item['name']),
                         open(full_name, 'wb').write)
             self._ftp_disconnect(cr, uid, ftp, context=context)
