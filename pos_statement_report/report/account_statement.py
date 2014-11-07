@@ -46,4 +46,4 @@ report_sxw.report_sxw(
     'addons/pos_statement_report/report/account_statement.rml',
     parser=account_statement,
     header='internal',
-    )
+)
