@@ -1,12 +1,27 @@
 # -*- encoding: utf-8 -*-
-###############################################################################
-#    See __openerp__.py file for Copyright and Licence Informations.
-###############################################################################
+##############################################################################
+#
+#    Product - Improved Search Module for Odoo
+#    Copyright (C) 2013-Today GRAP (http://www.grap.coop)
+#    @author Julien WESTE
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+##############################################################################
 
 from openerp.osv.orm import Model
-from openerp.osv import fields
 from openerp.osv.expression import get_unaccent_wrapper
-from openerp.tools.translate import _
 from openerp import SUPERUSER_ID
 import string
 
@@ -14,11 +29,13 @@ import string
 class product_product(Model):
     _inherit = 'product.product'
 
-    ### Constant Values
+    # Constant Values
     _SEPARATOR = ':'
     _REPLACEMENT = ''
 
-    def name_search(self, cr, uid, name, args=None, operator='ilike', context=None, limit=100):
+    def name_search(
+            self, cr, uid, name, args=None, operator='ilike', context=None,
+            limit=100):
         if not args:
             args = []
         if name and operator in ('=', 'ilike', '=ilike', 'like', '=like'):
@@ -26,11 +43,14 @@ class product_product(Model):
             self.check_access_rights(cr, uid, 'read')
             where_query = self._where_calc(cr, uid, args, context=context)
             self._apply_ir_rules(cr, uid, where_query, 'read', context=context)
-            from_clause, where_clause, where_clause_params = where_query.get_sql()
-            where_str = where_clause and (" WHERE %s AND " % where_clause) or ' WHERE '
+            from_clause, where_clause, where_clause_params =\
+                where_query.get_sql()
+            where_str = where_clause\
+                and (" WHERE %s AND " % where_clause) or ' WHERE '
 
             if "product_product__product_tmpl_id" not in from_clause:
-                from_clause += ",\"product_template\" as \"product_product__product_tmpl_id\""
+                from_clause +=\
+                    ',"product_template" as "product_product__product_tmpl_id"'
             if operator in ('ilike', 'like'):
                 percent = True
             if operator in ('=ilike', '=like'):
@@ -41,8 +61,10 @@ class product_product(Model):
             for n in names:
                 search_name = '%%%s%%' % n if percent else n
                 pwc += """ AND ({display_name} {operator} {percent})
-                """.format(operator=operator, percent=unaccent('%s'),
-                display_name=unaccent('product_product__product_tmpl_id.name'))
+                """.format(
+                    operator=operator, percent=unaccent('%s'),
+                    display_name=unaccent(
+                        'product_product__product_tmpl_id.name'))
                 where_clause_params += [search_name]
             pwc = pwc[5:]
 
@@ -50,8 +72,10 @@ class product_product(Model):
                          FROM {from_clause}
                       {where} ({pwc})
                      ORDER BY {display_name}
-                    """.format(from_clause=from_clause, where=where_str, pwc=pwc, 
-                               display_name=unaccent('product_product__product_tmpl_id.name'))
+                    """.format(
+                    from_clause=from_clause, where=where_str, pwc=pwc,
+                    display_name=unaccent(
+                        'product_product__product_tmpl_id.name'))
 
             if limit:
                 query += ' limit %s'
@@ -64,10 +88,13 @@ class product_product(Model):
                 return self.name_get(cr, uid, ids, context)
             else:
                 return []
-        return super(product_product,self).name_search(cr, uid, name, args, operator=operator, context=context, limit=limit)
+        return super(product_product, self).name_search(
+            cr, uid, name, args, operator=operator, context=context,
+            limit=limit)
 
-    def search(self, cr, uid, args, offset=0, limit=None, order=None,
-                context=None, count=False):
+    def search(
+            self, cr, uid, args, offset=0, limit=None, order=None,
+            context=None, count=False):
         try:
             args2 = args
             for arg in args2:
@@ -83,19 +110,20 @@ class product_product(Model):
                         args += new_arg
         except:
             pass
-        return super(product_product, self).search(cr, uid, args,
-                offset=offset, limit=limit, order=order, context=context,
-                count=count)
+        return super(product_product, self).search(
+            cr, uid, args, offset=offset, limit=limit, order=order,
+            context=context, count=count)
 
     def _replace_separator(self, cr, uid, ids=None, context=None):
-        product_ids = super(product_product, self)\
-            .search(cr, SUPERUSER_ID,
-                [('name', 'like', '%' + self._SEPARATOR + '%')],
-                context=context)
-        for product in self.browse(cr, SUPERUSER_ID, product_ids,
-                                    context=context):
-            new_name = string.replace(product.name, self._SEPARATOR,
-                                      self._REPLACEMENT)
-            self.write(cr, SUPERUSER_ID, product.id, {'name': new_name},
-                        context=context)
+        product_ids = super(product_product, self).search(cr, SUPERUSER_ID, [
+            ('name', 'like', '%' + self._SEPARATOR + '%')],
+            context=context)
+        for product in self.browse(
+                cr, SUPERUSER_ID, product_ids, context=context):
+            new_name = string.replace(
+                product.name, self._SEPARATOR, self._REPLACEMENT)
+            self.write(
+                cr, SUPERUSER_ID, product.id, {
+                    'name': new_name,
+                }, context=context)
         return product_ids
