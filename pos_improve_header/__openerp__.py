@@ -54,7 +54,7 @@ Copyright, Authors and Licence:
     'depends': [
         'point_of_sale',
         'pos_second_header',
-        ],
+    ],
     'css': [
         'static/src/css/pih.css',
     ],
