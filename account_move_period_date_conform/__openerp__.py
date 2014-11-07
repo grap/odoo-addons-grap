@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Account Move - Date and Ceriod Conform Module for Odoo
+#    Account Move - Date and Period Conform Module for Odoo
 #    Copyright (C) 2013-Today GRAP (http://www.grap.coop)
 #    @author Sylvain LE GAL (https://twitter.com/legalsylvain)
 #

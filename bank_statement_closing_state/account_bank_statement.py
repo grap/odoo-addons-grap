@@ -91,7 +91,8 @@ class account_bank_statement(Model):
                 'account.bank.statement': (
                     lambda self, cr, uid, ids, c={}:
                         ids, ['line_ids', 'move_line_ids'], 10),
-                'account.bank.statement.line': (_get_statement, ['amount'], 10),
+                'account.bank.statement.line': (
+                    _get_statement, ['amount'], 10),
             },
             string='Computed Balance',
             help="""Balance as calculated based on Starting Balance and"""

@@ -427,7 +427,8 @@ class account_export_ebp(osv.TransientModel):
                                     (' ' + partner.street2) or '')),
                             'zip': partner.zip or '',
                             'city': normalize(partner.city or ''),
-                            'country': normalize(partner.country_id.name or ''),
+                            'country': normalize(
+                                partner.country_id.name or ''),
                             'contact': normalize(partner.email or ''),
                             'phone': partner.phone or partner.mobile or '',
                             'fax': partner.fax or '',
@@ -499,7 +500,8 @@ class account_export_ebp(osv.TransientModel):
                             line['date_maturity'][5:7],
                             line['date_maturity'][2:4]) or '',
                         # Currency
-                        fiscalyear.company_id.currency_id.name.replace(',', ''),
+                        fiscalyear.company_id.currency_id.name.replace(
+                            ',', ''),
                         line['analytic'],
                     ])
                     moves_file.write(unidecode(move_line))
@@ -531,7 +533,8 @@ class account_export_ebp(osv.TransientModel):
                             line['date_maturity'][5:7],
                             line['date_maturity'][2:4]) or '',
                         # Currency
-                        fiscalyear.company_id.currency_id.name.replace(',', ''),
+                        fiscalyear.company_id.currency_id.name.replace(
+                            ',', ''),
                         line['analytic'],
                     ])
                     moves_file.write(unidecode(move_line))

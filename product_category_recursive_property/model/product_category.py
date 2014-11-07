@@ -36,7 +36,8 @@ class product_category(Model):
     ]
 
     # Custom Function
-    def _propagate_properties_to_childs(self, cr, uid, ids, vals, context=None):
+    def _propagate_properties_to_childs(
+            self, cr, uid, ids, vals, context=None):
         values = {}
         for property_name in self._PRODUCT_CATEGORY_PROPERTY_LIST:
             if property_name in vals.keys():
