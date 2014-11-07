@@ -44,7 +44,7 @@ Copyright, Authors and Licence:
     'license': 'AGPL-3',
     'depends': [
         'web',
-        ],
+    ],
     'js': [
         'static/src/js/models.js',
     ],

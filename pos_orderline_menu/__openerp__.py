@@ -48,5 +48,5 @@ Copyright, Author and Licence :
         'view/action.xml',
         'view/menu.xml',
         'security/ir_rule.xml',
-        ],
+    ],
 }

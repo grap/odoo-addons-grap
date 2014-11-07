@@ -51,7 +51,7 @@ class pos_session(Model):
             'target': 'current',
             'view_id': False,
             'context': context,
-            }
+        }
 
     def open_frontend_cb_backend(self, cr, uid, ids, context=None):
         if not context:
@@ -75,4 +75,4 @@ class pos_session(Model):
             'target': 'current',
             'view_id': False,
             'context': context,
-            }
+        }
