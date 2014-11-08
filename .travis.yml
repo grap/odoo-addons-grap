@@ -11,6 +11,8 @@ virtualenv:
   system_site_packages: true
 
 before_install:
+  - sudo pip install GitPython bzr
+  - sudo apt-get install bzr
   - sudo pip install cairosvg
   - sudo apt-get install wkhtmltopdf
 
