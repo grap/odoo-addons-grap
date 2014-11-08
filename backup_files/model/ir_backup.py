@@ -138,8 +138,6 @@ class ir_backup(Model):
             # TODO write a recursive function to get folder
             for item in items:
                 if item['type'] == 'file':
-                    print "***********"
-                    print item['name']
                     full_name = os.path.normpath(os.path.join(
                         os.path.normpath(ir_backup.local_folder),
                         os.path.normpath(item['name'])))

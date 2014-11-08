@@ -151,7 +151,6 @@ class change_account_move_line_wizard(TransientModel):
             avl_ids = avl_obj.search(cr, uid, [
                 ('account_id', '=', data.source_account_id.id),
             ], context=context)
-            print avl_ids
 
             if aml_ids:
                 # Search reconciled move lines
@@ -241,7 +240,6 @@ class change_account_move_line_wizard(TransientModel):
                 }, context=context)
 
             if avl_ids:
-                print avl_ids
                 # change account_voucher_line account
                 avl_obj.write(cr, uid, avl_ids, {
                     'account_id': data.destination_account_id.id

@@ -290,6 +290,7 @@ class pos_order(osv.osv):
                 self.pool.get("account.move").post(cr, uid, [move_id],
                                                                 context=context)
             except:
-                print "Impossible to validate the move (id=%s)" % move_id
-
+                # TODO: write a logger
+                # print "Impossible to validate the move (id=%s)" % move_id
+                pass
         return move_ids

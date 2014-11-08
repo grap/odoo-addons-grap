@@ -99,7 +99,6 @@ class pos_order_line(Model):
 
     # Init section
     def _init_pos_tax(self, cr, uid, ids=None, context=None):
-        print "-------computing VAT history---------"
         ptr_obj = self.pool.get('pos.order.line.tax.rel')
         account_tax_obj = self.pool.get('account.tax')
         ptr_count = 0
@@ -107,7 +106,6 @@ class pos_order_line(Model):
         all_pol_ids = self.search(cr, SUPERUSER_ID, [], context=context)
         for i in range(0, len(all_pol_ids), self.MAX_RECORDS):
             pol_ids = all_pol_ids[i:i + self.MAX_RECORDS]
-            print "%s -> %s" % (i, i + self.MAX_RECORDS)
             for pol in self.browse(cr, SUPERUSER_ID, pol_ids, context=context):
                 if pol.pol_tax_rel_id:
                     continue
@@ -158,6 +156,4 @@ class pos_order_line(Model):
                         'amount_tax': amount
                     }, context=context)
                     vat_correction_count += 1
-        print "%s tax_lines created and %s needed amount adjustment" % (
-            ptr_count, vat_correction_count)
         return pol_ids

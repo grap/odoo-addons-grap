@@ -359,7 +359,6 @@ class account_export_ebp(osv.TransientModel):
                 if (tax_code_suffix and line.account_id.export_tax_code
                         and line.tax_code_id.ref_nb):
                     tmp = account_nb + line.tax_code_id.ref_nb
-                    print "DEBUG : '%s' becomes '%s'" % (account_nb, tmp)
                     account_nb = tmp
 
                 # Check the most important fields are not above the maximum
