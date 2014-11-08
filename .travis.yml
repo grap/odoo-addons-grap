@@ -15,6 +15,7 @@ before_install:
   - sudo apt-get install bzr
 
 install:
+  - bzr branch lp:openerp-french-localization/7.0 $HOME/openerp-french-localization
   - git clone https://github.com/grap/odoo-addons-cis.git $HOME/odoo-addons-cis -b 7.0
   - git clone https://github.com/grap/odoo-addons-misc.git $HOME/odoo-addons-misc -b 7.0
   - git clone https://github.com/OCA/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
