@@ -43,9 +43,9 @@ class database_integrity_sequence_wizard(TransientModel):
             raise AccessError(
                 _('You have to belong to administration group.'))
 
-    def default_get(self, cr, uid, fields, context=None):
+    def default_get(self, cr, uid, pFields, context=None):
         res = super(database_integrity_sequence_wizard, self).default_get(
-            cr, uid, fields, context=context)
+            cr, uid, pFields, context=context)
         res['line_ids'] = []
         correct_line_ids = []
         cr.execute("""

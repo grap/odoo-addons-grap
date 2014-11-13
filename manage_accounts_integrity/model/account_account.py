@@ -32,9 +32,7 @@ class account_account(Model):
 
     # Columns section
     def _get_child_number(self, cr, uid, ids, name, arg, context=None):
-        res = {}
-        for id in ids:
-            res[id] = 0
+        res = {x: 0 for x in ids}
         sql_req = """
                 SELECT parent_id, count(*) as quantity
                 FROM account_account
@@ -68,9 +66,7 @@ class account_account(Model):
         return [('id', 'in', map(lambda x:x[0], res))]
 
     def _get_move_number(self, cr, uid, ids, name, arg, context=None):
-        res = {}
-        for id in ids:
-            res[id] = 0
+        res = {x: 0 for x in ids}
         sql_req = """
                 SELECT account_id, count(*) as quantity
                 FROM account_move_line
@@ -83,9 +79,7 @@ class account_account(Model):
         return res
 
     def _get_invoice_number(self, cr, uid, ids, name, arg, context=None):
-        res = {}
-        for id in ids:
-            res[id] = 0
+        res = {x: 0 for x in ids}
         sql_req = """
                 SELECT account_id, count(*) as quantity
                 FROM account_invoice
@@ -98,9 +92,7 @@ class account_account(Model):
         return res
 
     def _get_voucher_line_number(self, cr, uid, ids, name, arg, context=None):
-        res = {}
-        for id in ids:
-            res[id] = 0
+        res = {x: 0 for x in ids}
         sql_req = """
                 SELECT account_id, count(*) as quantity
                 FROM account_voucher_line
@@ -114,9 +106,7 @@ class account_account(Model):
 
     def _get_closed_period_move_number(
             self, cr, uid, ids, name, arg, context=None):
-        res = {}
-        for id in ids:
-            res[id] = 0
+        res = {x: 0 for x in ids}
         sql_req = """
                 SELECT account_id, count(*) as quantity
                 FROM account_move_line aml
@@ -133,9 +123,7 @@ class account_account(Model):
 
     def _get_reconciled_move_number(
             self, cr, uid, ids, name, arg, context=None):
-        res = {}
-        for id in ids:
-            res[id] = 0
+        res = {x: 0 for x in ids}
         sql_req = """
                 SELECT account_id, count(*) as quantity
                 FROM account_move_line

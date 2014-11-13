@@ -28,12 +28,12 @@ class delete_account_move_null_amount_wizard(TransientModel):
     _name = 'delete.account.move.null.amount.wizard'
 
     # Overloading section
-    def default_get(self, cr, uid, fields, context):
+    def default_get(self, cr, uid, pFields, context):
         am_obj = self.pool.get('account.move')
         line_ids = []
 
         res = super(delete_account_move_null_amount_wizard, self).default_get(
-            cr, uid, fields, context=context)
+            cr, uid, pFields, context=context)
         # get account move with null amount
         cr.execute("""
                 SELECT move_id

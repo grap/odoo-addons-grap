@@ -109,18 +109,18 @@ class ir_backup(Model):
         return True
 
     # Private FTP function
-    def _ftp_connect(self, cr, uid, ir_backup, context=None):
-        ftp = FTP(ir_backup.ftp_hostname)
-        ftp.login(ir_backup.ftp_username, ir_backup.ftp_password)
-        if ir_backup.distant_folder:
-            ftp.cwd(ir_backup.distant_folder)
+    def _ftp_connect(self, cr, uid, backup, context=None):
+        ftp = FTP(backup.ftp_hostname)
+        ftp.login(backup.ftp_username, backup.ftp_password)
+        if backup.distant_folder:
+            ftp.cwd(backup.distant_folder)
         return ftp
 
     def _ftp_disconnect(self, cr, uid, ftp, context=None):
         ftp.close()
 
-    def _ftp_backup(self, cr, uid, ir_backup, context=None):
-            ftp = self._ftp_connect(cr, uid, ir_backup, context=context)
+    def _ftp_backup(self, cr, uid, backup, context=None):
+            ftp = self._ftp_connect(cr, uid, backup, context=context)
             items = []
             tmp_ls = []
             ftp.retrlines('MLSD', tmp_ls.append)
@@ -139,7 +139,7 @@ class ir_backup(Model):
             for item in items:
                 if item['type'] == 'file':
                     full_name = os.path.normpath(os.path.join(
-                        os.path.normpath(ir_backup.local_folder),
+                        os.path.normpath(backup.local_folder),
                         os.path.normpath(item['name'])))
                     ftp.retrbinary(
                         'RETR %s' % (item['name']),

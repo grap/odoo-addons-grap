@@ -29,13 +29,13 @@ class fix_account_move_period_wizard(TransientModel):
     _description = 'Fix account move Period'
 
     # Overloading section
-    def default_get(self, cr, uid, fields, context):
+    def default_get(self, cr, uid, pFields, context):
         am_obj = self.pool.get('account.move')
         ap_obj = self.pool.get('account.period')
         line_ids = []
 
         res = super(fix_account_move_period_wizard, self).default_get(
-            cr, uid, fields, context=context)
+            cr, uid, pFields, context=context)
         # get account move with incorrect period
         sql_req = """
             SELECT am.id from account_move am

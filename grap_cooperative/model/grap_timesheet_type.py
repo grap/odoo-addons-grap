@@ -30,8 +30,8 @@ class grap_timesheet_type(Model):
     _order = 'complete_name'
 
     # Custom Section
-    def _compute_complete_name(self, cr, uid, id, context=None):
-        gtt = self.browse(cr, uid, id, context=context)
+    def _compute_complete_name(self, cr, uid, pId, context=None):
+        gtt = self.browse(cr, uid, pId, context=context)
         if gtt.parent_id:
             res = self._compute_complete_name(
                 cr, uid, gtt.parent_id.id, context=context) + ' / ' + gtt.name
@@ -51,7 +51,7 @@ class grap_timesheet_type(Model):
         return self.name_get(cr, uid, ids)
 
     # Getter Section
-    def _get_complete_name(self, cr, uid, ids, fields, args, context=None):
+    def _get_complete_name(self, cr, uid, ids, pFields, args, context=None):
         res = []
         for gtt in self.browse(cr, uid, ids, context=context):
             res.append((gtt.id, self._compute_complete_name(

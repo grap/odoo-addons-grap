@@ -20,14 +20,14 @@
 #
 ##############################################################################
 
-import account_payment_term
-import account_tax
-import account_tax_code
-import pos_category
-import product_category
-import product_pricelist
-import product_template
-import product_ul
-import product_uom
-import res_partner_category
-import stock_location
+from . import account_payment_term
+from . import account_tax
+from . import account_tax_code
+from . import pos_category
+from . import product_category
+from . import product_pricelist
+from . import product_template
+from . import product_ul
+from . import product_uom
+from . import res_partner_category
+from . import stock_location

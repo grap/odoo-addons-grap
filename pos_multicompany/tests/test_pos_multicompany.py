@@ -82,8 +82,8 @@ class TestPosMulticompany(TransactionCase):
             error, True, "Deleting default pos category must fail!")
 
     def test_04_create_res_company(self):
-        """[Functional Test] Create a res company must create a"""
-        """ default pos category"""
+        """[Functional Test] Create a res company must create a default pos
+            category"""
         cr, uid = self.cr, self.uid
         rc_id = self.rc_obj.create(cr, uid, {
             'name': 'Company 1',

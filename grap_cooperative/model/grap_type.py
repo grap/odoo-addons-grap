@@ -25,14 +25,14 @@ from openerp.osv.orm import Model
 
 
 class grap_type(Model):
-    _description = "Types"
+    _description = 'Types'
     _name = 'grap.type'
 
     # Columns section
     def _get_activity_count(self, cr, uid, ids, field_name, arg, context=None):
         res = {}
-        for type in self.browse(cr, uid, ids, context):
-            res[type.id] = len(type.activity_ids)
+        for gt in self.browse(cr, uid, ids, context):
+            res[gt.id] = len(gt.activity_ids)
         return res
 
     _columns = {

@@ -73,11 +73,11 @@ class account_move(osv.osv):
                 % ', '.join([m.name for m in exported_moves]))
         return super(account_move, self).unlink(cr, uid, ids, context)
 
-    def copy(self, cr, uid, id, default=None, context=None):
+    def copy(self, cr, uid, pId, default=None, context=None):
         if not default:
             default = {}
         default.update({
             'exported_ebp_id': False,
         })
         return super(account_move, self).copy(
-            cr, uid, id, default, context=context)
+            cr, uid, pId, default, context=context)

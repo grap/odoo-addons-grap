@@ -20,5 +20,5 @@
 #
 ##############################################################################
 
-import market_place
-import pos_order
+from . import market_place
+from . import pos_order

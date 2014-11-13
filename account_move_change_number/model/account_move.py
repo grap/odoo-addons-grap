@@ -28,22 +28,22 @@ class account_move(Model):
     _inherit = 'account.move'
 
     def rename_account_move_change_number(self, cr, uid, ids, context=None):
-        for id in ids:
-            old_account_move = self.browse(cr, uid, id, context=context)
+        for aId in ids:
+            old_account_move = self.browse(cr, uid, aId, context=context)
             old_name = old_account_move.name
             old_narration = old_account_move.narration or ''
             # unpost acount move
-            self.button_cancel(cr, uid, [id], context=context)
+            self.button_cancel(cr, uid, [aId], context=context)
 
             # set name to "/"
-            self.write(cr, uid, [id], {'name': '/'}, context=context)
+            self.write(cr, uid, [aId], {'name': '/'}, context=context)
 
             # post account move
-            self.post(cr, uid, [id], context=context)
-            new_name = self.browse(cr, uid, id, context=context).name
+            self.post(cr, uid, [aId], context=context)
+            new_name = self.browse(cr, uid, aId, context=context).name
 
             # Add description of the change
-            self.write(cr, uid, [id], {
+            self.write(cr, uid, [aId], {
                 'narration': old_narration + _(
                     """\nAccount move renamed old name : %s ;"""
                     """ new name : %s""") % (old_name, new_name)

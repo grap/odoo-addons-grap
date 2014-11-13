@@ -29,9 +29,9 @@ class change_account_move_line_wizard(TransientModel):
     _name = 'change.account.move.line.wizard'
     _description = 'Wizard to manage move of move lines'
 
-    def default_get(self, cr, uid, fields, context):
+    def default_get(self, cr, uid, pFields, context):
         res = super(change_account_move_line_wizard, self).default_get(
-            cr, uid, fields, context=context)
+            cr, uid, pFields, context=context)
         account = self.pool.get('account.account').browse(
             cr, uid, context['active_id'], context=context)
         # Get move line without partners per company

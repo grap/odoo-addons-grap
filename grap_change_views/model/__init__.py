@@ -21,5 +21,5 @@
 #
 ##############################################################################
 
-import stock_move
-import pos_category
+from . import stock_move
+from . import pos_category

@@ -54,10 +54,10 @@ class pos_table(Model):
     ]
 
     # Overload section
-    def copy(self, cr, uid, id, default=None, context=None):
+    def copy(self, cr, uid, pId, default=None, context=None):
         if default is None:
             default = {}
-        table = self.read(cr, uid, id, ['name'], context=context)
+        table = self.read(cr, uid, pId, ['name'], context=context)
         data = {'name': '%s (copy)' % (table['name'])}
         data.update(default)
-        return super(pos_table, self).copy(cr, uid, id, data, context=context)
+        return super(pos_table, self).copy(cr, uid, pId, data, context=context)

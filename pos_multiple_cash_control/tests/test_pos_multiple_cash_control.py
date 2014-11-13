@@ -51,8 +51,8 @@ class TestPosMultipleCashControl(TransactionCase):
             cr, uid, 'pos_multiple_cash_control', 'account_tax_50')[1]
 
     def test_01_check_access_right(self):
-        pass
         """Test Multiple access right Control"""
+        pass
         cr, uid = self.cr, self.uid
         self.ru_obj.write(cr, uid, [uid], {
             'groups_id': [(6, 0, [self.account_group_id])],
@@ -101,8 +101,8 @@ class TestPosMultipleCashControl(TransactionCase):
             "Account Manager user has right to create an income POS Product.")
 
     def test_02_check_constraint(self):
-        pass
         """Test Multiple Contraint"""
+        pass
         # Try to create Income Product salable
         cr, uid = self.cr, self.uid
         self.ru_obj.write(cr, uid, [uid], {

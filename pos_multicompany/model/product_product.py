@@ -29,8 +29,8 @@ class product_product(Model):
     _inherit = 'product.product'
 
     def default_get(self, cr, uid, fields, context=None):
-        """This function remove an hard-coded and invalid default value"""
-        """for pos_categ_id"""
+        """This function remove an hard-coded and invalid default value
+        for pos_categ_id"""
         context.pop('default_pos_categ_id', None)
         return super(product_product, self).default_get(
             cr, uid, fields, context=context)

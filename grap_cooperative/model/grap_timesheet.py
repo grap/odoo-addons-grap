@@ -31,7 +31,7 @@ class grap_timesheet(Model):
 
     # Fields Function Section
     def _get_activity(
-            self, cr, uid, ids, fields, args, context=None):
+            self, cr, uid, ids, pFields, args, context=None):
         res = {}
         for gt in self.browse(cr, uid, ids, context=context):
             res[gt.id] = {
@@ -41,7 +41,7 @@ class grap_timesheet(Model):
         return res
 
     def _get_timesheet_group_id(
-            self, cr, uid, ids, fields, args, context=None):
+            self, cr, uid, ids, pFields, args, context=None):
         return dict([(id, False) for id in ids])
 
     def _set_timesheet_group_id(

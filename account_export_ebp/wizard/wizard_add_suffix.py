@@ -50,11 +50,11 @@ class account_add_suffix(TransientModel):
         return True
 
     # Overloading section
-    def default_get(self, cr, uid, fields, context=None):
+    def default_get(self, cr, uid, pFields, context=None):
         rp_obj = self.pool.get('res.partner')
         line_ids = []
         res = super(account_add_suffix, self).default_get(
-            cr, uid, fields, context=context)
+            cr, uid, pFields, context=context)
 
         partner_ids = context.get('active_ids', False)
         if not partner_ids:

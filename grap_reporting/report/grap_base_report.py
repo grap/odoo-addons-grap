@@ -59,7 +59,7 @@ class grap_base_report(base_report.base_report):
         for x in definition['load']:
             p = x.split(":")
             accounts[p[1]] = [p[0], p[2]]
-        sum = 0.0
+        aSum = 0.0
         query_params = []
         query_cond = "("
         for account in accounts:
@@ -105,24 +105,24 @@ class grap_base_report(base_report.base_report):
             for account in accounts:
                 if(line["code"].startswith(account)):
                     operator = accounts[account][0]
-                    type = accounts[account][1]
+                    aType = accounts[account][1]
                     value = 0.0
-                    if(type == "S"):
+                    if(aType == "S"):
                         value = line["debit"] - line["credit"]
-                    elif(type == "D"):
+                    elif(aType == "D"):
                         value = line["debit"] - line["credit"]
                         if(value < 0.001):
                             value = 0.0
-                    elif(type == "C"):
+                    elif(aType == "C"):
                         value = line["credit"] - line["debit"]
                         if(value < 0.001):
                             value = 0.0
                     if(operator == '+'):
-                        sum += value
+                        aSum += value
                     else:
-                        sum -= value
+                        aSum -= value
                     break
-        self._set_variable(code, sum)
+        self._set_variable(code, aSum)
 
     def _set_pourcentage(self, variable, num, den):
         if den == 0:

@@ -31,9 +31,7 @@ class account_period(Model):
     def _get_account_move_null_amount_quantity(
             self, cr, uid, ids, name, arg, context=None):
         """Return the number of account moves with null amount"""
-        res = {}
-        for id in ids:
-            res[id] = 0
+        res = {x: 0 for x in ids}
         cr.execute("""
             SELECT period_id, count(*)
             FROM(

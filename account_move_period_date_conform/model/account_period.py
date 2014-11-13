@@ -31,9 +31,7 @@ class account_period(Model):
     def _get_account_move_incorrect_date_quantity(
             self, cr, uid, ids, name, arg, context=None):
         """Return the number of account moves with incorrect dates"""
-        res = {}
-        for id in ids:
-            res[id] = 0
+        res = {x: 0 for x in ids}
         sql_req = """
             SELECT ap.id, count(*) from account_move am
             INNER JOIN account_period ap on am.period_id = ap.id

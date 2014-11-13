@@ -21,8 +21,8 @@
 ##############################################################################
 
 
-import account_invoice_line
-import stock_move
-import purchase_order_line
-import pricelist_partnerinfo
-import pos_order_line
+from . import account_invoice_line
+from . import stock_move
+from . import purchase_order_line
+from . import pricelist_partnerinfo
+from . import pos_order_line

@@ -62,7 +62,7 @@ class product_category(Model):
             
             product_ids = val._get_products(context=context)
             
-            fields = pp_obj.read(cr, uid, product_ids[val.id], [], context=context)
+            aFields = pp_obj.read(cr, uid, product_ids[val.id], [], context=context)
             sales_gap = 0
             purchase_gap = 0
             pos_gap = 0
@@ -80,7 +80,7 @@ class product_category(Model):
             li_expected_margin = 0
             total_sale_expected = 0
             
-            for product in fields:
+            for product in aFields:
                 sales_gap += product['sales_gap']
                 purchase_gap += product['purchase_gap']
                 pos_gap += product['pos_gap']

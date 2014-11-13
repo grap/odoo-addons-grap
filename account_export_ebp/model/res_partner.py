@@ -32,11 +32,11 @@ class res_partner(Model):
     def _nb_moves(self, cr, uid, ids, name, arg, context=None):
         res = {}
         aml_obj = self.pool.get('account.move.line')
-        for id in ids:
+        for aId in ids:
             aml_ids = aml_obj.search(cr, uid, [
-                ('partner_id', '=', id), ('date', '>=', '01/12/2012')],
+                ('partner_id', '=', aId), ('date', '>=', '01/12/2012')],
                 context=context)
-            res[id] = len(aml_ids)
+            res[aId] = len(aml_ids)
         return res
 
     def _search_nb_moves(self, cr, uid, obj, name, args, context=None):

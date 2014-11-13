@@ -43,8 +43,8 @@ class product_category(Model):
             res.append((pc.id, pc.complete_name))
         return res
 
-    def _compute_complete_name(self, cr, uid, id, context=None):
-        pc = self.browse(cr, uid, id, context=context)
+    def _compute_complete_name(self, cr, uid, pId, context=None):
+        pc = self.browse(cr, uid, pId, context=context)
         if pc.parent_id:
             res = self._compute_complete_name(
                 cr, uid, pc.parent_id.id, context=context) + ' / ' + pc.name
@@ -52,7 +52,7 @@ class product_category(Model):
             res = pc.name
         return res
 
-    def _get_complete_name(self, cr, uid, ids, fields, args, context=None):
+    def _get_complete_name(self, cr, uid, ids, pFields, args, context=None):
         res = []
         for pc in self.browse(cr, uid, ids, context=context):
             res.append((pc.id, self._compute_complete_name(

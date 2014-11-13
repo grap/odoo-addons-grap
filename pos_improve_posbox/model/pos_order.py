@@ -49,7 +49,6 @@ class pos_order(Model):
 #        }
 
     def print_receipt_posbox(self, cr, uid, ids, context=None):
-        print "pos_order::print_receipt_posbox"
         if len(ids) != 1:
             raise osv.except_osv(
                 _('Error!'), _('Please select one Pos Order.'))
@@ -68,11 +67,14 @@ class pos_order(Model):
             'context': ctx,
         }
 
-    def get_export_receipt(self, cr, uid, id, context=None):
+    def get_export_receipt(self, cr, uid, ids, context=None):
+        if len(ids) != 1:
+            raise osv.except_osv(
+                _('Error!'), _('Please select one Pos Order.'))
         """Generate a structure with pos order datas, compatible with
             PosBox webServices. Function overloadable."""
         receipt = {}
-        po = self.browse(cr, uid, id, context=context)
+        po = self.browse(cr, uid, ids[0], context=context)
 
         # Orderlines part
         orderlines = []

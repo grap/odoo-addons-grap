@@ -30,6 +30,7 @@ class res_company(Model):
     def create(self, cr, uid, values, context=None):
         """ Create default pos_category for the new company"""
         pc_obj = self.pool['pos.category']
-        id = super(res_company, self).create(cr, uid, values, context=context)
-        pc_obj._create_pos_categ_for_company(cr, uid, id, context=context)
-        return id
+        rc_id = super(res_company, self).create(
+            cr, uid, values, context=context)
+        pc_obj._create_pos_categ_for_company(cr, uid, rc_id, context=context)
+        return rc_id
