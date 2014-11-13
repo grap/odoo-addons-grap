@@ -20,7 +20,7 @@
 #
 ##############################################################################
 
-from grap_reporting.report import grap_base_report
+from . import grap_base_report
 from report import report_sxw
 
 

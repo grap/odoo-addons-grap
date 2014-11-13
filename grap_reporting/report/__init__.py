@@ -20,5 +20,6 @@
 #
 ##############################################################################
 
+from . import grap_base_report
 from . import compute_sig
 from . import compute_treso
