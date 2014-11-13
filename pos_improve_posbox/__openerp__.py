@@ -58,7 +58,6 @@ Copyright, Authors and Licence:
         'point_of_sale',
     ],
     'data': [
-        'view/action.xml',
         'view/view.xml',
     ],
     'js': [

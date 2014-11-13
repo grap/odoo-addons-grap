@@ -43,6 +43,7 @@
             <field name="arch" type="xml">
                 <field name="iface_print_via_proxy" position="after">
                     <field name="proxy_ip"/>
+                    <field name="proxy_timeout"/>
                 </field>
             </field>
         </record>

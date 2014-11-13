@@ -21,6 +21,8 @@
 ******************************************************************************/
 
 
+
+
 openerp.pos_improve_posbox = function (instance) {
     // Define a new namespace
     instance.pos_improve_posbox = {};
@@ -70,61 +72,58 @@ openerp.pos_improve_posbox = function (instance) {
         the point of sale backoffice and the posbox and display the status 
         of the print receipt.
     */
-//    module.PosPoxReceiptWidget = instance.web.Widget.extend({
-//        template: 'PosPoxReceiptWidget',
+    custom_module.PosPoxReceiptWidget = instance.web.Widget.extend({
+        template: 'PosPoxReceiptWidget',
 
-//        /* **************** */
-//        /* Overload Section */
-//        /* **************** */
-//        init: function(parent, options){
-//            //url =  || 'http://192.168.1.16:8069';
-//            this.connection = new instance.web.JsonRPC();
-//            this.connection.setup(url);
-//            this.receipt = options.context.receipt;
-//            this.timeout = option.context.timeout;
-//            this.notifications = {};
-//            this.connection.session_id = _.uniqueId('PosPoxReceiptWidget');
-//            this._super(parent,options);
-//        },
+        /* **************** */
+        /* Overload Section */
+        /* **************** */
+        init: function(parent, options){
+            this.connection = new instance.web.JsonRPC();
+            this.connection.setup(options.context.url);
+            this.receipt = options.context.receipt;
+            this.timeout = options.context.timeout;
+            this.notifications = {};
+            this.connection.session_id = _.uniqueId('PosPoxReceiptWidget');
+            this._super(parent,options);
+        },
 
-//        start: function(){
-//            this._super();
-//            var self = this;
-//            this._message('print_receipt',{receipt: this.receipt});
-//        },
+        start: function(){
+            this._super();
+            var self = this;
+            this._message('print_receipt',{receipt: this.receipt});
+        },
 
-//        renderElement: function(){
-//            this._super();
-//        },
+        renderElement: function(){
+            this._super();
+        },
 
-//        /* ************** */
-//        /* Custom Section */
-//        /* ************** */
+        /* ************** */
+        /* Custom Section */
+        /* ************** */
+        _message : function(name, params){
+            var self = this;
+            var ret = new $.Deferred();
+            var callbacks = this.notifications[name] || [];
+            for(var i = 0; i < callbacks.length; i++){
+                callbacks[i](params);
+            }
+            this.connection.rpc('/pos/' + name, params || {}
+            ).done(function(result) {
+                console.log(result); //TODO
+                ret.resolve(result);
+            }).fail(function(error) {
+                console.log(error); //TODO
+                ret.reject(error);
+            });
+            setTimeout(function() {
+                console.log('sorry'); //TODO
+                ret.reject('timeout');
+            }, this.timeout);
+            return ret;
+        },
 
-
-//        _message : function(name, params){
-//            var self = this;
-//            var ret = new $.Deferred();
-//            var callbacks = this.notifications[name] || [];
-//            for(var i = 0; i < callbacks.length; i++){
-//                callbacks[i](params);
-//            }
-//            this.connection.rpc('/pos/' + name, params || {}
-//            ).done(function(result) {
-//                console.log(result); //TODO
-//                ret.resolve(result);
-//            }).fail(function(error) {
-//                console.log(error); //TODO
-//                ret.reject(error);
-//            });
-//            setTimeout(function() {
-//                console.log('sorry'); //TODO
-//                ret.reject('timeout');
-//            }, this.timeout);
-//            return ret;
-//        },
-
-//    });
+    });
 
 };
 
