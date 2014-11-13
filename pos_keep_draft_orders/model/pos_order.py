@@ -31,11 +31,11 @@ class pos_order(osv.osv):
         return super(pos_order, self)._default_session(
             cr, uid, context=context)
 
-    def copy(self, cr, uid, id, default=None, context=None):
+    def copy(self, cr, uid, pId, default=None, context=None):
         if not default:
             default = {}
         d = {
             'session_id': self._default_session(cr, uid, context=context),
         }
         d.update(default)
-        return super(pos_order, self).copy(cr, uid, id, d, context=context)
+        return super(pos_order, self).copy(cr, uid, pId, d, context=context)

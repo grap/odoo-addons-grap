@@ -42,10 +42,10 @@ class grap_timesheet(Model):
 
     def _get_timesheet_group_id(
             self, cr, uid, ids, pFields, args, context=None):
-        return dict([(id, False) for id in ids])
+        return dict([(x, False) for x in ids])
 
     def _set_timesheet_group_id(
-            self, cr, uid, id, field_name, field_value, args, context=None):
+            self, cr, uid, pId, field_name, field_value, args, context=None):
         pass
 
     # Columns section

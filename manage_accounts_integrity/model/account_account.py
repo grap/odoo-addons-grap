@@ -160,12 +160,12 @@ class account_account(Model):
     def _get_account_ir_property(self, cr, uid, ids, name, arg, context=None):
         result = {}
         ir_property_obj = self.pool.get('ir.property')
-        for id in ids:
-            result.setdefault(id, [])
+        for aId in ids:
+            result.setdefault(aId, [])
             property_ids = ir_property_obj.search(cr, uid, [
-                ('value_reference', '=', 'account.account,%s' % (id))])
+                ('value_reference', '=', 'account.account,%s' % (aId))])
             for property_id in property_ids:
-                result[id].append(property_id)
+                result[aId].append(property_id)
         return result
 
     def _get_account_ir_property_number(
@@ -173,8 +173,8 @@ class account_account(Model):
         result = {}
         account_ir_property = self._get_account_ir_property(
             cr, uid, ids, name, arg, context=context)
-        for id in ids:
-            result[id] = len(account_ir_property[id])
+        for aId in ids:
+            result[aId] = len(account_ir_property[aId])
         return result
 
     def _search_account_ir_property_number(

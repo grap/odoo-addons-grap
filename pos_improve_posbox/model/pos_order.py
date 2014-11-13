@@ -68,11 +68,11 @@ class pos_order(Model):
         }
 
     def get_export_receipt(self, cr, uid, ids, context=None):
+        """Generate a structure with pos order datas, compatible with
+            PosBox webServices. Function overloadable."""
         if len(ids) != 1:
             raise osv.except_osv(
                 _('Error!'), _('Please select one Pos Order.'))
-        """Generate a structure with pos order datas, compatible with
-            PosBox webServices. Function overloadable."""
         receipt = {}
         po = self.browse(cr, uid, ids[0], context=context)
 
