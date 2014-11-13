@@ -52,7 +52,6 @@ openerp.pos_improve_posbox = function (instance) {
                         ['user_id', '=', self.session.uid]])
                 .then(function(session){
                     // Get the session of the user
-                    console.log(session[0]);
                     return self.fetch('pos.config',
                             ['id', 'proxy_ip'], [
                                 ['id', '=', session[0].config_id[0]]])
