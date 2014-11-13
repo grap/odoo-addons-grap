@@ -47,7 +47,7 @@ class pos_order(Model):
         ctx = context.copy()
         ctx['receipt'] = receipt
         ctx['url'] = po.session_id.config_id.proxy_ip
-        ctx['timeout'] = po.session_id.config_id.proxy_timeout
+#        ctx['timeout'] = po.session_id.config_id.proxy_timeout
         return {
             'type': 'ir.actions.client',
             'name': _('Print Quick Direct'),

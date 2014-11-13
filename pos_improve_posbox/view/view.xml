@@ -20,7 +20,7 @@
 <openerp>
     <data>
 
-        <!-- View 'Form' of the Object product.uom.categ -->
+<!-- Model: pos.order -->
         <record id="view_pos_order_form" model="ir.ui.view">
             <field name="name">pos.order.form</field>
             <field name="model">pos.order</field>
@@ -35,6 +35,18 @@
                 </field>
             </field>
         </record>
+
+<!-- Model: pos.config -->
+        <record id="view_pos_config_form" model="ir.ui.view">
+            <field name="model">pos.config</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_config_form" />
+            <field name="arch" type="xml">
+                <field name="iface_print_via_proxy" position="after">
+                    <field name="proxy_ip"/>
+                </field>
+            </field>
+        </record>
+  
 
     </data>
 </openerp>

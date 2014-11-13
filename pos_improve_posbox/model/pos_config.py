@@ -32,13 +32,13 @@ class pos_config(Model):
             'IP Address', size=45, help="""The"""
             """ hostname or ip address of the hardware proxy. """
             """This will work for back-/front- office communication."""),
-        'proxy_timeout': fields.integer(
-            'Proxy Time Out',
-            help="""Timeout in millisecond for the communication with the """
-            """proxy. This will work only for back-office communication."""),
+#        'proxy_timeout': fields.integer(
+#            'Proxy Time Out',
+#            help="""Timeout in millisecond for the communication with the """
+#            """proxy. This will work only for back-office communication."""),
     }
 
     _defaults = {
-        'proxy_timeout': 5000,
-        'proxy_ip': 'http://localhost:8069',
+#        'proxy_timeout': 5000,
+        'proxy_ip': 'http://127.0.0.1:8069',
     }
