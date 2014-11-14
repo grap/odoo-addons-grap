@@ -24,7 +24,6 @@
         <record id="view_pos_order_line" model="ir.ui.view" >
             <field name="name">Sales</field>
             <field name="model">pos.order.line</field>
-            <field name="type">tree</field>
             <field name="priority" eval="15"/>
             <field name="arch" type="xml">
                 <tree string="POS Orders" colors="blue:state == 'draft';gray:state in ('done','cancel');black:state not in('done','cancel')">
@@ -45,7 +44,6 @@
         <record id="view_pos_order_line_filter" model="ir.ui.view">
             <field name="name">pos.order.line.list.select</field>
             <field name="model">pos.order.line</field>
-            <field name="type">search</field>
             <field name="arch" type="xml">
                 <search string="Search POS Order Lines">
                     <filter icon="terp-document-new" string="Draft" domain="[('state','=','draft')]"/>

@@ -6,13 +6,10 @@
             <field name="name">Box Entries GRAP</field>
             <field name="model">pos.box.entries</field>
             <field name="inherit_id" ref="point_of_sale.view_box_entries"/>
-            <field name="type">form</field>
             <field name="arch" type="xml">
-                <data>
-                    <field name="journal_id" position="replace">
-                        <field name="statement_id"/>
-                    </field>
-                </data>
+                <field name="journal_id" position="replace">
+                    <field name="statement_id"/>
+                </field>
             </field>
         </record>
     </data>

@@ -310,7 +310,6 @@
 <!--        <record id="view_grap_activity_people_tree" model="ir.ui.view">-->
 <!--            <field name="name">grap.activity.people.tree</field>-->
 <!--            <field name="model">grap.activity.people</field>-->
-<!--            <field name="type">tree</field>-->
 <!--            <field name="arch" type="xml">-->
 <!--                <tree string="Workers" editable="bottom">-->
 <!--                    <field name="people_id"/>-->
@@ -325,7 +324,6 @@
 <!--        <record id="view_grap_activity_people_form" model="ir.ui.view">-->
 <!--            <field name="name">grap.activity.people.form</field>-->
 <!--            <field name="model">grap.activity.people</field>-->
-<!--            <field name="type">form</field>-->
 <!--            <field name="arch" type="xml">-->
 <!--                <form string="Workers" version="7.0">-->
 <!--                    <field name="people_id"/>-->

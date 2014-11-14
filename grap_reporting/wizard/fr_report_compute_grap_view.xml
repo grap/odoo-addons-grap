@@ -10,7 +10,6 @@
         <record id="sig_report_view" model="ir.ui.view">
             <field name="name">Soldes Intermédiaires de Gestion</field>
             <field name="model">account.sig.report</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
             	<form string='Soldes Intermédiaires de Gestion'>
 	               <field name="date_start"/>
@@ -43,7 +42,6 @@
         <record id="treso_report_view" model="ir.ui.view">
             <field name="name">Tresorerie</field>
             <field name="model">account.treso.report</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
             	<form string='Tresorerie'>
 	               <field name="date_start"/>

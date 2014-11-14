@@ -6,7 +6,6 @@
             <field name="name">account.bank.statement.form</field>
             <field name="model">account.bank.statement</field>
             <field name="inherit_id" ref="account.view_bank_statement_form2"/>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <data>
                     <button name="button_confirm_cash" position="before">
@@ -29,7 +28,6 @@
             <field name="name">account.bank.statement.tree</field>
             <field name="model">account.bank.statement</field>
             <field name="inherit_id" ref="account.view_cash_statement_tree"/>
-            <field name="type">tree</field>
             <field name="arch" type="xml">
                 <data>
                     <button name="button_confirm_bank" position="before">
@@ -49,7 +47,6 @@
             <field name="name">account.cash.statement.select</field>
             <field name="model">account.bank.statement</field>
             <field name="inherit_id" ref="account.view_account_bank_statement_filter"/>
-            <field name="type">search</field>
             <field name="arch" type="xml">
                 <data>
                     <filter name="state_open" position="after">

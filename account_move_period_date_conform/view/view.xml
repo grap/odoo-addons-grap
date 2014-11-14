@@ -44,7 +44,6 @@
         <record id="view_fix_account_move_period_line_wizard_tree" model="ir.ui.view">
             <field name="name">fix.account.move.period.line.wizard.tree</field>
             <field name="model">fix.account.move.period.line.wizard</field>
-            <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="Account informations" editable="top"
                     colors="red:old_fiscalyear_id != new_fiscalyear_id">
