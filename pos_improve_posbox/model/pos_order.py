@@ -37,21 +37,13 @@ class pos_order(Model):
             string='Print via Proxy'),
     }
 
-#    def print_receipt_posbox(self, cr, uid, ids, context=None):
-#        context = context or {}
-#        context['active_id'] = 1
-#        return {
-#            'type' : 'ir.actions.client',
-#            'name': _('Print Quick Direct'),
-#            'tag' : 'pos.posbox',
-#            'target': 'new',
-#            'context' : context
-#        }
-
     def print_receipt_posbox(self, cr, uid, ids, context=None):
-        if len(ids) != 1:
-            raise osv.except_osv(
-                _('Error!'), _('Please select one Pos Order.'))
+        if isinstance(ids, list):
+            if len(ids) != 1:
+                raise osv.except_osv(
+                    _('Error!'), _('Please select one Pos Order.'))
+        else:
+            ids = [ids]
         context = context or {}
         receipt = self.get_export_receipt(cr, uid, ids[0])
         po = self.browse(cr, uid, ids[0], context=context)
@@ -67,14 +59,11 @@ class pos_order(Model):
             'context': ctx,
         }
 
-    def get_export_receipt(self, cr, uid, ids, context=None):
+    def get_export_receipt(self, cr, uid, pId, context=None):
         """Generate a structure with pos order datas, compatible with
             PosBox webServices. Function overloadable."""
-        if len(ids) != 1:
-            raise osv.except_osv(
-                _('Error!'), _('Please select one Pos Order.'))
         receipt = {}
-        po = self.browse(cr, uid, ids[0], context=context)
+        po = self.browse(cr, uid, pId, context=context)
 
         # Orderlines part
         orderlines = []
