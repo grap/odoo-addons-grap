@@ -40,6 +40,7 @@ Copyright, Author and Licence :
     'license': 'AGPL-3',
     'depends': [
         'sale',
+        'sale_stock',
     ],
     'data': [
         'view/sale_report_view.xml',
