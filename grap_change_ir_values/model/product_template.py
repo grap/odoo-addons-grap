@@ -28,10 +28,13 @@ class product_template(Model):
     _inherit = 'product.template'
 
     def _get_uom_id(self, cr, uid, *args):
+        print "*********"
+        print args
         if args[0].get('install_mode', False):
             return super(product_template, self)._get_uom_id(
                 cr, uid, *args)
         else:
+            print "WARNING, FALSE USED"
             return False
 
     _defaults = {
