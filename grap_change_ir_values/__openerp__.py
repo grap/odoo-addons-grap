@@ -23,16 +23,31 @@
 
 {
     'name': 'GRAP - Change Ir Values',
-    'version': '0.1',
+    'version': '1.0',
     'category': 'GRAP - Custom',
     'description': """
 Set ir.values for default feature
 =================================
 Features :
 ----------
-    * Model 'res.partner' ;
-      field : 'notification_email_send' ;
-      value : 'comment'.
+    * Partners receive mail by default:
+        * Model 'res.partner';
+        * field : 'notification_email_send';
+        * value : 'comment';
+    * Products has no default UoM:
+        * Model 'product.template';
+        * field : 'uom_id';
+        * value : False;
+    * Products has no default Purchase UoM:
+        * Model 'product.template';
+        * field : 'uom_po_id';
+        * value : False;
+
+Technical Information:
+----------------------
+    * for product_template.uom_id and uom_po_id, a special test is done to
+      know if creation come from the load of a new module. In that special
+      case, default value is unchanged;
 
 Copyright, Author and Licence :
 -------------------------------
@@ -44,6 +59,7 @@ Copyright, Author and Licence :
     """,
     'depends': [
         'mail',
+        'product',
     ],
     'data': [
         'data/ir_values.yml',
