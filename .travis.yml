@@ -11,8 +11,8 @@ virtualenv:
   system_site_packages: true
 
 before_install:
-  - sudo pip install GitPython bzr cairosvg
   - sudo apt-get install bzr wkhtmltopdf python-smbc
+  - sudo pip install GitPython bzr cairosvg unidecode
 
 install:
   - git clone https://github.com/OCA/web.git $HOME/web -b 7.0
