@@ -30,15 +30,15 @@
             <field name="inherit_id" ref="account.view_cash_statement_tree"/>
             <field name="arch" type="xml">
                 <data>
-                    <button name="button_confirm_bank" position="before">
-                        <button name="statement_closing" states="open" string="Desactivate CashBox" icon="terp-dialog-close" type="object"/>
-                    </button>
-                    <button name="button_confirm_bank" position="attributes">
-                        <attribute name="states">closing,open</attribute>
-                    </button>
-                    <button name="button_confirm_bank" position="before">
-                        <button name="button_reopen" states="closing" string="Reopen CashBox" icon="gtk-undo" type="object"/>
-                    </button>
+<!--                    <button name="button_confirm_bank" position="before">-->
+<!--                        <button name="statement_closing" states="open" string="Desactivate CashBox" icon="terp-dialog-close" type="object"/>-->
+<!--                    </button>-->
+<!--                    <button name="button_confirm_bank" position="attributes">-->
+<!--                        <attribute name="states">closing,open</attribute>-->
+<!--                    </button>-->
+<!--                    <button name="button_confirm_bank" position="before">-->
+<!--                        <button name="button_reopen" states="closing" string="Reopen CashBox" icon="gtk-undo" type="object"/>-->
+<!--                    </button>-->
                 </data>
             </field>
         </record>
