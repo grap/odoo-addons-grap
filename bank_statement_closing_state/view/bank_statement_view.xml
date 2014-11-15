@@ -17,9 +17,9 @@
                     <button name="button_confirm_cash" position="before">
                         <button name="button_reopen" states="closing" string="Reopen CashBox" icon="gtk-undo" type="object"/>
                     </button>
-                    <field name="ending_details_ids" position="attributes">
-                        <attribute name="attrs">{'readonly':[('state','!=','open'),('state','!=','closing')]}</attribute>
-                    </field>
+<!--                    <field name="ending_details_ids" position="attributes">-->
+<!--                        <attribute name="attrs">{'readonly':[('state','!=','open'),('state','!=','closing')]}</attribute>-->
+<!--                    </field>-->
                 </data>
             </field>
         </record>
