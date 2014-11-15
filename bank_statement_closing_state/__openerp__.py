@@ -44,6 +44,7 @@ Copyright, Author and Licence :
     'depends': [
         'account',
         'point_of_sale',
+        'pos_multiple_cash_control',
     ],
     'data': [
         "view/bank_statement_view.xml",
