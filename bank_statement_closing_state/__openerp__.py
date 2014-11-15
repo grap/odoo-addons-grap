@@ -48,8 +48,8 @@ Copyright, Author and Licence :
     ],
     'data': [
         "view/bank_statement_view.xml",
-        "view/pos_box_entries.xml",
-        "view/pos_box_out.xml",
+        "view/pos_box_entries_view.xml",
+        "view/pos_box_out_view.xml",
     ],
     'installable': True,
     'application': True,
