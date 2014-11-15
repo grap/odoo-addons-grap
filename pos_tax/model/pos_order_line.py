@@ -156,4 +156,4 @@ class pos_order_line(Model):
                         'amount_tax': amount
                     }, context=context)
                     vat_correction_count += 1
-        return pol_ids
+        return True
