@@ -48,6 +48,7 @@ Copyright, Authors and Licence:
     'depends': [
         'point_of_sale',
         'report_webkit',
+        'pos_improve_posbox',
     ],
     'data': [
         'view/action.xml',

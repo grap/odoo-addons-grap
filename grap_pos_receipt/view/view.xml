@@ -22,9 +22,9 @@
         <record id="view_pos_order_form" model="ir.ui.view" >
             <field name="name">view.pos_order.form</field>
             <field name="model">pos.order</field>
-            <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+            <field name="inherit_id" ref="pos_improve_posbox.view_pos_order_form"/>
             <field name="arch" type="xml">
-                <button name="%(point_of_sale.action_report_pos_receipt)d" position="replace" />
+                <button name="%(point_of_sale.action_report_pos_receipt)d" position="replace"/>
                 <button name="%(point_of_sale.action_pos_payment)d" position="before">
                     <button name="%(action_report_pos_receipt)d" type="action" states="draft" string="Print"/>
                     <button name="%(action_report_pos_receipt)d" type="action" states="paid,done,invoiced" class="oe_highlight" string="Print"/>
