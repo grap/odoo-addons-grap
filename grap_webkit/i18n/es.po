@@ -1,0 +1,270 @@
+# Spanish translation for account-invoice-report
+# Copyright (c) 2014 Rosetta Contributors and Canonical Ltd 2014
+# This file is distributed under the same license as the account-invoice-report package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: account-invoice-report\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2014-01-17 18:41+0000\n"
+"PO-Revision-Date: 2014-03-06 12:10+0000\n"
+"Last-Translator: Pedro Manuel Baeza <pedro.baeza@gmail.com>\n"
+"Language-Team: Spanish <es@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2014-06-28 06:02+0000\n"
+"X-Generator: Launchpad (build 17077)\n"
+
+#. module: invoice_webkit
+#: field:account.condition_text,name:0
+msgid "Condition summary"
+msgstr "Resumen de la condición"
+
+#. module: invoice_webkit
+#: report:addons/invoice_webkit/report/account_invoice.mako:420
+msgid "Bank account"
+msgstr "Cuenta bancaria"
+
+#. module: invoice_webkit
+#: report:addons/invoice_webkit/report/account_invoice.mako:259
+msgid "Cancelled Invoice"
+msgstr "Factura cancelada"
+
+#. module: invoice_webkit
+#: report:addons/invoice_webkit/report/account_invoice.mako:399
+msgid "Thank you for your prompt payment"
+msgstr "Gracias por su pronto pago"
+
+#. module: invoice_webkit
+#: report:addons/invoice_webkit/report/account_invoice.mako:411
+msgid "Customer VAT No"
+msgstr "NIF del cliente"
+
+#. module: invoice_webkit
+#: field:account.invoice,text_condition2:0
+msgid "Footer condition"
+msgstr "Condición para el pie de página"
+
+#. module: invoice_webkit
+#: report:addons/invoice_webkit/report/account_invoice.mako:271
+msgid "Subject : "
+msgstr "Asunto: "
+
+#. module: invoice_webkit
+#: report:addons/invoice_webkit/report/account_invoice.mako:422
+msgid "Our VAT No"
+msgstr "Nuestro NIF"
+
+#. module: invoice_webkit
+#: report:addons/invoice_webkit/report/account_invoice.mako:263
+msgid "Supplier Invoice"
+msgstr "Factura de proveedor"
+
+#. module: invoice_webkit
+#: report:addons/invoice_webkit/report/account_invoice.mako:306
+msgid "Unit Price"
+msgstr "Precio unitario"
+
+#. module: invoice_webkit
+#: view:account.invoice:0
+msgid "Your bottom conditions here"
+msgstr "Aquí van sus condiciones para la parte inferior"
+
+#. module: invoice_webkit
+#: field:account.invoice,text_condition1:0
+msgid "Header condition"
+msgstr "Condición para la cabecera"
+
+#. module: invoice_webkit
+#: report:addons/invoice_webkit/report/account_invoice.mako:308
+msgid "Disc.(%)"
+msgstr "Desc.(%)"
+
+#. module: invoice_webkit
+#: view:account.invoice:0
+msgid "Conditions"
+msgstr "Condiciones"
+
+#. module: invoice_webkit
+#: report:addons/invoice_webkit/report/account_invoice.mako:358
+msgid "Taxes:"
+msgstr "Impuestos:"
+
+#. module: invoice_webkit
+#: selection:account.condition_text,type:0
+msgid "Top condition"
+msgstr "Condición para la parte superior"
+
+#. module: invoice_webkit
+#: report:addons/invoice_webkit/report/account_invoice.mako:303
+msgid "Description"
+msgstr "Descripción"
+
+#. module: invoice_webkit
+#: report:addons/invoice_webkit/report/account_invoice.mako:280
+msgid "Our reference"
+msgstr "Nuestra referencia"
+
+#. module: invoice_webkit
+#: report:addons/invoice_webkit/report/account_invoice.mako:255
+msgid "PRO-FORMA"
+msgstr "Proforma"
+
+#. module: invoice_webkit
+#: report:addons/invoice_webkit/report/account_invoice.mako:276
+msgid "Invoice Date"
+msgstr "Fecha de factura"
+
+#. module: invoice_webkit
+#: report:addons/invoice_webkit/report/account_invoice.mako:426
+msgid "BIC"
+msgstr "BIC"
+
+#. module: invoice_webkit
+#: report:addons/invoice_webkit/report/account_invoice.mako:383
+msgid "Base"
+msgstr "Base"
+
+#. module: invoice_webkit
+#: report:addons/invoice_webkit/report/account_invoice.mako:349
+msgid "Net :"
+msgstr "Base :"
+
+#. module: invoice_webkit
+#: report:addons/invoice_webkit/report/account_invoice.mako:384
+msgid "Tax"
+msgstr "Impuesto"
+
+#. module: invoice_webkit
+#: field:account.condition_text,type:0
+msgid "type"
+msgstr "tipo"
+
+#. module: invoice_webkit
+#: field:account.condition_text,text:0
+msgid "Condition"
+msgstr "Condición"
+
+#. module: invoice_webkit
+#: view:account.invoice:0
+msgid "Your top conditions here"
+msgstr "Aquí van sus condiciones para la parte superior"
+
+#. module: invoice_webkit
+#: report:addons/invoice_webkit/report/account_invoice.mako:278
+msgid "Responsible"
+msgstr "Responsable"
+
+#. module: invoice_webkit
+#: report:addons/invoice_webkit/report/account_invoice.mako:277
+msgid "Due Date"
+msgstr "Fecha de vencimiento"
+
+#. module: invoice_webkit
+#: field:account.invoice,note2:0
+msgid "Footer"
+msgstr "Pie"
+
+#. module: invoice_webkit
+#: report:addons/invoice_webkit/report/account_invoice.mako:305
+msgid "UoM"
+msgstr "UdM"
+
+#. module: invoice_webkit
+#: report:addons/invoice_webkit/report/account_invoice.mako:307
+msgid "Taxes"
+msgstr "Impuestos"
+
+#. module: invoice_webkit
+#: model:ir.actions.act_window,name:invoice_webkit.action_invoice_condition_form_webkit
+#: model:ir.actions.act_window,name:invoice_webkit.action_invoice_condition_webkit
+msgid "account.condition_text"
+msgstr "Texto para la condición"
+
+#. module: invoice_webkit
+#: model:ir.model,name:invoice_webkit.model_product_template
+msgid "Product Template"
+msgstr "Plantilla del producto"
+
+#. module: invoice_webkit
+#: report:addons/invoice_webkit/report/account_invoice.mako:257
+msgid "Draft Invoice"
+msgstr "Factura borrador"
+
+#. module: invoice_webkit
+#: field:account.invoice.line,formatted_note:0
+msgid "Formatted Note"
+msgstr "Nota formateada"
+
+#. module: invoice_webkit
+#: model:ir.model,name:invoice_webkit.model_account_condition_text
+msgid "Invoices conditions"
+msgstr "Condiciones de las facturas"
+
+#. module: invoice_webkit
+#: report:addons/invoice_webkit/report/account_invoice.mako:265
+msgid "Refund"
+msgstr "Factura rectificativa"
+
+#. module: invoice_webkit
+#: report:addons/invoice_webkit/report/account_invoice.mako:367
+msgid "Total:"
+msgstr "Total:"
+
+#. module: invoice_webkit
+#: view:account.condition_text:0
+msgid "Invoice condition text"
+msgstr "Texto para la condición de factura"
+
+#. module: invoice_webkit
+#: report:addons/invoice_webkit/report/account_invoice.mako:279
+msgid "Payment Term"
+msgstr "Plazo de pago"
+
+#. module: invoice_webkit
+#: model:ir.model,name:invoice_webkit.model_account_invoice_line
+msgid "Invoice Line"
+msgstr "Línea de factura"
+
+#. module: invoice_webkit
+#: report:addons/invoice_webkit/report/account_invoice.mako:304
+msgid "Qty"
+msgstr "Ctd."
+
+#. module: invoice_webkit
+#: field:account.invoice,note1:0
+msgid "Header"
+msgstr "Cabecera"
+
+#. module: invoice_webkit
+#: report:addons/invoice_webkit/report/account_invoice.mako:382
+msgid "Rate"
+msgstr "Tasa"
+
+#. module: invoice_webkit
+#: report:addons/invoice_webkit/report/account_invoice.mako:408
+msgid "Bank"
+msgstr "Banco"
+
+#. module: invoice_webkit
+#: report:addons/invoice_webkit/report/account_invoice.mako:261
+#: model:ir.model,name:invoice_webkit.model_account_invoice
+msgid "Invoice"
+msgstr "Factura"
+
+#. module: invoice_webkit
+#: report:addons/invoice_webkit/report/account_invoice.mako:267
+msgid "Supplier Refund"
+msgstr "Factura rectificativa de proveedor"
+
+#. module: invoice_webkit
+#: report:addons/invoice_webkit/report/account_invoice.mako:309
+msgid "Net Sub Total"
+msgstr "Subtotal"
+
+#. module: invoice_webkit
+#: selection:account.condition_text,type:0
+msgid "Bottom condition"
+msgstr "Condición para la parte inferior"
