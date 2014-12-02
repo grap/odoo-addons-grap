@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data>
+
+        <record id="account.account_invoices" model="ir.actions.report.xml">
+            <field name="report_file">grap_change_print/report/account_print_invoice.rml</field>
+        </record>
+
+    </data>
+</openerp>
