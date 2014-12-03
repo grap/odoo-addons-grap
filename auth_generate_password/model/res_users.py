@@ -49,7 +49,6 @@ class res_users(Model):
                     password)
             self._set_new_password(
                 cr, uid, ru.id, None, password, None, context=None)
-            print body
             mm_obj.create(
                 cr, SUPERUSER_ID, {
                     'email_to': ru['email'],

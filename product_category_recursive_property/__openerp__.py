@@ -31,7 +31,7 @@ Propagate recursively properties for product category
 Features :
 ----------
     * When an user set an accounting property to a product category, the
-    parameter will be set to all child.
+      parameter will be set to all child.
 
 Copyright and Licence :
 -----------------------
