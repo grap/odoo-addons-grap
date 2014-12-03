@@ -28,12 +28,6 @@ class TestProductCategoryRecursiveProperty(TransactionCase):
     def setUp(self):
         super(TestProductCategoryRecursiveProperty, self).setUp()
         self.imd_obj = self.registry('ir.model.data')
-        self.pp_obj = self.registry('product.product')
-        self.ppl_obj = self.registry('product.pricelist')
-        self.po_obj = self.registry('pos.order')
-        self.pol_obj = self.registry('pos.order.line')
-        self.pc_obj = self.registry('pos.config')
-        self.ps_obj = self.registry('pos.session')
 
     # Test Section
     def test_01_default_price_list(self):

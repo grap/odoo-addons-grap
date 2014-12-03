@@ -51,6 +51,6 @@ Copyright, Authors and Licence:
         'account',
     ],
     'demo': [
-       'demo/res_groups.yml', 
+        'demo/res_groups.yml',
     ],
 }
