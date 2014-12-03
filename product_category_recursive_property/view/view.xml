@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_product_category_tree" model="ir.ui.view">
+            <field name="model">product.category</field>
+            <field name="inherit_id" ref="product.product_category_list_view" />
+            <field name="arch" type="xml">
+                <field name="complete_name" position="after">
+                    <field name="property_account_income_categ"/>
+                    <field name="property_account_expense_categ"/>
+                    <field name="property_stock_journal"/>
+                    <field name="property_stock_account_input_categ"/>
+                    <field name="property_stock_account_output_categ"/>
+                    <field name="property_stock_valuation_account_id"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>

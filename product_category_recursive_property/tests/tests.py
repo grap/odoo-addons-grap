@@ -27,43 +27,71 @@ class TestProductCategoryRecursiveProperty(TransactionCase):
 
     def setUp(self):
         super(TestProductCategoryRecursiveProperty, self).setUp()
+        cr, uid = self.cr, self.uid
         self.imd_obj = self.registry('ir.model.data')
+        self.pc_obj = self.registry('product.category')
+        self.ip_obj = self.registry('ir.property')
+        self.mother_pc_id = self.imd_obj.get_object_reference(
+            cr, uid, 'product_category_recursive_property',
+            'mother_category')[1]
+        self.child_pc_id = self.imd_obj.get_object_reference(
+            cr, uid, 'product_category_recursive_property',
+            'child_category')[1]
+        self.income_ip_id = self.imd_obj.get_object_reference(
+            cr, uid, 'account', 'property_account_income_categ')[1]
+        self.expense_ip_id = self.imd_obj.get_object_reference(
+            cr, uid, 'account', 'property_account_expense_categ')[1]
+        self.expense_aa_id = self.imd_obj.get_object_reference(
+            cr, uid, 'account', 'a_sale')[1]
+        self.income_aa_id = self.imd_obj.get_object_reference(
+            cr, uid, 'account', 'a_expense')[1]
 
     # Test Section
-    def test_01_default_price_list(self):
-        """[Functional Test] Change """
-#        cr, uid = self.cr, self.uid
-#        # Getting object
-#        pc_id = self.imd_obj.get_object_reference(
-#            cr, uid, 'point_of_sale', 'pos_config_main')[1]
-#        rp_c2c_id = self.imd_obj.get_object_reference(
-#            cr, uid, 'base', 'res_partner_12')[1]
-#        ppl_c2c_id = self.imd_obj.get_object_reference(
-#            cr, uid, 'product', 'list0')[1]
-#        pp_usb_id = self.imd_obj.get_object_reference(
-#            cr, uid, 'product', 'product_product_48')[1]
+    def test_01_all_default(self):
+        """[Functional Test] Tests changing expense / income account
+        on product categories"""
+        cr, uid = self.cr, self.uid
 
-#        # Opening Session
-#        self.ps_obj.create(cr, uid, {
-#            'config_id': pc_id,
-#        })
+        # Delete default property value
+        self.ip_obj.unlink(cr, uid, [self.income_ip_id, self.expense_ip_id])
+        pc_ids = self.pc_obj.search(cr, uid, [])
+        for pc in self.pc_obj.browse(cr, uid, pc_ids):
+            self.assertEquals(
+                pc.property_account_expense_categ.id, False,
+                "Regression - Remove default value must remove expense"
+                " property !")
+            self.assertEquals(
+                pc.property_account_income_categ.id, False,
+                "Regression - Remove default value must remove income"
+                " property !")
 
-#        # create Pos Order
-#        po_id = self.po_obj.create(cr, uid, {
-#            'partner_id': rp_c2c_id,
-#            'pricelist_id': ppl_c2c_id,
-#            'lines': [[0, False, {
-#                'product_id': pp_usb_id,
-#                'qty': 1,
-#            }]],
-#        })
-#        pp_usb = self.pp_obj.browse(cr, uid, pp_usb_id)
-#        po = self.po_obj.browse(cr, uid, po_id)
+        # Set expense categ to mother pc
+        self.pc_obj.write(cr, uid, [self.mother_pc_id], {
+            'property_account_expense_categ': self.expense_aa_id})
+        child_pc = self.pc_obj.browse(cr, uid, self.child_pc_id)
+        self.assertEquals(
+            child_pc.property_account_expense_categ.id, self.expense_aa_id,
+            "Set an expense account to a mother category must set an"
+            " expense account to their childs !")
 
-#        res = self.pol_obj.onchange_product_id(
-#            cr, uid, po.lines[0].id, po.pricelist_id.id,
-#            po.lines[0].product_id.id, po.lines[0].qty)
+        # Set income categ to mother pc
+        self.pc_obj.write(cr, uid, [self.mother_pc_id], {
+            'property_account_income_categ': self.income_aa_id})
+        child_pc = self.pc_obj.browse(cr, uid, self.child_pc_id)
+        self.assertEquals(
+            child_pc.property_account_income_categ.id, self.income_aa_id,
+            "Set an income account to a mother category must set an"
+            " income account to their childs !")
 
-#        self.assertEquals(
-#            res['value']['price_subtotal'], pp_usb.list_price,
-#            "Incorrect price for default pricelist!")
+        # Check if other categories are not affected
+        pc_ids = self.pc_obj.search(cr, uid, [
+            ('id', 'not in', [self.mother_pc_id, self.child_pc_id])])
+        for pc in self.pc_obj.browse(cr, uid, pc_ids):
+            self.assertEquals(
+                pc.property_account_expense_categ.id, False,
+                "Set an expense categ to a category must not affect non child"
+                " categories !")
+            self.assertEquals(
+                pc.property_account_income_categ.id, False,
+                "Set an income categ to a category must not affect non child"
+                " categories !")

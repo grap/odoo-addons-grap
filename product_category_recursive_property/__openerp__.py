@@ -31,7 +31,7 @@ Propagate recursively properties for product category
 Features :
 ----------
     * When an user set an accounting property to a product category, the
-      parameter will be set to all child.
+      parameter will be set to all childs;
 
 Copyright and Licence :
 -----------------------
@@ -49,8 +49,13 @@ Copyright, Authors and Licence:
     'depends': [
         'product',
         'account',
+        'stock',
+    ],
+    'data': [
+        'view/view.xml',
     ],
     'demo': [
         'demo/res_groups.yml',
+        'demo/product_category.yml',
     ],
 }
