@@ -20,13 +20,11 @@
 #
 ##############################################################################
 
-import time
-
 from openerp.osv.orm import Model
 from openerp.osv import fields
-from openerp.report import report_sxw
 from openerp.tools.translate import _
 import openerp.addons.decimal_precision as dp
+
 
 class account_invoice_line(Model):
     _inherit = 'account.invoice.line'
@@ -39,14 +37,14 @@ class account_invoice_line(Model):
         for ail in self.browse(cr, uid, ids, context=context):
             res[ail.id] = ""
             product = ail.product_id
-            if product: 
+            if product:
                 # Add country name
-                if product.country_id: 
+                if product.country_id:
                     res[ail.id] += _(" - Country : ")\
                         + product.country_id.name
                 # Add country name
-                if product.fresh_category: 
-                    res[ail.id] +=_(" - Category : ")\
+                if product.fresh_category:
+                    res[ail.id] += _(" - Category : ")\
                         + product.fresh_category
                 count_label = 0
                 for label in product.label_ids:
@@ -75,8 +73,6 @@ class account_invoice_line(Model):
             string='Extra information for invoices'),
         'price_unit_vat_excluded': fields.function(
             _get_price_unit_vat_excluded, type='float',
-            digits_compute= dp.get_precision('Purchase Price'),
+            digits_compute=dp.get_precision('Purchase Price'),
             string='Unit Price VAT Excluded'),
-            
-            
-        }
+    }
