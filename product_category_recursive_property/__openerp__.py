@@ -50,4 +50,7 @@ Copyright, Authors and Licence:
         'product',
         'account',
     ],
+    'demo': [
+       'demo/res_groups.yml', 
+    ],
 }
