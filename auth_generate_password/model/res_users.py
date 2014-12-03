@@ -31,29 +31,28 @@ from openerp.tools.translate import _
 class res_users(Model):
     _inherit = 'res.users'
 
-    # Private Function section
-    def _translate(self, cr, lang, text):
-        context = {'lang': lang}  # noqa: _() checks page for locals
-        return _(text)
-
     def generate_password(self, cr, uid, ids, context=None):
         mm_obj = self.pool['mail.mail']
         for ru in self.browse(cr, uid, ids, context=context):
             password = "".join([random.choice(
                 string.ascii_letters + string.digits) for n in xrange(6)])
-            subject = self._translate(
-                cr, ru['lang'], _('OpenERP - Password Changed'))
-            body = self._translate(
-                cr, ru['lang'],
-                _("""Your OpenERP credentials has been changed.\n\n"""
-                    """- Login : %s\n\n"""
-                    """- New Password : %s\n\n""")) % (
-                        ru.login,
-                        password)
+            subject = _('OpenERP - Password Changed')
+            body = _(
+                """Your OpenERP credentials has been changed : <br />"""
+                """- Login : %s<br />"""
+                """- New Password : %s<br /><br />"""
+                """Please,<br />"""
+                """- remember this password and delete this email;<br />"""
+                """- Communicate the password to your team, if you are"""
+                """ many people to use the same credentials;""") % (
+                    ru.login,
+                    password)
             self._set_new_password(
                 cr, uid, ru.id, None, password, None, context=None)
+            print body
             mm_obj.create(
                 cr, SUPERUSER_ID, {
                     'email_to': ru['email'],
                     'subject': subject,
-                    'body_html': '<pre>%s</pre>' % body})
+                    'body_html': body})
+        return {}
