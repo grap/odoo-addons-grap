@@ -20,8 +20,10 @@
 #
 ##############################################################################
 
+# This line is noqa flaged, to allow users to use string functions written
+# in ir_config_parameter
+import string # flake8: noqa
 import random
-import string
 
 from openerp import SUPERUSER_ID
 from openerp.osv.orm import Model
@@ -33,9 +35,14 @@ class res_users(Model):
 
     def generate_password(self, cr, uid, ids, context=None):
         mm_obj = self.pool['mail.mail']
+        icp_obj = self.pool['ir.config_parameter']
+        password_size = eval(icp_obj.get_param(
+            cr, uid, 'auth_generate_password.password_size'))
+        password_chars = eval(icp_obj.get_param(
+            cr, uid, 'auth_generate_password.password_chars'))
         for ru in self.browse(cr, uid, ids, context=context):
             password = "".join([random.choice(
-                string.ascii_letters + string.digits) for n in xrange(6)])
+                password_chars) for n in xrange(password_size)])
             subject = _('OpenERP - Password Changed')
             body = _(
                 """Your OpenERP credentials has been changed : <br />"""

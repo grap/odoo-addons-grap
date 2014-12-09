@@ -20,40 +20,10 @@
 #
 ##############################################################################
 
-{
-    'name': 'Password Secure',
-    'version': '2.0',
-    'category': 'GRAP - Custom',
-    'description': """
-Password Secure
-===============
+- !record {model: ir.config_parameter, id: password_size}:
+    key: auth_generate_password.password_size
+    value: 6
 
-Functionnality:
----------------
-    * Forbid users to change them password;
-        * Only members of base.group_system can change password; OK.
-    * Add a button to the res_users form:
-        * to change the password (randomly generated);
-        * send an email to each users;
-
-Copyright, Author and Licence :
--------------------------------
-    * Copyright : 2014, Groupement Régional Alimentaire de Proximité;
-    * Author : Sylvain LE GAL (https://twitter.com/legalsylvain);
-    * Licence : AGPL-3 (http://www.gnu.org/licenses/)
-    """,
-    'author': 'GRAP',
-    'website': 'http://www.grap.coop',
-    'license': 'AGPL-3',
-    'depends': [
-        'mail',
-    ],
-    'data': [
-        'data/ir_actions_server.xml',
-        'data/ir_config_parameter.yml',
-        'view/view.xml',
-    ],
-    'demo': [
-        'demo/res_groups.yml',
-    ],
-}
+- !record {model: ir.config_parameter, id: password_chars}:
+    key: auth_generate_password.password_chars
+    value: string.ascii_letters + string.digits
