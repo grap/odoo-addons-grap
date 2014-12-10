@@ -25,8 +25,8 @@
 import string # flake8: noqa
 import random
 
-from openerp import SUPERUSER_ID
 from openerp.osv.orm import Model
+from openerp.osv.osv import except_osv
 from openerp.tools.translate import _
 
 
@@ -34,31 +34,32 @@ class res_users(Model):
     _inherit = 'res.users'
 
     def generate_password(self, cr, uid, ids, context=None):
+        if not context:
+            context = {}
         mm_obj = self.pool['mail.mail']
         icp_obj = self.pool['ir.config_parameter']
+        imd_obj = self.pool['ir.model.data']
+        et_obj = self.pool['email.template']
         password_size = eval(icp_obj.get_param(
             cr, uid, 'auth_generate_password.password_size'))
         password_chars = eval(icp_obj.get_param(
             cr, uid, 'auth_generate_password.password_chars'))
+        et = imd_obj.get_object(
+            cr, uid, 'auth_generate_password', 'generate_password_template')
+
         for ru in self.browse(cr, uid, ids, context=context):
+            if not ru.email:
+                raise osv.except_osv(
+                    _("Cannot send email: user has no email address."),
+                    user.name)
+            # Generate Password
             password = "".join([random.choice(
                 password_chars) for n in xrange(password_size)])
-            subject = _('OpenERP - Password Changed')
-            body = _(
-                """Your OpenERP credentials has been changed : <br />"""
-                """- Login : %s<br />"""
-                """- New Password : %s<br /><br />"""
-                """Please,<br />"""
-                """- remember this password and delete this email;<br />"""
-                """- Communicate the password to your team, if you are"""
-                """ many people to use the same credentials;""") % (
-                    ru.login,
-                    password)
             self._set_new_password(
                 cr, uid, ru.id, None, password, None, context=None)
-            mm_obj.create(
-                cr, SUPERUSER_ID, {
-                    'email_to': ru['email'],
-                    'subject': subject,
-                    'body_html': body})
+            # Send Mail
+            context['generated_password'] = password
+            mail_id = et_obj.send_mail(
+                cr, uid, et.id, ru.id, True, context=context)
+            del context['generated_password']
         return {}

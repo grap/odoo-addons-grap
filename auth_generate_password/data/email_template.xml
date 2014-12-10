@@ -19,18 +19,26 @@
 <!-- ********************************************************************** -->
 <openerp>
     <data>
-        <record id="action_generate_password" model="ir.actions.server">
-            <field name="name">Generate Password</field>
-            <field name="model_id" ref="model_res_users"/>
-            <field name="state">code</field>
-            <field name="code">action = obj.generate_password(context=context)</field>
-        </record>
 
-        <record id="ir_values_generate_password" model="ir.values">
-            <field name="key2" eval="'client_action_multi'"/>
-            <field name="model" eval="'res.users'"/>
+<!-- Model: email.template -->
+        <record model="email.template" id="generate_password_template" >
             <field name="name">Generate Password</field>
-            <field eval="'ir.actions.server,%d'%action_generate_password" name="value"/>
+            <field name="model_id" ref="base.model_res_users"/>
+            <field name="email_from"><![CDATA[${object.company_id.name} <${(object.company_id.email or user.email)|safe}>]]></field>
+            <field name="email_to">${object.email|safe}</field>
+            <field name="subject">OpenERP - Password Changed</field>
+            <field name="body_html"><![CDATA[
+Your OpenERP credentials has been changed:
+<ul>
+<li>Login : ${object.login}</li>
+<li>New Password : ${ctx.get('generated_password')}</li>
+</ul>
+Please, 
+<ul>
+<li>remember this password and delete this email;</li>
+<li>Communicate the password to your team, if you are many people to use the same credentials;</li>
+</ul>]]>
+            </field>
         </record>
 
     </data>

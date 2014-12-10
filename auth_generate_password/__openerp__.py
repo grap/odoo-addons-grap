@@ -21,9 +21,9 @@
 ##############################################################################
 
 {
-    'name': 'Password Secure',
-    'version': '2.0',
-    'category': 'GRAP - Custom',
+    'name': 'Authentification - Generate Password',
+    'version': '1.0',
+    'category': 'Tools',
     'description': """
 Password Secure
 ===============
@@ -36,9 +36,19 @@ Functionnality:
         * to change the password (randomly generated);
         * send an email to each users;
 
+Settings:
+---------
+    * Once the module installed, you have to set two settings:
+        * password size: the size of the password generated (6 by default);
+        * password chars: the list of allowed chars (by default ASCII letters
+          and digits); You can:
+            * set a list of chars like 'abcdef';
+            * use string function like string.ascii_letters;
+    * Be sure that an Outgoing Email Server is correctly configured;
+
 Copyright, Author and Licence :
 -------------------------------
-    * Copyright : 2014, Groupement Régional Alimentaire de Proximité;
+    * Copyright : 2014, Groupement Regional Alimentaire de Proximite;
     * Author : Sylvain LE GAL (https://twitter.com/legalsylvain);
     * Licence : AGPL-3 (http://www.gnu.org/licenses/)
     """,
@@ -46,14 +56,15 @@ Copyright, Author and Licence :
     'website': 'http://www.grap.coop',
     'license': 'AGPL-3',
     'depends': [
-        'mail',
+        'email_template',
     ],
     'data': [
-        'data/ir_actions_server.xml',
         'data/ir_config_parameter.yml',
+        'data/email_template.xml',
         'view/view.xml',
     ],
     'demo': [
         'demo/res_groups.yml',
+        'demo/res_users.yml',
     ],
 }
