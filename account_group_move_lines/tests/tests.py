@@ -1,0 +1,135 @@
+# -*- encoding: utf-8 -*-
+##############################################################################
+#
+#    Account - Group Move Line Module for Odoo
+#    Copyright (C) 2014-Today GRAP (http://www.grap.coop)
+#    @author Sylvain LE GAL (https://twitter.com/legalsylvain)
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+##############################################################################
+
+from openerp import netsvc
+from openerp.tests.common import TransactionCase
+
+
+class TestAccountGroupMoveLines(TransactionCase):
+
+    def setUp(self):
+        super(TestAccountGroupMoveLines, self).setUp()
+        cr, uid = self.cr, self.uid
+        self.imd_obj = self.registry('ir.model.data')
+        self.ai_obj = self.registry('account.invoice')
+        self.aj_obj = self.registry('account.journal')
+        self.ail_obj = self.registry('account.invoice.line')
+        self.sale_journal_id = self.imd_obj.get_object_reference(
+            cr, uid, 'account', 'sales_journal')[1]
+        self.customer_partner_id = self.imd_obj.get_object_reference(
+            cr, uid, 'base', 'res_partner_2')[1]
+        self.customer_account_id = self.imd_obj.get_object_reference(
+            cr, uid, 'account', 'a_recv')[1]
+        self.account_sale_1 = self.imd_obj.get_object_reference(
+            cr, uid, 'account', 'a_sale')[1]
+        self.account_sale_2 = self.imd_obj.get_object_reference(
+            cr, uid, 'account', 'income_fx_income')[1]
+        self.product_1 = self.imd_obj.get_object_reference(
+            cr, uid, 'product', 'product_product_48')[1]
+        self.product_2 = self.imd_obj.get_object_reference(
+            cr, uid, 'product', 'product_product_24')[1]
+        self.product_3 = self.imd_obj.get_object_reference(
+            cr, uid, 'product', 'product_product_16')[1]
+        self.product_4 = self.imd_obj.get_object_reference(
+            cr, uid, 'product', 'product_product_35')[1]
+
+    # Test Section
+    def test_01_generate_move_from_invoice(self):
+        """[Functional Test] Create Customer Invoice and check correct
+        generated moves"""
+        cr, uid = self.cr, self.uid
+        # Set Journal to group invoice lines
+        self.aj_obj.write(cr, uid, self.sale_journal_id, {
+            'group_invoice_lines': True,
+        })
+
+        ai_id = self.ai_obj.create(cr, uid, {
+            'partner_id': self.customer_partner_id,
+            'account_id': self.customer_account_id,
+        })
+        # Line 1 : Product 1 - account 1
+        self.ail_obj.create(cr, uid, {
+            'product_id': self.product_1,
+            'invoice_id': ai_id,
+            'name': 'Account 1 - price : 2',
+            'account_id': self.account_sale_1,
+            'price_unit': 2,
+        })
+        # Line 2 : Product 2 - account 1
+        self.ail_obj.create(cr, uid, {
+            'product_id': self.product_2,
+            'invoice_id': ai_id,
+            'name': 'Account 1 - price : 30',
+            'account_id': self.account_sale_1,
+            'price_unit': 30,
+        })
+        # Line 3 : Product 3 - account 2
+        self.ail_obj.create(cr, uid, {
+            'product_id': self.product_3,
+            'invoice_id': ai_id,
+            'name': 'Account 1 - price : 2',
+            'account_id': self.account_sale_2,
+            'price_unit': 4,
+        })
+        # Line 4 : Product 4 - account 2
+        self.ail_obj.create(cr, uid, {
+            'product_id': self.product_4,
+            'invoice_id': ai_id,
+            'name': 'Account 1 - price : 30',
+            'account_id': self.account_sale_2,
+            'price_unit': 50,
+        })
+
+        wf_service = netsvc.LocalService('workflow')
+        wf_service.trg_validate(
+            uid, 'account.invoice', ai_id, 'invoice_open', cr)
+
+        ai = self.ai_obj.browse(cr, uid, ai_id)
+        self.assertEquals(
+            len(ai.move_id.line_id), 3,
+            """Validate customer invoices with 2 distincts sale accounts"""
+            """ must generate a move with 3 lines""")
+        line_account_1 = False
+        line_account_2 = False
+        for line in ai.move_id.line_id:
+            if line.account_id.id == self.account_sale_1:
+                line_account_1 = line
+            if line.account_id.id == self.account_sale_2:
+                line_account_2 = line
+
+        self.assertNotEquals(
+            line_account_1, False,
+            """Validate Customer invoices with Sale Account #1 must generate"""
+            """ one single move line with account #1.""")
+        self.assertNotEquals(
+            line_account_2, False,
+            """Validate Customer invoices with Sale Account #2 must generate"""
+            """ one single move line with account #2.""")
+
+        self.assertEquals(
+            line_account_1.credit, 2 + 30,
+            """Validate Customer invoices with Sale Account #1 lines"""
+            """ must generate one single move line width summed value.""")
+        self.assertEquals(
+            line_account_2.credit, 4 + 50,
+            """Validate Customer invoices with Sale Account #2 lines"""
+            """ must generate one single move line width summed value.""")
