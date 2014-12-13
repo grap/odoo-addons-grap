@@ -69,7 +69,6 @@ Copyright, Author and Licence :
         'view/pos_session_opening.xml',
         'view/account_view.xml',
         'view/account_bank_statement_line_view.xml',
-        'data/product_category.xml',
         'view/action.xml',
         'view/menu.xml',
     ],

@@ -23,22 +23,23 @@
 #
 ##############################################################################
 
-from osv import osv, fields
+from openerp.osv import osv, fields
+from openerp.osv.orm import TransientModel
 from tools.translate import _
 
 
-class pos_box_entries(osv.osv_memory):
+class pos_box_entries(TransientModel):
     _name = 'pos.box.entries'
     _description = 'Pos Box Entries'
 
     def _select_cash_registers(self, cr, uid, context=None):
         if not context:
             context = {}
-        statement_obj = self.pool.get('account.bank.statement')
+        abs_obj = self.pool['account.bank.statement']
         session_id = context.get('active_id', False)
-        statement_ids = statement_obj.search(
+        statement_ids = abs_obj.search(
             cr, uid, [('pos_session_id', '=', session_id)], context=context)
-        statements = statement_obj.read(
+        statements = abs_obj.read(
             cr, uid, statement_ids, ['name', 'id', 'journal_id'],
             context=context)
         result = [
@@ -67,16 +68,8 @@ class pos_box_entries(osv.osv_memory):
 
     # Private section
     def get_in(self, cr, uid, ids, context=None):
-        """
-             Create the entry of statement in journal.
-             @param self: The object pointer.
-             @param cr: A database cursor
-             @param uid: ID of the user currently logged in
-             @param context: A standard dictionary
-             @return :Return of operation of product
-        """
-        statement_obj = self.pool.get('account.bank.statement')
-        bank_statement = self.pool.get('account.bank.statement.line')
+        abs_obj = self.pool['account.bank.statement']
+        absl_obj = self.pool['account.bank.statement.line']
         for pbe in self.browse(cr, uid, ids, context=context):
             vals = {}
             statement_id = pbe.statement_id
@@ -92,7 +85,7 @@ class pos_box_entries(osv.osv_memory):
                     _('Error !'),
                     _('Please check that income account is set to %s') % (
                         product.name))
-            statement = statement_obj.browse(
+            statement = abs_obj.browse(
                 cr, uid, int(statement_id), context=context)
             vals['statement_id'] = statement_id
             vals['journal_id'] = int(statement.journal_id.id)
@@ -104,5 +97,5 @@ class pos_box_entries(osv.osv_memory):
                 vals['amount'] = - pbe.amount
             vals['ref'] = "%s" % (pbe.name or '')
             vals['name'] = "%s " % (pbe.name or '')
-            bank_statement.create(cr, uid, vals, context=context)
+            absl_obj.create(cr, uid, vals, context=context)
         return {}

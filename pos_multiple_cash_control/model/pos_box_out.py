@@ -23,11 +23,12 @@
 #
 ##############################################################################
 
-from osv import osv, fields
+from openerp.osv import osv, fields
+from openerp.osv.orm import TransientModel
 from tools.translate import _
 
 
-class pos_box_out(osv.osv_memory):
+class pos_box_out(TransientModel):
     _name = 'pos.box.out'
     _description = 'Pos Box Out'
 
@@ -35,11 +36,11 @@ class pos_box_out(osv.osv_memory):
     def _select_cash_registers(self, cr, uid, context=None):
         if not context:
             context = {}
-        statement_obj = self.pool.get('account.bank.statement')
+        abs_obj = self.pool['account.bank.statement']
         session_id = context.get('active_id', False)
-        statement_ids = statement_obj.search(
+        statement_ids = abs_obj.search(
             cr, uid, [('pos_session_id', '=', session_id)], context=context)
-        statements = statement_obj.read(
+        statements = abs_obj.read(
             cr, uid, statement_ids, ['name', 'id', 'journal_id'],
             context=context)
         result = [
@@ -58,13 +59,8 @@ class pos_box_out(osv.osv_memory):
         'product_id': fields.many2one(
             'product.product', 'Operation', required=True),
         'amount': fields.float(
-            'Amount VAT Included', digits=(16, 2), required=True,
+            'Amount', digits=(16, 2), required=True,
             help="The amount you take in your cash register"),
-        'amount_VAT': fields.float(
-            'VAT Amount', digits=(16, 2), required=True,
-            help="The tax amount mentionned on the invoice, if any"),
-        'tax_name': fields.char(
-            'Taxes', size=32, readonly=True),
         'ref': fields.char(
             'Ref', size=32),
     }
@@ -76,18 +72,18 @@ class pos_box_out(osv.osv_memory):
 
     # Private section
     def get_out(self, cr, uid, ids, context=None):
-        statement_obj = self.pool.get('account.bank.statement')
-        bank_statement = self.pool.get('account.bank.statement.line')
-        for pbe in self.browse(cr, uid, ids, context=context):
+        abs_obj = self.pool['account.bank.statement']
+        absl_obj = self.pool['account.bank.statement.line']
+        for pbo in self.browse(cr, uid, ids, context=context):
             vals = {}
-            statement_id = pbe.statement_id
+            statement_id = pbo.statement_id
             if not statement_id:
                 raise osv.except_osv(
                     _('Error !'),
                     _('You have to open at least one cashbox'))
 
             # create expense statement
-            product = pbe.product_id
+            product = pbo.product_id
             acc_id = product.property_account_expense.id \
                 or product.categ_id.property_account_expense_categ.id
             if not acc_id:
@@ -95,45 +91,17 @@ class pos_box_out(osv.osv_memory):
                     _('Error !'),
                     _('Please check that expense account is set to %s') %
                     (product.name))
-            statement = statement_obj.browse(
+            statement = abs_obj.browse(
                 cr, uid, int(statement_id), context=context)
             vals['statement_id'] = statement_id
             vals['journal_id'] = int(statement.journal_id.id)
             vals['account_id'] = acc_id
-            if pbe.amount < 0:
-                vals['amount'] = pbe.amount - pbe.amount_VAT
+            if pbo.amount < 0:
+                vals['amount'] = pbo.amount
             else:
-                vals['amount'] = pbe.amount_VAT - pbe.amount
-            vals['ref'] = "%s" % (pbe.name or '')
-            vals['name'] = "%s " % (pbe.name or '')
-            bank_statement.create(cr, uid, vals, context=context)
+                vals['amount'] = pbo.amount
+            vals['ref'] = "%s" % (pbo.name or '')
+            vals['name'] = "%s " % (pbo.name or '')
+            absl_obj.create(cr, uid, vals, context=context)
 
-            # create tax statement
-            if pbe.amount_VAT:
-                tax_acc_id = product.taxes_id[0].account_collected_id.id
-                if not tax_acc_id:
-                    raise osv.except_osv(
-                        _('Error !'),
-                        _('Please check tax settings against product %s') %
-                        (product.name))
-                vals = {}
-                vals['statement_id'] = statement_id
-                vals['journal_id'] = int(statement.journal_id.id)
-                vals['account_id'] = tax_acc_id
-                vals['amount'] = - pbe.amount_VAT
-                vals['ref'] = "Tax %s" % (pbe.name or '')
-                vals['name'] = "Tax %s " % (pbe.name or '')
-                bank_statement.create(cr, uid, vals, context=context)
         return {}
-
-    # View section
-    def onchange_product_id(self, cr, uid, ids, product_id, context=None):
-        pp_obj = self.pool['product.product']
-        if not product_id:
-            return {'value': {
-                'taxe_name': '',
-            }}
-        pp = pp_obj.browse(cr, uid, product_id, context=context)
-        return {'value': {
-            'tax_name': ','.join([tax.name for tax in pp.taxes_id]),
-        }}

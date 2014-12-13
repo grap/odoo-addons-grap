@@ -26,15 +26,16 @@
 
 import time
 
-from openerp.osv import fields, osv
+from openerp.osv.orm import Model
+from openerp.osv import fields
 from openerp.addons import decimal_precision as dp
 
 
-class pos_session(osv.osv):
+class pos_session(Model):
     _inherit = 'pos.session'
 
     def _get_cash_control(self, cr, uid, ids, fieldnames, args, context=None):
-        result = dict()
+        result = {}
         for record in self.browse(cr, uid, ids, context=context):
             result[record.id] = True
             for ccl in record.cash_controls_list:
@@ -44,7 +45,7 @@ class pos_session(osv.osv):
         return result
 
     def _compute_balances(self, cr, uid, ids, fieldnames, args, context=None):
-        result = dict()
+        result = {}
         for record in self.browse(cr, uid, ids, context=context):
             result[record.id] = {
                 'cash_register_balance_end_real': '0.0',
@@ -75,7 +76,7 @@ class pos_session(osv.osv):
         return result
 
     def _cash_compute(self, cr, uid, ids, fieldnames, args, context=None):
-        result = dict()
+        result = {}
 
         for record in self.browse(cr, uid, ids, context=context):
             result[record.id] = {
@@ -130,12 +131,12 @@ class pos_session(osv.osv):
     }
 
     def _check_unicity(self, cr, uid, ids, context=None):
-        for session in self.browse(cr, uid, ids, context=None):
+        for ps in self.browse(cr, uid, ids, context=None):
             # open if there is no session in 'opening_control',
             # 'opened', 'closing_control' for one user
             domain = [
                 ('state', '=', 'opened'),
-                ('user_id', '=', session.user_id.id)
+                ('user_id', '=', ps.user_id.id)
             ]
             count = self.search_count(cr, uid, domain, context=context)
             if count > 1:
@@ -143,10 +144,10 @@ class pos_session(osv.osv):
         return True
 
     def _check_pos_config(self, cr, uid, ids, context=None):
-        for session in self.browse(cr, uid, ids, context=None):
+        for ps in self.browse(cr, uid, ids, context=None):
             domain = [
                 ('state', '=', 'opened'),
-                ('config_id', '=', session.config_id.id)
+                ('config_id', '=', ps.config_id.id)
             ]
             count = self.search_count(cr, uid, domain, context=context)
             if count > 1:
@@ -175,7 +176,7 @@ class pos_session(osv.osv):
                 'pos_session_id': pos_session_id,
                 'journal_id': st.journal_id.id,
                 'cash_register_id': st.id}
-            self.pool.get('pos.cash.controls').create(
+            self.pool['pos.cash.controls'].create(
                 cr, uid, control_values, context=context)
         return pos_session_id
 
@@ -184,7 +185,7 @@ class pos_session(osv.osv):
             for statement in session.statement_ids:
                 if (not statement.journal_id.cash_control) and \
                         (statement.balance_end != statement.balance_end_real):
-                    self.pool.get('account.bank.statement').write(
+                    self.pool['account.bank.statement'].write(
                         cr, uid, [statement.id], {
                             'balance_end_real': statement.balance_end})
         return self.write(

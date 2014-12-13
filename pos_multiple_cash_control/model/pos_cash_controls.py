@@ -23,12 +23,12 @@
 #
 ##############################################################################
 
-
-from openerp.osv import fields, osv
+from openerp.osv import fields
+from openerp.osv.orm import Model
 from openerp.addons import decimal_precision as dp
 
 
-class pos_cash_controls(osv.osv):
+class pos_cash_controls(Model):
     _name = 'pos.cash.controls'
     _order = 'id desc'
 

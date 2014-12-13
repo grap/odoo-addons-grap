@@ -13,9 +13,7 @@
                     <group col="4">
                         <field name="statement_id"/>
                         <field name="amount"/>
-                        <field name="product_id" widget = "selection" domain="[('expense_pdt', '=', True)]" on_change="onchange_product_id(product_id)"/>
-                        <field name="amount_VAT"/>
-                        <field name="tax_name"/>
+                        <field name="product_id" widget = "selection" domain="[('expense_pdt', '=', True)]" />
                     </group>
                     <footer>
                         <button name="get_out" string="Take Money"

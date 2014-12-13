@@ -89,22 +89,3 @@ class product_product(Model):
             " income !",
             ['expense_pdt', 'income_pdt', 'property_account_expense']),
     ]
-
-    # Overload Section
-    def create(self, cr, uid, data, context=None):
-        imd_obj = self.pool.get('ir.model.data')
-        if data.get('expense_pdt', False) or data.get('income_pdt', False):
-            data['type'] = 'service'
-            data['uom_id'] = data['uom_po_id'] = imd_obj.get_object(
-                cr, uid, 'product', 'product_uom_unit').id
-            if data.get('expense_pdt', False):
-                data['categ_id'] = imd_obj.get_object(
-                    cr, uid, 'pos_multiple_cash_control',
-                    'cat_expense_product').id
-            else:
-                data['categ_id'] = imd_obj.get_object(
-                    cr, uid, 'pos_multiple_cash_control',
-                    'cat_income_product').id
-        res = super(product_product, self).create(
-            cr, uid, data, context=context)
-        return res

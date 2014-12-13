@@ -24,30 +24,30 @@
 ##############################################################################
 
 from openerp import netsvc
-from openerp.osv import osv
+from openerp.osv.orm import TransientModel
 from openerp.tools.translate import _
 
 
-class pos_session_opening(osv.osv_memory):
+class pos_session_opening(TransientModel):
     _inherit = 'pos.session.opening'
 
     def open_session_cb(self, cr, uid, ids, context=None):
         assert len(ids) == 1, "you can open only one session at a time"
-        proxy = self.pool.get('pos.session')
+        ps_obj = self.pool['pos.session']
         wizard = self.browse(cr, uid, ids[0], context=context)
         values = {
             'user_id': uid,
             'config_id': wizard.pos_config_id.id,
         }
-        session_id = proxy.create(cr, uid, values, context=context)
-        s = proxy.browse(cr, uid, session_id, context=context)
+        session_id = ps_obj.create(cr, uid, values, context=context)
+        s = ps_obj.browse(cr, uid, session_id, context=context)
         if s.state == 'opened':
             return self.open_ui(cr, uid, ids, context=context)
         return self._open_session(session_id)
 
     def open_existing_session_cb_close(self, cr, uid, ids, context=None):
-        session_obj = self.pool.get('pos.session')
-        session_ids = session_obj.search(
+        ps_obj = self.pool['pos.session']
+        session_ids = ps_obj.search(
             cr, uid, [('state', '=', 'closing_control')])
         if len(session_ids) > 1:
             return {

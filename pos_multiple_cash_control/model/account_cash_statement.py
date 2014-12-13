@@ -24,10 +24,10 @@
 ##############################################################################
 
 
-from openerp.osv import osv
+from openerp.osv.orm import Model
 
 
-class account_cash_statement(osv.osv):
+class account_cash_statement(Model):
     _inherit = 'account.bank.statement'
 
     def _update_balances_no_cash(self, cr, uid, ids, context=None):
@@ -35,37 +35,25 @@ class account_cash_statement(osv.osv):
             Set starting and ending balances according to pieces count
         """
         res = {}
-        for statement in self.browse(cr, uid, ids, context=context):
+        for acs in self.browse(cr, uid, ids, context=context):
             if ((
-                statement.journal_id.type in ('cash',))
-                    or (not statement.journal_id.cash_control)):
+                acs.journal_id.type in ('cash',))
+                    or (not acs.journal_id.cash_control)):
                 continue
             start = end = 0
-            for line in statement.details_ids:
+            for line in acs.details_ids:
                 start += line.subtotal_opening
                 end += line.subtotal_closing
             data = {
                 'balance_start': start,
                 'balance_end_real': end,
             }
-            res[statement.id] = data
+            res[acs.id] = data
             super(account_cash_statement, self).write(
-                cr, uid, [statement.id], data, context=context)
+                cr, uid, [acs.id], data, context=context)
         return res
 
     def write(self, cr, uid, ids, vals, context=None):
-        """
-        Update redord(s) comes in {ids}, with new value comes as {vals}
-        return True on success, False otherwise
-
-        @param cr: cursor to database
-        @param user: id of current user
-        @param ids: list of record ids to be update
-        @param vals: dict of new values to be set
-        @param context: context arguments, like lang, time zone
-
-        @return: True on success, False otherwise
-        """
         res = super(account_cash_statement, self).write(
             cr, uid, ids, vals, context=context)
         self._update_balances_no_cash(cr, uid, ids, context)
