@@ -64,6 +64,7 @@ class TestPosMultipleCashControl(TransactionCase):
             'sale_ok': False,
             'purchase_ok': False,
             'uom_id': self.product_uom_unit,
+            'uom_po_id': self.product_uom_unit,
             'property_account_expense': self.account_expense_id,
             'property_account_income': self.account_income_id,
             'expense_pdt': True}
@@ -115,6 +116,7 @@ class TestPosMultipleCashControl(TransactionCase):
             'sale_ok': True,
             'purchase_ok': False,
             'uom_id': self.product_uom_unit,
+            'uom_po_id': self.product_uom_unit,
             'property_account_expense': self.account_expense_id,
             'property_account_income': self.account_income_id,
             'expense_pdt': True}
