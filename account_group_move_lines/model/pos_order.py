@@ -20,17 +20,20 @@
 #
 ##############################################################################
 
+from openerp.tools.translate import _
 from openerp.osv.orm import Model
 
 
 class pos_order(Model):
-    _inherit = "pos.order"
+    _inherit = 'pos.order'
 
     def _get_key(self, cr, uid, data_type, values, context=None):
         key = False
         if data_type == 'product':
-            key = ('product', values['tax_code_id'], values['debit'] > 0)
-            values.update({'name': 'various products'})
+            key = (
+                'product', values['tax_code_id'], values['account_id'],
+                values['debit'] > 0)
+            values.update({'name': _('Various Products')})
         elif data_type == 'tax':
             key = ('tax', values['tax_code_id'], values['debit'] > 0)
         elif data_type == 'counter_part':
