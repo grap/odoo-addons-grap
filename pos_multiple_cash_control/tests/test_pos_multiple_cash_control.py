@@ -49,6 +49,8 @@ class TestPosMultipleCashControl(TransactionCase):
             cr, uid, 'pos_multiple_cash_control', 'account_tax_30')[1]
         self.tax_50 = self.imd_obj.get_object_reference(
             cr, uid, 'pos_multiple_cash_control', 'account_tax_50')[1]
+        self.product_uom_unit = self.imd_obj.get_object_reference(
+            cr, uid, 'product', 'product_uom_unit')[1]
 
     def test_01_check_access_right(self):
         """Test Multiple access right Control"""
@@ -61,6 +63,7 @@ class TestPosMultipleCashControl(TransactionCase):
             'name': 'Test Product',
             'sale_ok': False,
             'purchase_ok': False,
+            'uom_id': self.product_uom_unit,
             'property_account_expense': self.account_expense_id,
             'property_account_income': self.account_income_id,
             'expense_pdt': True}
@@ -111,6 +114,7 @@ class TestPosMultipleCashControl(TransactionCase):
             'name': 'Test Product',
             'sale_ok': True,
             'purchase_ok': False,
+            'uom_id': self.product_uom_unit,
             'property_account_expense': self.account_expense_id,
             'property_account_income': self.account_income_id,
             'expense_pdt': True}
