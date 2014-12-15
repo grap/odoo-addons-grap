@@ -260,6 +260,10 @@ class TestAccountGroupMoveLines(TransactionCase):
 
         # Close Session
         wf_service = netsvc.LocalService('workflow')
+        # FIXME: This line is not standard but allow to close cashbox
+        # when 'odoo-addons-grap / pos_multiple_cash_control' is install.
+        wf_service.trg_validate(
+            uid, 'pos.session', ps_id, 'cashbox_control', cr)
         wf_service.trg_validate(
             uid, 'pos.session', ps_id, 'close', cr)
 
