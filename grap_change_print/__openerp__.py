@@ -48,6 +48,7 @@ Copyright, Author and Licence :
     'depends': [
         'account',
         'sale_food',
+        'point_of_sale',
     ],
     'data': [
         'data/ir_actions_report_xml.xml',
