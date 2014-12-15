@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-06 15:40+0000\n"
-"PO-Revision-Date: 2014-11-06 15:40+0000\n"
+"POT-Creation-Date: 2014-12-15 16:14+0000\n"
+"PO-Revision-Date: 2014-12-15 16:14+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -20,6 +20,12 @@ msgstr ""
 #: view:pos.order:0
 msgid "7.0"
 msgstr "7.0"
+
+#. module: grap_change_views
+#: view:account.move.line:0
+#: model:ir.actions.act_window,name:grap_change_views.action_view_account_move_line_tree
+msgid "Account Move Lines"
+msgstr "Ecritures Comptables"
 
 #. module: grap_change_views
 #: view:pos.category:0
@@ -58,9 +64,29 @@ msgid "Date Ech."
 msgstr "Date Ech."
 
 #. module: grap_change_views
+#: view:pos.order.line:0
+msgid "Date From"
+msgstr "Date Min"
+
+#. module: grap_change_views
+#: view:pos.order.line:0
+msgid "Date To"
+msgstr "Date Max"
+
+#. module: grap_change_views
 #: view:pos.order:0
 msgid "Discount"
 msgstr "Remise"
+
+#. module: grap_change_views
+#: view:pos.order.line:0
+msgid "Done"
+msgstr "Payé"
+
+#. module: grap_change_views
+#: view:pos.order.line:0
+msgid "Draft"
+msgstr "Brouillon"
 
 #. module: grap_change_views
 #: view:product.product:0
@@ -93,6 +119,11 @@ msgid "Internal Notes"
 msgstr "Notes internes"
 
 #. module: grap_change_views
+#: view:pos.order.line:0
+msgid "Invoiced"
+msgstr "Facturé"
+
+#. module: grap_change_views
 #: view:account.move:0
 msgid "Let. Cplt."
 msgstr "Let. Cplt."
@@ -101,6 +132,13 @@ msgstr "Let. Cplt."
 #: view:account.move:0
 msgid "Let. Part."
 msgstr "Let. Part."
+
+#. module: grap_change_views
+#: code:_description:0
+#: model:ir.model,name:grap_change_views.model_pos_order_line
+#, python-format
+msgid "Lines of Point of Sale"
+msgstr "Lignes de Points de Vente"
 
 #. module: grap_change_views
 #: model:res.groups,name:grap_change_views.group_product_image_manager
@@ -133,9 +171,24 @@ msgid "Outgoing quantity"
 msgstr "Quantité sortante"
 
 #. module: grap_change_views
+#: model:ir.actions.act_window,name:grap_change_views.action_pos_order_line
+msgid "POS Lines"
+msgstr "Lignes de PdV"
+
+#. module: grap_change_views
+#: view:pos.order.line:0
+msgid "POS Orders"
+msgstr "Commandes PdV"
+
+#. module: grap_change_views
 #: view:product.product:0
 msgid "Packaging"
 msgstr "Colisage"
+
+#. module: grap_change_views
+#: model:ir.model,name:grap_change_views.model_pos_category
+msgid "PoS Category"
+msgstr "Catégorie PdV"
 
 #. module: grap_change_views
 #: view:res.partner:0
@@ -144,13 +197,18 @@ msgstr "Point de Vente"
 
 #. module: grap_change_views
 #: code:_description:0
-#: model:ir.model,name:grap_change_views.model_pos_category
 #, python-format
 msgid "Point of Sale Category"
 msgstr "Catégorie de point de vente"
 
 #. module: grap_change_views
+#: model:ir.ui.menu,name:grap_change_views.menu_pos_order_line
+msgid "Pos Order Lines"
+msgstr "Lignes de Points de Vente"
+
+#. module: grap_change_views
 #: view:pos.order:0
+#: view:pos.order.line:0
 msgid "Posted"
 msgstr "Comptabilisé"
 
@@ -232,6 +290,11 @@ msgid "Sale"
 msgstr "Vente"
 
 #. module: grap_change_views
+#: view:pos.order.line:0
+msgid "Search POS Order Lines"
+msgstr "Recherche de Lignes de PdV"
+
+#. module: grap_change_views
 #: view:product.product:0
 msgid "Sellers"
 msgstr "Fournisseurs"
@@ -280,8 +343,34 @@ msgstr "Taxe Mont."
 
 #. module: grap_change_views
 #: view:pos.order:0
+#: view:pos.order.line:0
 msgid "Today"
 msgstr "Quotidien"
+
+#. module: grap_change_views
+#: view:account.move.line:0
+msgid "Total Credit"
+msgstr "Total crédit"
+
+#. module: grap_change_views
+#: view:account.move.line:0
+msgid "Total Debit"
+msgstr "Total débit"
+
+#. module: grap_change_views
+#: view:pos.order.line:0
+msgid "Total Excl"
+msgstr "Total HT"
+
+#. module: grap_change_views
+#: view:pos.order.line:0
+msgid "Total Incl"
+msgstr "Total TTC"
+
+#. module: grap_change_views
+#: view:pos.order.line:0
+msgid "Total Qty"
+msgstr "Qté totale"
 
 #. module: grap_change_views
 #: view:ir.values:0
@@ -290,6 +379,7 @@ msgstr "Utilisateur"
 
 #. module: grap_change_views
 #: view:pos.order:0
+#: view:pos.order.line:0
 msgid "Yesterday"
 msgstr "Hier"
 
@@ -326,7 +416,7 @@ msgstr "base.group_user"
 #. module: grap_change_views
 #: model:ir.actions.act_window,help:grap_change_views.action_view_old_product_form
 msgid "display obsolete view for products."
-msgstr "Affiche la vue Obsolète pour les produits."
+msgstr "Affiche la vue obsolète pour les produits."
 
 #. module: grap_change_views
 #: view:product.product:0
