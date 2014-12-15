@@ -275,7 +275,6 @@ class TestAccountGroupMoveLines(TransactionCase):
                 ('journal_id', '=', self.cash_journal_id)], order='id DESC')[0]
             self.abs_obj.write(cr, uid, [abs_id], {
                 'details_ids': [[0, False, {
-                    'number_closing': 0,
                     'pieces': 86086,
                     'number_closing': 1}]]})
 
