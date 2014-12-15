@@ -267,7 +267,7 @@
           <para style="terp_tblheader_Details">Nb :</para>
         </td>
         <td>
-          <para style="terp_default_Right_9_Bold">[[ get_nb_lines(statement.line_ids) ]]</para>
+          <para style="terp_default_Right_9_Bold">[[ len(statement.line_ids) ]]</para>
         </td>
       </tr>
       <tr>

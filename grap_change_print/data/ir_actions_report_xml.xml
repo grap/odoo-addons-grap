@@ -2,8 +2,12 @@
 <openerp>
     <data>
 
-        <record id="account.account_invoices" model="ir.actions.report.xml">
-            <field name="report_file">grap_change_print/report/account_print_invoice.rml</field>
+        <record model="ir.actions.report.xml" id="account.account_invoices">
+            <field name="report_file">grap_change_print/report/account_invoice.rml</field>
+        </record>
+
+        <record model="ir.actions.report.xml" id="point_of_sale.account_statement">
+            <field name="report_file">grap_change_print/report/account_bank_statement.rml</field>
         </record>
 
     </data>
