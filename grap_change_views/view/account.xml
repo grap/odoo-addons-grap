@@ -25,6 +25,7 @@
             <field name="context">{'view_mode': True}</field>
         </record>
 
+<!-- Model: account.move -->
         <record id="view_account_move_form" model="ir.ui.view">
             <field name="name">account.move.form</field>
             <field name="model">account.move</field>
@@ -58,8 +59,7 @@
             </field>
         </record>
 
-        <record id="view_move_tree_grap" model="ir.ui.view">
-            <field name="name">account.move.tree.grap</field>
+        <record id="view_account_move_tree" model="ir.ui.view">
             <field name="model">account.move</field>
             <field name="inherit_id" ref="account.view_move_tree"/>
             <field eval="4" name="priority"/>
@@ -72,8 +72,7 @@
             </field>
         </record>
 
-        <record id="view_account_move_filter_grap" model="ir.ui.view">
-            <field name="name">account.move.select.grap</field>
+        <record id="view_account_move_search" model="ir.ui.view">
             <field name="model">account.move</field>
             <field name="inherit_id" ref="account.view_account_move_filter"/>
             <field eval="4" name="priority"/>
@@ -86,31 +85,41 @@
             </field>
         </record>
 
-        <record id="view_move_line_tree_grap" model="ir.ui.view">
-            <field name="name">account.move.line.tree.grap</field>
+<!-- Model : account.move.line -->
+
+        <record id="view_account_move_line_tree_tmp" model="ir.ui.view">
             <field name="model">account.move.line</field>
-            <field name="inherit_id" ref="account.view_move_line_tree"/>
-            <field eval="4" name="priority"/>
             <field name="arch" type="xml">
-                <data>
-                    <field name="account_tax_id" position="replace"/>
-                    <field name="analytic_account_id" position="replace"/>
-                    <field name="currency_id" position="replace"/>
-                    <field name="amount_currency" position="replace"/>
-                    <field name="invoice" position="replace"/>
-                    <field name="statement_id" position="attributes">
-                        <attribute name="invisible">0</attribute>
-                    </field>
-                    <field name="company_id" position="replace"/>
-                    <field name="partner_id" position="before">
-                        <field name="company_id" groups="base.group_multi_company"/>
-                    </field>
-                </data>
+                <tree string="Account Move Lines">
+                    <field name="journal_id"/>
+                    <field name="move_id"/>
+                    <field name="date" />
+                    <field name="period_id" />
+                    <field name="name" />
+                    <field name="ref" />
+                    <field name="account_id" />
+                    <field name="partner_id" />
+                    <field name="debit" sum="Total Debit"/>
+                    <field name="credit" sum="Total Credit"/>
+                    <field name="reconcile"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                </tree>
             </field>
         </record>
 
-        <record id="view_account_move_line_filter_grap" model="ir.ui.view">
-            <field name="name">Journal Items grap</field>
+        <record id="action_view_account_move_line_tree" model="ir.actions.act_window">
+            <field name="name">Account Move Lines</field>
+            <field name="res_model">account.move.line</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_account_move_line_tree_tmp" />
+        </record>
+
+        <record id="account.menu_action_account_moves_all" model="ir.ui.menu">
+            <field name="action" ref="action_view_account_move_line_tree" />
+        </record>
+
+        <record id="view_account_move_line_search" model="ir.ui.view">
             <field name="model">account.move.line</field>
             <field name="inherit_id" ref="account.view_account_move_line_filter"/>
             <field eval="4" name="priority"/>
@@ -126,8 +135,8 @@
             </field>
         </record>
 
-        <record id="view_bank_statement_form3" model="ir.ui.view">
-            <field name="name">account.bank.statement.form</field>
+<!-- Model : account.bank.statement -->
+        <record id="view_account_bank_statement" model="ir.ui.view">
             <field name="model">account.bank.statement</field>
             <field name="inherit_id" ref="account.view_bank_statement_form2"/>
             <field name="arch" type="xml">
@@ -139,34 +148,8 @@
             </field>
         </record>
 
-        <record id="view_invoice_line_form" model="ir.ui.view">
-            <field name="name">account.invoice.line.form</field>
-            <field name="model">account.invoice.line</field>
-            <field name="inherit_id" ref="account.view_invoice_line_form"/>
-            <field name="arch" type="xml">
-                <data>
-                    <field name="discount" position="attributes">
-                        <attribute name="groups"/>
-                    </field>
-                </data>
-            </field>
-        </record>
-
-        <record id="view_invoice_line_tree" model="ir.ui.view">
-            <field name="name">account.invoice.line.tree</field>
-            <field name="model">account.invoice.line</field>
-            <field name="inherit_id" ref="account.view_invoice_line_tree"/>
-            <field name="arch" type="xml">
-                <data>
-                    <field name="discount" position="attributes">
-                        <attribute name="groups"/>
-                    </field>
-                </data>
-            </field>
-        </record>
-
-        <record id="invoice_tree_grap" model="ir.ui.view">
-            <field name="name">account.invoice.tree.grap</field>
+<!-- Model : account.invoice -->
+        <record id="view_account_invoice_tree" model="ir.ui.view">
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_tree"/>
             <field name="arch" type="xml">
@@ -182,8 +165,7 @@
             </field>
         </record>
 
-        <record id="view_account_invoice_filter_grap" model="ir.ui.view">
-            <field name="name">account.invoice.select.grap</field>
+        <record id="view_account_invoice_search" model="ir.ui.view">
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.view_account_invoice_filter"/>
             <field name="arch" type="xml">
@@ -195,11 +177,38 @@
             </field>
         </record>
 
+<!-- Model : account.invoice.line -->
+        <record id="view_account_invoice_line_form" model="ir.ui.view">
+            <field name="model">account.invoice.line</field>
+            <field name="inherit_id" ref="account.view_invoice_line_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <field name="discount" position="attributes">
+                        <attribute name="groups"/>
+                    </field>
+                </data>
+            </field>
+        </record>
+
+        <record id="view_account_invoice_line_tree" model="ir.ui.view">
+            <field name="model">account.invoice.line</field>
+            <field name="inherit_id" ref="account.view_invoice_line_tree"/>
+            <field name="arch" type="xml">
+                <data>
+                    <field name="discount" position="attributes">
+                        <attribute name="groups"/>
+                    </field>
+                </data>
+            </field>
+        </record>
+
+<!-- 'Accounting' Menu -->
+
         <menuitem id="account.menu_finance_legal_statement" name="Legal Reports" parent="account.menu_finance_reporting" groups="account.group_account_manager"/>
         <menuitem id="account.menu_finance_generic_reporting" name="Generic Reporting" parent="account.menu_finance_reporting" sequence="100" groups="account.group_account_manager"/>
         <menuitem id="account.menu_finance_statistic_report_statement" name="Statistic Reports" parent="account.menu_finance_reporting" sequence="300" groups="account.group_account_manager"/>
 
-<!--_______________________Vues Reporting (Comptabilite) ____________________________-->
+<!-- 'Reporting' Menu -->
         <record model="ir.ui.menu" id="account.menu_action_account_invoice_report_all">
             <field eval="[(6, 0, [ref('base.group_no_one')])]" name="groups_id"/>
         </record>
