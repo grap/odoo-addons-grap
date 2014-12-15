@@ -39,6 +39,9 @@ class TestAccountGroupMoveLines(TransactionCase):
         self.pol_obj = self.registry('pos.order.line')
         self.pmp_obj = self.registry('pos.make.payment')
         self.pp_obj = self.registry('product.product')
+        self.abs_obj = self.registry('account.bank.statement')
+        self.acl_obj = self.registry('account.cashbox.line')
+        self.imm_obj = self.registry('ir.module.module')
         self.sale_journal_id = self.imd_obj.get_object_reference(
             cr, uid, 'account', 'sales_journal')[1]
         self.customer_partner_id = self.imd_obj.get_object_reference(
@@ -258,12 +261,29 @@ class TestAccountGroupMoveLines(TransactionCase):
         })
         self.pmp_obj.check(cr, uid, [pmp_id], {'active_id': po_id})
 
-        # Close Session
         wf_service = netsvc.LocalService('workflow')
-        # FIXME: This line is not standard but allow to close cashbox
-        # when 'odoo-addons-grap / pos_multiple_cash_control' is install.
-        wf_service.trg_validate(
-            uid, 'pos.session', ps_id, 'cashbox_control', cr)
+
+        # FIXME : Extra
+        # Compute and set final Total Transaction
+        # Note: Not so clean, but due to other module
+        # 'pos_multiple_cash_control', it's more easy to set money in cash
+        # box before creating order
+        if len(self.imm_obj.search(cr, uid, [
+                ('name', '=', 'pos_multiple_cash_control'),
+                ('state', '=', 'installed')])) == 1:
+            abs_id = self.abs_obj.search(cr, uid, [
+                ('journal_id', '=', self.cash_journal_id)], order='id DESC')[0]
+            self.abs_obj.write(cr, uid, [abs_id], {
+                'details_ids': [[0, False, {
+                    'number_closing': 0,
+                    'pieces': 86086,
+                    'number_closing': 1}]]})
+
+            wf_service.trg_validate(
+                uid, 'pos.session', ps_id, 'cashbox_control', cr)
+        # End of Patch
+
+        # Close Session
         wf_service.trg_validate(
             uid, 'pos.session', ps_id, 'close', cr)
 
