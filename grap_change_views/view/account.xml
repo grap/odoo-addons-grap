@@ -178,7 +178,7 @@
         </record>
 
 <!-- Model : account.invoice.line -->
-        <record id="view_account_invoice_line_form" model="ir.ui.view">
+        <record id="view_account_invoice_line_form_tmp_2" model="ir.ui.view">
             <field name="model">account.invoice.line</field>
             <field name="inherit_id" ref="account.view_invoice_line_form"/>
             <field name="arch" type="xml">
@@ -190,7 +190,7 @@
             </field>
         </record>
 
-        <record id="view_account_invoice_line_tree" model="ir.ui.view">
+        <record id="view_account_invoice_line_tree_tmp_2" model="ir.ui.view">
             <field name="model">account.invoice.line</field>
             <field name="inherit_id" ref="account.view_invoice_line_tree"/>
             <field name="arch" type="xml">
