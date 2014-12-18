@@ -35,7 +35,6 @@ class ir_attachment(Model):
         location = self.pool['ir.config_parameter'].get_param(
             cr, SUPERUSER_ID, 'ir_attachment.location')
         for ia in self.browse(cr, uid, ids, context=context):
-            print ia.name
             if ia.db_datas:
                 res[ia.id] = 'OK - DATABASE'
             else:
