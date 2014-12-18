@@ -266,8 +266,7 @@ class TestAccountGroupMoveLines(TransactionCase):
         # FIXME : Extra
         # Compute and set final Total Transaction
         # Note: Not so clean, but due to other module
-        # 'pos_multiple_cash_control', it's more easy to set money in cash
-        # box before creating order
+        # 'pos_multiple_cash_control'
         if len(self.imm_obj.search(cr, uid, [
                 ('name', '=', 'pos_multiple_cash_control'),
                 ('state', '=', 'installed')])) == 1:
