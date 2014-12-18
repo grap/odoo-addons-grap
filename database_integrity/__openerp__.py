@@ -32,9 +32,10 @@ Realize requests in database to check integrity
 Functionality:
 --------------
     * Request to know if sequences in postgres are correct;
-        * Create a Wizard to view postgres sequences whose current value is"""
-    """ below the max id of the table;
+        * Create a Wizard to view postgres sequences whose current value is
+          below the max id of the table;
         * Allow possitility to admin user to fix those invalid sequences;
+    * Request to know if document (ir.attachment) are present in Files System;
 
 Copyright, Authors and Licence:
 -------------------------------
@@ -46,6 +47,7 @@ Copyright, Authors and Licence:
     'license': 'AGPL-3',
     'depends': [
         'base',
+        'document',
     ],
     'data': [
         'view/view.xml',

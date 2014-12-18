@@ -20,5 +20,6 @@
 #
 ##############################################################################
 
+from . import ir_attachment
 from . import database_integrity_sequence_wizard
 from . import database_integrity_sequence_wizard_line

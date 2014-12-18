@@ -20,6 +20,7 @@
 <openerp>
     <data>
 
+<!-- Model database.integrity.sequence.wizard -->
         <record id="view_database_integrity_sequence_wizard_form" model="ir.ui.view">
             <field name="name">database.integrity.sequence.wizard.form</field>
             <field name="model">database.integrity.sequence.wizard</field>
@@ -41,7 +42,8 @@
             </form>
             </field>
         </record>
-
+        
+<!-- Model database.integrity.sequence.wizard.line -->
         <record id="view_database_integrity_sequence_wizard_line_tree" model="ir.ui.view">
             <field name="name">database.integrity.sequence.wizard.line.tree</field>
             <field name="model">database.integrity.sequence.wizard.line</field>
@@ -54,6 +56,27 @@
                     <field name="max_id"/>
                     <field name="state" invisible="1"/>
                 </tree>
+            </field>
+        </record>
+
+<!-- Model ir.attachment -->
+        <record id="view_ir_attachment_tree" model="ir.ui.view">
+            <field name="model">ir.attachment</field>
+            <field name="inherit_id" ref="document.view_document_file_tree"/>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="present_on_filesystem"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_ir_attachment_search" model="ir.ui.view">
+            <field name="model">ir.attachment</field>
+            <field name="inherit_id" ref="base.view_attachment_search"/>
+            <field name="arch" type="xml">
+                <field name="type" position="after">
+                    <field name="present_on_filesystem"/>
+                </field>
             </field>
         </record>
 
