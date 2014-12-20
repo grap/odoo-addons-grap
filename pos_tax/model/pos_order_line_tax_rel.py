@@ -31,9 +31,9 @@ class pos_order_line_tax_rel(Model):
     # Columns section
     _columns = {
         'tax_id': fields.many2one(
-            'account.tax', 'Tax', required=True, ),
+            'account.tax', 'Tax', required=True),
         'orderline_id': fields.many2one(
-            'pos.order.line', 'Order Line', required=True),
+            'pos.order.line', 'Order Line', required=True, ondelete='cascade'),
         'baseHT': fields.float(
             'Base HT'),
         'amount_tax': fields.float(
