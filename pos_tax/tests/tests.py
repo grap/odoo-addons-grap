@@ -76,6 +76,7 @@ class TestPosTax(TransactionCase):
             'name': 'Product 1 - Account 1',
             'price_unit': 10,
         })
+        
         # Make Payement
         pmp_id = self.pmp_obj.create(cr, uid, {
             'journal_id': self.cash_journal_id,
@@ -98,8 +99,10 @@ class TestPosTax(TransactionCase):
             'name': 'Product 1',
             'price_unit': 2000,
         })
-        self.pol_obj.onchange_qty(
+        res = self.pol_obj.onchange_qty(
             cr, uid, [pol_id], self.product_1, 0, 1, 2000)
+        self.pol_obj.write(cr, uid, pol_id, res['value'])
+
         # Make Payement
         pmp_id = self.pmp_obj.create(cr, uid, {
             'journal_id': self.cash_journal_id,
