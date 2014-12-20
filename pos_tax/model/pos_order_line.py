@@ -60,12 +60,14 @@ class pos_order_line(Model):
         'pol_tax_rel_id': fields.one2many(
             'pos.order.line.tax.rel', 'orderline_id',
             string='Tax Relation Id'),
+        # Existing Fields 'price_subtotal' and 'price_subtotal_incl'
         'price_subtotal': fields.function(
             _amount_line_all, multi='pos_order_line_amount',
             string='Subtotal w/o Tax', store=True),
         'price_subtotal_incl': fields.function(
             _amount_line_all, multi='pos_order_line_amount', string='Subtotal',
             store=True),
+        # New field 'tax_amount'
         'tax_amount': fields.function(
             _amount_line_all, multi='pos_order_line_amount',
             string='Tax Amount', store=True),
@@ -80,12 +82,12 @@ class pos_order_line(Model):
         if not product:
             return result
 
-        account_tax_obj = self.pool.get('account.tax')
-        product_obj = self.pool.get('product.product')
+        at_obj = self.pool['account.tax']
+        product_obj = self.pool['product.product']
         prod = product_obj.browse(cr, uid, product, context=context)
 
         price = price_unit * (1 - (discount or 0.0) / 100.0)
-        taxes = account_tax_obj.compute_all(
+        taxes = at_obj.compute_all(
             cr, uid, prod.taxes_id, price, qty, product=prod, partner=False)
         tax_values = []
         for tax in taxes['taxes']:
@@ -99,9 +101,9 @@ class pos_order_line(Model):
 
     # Init section
     def _init_pos_tax(self, cr, uid, ids=None, context=None):
-        ptr_obj = self.pool.get('pos.order.line.tax.rel')
-        account_tax_obj = self.pool.get('account.tax')
-        ptr_count = 0
+        poltr_obj = self.pool['pos.order.line.tax.rel']
+        at_obj = self.pool['account.tax']
+        poltr_count = 0
         vat_correction_count = 0
         all_pol_ids = self.search(cr, SUPERUSER_ID, [], context=context)
         for i in range(0, len(all_pol_ids), self.MAX_RECORDS):
@@ -112,24 +114,24 @@ class pos_order_line(Model):
                 correct_vat = pol.create_date < '2014-01-01'
                 # the 19,6% VAT was changed into 20% at that date, so we'll
                 # have to replace the VAT we find on the product
-                ptr_id = False
+                poltr_id = False
                 price = pol.price_unit * (1 - (pol.discount or 0.0) / 100.0)
                 taxes_list = []
                 for t in pol.product_id.taxes_id:
                     if correct_vat and t.id in (181, 182, 183, 184):
                         if t.id == 184:  # TVA-VT-20.0-TTC
-                            tax_id = account_tax_obj.browse(cr, uid, 1)
+                            tax_id = at_obj.browse(cr, uid, 1)
                         elif t.id == 182:  # TVA-VT-20.0-HT
-                            tax_id = account_tax_obj.browse(cr, uid, 101)
+                            tax_id = at_obj.browse(cr, uid, 101)
                         elif t.id == 183:  # TVA-VT-10.0-HT
-                            tax_id = account_tax_obj.browse(cr, uid, 136)
+                            tax_id = at_obj.browse(cr, uid, 136)
                         elif t.id == 181:  # TVA-VT-10.0-TTC
-                            tax_id = account_tax_obj.browse(cr, uid, 134)
+                            tax_id = at_obj.browse(cr, uid, 134)
                     else:
                         tax_id = t
                     taxes_list.append(tax_id)
 
-                taxes = account_tax_obj.compute_all(
+                taxes = at_obj.compute_all(
                     cr, uid, taxes_list, price, pol.qty, pol.product_id,
                     partner=False)
                 amount = 0
@@ -143,8 +145,9 @@ class pos_order_line(Model):
                         'baseHT': taxes['total'],
                         'amount_tax': tax['amount'],
                     }
-                    ptr_id = ptr_obj.create(cr, uid, values, context=context)
-                    ptr_count += 1
+                    poltr_id = poltr_obj.create(
+                        cr, uid, values, context=context)
+                    poltr_count += 1
                 if abs(
                     amount
                     - (pol.price_subtotal_incl - pol.price_subtotal))\
@@ -152,7 +155,7 @@ class pos_order_line(Model):
                     amount =\
                         pol.price_subtotal_incl - pol.price_subtotal\
                         - amount + tax['amount']
-                    ptr_obj.write(cr, uid, ptr_id, {
+                    poltr_obj.write(cr, uid, poltr_id, {
                         'amount_tax': amount
                     }, context=context)
                     vat_correction_count += 1
