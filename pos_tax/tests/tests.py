@@ -38,6 +38,7 @@ class TestPosTax(TransactionCase):
         self.at_obj = self.registry('account.tax')
         self.am_obj = self.registry('account.move')
         self.pmp_obj = self.registry('pos.make.payment')
+        self.abs_obj = self.registry('account.bank.statement')
         self.product_1 = self.imd_obj.get_object_reference(
             cr, uid, 'product', 'product_product_48')[1]
         self.pos_config_id = self.imd_obj.get_object_reference(
@@ -76,7 +77,7 @@ class TestPosTax(TransactionCase):
             'name': 'Product 1 - Account 1',
             'price_unit': 10,
         })
-        
+
         # Make Payement
         pmp_id = self.pmp_obj.create(cr, uid, {
             'journal_id': self.cash_journal_id,
