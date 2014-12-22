@@ -99,7 +99,7 @@ class pos_box_out(TransientModel):
             if pbo.amount < 0:
                 vals['amount'] = pbo.amount
             else:
-                vals['amount'] = pbo.amount
+                vals['amount'] = - pbo.amount
             vals['ref'] = "%s" % (pbo.name or '')
             vals['name'] = "%s " % (pbo.name or '')
             absl_obj.create(cr, uid, vals, context=context)
