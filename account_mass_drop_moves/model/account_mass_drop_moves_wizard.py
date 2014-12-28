@@ -30,6 +30,9 @@ _logger = logging.getLogger(__name__)
 class account_mass_drop_moves_wizard(TransientModel):
     _name = 'account.mass.drop.moves.wizard'
 
+    # Constants section
+    MAX_RECORDS = 500
+
     # Columns
     _columns = {
         'journal_id': fields.many2one(
@@ -57,16 +60,20 @@ class account_mass_drop_moves_wizard(TransientModel):
     def drop_account_moves(self, cr, uid, ids, context=None):
         am_obj = self.pool['account.move']
         for amdmw in self.browse(cr, uid, ids, context=context):
-            am_ids = am_obj.search(cr, uid, [
+            all_am_ids = am_obj.search(cr, uid, [
                 ('journal_id', '=', amdmw.journal_id.id),
                 ('period_id', '=', amdmw.period_id.id),
             ], context=context)
-            _logger.info(
-                "Cancel %d Account Moves in %s for the period %s" % (
-                    len(am_ids), amdmw.journal_id.name, amdmw.period_id.name))
-            am_obj.button_cancel(cr, uid, am_ids, context=context)
-            _logger.info(
-                "Unlink %d Account Moves in %s for the period %s" % (
-                    len(am_ids), amdmw.journal_id.name, amdmw.period_id.name))
-            am_obj.unlink(cr, uid, am_ids, context=context)
+            for i in range(0, len(all_am_ids), self.MAX_RECORDS):
+                am_ids = all_am_ids[i:i + self.MAX_RECORDS]
+                _logger.info(
+                    "Cancel %d Account Moves in %s for the period %s" % (
+                        len(am_ids), amdmw.journal_id.name,
+                        amdmw.period_id.name))
+                am_obj.button_cancel(cr, uid, am_ids, context=context)
+                _logger.info(
+                    "Unlink %d Account Moves in %s for the period %s" % (
+                        len(am_ids), amdmw.journal_id.name,
+                        amdmw.period_id.name))
+                am_obj.unlink(cr, uid, am_ids, context=context)
         return {}
