@@ -69,6 +69,7 @@ Copyright, Authors and Licence:
         'sale_eshop',
         'pos_multiple_cash_control',
         'product_fiscal_company',
+        'l10n_fr',
     ],
     'data': [
         'security/res_groups.yml',
