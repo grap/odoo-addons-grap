@@ -31,6 +31,26 @@
             </field>
         </record>
 
+        <!-- Model 'res.company' -->
+        <record id="view_res_company_tree" model="ir.ui.view">
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_tree" />
+            <field name="arch" type="xml">
+                <field name="name" position="before">
+                    <field name="code" />
+                </field>
+                <field name="name" position="after">
+                    <field name="vat"/>
+                    <field name="siret"/>
+                    <field name="ape"/>
+                </field>
+                <field name="partner_id" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+            </field>
+        </record>
+
+
         <!-- Model 'ir.values' -->
         <record id="view_ir_values_search" model="ir.ui.view">
             <field name="name">ir.values.search</field>
