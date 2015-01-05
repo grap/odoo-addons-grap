@@ -52,6 +52,8 @@ class grap_activity(Model):
         'grap_member_id': fields.many2one(
             'grap.member', 'Member', required=True, ondelete="cascade"),
         'activity_name': fields.char('Name', size=128, required=True),
+        'code': fields.char('code', size=3),
+        'siret': fields.char('SIRET', size=64),
         'web_site': fields.char('Web Site', size=128),
         'state': fields.selection(
             _GRAP_ACTIVITY_STATE, 'State', required=True),

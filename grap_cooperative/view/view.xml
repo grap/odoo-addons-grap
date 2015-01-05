@@ -208,11 +208,13 @@
             <field name="model">grap.activity</field>
             <field name="arch" type="xml">
                 <search string="Activity"> 
-                   <field name="name" string="Activity" />
-                   <field name="category_ids" string="Category" />
+                   <field name="code"/>
+                   <field name="name"/>
+                   <field name="category_ids"/>
+                   <filter name="filter_validated_working" string="Validated or working" domain="[('state','in', ('validated', 'working'))]"/>
                    <filter name="filter_progress_validated_working" string="In progress, validated or working" domain="[('state','in', ('progress', 'validated', 'working'))]"/>
                    <group expand='0' string='Group by...'>
-                       <filter string='Type' context="{'group_by' : ''}"/>
+                       <filter string='Type' context="{'group_by' : 'type_id'}"/>
                        <filter string='College' context="{'group_by' : 'college_id'}"/>
                        <filter string='State' context="{'group_by' : 'state'}"/>
                    </group>
@@ -225,12 +227,14 @@
             <field name="model">grap.activity</field>
             <field name="arch" type="xml">
                 <tree string="Activities">
+                    <field name="code"/>
                     <field name="name"/>
                     <field name="zip"/>
                     <field name="city"/>
                     <field name="category_ids" widget="many2many_tags"/>
                     <field name="college_id" />
                     <field name="type_id"/>
+                    <field name="fte" sum="# of FTE" />
                     <field name="state"/>
                 </tree>
             </field>
@@ -260,6 +264,8 @@
                                 <field name="category_ids"
                                     widget="many2many_tags" 
                                     options="{'quick_create':false}"/>
+                                <field name="siret"/>
+                                <field name="code"/>
                                 <field name="fte"/>
                             </group>
                         </group>
@@ -307,31 +313,6 @@
             </field>
         </record>
 
-<!--        <record id="view_grap_activity_people_tree" model="ir.ui.view">-->
-<!--            <field name="name">grap.activity.people.tree</field>-->
-<!--            <field name="model">grap.activity.people</field>-->
-<!--            <field name="arch" type="xml">-->
-<!--                <tree string="Workers" editable="bottom">-->
-<!--                    <field name="people_id"/>-->
-<!--                    <field name="fte"/>-->
-<!--                    <field name="working_email"/>-->
-<!--                    <field name="working_phone"/>-->
-<!--                    <field name="private_phone"/>-->
-<!--                </tree>-->
-<!--            </field>-->
-<!--        </record>-->
-
-<!--        <record id="view_grap_activity_people_form" model="ir.ui.view">-->
-<!--            <field name="name">grap.activity.people.form</field>-->
-<!--            <field name="model">grap.activity.people</field>-->
-<!--            <field name="arch" type="xml">-->
-<!--                <form string="Workers" version="7.0">-->
-<!--                    <field name="people_id"/>-->
-<!--                    <field name="fte"/>-->
-<!--                </form>-->
-<!--            </field>-->
-<!--        </record>-->
-
         <record id="view_grap_activity_kanban" model="ir.ui.view">
             <field name="name">grap.activity.kanban</field>
             <field name="model">grap.activity</field>
@@ -354,14 +335,15 @@
                                     <div style="height:110px; width:200px;">
                                         <table>
                                             <tr>
-                                                <td style="width:150px; text-align:center;">
+                                                <td style="height:110px; width:150px; text-align:center;">
                                                     <div style="padding: 5px 5px 5px 5px;">
-                                                        <img t-att-src="kanban_image('grap.activity', 'image', record.id.value)" width="100"/>
+                                                        <img t-att-src="kanban_image('grap.activity', 'image', record.id.value)" width="100px"/>
                                                     </div>
                                                 </td>
                                                 <td style="width:50px;text-align:center;vertical-align:middle;">
                                                     <b><t t-esc="record.fte.string"/></b><br />
-                                                    <field name="fte"/>
+                                                    <field name="fte"/><br /><br />
+                                                    <b><field name="code"/></b>
                                                 </td>
                                             </tr>
                                         </table>
