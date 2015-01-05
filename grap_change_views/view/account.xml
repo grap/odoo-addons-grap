@@ -31,6 +31,9 @@
             <field name="model">account.move</field>
             <field name="inherit_id" ref="account.view_move_form"/>
             <field name="arch" type="xml">
+                <field name="partner_id" position="attributes">
+                    <attribute name="invisible" />
+                </field>
                 <xpath expr="//field[@name='line_id']/tree" position="attributes">
                     <attribute name="class">grap_change_views__view_account_move_form</attribute>
                     <attribute name="version">7.0</attribute>
