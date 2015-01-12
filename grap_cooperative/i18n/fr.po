@@ -6,14 +6,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-22 07:51+0000\n"
-"PO-Revision-Date: 2014-09-22 07:51+0000\n"
+"POT-Creation-Date: 2015-01-12 15:31+0000\n"
+"PO-Revision-Date: 2015-01-12 15:31+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: grap_cooperative
+#: view:grap.activity:0
+msgid "# of FTE"
+msgstr "# of FTE"
 
 #. module: grap_cooperative
 #: view:grap.timesheet.report:0
@@ -108,7 +113,6 @@ msgid "Categories"
 msgstr "Catégories"
 
 #. module: grap_cooperative
-#: view:grap.activity:0
 #: view:grap.category:0
 msgid "Category"
 msgstr "Catégorie"
@@ -160,7 +164,7 @@ msgstr "Email de contact"
 #: view:grap.member:0
 #: view:grap.people:0
 msgid "Contact information"
-msgstr "Contacts"
+msgstr "Information sur le contact"
 
 #. module: grap_cooperative
 #: view:grap.member:0
@@ -233,7 +237,7 @@ msgstr "Afficher et gérer les types de travail."
 #. module: grap_cooperative
 #: model:ir.actions.act_window,help:grap_cooperative.action_grap_todo_task
 msgid "Display and manage todo tasks of OpenERP."
-msgstr "Afficher et gérer les tâches liées à OpenERP."
+msgstr "Afficher et gérer les tâches d'OpenERP."
 
 #. module: grap_cooperative
 #: model:ir.actions.act_window,help:grap_cooperative.action_grap_type
@@ -348,6 +352,11 @@ msgid "In progress, validated or working"
 msgstr "A l'étude, validé ou en activité"
 
 #. module: grap_cooperative
+#: model:ir.ui.menu,name:grap_cooperative.menu_information
+msgid "Information"
+msgstr "Information"
+
+#. module: grap_cooperative
 #: field:grap.todo.task,internal_note:0
 msgid "Internal Note"
 msgstr "Note interne"
@@ -457,12 +466,6 @@ msgid "Number of Share in Capital"
 msgstr "Nombre de part au capital"
 
 #. module: grap_cooperative
-#: model:ir.ui.menu,name:grap_cooperative.menu_openerp
-#: model:ir.ui.menu,name:grap_cooperative.menu_timesheet
-msgid "OpenERP"
-msgstr "OpenERP"
-
-#. module: grap_cooperative
 #: field:grap.timesheet.type,parent_id:0
 msgid "Parent"
 msgstr "Parent"
@@ -519,6 +522,11 @@ msgid "Relation between activities and people"
 msgstr "Relation entre activités et personnes"
 
 #. module: grap_cooperative
+#: field:grap.activity,siret:0
+msgid "SIRET"
+msgstr "SIRET"
+
+#. module: grap_cooperative
 #: view:grap.timesheet:0
 #: view:grap.todo.task:0
 msgid "Search Tasks"
@@ -567,6 +575,11 @@ msgid "Street"
 msgstr "Rue"
 
 #. module: grap_cooperative
+#: model:ir.ui.menu,name:grap_cooperative.menu_task
+msgid "Task"
+msgstr "Tâche"
+
+#. module: grap_cooperative
 #: view:grap.timesheet.report:0
 msgid "ThimeSheet Report"
 msgstr "Rapport de Feuille de Temps"
@@ -574,6 +587,7 @@ msgstr "Rapport de Feuille de Temps"
 #. module: grap_cooperative
 #: code:_description:0
 #: model:ir.model,name:grap_cooperative.model_grap_timesheet
+#: model:ir.ui.menu,name:grap_cooperative.menu_timesheet
 #, python-format
 msgid "Time Sheet"
 msgstr "Feuille de temps."
@@ -681,6 +695,11 @@ msgid "Validated"
 msgstr "Validé"
 
 #. module: grap_cooperative
+#: view:grap.activity:0
+msgid "Validated or working"
+msgstr "Validée ou en activité"
+
+#. module: grap_cooperative
 #: field:grap.activity,date_validated:0
 msgid "Validation date by cooperative"
 msgstr "Date de validation d'entrée"
@@ -735,6 +754,11 @@ msgstr "Téléphone professionnel"
 #: field:grap.member,zip:0
 msgid "Zip"
 msgstr "Code Postal"
+
+#. module: grap_cooperative
+#: field:grap.activity,code:0
+msgid "code"
+msgstr "code"
 
 #. module: grap_cooperative
 #: model:res.groups,name:grap_cooperative.res_group_grap_computer_manager

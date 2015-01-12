@@ -64,22 +64,28 @@
             action="action_grap_type" 
             sequence="7"/>
 
-<!-- Submenu OpenERP -->
-        <menuitem id="menu_openerp"
-            name="OpenERP"
+<!-- Submenu Information -->
+        <menuitem id="menu_information"
+            name="Information"
             parent="menu_grap_root"
             sequence="2"/>
 
+<!-- Submenu Task -->
+        <menuitem id="menu_task"
+            name="Task"
+            parent="menu_grap_root"
+            sequence="3"/>
+
         <menuitem id="menu_todo_task"
-            parent="menu_openerp"
+            parent="menu_task"
             action="action_grap_todo_task" 
             sequence="1"/>
 
 <!-- Submenu TimeSheet -->
         <menuitem id="menu_timesheet"
-            name="OpenERP"
+            name="Time Sheet"
             parent="menu_grap_root"
-            sequence="3"/>
+            sequence="4"/>
 
         <menuitem id="menu_timesheet_line"
             parent="menu_timesheet"

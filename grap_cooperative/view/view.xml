@@ -182,17 +182,14 @@
                         <templates>
                         <t t-name="kanban-box">
                             <div class="oe_kanban_box oe_kanban_color_border">
-                                <div style="height:150px;width:150px;overflow:hidden;">
-                                    <div style="height:40px;width:150px;border-bottom:1px solid #999999;padding-left:5px;">
+                                <div style="height:210px;width:190px;overflow:hidden;">
+                                    <div style="height:20px;width:190px;border-bottom:1px solid #999999;padding-left:5px;overflow:hidden;">
                                         <a type="edit">
-                                            <ul>
-                                                <li><field name="last_name"/></li>
-                                                <li><field name="first_name"/></li>
-                                            </ul>
+                                            <field name="last_name"/> <field name="first_name"/>
                                         </a>
                                     </div>
-                                    <div style="height:110px;width:150px;text-align:center;vertical-align:middle;padding: 5px 5px 5px 5px">
-                                        <img t-att-src="kanban_image('grap.people', 'image', record.id.value)" width="95"/>
+                                    <div style="height:190px;width:190px;text-align:center;vertical-align:middle;padding-top: 5px;">
+                                        <img t-att-src="kanban_image('grap.people', 'image', record.id.value)" width="180"/>
                                     </div>
                                 </div>
                             </div>
