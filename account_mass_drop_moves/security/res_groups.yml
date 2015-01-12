@@ -23,5 +23,3 @@
 - !record {model: res.groups, id: res_groups_account_mass_drop_moves_manager}:
     category_id: base.module_category_usability
     name: Mass Drop Account Move Manager
-    users:
-        - base.user_root

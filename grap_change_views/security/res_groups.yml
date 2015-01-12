@@ -24,5 +24,3 @@
 - !record {model: res.groups, id: group_product_image_manager}:
     category_id: base.module_category_hidden
     name: Manage Product Images
-    users:
-        - base.user_root
