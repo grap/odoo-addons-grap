@@ -48,6 +48,7 @@ Copyright, Authors and Licence:
     'demo': [
         'demo/pos_table.yml',
         'demo/sale_shop.yml',
+        'demo/res_groups.yml',
     ],
     'data': [
         'security/ir_rule.yml',

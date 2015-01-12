@@ -20,14 +20,6 @@
 #
 ##############################################################################
 
-- !record {model: res.groups, id: res_group_restaurant_user}:
-    category_id: ir_module_category_restaurant
-    name: User
-    comment: The user can see and use Restaurant field. (Covers, Table, etc.)
-
 - !record {model: res.groups, id: res_group_restaurant_manager}:
-    category_id: ir_module_category_restaurant
-    name: Manager
-    implied_ids:
-        - pos_restaurant.res_group_restaurant_user
-    comment: The user can see and manage Restaurant field. (Covers, Table, etc.)
+    users:
+        - base.user_root
