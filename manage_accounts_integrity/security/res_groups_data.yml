@@ -23,5 +23,3 @@
 - !record {model: res.groups, id: res_group_manage_accounts_integrity_manager}:
     category_id: base.module_category_usability
     name: check_correct_accounts manager
-    users:
-        - base.user_root
