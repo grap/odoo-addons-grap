@@ -73,22 +73,17 @@ class pos_order_line(Model):
             string='Tax Amount', store=True),
     }
 
-    # View Section
-    def onchange_qty(
-            self, cr, uid, ids, product, discount, qty, price_unit,
+    # Private Section
+    def _compute_tax(
+            self, cr, uid, product_id, discount, qty, price_unit,
             context=None):
-        result = super(pos_order_line, self).onchange_qty(
-            cr, uid, ids, product, discount, qty, price_unit, context=context)
-        if not product:
-            return result
-
         at_obj = self.pool['account.tax']
-        product_obj = self.pool['product.product']
-        prod = product_obj.browse(cr, uid, product, context=context)
+        pp_obj = self.pool['product.product']
+        pp = pp_obj.browse(cr, uid, product_id, context=context)
 
         price = price_unit * (1 - (discount or 0.0) / 100.0)
         taxes = at_obj.compute_all(
-            cr, uid, prod.taxes_id, price, qty, product=prod, partner=False)
+            cr, uid, pp.taxes_id, price, qty, product=pp, partner=False)
         tax_values = []
         for tax in taxes['taxes']:
             tax_values.append((0, 0, {
@@ -96,8 +91,29 @@ class pos_order_line(Model):
                 'baseHT': taxes['total'],
                 'amount_tax': tax['amount'],
             }))
-        result['value']['pol_tax_rel_id'] = tax_values
-        return result
+        return tax_values
+
+    # Overload Section
+    def create(self, cr, uid, vals, context=None):
+        vals['pol_tax_rel_id'] = self._compute_tax(
+            cr, uid, vals['product_id'], vals.get('discount', 0),
+            vals.get('qty', 1.0), vals['price_unit'], context=context)
+        res = super(pos_order_line, self).create(
+            cr, uid, vals , context=context)
+        return res
+
+    def write(self, cr, uid, ids, vals, context=None):
+        vals['pol_tax_rel_id'] = [([5])]
+        res = super(pos_order_line, self).write(
+            cr, uid, ids, vals, context=context)
+        extra_vals = {}
+        for pol in self.browse(cr, uid, ids, context=context):
+            extra_vals['pol_tax_rel_id'] = self._compute_tax(
+                cr, uid, pol.product_id.id, pol.discount, pol.qty,
+                pol.price_unit, context=context)
+            super(pos_order_line, self).write(
+                cr, uid, pol.id, extra_vals, context=context)
+        return res
 
     # Init section
     def _init_pos_tax(self, cr, uid, ids=None, context=None):
