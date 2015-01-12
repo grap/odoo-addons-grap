@@ -99,7 +99,7 @@ class pos_order_line(Model):
             cr, uid, vals['product_id'], vals.get('discount', 0),
             vals.get('qty', 1.0), vals['price_unit'], context=context)
         res = super(pos_order_line, self).create(
-            cr, uid, vals , context=context)
+            cr, uid, vals, context=context)
         return res
 
     def write(self, cr, uid, ids, vals, context=None):

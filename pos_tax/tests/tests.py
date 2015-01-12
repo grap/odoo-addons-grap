@@ -94,7 +94,7 @@ class TestPosTax(TransactionCase):
             'session_id': ps_id,
         })
         # Create Order line #2
-        pol_id = self.pol_obj.create(cr, uid, {
+        self.pol_obj.create(cr, uid, {
             'order_id': po_id,
             'product_id': self.product_1,
             'name': 'Product 1',
