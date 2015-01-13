@@ -31,11 +31,9 @@ class pos_order(Model):
     _columns = {
         'table_id': fields.many2one(
             'pos.table', 'Table',
-            groups="pos_restaurant.res_group_restaurant_user",
             help="select the table where the customers is."),
         'covers': fields.integer(
-            'Covers', groups="pos_restaurant.res_group_restaurant_user",
-            help="Covers in a restaurant"),
+            'Covers', help="Covers in a restaurant"),
     }
 
     # Overload section

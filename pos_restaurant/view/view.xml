@@ -27,8 +27,8 @@
             <field name="inherit_id" ref="point_of_sale.view_pos_order_tree" />
             <field name="arch" type="xml">
                 <field name="partner_id" position="after">
-                    <field name="table_id" />
-                    <field name="covers" />
+                    <field name="table_id" groups="pos_restaurant.res_group_restaurant_user"/>
+                    <field name="covers" groups="pos_restaurant.res_group_restaurant_user"/>
                 </field>
             </field>
         </record>
@@ -39,9 +39,9 @@
             <field name="inherit_id" ref="point_of_sale.view_pos_pos_form" />
             <field name="arch" type="xml">
                 <field name="partner_id" position="after">
-                    <field name="table_id" 
+                    <field name="table_id" groups="pos_restaurant.res_group_restaurant_user"
                         options="{'quick_create':false}"/>
-                    <field name="covers" />
+                    <field name="covers" groups="pos_restaurant.res_group_restaurant_user"/>
                 </field>
             </field>
         </record>
