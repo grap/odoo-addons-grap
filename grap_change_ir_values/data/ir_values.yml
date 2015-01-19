@@ -25,5 +25,19 @@
     key: default
     key2:
     model: res.partner
-    name: res_partner - notification_email_send
+    name: notification_email_send
     value: "S'comment'\np0\n."
+
+- !record {model: ir.values, id: ir_values_product_product_sale_delay}:
+    key: default
+    key2:
+    model: product.template
+    name: sale_delay
+    value: "I0\n."
+
+- !record {model: ir.values, id: ir_values_product_product_produce_delay}:
+    key: default
+    key2:
+    model: product.template
+    name: produce_delay
+    value: "I0\n."

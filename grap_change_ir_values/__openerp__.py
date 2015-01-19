@@ -28,20 +28,26 @@
     'description': """
 Set ir.values for default feature
 =================================
-Features :
-----------
+Partners (res.partner):
+-----------------------
     * Partners receive mail by default:
-        * Model 'res.partner';
         * field : 'notification_email_send';
         * value : 'comment';
+
+Products (product.template):
+----------------------------
     * Products has no default UoM:
-        * Model 'product.template';
         * field : 'uom_id';
         * value : False;
     * Products has no default Purchase UoM:
-        * Model 'product.template';
         * field : 'uom_po_id';
         * value : False;
+    * Products has Null Produce Delay:
+        * field : 'produce_delay';
+        * value : 0;
+    * Products has Null Sale Delay:
+        * field : 'sale_delay';
+        * value : 0;
 
 Technical Information:
 ----------------------
@@ -51,7 +57,7 @@ Technical Information:
 
 Copyright, Author and Licence :
 -------------------------------
-    * Copyright : 2014, Groupement Régional Alimentaire de Proximité;
+    * Copyright : 2013-Today, Groupement Régional Alimentaire de Proximité;
     * Author :
         * Julien WESTE;
         * Sylvain LE GAL (https://twitter.com/legalsylvain);
