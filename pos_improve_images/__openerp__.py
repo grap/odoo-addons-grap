@@ -32,8 +32,14 @@ Improvements on Display of products an categories images in Point of Sale
 Technical information:
 ----------------------
     * Increase speed:
-        * Product: Uses image_medium instead of image;
-        * Product: Uses and create image_medium instead of image;
+        * Products:
+            * Uses image_medium instead of image;
+            * Load image only if product has one;
+        * Categories:
+            * Uses and image_medium instead of image (new field);
+    * Increase display:
+        * If product has no image, the display of the product is changed,
+          (Size of the name is increased for better visibility);
 
 Copyright, Authors and Licence:
 -------------------------------

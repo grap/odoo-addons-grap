@@ -1,6 +1,6 @@
 /******************************************************************************
     Point Of Sale - Improve Images module for OpenERP
-    Copyright (C) 2014 GRAP (http://www.grap.coop)
+    Copyright (C) 2014-Today GRAP (http://www.grap.coop)
     @author Julien WESTE
     @author Sylvain LE GAL (https://twitter.com/legalsylvain)
 
@@ -21,19 +21,44 @@
 openerp.pos_improve_images = function(instance){
     var module = instance.point_of_sale;
 
+    /*************************************************************************
+        OverWrite :  Model 'Product'
+    */
+
+    // Overwrite get_image_url Function, depending on has_image value.
+    // and return 'image_medium', instead of normal 'image' field;
     module.Product.prototype.get_image_url = function(){
-        return instance.session.url('/web/binary/image', {model: 'product.product', field: 'image_medium', id: this.get('id')});
+        if (this.has_image){
+            return instance.session.url(
+                '/web/binary/image',
+                {model: 'product.product', field: 'image_medium', id: this.id});
+        }
+        else {
+            return false;
+        }
     };
 
+    /*************************************************************************
+        OverWrite :  Model 'ProductCategoriesWidget'
+    */
+    // Overwrite get_image_url function to return 'image_medium' instead of
+    // 'image' field;
     module.ProductCategoriesWidget.prototype.get_image_url = function(category){
-        return instance.session.url('/web/binary/image', {model: 'pos.category', field: 'image_medium', id: category.id});
+        return instance.session.url(
+            '/web/binary/image',
+            {model: 'pos.category', field: 'image_medium', id: category.id});
     };
 
-//    var _initialize_ = module.ProductWidget.prototype.initialize;
+//    /*************************************************************************
+//        Overload :  Model 'ProductWidget'
+//    */
+
+//    // Change product display if product has no image;
     module.ProductWidget = module.ProductWidget.extend({
         renderElement: function() {
+            this.model.has_image = this.pos.product_image_list().has_image(this.model.id);
             this._super();
-            if (!this.pos.product_image_list().has_image(this.model.id)){
+            if (!(this.model.has_image)){
                 this.$('img').replaceWith(null);
                 this.$('.product-img').addClass('product-img-without-image');
                 this.$('.product-name').addClass('product-name-without-image');
@@ -44,13 +69,12 @@ openerp.pos_improve_images = function(instance){
     /*************************************************************************
         Define : New Model 'ProductImage'
     */
-
     module.ProductImage = Backbone.Model.extend({
         has_image: function(){
             return this.attributes['has_image'];
         },
     });
-    
+
     module.ProductImageCollection = Backbone.Collection.extend({
         model: module.ProductImage,
         has_image: function(id){
@@ -58,9 +82,11 @@ openerp.pos_improve_images = function(instance){
         },
     });
 
-    /*
-        Overload: PosModel.initialize() to define one list
+    /*************************************************************************
+        Overload : Model 'PosModel'
     */
+
+    //Overload: PosModel.initialize() to define one list
     var _initialize_ = module.PosModel.prototype.initialize;
     module.PosModel.prototype.initialize = function(session, attributes){
         _initialize_.call(this, session, attributes);
@@ -71,17 +97,16 @@ openerp.pos_improve_images = function(instance){
 
     module.PosModel.prototype.product_image_list = function(){
         return this.get('_product_image_list');
-    }
-    /*
-        Overload: PosModel.load_server_data() function to get in memory
-        if product has image.
-    */
+    };
+
+    // Overload: PosModel.load_server_data() function to get in memory
+    // if product has image.
     var _load_server_data_ = module.PosModel.prototype.load_server_data;
     module.PosModel.prototype.load_server_data = function(){
         var self = this;
         var load_def = _load_server_data_.call(self).done(self.load_product_images_data());
         return load_def;
-    },
+    };
 
     module.PosModel = module.PosModel.extend({
         load_product_images_data: function(){
@@ -96,4 +121,5 @@ openerp.pos_improve_images = function(instance){
             return loaded;
         },
     });
+
 };
