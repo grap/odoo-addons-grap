@@ -2,6 +2,8 @@
 ##############################################################################
 #
 #    Point Of Sale - Multiple Cash Control module for Odoo
+#    Copyright (C) 2004-2010 Tiny SPRL (<http://tiny.be>)
+#    Some modification has been realized by GRAP:
 #    Copyright (C) 2013 GRAP (http://www.grap.coop)
 #    @author Julien WESTE
 #    @author Sylvain LE GAL (https://twitter.com/legalsylvain)
@@ -21,11 +23,21 @@
 #
 ##############################################################################
 
-from . import account_cash_statement
-from . import pos_box_entries
-from . import pos_box_out
-from . import pos_session_opening
-from . import pos_session
-from . import pos_config
-from . import pos_cash_controls
-from . import product_product
+
+import time
+
+from openerp.osv.orm import Model
+from openerp.osv import fields
+from openerp.addons import decimal_precision as dp
+
+
+class pos_config(Model):
+    _inherit = 'pos.config'
+
+    # overwrite function to disable constraint on journal control
+    def _check_cash_control(self, cr, uid, ids, context=None):
+        return True
+
+    _constraints = [
+        (_check_cash_control, "You cannot have two cash controls in one Point Of Sale !", ['journal_ids']),
+    ]
