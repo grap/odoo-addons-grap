@@ -2,8 +2,7 @@
 ##############################################################################
 #
 #    GRAP - Change Views for Odoo
-#    Copyright (C) 2013-Today GRAP (http://www.grap.coop)
-#    @author Julien WESTE
+#    Copyright (C) 2015-Today GRAP (http://www.grap.coop)
 #    @author Sylvain LE GAL (https://twitter.com/legalsylvain)
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -22,18 +21,8 @@
 ##############################################################################
 
 from openerp.osv.orm import Model
-from openerp.osv import fields
 
 
-class pos_order_line(Model):
-    _inherit = 'pos.order.line'
-
-    _columns = {
-        'state': fields.related(
-            'order_id', 'state', type='char', string='State'),
-        'product_name': fields.related(
-            'product_id', 'name_template', type='char', string='Product Name'),
-        'partner_id': fields.related(
-            'order_id', 'partner_id', type='many2one', relation='res.partner',
-            string='Partner'),
-    }
+class product_product(Model):
+    _inherit = 'product.product'
+    _order = 'name_template, default_code'
