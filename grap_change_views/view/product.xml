@@ -115,12 +115,11 @@
                                         <field name="type"/>
                                         <field name="uom_id" on_change="onchange_uom(uom_id,uom_po_id)" groups="product.group_uom"/>
                                         <field name="ean13"/>
-                                        <field name="administrative_ok" />
                                     </group>
                                     <group>
                                         <field name="purchase_ok"/>
                                         <field name="sale_ok"/>
-                                        <field name="available_in_pos" string="Tactile point of sale"/>
+                                        <field name="administrative_ok" />
                                     </group>
                                 </group>
                             </group>
@@ -137,14 +136,12 @@
                         </group>
                         <notebook>
                             <page string="Information">
-                                <group col="6">
+                                <group col="8">
                                     <group string="Stock">
-                                        <group colspan="2" col="3">
                                         <field name="qty_available"/>
                                         <button name="%(stock.action_view_change_product_quantity)d" string="update"
                                             type="action"
-                                            class="oe_link"/>
-                                    </group>
+                                            class="oe_link" colspan="2"/>
                                         <field name="incoming_qty" string="Incoming quantity"/>
                                         <field name="outgoing_qty" string="Outgoing quantity"/>
                                         <field name="virtual_available"/>
@@ -163,7 +160,11 @@
                                             groups="account.group_account_manager"/>
                                         <field name="list_price"/>
                                         <field name="theoretical_margin" widget="progressbar"/>
+                                    </group>
+                                    <group string="Point Of Sale">
+                                        <field name="available_in_pos" string="Tactile point of sale"/>
                                         <field name="pos_categ_id"/>
+                                        <field name="to_weight" />
                                     </group>
                                 </group>
                                 <group col="6">
@@ -197,7 +198,6 @@
                                     <field name="uos_id" />
                                     <field name="uos_coeff" />
                                     <field name="mes_type" />
-                                    <field name="to_weight" />
                                     <field name="income_pdt" />
                                     <field name="expense_pdt" />
                                     <field name="valuation" />
