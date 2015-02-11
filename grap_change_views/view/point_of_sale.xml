@@ -30,6 +30,7 @@
                     <field name="code" />
                     <field name="name" />
                     <field name="available_in_pos"/>
+                    <field name="to_weight"/>
                     <field name="pos_categ_id" options="{'quick_create':false}"/>
                     <field name="ean13"/>
                 </tree>
