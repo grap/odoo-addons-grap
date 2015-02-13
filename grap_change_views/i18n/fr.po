@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-15 16:14+0000\n"
-"PO-Revision-Date: 2014-12-15 16:14+0000\n"
+"POT-Creation-Date: 2015-02-13 09:48+0000\n"
+"PO-Revision-Date: 2015-02-13 09:48+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -186,9 +186,19 @@ msgid "Packaging"
 msgstr "Colisage"
 
 #. module: grap_change_views
+#: field:pos.order.line,partner_id:0
+msgid "Partner"
+msgstr "Partenaire"
+
+#. module: grap_change_views
 #: model:ir.model,name:grap_change_views.model_pos_category
 msgid "PoS Category"
 msgstr "Catégorie PdV"
+
+#. module: grap_change_views
+#: view:product.product:0
+msgid "Point Of Sale"
+msgstr "Point de Vente"
 
 #. module: grap_change_views
 #: view:res.partner:0
@@ -218,8 +228,11 @@ msgid "Print information"
 msgstr "Information liée à l'impression"
 
 #. module: grap_change_views
+#: code:_description:0
+#: model:ir.model,name:grap_change_views.model_product_product
 #: view:pos.category:0
 #: view:product.product:0
+#, python-format
 msgid "Product"
 msgstr "Produit"
 
@@ -227,7 +240,7 @@ msgstr "Produit"
 #: model:ir.actions.act_window,name:grap_change_views.action_view_old_product_form
 #: model:ir.ui.menu,name:grap_change_views.menu_view_old_product_form
 msgid "Product (Admin)"
-msgstr "Product (Admin)"
+msgstr "Produit (Admin)"
 
 #. module: grap_change_views
 #: view:product.product:0
@@ -243,6 +256,11 @@ msgstr "Produit (Tactile)"
 #: view:pos.category:0
 msgid "Product List"
 msgstr "Liste des produits"
+
+#. module: grap_change_views
+#: field:pos.order.line,product_name:0
+msgid "Product Name"
+msgstr "Produit"
 
 #. module: grap_change_views
 #: field:pos.category,product_qty:0
@@ -302,12 +320,17 @@ msgstr "Fournisseurs"
 #. module: grap_change_views
 #: field:stock.move,sequence:0
 msgid "Sequence"
-msgstr "Sequence"
+msgstr "Séquence"
 
 #. module: grap_change_views
 #: view:product.product:0
 msgid "Spider Chart"
 msgstr "Radar"
+
+#. module: grap_change_views
+#: field:pos.order.line,state:0
+msgid "State"
+msgstr "État"
 
 #. module: grap_change_views
 #: view:product.product:0
