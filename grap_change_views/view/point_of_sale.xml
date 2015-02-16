@@ -75,15 +75,11 @@
 
 <!-- Model: pos.category -->
         <record id="view_pos_category_tree" model="ir.ui.view">
-            <field name="name">pos.category.tree</field>
             <field name="model">pos.category</field>
             <field name="inherit_id" ref="pos_multicompany.view_pos_category_tree"/>
             <field name="arch" type="xml">
                 <field name="is_default" position="after">
                     <field name="product_qty"/>
-                </field>
-                <field name="is_default" position="attributes">
-                    <attribute name="groups">base.group_no_one</attribute>
                 </field>
             </field>
         </record>
@@ -106,6 +102,7 @@
                                 <field name="image" widget="image" />
                             </group>
                             <field name="parent_id"/>
+                            <field name="is_default"/>
                             <field name="company_id" groups="base.group_multi_company"/>
                             <field name="complete_name" string="Complete Name" />
                             <field name="product_qty" />
