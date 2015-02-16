@@ -85,6 +85,7 @@ class pos_category(Model):
 
     _defaults = {
         'company_id': _get_default_company_id,
+        'is_default': False,
     }
 
     # Init Section

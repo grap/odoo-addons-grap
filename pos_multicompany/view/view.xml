@@ -85,11 +85,11 @@
             <field name="model">pos.category</field>
             <field name="inherit_id" ref="point_of_sale.pos_category_form_view" />
             <field name="arch" type="xml">
+                <field name="parent_id" position="before">
+                    <field name="is_default"/>
+                </field>
                 <field name="parent_id" position="after">
                     <field name="company_id" groups="base.group_multi_company"/>
-                </field>
-                <field name="sequence" position="after">
-                    <field name="is_default"/>
                 </field>
             </field>
         </record>
