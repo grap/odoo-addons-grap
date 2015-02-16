@@ -24,11 +24,7 @@
 ##############################################################################
 
 
-import time
-
 from openerp.osv.orm import Model
-from openerp.osv import fields
-from openerp.addons import decimal_precision as dp
 
 
 class pos_config(Model):
@@ -39,5 +35,8 @@ class pos_config(Model):
         return True
 
     _constraints = [
-        (_check_cash_control, "You cannot have two cash controls in one Point Of Sale !", ['journal_ids']),
+        (
+            _check_cash_control,
+            "You cannot have two cash controls in one Point Of Sale !",
+            ['journal_ids']),
     ]
