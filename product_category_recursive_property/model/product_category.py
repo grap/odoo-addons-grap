@@ -47,8 +47,18 @@ class product_category(Model):
                 child_ids = [x.id for x in pc.child_id]
                 self.write(cr, uid, child_ids, values, context=context)
 
+    def _get_vals_from_parent(self, cr, uid, parent_id, context=None):
+        pc = self.browse(cr, uid, parent_id, context=context)
+        res = {}
+        for property_name in self._PRODUCT_CATEGORY_PROPERTY_LIST:
+            res[property_name] = pc[property_name].id
+        return res
+
     # Overload Section
     def create(self, cr, uid, vals, context=None):
+        if vals.get('parent_id', False):
+            vals.update(self._get_vals_from_parent(
+                cr, uid, vals.get('parent_id'), context=context))
         category_id = super(product_category, self).create(
             cr, uid, vals, context=context)
         self._propagate_properties_to_childs(
@@ -56,6 +66,9 @@ class product_category(Model):
         return category_id
 
     def write(self, cr, uid, ids, vals, context=None):
+        if vals.get('parent_id', False):
+            vals.update(self._get_vals_from_parent(
+                cr, uid, vals.get('parent_id'), context=context))
         res = super(product_category, self).write(
             cr, uid, ids, vals, context=context)
         self._propagate_properties_to_childs(
