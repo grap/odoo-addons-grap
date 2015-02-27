@@ -52,6 +52,7 @@ Copyright, Author and Licence :
     'license': 'AGPL-3',
     'depends': [
         'stock',
+        'delivery',
     ],
     'demo': [
         'demo/res_groups.yml',
