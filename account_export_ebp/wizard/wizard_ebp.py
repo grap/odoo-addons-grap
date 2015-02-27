@@ -415,8 +415,8 @@ class account_export_ebp(osv.TransientModel):
                 # we want to export may be partner specific
                 if account_nb not in accounts_data.keys():
                     if (data['form']['partner_accounts'] and
-                        line.partner_id and line.partner_id.ref_nb and
-                        line.account_id.type in ('payable', 'receivable')):
+                            line.partner_id and line.partner_id.ref_nb and
+                            line.account_id.type in ('payable', 'receivable')):
                         # Partner account
                         # Get the default address
                         partner = self.pool.get('res.partner').browse(
