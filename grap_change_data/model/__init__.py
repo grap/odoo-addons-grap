@@ -20,38 +20,4 @@
 #
 ##############################################################################
 
-{
-    'name': 'GRAP - Change Data',
-    'version': '1.0',
-    'category': 'GRAP - Custom',
-    'description': """
-Change / Drop Unwished Data
-===========================
-
-Functionality:
---------------
-    * Disable some data unwished by xml_id;
-        * Disable product.product_category_1;
-
-Technical Information:
-----------------------
-    * For that, add an 'active' field on product.category;
-
-Copyright, Authors and Licence:
--------------------------------
-    * Copyright: 2015, GRAP: Groupement Régional Alimentaire de Proximité;
-    * Author:
-        * Sylvain LE GAL (https://twitter.com/legalsylvain);
-    * Licence: AGPL-3 (http://www.gnu.org/licenses/);""",
-    'author': 'GRAP',
-    'website': 'http://www.grap.coop',
-    'license': 'AGPL-3',
-    'depends': [
-        'product',
-    ],
-    'data': [
-        'data/product_category.yml',
-    ],
-    'css': [
-    ],
-}
+from . import product_category
