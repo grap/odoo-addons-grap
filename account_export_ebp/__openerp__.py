@@ -62,7 +62,4 @@ old ones if need be.
         'security/ir_model_access.yml',
         'security/ir_rule.xml',
     ],
-    'external_dependencies': {
-        'python': ['pysmbc'],
-    }
 }

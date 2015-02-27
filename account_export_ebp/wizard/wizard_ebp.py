@@ -24,8 +24,12 @@
 import base64
 import cStringIO
 import codecs
-import smbc
 from unidecode import unidecode
+
+try:
+    import smbc
+except:
+    smbc = False
 
 from tools.translate import _
 from openerp.osv import fields, osv

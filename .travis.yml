@@ -15,7 +15,6 @@ virtualenv:
 before_install:
   - sudo apt-get install bzr
   - sudo apt-get install wkhtmltopdf
-  - sudo pip install pysmbc
   - sudo pip install GitPython
   - sudo pip install bzr
   - sudo pip install cairosvg
