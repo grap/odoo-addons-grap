@@ -45,7 +45,8 @@ class product_category(Model):
         if values:
             for pc in self.browse(cr, uid, ids, context=context):
                 child_ids = [x.id for x in pc.child_id]
-                self.write(cr, uid, child_ids, values, context=context)
+                if child_ids:
+                    self.write(cr, uid, child_ids, values, context=context)
 
     def _get_vals_from_parent(self, cr, uid, parent_id, context=None):
         pc = self.browse(cr, uid, parent_id, context=context)
