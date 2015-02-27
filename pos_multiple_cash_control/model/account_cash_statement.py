@@ -31,14 +31,12 @@ class account_cash_statement(Model):
     _inherit = 'account.bank.statement'
 
     def _update_balances_no_cash(self, cr, uid, ids, context=None):
-        """
-            Set starting and ending balances according to pieces count
-        """
+        """Set starting and ending balances according to pieces count"""
         res = {}
         for acs in self.browse(cr, uid, ids, context=context):
             if ((
-                acs.journal_id.type in ('cash',))
-                    or (not acs.journal_id.cash_control)):
+                acs.journal_id.type in ('cash',)) or
+                    (not acs.journal_id.cash_control)):
                 continue
             start = end = 0
             for line in acs.details_ids:

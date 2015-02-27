@@ -31,16 +31,16 @@ class product_product(Model):
     def _check_pos_ok_res_group(self, cr, uid, ids, context=None):
         ru_obj = self.pool.get('res.users')
         for pp in self.browse(cr, uid, ids, context=context):
-            if ((pp.expense_pdt or pp.income_pdt)
-                and not ru_obj.has_group(
+            if ((pp.expense_pdt or pp.income_pdt) and
+                not ru_obj.has_group(
                     cr, uid, 'account.group_account_manager')):
                 return False
         return True
 
     def _check_purchase_sale_pos_ok(self, cr, uid, ids, context=None):
         for pp in self.browse(cr, uid, ids, context=context):
-            if ((pp.expense_pdt or pp.income_pdt)
-                    and (pp.sale_ok or pp.purchase_ok)):
+            if ((pp.expense_pdt or pp.income_pdt) and
+                    (pp.sale_ok or pp.purchase_ok)):
                 return False
         return True
 

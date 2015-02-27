@@ -131,8 +131,8 @@ class change_account_move_line_wizard(TransientModel):
         close_period_infos = []
         for data in self.browse(cr, uid, ids, context=context):
             # check constraint
-            if not (data.source_account_id.company_id.id
-                    != data.destination_account_id.company_id.id):
+            if not (data.source_account_id.company_id.id !=
+                    data.destination_account_id.company_id.id):
                 assert 'Incorrect request', _(
                     """Source and destination account must be belong to the"""
                     """ same company.""")

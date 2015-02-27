@@ -82,8 +82,8 @@ class account_bank_statement(osv.osv):
     def balance_check(self, cr, uid, st_id, journal_type='bank', context=None):
         st = self.browse(cr, uid, st_id, context=context)
         if not (abs(
-                (st.theorical_balance_end or 0.0)
-                - st.balance_end_real) < 0.0001):
+                (st.theorical_balance_end or 0.0) -
+                st.balance_end_real) < 0.0001):
             raise osv.except_osv(_('Error!'), _(
                 """The statement balance is incorrect !\nThe finale balance"""
                 """ (%.2f) is different than the computed one. (%.2f)""") % (

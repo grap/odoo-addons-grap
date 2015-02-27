@@ -110,8 +110,8 @@ class account_add_suffix(TransientModel):
                     for n in range(3, 0, -1):
                         if len(names[0]) >= n:
                             suffix = (
-                                names[0][:n].upper()
-                                + names[j][:(4 - n)].upper())
+                                names[0][:n].upper() +
+                                names[j][:(4 - n)].upper())
                             suffix = unidecode.unidecode(suffix)
                             if suffix and not(suffix in existing_suffixes):
                                 return suffix

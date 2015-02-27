@@ -20,6 +20,8 @@
 #
 ##############################################################################
 
+from netsvc import Service
+
 from openerp.report import report_sxw
 from stock.report import stock_inventory_move_report
 
@@ -41,7 +43,6 @@ class stock_inventory_move(stock_inventory_move_report.stock_inventory_move):
         return total
 
 # remove previous sale.report service :
-from netsvc import Service
 del Service._services['report.stock.inventory.move']
 
 # register the new report service :

@@ -43,8 +43,8 @@ class pos_box_entries(TransientModel):
             cr, uid, statement_ids, ['name', 'id', 'journal_id'],
             context=context)
         result = [
-            (st['id'], st['journal_id'][1]
-                + ' - (' + st['name'] + ')') for st in statements]
+            (st['id'], st['journal_id'][1] +
+                ' - (' + st['name'] + ')') for st in statements]
         return result
 
     _columns = {

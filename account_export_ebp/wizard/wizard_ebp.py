@@ -323,8 +323,8 @@ class account_export_ebp(osv.TransientModel):
             ignore_year = (move.period_id.fiscalyear_id.id !=
                            data['form']['fiscalyear_id'][0])
             # Ignore moves already exported
-            ignore_exported = (data['form']['ignore_exported']
-                               and move.exported_ebp_id)
+            ignore_exported = (
+                data['form']['ignore_exported'] and move.exported_ebp_id)
             # Skip to next move if this one should be ignored
             if ignore_draft or ignore_year or ignore_exported:
                 _logger.debug(
@@ -347,17 +347,17 @@ class account_export_ebp(osv.TransientModel):
                     continue
                 # Make up the account number
                 account_nb = normalize(line.account_id.code)
-                if (data['form']['company_suffix'] and line.company_id
-                    and line.company_id.code and (
+                if (data['form']['company_suffix'] and line.company_id and
+                    line.company_id.code and (
                         line.account_id.type in ('payable', 'receivable'))):
                     account_nb = account_nb + line.company_id.code
-                if (data['form']['partner_accounts'] and line.partner_id
-                    and line.partner_id.ref_nb and (
+                if (data['form']['partner_accounts'] and line.partner_id and
+                    line.partner_id.ref_nb and (
                         line.account_id.type in ('payable', 'receivable'))):
                     # Partner account
                     account_nb = account_nb + line.partner_id.ref_nb
-                if (tax_code_suffix and line.account_id.export_tax_code
-                        and line.tax_code_id.ref_nb):
+                if (tax_code_suffix and line.account_id.export_tax_code and
+                        line.tax_code_id.ref_nb):
                     tmp = account_nb + line.tax_code_id.ref_nb
                     account_nb = tmp
 
@@ -387,8 +387,8 @@ class account_export_ebp(osv.TransientModel):
                         'journal': move.journal_id.code,
                         'ref': normalize(
                             ((line.company_id.code + ' ')
-                                if line.company_id.code else '')
-                            + line.name + (
+                                if line.company_id.code else '') +
+                            line.name + (
                                 (' (' + move.ref + ')')
                                 if move.ref else '')),
                         'name': normalize(move.name),
@@ -401,8 +401,8 @@ class account_export_ebp(osv.TransientModel):
                     moves_data[account_nb]['credit'] += line.credit
                     moves_data[account_nb]['debit'] += line.debit
                     # Keep the earliest maturity date
-                    if (line.date_maturity
-                            < moves_data[account_nb]['date_maturity']):
+                    if (line.date_maturity <
+                            moves_data[account_nb]['date_maturity']):
                         moves_data[account_nb]['date_maturity'] =\
                             line.date_maturity
 
@@ -410,9 +410,9 @@ class account_export_ebp(osv.TransientModel):
                 # We can't just keep the account_id object because the data
                 # we want to export may be partner specific
                 if account_nb not in accounts_data.keys():
-                    if (data['form']['partner_accounts'] and line.partner_id
-                        and line.partner_id.ref_nb and line.account_id.type
-                            in ('payable', 'receivable')):
+                    if (data['form']['partner_accounts'] and
+                        line.partner_id and line.partner_id.ref_nb and
+                        line.account_id.type in ('payable', 'receivable')):
                         # Partner account
                         # Get the default address
                         partner = self.pool.get('res.partner').browse(
@@ -421,8 +421,8 @@ class account_export_ebp(osv.TransientModel):
                             'name': normalize(partner.name),
                             'partner_name': normalize(partner.name),
                             'address': normalize(
-                                (partner.street or '')
-                                + (partner.street2 and
+                                (partner.street or '') +
+                                (partner.street2 and
                                     (' ' + partner.street2) or '')),
                             'zip': partner.zip or '',
                             'city': normalize(partner.city or ''),
@@ -432,14 +432,13 @@ class account_export_ebp(osv.TransientModel):
                             'phone': partner.phone or partner.mobile or '',
                             'fax': partner.fax or '',
                         }
-                    elif (tax_code_suffix
-                            and line.account_id.export_tax_code
-                            and line.tax_code_id.ref_nb):
+                    elif (tax_code_suffix and
+                            line.account_id.export_tax_code and
+                            line.tax_code_id.ref_nb):
                         accounts_data[account_nb] = {
                             'name': (
-                                normalize(line.account_id.name)
-                                + '('
-                                + normalize(line.tax_code_id.name) + ')'),
+                                normalize(line.account_id.name) +
+                                '(' + normalize(line.tax_code_id.name) + ')'),
                             'partner_name': '',
                             'address': '',
                             'zip': '',

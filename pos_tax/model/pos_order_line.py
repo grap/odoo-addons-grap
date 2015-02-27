@@ -165,12 +165,12 @@ class pos_order_line(Model):
                         cr, uid, values, context=context)
                     poltr_count += 1
                 if abs(
-                    amount
-                    - (pol.price_subtotal_incl - pol.price_subtotal))\
+                    amount -
+                    (pol.price_subtotal_incl - pol.price_subtotal))\
                         >= 0.01:
                     amount =\
-                        pol.price_subtotal_incl - pol.price_subtotal\
-                        - amount + tax['amount']
+                        pol.price_subtotal_incl - pol.price_subtotal -\
+                        amount + tax['amount']
                     poltr_obj.write(cr, uid, poltr_id, {
                         'amount_tax': amount
                     }, context=context)
