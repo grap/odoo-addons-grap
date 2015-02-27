@@ -13,7 +13,9 @@ virtualenv:
   system_site_packages: true
 
 before_install:
-  - sudo apt-get install bzr wkhtmltopdf python-smbc
+  - sudo apt-get install bzr
+  - sudo apt-get install wkhtmltopdf
+  - sudo apt-get install python-smbc
   - sudo pip install GitPython bzr cairosvg unidecode
 
 install:
