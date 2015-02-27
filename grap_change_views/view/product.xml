@@ -21,6 +21,17 @@
 <openerp>
     <data>
 
+        <record id="view_product_category_tree" model="ir.ui.view">
+            <field name="model">product.category</field>
+            <field name="inherit_id" ref="product_category_recursive_property.view_product_category_tree"/>
+            <field name="arch" type="xml">
+                <field name="property_stock_journal" position="replace"/>
+                <field name="property_stock_account_input_categ" position="replace"/>
+                <field name="property_stock_account_output_categ" position="replace"/>
+                <field name="property_stock_valuation_account_id" position="replace"/>
+            </field>
+        </record>
+
         <record id="action_view_old_product_form" model="ir.actions.act_window">
             <field name="name">Product (Admin)</field>
             <field name="type">ir.actions.act_window</field>
