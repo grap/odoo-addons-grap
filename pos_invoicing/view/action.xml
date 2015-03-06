@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- ********************************************************************** -->
-<!--POS Invoicing invoice module for OpenERP                 -->
-<!--Copyright (C) 2013-2014 GRAP (http://www.grap.coop)                     -->
+<!--Point Of Sale - Invoicing module for Odoo                               -->
+<!--Copyright (C) 2013-Today GRAP (http://www.grap.coop)                    -->
+<!--@author Julien WESTE                                                    -->
 <!--@author Sylvain LE GAL (https://twitter.com/legalsylvain)               -->
 
 <!--This program is free software: you can redistribute it and/or modify    -->
@@ -20,9 +21,9 @@
 
 <openerp>
     <data>
-        <record id="action_invoice_draft_order" model="ir.actions.act_window">
+        <record id="action_pos_invoice_draft_order_wizard" model="ir.actions.act_window">
             <field name="name">Invoice Draft Order</field>
-            <field name="res_model">pos.invoice.draft.order</field>
+            <field name="res_model">pos.invoice.draft.order.wizard</field>
             <field name="view_type">form</field>
             <field name="view_mode">form</field>
             <field name="target">new</field>

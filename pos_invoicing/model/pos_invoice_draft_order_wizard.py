@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Pos Invoicing module for Odoo
-#    Copyright (C) 2013-2014 GRAP (http://www.grap.coop)
+#    Point Of Sale - Invoicing module for Odoo
+#    Copyright (C) 2013-Today GRAP (http://www.grap.coop)
 #    @author Julien WESTE
 #    @author Sylvain LE GAL (https://twitter.com/legalsylvain)
 #
@@ -21,23 +21,17 @@
 #
 ##############################################################################
 
-from openerp import netsvc
 from openerp.osv.orm import TransientModel
 
 
-class pos_invoice_draft_order(TransientModel):
-    _name = 'pos.invoice.draft.order'
+class pos_invoice_draft_order_wizard(TransientModel):
+    _name = 'pos.invoice.draft.order.wizard'
 
     # Action section
     def invoice_draft_order(self, cr, uid, ids, context=None):
-        if context is None:
-            return False
         order_id = context.get('active_id', False)
-        if not order_id:
+        if not order_id or context.get('active_model', False) != 'pos.order':
             return False
-
         po_obj = self.pool.get('pos.order')
-        wf_service = netsvc.LocalService("workflow")
-        wf_service.trg_validate(uid, 'pos.order', order_id, 'paid', cr)
         res = po_obj.action_invoice(cr, uid, [order_id], context=context)
         return res

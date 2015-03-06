@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Pos Invoicing module for Odoo
-#    Copyright (C) 2013-2014 GRAP (http://www.grap.coop)
+#    Point Of Sale - Invoicing module for Odoo
+#    Copyright (C) 2013-Today GRAP (http://www.grap.coop)
 #    @author Julien WESTE
 #    @author Sylvain LE GAL (https://twitter.com/legalsylvain)
 #
@@ -21,7 +21,8 @@
 #
 ##############################################################################
 
-from . import point_of_sale
+from . import pos_order
+from . import pos_session
 from . import pos_invoice_draft_order_wizard
 from . import account_invoice
 from . import account_voucher

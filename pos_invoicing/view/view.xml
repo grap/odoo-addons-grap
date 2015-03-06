@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- ********************************************************************** -->
-<!--POS Invoicing invoice module for OpenERP                 -->
-<!--Copyright (C) 2013-2014 GRAP (http://www.grap.coop)                     -->
+<!--Point Of Sale - Invoicing module for Odoo                               -->
+<!--Copyright (C) 2013-Today GRAP (http://www.grap.coop)                    -->
+<!--@author Julien WESTE                                                    -->
 <!--@author Sylvain LE GAL (https://twitter.com/legalsylvain)               -->
 
 <!--This program is free software: you can redistribute it and/or modify    -->
@@ -21,16 +22,12 @@
 <openerp>
     <data>
 <!--    Model: pos.order-->
-        <record id="view_pos_pos_form_invoicing" model="ir.ui.view">
-            <field name="name">pos.order.invoicing</field>
+        <record id="view_pos_order_form" model="ir.ui.view">
             <field name="model">pos.order</field>
             <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
             <field name="arch" type="xml">
-                <xpath expr="//button[@name='action_invoice']" position="attributes">
-                    <attribute name="context">{'forbid_payment' : True}</attribute>
-                </xpath>
                 <xpath expr="//button[@name='action_invoice']" position="after">
-                    <button name="%(action_invoice_draft_order)d" string="Invoice (pay latter)" type="action" attrs="{'invisible':['|',('state','!=','draft'),('amount_paid','!=',0)], 'readonly': [('partner_id','=',False)]}"/>
+                    <button name="%(action_pos_invoice_draft_order_wizard)d" string="Invoice and Pay Latter" type="action" attrs="{'invisible':['|',('state','!=','draft'),('amount_paid','!=',0)], 'readonly': [('partner_id','=',False)]}"/>
                 </xpath>
                 <xpath expr="//field[@name='amount_total']" position="after">
                     <field name="amount_paid" invisible="1"/>
@@ -46,8 +43,9 @@
             <field name="inherit_id" ref="account.invoice_form"/>
             <field name="arch" type="xml">
                 <data>
-                <xpath expr="//field[@name='reconciled']" position="after">
-                    <field name="forbid_payment" invisible="1"/>
+                <xpath expr="//field[@name='payment_ids']" position="before">
+                    <label for="forbid_payment">Forbid Payment</label>
+                    <field name="forbid_payment"/>
                 </xpath>
                 <xpath expr="//button[@string='Cancel Invoice']" position="attributes">
                     <attribute name="attrs">{'invisible': ['|', ('forbid_payment','=',True), ('state','not in',('draft','proforma2','open'))]}</attribute>

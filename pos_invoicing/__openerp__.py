@@ -27,35 +27,40 @@
     'version': '2.1',
     'category': 'Point of Sale',
     'description': """
-Case1:
-When you pay a pos_order, and then create an invoice, you mustn't"""
-    """ register a payment against the invoice as the payment already exists"""
-    """ in POS and will be reconciled with the invoice when the session is"""
-    """ closed.You mustn't either modify it because the amount could become"""
-    """ different from the one registered in POS. Thus we have to"""
-    """ automatically validate the created invoice.
-Case2:
-If you want to give an invoice to your POS customer and let him pay latter"""
-    """, you have to validate the pos_order without payments and to create"""
-    """ an invoice to receive the payments.
+Feature Case 1: (Fix Odoo Behaviour)
+------------------------------------
+    * When you pay a pos_order, and then create an invoice :
+        * you mustn't register a payment against the invoice as the payment
+          already exists in POS;
+        * The POS payment will be reconciled with the invoice when the session
+          is closed.
+        * You mustn't modify the invoice because the amount could become
+          different from the one registered in POS. Thus we have to
+          automatically validate the created invoice.
+Feature Case 2: (New feature)
+-----------------------------
+    * If you want to give an invoice to your POS customer and let him pay
+      latter:
+        * you have to validate the pos_order without payments and to create
+          an invoice to receive the payments.
 
 Functionality:
 --------------
-    * About the invoices created from POS after payment
-        * automatically validate them and don't allow modifications
-        * remove the Pay button
-        * Don't display them in the Customer Payment tool
-    * About the invoices created from POS before payment
-        * possibility to create a draft invoice from a draft pos_order
+    * About the invoices created from POS after payment:
+        * automatically validate them and don't allow modifications;
+        * remove the Pay button;
+        * Don't display them in the Customer Payment tool;
+    * About the invoices created from POS before payment:
+        * possibility to create a draft invoice from a draft pos_order;
 
 Technically:
---------------
+------------
     * add a forbid_payment flag on account_invoice to mark the items that
         shouldn't be paid.
 
 Copyright, Authors and Licence:
 -------------------------------
-    * Copyright: 2013-2014, GRAP: Groupement Régional Alimentaire de Proximité;
+    * Copyright: 2013-Today GRAP: Groupement Régional Alimentaire de Proximité;
     * Author:
         * Julien WESTE;
         * Sylvain LE GAL (https://twitter.com/legalsylvain);
@@ -69,11 +74,11 @@ Copyright, Authors and Licence:
         'point_of_sale',
     ],
     'data': [
-        'view/pos_invoice_draft_order_view.xml',
+        'view/pos_invoice_draft_order_wizard_view.xml',
         'view/action.xml',
         'view/view.xml',
     ],
     'demo': [
-        'demo/res_users.xml',
+        'demo/res_groups.yml',
     ],
 }
