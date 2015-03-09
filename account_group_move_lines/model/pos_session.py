@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Point Of Sale - Rewrite create_aml Module for Odoo
+#    Account - Group Move Line Module for Odoo
 #    Copyright (C) 2013-Today GRAP (http://www.grap.coop)
 #    @author Julien WESTE
 #

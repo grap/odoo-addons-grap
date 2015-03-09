@@ -45,5 +45,6 @@ Copyright, Author and Licence :
     'depends': [
         'account',
         'pos_rewrite_create_aml',
+        'pos_invoicing',
     ],
 }
