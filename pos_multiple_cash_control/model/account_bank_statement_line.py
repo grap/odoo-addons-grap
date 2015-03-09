@@ -2,8 +2,7 @@
 ##############################################################################
 #
 #    Point Of Sale - Multiple Cash Control module for Odoo
-#    Copyright (C) 2013 GRAP (http://www.grap.coop)
-#    @author Julien WESTE
+#    Copyright (C) 2015-Today GRAP (http://www.grap.coop)
 #    @author Sylvain LE GAL (https://twitter.com/legalsylvain)
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -21,12 +20,22 @@
 #
 ##############################################################################
 
-from . import account_bank_statement_line
-from . import account_cash_statement
-from . import pos_box_entries
-from . import pos_box_out
-from . import pos_session_opening
-from . import pos_session
-from . import pos_config
-from . import pos_cash_controls
-from . import product_product
+from openerp.osv.osv import except_osv
+from openerp.osv.orm import Model
+from openerp.tools.translate import _
+
+class account_bank_statement_line(Model):
+    _inherit = 'account.bank.statement.line'
+
+    def unlink(self, cr, uid, ids, context=None):
+        for absl in self.browse(cr, uid, ids, context=context):
+            if absl.pos_statement_id and\
+                    absl.pos_statement_id.state != 'draft':
+                raise except_osv(
+                    _('Error!'),
+                    _("Unable to delete a payment of a Pos Order that is"
+                    " not in a draft state!"))
+        res = super(account_bank_statement_line, self).unlink(
+            cr, uid, ids, context=context)
+        return res
+
