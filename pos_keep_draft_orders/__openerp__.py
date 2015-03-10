@@ -22,8 +22,8 @@
 ##############################################################################
 
 {
-    'name': 'GRAP - POS keep draft orders ',
-    'version': '2.0',
+    'name': 'Point Of Sale - Keep Draft Orders ',
+    'version': '2.1',
     'category': 'Point of Sale',
     'description': """
 Allow to close a Session even if there are some PoS Orders in draft state

@@ -42,7 +42,7 @@ class pos_session(Model):
                     raise except_osv(
                         _('Error!'),
                         _("You cannot confirm this session, because '%s'"
-                            "is in a 'draft' state with payments.\n\n"
+                            " is in a 'draft' state with payments.\n\n"
                             "Please finish to pay this Order." % (
                                 po.name)))
                 # remove session id on the current PoS if it is in draft mode

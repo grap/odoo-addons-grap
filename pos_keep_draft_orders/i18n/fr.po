@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-06 15:24+0000\n"
-"PO-Revision-Date: 2013-12-06 15:24+0000\n"
+"POT-Creation-Date: 2015-03-10 14:52+0000\n"
+"PO-Revision-Date: 2015-03-10 14:52+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,170 +16,40 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: pos_keep_draft_orders
-#. openerp-web
-#: code:addons/pos_keep_draft_orders/static/src/xml/pos.xml:96
+#: field:pos.config,allow_slate:0
+msgid "Allow Slate"
+msgstr "Autoriser les ardoises"
+
+#. module: pos_keep_draft_orders
+#: code:addons/pos_keep_draft_orders/model/pos_session.py:43
 #, python-format
-msgid "Customer Selection"
-msgstr "Sélection du client"
+msgid "Error!"
+msgstr "Erreur !"
 
 #. module: pos_keep_draft_orders
-#. openerp-web
-#: code:addons/pos_keep_draft_orders/static/src/xml/pos.xml:19
-#, python-format
-msgid "Phone:"
-msgstr "Téléphone:"
+#: help:pos.config,allow_slate:0
+msgid "If you check this field, users will have the possibility to let some PoS orders in the slate, and allow the customer to paid later.\n"
+"Order in the slate will not generate entries during the close of the session."
+msgstr "Si vous cochez cette case, les utilisateurs auront la possibilité de laisser certaines vente en ardoise, et autorisera le client à payer plus tard.\n les ventes en ardoise ne génère pas d'écriture lors de la fermeture de la session."
 
 #. module: pos_keep_draft_orders
-#. openerp-web
-#: code:addons/pos_keep_draft_orders/static/src/js/widget.js:46
-#, python-format
-msgid "Keep in Draft"
-msgstr "Garder en brouillon"
+#: field:pos.order,is_partial_paid:0
+msgid "Is Partially Paid"
+msgstr "Est partiellement payé"
 
 #. module: pos_keep_draft_orders
-#. openerp-web
-#: code:addons/pos_keep_draft_orders/static/src/xml/pos.xml:61
-#, python-format
-msgid "Total:"
-msgstr "Total:"
-
-#. module: pos_keep_draft_orders
-#. openerp-web
-#: code:addons/pos_keep_draft_orders/static/src/xml/pos.xml:38
-#, python-format
-msgid "% discount"
-msgstr "% remise"
-
-#. module: pos_keep_draft_orders
-#. openerp-web
-#: code:addons/pos_keep_draft_orders/static/src/xml/pos.xml:25
-#, python-format
-msgid "Customer:"
-msgstr "Client:"
-
-#. module: pos_keep_draft_orders
-#. openerp-web
-#: code:addons/pos_keep_draft_orders/static/src/xml/pos.xml:22
-#, python-format
-msgid "User:"
-msgstr "Utilisateur:"
-
-#. module: pos_keep_draft_orders
-#. openerp-web
-#: code:addons/pos_keep_draft_orders/static/src/xml/pos.xml:19
-#, python-format
-msgid "TIN:"
-msgstr "TIN:"
-
-#. module: pos_keep_draft_orders
-#. openerp-web
-#: code:addons/pos_keep_draft_orders/static/src/xml/pos.xml:52
-#, python-format
-msgid "Subtotal:"
-msgstr "Sous-total:"
-
-#. module: pos_keep_draft_orders
-#: model:ir.model,name:pos_keep_draft_orders.model_pos_session
-msgid "pos.session"
-msgstr "pos.session"
-
-#. module: pos_keep_draft_orders
-#. openerp-web
-#: code:addons/pos_keep_draft_orders/static/src/xml/pos.xml:58
-#, python-format
-msgid "Discount:"
-msgstr "Remise:"
-
-#. module: pos_keep_draft_orders
-#. openerp-web
-#: code:addons/pos_keep_draft_orders/static/src/xml/pos.xml:37
-#, python-format
-msgid "With a"
-msgstr "Avec un"
-
-#. module: pos_keep_draft_orders
-#. openerp-web
-#: code:addons/pos_keep_draft_orders/static/src/xml/pos.xml:23
-#, python-format
-msgid "Shop:"
-msgstr "Magasin:"
-
-#. module: pos_keep_draft_orders
-#. openerp-web
-#: code:addons/pos_keep_draft_orders/static/src/js/widget.js:88
-#, python-format
-msgid "You can't save if payment is greater than due!"
-msgstr "Impossible d'enregistrer si le montant payé est supérieur au montant dû"
-
-#. module: pos_keep_draft_orders
-#. openerp-web
-#: code:addons/pos_keep_draft_orders/static/src/xml/pos.xml:78
-#, python-format
-msgid "Change:"
-msgstr "Rendu:"
-
-#. module: pos_keep_draft_orders
-#. openerp-web
-#: code:addons/pos_keep_draft_orders/static/src/xml/pos.xml:78
-#, python-format
-msgid "Paid:"
-msgstr "Payé:"
-
-#. module: pos_keep_draft_orders
-#. openerp-web
-#: code:addons/pos_keep_draft_orders/static/src/xml/pos.xml:101
-#, python-format
-msgid "Search Customers"
-msgstr "Recherche de client"
-
-#. module: pos_keep_draft_orders
-#. openerp-web
-#: code:addons/pos_keep_draft_orders/static/src/xml/pos.xml:109
-#, python-format
-msgid "Cancel"
-msgstr "Annuler"
-
-#. module: pos_keep_draft_orders
-#. openerp-web
-#: code:addons/pos_keep_draft_orders/static/src/xml/pos.xml:55
-#, python-format
-msgid "Tax:"
-msgstr "Tax:"
-
-#. module: pos_keep_draft_orders
+#: code:_description:0
 #: model:ir.model,name:pos_keep_draft_orders.model_pos_order
+#, python-format
 msgid "Point of Sale"
 msgstr "Point de Vente"
 
 #. module: pos_keep_draft_orders
-#. openerp-web
-#: code:addons/pos_keep_draft_orders/static/src/xml/pos.xml:27
+#: code:addons/pos_keep_draft_orders/model/pos_session.py:46
 #, python-format
-msgid "Customer TIN:"
-msgstr "Customer TIN:"
-
-#. module: pos_keep_draft_orders
-#. openerp-web
-#: code:addons/pos_keep_draft_orders/static/src/js/widget.js:40
-#, python-format
-msgid "Select Customer"
-msgstr "Selectionner le client"
-
-#. module: point_of_sale
-#. openerp-web
-#: code:addons/point_of_sale/static/src/js/screens.js:458
-#: code:addons/point_of_sale/static/src/js/screens.js:487
-#: code:addons/point_of_sale/static/src/js/screens.js:678
-#: code:addons/point_of_sale/static/src/js/screens.js:874
-#, python-format
-msgid "Back"
-msgstr "Retour"
-
-#. module: point_of_sale
-#. openerp-web
-#: code:addons/point_of_sale/static/src/js/screens.js:495
-#: code:addons/point_of_sale/static/src/js/screens.js:882
-#, python-format
-msgid "Validate"
-msgstr "Valider"
-
+msgid "You cannot confirm this session, because '%s' is in a 'draft' state with payments.\n"
+"\n"
+"Please finish to pay this Order."
+msgstr "Vous ne pouvez pas fermer cette session car '%s' est en brouillon avec des paiments.\n"
+"\n"
+"Merci de compléter les paiments."

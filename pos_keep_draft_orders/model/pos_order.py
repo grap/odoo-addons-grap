@@ -39,5 +39,5 @@ class pos_order(Model):
     # Column Section
     _columns = {
         'is_partial_paid': fields.function(
-            _get_is_partial_paid, 'Is Partially Paid'),
+            _get_is_partial_paid, string='Is Partially Paid'),
     }
