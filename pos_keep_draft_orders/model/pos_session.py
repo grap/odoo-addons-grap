@@ -21,29 +21,45 @@
 #
 ##############################################################################
 
-from osv import osv
+from osv.osv import except_osv
+from openerp.osv.orm import Model
+from openerp.tools.translate import _
 
 
-class pos_session(osv.osv):
+class pos_session(Model):
     _inherit = 'pos.session'
 
     # Overload Section
-    def _confirm_orders(self, cr, uid, ids, context=None):
-        order_obj = self.pool.get('pos.order')
-        for session in self.browse(cr, uid, ids, context=context):
-            for order in session.order_ids:
-                if order.state == 'draft':
-                    order_obj.write(
-                        cr, uid, order.id, {'session_id': None},
-                        context=context)
-        return super(pos_session, self)._confirm_orders(cr, uid, ids, context)
+    def wkf_action_closing_control(self, cr, uid, ids, context=None):
+        """Remove all PoS Orders in 'draft' to the sessions we want
+        to close.
+        Check if there is Partial Paid Orders"""
+        po_obj = self.pool['pos.order']
+        for ps in self.browse(cr, uid, ids, context=context):
+            for po in ps.order_ids:
+                # Check if there is a partial payment
+                if po.is_partial_paid:
+                    raise except_osv(
+                        _('Error!'),
+                        _("You cannot confirm this session, because '%s'"
+                            "is in a 'draft' state with payments.\n\n"
+                            "Please finish to pay this Order." % (
+                                po.name)))
+                # remove session id on the current PoS if it is in draft mode
+                if po.state == 'draft' and ps.config_id.allow_slate:
+                    po_obj.write(cr, uid, po.id, {
+                        'session_id': None}, context=context)
+        return super(pos_session, self).wkf_action_closing_control(
+            cr, uid, ids, context=context)
 
     def create(self, cr, uid, values, context=None):
-        order_obj = self.pool.get('pos.order')
-        session_id = super(pos_session, self).create(cr, uid, values, context)
-        order_ids = order_obj.search(
-            cr, uid, [('state', '=', 'draft'), ('user_id', '=', uid)],
+        """Recover all PoS Order in 'draft' mode and associate them to the new
+        Pos Session"""
+        po_obj = self.pool['pos.order']
+        ps_id = super(pos_session, self).create(cr, uid, values, context)
+        po_ids = po_obj.search(cr, uid, [
+            ('state', '=', 'draft'), ('user_id', '=', uid)],
             context=context)
-        order_obj.write(
-            cr, uid, order_ids, {'session_id': session_id}, context=context)
-        return session_id
+        po_obj.write(
+            cr, uid, po_ids, {'session_id': ps_id}, context=context)
+        return ps_id

@@ -1,9 +1,8 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Point Of Sale - Keep Draft Orders module for Odoo
-#    Copyright (C) 2013-Today GRAP (http://www.grap.coop)
-#    @author Julien WESTE
+#    POS Keep Draft Orders module for Odoo
+#    Copyright (C) 2015-Today GRAP (http://www.grap.coop)
 #    @author Sylvain LE GAL (https://twitter.com/legalsylvain)
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -21,6 +20,9 @@
 #
 ##############################################################################
 
-from . import pos_order
-from . import pos_session
-from . import pos_config
+
+from . import test_pos_keep_draft_orders
+
+fast_suite = [
+    test_pos_keep_draft_orders,
+]

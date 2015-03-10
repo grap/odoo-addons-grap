@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Point Of Sale - Keep Draft Orders module for Odoo
-#    Copyright (C) 2013-Today GRAP (http://www.grap.coop)
+#    POS Keep Draft Orders module for Odoo
+#    Copyright (C) 2013-2014 GRAP (http://www.grap.coop)
 #    @author Julien WESTE
 #    @author Sylvain LE GAL (https://twitter.com/legalsylvain)
 #
@@ -21,6 +21,19 @@
 #
 ##############################################################################
 
-from . import pos_order
-from . import pos_session
-from . import pos_config
+from openerp.osv import fields
+from openerp.osv.orm import Model
+
+
+class pos_config(Model):
+    _inherit = 'pos.config'
+
+    # Column Section
+    _columns = {
+        'allow_slate': fields.boolean(
+            'Allow Slate', help="If you check this field, users will have"
+            "the possibility to let some PoS orders in the slate, and allow"
+            "the customer to paid later.\n"
+            "Order in the slate will not generate entries during the close"
+            "of the session."),
+    }

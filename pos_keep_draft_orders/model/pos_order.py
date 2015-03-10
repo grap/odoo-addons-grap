@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    POS Keep Draft Orders module for Odoo
-#    Copyright (C) 2013-2014 GRAP (http://www.grap.coop)
+#    Point Of Sale - Keep Draft Orders module for Odoo
+#    Copyright (C) 2013-Today GRAP (http://www.grap.coop)
 #    @author Julien WESTE
 #    @author Sylvain LE GAL (https://twitter.com/legalsylvain)
 #
@@ -21,21 +21,23 @@
 #
 ##############################################################################
 
-from osv import osv
+from openerp.osv import fields
+from openerp.osv.orm import Model
 
 
-class pos_order(osv.osv):
+class pos_order(Model):
     _inherit = 'pos.order'
 
-    def _default_session(self, cr, uid, context=None):
-        return super(pos_order, self)._default_session(
-            cr, uid, context=context)
+    # Functional Field Section
+    def _get_is_partial_paid(
+            self, cr, uid, ids, name, arg, context=None):
+        res = {}
+        for po in self.browse(cr, uid, ids, context=context):
+            res[po.id] = (po.state == 'draft') and len(po.statement_ids) != 0
+        return res
 
-    def copy(self, cr, uid, pId, default=None, context=None):
-        if not default:
-            default = {}
-        d = {
-            'session_id': self._default_session(cr, uid, context=context),
-        }
-        d.update(default)
-        return super(pos_order, self).copy(cr, uid, pId, d, context=context)
+    # Column Section
+    _columns = {
+        'is_partial_paid': fields.function(
+            _get_is_partial_paid, 'Is Partially Paid'),
+    }
