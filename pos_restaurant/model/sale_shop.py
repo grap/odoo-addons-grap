@@ -30,7 +30,7 @@ class sale_shop(Model):
     # Columns section
     _columns = {
         'max_covers': fields.integer(
-            'Max Covers', groups="pos_restaurant.res_group_restaurant_manager",
+            'Max Covers',
             help="""This is the number of buttons displayed"""
             """ in the front-end point of sale."""),
     }
