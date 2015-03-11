@@ -26,8 +26,8 @@
     'version': '1.0',
     'category': 'Point Of Sale',
     'description': """
-Improvements on Display of products an categories images in Point of Sale
-=========================================================================
+Improvements on Display of products and categories images in Point of Sale
+==========================================================================
 
 Technical information:
 ----------------------
@@ -36,7 +36,7 @@ Technical information:
             * Uses image_medium instead of image;
             * Load image only if product has one;
         * Categories:
-            * Uses and image_medium instead of image (new field);
+            * Uses image_medium instead of image (new field);
     * Increase display:
         * If product has no image, the display of the product is changed,
           (Size of the name is increased for better visibility);
