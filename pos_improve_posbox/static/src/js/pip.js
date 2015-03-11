@@ -42,11 +42,11 @@ openerp.pos_improve_posbox = function (instance) {
     var _load_server_data_ = pos_module.PosModel.prototype.load_server_data;
     pos_module.PosModel.prototype.load_server_data = function(){
         var self = this;
-        var load_def = _load_server_data_.call(self).done(self.load_customers_data());
+        var load_def = _load_server_data_.call(self).done(self.load_pos_config_data());
         return load_def;
     },
     pos_module.PosModel = pos_module.PosModel.extend({
-        load_customers_data: function(){
+        load_pos_config_data: function(){
             var self = this;
             var loaded = self.fetch('pos.session',
                     ['id', 'config_id'], [
