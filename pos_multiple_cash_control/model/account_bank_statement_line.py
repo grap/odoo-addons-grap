@@ -24,6 +24,7 @@ from openerp.osv.osv import except_osv
 from openerp.osv.orm import Model
 from openerp.tools.translate import _
 
+
 class account_bank_statement_line(Model):
     _inherit = 'account.bank.statement.line'
 
@@ -34,8 +35,7 @@ class account_bank_statement_line(Model):
                 raise except_osv(
                     _('Error!'),
                     _("Unable to delete a payment of a Pos Order that is"
-                    " not in a draft state!"))
+                        " not in a draft state!"))
         res = super(account_bank_statement_line, self).unlink(
             cr, uid, ids, context=context)
         return res
-
