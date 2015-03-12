@@ -23,14 +23,10 @@
 
 from openerp.osv import fields
 from openerp.osv.orm import Model
-from openerp import SUPERUSER_ID
 
 
 class pos_order_line(Model):
-    _inherit = "pos.order.line"
-
-    # Constants section
-    MAX_RECORDS = 10000
+    _inherit = 'pos.order.line'
 
     # Columns section
     def _amount_line_all(self, cr, uid, ids, field_name, arg, context=None):
@@ -114,65 +110,3 @@ class pos_order_line(Model):
             super(pos_order_line, self).write(
                 cr, uid, pol.id, extra_vals, context=context)
         return res
-
-#    # Init section
-#    def _init_pos_tax(self, cr, uid, ids=None, context=None):
-#        poltr_obj = self.pool['pos.order.line.tax.rel']
-#        at_obj = self.pool['account.tax']
-#        poltr_count = 0
-#        vat_correction_count = 0
-#        all_pol_ids = self.search(cr, SUPERUSER_ID, [], context=context)
-#        for i in range(0, len(all_pol_ids), self.MAX_RECORDS):
-#            pol_ids = all_pol_ids[i:i + self.MAX_RECORDS]
-#            for pol in self.browse(cr, SUPERUSER_ID, pol_ids, context=context):
-#                if pol.pol_tax_rel_id:
-#                    continue
-#                correct_vat = pol.create_date < '2014-01-01'
-#                # the 19,6% VAT was changed into 20% at that date, so we'll
-#                # have to replace the VAT we find on the product
-#                poltr_id = False
-#                price = pol.price_unit * (1 - (pol.discount or 0.0) / 100.0)
-#                taxes_list = []
-#                for t in pol.product_id.taxes_id:
-#                    if correct_vat and t.id in (181, 182, 183, 184):
-#                        if t.id == 184:  # TVA-VT-20.0-TTC
-#                            tax_id = at_obj.browse(cr, uid, 1)
-#                        elif t.id == 182:  # TVA-VT-20.0-HT
-#                            tax_id = at_obj.browse(cr, uid, 101)
-#                        elif t.id == 183:  # TVA-VT-10.0-HT
-#                            tax_id = at_obj.browse(cr, uid, 136)
-#                        elif t.id == 181:  # TVA-VT-10.0-TTC
-#                            tax_id = at_obj.browse(cr, uid, 134)
-#                    else:
-#                        tax_id = t
-#                    taxes_list.append(tax_id)
-
-#                taxes = at_obj.compute_all(
-#                    cr, uid, taxes_list, price, pol.qty, pol.product_id,
-#                    partner=False)
-#                amount = 0
-#                for tax in taxes['taxes']:
-#                    amount += tax['amount']
-#                    tax_id = tax['id']
-
-#                    values = {
-#                        'tax_id': tax_id,
-#                        'orderline_id': pol.id,
-#                        'baseHT': taxes['total'],
-#                        'amount_tax': tax['amount'],
-#                    }
-#                    poltr_id = poltr_obj.create(
-#                        cr, uid, values, context=context)
-#                    poltr_count += 1
-#                if abs(
-#                    amount -
-#                    (pol.price_subtotal_incl - pol.price_subtotal))\
-#                        >= 0.01:
-#                    amount =\
-#                        pol.price_subtotal_incl - pol.price_subtotal -\
-#                        amount + tax['amount']
-#                    poltr_obj.write(cr, uid, poltr_id, {
-#                        'amount_tax': amount
-#                    }, context=context)
-#                    vat_correction_count += 1
-#        return True
