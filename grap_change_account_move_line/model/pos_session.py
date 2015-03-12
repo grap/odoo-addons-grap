@@ -155,9 +155,14 @@ class pos_session(Model):
             #parse the lines to group the ids according to the key fields
             groups = {}
             for line in st.line_ids:
+                if line.pos_statement_id\
+                        and line.pos_statement_id.state == 'invoiced':
+                    partner_id = line.partner_id.id
+                else:
+                    partner_id = False
                 keys = (
                     line.account_id.id, 
-                    line.partner_id.id,
+                    partner_id,
                     line.journal_id.id, 
                     st.period_id.id, 
                     st_line.date, 

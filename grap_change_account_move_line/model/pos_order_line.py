@@ -30,11 +30,11 @@ class pos_order_line(Model):
 
     # Columns section
     def _amount_line_all(self, cr, uid, ids, field_name, arg, context=None):
-        tax_obj = self.pool.get('account.tax')
-        cur_obj = self.pool.get('res.currency')
+        tax_obj = self.pool['account.tax']
+        cur_obj = self.pool['res.currency']
         res = dict([(i, {}) for i in ids])
-        if context is None:
-            context = {}
+        context = context or {}
+
         for line in self.browse(cr, uid, ids, context=context):
             price = line.price_unit * (1 - (line.discount or 0.0) / 100.0)
             taxes = tax_obj.compute_all(cr, uid, [

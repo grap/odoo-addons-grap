@@ -25,10 +25,10 @@ from openerp import netsvc
 from openerp.tests.common import TransactionCase
 
 
-class TestGroupPartnerId(TransactionCase):
+class TestGroupWithPartnerInvoiceId(TransactionCase):
 
     def setUp(self):
-        super(TestGroupPartnerId, self).setUp()
+        super(TestGroupWithPartnerInvoiceId, self).setUp()
         cr, uid = self.cr, self.uid
         self.imd_obj = self.registry('ir.model.data')
         self.imm_obj = self.registry('ir.module.module')
@@ -42,7 +42,7 @@ class TestGroupPartnerId(TransactionCase):
         self.abs_obj = self.registry('account.bank.statement')
         self.wf_service = netsvc.LocalService('workflow')
         self.customer_partner_id = self.imd_obj.get_object_reference(
-            cr, uid, 'base', 'res_partner_2')[1]
+            cr, uid, 'base', 'res_partner_3')[1]
         self.product_1 = self.imd_obj.get_object_reference(
             cr, uid, 'product', 'product_product_48')[1]
         self.pos_config_id = self.imd_obj.get_object_reference(
@@ -54,8 +54,8 @@ class TestGroupPartnerId(TransactionCase):
 
     # Test Section
     def test_01_group_by_partner_with_without(self):
-        """[Functional Test] Test if 2 PoS Order with AND Without partner
-        generate one single entry."""
+        """[Functional Test] Test if 1 PO with partner and 1 PO invoice
+        correct entries. (1 sale and 2 cash)."""
         cr, uid = self.cr, self.uid
 
         ps_id = self.ps_obj.create(cr, uid, {
@@ -63,86 +63,95 @@ class TestGroupPartnerId(TransactionCase):
         })
         self.ps_obj.open_cb(cr, uid, [ps_id])
 
-        # Create Order #1. Paid without no Customer
-        po_id = self.po_obj.create(cr, uid, {
-            'session_id': ps_id,
-            'lines': [[0, 0, {
-                'product_id': self.product_1,
-                'discount': 0, 'qty': 1,
-                'price_unit': 1}]]
-        })
-
-        # Make Payment Order #1
-        pmp_id = self.pmp_obj.create(cr, uid, {
-            'journal_id': self.cash_journal_id,
-            'amount': 1,
-        })
-        self.pmp_obj.check(cr, uid, [pmp_id], {'active_id': po_id})
-
-        # Create Order #2. Paid with Customer
+        # Create Order #1. Paid with Customer
         po_id = self.po_obj.create(cr, uid, {
             'session_id': ps_id,
             'partner_id': self.customer_partner_id,
             'lines': [[0, 0, {
                 'product_id': self.product_1,
                 'discount': 0, 'qty': 1,
-                'price_unit': 11}]]
+                'price_unit': 111}]]
+        })
+
+        # Make Payment Order #1
+        pmp_id = self.pmp_obj.create(cr, uid, {
+            'journal_id': self.cash_journal_id,
+            'amount': 111,
+        })
+        self.pmp_obj.check(cr, uid, [pmp_id], {'active_id': po_id})
+
+        # Create Order #2. Paid with Customer AND Invoice
+        po_id = self.po_obj.create(cr, uid, {
+            'session_id': ps_id,
+            'partner_id': self.customer_partner_id,
+            'lines': [[0, 0, {
+                'product_id': self.product_1,
+                'discount': 0, 'qty': 1,
+                'price_unit': 222}]]
         })
         # Make Payment Order #2
         pmp_id = self.pmp_obj.create(cr, uid, {
             'journal_id': self.cash_journal_id,
-            'amount': 11,
+            'amount': 222,
         })
         self.pmp_obj.check(cr, uid, [pmp_id], {'active_id': po_id})
+        self.po_obj.action_invoice(cr, uid, [po_id])
 
         # Close Session
         abs_id = self.abs_obj.search(cr, uid, [
             ('journal_id', '=', self.cash_journal_id)], order='id DESC')[0]
         self.abs_obj.write(cr, uid, [abs_id], {
             'details_ids': [[0, False, {
-                'pieces': 12,
+                'pieces': 333,
                 'number_closing': 1}]]})
         self.wf_service.trg_validate(
             uid, 'pos.session', ps_id, 'cashbox_control', cr)
         self.wf_service.trg_validate(
             uid, 'pos.session', ps_id, 'close', cr)
 
-        # Check Sale Move
+        cr.commit()  # FIXME
+
+        # Check Sale Move Without customer
         ps = self.ps_obj.browse(cr, uid, ps_id)
         sale_move_ids = self.am_obj.search(cr, uid, [
             ('ref', '=', ps.name),
-            ('journal_id', '=', self.sale_journal_id)])
+            ('journal_id', '=', self.sale_journal_id),
+            ('partner_id', '=', False)])
         sale_move = self.am_obj.browse(cr, uid, sale_move_ids[0])
         credit = debit = 0
-        partner_id = False
         for line in sale_move.line_id:
-            partner_id = line.partner_id or partner_id
             credit += line.credit
             debit += line.debit
-
-        cr.commit()  # FIXME
 
         self.assertEquals(
             credit, debit,
             """Validate POS session must created balanced Sale Move.""")
         self.assertEquals(
             len(sale_move_ids), 1,
-            """Validate 1 Orders with customer and 1 Orders Without customer
-            must create one Sale Entry.""")
+            """Validate 1 Order with customer and 1 Order Invoiced
+            must create 1 Sale Entry Without customer.""")
         self.assertEquals(
-            credit, 12,
-            """Validate 1 Orders with customer and 1 Orders Without customer
-            must sum the sale in a single Sale Entry.""")
-        self.assertEquals(
-            partner_id, False,
-            """Validate 1 Orders with customer and 1 Orders Without customer
-            must create Sale entry without customer.""")
+            credit, 111,
+            """Validate 1 Order with customer and 1 Order Invoice
+            must create an entry with sale of the first Order.""")
 
-        # Check Sale Move
         ps = self.ps_obj.browse(cr, uid, ps_id)
+        # Check Sale Move With customer
+        sale_move_ids = self.am_obj.search(cr, uid, [
+            ('ref', '=', ps.name),
+            ('journal_id', '=', self.sale_journal_id),
+            ('partner_id', '=', self.customer_partner_id)])
+
+        self.assertEquals(
+            len(sale_move_ids), 0,
+            """Validate 1 Order with customer and 1 Order Invoiced
+            must not create 1 Sale Entry With customer but an invoice""")
+
+        # Check Cash Move
         cash_move_ids = self.am_obj.search(cr, uid, [
             ('ref', '=', ps.name),
-            ('journal_id', '=', self.cash_journal_id)])
+            ('journal_id', '=', self.cash_journal_id),
+            ('partner_id', '=', False)])
         cash_move = self.am_obj.browse(cr, uid, cash_move_ids[0])
         credit = debit = 0
         for line in cash_move.line_id:
@@ -154,9 +163,32 @@ class TestGroupPartnerId(TransactionCase):
             """Validate POS session must created balanced Cash Move.""")
         self.assertEquals(
             len(cash_move_ids), 1,
-            """Validate 1 Orders with customer and 1 Orders Without customer
-            must create one Cash Entry.""")
+            """Validate 1 Order with customer and 1 Order Invoiced
+            must create 1 Sale Entry Without customer.""")
         self.assertEquals(
-            credit, 12,
-            """Validate 1 Orders with customer and 1 Orders Without customer
-            must sum the sale in a single Cash Entry.""")
+            credit, 111,
+            """Validate 1 Order with customer and 1 Order Invoice
+            must create an entry with Cash of the first Order.""")
+
+        # Check Cash Move (With partner)
+        cash_move_ids = self.am_obj.search(cr, uid, [
+            ('ref', '=', ps.name),
+            ('journal_id', '=', self.cash_journal_id),
+            ('partner_id', '=', self.customer_partner_id)])
+        cash_move = self.am_obj.browse(cr, uid, cash_move_ids[0])
+        credit = debit = 0
+        for line in cash_move.line_id:
+            credit += line.credit
+            debit += line.debit
+
+        self.assertEquals(
+            credit, debit,
+            """Validate POS session must created balanced Cash Move.""")
+        self.assertEquals(
+            len(cash_move_ids), 1,
+            """Validate 1 Order with customer and 1 Order Invoiced
+            must create 1 Sale Entry Without customer.""")
+        self.assertEquals(
+            credit, 222,
+            """Validate 1 Order with customer and 1 Order Invoice
+            must create an entry with Cash of the first Order.""")
