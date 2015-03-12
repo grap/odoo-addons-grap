@@ -1,9 +1,10 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Point Of Sale - Rewrite create_aml Module for Odoo
+#    GRAP - Change Account Move Lines Module for Odoo
 #    Copyright (C) 2013-Today GRAP (http://www.grap.coop)
 #    @author Julien WESTE
+#    @author Sylvain LE GAL (https://twitter.com/legalsylvain)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -19,28 +20,23 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-{
-    'name': 'Point Of Sale - Rewrite create_aml',
-    'version': '0.1',
-    'category': 'Point of Sale',
-    'license': 'AGPL-3',
-    'description': """
-The purpose of this module is to rewrite the awful _create_account_move_line
-function of model pos_order, so that it can be easily modified by inheritance
-in other modules
+
+from openerp.tools.translate import _
+from openerp.osv.orm import Model
 
 
-Copyright, Author and Licence:
-------------------------------
-    * Copyright : 2014, Groupement Régional Alimentaire de Proximité;
-    * Author :
-        * Julien WESTE;
-    * Licence : AGPL-3 (http://www.gnu.org/licenses/)
-    """,
-    'author': 'GRAP',
-    'website': 'http://www.grap.coop',
-    'license': 'AGPL-3',
-    'depends': [
-        'point_of_sale',
-    ],
-}
+class pos_order(Model):
+    _inherit = 'pos.order'
+
+    def _get_key(self, cr, uid, data_type, values, context=None):
+        key = False
+        if data_type == 'product':
+            key = (
+                'product', values['tax_code_id'], values['account_id'],
+                values['debit'] > 0)
+            values.update({'name': _('Various Products')})
+        elif data_type == 'tax':
+            key = ('tax', values['tax_code_id'], values['debit'] > 0)
+        elif data_type == 'counter_part':
+            key = ('counter_part', values['account_id'], values['debit'] > 0)
+        return key

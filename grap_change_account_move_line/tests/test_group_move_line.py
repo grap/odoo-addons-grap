@@ -1,8 +1,9 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Account - Group Move Line Module for Odoo
-#    Copyright (C) 2014-Today GRAP (http://www.grap.coop)
+#    GRAP - Change Account Move Lines Module for Odoo
+#    Copyright (C) 2013-Today GRAP (http://www.grap.coop)
+#    @author Julien WESTE
 #    @author Sylvain LE GAL (https://twitter.com/legalsylvain)
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -24,10 +25,10 @@ from openerp import netsvc
 from openerp.tests.common import TransactionCase
 
 
-class TestAccountGroupMoveLines(TransactionCase):
+class TestGroupMoveLine(TransactionCase):
 
     def setUp(self):
-        super(TestAccountGroupMoveLines, self).setUp()
+        super(TestGroupMoveLine, self).setUp()
         cr, uid = self.cr, self.uid
         self.imd_obj = self.registry('ir.model.data')
         self.ai_obj = self.registry('account.invoice')

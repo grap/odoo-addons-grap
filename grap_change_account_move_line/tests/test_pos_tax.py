@@ -1,8 +1,9 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Point Of Sale - Tax Module for Odoo
-#    Copyright (C) 2014-Today GRAP (http://www.grap.coop)
+#    GRAP - Change Account Move Lines Module for Odoo
+#    Copyright (C) 2013-Today GRAP (http://www.grap.coop)
+#    @author Julien WESTE
 #    @author Sylvain LE GAL (https://twitter.com/legalsylvain)
 #
 #    This program is free software: you can redistribute it and/or modify

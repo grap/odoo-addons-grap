@@ -1,9 +1,10 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Account - Group Move Line Module for Odoo
+#    GRAP - Change Account Move Lines Module for Odoo
 #    Copyright (C) 2013-Today GRAP (http://www.grap.coop)
 #    @author Julien WESTE
+#    @author Sylvain LE GAL (https://twitter.com/legalsylvain)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -20,19 +21,9 @@
 #
 ##############################################################################
 
-from openerp.osv.orm import Model
+from . import test_group_move_line
+from . import test_pos_tax
 
-
-class account_invoice(Model):
-    _inherit = 'account.invoice'
-
-    def inv_line_characteristic_hashcode(self, invoice, invoice_line):
-        """
-        We override this function to group lines regardless of the product_id.
-        Lines having the same hashcode will be grouped together if the journal
-        has the 'group line' option. """
-        return "%s-%s-%s-%s" % (
-            invoice_line['account_id'],
-            invoice_line.get('tax_code_id', 'False'),
-            invoice_line.get('analytic_account_id', 'False'),
-            invoice_line.get('date_maturity', 'False'))
+fast_suite = [
+    test_group_move_line, test_pos_tax,
+]

@@ -1,0 +1,32 @@
+# -*- encoding: utf-8 -*-
+##############################################################################
+#
+#    GRAP - Change Account Move Lines Module for Odoo
+#    Copyright (C) 2013-Today GRAP (http://www.grap.coop)
+#    @author Julien WESTE
+#    @author Sylvain LE GAL (https://twitter.com/legalsylvain)
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+##############################################################################
+
+- 
+  Creating a ir.rule record
+- 
+  !record {model: ir.rule, id: ir_rule_pos_order_line_tax_rel}:
+    name: u'Access to POS Order Tax rel'
+    model_id: grap_change_account_move_line.model_pos_order_line_tax_rel
+    domain_force: "['|',('company_id','=', False),('company_id','in',[user.company_id.id])]"
+
+

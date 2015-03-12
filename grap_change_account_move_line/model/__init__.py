@@ -1,8 +1,9 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Account - Group Move Line Module for Odoo
-#    Copyright (C) 2014-Today GRAP (http://www.grap.coop)
+#    GRAP - Change Account Move Lines Module for Odoo
+#    Copyright (C) 2013-Today GRAP (http://www.grap.coop)
+#    @author Julien WESTE
 #    @author Sylvain LE GAL (https://twitter.com/legalsylvain)
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -19,8 +20,11 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from . import tests
 
-fast_suite = [
-    tests,
-]
+from . import pos_order
+from . import pos_order_2
+from . import pos_order3
+from . import pos_order_line
+from . import pos_order_line_tax_rel
+from . import account_invoice
+from . import pos_session
