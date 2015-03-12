@@ -39,18 +39,22 @@ class pos_order(osv.osv):
 
         return (tax_code_id, tax_amount,)
 
-    def compute_group_tax(self, cr, uid, cur, line, group_tax,
-                                                current_company, context=None):
-        cur_obj = self.pool.get('res.currency')
-        account_tax_obj = self.pool.get('account.tax')
-        tax_amount = 0
+    def compute_group_tax(
+            self, cr, uid, cur, line, group_tax, current_company,
+            context=None):
+        account_tax_obj = self.pool['account.tax']
+        cur_obj = self.pool['res.currency']
+
         taxes = []
-        for t in line.product_id.taxes_id:
-            if t.company_id.id == current_company.id:
-                taxes.append(t)
-        computed_taxes = account_tax_obj.compute_all(cr, uid, taxes,
-                line.price_unit * (100.0-line.discount) / 100.0,
-                line.qty)['taxes']
+        for ptri in line.pol_tax_rel_id:
+            if ptri.tax_id.company_id.id == current_company.id:
+                taxes.append(ptri.tax_id)
+
+        computed_taxes = account_tax_obj.compute_all(
+            cr, uid, taxes, line.price_unit * (100.0 - line.discount) / 100.0,
+            line.qty)['taxes']
+
+        tax_amount = 0
         for tax in computed_taxes:
             tax_amount += cur_obj.round(cr, uid, cur, tax['amount'])
             group_key = self._get_tax_key(cr, uid, tax, context=context)

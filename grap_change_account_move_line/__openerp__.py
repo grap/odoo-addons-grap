@@ -74,7 +74,6 @@ Copyright, Author and Licence:
         'pos_invoicing',  # ? Really ?
     ],
     'data': [
-        'data/function.xml',
         'security/ir_model_access_data.yml',
         'security/ir_rule_data.yml',
         'view/view.xml',
