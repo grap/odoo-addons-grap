@@ -24,12 +24,12 @@
 __name__ = (
     "update xml ids : affect pos_tax model to grap_change_account_move_line")
 
+
 def migrate(cr, version):
-    cr.execute ("""
-        UPDATE ir_model_data 
+    cr.execute("""
+        UPDATE ir_model_data
         SET module = 'grap_change_account_move_line'
-        WHERE 
+        WHERE
             model = 'ir.model.fields'
             AND module = 'pos_tax'
     """)
-
