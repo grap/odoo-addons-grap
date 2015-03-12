@@ -75,7 +75,6 @@ Copyright, Author and Licence:
     ],
     'data': [
         'security/ir_model_access_data.yml',
-        'security/ir_rule_data.yml',
         'view/view.xml',
     ],
     'demo': [
