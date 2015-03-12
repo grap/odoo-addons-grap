@@ -30,50 +30,54 @@ from openerp import netsvc
 class pos_session(Model):
     _inherit = 'pos.session'
 
-    ### Overload section
-
+    # OverWrite section
     def _confirm_orders(self, cr, uid, ids, context=None):
+        """Generate Sale Entries"""
         wf_service = netsvc.LocalService("workflow")
-        period_obj = self.pool.get('account.period')
-        order_obj = self.pool.get('pos.order')
-        journal_obj = self.pool.get('account.journal')
-        move_obj = self.pool.get('account.move')
+        ap_obj = self.pool['account.period']
+        po_obj = self.pool['pos.order']
+        aj_obj = self.pool['account.journal']
+        am_obj = self.pool['account.move']
 
-        for session in self.browse(cr, uid, ids, context=context):
+        for ps in self.browse(cr, uid, ids, context=context):
             #parse the lines to group the ids according to the key fields
             groups = {}
-            for order in session.order_ids:
+            for order in ps.order_ids:
                 if order.state not in ('paid', 'invoiced'):
                     raise osv.except_osv(
                         _('Error!'),
-                        _("You cannot confirm all orders of this session, because they have not the 'paid' status"))
+                        _("You cannot confirm all orders of this session,"
+                        " because they have not the 'paid' status"))
                 if order.state == 'paid':
-                    keys = (
-                        order.partner_id.id,
-                        order.date_order[:10])
+                    keys = (order.date_order[:10])
                     groups.setdefault(keys,[])
                     groups[keys].append(order.id)
 
+            # Create an Account move for each Key
             for key in groups.keys():
-                (partner_id, date) = key
-                order_ids = groups[key]
-                journal_id = session.config_id.journal_id.id
-                move_vals = {
-                    'ref' : session.name, 
-                    'journal_id' : journal_id, 
+                (date) = key
+                po_ids = groups[key]
+                aj_id = ps.config_id.journal_id.id
+                am_vals = {
+                    'ref' : ps.name, 
+                    'journal_id' : aj_id, 
                     'date': date,
                     }
 
-        #        if the journal is set to check the date is in the period, find the period corresponding to the date
-                if journal_obj.browse(cr, uid, journal_id, context=context).allow_date:
-                    period_id = period_obj.find(cr, uid, dt=date, context=context)[0]
-                    move_vals['period_id'] = period_id
+                # if the journal is set to check the date is in the period,
+                # find the period corresponding to the date
+                if aj_obj.browse(cr, uid, aj_id, context=context).allow_date:
+                    ap_id = ap_obj.find(cr, uid, dt=date, context=context)[0]
+                    am_vals['period_id'] = ap_id
 
-                move_id = move_obj.create(cr, uid, move_vals, context=context)
-                order_obj._create_account_move_line(cr, uid, order_ids, session, move_id, context=context)
-                for order_id in order_ids:
-                    wf_service.trg_validate(uid, 'pos.order', order_id, 'done', cr)
-
+                am_id = am_obj.create(
+                    cr, uid, am_vals, context=context)
+                po_obj._create_account_move_line(
+                    cr, uid, po_ids, ps, am_id, context=context)
+                for po_id in po_ids:
+                    # finish the workflow with an empty step
+                    wf_service.trg_validate(
+                        uid, 'pos.order', po_id, 'done', cr)
         return True
 
 
@@ -194,8 +198,8 @@ class pos_session(Model):
             context = {}
 
         (account_id, partner_id, journal_id, period_id, date, analytic_account_id, debit) = key
-        account_move_obj = self.pool.get('account.move')
-        account_move_line_obj = self.pool.get('account.move.line')
+        am_obj = self.pool['account.move']
+        aml_obj = self.pool['account.move.line']
 
 #        if the journal is set to check the date is in the period, find the period corresponding to the date
         if self.pool.get('account.journal').browse(cr, uid, journal_id, context=context).allow_date:
@@ -209,15 +213,15 @@ class pos_session(Model):
             'name': st_number,
             'ref': session_name,
             }
-        move_id = account_move_obj.create(cr, uid, move_vals, context=context)
+        move_id = am_obj.create(cr, uid, move_vals, context=context)
         bank_move_vals = self._prepare_bank_move_lines_pos(cr, uid, st, move_id, ids, st_number, key, context=context)
-        move_line_id = account_move_line_obj.create(cr, uid, bank_move_vals, context=context)
+        move_line_id = aml_obj.create(cr, uid, bank_move_vals, context=context)
 
         counterpart_move_vals = self._prepare_counterpart_move_lines_pos(cr, uid, st, move_id, ids, st_number, key, context=context)
-        account_move_line_obj.create(cr, uid, counterpart_move_vals, context=context)
+        aml_obj.create(cr, uid, counterpart_move_vals, context=context)
 
         # Bank statements will not consider boolean on journal entry_posted
-        account_move_obj.post(cr, uid, [move_id], context=context)
+        am_obj.post(cr, uid, [move_id], context=context)
         return move_id
 
     def _prepare_bank_move_lines_pos(self, cr, uid, st, move_id, ids, st_number, key, context=None):

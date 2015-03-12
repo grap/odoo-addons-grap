@@ -53,7 +53,7 @@ class TestGroupPartnerId(TransactionCase):
             cr, uid, 'account', 'sales_journal')[1]
 
     # Test Section
-    def test_01_group_by_partner(self):
+    def test_01_group_by_partner_without(self):
         """[Functional Test] Test if 2 PoS Order without partner generate
         one single entry."""
         cr, uid = self.cr, self.uid
@@ -63,7 +63,7 @@ class TestGroupPartnerId(TransactionCase):
         })
         self.ps_obj.open_cb(cr, uid, [ps_id])
 
-        # Create Order #1. Paid without no Customer
+        # Create Order #1. Paid without Customer
         po_id = self.po_obj.create(cr, uid, {
             'session_id': ps_id,
             'lines': [[0, 0, {
@@ -110,8 +110,7 @@ class TestGroupPartnerId(TransactionCase):
         ps = self.ps_obj.browse(cr, uid, ps_id)
         sale_move_ids = self.am_obj.search(cr, uid, [
             ('ref', '=', ps.name),
-            ('journal_id', '=', self.sale_journal_id),
-            ('partner_id', '=', False)])
+            ('journal_id', '=', self.sale_journal_id)])
         sale_move = self.am_obj.browse(cr, uid, sale_move_ids[0])
         credit = debit = 0
         for line in sale_move.line_id:
@@ -134,8 +133,7 @@ class TestGroupPartnerId(TransactionCase):
         ps = self.ps_obj.browse(cr, uid, ps_id)
         cash_move_ids = self.am_obj.search(cr, uid, [
             ('ref', '=', ps.name),
-            ('journal_id', '=', self.cash_journal_id),
-            ('partner_id', '=', False)])
+            ('journal_id', '=', self.cash_journal_id)])
         cash_move = self.am_obj.browse(cr, uid, cash_move_ids[0])
         credit = debit = 0
         for line in cash_move.line_id:

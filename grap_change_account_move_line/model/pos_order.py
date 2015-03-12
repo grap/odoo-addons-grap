@@ -29,6 +29,9 @@ from openerp.tools.translate import _
 class pos_order(osv.osv):
     _inherit = 'pos.order'
 
+    def action_done(self, cr, uid, ids, context=None):
+        return True
+
     def compute_tax(self, cr, uid, amount, tax, line, context=None):
         if amount > 0:
             tax_code_id = tax['base_code_id']
@@ -83,8 +86,9 @@ class pos_order(osv.osv):
             tax['id'],
             )
 
-    def insert_data(self, cr, uid, data_type, values, grouped_data,
-                                                have_to_group_by, context=None):
+    def insert_data(
+            self, cr, uid, data_type, values, grouped_data, have_to_group_by,
+            context=None):
         key = self._get_key(cr, uid, data_type, values)
         if not key:
             return
@@ -95,19 +99,27 @@ class pos_order(osv.osv):
                 grouped_data[key].append(values.copy())
             else:
                 current_value = grouped_data[key][0]
-                current_value['quantity'] = current_value.get(
-                                'quantity', 0.0) + values.get('quantity', 0.0)
-                current_value['credit'] = current_value.get(
-                                    'credit', 0.0) + values.get('credit', 0.0)
-                current_value['debit'] = current_value.get(
-                                        'debit', 0.0) + values.get('debit', 0.0)
-                current_value['tax_amount'] = current_value.get('tax_amount',
-                                            0.0) + values.get('tax_amount', 0.0)
+                current_value['quantity'] =\
+                    current_value.get('quantity', 0.0) +\
+                    values.get('quantity', 0.0)
+                current_value['credit'] =\
+                    current_value.get('credit', 0.0) +\
+                    values.get('credit', 0.0)
+                current_value['debit'] =\
+                    current_value.get('debit', 0.0) +\
+                    values.get('debit', 0.0)
+                current_value['tax_amount'] =\
+                    current_value.get('tax_amount', 0.0) +\
+                    values.get('tax_amount', 0.0)
         else:
             grouped_data[key].append(values.copy())
-            
-    def _create_account_move_line(self, cr, uid, ids, session=None,
-                                                    move_id=None, context=None):
+
+    def _create_account_move_line(
+        self, cr, uid, ids, session=None, move_id=None, context=None):
+        print "*** _create_account_move_line"
+        print ids
+        print move_id
+        print "***"
         # Tricky, via the workflow, we only have one id in the ids variable
         """Create a account move line of order grouped by products or not."""
         account_move_obj = self.pool.get('account.move')
@@ -218,10 +230,11 @@ class pos_order(osv.osv):
                     'ref': order.name,
                     'move_id' : move_id,
                     # <begin> GRAP - remove Partner_id
-                     'partner_id': order.partner_id and\
-                         self.pool.get("res.partner")._find_accounting_partner(
-                        order.partner_id).id or False
-#                    'partner_id': False,
+#                     'partner_id': order.partner_id and\
+#                         self.pool.get("res.partner")._find_accounting_partner(
+#                        order.partner_id).id or False
+                    # <end> GRAP
+                    'partner_id': False,
                     }
                 # Create a move for the line
                 values = common_values
@@ -238,7 +251,7 @@ class pos_order(osv.osv):
                 self.insert_data(cr, uid, 'product', values,
                                                 grouped_data, have_to_group_by)
 
-                # For each remaining tax with a code, whe create a move line
+                # For each remaining tax with a code, we create a move line
                 for tax in computed_taxes:
                     tax_code_id, tax_amount = self.compute_tax(cr, uid, amount,
                                                                     tax, line)
