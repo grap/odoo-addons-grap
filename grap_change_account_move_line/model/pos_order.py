@@ -138,11 +138,16 @@ class pos_order(osv.osv):
             account_def = property_obj.get(cr, uid,
                 'property_account_receivable', 'res.partner', context=context)
 
-            order_account = order.partner_id and \
-                            order.partner_id.property_account_receivable and \
-                            order.partner_id.property_account_receivable.id or \
-                            account_def and account_def.id or \
+            # <begin> GRAP - we use regular property_account_receivable
+            # because we ignore patner_id
+#            order_account = order.partner_id and \
+#                            order.partner_id.property_account_receivable and \
+#                            order.partner_id.property_account_receivable.id or \
+#                            account_def and account_def.id or \
+#                            current_company.account_receivable.id
+            order_account = account_def and account_def.id or \
                             current_company.account_receivable.id
+            # <end> GRAP
             if not order_account:
                     raise osv.except_osv(_('Error!'),
                                             _('No account_receivable found.'))
@@ -203,7 +208,8 @@ class pos_order(osv.osv):
                     # If there is one we stop
                     if tax_code_id:
                         break
-                
+
+
                 common_values = {
                     'company_id': current_company,
                     'journal_id' : order.sale_journal.id,
@@ -211,10 +217,11 @@ class pos_order(osv.osv):
                     'date': order.date_order[:10],
                     'ref': order.name,
                     'move_id' : move_id,
-                    'partner_id': order.partner_id and\
-                        self.pool.get("res.partner")._find_accounting_partner(
+                    # <begin> GRAP - remove Partner_id
+                     'partner_id': order.partner_id and\
+                         self.pool.get("res.partner")._find_accounting_partner(
                         order.partner_id).id or False
-                    
+#                    'partner_id': False,
                     }
                 # Create a move for the line
                 values = common_values

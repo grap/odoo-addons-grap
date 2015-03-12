@@ -54,8 +54,8 @@ class TestGroupPartnerId(TransactionCase):
 
     # Test Section
     def test_01_group_by_partner(self):
-        """[Functional Test] Test if PoS Order with partner doesn't generate
-        too much account moves"""
+        """[Functional Test] Test if 2 PoS Order without partner generate
+        one single entry."""
         cr, uid = self.cr, self.uid
 
         ps_id = self.ps_obj.create(cr, uid, {
@@ -63,7 +63,7 @@ class TestGroupPartnerId(TransactionCase):
         })
         self.ps_obj.open_cb(cr, uid, [ps_id])
 
-        # Create Order #1. Paid with no Customer
+        # Create Order #1. Paid without Customer
         po_id = self.po_obj.create(cr, uid, {
             'session_id': ps_id,
             'lines': [[0, 0, {
@@ -95,39 +95,13 @@ class TestGroupPartnerId(TransactionCase):
         })
         self.pmp_obj.check(cr, uid, [pmp_id], {'active_id': po_id})
 
-        # Create Order #3. Paid and Invoiced with Customer
-        po_id = self.po_obj.create(cr, uid, {
-            'session_id': ps_id,
-            'partner_id': self.customer_partner_id,
-            'lines': [[0, 0, {
-                'product_id': self.product_1,
-                'discount': 0, 'qty': 1,
-                'price_unit': 111}]]
-        })
-        # Make Payment Order #3
-        pmp_id = self.pmp_obj.create(cr, uid, {
-            'journal_id': self.cash_journal_id,
-            'amount': 111,
-        })
-        self.pmp_obj.check(cr, uid, [pmp_id], {'active_id': po_id})
-        # Invoice Order #3
-        self.po_obj.action_invoice(cr, uid, [po_id])
-
-        # FIXME : Extra
-        # Compute and set final Total Transaction
-        # Note: Not so clean, but due to other module
-        # 'pos_multiple_cash_control'
-        if len(self.imm_obj.search(cr, uid, [
-                ('name', '=', 'pos_multiple_cash_control'),
-                ('state', '=', 'installed')])) == 1:
-            abs_id = self.abs_obj.search(cr, uid, [
-                ('journal_id', '=', self.cash_journal_id)], order='id DESC')[0]
-            self.abs_obj.write(cr, uid, [abs_id], {
-                'details_ids': [[0, False, {
-                    'pieces': 123,
-                    'number_closing': 1}]]})
-
         # Close Session
+        abs_id = self.abs_obj.search(cr, uid, [
+            ('journal_id', '=', self.cash_journal_id)], order='id DESC')[0]
+        self.abs_obj.write(cr, uid, [abs_id], {
+            'details_ids': [[0, False, {
+                'pieces': 12,
+                'number_closing': 1}]]})
         self.wf_service.trg_validate(
             uid, 'pos.session', ps_id, 'cashbox_control', cr)
         self.wf_service.trg_validate(
@@ -145,11 +119,11 @@ class TestGroupPartnerId(TransactionCase):
             credit += line.credit
             debit += line.debit
 
-#        cr.commit()
-#        self.assertEquals(
-#            credit, debit,
-#            """Validate POS session must created balanced Sale Move.""")
-#        self.assertEquals(
-#            credit, 12,
-#            """Validate POS session with customer without invoice must create
-#            an account move without partner.""")
+        self.assertEquals(
+            credit, debit,
+            """Validate POS session must created balanced Sale Move.""")
+        self.assertEquals(
+            credit, 12,
+            """Validate 2 Orders without customer must create one Sale
+            Entry.""")
+        cr.commit()
