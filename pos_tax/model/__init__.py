@@ -23,4 +23,3 @@
 
 from . import pos_order_line
 from . import pos_order_line_tax_rel
-from . import pos_order

@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Account - Group Move Line Module for Odoo
+#    Point Of Sale - Rewrite create_aml Module for Odoo
 #    Copyright (C) 2013-Today GRAP (http://www.grap.coop)
 #    @author Julien WESTE
 #
@@ -19,11 +19,10 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
 {
-    'name': 'Account - Group Move Lines OBSOLETE',
-    'version': '1.1',
-    'category': 'Accounting & Finance',
+    'name': 'Point Of Sale - Rewrite create_aml OBSOLETE',
+    'version': '0.1',
+    'category': 'Point of Sale',
     'license': 'AGPL-3',
     'description': """
 REFACTORED IN grap_change_account_move_line

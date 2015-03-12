@@ -26,35 +26,16 @@
     'version': '0.1',
     'category': 'Point of Sale',
     'description': """
-Manage Correctly The Taxes in Point Of Sale Module
-==================================================
+REFACTORED IN grap_change_account_move_line
 
-Description:
-------------
-Store the taxes in pos_orders like for sale_orders so that the created account
-moves keep the good tax even if the product is changed between the sale and the
-session closure.
-
-
-Copyright, Author and Licence :
--------------------------------
-    * Copyright : 2014, Groupement Régional Alimentaire de Proximité;
-    * Author :
-        * Julien WESTE;
-        * Sylvain LE GAL (https://twitter.com/legalsylvain)
-    * Licence : AGPL-3 (http://www.gnu.org/licenses/)
+AFTER INSTALLING grap_change_account_move_line,
+Please unistall and delete:
+    * pos_tax;
+    * pos_rewrite_aml;
+    * account_group_move_lines;
     """,
     'depends': [
         'base',
-        'point_of_sale',
-        'pos_rewrite_create_aml',
-    ],
-    'data': [
-        'data/function.xml',
-        'security/ir_model_access_data.yml',
-        'view/view.xml'
-    ],
-    'demo': [
-        'demo/res_groups.yml',
+        'grap_change_account_move_line',
     ],
 }

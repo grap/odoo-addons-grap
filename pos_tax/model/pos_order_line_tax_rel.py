@@ -5,7 +5,7 @@
 #    Copyright (C) 2014-Today GRAP (http://www.grap.coop)
 #    @author Julien WESTE
 #    @author Sylvain LE GAL (https://twitter.com/legalsylvain)
-#
+
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
 #    published by the Free Software Foundation, either version 3 of the
@@ -20,8 +20,22 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from . import tests
 
-fast_suite = [
-    tests,
-]
+from openerp.osv import fields
+from openerp.osv.orm import Model
+
+
+class pos_order_line_tax_rel(Model):
+    _name = 'pos.order.line.tax.rel'
+
+    # Columns section
+    _columns = {
+        'tax_id': fields.many2one(
+            'account.tax', 'Tax', required=True),
+        'orderline_id': fields.many2one(
+            'pos.order.line', 'Order Line', required=True, ondelete='cascade'),
+        'baseHT': fields.float(
+            'Base HT'),
+        'amount_tax': fields.float(
+            'Tax Amount'),
+    }
