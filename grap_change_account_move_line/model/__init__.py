@@ -22,7 +22,6 @@
 ##############################################################################
 
 from . import pos_order
-from . import pos_order_2
 from . import pos_order_line
 from . import pos_order_line_tax_rel
 from . import account_invoice

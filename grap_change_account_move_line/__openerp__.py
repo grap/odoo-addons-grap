@@ -71,7 +71,7 @@ Copyright, Author and Licence:
         'account',
         'base',
         'point_of_sale',
-        'pos_invoicing',  # ? Really ?
+#        'pos_invoicing',  # ? Really ?
     ],
     'data': [
         'security/ir_model_access_data.yml',
@@ -80,5 +80,8 @@ Copyright, Author and Licence:
     ],
     'demo': [
         'demo/res_groups.yml',
+        'demo/account_tax.yml',
+        'demo/product_product.yml',
+        'demo/account_journal.yml',
     ],
 }

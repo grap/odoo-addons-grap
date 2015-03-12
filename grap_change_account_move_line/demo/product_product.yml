@@ -21,22 +21,22 @@
 #
 ##############################################################################
 
-from openerp.tools.translate import _
-from openerp.osv.orm import Model
+- !record {model: product.product, id: product_1_account_1}:
+    name: Product 1 Account 1
+    property_account_income: account.a_sale
+    list_price: 2
 
+- !record {model: product.product, id: product_2_account_1}:
+    name: Product 2 Account 1
+    property_account_income: account.a_sale
+    list_price: 30
 
-class pos_order(Model):
-    _inherit = 'pos.order'
+- !record {model: product.product, id: product_3_account_2}:
+    name: Product 3 Account 2
+    property_account_income: account.income_fx_income
+    list_price: 4
 
-    def _get_key(self, cr, uid, data_type, values, context=None):
-        key = False
-        if data_type == 'product':
-            key = (
-                'product', values['tax_code_id'], values['account_id'],
-                values['debit'] > 0)
-            values.update({'name': _('Various Products')})
-        elif data_type == 'tax':
-            key = ('tax', values['tax_code_id'], values['debit'] > 0)
-        elif data_type == 'counter_part':
-            key = ('counter_part', values['account_id'], values['debit'] > 0)
-        return key
+- !record {model: product.product, id: product_4_account_2}:
+    name: Product 4 Account 2
+    property_account_income: account.income_fx_income
+    list_price: 50

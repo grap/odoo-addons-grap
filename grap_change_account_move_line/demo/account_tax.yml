@@ -21,12 +21,7 @@
 #
 ##############################################################################
 
-from . import test_group_move_line
-from . import test_pos_tax
-from . import test_group_partner_id
-
-fast_suite = [
-#    test_group_move_line,
-#    test_pos_tax,
-    test_group_partner_id,
-]
+- !record {model: account.tax, id: tax_10_vat_excl}:
+    name: Demo Tax 10% VAT Excl
+    amount: 0.1
+    price_include: False

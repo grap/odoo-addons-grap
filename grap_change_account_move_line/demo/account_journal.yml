@@ -21,12 +21,5 @@
 #
 ##############################################################################
 
-from . import test_group_move_line
-from . import test_pos_tax
-from . import test_group_partner_id
-
-fast_suite = [
-#    test_group_move_line,
-#    test_pos_tax,
-    test_group_partner_id,
-]
+- !record {model: account.journal, id: account.cash_journal}:
+    cash_control: True

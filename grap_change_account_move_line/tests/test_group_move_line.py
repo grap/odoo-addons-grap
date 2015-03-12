@@ -54,13 +54,13 @@ class TestGroupMoveLine(TransactionCase):
         self.account_sale_2 = self.imd_obj.get_object_reference(
             cr, uid, 'account', 'income_fx_income')[1]
         self.product_1 = self.imd_obj.get_object_reference(
-            cr, uid, 'product', 'product_product_48')[1]
+            cr, uid, 'grap_change_account_move_line', 'product_1_account_1')[1]
         self.product_2 = self.imd_obj.get_object_reference(
-            cr, uid, 'product', 'product_product_24')[1]
+            cr, uid, 'grap_change_account_move_line', 'product_2_account_1')[1]
         self.product_3 = self.imd_obj.get_object_reference(
-            cr, uid, 'product', 'product_product_16')[1]
+            cr, uid, 'grap_change_account_move_line', 'product_3_account_2')[1]
         self.product_4 = self.imd_obj.get_object_reference(
-            cr, uid, 'product', 'product_product_35')[1]
+            cr, uid, 'grap_change_account_move_line', 'product_4_account_2')[1]
         self.pos_config_id = self.imd_obj.get_object_reference(
             cr, uid, 'point_of_sale', 'pos_config_main')[1]
         self.cash_journal_id = self.imd_obj.get_object_reference(
@@ -81,37 +81,36 @@ class TestGroupMoveLine(TransactionCase):
             'account_id': self.customer_account_id,
         })
         # Line 1 : Product 1 - account 1
-        self.ail_obj.create(cr, uid, {
-            'product_id': self.product_1,
-            'invoice_id': ai_id,
-            'name': 'Account 1 - price : 2',
-            'account_id': self.account_sale_1,
-            'price_unit': 2,
-        })
+        res = self.ail_obj.product_id_change(
+            cr, uid, False, self.product_1, False, 1,
+            partner_id=self.customer_partner_id)['value']
+        res.update({
+            'product_id': self.product_1, 'invoice_id': ai_id})
+        self.ail_obj.create(cr, uid, res)
+
         # Line 2 : Product 2 - account 1
-        self.ail_obj.create(cr, uid, {
-            'product_id': self.product_2,
-            'invoice_id': ai_id,
-            'name': 'Account 1 - price : 30',
-            'account_id': self.account_sale_1,
-            'price_unit': 30,
-        })
+        res = self.ail_obj.product_id_change(
+            cr, uid, False, self.product_2, False, 1,
+            partner_id=self.customer_partner_id)['value']
+        res.update({
+            'product_id': self.product_2, 'invoice_id': ai_id})
+        self.ail_obj.create(cr, uid, res)
+
         # Line 3 : Product 3 - account 2
-        self.ail_obj.create(cr, uid, {
-            'product_id': self.product_3,
-            'invoice_id': ai_id,
-            'name': 'Account 2 - price : 2',
-            'account_id': self.account_sale_2,
-            'price_unit': 4,
-        })
+        res = self.ail_obj.product_id_change(
+            cr, uid, False, self.product_3, False, 1,
+            partner_id=self.customer_partner_id)['value']
+        res.update({
+            'product_id': self.product_3, 'invoice_id': ai_id})
+        self.ail_obj.create(cr, uid, res)
+
         # Line 4 : Product 4 - account 2
-        self.ail_obj.create(cr, uid, {
-            'product_id': self.product_4,
-            'invoice_id': ai_id,
-            'name': 'Account 2 - price : 30',
-            'account_id': self.account_sale_2,
-            'price_unit': 50,
-        })
+        res = self.ail_obj.product_id_change(
+            cr, uid, False, self.product_4, False, 1,
+            partner_id=self.customer_partner_id)['value']
+        res.update({
+            'product_id': self.product_4, 'invoice_id': ai_id})
+        self.ail_obj.create(cr, uid, res)
 
         wf_service = netsvc.LocalService('workflow')
         wf_service.trg_validate(

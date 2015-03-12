@@ -25,10 +25,10 @@ from openerp import netsvc
 from openerp.tests.common import TransactionCase
 
 
-class TestPosTax(TransactionCase):
+class TestGroupPartnerId(TransactionCase):
 
     def setUp(self):
-        super(TestPosTax, self).setUp()
+        super(TestGroupPartnerId, self).setUp()
         cr, uid = self.cr, self.uid
         self.imd_obj = self.registry('ir.model.data')
         self.imm_obj = self.registry('ir.module.module')
@@ -40,6 +40,9 @@ class TestPosTax(TransactionCase):
         self.am_obj = self.registry('account.move')
         self.pmp_obj = self.registry('pos.make.payment')
         self.abs_obj = self.registry('account.bank.statement')
+        self.wf_service = netsvc.LocalService('workflow')
+        self.customer_partner_id = self.imd_obj.get_object_reference(
+            cr, uid, 'base', 'res_partner_2')[1]
         self.product_1 = self.imd_obj.get_object_reference(
             cr, uid, 'product', 'product_product_48')[1]
         self.pos_config_id = self.imd_obj.get_object_reference(
@@ -48,13 +51,11 @@ class TestPosTax(TransactionCase):
             cr, uid, 'account', 'cash_journal')[1]
         self.sale_journal_id = self.imd_obj.get_object_reference(
             cr, uid, 'account', 'sales_journal')[1]
-        self.account_tax_id = self.imd_obj.get_object_reference(
-            cr, uid, 'grap_change_account_move_line', 'tax_10_vat_excl')[1]
 
     # Test Section
-    def test_01_close_session_with_taxes_changed(self):
-        """[Functional Test] Test if sale in POS product with VAT change
-         generate correct account entries"""
+    def test_01_group_by_partner(self):
+        """[Functional Test] Test if PoS Order with partner doesn't generate
+        too much account moves"""
         cr, uid = self.cr, self.uid
 
         ps_id = self.ps_obj.create(cr, uid, {
@@ -62,48 +63,55 @@ class TestPosTax(TransactionCase):
         })
         self.ps_obj.open_cb(cr, uid, [ps_id])
 
-        # Create Order #1
+        # Create Order #1. Paid with no Customer
         po_id = self.po_obj.create(cr, uid, {
             'session_id': ps_id,
-        })
-        # Create Order line #1
-        self.pol_obj.create(cr, uid, {
-            'order_id': po_id,
-            'product_id': self.product_1,
-            'name': 'Product 1 - Account 1',
-            'price_unit': 10,
+            'lines': [[0, 0, {
+                'product_id': self.product_1,
+                'discount': 0, 'qty': 1,
+                'price_unit': 1}]]
         })
 
-        # Make Payement
+        # Make Payment Order #1
         pmp_id = self.pmp_obj.create(cr, uid, {
             'journal_id': self.cash_journal_id,
-            'amount': 10,
+            'amount': 1,
         })
         self.pmp_obj.check(cr, uid, [pmp_id], {'active_id': po_id})
 
-        # Add Taxes to Product
-        self.pp_obj.write(cr, uid, self.product_1, {
-            'taxes_id': [[6, False, [self.account_tax_id]]]})
-
-        # Create Order #2
+        # Create Order #2. Paid with Customer
         po_id = self.po_obj.create(cr, uid, {
             'session_id': ps_id,
+            'partner_id': self.customer_partner_id,
+            'lines': [[0, 0, {
+                'product_id': self.product_1,
+                'discount': 0, 'qty': 1,
+                'price_unit': 11}]]
         })
-        # Create Order line #2
-        self.pol_obj.create(cr, uid, {
-            'order_id': po_id,
-            'product_id': self.product_1,
-            'name': 'Product 1',
-            'price_unit': 2000,
-        })
-
-        # Make Payement
+        # Make Payment Order #2
         pmp_id = self.pmp_obj.create(cr, uid, {
             'journal_id': self.cash_journal_id,
-            'amount': 2200,
+            'amount': 11,
         })
         self.pmp_obj.check(cr, uid, [pmp_id], {'active_id': po_id})
-        wf_service = netsvc.LocalService('workflow')
+
+        # Create Order #3. Paid and Invoiced with Customer
+        po_id = self.po_obj.create(cr, uid, {
+            'session_id': ps_id,
+            'partner_id': self.customer_partner_id,
+            'lines': [[0, 0, {
+                'product_id': self.product_1,
+                'discount': 0, 'qty': 1,
+                'price_unit': 111}]]
+        })
+        # Make Payment Order #3
+        pmp_id = self.pmp_obj.create(cr, uid, {
+            'journal_id': self.cash_journal_id,
+            'amount': 111,
+        })
+        self.pmp_obj.check(cr, uid, [pmp_id], {'active_id': po_id})
+        # Invoice Order #3
+        self.po_obj.action_invoice(cr, uid, [po_id])
 
         # FIXME : Extra
         # Compute and set final Total Transaction
@@ -116,25 +124,22 @@ class TestPosTax(TransactionCase):
                 ('journal_id', '=', self.cash_journal_id)], order='id DESC')[0]
             self.abs_obj.write(cr, uid, [abs_id], {
                 'details_ids': [[0, False, {
-                    'pieces': 2210,
+                    'pieces': 123,
                     'number_closing': 1}]]})
 
-            wf_service.trg_validate(
-                uid, 'pos.session', ps_id, 'cashbox_control', cr)
-        # End of Patch
-
         # Close Session
-        wf_service.trg_validate(
+        self.wf_service.trg_validate(
+            uid, 'pos.session', ps_id, 'cashbox_control', cr)
+        self.wf_service.trg_validate(
             uid, 'pos.session', ps_id, 'close', cr)
 
-        ps = self.ps_obj.browse(cr, uid, ps_id)
         # Check Sale Move
+        ps = self.ps_obj.browse(cr, uid, ps_id)
         sale_move_id = self.am_obj.search(cr, uid, [
             ('ref', '=', ps.name),
-            ('journal_id', '=', self.sale_journal_id)])
-
+            ('journal_id', '=', self.sale_journal_id),
+            ('partner_id', '=', False)])
         sale_move = self.am_obj.browse(cr, uid, sale_move_id[0])
-
         credit = debit = 0
         for line in sale_move.line_id:
             credit += line.credit
@@ -142,5 +147,8 @@ class TestPosTax(TransactionCase):
 
         self.assertEquals(
             credit, debit,
-            """Validate POS session must created balanced Sale Move,"""
-            """Even if Taxes of Products have changed.""")
+            """Validate POS session must created balanced Sale Move.""")
+        self.assertEquals(
+            credit, 12,
+            """Validate POS session with customer without invoice must create
+            an account move without partner.""")
