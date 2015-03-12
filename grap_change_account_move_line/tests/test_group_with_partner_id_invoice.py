@@ -109,10 +109,9 @@ class TestGroupWithPartnerInvoiceId(TransactionCase):
         self.wf_service.trg_validate(
             uid, 'pos.session', ps_id, 'close', cr)
 
-        cr.commit()  # FIXME
+        ps = self.ps_obj.browse(cr, uid, ps_id)
 
         # Check Sale Move Without customer
-        ps = self.ps_obj.browse(cr, uid, ps_id)
         sale_move_ids = self.am_obj.search(cr, uid, [
             ('ref', '=', ps.name),
             ('journal_id', '=', self.sale_journal_id),
@@ -135,7 +134,6 @@ class TestGroupWithPartnerInvoiceId(TransactionCase):
             """Validate 1 Order with customer and 1 Order Invoice
             must create an entry with sale of the first Order.""")
 
-        ps = self.ps_obj.browse(cr, uid, ps_id)
         # Check Sale Move With customer
         sale_move_ids = self.am_obj.search(cr, uid, [
             ('ref', '=', ps.name),

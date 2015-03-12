@@ -107,8 +107,9 @@ class TestGroupPartnerId(TransactionCase):
         self.wf_service.trg_validate(
             uid, 'pos.session', ps_id, 'close', cr)
 
-        # Check Sale Move
         ps = self.ps_obj.browse(cr, uid, ps_id)
+
+        # Check Sale Move
         sale_move_ids = self.am_obj.search(cr, uid, [
             ('ref', '=', ps.name),
             ('journal_id', '=', self.sale_journal_id)])
@@ -119,8 +120,6 @@ class TestGroupPartnerId(TransactionCase):
             partner_id = line.partner_id or partner_id
             credit += line.credit
             debit += line.debit
-
-        cr.commit()  # FIXME
 
         self.assertEquals(
             credit, debit,
@@ -139,7 +138,6 @@ class TestGroupPartnerId(TransactionCase):
             must create Sale entry without customer.""")
 
         # Check Sale Move
-        ps = self.ps_obj.browse(cr, uid, ps_id)
         cash_move_ids = self.am_obj.search(cr, uid, [
             ('ref', '=', ps.name),
             ('journal_id', '=', self.cash_journal_id)])
