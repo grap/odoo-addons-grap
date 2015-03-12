@@ -40,6 +40,7 @@ class TestPosTax(TransactionCase):
         self.am_obj = self.registry('account.move')
         self.pmp_obj = self.registry('pos.make.payment')
         self.abs_obj = self.registry('account.bank.statement')
+        self.wf_service = netsvc.LocalService('workflow')
         self.product_1 = self.imd_obj.get_object_reference(
             cr, uid, 'product', 'product_product_48')[1]
         self.pos_config_id = self.imd_obj.get_object_reference(
@@ -97,38 +98,27 @@ class TestPosTax(TransactionCase):
             'price_unit': 2000,
         })
 
-        # Make Payement
+        # Make Payment
         pmp_id = self.pmp_obj.create(cr, uid, {
             'journal_id': self.cash_journal_id,
             'amount': 2200,
         })
         self.pmp_obj.check(cr, uid, [pmp_id], {'active_id': po_id})
-        wf_service = netsvc.LocalService('workflow')
-
-        # FIXME : Extra
-        # Compute and set final Total Transaction
-        # Note: Not so clean, but due to other module
-        # 'pos_multiple_cash_control'
-        if len(self.imm_obj.search(cr, uid, [
-                ('name', '=', 'pos_multiple_cash_control'),
-                ('state', '=', 'installed')])) == 1:
-            abs_id = self.abs_obj.search(cr, uid, [
-                ('journal_id', '=', self.cash_journal_id)], order='id DESC')[0]
-            self.abs_obj.write(cr, uid, [abs_id], {
-                'details_ids': [[0, False, {
-                    'pieces': 2210,
-                    'number_closing': 1}]]})
-
-            wf_service.trg_validate(
-                uid, 'pos.session', ps_id, 'cashbox_control', cr)
-        # End of Patch
 
         # Close Session
-        wf_service.trg_validate(
+        abs_id = self.abs_obj.search(cr, uid, [
+            ('journal_id', '=', self.cash_journal_id)], order='id DESC')[0]
+        self.abs_obj.write(cr, uid, [abs_id], {
+            'details_ids': [[0, False, {
+                'pieces': 2210,
+                'number_closing': 1}]]})
+        self.wf_service.trg_validate(
+            uid, 'pos.session', ps_id, 'cashbox_control', cr)
+        self.wf_service.trg_validate(
             uid, 'pos.session', ps_id, 'close', cr)
 
-        ps = self.ps_obj.browse(cr, uid, ps_id)
         # Check Sale Move
+        ps = self.ps_obj.browse(cr, uid, ps_id)
         sale_move_id = self.am_obj.search(cr, uid, [
             ('ref', '=', ps.name),
             ('journal_id', '=', self.sale_journal_id)])

@@ -129,7 +129,7 @@ class TestGroupPartnerId(TransactionCase):
             """Validate 2 Orders without customer must sum the sale in a
             single Sale Entry.""")
 
-        # Check Sale Move
+        # Check Cash Move
         ps = self.ps_obj.browse(cr, uid, ps_id)
         cash_move_ids = self.am_obj.search(cr, uid, [
             ('ref', '=', ps.name),
@@ -145,9 +145,9 @@ class TestGroupPartnerId(TransactionCase):
             """Validate POS session must created balanced Cash Move.""")
         self.assertEquals(
             len(cash_move_ids), 1,
-            """Validate 2 Orders without customer must create one Sale
+            """Validate 2 Orders without customer must create one Cash
             Entry.""")
         self.assertEquals(
             credit, 12,
-            """Validate 2 Orders without customer must sum the sale in a
+            """Validate 2 Orders without customer must sum the Cash in a
             single Sale Entry.""")

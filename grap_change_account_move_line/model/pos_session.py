@@ -113,21 +113,20 @@ class pos_session(Model):
     ### Private section
 
     def button_confirm_pos(self, cr, uid, ids, session_name, context=None):
-#        this will generate one account_move per bank_statement
-        obj_seq = self.pool.get('ir.sequence')
-        obj_st = self.pool.get('account.bank.statement')
-        if context is None:
-            context = {}
+        """Generate Bank Entries"""
+        is_obj = self.pool['ir.sequence']
+        st_obj = self.pool['account.bank.statement']
+        context = context or {}
 
-        for st in obj_st.browse(cr, uid, ids, context=context):
+        for st in st_obj.browse(cr, uid, ids, context=context):
             j_type = st.journal_id.type
             company_currency_id = st.journal_id.company_id.currency_id.id
 
-            #Preliminary checks
-            if not obj_st.check_status_condition(cr, uid, st.state, journal_type=j_type):
+            # Preliminary checks
+            if not st_obj.check_status_condition(cr, uid, st.state, journal_type=j_type):
                 continue
 
-            obj_st.balance_check(cr, uid, st.id, journal_type=j_type, context=context)
+            st_obj.balance_check(cr, uid, st.id, journal_type=j_type, context=context)
             if (not st.journal_id.default_credit_account_id) \
                     or (not st.journal_id.default_debit_account_id):
                 raise osv.except_osv(_('Configuration Error!'),
@@ -138,9 +137,9 @@ class pos_session(Model):
             else:
                 c = {'fiscalyear_id': st.period_id.fiscalyear_id.id}
                 if st.journal_id.sequence_id:
-                    st_number = obj_seq.next_by_id(cr, uid, st.journal_id.sequence_id.id, context=c)
+                    st_number = is_obj.next_by_id(cr, uid, st.journal_id.sequence_id.id, context=c)
                 else:
-                    st_number = obj_seq.next_by_code(cr, uid, 'account.bank.statement', context=c)
+                    st_number = is_obj.next_by_code(cr, uid, 'account.bank.statement', context=c)
 
             for line in st.move_line_ids:
                 if line.state <> 'valid':
@@ -175,14 +174,14 @@ class pos_session(Model):
                 line_ids = groups[key]
                 move_id = self.create_move_from_st_lines(cr, uid, line_ids, st, move_number, session_name, key, context)
 
-            obj_st.write(cr, uid, [st.id], {
+            st_obj.write(cr, uid, [st.id], {
                     'name': st_number,
                     'balance_end_real': st.balance_end
             }, context=context)
-            obj_st.message_post(cr, uid, [st.id], body=_('Statement %s confirmed, journal items were created.') % (st_number,), context=context)
+            st_obj.message_post(cr, uid, [st.id], body=_('Statement %s confirmed, journal items were created.') % (st_number,), context=context)
         if context.get('period_id',False): del context['period_id']
         if context.get('journal_id',False): del context['journal_id']
-        return obj_st.write(cr, uid, ids, {'state':'confirm'}, context=context)
+        return st_obj.write(cr, uid, ids, {'state':'confirm'}, context=context)
 
 
     def create_move_from_st_lines(self, cr, uid, ids, st, st_number, session_name, key, context=None):

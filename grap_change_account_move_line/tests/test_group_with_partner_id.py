@@ -104,8 +104,6 @@ class TestGroupPartnerId(TransactionCase):
                 'number_closing': 1}]]})
         self.wf_service.trg_validate(
             uid, 'pos.session', ps_id, 'cashbox_control', cr)
-        print "=============================================================="
-        print "=============================================================="
         self.wf_service.trg_validate(
             uid, 'pos.session', ps_id, 'close', cr)
 

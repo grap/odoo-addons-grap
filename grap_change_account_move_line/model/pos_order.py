@@ -115,11 +115,8 @@ class pos_order(osv.osv):
             grouped_data[key].append(values.copy())
 
     def _create_account_move_line(
-        self, cr, uid, ids, session=None, move_id=None, context=None):
-        print "*** _create_account_move_line"
-        print ids
-        print move_id
-        print "***"
+            self, cr, uid, ids, session=None, move_id=None, context=None):
+
         # Tricky, via the workflow, we only have one id in the ids variable
         """Create a account move line of order grouped by products or not."""
         account_move_obj = self.pool.get('account.move')
@@ -149,24 +146,17 @@ class pos_order(osv.osv):
             group_tax = {}
             account_def = property_obj.get(cr, uid,
                 'property_account_receivable', 'res.partner', context=context)
-
-            # <begin> GRAP - we use regular property_account_receivable
-            # because we ignore patner_id
-#            order_account = order.partner_id and \
-#                            order.partner_id.property_account_receivable and \
-#                            order.partner_id.property_account_receivable.id or \
-#                            account_def and account_def.id or \
-#                            current_company.account_receivable.id
             order_account = account_def and account_def.id or \
                             current_company.account_receivable.id
-            # <end> GRAP
+
             if not order_account:
                     raise osv.except_osv(_('Error!'),
                                             _('No account_receivable found.'))
             
             ctx = dict(context or {}, company_id=current_company.id,
                                         account_period_prefer_normal=True)
-            if account_journal_obj.browse(cr, uid, order.sale_journal.id, context=context).allow_date:
+            if account_journal_obj.browse(
+                    cr, uid, order.sale_journal.id, context=context).allow_date:
                 period_id = account_period_obj.find(cr, uid,
                     dt=order.date_order[:10], context=ctx)[0]
             else:
