@@ -22,7 +22,7 @@
 ##############################################################################
 {
     'name': 'GRAP - Change Account Move Lines',
-    'version': '1.0',
+    'version': '1.3',
     'category': 'Accounting & Finance',
     'summary': 'Various Change in Account Move Lines Generation',
     'license': 'AGPL-3',
