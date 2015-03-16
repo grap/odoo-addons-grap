@@ -52,7 +52,7 @@ class pos_session(Model):
                         " because they have not the 'paid' status %s" % (
                         po.name)))
                 if po.state == 'paid':
-                    keys = (po.date_order[:10])
+                    keys = (po.session_id.stop_at[:10])
                     groups.setdefault(keys,[])
                     groups[keys].append(po.id)
 
@@ -168,7 +168,7 @@ class pos_session(Model):
                     partner_id,
                     line.journal_id.id, 
                     st.period_id.id, 
-                    st_line.date, 
+                    st_line.statement_id.pos_session_id.stop_at[:10], 
                     st_line.analytic_account_id, 
                     st_line.amount>0)
                 groups.setdefault(keys,[])
