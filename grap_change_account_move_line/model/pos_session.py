@@ -39,19 +39,22 @@ class pos_session(Model):
         aj_obj = self.pool['account.journal']
         am_obj = self.pool['account.move']
 
+        self._remove_draft_orders(cr, uid, ids, context=context)
+
         for ps in self.browse(cr, uid, ids, context=context):
             #parse the lines to group the ids according to the key fields
             groups = {}
-            for order in ps.order_ids:
-                if order.state not in ('paid', 'invoiced'):
+            for po in ps.order_ids:
+                if po.state not in ('paid', 'invoiced'):
                     raise osv.except_osv(
                         _('Error!'),
                         _("You cannot confirm all orders of this session,"
-                        " because they have not the 'paid' status"))
-                if order.state == 'paid':
-                    keys = (order.date_order[:10])
+                        " because they have not the 'paid' status %s" % (
+                        po.name)))
+                if po.state == 'paid':
+                    keys = (po.date_order[:10])
                     groups.setdefault(keys,[])
-                    groups[keys].append(order.id)
+                    groups[keys].append(po.id)
 
             # Create an Account move for each Key
             for key in groups.keys():

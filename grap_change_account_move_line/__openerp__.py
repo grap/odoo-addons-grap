@@ -72,6 +72,8 @@ Copyright, Author and Licence:
         'base',
         'point_of_sale',
         'pos_invoicing',
+        'pos_multiple_cash_control',
+        'pos_keep_draft_orders',
     ],
     'data': [
         'security/ir_model_access_data.yml',
