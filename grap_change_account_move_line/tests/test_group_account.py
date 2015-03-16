@@ -43,6 +43,7 @@ class TestGroupMoveLine(TransactionCase):
         self.abs_obj = self.registry('account.bank.statement')
         self.acl_obj = self.registry('account.cashbox.line')
         self.imm_obj = self.registry('ir.module.module')
+        self.wf_service = netsvc.LocalService('workflow')
         self.sale_journal_id = self.imd_obj.get_object_reference(
             cr, uid, 'account', 'sales_journal')[1]
         self.customer_partner_id = self.imd_obj.get_object_reference(
@@ -212,75 +213,16 @@ class TestGroupMoveLine(TransactionCase):
         })
         self.pmp_obj.check(cr, uid, [pmp_id], {'active_id': po_id})
 
-#        # Create Order #3
-#        po_id = self.po_obj.create(cr, uid, {
-#            'partner_id': self.customer_partner_id,
-#            'session_id': ps_id,
-#        })
-#        # PO3 - Line 1 : Product 1 - account 1
-#        self.pol_obj.create(cr, uid, {
-#            'order_id': po_id,
-#            'product_id': self.product_1,
-#            'name': 'Product 1 - Account 1',
-#            'price_unit': 2000,
-#        })
-#        # PO3 - Line 2 : Product 3 - account 2
-#        self.pol_obj.create(cr, uid, {
-#            'order_id': po_id,
-#            'product_id': self.product_3,
-#            'name': 'Product 3 - Account 2',
-#            'price_unit': 4000,
-#        })
-#        pmp_id = self.pmp_obj.create(cr, uid, {
-#            'journal_id': self.cash_journal_id,
-#            'amount': 6000,
-#        })
-#        self.pmp_obj.check(cr, uid, [pmp_id], {'active_id': po_id})
-#        # Create Order #4
-#        po_id = self.po_obj.create(cr, uid, {
-#            'partner_id': self.customer_partner_id,
-#            'session_id': ps_id,
-#        })
-#        # PO4 - Line 1 : Product 2 - account 1
-#        self.pol_obj.create(cr, uid, {
-#            'order_id': po_id,
-#            'product_id': self.product_2,
-#            'name': 'Product 2 - Account 1',
-#            'price_unit': 30000,
-#        })
-#        # PO4 - Line 2 : Product 4 - account 2
-#        self.pol_obj.create(cr, uid, {
-#            'order_id': po_id,
-#            'product_id': self.product_4,
-#            'name': 'Product 4 - Account 2',
-#            'price_unit': 50000,
-#        })
-#        pmp_id = self.pmp_obj.create(cr, uid, {
-#            'journal_id': self.cash_journal_id,
-#            'amount': 80000,
-#        })
-#        self.pmp_obj.check(cr, uid, [pmp_id], {'active_id': po_id})
-
-        wf_service = netsvc.LocalService('workflow')
-
-        # FIXME : Extra
-        # Compute and set final Total Transaction
-        # Note: Not so clean, but due to other module
-        # 'pos_multiple_cash_control'
-        if len(self.imm_obj.search(cr, uid, [
-                ('name', '=', 'pos_multiple_cash_control'),
-                ('state', '=', 'installed')])) == 1:
-            abs_id = self.abs_obj.search(cr, uid, [
-                ('journal_id', '=', self.cash_journal_id)], order='id DESC')[0]
-            self.abs_obj.write(cr, uid, [abs_id], {
-                'details_ids': [[0, False, {
-                    'pieces': 86,
-                    'number_closing': 1}]]})
-
         # Close Session
-        wf_service.trg_validate(
+        abs_id = self.abs_obj.search(cr, uid, [
+            ('journal_id', '=', self.cash_journal_id)], order='id DESC')[0]
+        self.abs_obj.write(cr, uid, [abs_id], {
+            'details_ids': [[0, False, {
+                'pieces': 86,
+                'number_closing': 1}]]})
+        self.wf_service.trg_validate(
             uid, 'pos.session', ps_id, 'cashbox_control', cr)
-        wf_service.trg_validate(
+        self.wf_service.trg_validate(
             uid, 'pos.session', ps_id, 'close', cr)
 
         ps = self.ps_obj.browse(cr, uid, ps_id)
@@ -321,31 +263,3 @@ class TestGroupMoveLine(TransactionCase):
             line_account_2.credit, 4 + 50,
             """Validate POS Session with Sale Account #1"""
             """ must generate one single move line with summed value.""")
-
-#        # Check Sale Move with Customer
-#        sale_move_id = self.am_obj.search(cr, uid, [
-#            ('ref', '=', ps.name),
-#            ('journal_id', '=', self.sale_journal_id),
-#            ('partner_id', '=', self.customer_partner_id)])
-#        self.assertEquals(
-#            len(sale_move_id), 1,
-#            """Validate POS Session must create one Sale Move by Customer""")
-
-#        # Check Cash Move without Customer
-#        cash_move_id = self.am_obj.search(cr, uid, [
-#            ('ref', '=', ps.name),
-#            ('journal_id', '=', self.cash_journal_id),
-#            ('partner_id', '=', False)])
-
-#        self.assertEquals(
-#            len(cash_move_id), 1,
-#            """Validate POS Session must create one Cash Move w/o Customer""")
-
-#        # Check Cash Move with Customer
-#        cash_move_id = self.am_obj.search(cr, uid, [
-#            ('ref', '=', ps.name),
-#            ('journal_id', '=', self.cash_journal_id),
-#            ('partner_id', '=', self.customer_partner_id)])
-#        self.assertEquals(
-#            len(cash_move_id), 1,
-#            """Validate POS Session must create one Cash Move by Customer""")
