@@ -93,7 +93,7 @@ class TestGroupMoveLine(TransactionCase):
         pmp_id = self.pmp_obj.create(cr, uid, {
             'journal_id': self.cash_journal_id,
             'amount': 30,
-             'payment_date' : '03/01/2015 03:03:03',
+            'payment_date': '03/01/2015 03:03:03',
         })
         self.pmp_obj.check(cr, uid, [pmp_id], {'active_id': po_id})
 
