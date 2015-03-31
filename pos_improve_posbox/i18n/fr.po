@@ -1,0 +1,78 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* pos_improve_posbox
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-03-31 20:29+0000\n"
+"PO-Revision-Date: 2015-03-31 20:29+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: pos_improve_posbox
+#: code:addons/pos_improve_posbox/model/pos_order.py:44
+#, python-format
+msgid "Error!"
+msgstr "Erreur !"
+
+#. module: pos_improve_posbox
+#: field:pos.config,proxy_ip:0
+msgid "IP Address"
+msgstr "Adresse IP"
+
+#. module: pos_improve_posbox
+#. openerp-web
+#: code:addons/pos_improve_posbox/static/src/xml/pip.xml:25
+#, python-format
+msgid "Please close the form at the end of the print process."
+msgstr "Veuillez fermer cette fenêtre à la fin de l'impression."
+
+#. module: pos_improve_posbox
+#: code:addons/pos_improve_posbox/model/pos_order.py:44
+#, python-format
+msgid "Please select one Pos Order."
+msgstr "Veuillez sélectionner une Vente."
+
+#. module: pos_improve_posbox
+#: code:_description:0
+#: model:ir.model,name:pos_improve_posbox.model_pos_order
+#, python-format
+msgid "Point of Sale"
+msgstr "Point de Vente"
+
+#. module: pos_improve_posbox
+#: code:addons/pos_improve_posbox/model/pos_order.py:56
+#, python-format
+msgid "Print Quick Direct"
+msgstr "Impression Directe"
+
+#. module: pos_improve_posbox
+#: view:pos.order:0
+msgid "Impression Directe"
+msgstr "Print Quick Receipt"
+
+#. module: pos_improve_posbox
+#: field:pos.order,iface_print_via_proxy:0
+msgid "Print via Proxy"
+msgstr "Imprimer via Proxy"
+
+#. module: pos_improve_posbox
+#: field:pos.config,proxy_timeout:0
+msgid "Proxy Time Out"
+msgstr "Durée Expiré (Proxy)"
+
+#. module: pos_improve_posbox
+#: help:pos.config,proxy_ip:0
+msgid "The hostname or ip address of the hardware proxy. This will work for back-/front- office communication."
+msgstr "Le nom d'hôte ou l'adresse IP du Proxy. Cela fonctionnera pour les communications back et front office."
+
+#. module: pos_improve_posbox
+#: help:pos.config,proxy_timeout:0
+msgid "Timeout in millisecond for the communication with the proxy. This will work only for back-office communication."
+msgstr "TimeOut en milliseconde pour la communication avec le Proxy. Cela fonctionnera seulement pour les communications Back-Office."
