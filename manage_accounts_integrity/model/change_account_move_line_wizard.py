@@ -58,7 +58,7 @@ class change_account_move_line_wizard(TransientModel):
             'source_move_number': account.move_number,
             'source_reconciled_move_number': account.reconciled_move_number,
             'source_closed_period_move_number':
-                account.closed_period_move_number,
+            account.closed_period_move_number,
             'source_invoice_number': account.invoice_number,
             'source_voucher_line_number': account.voucher_line_number,
             'line_ids': partners,

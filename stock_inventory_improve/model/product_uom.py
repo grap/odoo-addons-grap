@@ -54,6 +54,6 @@ class product_uom(Model):
                         _("""The UoM defined here (%s) doesn't belong the"""
                             """ same category as the Uom defined in the"""
                             """ Product form (%s).""") % (
-                                from_unit.name, to_unit.name,))
+                            from_unit.name, to_unit.name,))
         return super(product_uom, self)._compute_qty_obj(
             cr, uid, from_unit, qty, to_unit, context=context)

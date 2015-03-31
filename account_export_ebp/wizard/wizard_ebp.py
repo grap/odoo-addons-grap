@@ -216,10 +216,10 @@ class account_export_ebp(osv.TransientModel):
             path, fiscalyear.company_id.ebp_username,
             fiscalyear.company_id.ebp_domain))
         win_share = smbc.Context(
-            auth_fn=lambda server, share, workgroup, username, password:
-                (fiscalyear.company_id.ebp_domain,
-                 fiscalyear.company_id.ebp_username,
-                 fiscalyear.company_id.ebp_password))
+            auth_fn=lambda server, share, workgroup, username, password: (
+                fiscalyear.company_id.ebp_domain,
+                fiscalyear.company_id.ebp_username,
+                fiscalyear.company_id.ebp_password))
         moves_file = win_writer(win_share.creat('%s/ECRITURES.TXT' % path))
         account_file = win_writer(win_share.creat('%s/COMPTES.TXT' % path))
         balance_file = win_writer(win_share.creat('%s/BALANCES.TXT' % path))

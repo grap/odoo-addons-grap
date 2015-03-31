@@ -269,7 +269,7 @@ class account_account(Model):
                     raise osv.except_osv(_('Warning!'), _(
                         """You cannot change the type of account to '%s'"""
                         """ type as it contains journal items!""") % (
-                            new_type))
+                        new_type))
         return True
 
     def _check_allow_code_change(self, cr, uid, ids, context=None):

@@ -67,7 +67,7 @@ class pos_box_out(TransientModel):
 
     _defaults = {
         'session_id': lambda self, cr, uid, context:
-            context.get('active_id', False),
+        context.get('active_id', False),
     }
 
     # Private section

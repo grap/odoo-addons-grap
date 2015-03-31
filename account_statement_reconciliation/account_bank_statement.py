@@ -87,7 +87,7 @@ class account_bank_statement(osv.osv):
             raise osv.except_osv(_('Error!'), _(
                 """The statement balance is incorrect !\nThe finale balance"""
                 """ (%.2f) is different than the computed one. (%.2f)""") % (
-                    st.balance_end_real, st.theorical_balance_end))
+                st.balance_end_real, st.theorical_balance_end))
         return True
 
     def button_confirm_bank(self, cr, uid, ids, context=None):
