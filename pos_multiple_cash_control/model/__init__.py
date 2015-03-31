@@ -21,7 +21,6 @@
 #
 ##############################################################################
 
-from . import account_bank_statement_line
 from . import account_cash_statement
 from . import pos_box_entries
 from . import pos_box_out
