@@ -56,6 +56,6 @@ Copyright, Author and Licence :
     ],
     'demo': [
         'demo/res_groups.yml',
-        'demo/stock_inventory.yml',
+        'demo/stock_inventory.xml',
     ],
 }

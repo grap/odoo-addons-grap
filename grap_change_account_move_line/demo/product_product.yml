@@ -24,19 +24,27 @@
 - !record {model: product.product, id: product_1_account_1}:
     name: Product 1 Account 1
     property_account_income: account.a_sale
+    uom_id: product.product_uom_unit
+    uom_po_id: product.product_uom_unit
     list_price: 2
 
 - !record {model: product.product, id: product_2_account_1}:
     name: Product 2 Account 1
     property_account_income: account.a_sale
+    uom_id: product.product_uom_unit
+    uom_po_id: product.product_uom_unit
     list_price: 30
 
 - !record {model: product.product, id: product_3_account_2}:
     name: Product 3 Account 2
     property_account_income: account.income_fx_income
+    uom_id: product.product_uom_unit
+    uom_po_id: product.product_uom_unit
     list_price: 4
 
 - !record {model: product.product, id: product_4_account_2}:
     name: Product 4 Account 2
     property_account_income: account.income_fx_income
+    uom_id: product.product_uom_unit
+    uom_po_id: product.product_uom_unit
     list_price: 50
