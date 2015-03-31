@@ -54,8 +54,8 @@ msgstr "Impression Directe"
 
 #. module: pos_improve_posbox
 #: view:pos.order:0
-msgid "Impression Directe"
-msgstr "Print Quick Receipt"
+msgid "Print Quick Receipt"
+msgstr "Impression Directe"
 
 #. module: pos_improve_posbox
 #: field:pos.order,iface_print_via_proxy:0
