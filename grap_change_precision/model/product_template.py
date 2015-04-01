@@ -21,9 +21,19 @@
 ##############################################################################
 
 
-from . import account_invoice_line
-from . import stock_move
-from . import purchase_order_line
-from . import pricelist_partnerinfo
-from . import pos_order_line
-from . import product_template
+from openerp.osv.orm import Model
+from openerp.osv import fields
+from openerp.addons import decimal_precision as dp
+
+
+class product_template(Model):
+    _inherit = 'product.template'
+
+    _columns = {
+        'standard_price': fields.float(
+            'Cost',
+            digits_compute=dp.get_precision('GRAP Purchase Unit Price')),
+        'standard_price_vat_incl': fields.float(
+            'Cost VAT Included',
+            digits_compute=dp.get_precision('GRAP Purchase Unit Price')),
+    }

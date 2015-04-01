@@ -35,6 +35,8 @@ Functionality:
         * stock_move.unit_price;
         * account_invoice_line.price_unit;
         * purchase_order_line.price_unit;
+        * product_template.standard_price;
+        * product_template.standard_price_vat_incl;
     * Add a new precision 'GRAP Purchase Unit Discount', used in:
         * account_invoice_line.discount;
 
@@ -51,6 +53,7 @@ Copyright, Authors and Licence:
         'account',
         'purchase',
         'point_of_sale',
+        'product_standard_price_vat_incl',
     ],
     'data': [
         'data/decimal_precision.xml',
