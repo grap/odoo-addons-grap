@@ -3,6 +3,11 @@
 /* GENERAL - field type date */
 .openerp .oe_form_editable .oe_form .oe_form_field_date input {width: 115px;} /* initial value 100px */ 
 
+/* GENERAL - hover on tree view */
+.openerp .oe_list_content tbody tr:hover{
+  background: #F0F0E0;
+}
+
 /* point_of_sale - view_pos_order_form                                        */
 
 .grap_change_views__view_pos_order_form [data-id="product_id"]          {width: 50%;}
