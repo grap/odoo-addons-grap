@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    GRAP - Change Point Of Sale Receipt module for Odoo
-#    Copyright (C) 2013 GRAP (http://www.grap.coop)
+#    GRAP - Change Print module for Odoo
+#    Copyright (C) 2013-Today GRAP (http://www.grap.coop)
 #    @author Julien WESTE
 #    @author Sylvain LE GAL (https://twitter.com/legalsylvain)
 #
@@ -20,5 +20,16 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+from openerp.osv.orm import Model
+from openerp.osv import fields
 
-from . import res_company
+
+class res_company(Model):
+    _inherit = 'res.company'
+
+    _columns = {
+        'pos_receipt_logo': fields.binary(
+            'Point of Sale Receipt Logo',
+            help="""This field will be printed on pos receipt, limited"""
+            """ to 2cm * 2cm"""),
+    }

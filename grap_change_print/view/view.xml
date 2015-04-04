@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- ********************************************************************** -->
-<!--GRAP - Change Point Of Sale Receipt module for Odoo                     -->
+<!--GRAP - Change Print module for Odoo                                     -->
 <!--Copyright (C) 2014 GRAP (http://www.grap.coop)                          -->
 <!--@author Sylvain LE GAL (https://twitter.com/legalsylvain)               -->
 
@@ -19,6 +19,7 @@
 <!-- ********************************************************************** -->
 <openerp>
     <data>
+<! -- Model: pos.order -->
         <record id="view_pos_order_form" model="ir.ui.view" >
             <field name="name">view.pos_order.form</field>
             <field name="model">pos.order</field>
@@ -32,6 +33,7 @@
             </field>
         </record>
 
+<! -- Model: res.company -->
         <record id="view_res_company_form" model="ir.ui.view" >
             <field name="name">res.company.form</field>
             <field name="model">res.company</field>

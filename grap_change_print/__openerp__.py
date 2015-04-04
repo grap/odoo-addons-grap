@@ -31,12 +31,19 @@ Change default reporting
     * account.invoice:
         * Add extra mandatory information of each line about food;
         * Remove Unit Price column and set an Unit Price VAT Exclude column;
+
     * account.bank.statement:
         * Add the number of lines at the end of the report;
 
+    * pos.order:
+        * Possibility to print receipt for draft pos.order;
+        * Improve of pos.receipt;
+            * Reduce the size of white space;
+            * Add logo of the company;
+
 Copyright, Author and Licence :
 -------------------------------
-    * Copyright : 2014, Groupement Régional Alimentaire de Proximité;
+    * Copyright : 2014-Today, Groupement Régional Alimentaire de Proximité;
     * Author :
         * Julien WESTE;
         * Sylvain LE GAL (https://twitter.com/legalsylvain);
@@ -49,8 +56,14 @@ Copyright, Author and Licence :
         'account',
         'sale_food',
         'point_of_sale',
+        'report_webkit',
+        'pos_improve_posbox',
     ],
     'data': [
         'data/ir_actions_report_xml.xml',
+        'view/action.xml',
+        'view/view.xml',
+        'data/ir_header_webkit.xml',
+        'data/ir_property.xml',
     ],
 }

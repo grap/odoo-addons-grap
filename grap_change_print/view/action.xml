@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- ********************************************************************** -->
-<!--GRAP - Change Point Of Sale Receipt module for Odoo                     -->
+<!--GRAP - Change Print module for Odoo                                     -->
 <!--Copyright (C) 2014 GRAP (http://www.grap.coop)                          -->
 <!--@author Sylvain LE GAL (https://twitter.com/legalsylvain)               -->
 
@@ -22,10 +22,10 @@
         <report id="action_report_pos_receipt" name="action.pos.receipt"
             model="pos.order"
             report_type="webkit"
-            file="grap_pos_receipt/report/grap_pos_receipt.mako"
+            file="grap_change_print/report/grap_pos_receipt.mako"
             header="False"
             auto="False"
-            string="POS Receipt GRAP Report"
+            string="GRAP POS Receipt"
             />
     </data>
 </openerp>
