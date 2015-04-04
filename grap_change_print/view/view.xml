@@ -19,7 +19,7 @@
 <!-- ********************************************************************** -->
 <openerp>
     <data>
-<! -- Model: pos.order -->
+<!-- Model: pos.order -->
         <record id="view_pos_order_form" model="ir.ui.view" >
             <field name="name">view.pos_order.form</field>
             <field name="model">pos.order</field>
@@ -33,7 +33,7 @@
             </field>
         </record>
 
-<! -- Model: res.company -->
+<!-- Model: res.company -->
         <record id="view_res_company_form" model="ir.ui.view" >
             <field name="name">res.company.form</field>
             <field name="model">res.company</field>
