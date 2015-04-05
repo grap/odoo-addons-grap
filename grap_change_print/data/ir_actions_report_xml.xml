@@ -4,17 +4,17 @@
 
         <record model="ir.actions.report.xml" id="account.account_invoices">
             <field name="report_file">grap_change_print/report/account_invoice.rml</field>
-            <field name="string">GRAP Invoice</field>
+            <field name="name">GRAP Invoice</field>
         </record>
 
         <record model="ir.actions.report.xml" id="point_of_sale.account_statement">
             <field name="report_file">grap_change_print/report/account_bank_statement.rml</field>
-            <field name="string">GRAP Statement</field>
+            <field name="name">GRAP Statement</field>
         </record>
 
         <record model="ir.actions.report.xml" id="stock.report_picking_list_out">
             <field name="report_file">grap_change_print/report/stock_picking_out.rml</field>
-            <field name="string">GRAP Delivery Slip</field>
+            <field name="name">GRAP Delivery Slip</field>
         </record>
 
     </data>

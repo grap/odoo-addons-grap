@@ -58,6 +58,7 @@ Copyright, Author and Licence :
         'point_of_sale',
         'report_webkit',
         'pos_improve_posbox',
+        'sale_recovery_moment',
     ],
     'data': [
         'data/ir_actions_report_xml.xml',

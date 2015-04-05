@@ -192,10 +192,10 @@
     <para style="terp_default_5cm_Above_Space">
       <font color="white"> </font>
     </para>
-    <blockTable colWidths="100.0,154.0,161.0,109.0" style="Header_Order_Reference_Tbl">
+    <blockTable colWidths="200.0,150.0,120.0,50.0" style="Header_Order_Reference_Tbl">
       <tr>
         <td>
-          <para style="terp_tblheader_General_Centre">Journal</para>
+          <para style="terp_tblheader_General_Centre">Recovery Place</para>
         </td>
         <td>
           <para style="terp_tblheader_General_Centre">Order(Origin)</para>
@@ -208,10 +208,10 @@
         </td>
       </tr>
     </blockTable>
-    <blockTable colWidths="100.0,154.0,162.0,109.0" style="Content_Order_Reference_Table">
+    <blockTable colWidths="200.0,150.0,120.0,50.0" style="Content_Order_Reference_Table">
       <tr>
         <td>
-          <para style="terp_default_Centre_8">[[ picking.stock_journal_id.name]]</para>
+          <para style="terp_default_Centre_8">[[ picking.moment_id and picking.moment_id.place_id.name ]]</para>
         </td>
         <td>
           <para style="terp_default_Centre_8">[[ picking.origin or '']]</para>
@@ -227,46 +227,39 @@
     <para style="terp_default_5cm_Above_Space">
       <font color="white"> </font>
     </para>
-    <blockTable colWidths="256.0,73.0,59.0,59.0,71.0" repeatRows="1" style="Move_Line_Header">
+    <blockTable colWidths="50.0,350.0,50.0,50.0" repeatRows="1" style="Move_Line_Header">
       <tr>
+        <td>
+          <para style="terp_tblheader_Details">Type</para>
+        </td>
         <td>
           <para style="terp_tblheader_Details">Description</para>
         </td>
         <td>
-          <para style="terp_tblheader_Details_Centre">Serial Number</para>
-        </td>
-        <td>
-          <para style="terp_tblheader_Details_Centre">Status</para>
-        </td>
-        <td>
-          <para style="terp_tblheader_Details_Right">Location</para>
-        </td>
-        <td>
           <para style="terp_tblheader_Details_Right">Quantity</para>
+        </td>
+        <td>
+          <para style="terp_tblheader_Details_Right">UoM</para>
         </td>
       </tr>
     </blockTable>
     <section>
       <para style="terp_default_2">[[ repeatIn([line for line in picking.move_lines if ((line.state == 'confirmed' or line.state=='done' or line.state=='assigned') and not line.scrapped)],'move_lines') ]]</para>
       <para style="terp_default_2">[[ (picking.move_lines!=[] and removeParentNode('para')) or removeParentNode('section')]]</para>
-      <blockTable colWidths="256.0,74.0,58.0,60.0,73.0" style="Move_Line_Contect_Assign_State">
+      <blockTable colWidths="50.0,350.0,50.0,50.0" style="Move_Line_Contect_Assign_State">
         <tr>
+        <td>
+            <para style="terp_default_Right_9"><font>[[ (move_lines.product_id and move_lines.product_id.prepare_categ_id and setTag('para','para',{'backColor': move_lines.product_id and move_lines.product_id.prepare_categ_id.color})) or removeParentNode('font') ]][[ move_lines.product_id and move_lines.product_id.prepare_categ_id and move_lines.product_id.prepare_categ_id.code or '' ]]</font>
+            </para>
+        </td>
           <td>
             <para style="terp_default_9"><font face="Helvetica" size="9.0">[[ get_product_desc(move_lines) ]] </font></para>
           </td>
           <td>
-            <para style="terp_default_Centre_9">[[ (move_lines.prodlot_id and move_lines.prodlot_id.name) or '' ]]</para>
+            <para style="terp_default_Right_9">[[ formatLang(move_lines.product_qty) ]]</para>
           </td>
           <td>
-            <para style="terp_default_9">Waiting Availability[[ move_lines.state == 'confirmed' and ' ' or removeParentNode('para') ]]</para>
-            <para style="terp_default_9">Done[[ move_lines.state == 'done' and ' ' or removeParentNode('para') ]]</para>
-            <para style="terp_default_9">Available[[ move_lines.state == 'assigned' and ' ' or removeParentNode('para') ]]</para>
-          </td>
-          <td>
-            <para style="terp_default_Right_9">[[ (move_lines.location_id and move_lines.location_id.name) or '' ]] </para>
-          </td>
-          <td>
-            <para style="terp_default_Right_9">[[ formatLang(move_lines.product_qty) ]] [[ move_lines.product_uom.name ]]</para>
+            <para style="terp_default_Right_9">[[ move_lines.product_uom.name ]]</para>
           </td>
         </tr>
       </blockTable>
@@ -276,25 +269,21 @@
     <section>
       <para style="terp_default_2">[[ repeatIn([line for line in picking.move_lines if (line.state == 'draft' or line.state=='waiting')],'move_lines') ]]</para>
       <para style="terp_default_2">[[ (picking.move_lines!=[] and removeParentNode('para')) or removeParentNode('section')]]</para>
-      <blockTable colWidths="256.0,74.0,57.0,61.0,72.0" style="Table1">
+      <blockTable colWidths="50.0,350.0,50.0,50.0" style="Table1">
         <tr>
-          <td>
-            <para style="terp_default_9"><font face="Helvetica" size="9.0">[[ get_product_desc(move_lines) ]] </font></para>
-          </td>
-          <td>
-            <para style="terp_default_Centre_9">[[ (move_lines.prodlot_id and move_lines.prodlot_id.name) or '' ]]</para>
-          </td>
-          <td>
-            <para style="terp_default_9">[[ (picking.type == 'in' or removeParentNode('para')) and '' ]][[ move_lines.state == 'done' and 'Received' or move_lines.state]]</para>
-            <para style="terp_default_9">[[ (picking.type == 'out' or removeParentNode('para')) and '']][[ move_lines.state == 'done' and 'Delivered' or move_lines.state]]</para>
-            <para style="terp_default_9">[[ (picking.type == 'internal' or removeParentNode('para')) and '' ]][[ move_lines.state == 'done' and 'Transferred' or move_lines.state]]</para>
-          </td>
-          <td>
-            <para style="terp_default_Right_9">[[ (move_lines.location_id and move_lines.location_id.name) or '' ]] </para>
-          </td>
-          <td>
-            <para style="terp_default_Right_9">[[ formatLang(move_lines.product_qty) ]] [[ move_lines.product_uom.name ]]</para>
-          </td>
+            <td>
+                <para style="terp_default_Right_9"><font>[[ (move_lines.product_id and move_lines.product_id.prepare_categ_id and setTag('para','para',{'backColor': move_lines.product_id and move_lines.product_id.prepare_categ_id.color})) or removeParentNode('font') ]][[ move_lines.product_id and move_lines.product_id.prepare_categ_id and move_lines.product_id.prepare_categ_id.code or '' ]]</font>
+                </para>
+            </td>
+              <td>
+                <para style="terp_default_9"><font face="Helvetica" size="9.0">[[ get_product_desc(move_lines) ]] </font></para>
+              </td>
+              <td>
+                <para style="terp_default_Right_9">[[ formatLang(move_lines.product_qty) ]]</para>
+              </td>
+              <td>
+                <para style="terp_default_Right_9">[[ move_lines.product_uom.name ]]</para>
+              </td>
         </tr>
       </blockTable>
     </section>

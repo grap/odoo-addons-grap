@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-02 18:28+0000\n"
-"PO-Revision-Date: 2014-12-02 18:28+0000\n"
+"POT-Creation-Date: 2015-04-05 15:54+0000\n"
+"PO-Revision-Date: 2015-04-05 15:54+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,27 +16,39 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: grap_change_print
-#: code:addons/grap_change_print/model/account_invoice.py:49
+#: code:addons/grap_change_print/model/account_invoice.py:47
 #, python-format
 msgid " - Category : "
 msgstr " - Catégorie : "
 
 #. module: grap_change_print
-#: code:addons/grap_change_print/model/account_invoice.py:45
+#: code:addons/grap_change_print/model/account_invoice.py:43
 #, python-format
 msgid " - Country : "
 msgstr " - Pays : "
 
 #. module: grap_change_print
-#: code:addons/grap_change_print/model/account_invoice.py:56
+#: code:addons/grap_change_print/model/account_invoice.py:54
 #, python-format
 msgid " - Label : "
 msgstr " - Label : "
 
 #. module: grap_change_print
+#: code:_description:0
+#: model:ir.model,name:grap_change_print.model_res_company
+#, python-format
+msgid "Companies"
+msgstr "Sociétés"
+
+#. module: grap_change_print
 #: field:account.invoice.line,extra_food_info:0
 msgid "Extra information for invoices"
 msgstr "Information complémentaire sur facture"
+
+#. module: grap_change_print
+#: model:ir.actions.report.xml,name:grap_change_print.action_report_pos_receipt
+msgid "GRAP POS Receipt"
+msgstr "Ticket de Caisse GRAP"
 
 #. module: grap_change_print
 #: code:_description:0
@@ -46,7 +58,26 @@ msgid "Invoice Line"
 msgstr "Lignes de facture"
 
 #. module: grap_change_print
+#: field:res.company,pos_receipt_logo:0
+msgid "Point of Sale Receipt Logo"
+msgstr "Logo du Ticket de caisse"
+
+#. module: grap_change_print
+#: view:res.company:0
+msgid "Pos Receipt"
+msgstr "Ticket de caisse"
+
+#. module: grap_change_print
+#: view:pos.order:0
+msgid "Print"
+msgstr "Imprimer le ticket de caisse"
+
+#. module: grap_change_print
+#: help:res.company,pos_receipt_logo:0
+msgid "This field will be printed on pos receipt, limited to 2cm * 2cm"
+msgstr "Ce champs sera utilisé sur le ticket de caisse pour afficher le logo de la société. Taille souhaitée : 2cm * 2cm."
+
+#. module: grap_change_print
 #: field:account.invoice.line,price_unit_vat_excluded:0
 msgid "Unit Price VAT Excluded"
 msgstr "Prix Unitaire HT"
-
