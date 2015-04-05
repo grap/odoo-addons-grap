@@ -31,7 +31,7 @@ Change eMail Template
 Functionality:
 --------------
     * Change Sale order eMail Template;
-        * Add
+        * Add recovery moment information;
 
 Copyright, Authors and Licence:
 -------------------------------
@@ -44,9 +44,11 @@ Copyright, Authors and Licence:
     'website': 'http://www.grap.coop',
     'license': 'AGPL-3',
     'depends': [
+        'sale',
         'sale_recovery_moment',
     ],
     'data': [
+        'data/email_template.xml',
     ],
     'css': [
     ],
