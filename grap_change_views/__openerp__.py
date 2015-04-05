@@ -74,6 +74,8 @@ Copyright, Authors and Licence:
         'sale_order_dates',
         'sale_recovery_moment',
         'pos_order_pricelist_change',
+        'grap_cooperative',
+        'web_dashboard_tile',
     ],
     'data': [
         'security/res_groups.yml',
@@ -87,6 +89,6 @@ Copyright, Authors and Licence:
         'view/stock.xml',
     ],
     'css': [
-        'static/src/css/css.css'
+        'static/src/css/css.css',
     ],
 }

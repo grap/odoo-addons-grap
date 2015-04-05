@@ -20,6 +20,19 @@
 <!-- ********************************************************************** -->
 <openerp>
     <data>
+
+        <menuitem id="menu_grap_dashboard"
+            name="Indicateur"
+            parent="grap_cooperative.menu_grap_root"
+            sequence="0"
+            groups="base.group_user"/>
+
+        <menuitem id="web_dashboard_tile.mail_dashboard" 
+            parent="menu_grap_dashboard"/>
+
+        <menuitem id="mail.mail_feeds_main"
+            groups="base.group_no_one" />
+
         <!-- Model 'res.users' -->
         <record id="view_res_users_tree" model="ir.ui.view">
             <field name="model">res.users</field>
