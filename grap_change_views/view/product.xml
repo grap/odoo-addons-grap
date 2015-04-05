@@ -152,6 +152,7 @@
                                 <field name="state"/>
                                 <field name="company_id" groups="base.group_multi_company"/>
                                 <group string="Packaging" colspan="2">
+                                    <field name="prepare_categ_id" groups="sale_recovery_moment.recovery_user"/>
                                     <field name="volume" attrs="{'readonly':[('type','=','service')]}"/>
                                     <field name="weight_net" attrs="{'readonly':[('type','=','service')]}"/>
                                 </group>

@@ -49,12 +49,13 @@
             <field name="context">{"search_default_filter_to_sell":1}</field>
         </record>
 
-        <!-- Menu of the Object product.product (Price view) -->
+<!-- Menu of the Object product.product (Price view) -->
         <menuitem id="menu_product_product_price" 
             name="Products (Price View)" 
             parent="base.menu_product" sequence="4" 
             action="action_view_product_product_price_tree"/>
 
+<!-- Model Sale.order -->
         <record id="view_order_form_inherit" model="ir.ui.view">
             <field name="name">sale.order.form.inherit</field>
             <field name="model">sale.order</field>
@@ -63,6 +64,10 @@
                 <data>
                     <field name="shop_id" position="attributes">
                         <attribute name="groups"/>
+                    </field>
+                    <field name="requested_date" position="replace"/>
+                    <field name="date_order" position="after">
+                        <field name="requested_date"/>
                     </field>
                 </data>
             </field>

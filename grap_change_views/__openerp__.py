@@ -71,6 +71,9 @@ Copyright, Authors and Licence:
         'product_fiscal_company',
         'product_category_recursive_property',
         'l10n_fr',
+        'sale_order_dates',
+        'sale_recovery_moment',
+        'pos_order_pricelist_change',
     ],
     'data': [
         'security/res_groups.yml',
