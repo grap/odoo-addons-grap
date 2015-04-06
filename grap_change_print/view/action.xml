@@ -22,7 +22,7 @@
         <report id="action_report_pos_receipt" name="action.pos.receipt"
             model="pos.order"
             report_type="webkit"
-            file="grap_change_print/report/grap_pos_receipt.mako"
+            file="grap_change_print/report/pos_receipt.mako"
             header="False"
             auto="False"
             string="GRAP POS Receipt"

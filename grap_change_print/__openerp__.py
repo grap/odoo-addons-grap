@@ -59,8 +59,14 @@ Copyright, Author and Licence :
         'report_webkit',
         'pos_improve_posbox',
         'sale_recovery_moment',
+        'base',
+        'report_webkit',
+        'base_headers_webkit',
+        'stock',
+        'delivery'
     ],
     'data': [
+        'data/report.xml',
         'data/ir_actions_report_xml.xml',
         'view/action.xml',
         'view/view.xml',

@@ -12,10 +12,11 @@
             <field name="name">GRAP Statement</field>
         </record>
 
-        <record model="ir.actions.report.xml" id="stock.report_picking_list_out">
+<!--        <record model="ir.actions.report.xml" id="stock.report_picking_list_out">
             <field name="report_file">grap_change_print/report/stock_picking_out.rml</field>
             <field name="name">GRAP Delivery Slip</field>
         </record>
+-->
 
     </data>
 </openerp>
