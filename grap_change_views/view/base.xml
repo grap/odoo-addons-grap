@@ -22,15 +22,17 @@
     <data>
 
         <menuitem id="menu_grap_dashboard"
-            name="Indicateur"
+            name="Indicateurs"
             parent="grap_cooperative.menu_grap_root"
             sequence="0"
             groups="base.group_user"/>
 
         <menuitem id="web_dashboard_tile.mail_dashboard" 
+            name="Indicateurs Synthétiques"
             parent="menu_grap_dashboard"/>
 
         <menuitem id="mail.mail_feeds_main"
+            name="Messagerie"
             groups="base.group_no_one" />
 
         <!-- Model 'res.users' -->

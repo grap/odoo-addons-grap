@@ -56,22 +56,18 @@
             action="action_view_product_product_price_tree"/>
 
 <!-- Model Sale.order -->
-        <record id="view_order_form_inherit" model="ir.ui.view">
-            <field name="name">sale.order.form.inherit</field>
+        <record id="view_sale_order_form_2" model="ir.ui.view">
             <field name="model">sale.order</field>
-            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="inherit_id" ref="sale_order_dates.view_sale_orderfor"/>
             <field name="arch" type="xml">
-                <data>
-                    <field name="shop_id" position="attributes">
-                        <attribute name="groups"/>
-                    </field>
-                    <field name="requested_date" position="replace"/>
-                    <field name="date_order" position="after">
-                        <field name="requested_date"/>
-                    </field>
-                </data>
+                <field name="requested_date" position="replace"/>
+                <field name="date_order" position="after">
+                    <field name="requested_date"/>
+                </field>
             </field>
         </record>
+
+
 
         <record model="ir.ui.menu" id="sale.menu_dashboard_sales">
             <field eval="[(6, 0, [ref('base.group_no_one')])]" name="groups_id"/>
