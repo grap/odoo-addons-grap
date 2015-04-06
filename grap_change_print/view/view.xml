@@ -21,7 +21,6 @@
     <data>
 <!-- Model: pos.order -->
         <record id="view_pos_order_form" model="ir.ui.view" >
-            <field name="name">view.pos_order.form</field>
             <field name="model">pos.order</field>
             <field name="inherit_id" ref="pos_improve_posbox.view_pos_order_form"/>
             <field name="arch" type="xml">
@@ -35,7 +34,6 @@
 
 <!-- Model: res.company -->
         <record id="view_res_company_form" model="ir.ui.view" >
-            <field name="name">res.company.form</field>
             <field name="model">res.company</field>
             <field name="inherit_id" ref="base.view_company_form"/>
             <field name="arch" type="xml">
@@ -43,6 +41,20 @@
                     <group string="Pos Receipt">
                         <field widget="image" name="pos_receipt_logo"/>
                     </group>
+                </xpath>
+            </field>
+        </record>
+
+<!-- Model: stock.picking.out -->
+        <record id="view_stock_picking_out_form" model="ir.ui.view">
+            <field name="model">stock.picking.out</field>
+            <field name="inherit_id" ref="delivery.view_delivery_order_inherit_stock"/>
+            <field name="arch" type="xml">
+                <xpath expr="/form/header//button[@string='Print Delivery Order' and @states='confirmed,assigned']" position="attributes">
+                    <attribute name="name">%(stock.report_picking_list_out)d</attribute>
+                </xpath>
+                <xpath expr="/form/header//button[@string='Print Delivery Order' and @states='done']" position="attributes">
+                    <attribute name="name">%(stock.report_picking_list_out)d</attribute>
                 </xpath>
             </field>
         </record>
