@@ -2,24 +2,6 @@
 <openerp>
     <data>
 
-        <report id="webkit_aggregated_picking"
-            name="webkit.aggregated_picking"
-            auto="False"
-            model="stock.picking.out"
-            file="grap_change_print/report/picking.html.mako"
-            string="Aggregated pickings"
-            report_type="webkit"
-            header="False"/>
-
-        <report id="report_webkit_product_summary"
-            name="webkit.stock_picking_out_product_summary"
-            auto="False"
-            model="stock.picking.out"
-            file="grap_change_print/report/stock_picking_out_product_summary.mako"
-            string="Products Summary"
-            report_type="webkit"
-            header="False"/>
-
         <report id="stock.report_picking_list_out"
             name="webkit.stock_picking_out_delivery_order"
             auto="False"
@@ -27,8 +9,15 @@
             file="grap_change_print/report/stock_picking_out_delivery_order.mako"
             string="Delivery Order"
             report_type="webkit"
-            header="True"/>
+            header="False"/>
 
-
+        <report id="report_summary_report"
+            name="summary.report"
+            auto="False"
+            model="product.summary.wizard"
+            file="grap_change_print/report/stock_picking_out_product_summary.mako"
+            string="Products Summary"
+            report_type="webkit"
+            header="False"/>
     </data>
 </openerp>

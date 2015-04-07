@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    GRAP - Change Print module for Odoo
-#    Copyright (C) 2013-2014 GRAP (http://www.grap.coop)
+#    GRAP - Change Print Module for Odoo
+#    Copyright (C) 2015-Today GRAP (http://www.grap.coop)
 #    @author Sylvain LE GAL (https://twitter.com/legalsylvain)
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -20,8 +20,25 @@
 #
 ##############################################################################
 
-from . import account_invoice
-from . import res_company
-from . import product_summary_wizard
-from . import product_summary_wizard_picking
-from . import product_summary_wizard_product
+from openerp.osv.orm import TransientModel
+from openerp.osv import fields
+
+
+class ProductSummaryWizardProduct(TransientModel):
+    _name = 'product.summary.wizard.product'
+
+    # Columns Section
+    _columns = {
+        'wizard_id': fields.many2one(
+            'product.summary.wizard', 'Wizard', select=True),
+        'product_id': fields.many2one(
+            'product.product', 'Product', required=True, readonly=True),
+        'quantity': fields.float(
+            'Quantity', required=True, readonly=True),
+        'uom_id': fields.many2one(
+            'product.uom', 'UoM', required=True, readonly=True),
+        'standard_price': fields.float(
+            'Standard Price', required=True, readonly=True),
+        'standard_price_total': fields.float(
+            'Standard Price Total', required=True, readonly=True),
+    }

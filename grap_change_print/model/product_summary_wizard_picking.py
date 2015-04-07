@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    GRAP - Change Print module for Odoo
-#    Copyright (C) 2013-2014 GRAP (http://www.grap.coop)
+#    GRAP - Change Print Module for Odoo
+#    Copyright (C) 2015-Today GRAP (http://www.grap.coop)
 #    @author Sylvain LE GAL (https://twitter.com/legalsylvain)
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -20,8 +20,22 @@
 #
 ##############################################################################
 
-from . import account_invoice
-from . import res_company
-from . import product_summary_wizard
-from . import product_summary_wizard_picking
-from . import product_summary_wizard_product
+from openerp.osv.orm import TransientModel
+from openerp.osv import fields
+from openerp.tools.translate import _
+
+
+class ProductSummaryWizardPicking(TransientModel):
+    _name = 'product.summary.wizard.picking'
+
+    # Columns Section
+    _columns = {
+        'wizard_id': fields.many2one(
+            'product.summary.wizard', 'Wizard', select=True),
+        'picking_id': fields.many2one(
+            'stock.picking.out', 'Picking', required=True, readonly=True),
+        'min_date': fields.datetime(
+            'Scheduled Date', required=True, readonly=True),
+        'partner_id': fields.many2one(
+            'res.partner', 'Partner', required=True, readonly=True),
+    }

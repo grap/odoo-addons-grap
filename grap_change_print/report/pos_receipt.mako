@@ -1,4 +1,6 @@
-<html>
+## -*- coding: utf-8 -*-
+<!DOCTYPE html SYSTEM "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <style type="text/css">
             body{

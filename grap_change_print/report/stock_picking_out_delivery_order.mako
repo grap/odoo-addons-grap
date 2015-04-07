@@ -7,7 +7,6 @@
             width:50%;
             border: 1px solid;
         }
-        }
     </style>
 </head>
 
@@ -19,8 +18,14 @@
 
         <table class="basic_table" width="50%">
                 %if picking.partner_id.parent_id:
-                <tr><th>${picking.partner_id.parent_id.name or ''}</th></tr>
-                <tr><td>${picking.partner_id.title and picking.partner_id.title.name or ''} ${picking.partner_id.name }</td></tr>
+                <tr>
+                    <th>${_("Company")}</th>
+                    <td>${picking.partner_id.parent_id.name or ''}</td>
+                </tr>
+                <tr>
+                    <th>${_("Name")}</th>
+                    <td>${picking.partner_id.title and picking.partner_id.title.name or ''} ${picking.partner_id.name }</td>
+                </tr>
                 <% address_lines = picking.partner_id.contact_address.split("\n")[1:] %>
                 %else:
                 <tr><td class="name">${picking.partner_id.title and picking.partner_id.title.name or ''} ${picking.partner_id.name }</td></tr>
