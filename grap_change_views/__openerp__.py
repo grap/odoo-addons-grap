@@ -76,6 +76,7 @@ Copyright, Authors and Licence:
         'pos_order_pricelist_change',
         'grap_cooperative',
         'web_dashboard_tile',
+        'stock_picking_mass_assign',
     ],
     'data': [
         'security/res_groups.yml',

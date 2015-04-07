@@ -44,31 +44,48 @@
             </field>
         </record>
 
-<!--        <record id="view_product_template_form" model="ir.ui.view">-->
-<!--            <field name="model">product.template</field>-->
-<!--            <field name="inherit_id" ref="stock.view_template_property_form"/>-->
-<!--            <field name="priority" eval="20"/>-->
-<!--            <field name="arch" type="xml">-->
-<!--                <xpath expr="//group[@name='store']" position="attributes">-->
-<!--                    <attribute name="groups">base.group_no_one</attribute>-->
-<!--                </xpath>-->
-<!--            </field>-->
-<!--        </record>-->
+        <!-- Display To do stock picking in -->
+        <record id="stock.action_picking_tree4" model="ir.actions.act_window">
+            <field name="context">{'search_default_to_process':1, 'contact_display': 'partner_address'}</field>
+        </record>
 
-<!--        <record id="view_normal_procurement_locations_form_inherit" model="ir.ui.view">-->
-<!--            <field name="model">product.product</field>-->
-<!--            <field name="inherit_id" ref="stock.view_normal_procurement_locations_form"/>-->
-<!--            <field name="priority" eval="20"/>-->
-<!--            <field name="arch" type="xml">-->
-<!--                <xpath expr="//group[@name='store']" position="replace" />-->
-<!--                <field name="default_code" position="before">-->
-<!--                    <field name="company_id" groups="base.group_multi_company" widget="selection"/>-->
-<!--                </field>-->
-<!--                <group string="Counter-Part Locations Properties" position="attributes">-->
-<!--                    <attribute name="groups">base.group_no_one</attribute>-->
-<!--                </group>-->
-<!--            </field>-->
-<!--        </record>-->
+        <record id="view_picking_in_search_form" model="ir.ui.view">
+            <field name="model">stock.picking.in</field>
+            <field name="inherit_id" ref="stock.view_picking_in_search"/>
+            <field name="arch" type="xml">
+                <filter name="to_invoice" position="after">
+                    <filter name="to_process" string="To Process"
+                        domain="[('state','not in',('done', 'cancel'))]"/>
+                    <filter string="Today of After" name="today_or_after"
+                        domain="[('min_date','&gt;=',(context_today()).strftime('%%Y-%%m-%%d'))]"/>
+                </filter>
+            </field>
+        </record>
+
+        <!-- Display To do stock picking out -->
+        <record id="stock.action_picking_tree" model="ir.actions.act_window">
+            <field name="context">{'search_default_to_process':1, 'contact_display': 'partner_address'}</field>
+        </record>
+
+        <record id="view_picking_out_search_form" model="ir.ui.view">
+            <field name="model">stock.picking.out</field>
+            <field name="inherit_id" ref="stock.view_picking_out_search"/>
+            <field name="arch" type="xml">
+                <filter name="to_invoice" position="after">
+                    <filter name="to_process" string="To Process"
+                        domain="[('state','not in',('done', 'cancel'))]"/>
+                    <filter string="Today of After" name="today_or_after"
+                        domain="[('min_date','&gt;=',(context_today()).strftime('%%Y-%%m-%%d'))]"/>
+                </filter>
+            </field>
+        </record>
+
+        <record id="stock_picking_mass_assign.action_check_assign_all_values" model="ir.values">
+            <field name="name">Mass Processing</field>
+        </record>
+        <record id="stock_picking_mass_assign.action_check_assign_all" model="ir.actions.act_window">
+            <field name="name">Mass Processing</field>
+        </record>
 
         <record model="ir.ui.menu" id="stock.menu_action_location_form">
             <field eval="[(6, 0, [ref('stock.group_stock_user')])]" name="groups_id"/>
@@ -81,12 +98,16 @@
         <record model="ir.ui.menu" id="procurement.menu_stock_sched">
             <field eval="[(6, 0, [ref('base.group_no_one')])]" name="groups_id"/>
         </record>
-        
+
         <record model="ir.ui.menu" id="procurement.menu_stock_order_points">
             <field eval="[(6, 0, [ref('base.group_no_one')])]" name="groups_id"/>
         </record>
-        
+
         <record model="ir.ui.menu" id="delivery.menu_action_delivery_carrier_form">
+            <field eval="[(6, 0, [ref('base.group_no_one')])]" name="groups_id"/>
+        </record>
+
+        <record model="ir.ui.menu" id="stock.menu_action_picking_tree6">
             <field eval="[(6, 0, [ref('base.group_no_one')])]" name="groups_id"/>
         </record>
 

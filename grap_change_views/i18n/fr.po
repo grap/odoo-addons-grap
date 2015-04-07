@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-13 09:48+0000\n"
-"PO-Revision-Date: 2015-02-13 09:48+0000\n"
+"POT-Creation-Date: 2015-04-07 19:23+0000\n"
+"PO-Revision-Date: 2015-04-07 19:23+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -52,11 +52,6 @@ msgstr "Nom complet stocké"
 #: view:product.product:0
 msgid "Consumption"
 msgstr "Consommation"
-
-#. module: grap_change_views
-#: view:product.product:0
-msgid "Counter-Part Locations Properties"
-msgstr "Proprietés des emplacements de contrepartie"
 
 #. module: grap_change_views
 #: view:account.move:0
@@ -107,6 +102,11 @@ msgstr "Donner l'ordre des séquence lors de l'affichage de la liste des mouveme
 #: view:product.product:0
 msgid "Incoming quantity"
 msgstr "Quantité entrante"
+
+#. module: grap_change_views
+#: model:ir.ui.menu,name:grap_change_views.menu_grap_dashboard
+msgid "Indicateurs"
+msgstr "Indicateurs"
 
 #. module: grap_change_views
 #: view:product.product:0
@@ -169,6 +169,11 @@ msgstr "Information sur la provenance"
 #: view:product.product:0
 msgid "Outgoing quantity"
 msgstr "Quantité sortante"
+
+#. module: grap_change_views
+#: view:product.product:0
+msgid "POS Category"
+msgstr "POS Category"
 
 #. module: grap_change_views
 #: model:ir.actions.act_window,name:grap_change_views.action_pos_order_line
@@ -240,7 +245,7 @@ msgstr "Produit"
 #: model:ir.actions.act_window,name:grap_change_views.action_view_old_product_form
 #: model:ir.ui.menu,name:grap_change_views.menu_view_old_product_form
 msgid "Product (Admin)"
-msgstr "Produit (Admin)"
+msgstr "Product (Admin)"
 
 #. module: grap_change_views
 #: view:product.product:0
@@ -365,10 +370,22 @@ msgid "Taxe Mont."
 msgstr "Taxe Mont."
 
 #. module: grap_change_views
+#: view:stock.picking.in:0
+#: view:stock.picking.out:0
+msgid "To Process"
+msgstr "A traiter"
+
+#. module: grap_change_views
 #: view:pos.order:0
 #: view:pos.order.line:0
 msgid "Today"
 msgstr "Quotidien"
+
+#. module: grap_change_views
+#: view:stock.picking.in:0
+#: view:stock.picking.out:0
+msgid "Today of After"
+msgstr "Aujourd'hui ou plus tard"
 
 #. module: grap_change_views
 #: view:account.move.line:0
@@ -423,10 +440,8 @@ msgid "base.group_multi_currency"
 msgstr "base.group_multi_currency"
 
 #. module: grap_change_views
-#: view:pos.category:0
 #: view:product.product:0
 #: view:product.supplierinfo:0
-#: view:product.template:0
 #: view:res.partner:0
 msgid "base.group_no_one"
 msgstr "base.group_no_one"
@@ -439,7 +454,7 @@ msgstr "base.group_user"
 #. module: grap_change_views
 #: model:ir.actions.act_window,help:grap_change_views.action_view_old_product_form
 msgid "display obsolete view for products."
-msgstr "Affiche la vue obsolète pour les produits."
+msgstr "display obsolete view for products."
 
 #. module: grap_change_views
 #: view:product.product:0
@@ -470,4 +485,3 @@ msgstr "mettre à jour"
 #: view:pos.order:0
 msgid "{\"quick_create\": false}"
 msgstr "{\"quick_create\": false}"
-
