@@ -38,14 +38,30 @@ class grap_people(Model):
     _columns = {
         'grap_member_id': fields.many2one(
             'grap.member', 'Member', required=True, ondelete="cascade"),
-        'first_name': fields.char('First name', size=128, required=True),
-        'last_name': fields.char('Last name', size=128, required=True),
-        'private_phone': fields.char('Private Phone', size=64),
+        'first_name': fields.char(
+            'First name', size=128, required=True),
+        'last_name': fields.char(
+            'Last name', size=128, required=True),
+        'private_phone': fields.char(
+            'Private Phone', size=64),
         'activity_ids': fields.one2many(
             'grap.activity.people', 'people_id', 'Activities'),
+        'accountant_activity_ids': fields.one2many(
+            'grap.activity', 'accountant_interlocutor_id',
+            'Accounting Performed for Activities'),
+        'hr_activity_ids': fields.one2many(
+            'grap.activity', 'hr_interlocutor_id',
+            'Human Ressources Performed for Activities'),
+        'attendant_activity_ids': fields.one2many(
+            'grap.activity', 'attendant_interlocutor_id',
+            'Attending Performed for Activities'),
         'mandate_ids': fields.many2many(
             'grap.mandate', 'grap_people_mandate_rel',
             'people_id', 'mandate_id', 'Mandates',),
+        'description': fields.text('Self Description'),
+        'skills': fields.text('Skills'),
+        'catchword': fields.char('Catchword'),
+
     }
 
     # Overloads section

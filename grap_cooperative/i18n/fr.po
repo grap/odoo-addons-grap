@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-12 15:31+0000\n"
-"PO-Revision-Date: 2015-01-12 15:31+0000\n"
+"POT-Creation-Date: 2015-04-07 15:13+0000\n"
+"PO-Revision-Date: 2015-04-07 15:13+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 #. module: grap_cooperative
 #: view:grap.activity:0
 msgid "# of FTE"
-msgstr "# of FTE"
+msgstr "# d'ETP"
 
 #. module: grap_cooperative
 #: view:grap.timesheet.report:0
@@ -26,9 +26,25 @@ msgid "# of Lines"
 msgstr "# de Lignes"
 
 #. module: grap_cooperative
+#: code:addons/grap_cooperative/model/grap_activity_people.py:39
+#, python-format
+msgid "%s (%s FTE)"
+msgstr "%s (%s ETP)"
+
+#. module: grap_cooperative
 #: sql_constraint:grap.activity.people:0
 msgid "A people can work only once time in an activity!"
 msgstr "Une personne peut être liée à une activité seulement une fois !"
+
+#. module: grap_cooperative
+#: field:grap.people,accountant_activity_ids:0
+msgid "Accounting Performed for Activities"
+msgstr "Comptabilité réalisé pour les activités"
+
+#. module: grap_cooperative
+#: field:grap.activity,accountant_interlocutor_id:0
+msgid "Accoutant Interlocutor"
+msgstr "Interlocuteur comptable"
 
 #. module: grap_cooperative
 #: field:grap.timesheet.type,active:0
@@ -40,7 +56,6 @@ msgstr "Active"
 #: view:grap.activity:0
 #: view:grap.category:0
 #: field:grap.category,activity_ids:0
-#: view:grap.people:0
 #: field:grap.people,activity_ids:0
 #: field:grap.timesheet,activity_ids:0
 #: field:grap.timesheet.group,activity_ids:0
@@ -73,6 +88,11 @@ msgid "Activity"
 msgstr "Activité"
 
 #. module: grap_cooperative
+#: view:grap.activity:0
+msgid "Activity Contact"
+msgstr "Contact"
+
+#. module: grap_cooperative
 #: field:grap.timesheet.report,amount:0
 msgid "Amount"
 msgstr "Quantité"
@@ -95,14 +115,39 @@ msgid "Applicants"
 msgstr "Demandeurs"
 
 #. module: grap_cooperative
+#: field:grap.activity,attendant_interlocutor_id:0
+msgid "Attendant Interlocutor"
+msgstr "Accompagnateur"
+
+#. module: grap_cooperative
+#: field:grap.people,attendant_activity_ids:0
+msgid "Attending Performed for Activities"
+msgstr "Accompagnement réalisé pour les activités"
+
+#. module: grap_cooperative
 #: selection:grap.todo.task,importance:0
 msgid "Average"
 msgstr "Moyenne"
 
 #. module: grap_cooperative
+#: view:grap.activity:0
+msgid "Business In Date"
+msgstr "Début économique"
+
+#. module: grap_cooperative
+#: view:grap.activity:0
+msgid "Business Out Date"
+msgstr "Fin économique"
+
+#. module: grap_cooperative
 #: selection:grap.todo.task,state:0
 msgid "Canceled"
 msgstr "Annulée"
+
+#. module: grap_cooperative
+#: field:grap.people,catchword:0
+msgid "Catchword"
+msgstr "Slogan"
 
 #. module: grap_cooperative
 #: field:grap.activity,category_ids:0
@@ -160,9 +205,7 @@ msgid "Contact EMail"
 msgstr "Email de contact"
 
 #. module: grap_cooperative
-#: view:grap.activity:0
 #: view:grap.member:0
-#: view:grap.people:0
 msgid "Contact information"
 msgstr "Information sur le contact"
 
@@ -237,7 +280,7 @@ msgstr "Afficher et gérer les types de travail."
 #. module: grap_cooperative
 #: model:ir.actions.act_window,help:grap_cooperative.action_grap_todo_task
 msgid "Display and manage todo tasks of OpenERP."
-msgstr "Afficher et gérer les tâches d'OpenERP."
+msgstr "Afficher et gérer les tâches à réaliser d'OpenERP."
 
 #. module: grap_cooperative
 #: model:ir.actions.act_window,help:grap_cooperative.action_grap_type
@@ -326,6 +369,16 @@ msgid "Hours"
 msgstr "Heures"
 
 #. module: grap_cooperative
+#: field:grap.activity,hr_interlocutor_id:0
+msgid "Human Ressources Interlocutor"
+msgstr "Interlocuteur RH"
+
+#. module: grap_cooperative
+#: field:grap.people,hr_activity_ids:0
+msgid "Human Ressources Performed for Activities"
+msgstr "Travail RH réalisé pour les activités"
+
+#. module: grap_cooperative
 #: field:grap.member,image:0
 msgid "Image"
 msgstr "Image"
@@ -355,6 +408,11 @@ msgstr "A l'étude, validé ou en activité"
 #: model:ir.ui.menu,name:grap_cooperative.menu_information
 msgid "Information"
 msgstr "Information"
+
+#. module: grap_cooperative
+#: view:grap.activity:0
+msgid "Interlocutors"
+msgstr "Interlocuteurs"
 
 #. module: grap_cooperative
 #: field:grap.todo.task,internal_note:0
@@ -430,6 +488,7 @@ msgstr "Nombre de membres"
 
 #. module: grap_cooperative
 #: field:grap.activity,activity_name:0
+#: field:grap.activity.people,complete_name:0
 #: field:grap.category,name:0
 #: field:grap.college,name:0
 #: field:grap.mandate,name:0
@@ -483,6 +542,11 @@ msgid "People"
 msgstr "Personnes"
 
 #. module: grap_cooperative
+#: view:grap.people:0
+msgid "People Contact"
+msgstr "Contact"
+
+#. module: grap_cooperative
 #: field:grap.mandate,people_count:0
 msgid "People count"
 msgstr "Nombre de personnes"
@@ -533,6 +597,12 @@ msgid "Search Tasks"
 msgstr "Rechercher des tâches"
 
 #. module: grap_cooperative
+#: view:grap.people:0
+#: field:grap.people,description:0
+msgid "Self Description"
+msgstr "Description personnelle"
+
+#. module: grap_cooperative
 #: view:grap.member:0
 msgid "Shareholder"
 msgstr "Membres souscripteurs"
@@ -541,6 +611,12 @@ msgstr "Membres souscripteurs"
 #: view:grap.member:0
 msgid "Shares"
 msgstr "Parts"
+
+#. module: grap_cooperative
+#: view:grap.people:0
+#: field:grap.people,skills:0
+msgid "Skills"
+msgstr "Compétences"
 
 #. module: grap_cooperative
 #: help:grap.timesheet,amount:0
@@ -657,11 +733,6 @@ msgid "Total Days"
 msgstr "Total Jours"
 
 #. module: grap_cooperative
-#: view:grap.people:0
-msgid "Total FTE"
-msgstr "Total ETP"
-
-#. module: grap_cooperative
 #: view:grap.member:0
 msgid "Total of Share"
 msgstr "Total des parts"
@@ -758,7 +829,7 @@ msgstr "Code Postal"
 #. module: grap_cooperative
 #: field:grap.activity,code:0
 msgid "code"
-msgstr "code"
+msgstr "Code"
 
 #. module: grap_cooperative
 #: model:res.groups,name:grap_cooperative.res_group_grap_computer_manager
@@ -808,4 +879,3 @@ msgstr "Types de travail"
 #: model:ir.ui.menu,name:grap_cooperative.menu_timesheet_line
 msgid "time Sheets"
 msgstr "Feuille de Temps"
-

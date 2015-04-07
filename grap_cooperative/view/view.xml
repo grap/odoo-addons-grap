@@ -98,6 +98,7 @@
                    <field name="name" string="People" />
                    <field name="mandate_ids" string="Mandates" />
                    <field name="working_email" string="Email" />
+                   <field name="skills"/>
                    <filter name="filter_related_to_activity" string="Related to an activity" domain="[('activity_ids','!=', False)]"/>
                    <group expand='0' string='Group by...'>
                        <filter string='College' context="{'group_by' : 'college_id'}"/>
@@ -128,46 +129,56 @@
                 <form string="People" version="7.0">
                     <sheet>
                         <group>
-                            <group>
-                                <field name="image" widget="image" class="oe_avatar oe_left"/>
+                            <group col="4">
+                                <group col="2">
+                                    <field name="image" widget="image" nolabel="1" height="80" width="80" colspan="2"/>
+                                </group>
+                                <group col="2">
+                                    <h2 colspan="2">
+                                        <field name="first_name" nolabel="1" col="1"/>
+                                        <field name="last_name" nolabel="1" col="1"/>
+                                    </h2>
+                                    <field name="catchword" nolabel="1"/>
+                                </group>
                             </group>
                             <group>
-                                <field name="first_name"/>
-                                <field name="last_name"/>
+                                <separator string="People Contact" colspan="2"/>
+                                <field name="activity_ids" widget="many2many_tags" />
                             </group>
                         </group>
                         <group>
-                            <group>
-                                <separator string="Contact information" colspan="2"/>
-                                <field name="working_email"/>
-                                <field name="working_phone"/>
-                                <field name="private_phone"/>
-                                <field name="street"/>
-                                <field name="zip"/>
-                                <field name="city"/>
+                            <group col="4">
+                                <separator string="People Contact" colspan="4"/>
+                                <field name="working_email" colspan="4"/>
+                                <field name="working_phone" colspan="4"/>
+                                <field name="private_phone" colspan="4"/>
+                                <field name="street" colspan="4"/>
+                                <field name="zip" colspan="2"/>
+                                <field name="city" colspan="2" nolabel="1"/>
                             </group>
-                            <group>
-                                <separator string="GRAP information" colspan="2"/>
-                                    <field name="mandate_ids" 
-                                        widget="many2many_tags" 
-                                        options="{'quick_create':false}"/>
-                                    <field name="college_id" 
-                                        options="{'quick_create':false}"/>
-                                    <field name="date_capital_entry" 
-                                        attrs="{'invisible':[('college_id','=',False)]}"/>
-                                    <field name="share_number"/>
+                            <group col="4">
+                                <separator string="GRAP information" colspan="4"/>
+                                <field name="mandate_ids" colspan="4"
+                                    widget="many2many_tags"
+                                    options="{'quick_create':false}"/>
+                                <field name="college_id" colspan="4"
+                                    options="{'quick_create':false}"/>
+                                <field name="share_number" colspan="2"
+                                    attrs="{'invisible':[('college_id','=',False)]}"/>
+                                <field name="date_capital_entry" colspan="2"
+                                    attrs="{'invisible':[('college_id','=',False)]}"/>
                             </group>
                         </group>
-                        <notebook colspan="4">
-                            <page string="Activities">
-                                <field name="activity_ids">
-                                    <tree string="Activities" editable="bottom">
-                                        <field name="activity_id"/>
-                                        <field name="fte" sum="Total FTE"/>
-                                    </tree>
-                                </field>
-                            </page>
-                        </notebook>
+                        <group>
+                            <group col="4">
+                                <separator string="Skills" colspan="4"/>
+                                <field name="skills" widget="html" nolabel="1"/>
+                            </group>
+                            <group col="4">
+                                <separator string="Self Description" colspan="4"/>
+                                <field name="description" widget="html" nolabel="1"/>
+                            </group>
+                        </group>
                     </sheet>
                 </form>
             </field>
@@ -208,6 +219,10 @@
                    <field name="code"/>
                    <field name="name"/>
                    <field name="category_ids"/>
+                   <field name="hr_interlocutor_id"/>
+                   <field name="attendant_interlocutor_id"/>
+                   <field name="accountant_interlocutor_id"/>
+
                    <filter name="filter_validated_working" string="Validated or working" domain="[('state','in', ('validated', 'working'))]"/>
                    <filter name="filter_progress_validated_working" string="In progress, validated or working" domain="[('state','in', ('progress', 'validated', 'working'))]"/>
                    <group expand='0' string='Group by...'>
@@ -253,58 +268,70 @@
                     </header>
                     <sheet>
                         <group>
-                            <group>
-                                <field name="image" widget="image" class="oe_avatar oe_left"/>
+                            <group col="4">
+                                <group col="2">
+                                    <field name="image" widget="image" nolabel="1" height="80" width="80" colspan="2"/>
+                                </group>
+                                <group col="2">
+                                    <h2 colspan="2">
+                                        <field name="activity_name" nolabel="1"/>
+                                    </h2>
+                                    <field name="code" colspan="2"/>
+                                <field name="category_ids"
+                                    widget="many2many_tags"
+                                    options="{'quick_create':false}" colspan="2"/>
+                                </group>
                             </group>
                             <group>
-                                <field name="activity_name"/>
-                                <field name="category_ids"
-                                    widget="many2many_tags" 
-                                    options="{'quick_create':false}"/>
-                                <field name="siret"/>
-                                <field name="code"/>
-                                <field name="fte"/>
+                                    <field name="fte"/>
+                                    <field name="siret"/>
+                                    <field name="date_in" string="Business In Date"
+                                        attrs="{'invisible':[('state','not in',['working','obsolete'])]}"/>
+                                    <field name="date_out" string="Business Out Date"
+                                        attrs="{'invisible':[('state','not in',['obsolete'])]}"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group col="4">
+                                <separator string="Activity Contact" colspan="4"/>
+                                <field name="working_email" colspan="4"/>
+                                <field name="web_site" colspan="4"/>
+                                <field name="working_phone" colspan="4"/>
+                                <field name="street" colspan="4"/>
+                                <field name="zip" colspan="2"/>
+                                <field name="city" colspan="2" nolabel="1"/>
+                            </group>
+                            <group col="4">
+                                <separator string="GRAP information" colspan="4"/>
+                                    <field name="date_validated" colspan="4"
+                                        attrs="{'invisible':[('state','in',['draft','progress'])]}"/>
+                                    <field name="type_id"
+                                        options="{'quick_create':false}" colspan="4"/>
+                                    <field name="college_id" />
+                                    <field name="share_number" colspan="2"
+                                        attrs="{'invisible':[('college_id','=',False)]}"/>
+                                    <field name="date_capital_entry" colspan="2"
+                                        attrs="{'invisible':[('college_id','=',False)]}"/>
+
                             </group>
                         </group>
                         <group>
                             <group>
-                                <separator string="Contact information" colspan="2"/>
-                                <field name="working_email"/>
-                                <field name="web_site"/>
-                                <field name="working_phone"/>
-                                <field name="street"/>
-                                <field name="zip"/>
-                                <field name="city"/>
-                            </group>
-                            <group>
-                                <separator string="GRAP information" colspan="2"/>
-                                    <field name="type_id"
-                                        options="{'quick_create':false}"/>
-                                    <field name="college_id" />
-                                    <field name="date_capital_entry" 
-                                        attrs="{'invisible':[('college_id','=',False)]}"/>
-                                    <field name="share_number"/>
-                                    <field name="date_validated" 
-                                        attrs="{'invisible':[('state','in',['draft','progress'])]}"/>
-                                    <field name="date_in" 
-                                        attrs="{'invisible':[('state','not in',['working','obsolete'])]}"/>
-                                    <field name="date_out" 
-                                        attrs="{'invisible':[('state','not in',['obsolete'])]}"/>
-                            </group>
-                        </group>
-                        <notebook colspan="4">
-                            <page string="Workers">
-                                <field name="people_ids">
+                                <separator string="Workers" colspan="2"/>
+                                <field name="people_ids" nolabel="1">
                                     <tree editable="bottom">
                                         <field name="people_id"/>
                                         <field name="fte"/>
-                                        <field name="working_email"/>
-                                        <field name="working_phone"/>
-                                        <field name="private_phone"/>
                                     </tree>
                                 </field>
-                            </page>
-                        </notebook>
+                            </group>
+                            <group>
+                                <separator string="Interlocutors" colspan="2"/>
+                                <field name="accountant_interlocutor_id"/>
+                                <field name="hr_interlocutor_id"/>
+                                <field name="attendant_interlocutor_id"/>
+                            </group>
+                        </group>
                     </sheet>
                 </form>
             </field>

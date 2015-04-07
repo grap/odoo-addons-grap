@@ -51,16 +51,29 @@ class grap_activity(Model):
     _columns = {
         'grap_member_id': fields.many2one(
             'grap.member', 'Member', required=True, ondelete="cascade"),
-        'activity_name': fields.char('Name', size=128, required=True),
-        'code': fields.char('code', size=3),
-        'siret': fields.char('SIRET', size=64),
-        'web_site': fields.char('Web Site', size=128),
+        'activity_name': fields.char(
+            'Name', size=128, required=True),
+        'code': fields.char(
+            'code', size=3),
+        'siret': fields.char(
+            'SIRET', size=64),
+        'web_site': fields.char(
+            'Web Site', size=128),
         'state': fields.selection(
             _GRAP_ACTIVITY_STATE, 'State', required=True),
-        'date_validated': fields.date('Validation date by cooperative'),
-        'date_in': fields.date('Date of activity begins to work'),
-        'date_out': fields.date('Date of activity ends to work'),
+        'date_validated': fields.date(
+            'Validation date by cooperative'),
+        'date_in': fields.date(
+            'Date of activity begins to work'),
+        'date_out': fields.date(
+            'Date of activity ends to work'),
         'type_id': fields.many2one('grap.type', 'Type'),
+        'accountant_interlocutor_id': fields.many2one(
+            'grap.people', 'Accoutant Interlocutor'),
+        'hr_interlocutor_id': fields.many2one(
+            'grap.people', 'Human Ressources Interlocutor'),
+        'attendant_interlocutor_id': fields.many2one(
+            'grap.people', 'Attendant Interlocutor'),
         'category_ids': fields.many2many(
             'grap.category', 'grap_activity_category_rel', 'activity_id',
             'category_id', 'Categories'),

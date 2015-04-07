@@ -22,12 +22,28 @@
 
 from openerp.osv import fields
 from openerp.osv.orm import Model
+from openerp.tools.translate import _
 
 
 class grap_activity_people(Model):
     _description = 'Relation between activities and people'
     _name = 'grap.activity.people'
     _order = 'people_id'
+    _rec_name = 'complete_name'
+
+    def _get_complete_name(self, cr, uid, ids, fields, args, context=None):
+        res = []
+        for gap in self.browse(cr, uid, ids, context=context):
+            res.append((
+                gap.id,
+                _('%s (%s FTE)') % (gap.activity_id.name, gap.fte)))
+        return dict(res)
+
+    def name_get(self, cr, uid, ids, context=None):
+        res = []
+        for pc in self.browse(cr, uid, ids):
+            res.append((pc.id, pc.complete_name))
+        return res
 
     # Columns section
     _columns = {
@@ -47,7 +63,8 @@ class grap_activity_people(Model):
         'working_phone': fields.related(
             'people_id', 'grap_member_id', 'working_phone',
             type='char', string='Working Phone', readonly=True),
-
+        'complete_name': fields.function(
+            _get_complete_name, type='char', string='Name', store=True),
     }
 
     # Default section
