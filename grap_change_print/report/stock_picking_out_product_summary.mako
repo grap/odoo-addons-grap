@@ -28,7 +28,7 @@
                      <td style="text-align:left;">${ product_line.product_id.name }</td>
                     <td>${ product_line.standard_price }</td>
                     <td>${ formatLang(product_line.quantity) }</td>
-                    <td>${ product_line.uom_id.id }</td>
+                    <td>${ product_line.uom_id.name }</td>
                     <td>${ product_line.standard_price_total }</td>
                 </tr>
             %endfor
