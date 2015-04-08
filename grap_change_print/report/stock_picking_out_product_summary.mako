@@ -26,7 +26,7 @@
             %for product_line in wizard.product_line_ids:
                 <tr class="line">
                      <td style="text-align:left;">${ product_line.product_id.name }</td>
-                    <td>${ product_line.standard_price_total }</td>
+                    <td>${ product_line.standard_price }</td>
                     <td>${ formatLang(product_line.quantity) }</td>
                     <td>${ product_line.uom_id.id }</td>
                     <td>${ product_line.standard_price_total }</td>
