@@ -22,7 +22,6 @@
 
 from openerp.osv.orm import TransientModel
 from openerp.osv import fields
-from openerp.tools.translate import _
 
 
 class ProductSummaryWizard(TransientModel):
@@ -30,7 +29,7 @@ class ProductSummaryWizard(TransientModel):
 
     # Fields Function Section
     def _get_standard_price_total(
-                self, cr, uid, ids, fields, arg, context=None):
+            self, cr, uid, ids, fields, arg, context=None):
         res = {}
         for psw in self.browse(cr, uid, ids, context=context):
             res[psw.id] = 0
@@ -70,7 +69,6 @@ class ProductSummaryWizard(TransientModel):
                     product_lines[sm.product_id.id]['quantity'] +=\
                         sm.product_qty
 
-
         for k, product_line in product_lines.iteritems():
             res.append((0, 0, {
                 'product_id': k,
@@ -78,7 +76,7 @@ class ProductSummaryWizard(TransientModel):
                 'uom_id': product_line['uom_id'],
                 'standard_price': product_line['standard_price'],
                 'standard_price_total': product_line['quantity'] *
-                    product_line['standard_price'],
+                product_line['standard_price'],
             }))
         return res
 
@@ -103,5 +101,4 @@ class ProductSummaryWizard(TransientModel):
         'print_detail': True,
         'picking_line_ids': _get_picking_line_ids,
         'product_line_ids': _get_product_line_ids,
-
     }
