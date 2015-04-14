@@ -33,8 +33,8 @@ class account_account(Model):
         'code': fields.char('Code', size=10, required=True, select=1),
         'export_tax_code': fields.boolean(
             'Export according to Tax Codes',
-            help=""" If checked, when you export moves from this account,"""
-            """ it will create one account for each Tax Code """),
+            help="""If checked, when you export moves from this account,"""
+            """ it will create one account for each Tax Code"""),
     }
 
     # Defaults section
@@ -45,15 +45,21 @@ class account_account(Model):
     # Constraints section
     def _check_code_length(self, cr, uid, ids, context=None):
         for account in self.browse(cr, uid, ids, context=context):
-            if account.type in ('receivable', 'payable') and\
-                    len(account.code) > 3:
-                return False
+            if account.company_id.fiscal_type == 'fiscal_mother':
+                if account.type in ('receivable', 'payable') and\
+                        len(account.code) > 3:
+                    return False
+            elif account.company_id.fiscal_type == 'normal':
+                if account.type in ('receivable', 'payable') and\
+                        len(account.code) > 6:
+                    return False
         return True
 
     _constraints = [
         (
             _check_code_length,
             """The account code for a partner account cannot exceed 3"""
-            """ characters, so as to permit the EBP export""",
-            ['code', 'type']),
+            """ characters for Fiscal Mother Company, and 6 characters,"""
+            """ for Normal Company, so as to permit the EBP export""",
+            ['code', 'type', 'company_id']),
     ]

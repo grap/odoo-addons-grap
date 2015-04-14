@@ -205,6 +205,34 @@
             </field>
         </record>
 
+<!-- Model : account.tax.template -->
+        <record id="view_account_tax_template_tree" model="ir.ui.view">
+            <field name="model">account.tax.template</field>
+            <field name="inherit_id" ref="account.view_account_tax_template_tree"/>
+            <field name="arch" type="xml">
+                <field name="description" position="after">
+                    <field name="type_tax_use"/>
+                    <field name="amount"/>
+                    <field name="type"/>
+                    <field name="price_include"/>
+                    <field name="chart_template_id"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_account_tax_template_search" model="ir.ui.view">
+            <field name="model">account.tax.template</field>
+            <field name="inherit_id" ref="account.view_account_tax_template_search"/>
+            <field name="arch" type="xml">
+                <field name="chart_template_id" position="after">
+                    <field name="type_tax_use"/>
+                </field>
+            </field>
+        </record>
+        
+          
+         
+
 <!-- 'Accounting' Menu -->
 
         <menuitem id="account.menu_finance_legal_statement" name="Legal Reports" parent="account.menu_finance_reporting" groups="account.group_account_manager"/>
