@@ -26,7 +26,7 @@
             <field name="name">view.product.product.tree</field>
             <field name="model">product.product</field>
             <field name="arch" type="xml">
-                <tree string="Product (Tactile)" editable="bottom">
+                <tree string="Products (Tactile)" editable="bottom">
                     <field name="code" />
                     <field name="name" />
                     <field name="available_in_pos"/>
@@ -38,7 +38,7 @@
         </record>
 
         <record id="action_product_product_tactile_tree" model="ir.actions.act_window">
-            <field name="name">Products (Tactile Information)</field>
+            <field name="name">Products (Tactile)</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">product.product</field>
             <field name="view_type">form</field>
@@ -48,7 +48,6 @@
         </record>
 
         <menuitem id="menu_product_product_tactile" 
-            name="Products (Tactile View)" 
             parent="point_of_sale.menu_point_of_sale_product" sequence="3" 
             action="action_product_product_tactile_tree"/>
 

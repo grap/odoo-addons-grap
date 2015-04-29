@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-07 19:23+0000\n"
-"PO-Revision-Date: 2015-04-07 19:23+0000\n"
+"POT-Creation-Date: 2015-04-28 17:27+0000\n"
+"PO-Revision-Date: 2015-04-28 17:27+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -173,7 +173,7 @@ msgstr "Quantité sortante"
 #. module: grap_change_views
 #: view:product.product:0
 msgid "POS Category"
-msgstr "POS Category"
+msgstr "Catégorie PdV"
 
 #. module: grap_change_views
 #: model:ir.actions.act_window,name:grap_change_views.action_pos_order_line
@@ -239,63 +239,52 @@ msgstr "Information liée à l'impression"
 #: view:product.product:0
 #, python-format
 msgid "Product"
-msgstr "Produit"
-
-#. module: grap_change_views
-#: model:ir.actions.act_window,name:grap_change_views.action_view_old_product_form
-#: model:ir.ui.menu,name:grap_change_views.menu_view_old_product_form
-msgid "Product (Admin)"
-msgstr "Product (Admin)"
-
-#. module: grap_change_views
-#: view:product.product:0
-msgid "Product (Price)"
-msgstr "Produit (Prix)"
-
-#. module: grap_change_views
-#: view:product.product:0
-msgid "Product (Tactile)"
-msgstr "Produit (Tactile)"
+msgstr "Article"
 
 #. module: grap_change_views
 #: view:pos.category:0
 msgid "Product List"
-msgstr "Liste des produits"
+msgstr "Liste des articles"
 
 #. module: grap_change_views
 #: field:pos.order.line,product_name:0
 msgid "Product Name"
-msgstr "Produit"
+msgstr "Article"
 
 #. module: grap_change_views
 #: field:pos.category,product_qty:0
 msgid "Product Number"
-msgstr "Nombre de produits"
+msgstr "Nombre d'articles"
 
 #. module: grap_change_views
 #: field:pos.category,product_ids:0
 msgid "Products"
-msgstr "Produits"
+msgstr "Articles"
+
+#. module: grap_change_views
+#: model:ir.actions.act_window,name:grap_change_views.action_view_old_product_form
+#: model:ir.ui.menu,name:grap_change_views.menu_view_old_product_form
+msgid "Products (Admin)"
+msgstr "Article (Admin)"
+
+#. module: grap_change_views
+#: model:ir.ui.menu,name:grap_change_views.menu_product_product_editable_view
+msgid "Products (Editable View)"
+msgstr "Articles (Vue éditable)"
 
 #. module: grap_change_views
 #: model:ir.actions.act_window,name:grap_change_views.action_view_product_product_price_tree
-msgid "Products (Price Information)"
-msgstr "Produits (Information relative au prix)"
-
-#. module: grap_change_views
 #: model:ir.ui.menu,name:grap_change_views.menu_product_product_price
-msgid "Products (Price View)"
-msgstr "Produits (Vue Prix)"
+#: view:product.product:0
+msgid "Products (Price)"
+msgstr "Articles (Prix)"
 
 #. module: grap_change_views
 #: model:ir.actions.act_window,name:grap_change_views.action_product_product_tactile_tree
-msgid "Products (Tactile Information)"
-msgstr "Produits (Information tactile)"
-
-#. module: grap_change_views
 #: model:ir.ui.menu,name:grap_change_views.menu_product_product_tactile
-msgid "Products (Tactile View)"
-msgstr "Produits (Vue Tactile)"
+#: view:product.product:0
+msgid "Products (Tactile)"
+msgstr "Article (Tactile)"
 
 #. module: grap_change_views
 #: view:product.product:0
@@ -370,6 +359,7 @@ msgid "Taxe Mont."
 msgstr "Taxe Mont."
 
 #. module: grap_change_views
+#: view:sale.order:0
 #: view:stock.picking.in:0
 #: view:stock.picking.out:0
 msgid "To Process"
@@ -424,37 +414,9 @@ msgid "Yesterday"
 msgstr "Hier"
 
 #. module: grap_change_views
-#: view:account.invoice:0
-msgid "['|', '|', ('number','ilike',self),('origin','ilike',self),('reference','ilike',self)]"
-msgstr "['|', '|', ('number','ilike',self),('origin','ilike',self),('reference','ilike',self)]"
-
-#. module: grap_change_views
-#: view:product.product:0
-#: view:res.partner:0
-msgid "account.group_account_manager"
-msgstr "account.group_account_manager"
-
-#. module: grap_change_views
-#: view:account.move:0
-msgid "base.group_multi_currency"
-msgstr "base.group_multi_currency"
-
-#. module: grap_change_views
-#: view:product.product:0
-#: view:product.supplierinfo:0
-#: view:res.partner:0
-msgid "base.group_no_one"
-msgstr "base.group_no_one"
-
-#. module: grap_change_views
-#: view:product.product:0
-msgid "base.group_user"
-msgstr "base.group_user"
-
-#. module: grap_change_views
 #: model:ir.actions.act_window,help:grap_change_views.action_view_old_product_form
 msgid "display obsolete view for products."
-msgstr "display obsolete view for products."
+msgstr "Affiche la vue obsolète pour les produits."
 
 #. module: grap_change_views
 #: view:product.product:0
@@ -463,25 +425,5 @@ msgstr "Boutique en ligne"
 
 #. module: grap_change_views
 #: view:product.product:0
-msgid "grap_change_views.group_product_image_manager"
-msgstr "grap_change_views.group_product_image_manager"
-
-#. module: grap_change_views
-#: view:account.move:0
-msgid "grap_change_views__view_account_move_form"
-msgstr "grap_change_views__view_account_move_form"
-
-#. module: grap_change_views
-#: view:pos.order:0
-msgid "grap_change_views__view_pos_order_form"
-msgstr "grap_change_views__view_pos_order_form"
-
-#. module: grap_change_views
-#: view:product.product:0
 msgid "update"
 msgstr "mettre à jour"
-
-#. module: grap_change_views
-#: view:pos.order:0
-msgid "{\"quick_create\": false}"
-msgstr "{\"quick_create\": false}"

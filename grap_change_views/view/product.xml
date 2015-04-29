@@ -33,7 +33,7 @@
         </record>
 
         <record id="action_view_old_product_form" model="ir.actions.act_window">
-            <field name="name">Product (Admin)</field>
+            <field name="name">Products (Admin)</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">product.product</field>
             <field name="view_type">form</field>
@@ -248,7 +248,6 @@
                                     </group>
                                     <group>
                                         <separator string="Food information" colspan="2"/>
-                                        <field name="fresh_category"/>
                                         <field name="label_ids" options="{'quick_create':false}"
                                             widget="many2many_tags"
                                             on_change="onchange_label_ids(
@@ -257,6 +256,8 @@
                                                 local_notation,
                                                 organic_notation,
                                                 packaging_notation, context)"/>
+                                        <field name="fresh_category"/>
+                                        <field name="fresh_range"/>
                                     </group>
                                 </group>
                                 <group colspan="4" col="4">

@@ -77,6 +77,7 @@ Copyright, Authors and Licence:
         'grap_cooperative',
         'web_dashboard_tile',
         'stock_picking_mass_assign',
+        'product_ean_duplicates',
     ],
     'data': [
         'security/res_groups.yml',

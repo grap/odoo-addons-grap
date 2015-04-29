@@ -20,43 +20,83 @@
 <!-- ********************************************************************** -->
 <openerp>
     <data>
-        <!-- View 'Tree' of the Object product.product : (Price view) -->
-        <record id="view_product_product_price_tree" model="ir.ui.view">
-            <field name="name">view.product.product.tree</field>
-            <field name="model">product.product</field>
+
+<!-- Sale Order Part refactoring -->
+        <!--
+            * remove bad domain in Sale Order Actions
+            * Add default filter context
+            * Add 'To Process' Filter
+            * Add color to Sale Order
+            * Move fields (delivery dates ...);
+            * Remove fields for basic users (carrier...)
+        -->
+        <record id="sale.action_orders" model="ir.actions.act_window">
+            <field name="domain">[]</field>
+            <field name="context">{'search_default_to_process':1}</field>
+        </record>
+
+        <record id="view_sale_order_search" model="ir.ui.view">
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_sales_order_filter"/>
             <field name="arch" type="xml">
-                <tree string="Product (Price)" editable="bottom">
-                    <field name="code" />
-                    <field name="name" />
-                    <field name="tax_group_id"/>
-                    <field name="standard_price"/>
-                    <field name="list_price"/>
-                    <field name="theoretical_margin" widget="progressbar"/>
-                    <field name="sale_ok"/>
-                    <field name="company_id" groups="base.group_multi_company"/>
+                <filter name="sales" position="after">
+                    <filter name="to_process" string="To Process"
+                        domain="[('state','not in',('done', 'cancel'))]"/>
+                </filter>
+            </field>
+        </record>
+
+        <record id="view_sale_order_tree" model="ir.ui.view">
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_tree"/>
+            <field name="arch" type="xml">
+                <tree position="attributes">
+                    <attribute name="colors">blue:state=='draft';gray:state=='cancel';red:state in ('shipping_except','invoice_except');brown:state in ('sent', 'waiting_date', 'progress', 'manual')</attribute>
                 </tree>
             </field>
         </record>
 
-        <!-- Action 'Tree' of the Object product.product (Price view) -->
-        <record id="action_view_product_product_price_tree" model="ir.actions.act_window">
-            <field name="name">Products (Price Information)</field>
-            <field name="type">ir.actions.act_window</field>
-            <field name="res_model">product.product</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">tree</field>
-            <field name="view_id" ref="view_product_product_price_tree"/>
-            <field name="context">{"search_default_filter_to_sell":1}</field>
+        <record id="view_sale_order_form_sale" model="ir.ui.view">
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@string='Other Information']" position="attributes">
+                    <attribute name="groups">base.group_no_one</attribute>
+                </xpath>
+                <field name="shop_id" position="replace"/>
+                <field name="user_id" position="after">
+                    <field name="shop_id"/>
+                </field>
+                <field name="partner_invoice_id" position="replace"/>
+                <field name="user_id" position="after">
+                    <field name="partner_invoice_id"/>
+                </field>
+                <field name="partner_shipping_id" position="replace"/>
+                <field name="user_id" position="after">
+                    <field name="partner_shipping_id"/>
+                </field>
+                <field name="client_order_ref" position="replace"/>
+                <field name="partner_id" position="after">
+                    <field name="client_order_ref"/>
+                </field>
+                <xpath expr="//field[@name='order_line']/tree/field[@name='tax_id']" position="attributes">
+                    <attribute name="groups">base.group_no_one</attribute>
+                </xpath>
+            </field>
         </record>
 
-<!-- Menu of the Object product.product (Price view) -->
-        <menuitem id="menu_product_product_price" 
-            name="Products (Price View)" 
-            parent="base.menu_product" sequence="4" 
-            action="action_view_product_product_price_tree"/>
 
-<!-- Model Sale.order -->
-        <record id="view_sale_order_form_2" model="ir.ui.view">
+        <record id="view_sale_order_form_sale_margin" model="ir.ui.view">
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale_margin.sale_margin_sale_order_line" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='order_line']/tree/field[@name='purchase_price']" position="attributes">
+                    <attribute name="groups">base.group_no_one</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_sale_order_form_sale_order_dates" model="ir.ui.view">
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="sale_order_dates.view_sale_orderfor"/>
             <field name="arch" type="xml">
@@ -67,8 +107,98 @@
             </field>
         </record>
 
+        <record id="view_sale_order_form_delivery" model="ir.ui.view">
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="delivery.view_order_withcarrier_form"/>
+            <field name="arch" type="xml">
+                <field name="carrier_id" position="attributes">
+                    <attribute name="groups">base.group_no_one</attribute>
+                </field>
+                <xpath expr="//label[@for='carrier_id']" position="attributes">
+                    <attribute name="groups">base.group_no_one</attribute>
+                </xpath>
+            </field>
+        </record>
 
+        <!--
+            * Reorder Sale / Sale items
+            * Disable Quotation
+        -->
+        <record model="ir.ui.menu" id="sale.menu_sale_order">
+            <field name="sequence" eval="1" />
+        </record>
+        <record model="ir.ui.menu" id="base.menu_partner_form">
+            <field name="sequence" eval="2" />
+        </record>
+        <record model="ir.ui.menu" id="sale.menu_sale_quotations">
+            <field name="groups_id" eval="[(6, 0, [ref('base.group_no_one')])]"/>
+        </record>
 
+<!-- Product Part refactoring -->
+        <record model="ir.ui.menu" id="menu_product_product_editable_view">
+            <field name="name">Products (Editable View)</field>
+            <field name="sequence">2</field>
+            <field name="parent_id" ref="base.menu_product" />
+        </record>
+
+        <!--
+            * Add an extra view product (Price View)
+        -->
+        <record id="view_product_product_price_tree" model="ir.ui.view">
+            <field name="model">product.product</field>
+            <field name="arch" type="xml">
+                <tree string="Products (Price)" editable="bottom">
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="tax_group_id"/>
+                    <field name="standard_price"/>
+                    <field name="list_price"/>
+                    <field name="theoretical_margin" widget="progressbar"/>
+                    <field name="sale_ok"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_view_product_product_price_tree" model="ir.actions.act_window">
+            <field name="name">Products (Price)</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.product</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_product_product_price_tree"/>
+            <field name="context">{"search_default_filter_to_sell":1}</field>
+        </record>
+
+        <menuitem id="menu_product_product_price" 
+            name="Products (Price)" 
+            parent="menu_product_product_editable_view" sequence="0"
+            action="action_view_product_product_price_tree"/>
+
+       <menuitem id="sale_food.menu_product_product_food" 
+            parent="menu_product_product_editable_view" sequence="1"/>
+
+       <menuitem id="sale_food.menu_product_product_origin" 
+            parent="menu_product_product_editable_view" sequence="2"/>
+
+       <menuitem id="sale_food.menu_product_product_pricetag" 
+            parent="menu_product_product_editable_view" sequence="3"/>
+
+       <menuitem id="product_ean_duplicates.menu_product_ean_duplicates" 
+            parent="menu_product_product_editable_view" sequence="4"/>
+
+       <menuitem id="sale_eshop.menu_product_product" 
+            parent="menu_product_product_editable_view" sequence="5"/>
+
+       <menuitem id="sale_recovery_moment.menu_product_product" 
+            parent="menu_product_product_editable_view" sequence="6"/>
+
+<!-- enable Menu to basic user -->
+        <record model="ir.ui.menu" id="product.menu_product_pricelist_action2">
+            <field eval="[(6, 0, [ref('base.group_sale_salesman_all_leads')])]" name="groups_id"/>
+        </record>
+
+<!-- Disable Menu to basic User -->
         <record model="ir.ui.menu" id="sale.menu_dashboard_sales">
             <field eval="[(6, 0, [ref('base.group_no_one')])]" name="groups_id"/>
         </record>
@@ -85,7 +215,7 @@
             <field eval="[(6, 0, [ref('base.group_no_one')])]" name="groups_id"/>
         </record>
 
-        <record model="ir.ui.menu" id="product.menu_product_pricelist_main">
+        <record model="ir.ui.menu" id="product.menu_product_pricelist_action">
             <field eval="[(6, 0, [ref('base.group_no_one')])]" name="groups_id"/>
         </record>
 
