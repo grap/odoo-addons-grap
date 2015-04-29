@@ -1,94 +1,66 @@
 ################################################################################
 # Reader Access
 ################################################################################
-- 
-  Creating a ir.model.access record
-- 
-  !record {model: ir.model.access, id: ir_model_access_grap_activity_all}:
+- !record {model: ir.model.access, id: ir_model_access_grap_activity_all}:
     model_id: grap_cooperative.model_grap_activity
     name: grap_activity all
     perm_read: true
 
-- 
-  Creating a ir.model.access record
-- 
-  !record {model: ir.model.access, id: ir_model_access_grap_activity_people_all}:
+- !record {model: ir.model.access, id: ir_model_access_grap_activity_people_all}:
     model_id: grap_cooperative.model_grap_activity_people
     name: grap_activity_people all
     perm_read: true
 
-- 
-  Creating a ir.model.access record
-- 
-  !record {model: ir.model.access, id: ir_model_access_grap_category_all}:
+- !record {model: ir.model.access, id: ir_model_access_grap_category_all}:
     model_id: grap_cooperative.model_grap_category
     name: grap_category all
     perm_read: true
 
-- 
-  Creating a ir.model.access record
-- 
-  !record {model: ir.model.access, id: ir_model_access_grap_college_all}:
+- !record {model: ir.model.access, id: ir_model_access_grap_college_all}:
     model_id: grap_cooperative.model_grap_college
     name: grap_college all
     perm_read: true
 
-- 
-  Creating a ir.model.access record
-- 
-  !record {model: ir.model.access, id: ir_model_access_grap_mandate_all}:
+- !record {model: ir.model.access, id: ir_model_access_grap_mandate_all}:
     model_id: grap_cooperative.model_grap_mandate
     name: grap_mandate all
     perm_read: true
 
-- 
-  Creating a ir.model.access record
-- 
-  !record {model: ir.model.access, id: ir_model_access_grap_member_all}:
+- !record {model: ir.model.access, id: ir_model_access_grap_member_all}:
     model_id: grap_cooperative.model_grap_member
     name: grap_member all
     perm_read: true
 
-- 
-  Creating a ir.model.access record
-- 
-  !record {model: ir.model.access, id: ir_model_access_grap_people_all}:
+- !record {model: ir.model.access, id: ir_model_access_grap_people_all}:
     model_id: grap_cooperative.model_grap_people
     name: grap_people all
     perm_read: true
 
-- 
-  Creating a ir.model.access record
-- 
-  !record {model: ir.model.access, id: ir_model_access_grap_type_all}:
+- !record {model: ir.model.access, id: ir_model_access_grap_type_all}:
     model_id: grap_cooperative.model_grap_type
     name: grap_type all
     perm_read: true
 
-- 
-  Creating a ir.model.access record
-- 
-  !record {model: ir.model.access, id: ir_model_access_grap_timesheet_type_all}:
+- !record {model: ir.model.access, id: ir_model_access_grap_timesheet_type_all}:
     model_id: grap_cooperative.model_grap_timesheet_type
     name: grap_timesheet_type all
     perm_read: true
 
-- 
-  Creating a ir.model.access record
-- 
-  !record {model: ir.model.access, id: ir_model_access_grap_timesheet_group_all}:
+- !record {model: ir.model.access, id: ir_model_access_grap_timesheet_group_all}:
     model_id: grap_cooperative.model_grap_timesheet_group
     name: grap_timesheet_group all
+    perm_read: true
+
+- !record {model: ir.model.access, id: ir_model_access_grap_timesheet_report_all}:
+    model_id: grap_cooperative.model_grap_timesheet_report
+    name: grap_timesheet_report all
     perm_read: true
 
 ################################################################################
 # Manager Access
 ################################################################################
 
-- 
-  Creating a ir.model.access record
-- 
-  !record {model: ir.model.access, id: ir_model_access_grap_timesheet_manager}:
+- !record {model: ir.model.access, id: ir_model_access_grap_timesheet_manager}:
     group_id: res_group_grap_computer_manager
     model_id: grap_cooperative.model_grap_timesheet
     name: grap_timesheet manager
@@ -97,10 +69,7 @@
     perm_write: true
     perm_unlink: true
 
-- 
-  Creating a ir.model.access record
-- 
-  !record {model: ir.model.access, id: ir_model_access_grap_timesheet_type_manager}:
+- !record {model: ir.model.access, id: ir_model_access_grap_timesheet_type_manager}:
     group_id: res_group_grap_computer_manager
     model_id: grap_cooperative.model_grap_timesheet_type
     name: grap_timesheet_type manager
@@ -109,10 +78,7 @@
     perm_write: true
     perm_unlink: true
 
-- 
-  Creating a ir.model.access record
-- 
-  !record {model: ir.model.access, id: ir_model_access_grap_timesheet_group_manager}:
+- !record {model: ir.model.access, id: ir_model_access_grap_timesheet_group_manager}:
     group_id: res_group_grap_computer_manager
     model_id: grap_cooperative.model_grap_timesheet_group
     name: grap_timesheet_group manager
@@ -121,10 +87,7 @@
     perm_write: true
     perm_unlink: true
 
-- 
-  Creating a ir.model.access record
-- 
-  !record {model: ir.model.access, id: ir_model_access_grap_timesheet_user}:
+- !record {model: ir.model.access, id: ir_model_access_grap_timesheet_user}:
     group_id: res_group_grap_timesheet_user
     model_id: grap_cooperative.model_grap_timesheet
     name: grap_timesheet user
@@ -133,10 +96,7 @@
     perm_write: true
     perm_unlink: true
 
-- 
-  Creating a ir.model.access record
-- 
-  !record {model: ir.model.access, id: ir_model_access_grap_activity_manager}:
+- !record {model: ir.model.access, id: ir_model_access_grap_activity_manager}:
     group_id: res_group_grap_cooperative_manager
     model_id: grap_cooperative.model_grap_activity
     name: grap_activity manager
@@ -145,10 +105,7 @@
     perm_write: true
     perm_unlink: true
 
-- 
-  Creating a ir.model.access record
-- 
-  !record {model: ir.model.access, id: ir_model_access_grap_activity_people_manager}:
+- !record {model: ir.model.access, id: ir_model_access_grap_activity_people_manager}:
     group_id: res_group_grap_cooperative_manager
     model_id: grap_cooperative.model_grap_activity_people
     name: grap_activity_people manager
@@ -157,10 +114,7 @@
     perm_write: true
     perm_unlink: true
 
-- 
-  Creating a ir.model.access record
-- 
-  !record {model: ir.model.access, id: ir_model_access_grap_category_manager}:
+- !record {model: ir.model.access, id: ir_model_access_grap_category_manager}:
     group_id: res_group_grap_cooperative_manager
     model_id: grap_cooperative.model_grap_category
     name: grap_category manager
@@ -169,10 +123,7 @@
     perm_write: true
     perm_unlink: true
 
-- 
-  Creating a ir.model.access record
-- 
-  !record {model: ir.model.access, id: ir_model_access_grap_college_manager}:
+- !record {model: ir.model.access, id: ir_model_access_grap_college_manager}:
     group_id: res_group_grap_cooperative_manager
     model_id: grap_cooperative.model_grap_college
     name: grap_college manager
@@ -181,10 +132,7 @@
     perm_write: true
     perm_unlink: true
 
-- 
-  Creating a ir.model.access record
-- 
-  !record {model: ir.model.access, id: ir_model_access_grap_mandate_manager}:
+- !record {model: ir.model.access, id: ir_model_access_grap_mandate_manager}:
     group_id: res_group_grap_cooperative_manager
     model_id: grap_cooperative.model_grap_mandate
     name: grap_mandate manager
@@ -193,10 +141,7 @@
     perm_write: true
     perm_unlink: true
 
-- 
-  Creating a ir.model.access record
-- 
-  !record {model: ir.model.access, id: ir_model_access_grap_member_manager}:
+- !record {model: ir.model.access, id: ir_model_access_grap_member_manager}:
     group_id: res_group_grap_cooperative_manager
     model_id: grap_cooperative.model_grap_member
     name: grap_member manager
@@ -205,10 +150,7 @@
     perm_write: true
     perm_unlink: true
 
-- 
-  Creating a ir.model.access record
-- 
-  !record {model: ir.model.access, id: ir_model_access_grap_people_manager}:
+- !record {model: ir.model.access, id: ir_model_access_grap_people_manager}:
     group_id: res_group_grap_cooperative_manager
     model_id: grap_cooperative.model_grap_people
     name: grap_people manager
@@ -217,10 +159,7 @@
     perm_write: true
     perm_unlink: true
 
-- 
-  Creating a ir.model.access record
-- 
-  !record {model: ir.model.access, id: ir_model_access_grap_type_manager}:
+- !record {model: ir.model.access, id: ir_model_access_grap_type_manager}:
     group_id: res_group_grap_cooperative_manager
     model_id: grap_cooperative.model_grap_type
     name: grap_type manager
@@ -229,10 +168,7 @@
     perm_write: true
     perm_unlink: true
 
-- 
-  Creating a ir.model.access record
-- 
-  !record {model: ir.model.access, id: ir_model_access_grap_todo_task_manager}:
+- !record {model: ir.model.access, id: ir_model_access_grap_todo_task_manager}:
     group_id: res_group_grap_computer_manager
     model_id: grap_cooperative.model_grap_todo_task
     name: grap_todo_task manager
