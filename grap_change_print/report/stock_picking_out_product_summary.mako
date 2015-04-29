@@ -10,15 +10,17 @@
 
 <body>
     %for wizard in objects :
+    <!-- Summary Part -->
+        %if wizard.print_summary:
         <h1 style="clear:both;">${_(u'Products Summary') }</h1>
 
         <table class="basic_table" width="100%" style="margin-top: 20px;">
             <thead>
                 <tr>
                     <th style="text-align:left;">${_("Description")}</th>
-                    <th>${_("Standard Price")}</th>
                     <th>${_("Quantity")}</th>
                     <th>${_("UoM")}</th>
+                    <th>${_("Standard Price")}</th>
                     <th>${_("Standard Price Total")}</th>
                 </tr>
             </thead>
@@ -26,9 +28,9 @@
             %for product_line in wizard.product_line_ids:
                 <tr class="line">
                      <td style="text-align:left;">${ product_line.product_id.name }</td>
-                    <td>${ product_line.standard_price }</td>
                     <td>${ formatLang(product_line.quantity) }</td>
                     <td>${ product_line.uom_id.name }</td>
+                    <td>${ product_line.standard_price }</td>
                     <td>${ product_line.standard_price_total }</td>
                 </tr>
             %endfor
@@ -40,7 +42,10 @@
                 </tr>
             </tfoot>
         </table>
+        %endif
 
+    <!-- Detail Part -->
+        %if wizard.print_detail:
         <h1 style="clear:both;">${_(u'Delivery Orders') }</h1>
         <table class="basic_table" width="100%" style="margin-top: 20px;">
             <thead>
@@ -71,6 +76,7 @@
                 %endfor
             %endfor
         </table>
+        %endif
     %endfor
 </body>
 </html>

@@ -74,26 +74,6 @@
                             <button icon="gtk-cancel" special="cancel" string="Cancel"/>
                             <button name="%(report_summary_report)d" string="Print Summary" type="action" icon="gtk-print"/>
                        </group>
-                        <group string="Products Summary" col="4" colspan="2">
-                            <field name="product_line_ids" nolabel="1">
-                                <tree string="Products Summary">
-                                    <field name="product_id"/>
-                                    <field name="standard_price"/>
-                                    <field name="quantity"/>
-                                    <field name="uom_id"/>
-                                    <field name="standard_price_total"/>
-                                </tree>
-                            </field>
-                        </group>
-                        <group string="Delivery Orders" col="4" colspan="2">
-                            <field name="picking_line_ids" nolabel="1">
-                                <tree string="Delivery Orders">
-                                    <field name="picking_id"/>
-                                    <field name="partner_id"/>
-                                    <field name="min_date"/>
-                                </tree>
-                            </field>
-                        </group>
                     </group>
                 </form>
               </field>
