@@ -59,7 +59,7 @@ class ProductSummaryWizard(TransientModel):
         if spo_ids:
             for spo in spo_obj.browse(cr, uid, spo_ids, context=context):
                 for sm in spo.move_lines:
-                    if not sm.product_id.id in product_lines.keys():
+                    if sm.product_id.id not in product_lines.keys():
                         product_lines[sm.product_id.id] = {
                             'quantity': 0,
                             'uom_id': sm.product_id.uom_id.id,
