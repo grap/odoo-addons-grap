@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-28 17:27+0000\n"
-"PO-Revision-Date: 2015-04-28 17:27+0000\n"
+"POT-Creation-Date: 2015-05-06 13:01+0000\n"
+"PO-Revision-Date: 2015-05-06 13:01+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -143,7 +143,7 @@ msgstr "Lignes de Points de Vente"
 #. module: grap_change_views
 #: model:res.groups,name:grap_change_views.group_product_image_manager
 msgid "Manage Product Images"
-msgstr "Gérer les images de Produit"
+msgstr "Gérer les images des articles"
 
 #. module: grap_change_views
 #: view:ir.values:0
@@ -173,7 +173,7 @@ msgstr "Quantité sortante"
 #. module: grap_change_views
 #: view:product.product:0
 msgid "POS Category"
-msgstr "Catégorie PdV"
+msgstr "Categorie PdV"
 
 #. module: grap_change_views
 #: model:ir.actions.act_window,name:grap_change_views.action_pos_order_line
@@ -249,17 +249,17 @@ msgstr "Liste des articles"
 #. module: grap_change_views
 #: field:pos.order.line,product_name:0
 msgid "Product Name"
-msgstr "Article"
+msgstr "Produit"
 
 #. module: grap_change_views
 #: field:pos.category,product_qty:0
 msgid "Product Number"
-msgstr "Nombre d'articles"
+msgstr "Nombre de produits"
 
 #. module: grap_change_views
 #: field:pos.category,product_ids:0
 msgid "Products"
-msgstr "Articles"
+msgstr "Produits"
 
 #. module: grap_change_views
 #: model:ir.actions.act_window,name:grap_change_views.action_view_old_product_form
@@ -359,6 +359,7 @@ msgid "Taxe Mont."
 msgstr "Taxe Mont."
 
 #. module: grap_change_views
+#: view:pos.session:0
 #: view:sale.order:0
 #: view:stock.picking.in:0
 #: view:stock.picking.out:0
@@ -416,7 +417,7 @@ msgstr "Hier"
 #. module: grap_change_views
 #: model:ir.actions.act_window,help:grap_change_views.action_view_old_product_form
 msgid "display obsolete view for products."
-msgstr "Affiche la vue obsolète pour les produits."
+msgstr "Affiche la vue obsolète pour les articles."
 
 #. module: grap_change_views
 #: view:product.product:0

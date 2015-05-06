@@ -55,7 +55,7 @@
             <field name="arch" type="xml">
                 <filter name="to_invoice" position="after">
                     <filter name="to_process" string="To Process"
-                        domain="[('state','not in',('done', 'cancel'))]"/>
+                        domain="['|', ('state','not in',('done', 'cancel')), ('invoice_state','=', '2binvoiced')]"/>
                     <filter string="Today of After" name="today_or_after"
                         domain="[('min_date','&gt;=',(context_today()).strftime('%%Y-%%m-%%d'))]"/>
                 </filter>
@@ -72,8 +72,9 @@
             <field name="inherit_id" ref="stock.view_picking_out_search"/>
             <field name="arch" type="xml">
                 <filter name="to_invoice" position="after">
+                    
                     <filter name="to_process" string="To Process"
-                        domain="[('state','not in',('done', 'cancel'))]"/>
+                        domain="['|', ('state','not in',('done', 'cancel')), ('invoice_state','=', '2binvoiced')]"/>
                     <filter string="Today of After" name="today_or_after"
                         domain="[('min_date','&gt;=',(context_today()).strftime('%%Y-%%m-%%d'))]"/>
                 </filter>
