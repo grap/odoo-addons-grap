@@ -22,7 +22,7 @@
 
 {
     'name': 'GRAP - Change eMail',
-    'version': '1.0',
+    'version': '1.1',
     'category': 'GRAP - Custom',
     'description': """
 Change eMail Template
@@ -32,6 +32,12 @@ Functionality:
 --------------
     * Change Sale order eMail Template;
         * Add recovery moment information;
+
+Limits:
+-------
+    * Trick. The changes are done updating only translation file.
+      GRAP doesn't need to communicate with non FR customers for the time
+      being;
 
 Copyright, Authors and Licence:
 -------------------------------

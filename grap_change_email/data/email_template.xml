@@ -20,67 +20,7 @@
 <openerp>
     <data>
 
-<!-- Model: email.template // sale.order -->
-        <record model="email.template" id="sale.email_template_edi_sale">
-            <field name="body_html"><![CDATA[
-<div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
 
-    <p>Bonjour ${object.partner_id.name},</p>
-    
-    <p>Veuillez trouver ci-joint votre ${object.state in ('draft', 'sent') and 'devis' or 'bon de commande'} de la part de ${object.company_id.name}: </p>
-
-    <p style="border-left: 1px solid #8e0000; margin-left: 30px;">
-       &nbsp;&nbsp;<strong>REFERENCES</strong><br />
-       &nbsp;&nbsp;Numéro : <strong>${object.name}</strong><br />
-       &nbsp;&nbsp;Total : <strong>${object.amount_total} ${object.pricelist_id.currency_id.name}</strong><br />
-       &nbsp;&nbsp;Date de la commande : <strong>${object.date_order}</strong><br />
-       % if object.moment_id:
-       &nbsp;&nbsp;Lieu de récupération : <strong>${object.moment_id.place_id.complete_name}</strong><br />
-       &nbsp;&nbsp;Date de récupération : <strong>${object.moment_id.min_recovery_date.split(" ")[0]}</strong><br />
-       % endif
-    </p>
-
-    <br/>
-    <br/>
-    <div style="width: 375px; margin: 0px; padding: 0px; background-color: #8E0000; border-top-left-radius: 5px 5px; border-top-right-radius: 5px 5px; background-repeat: repeat no-repeat;">
-        <h3 style="margin: 0px; padding: 2px 14px; font-size: 12px; color: #DDD;">
-            <strong style="text-transform:uppercase;">${object.company_id.name}</strong></h3>
-    </div>
-    <div style="width: 347px; margin: 0px; padding: 5px 14px; line-height: 16px; background-color: #F2F2F2;">
-        <span style="color: #222; margin-bottom: 5px; display: block; ">
-        % if object.company_id.street:
-            ${object.company_id.street}<br/>
-        % endif
-        % if object.company_id.street2:
-            ${object.company_id.street2}<br/>
-        % endif
-        % if object.company_id.city or object.company_id.zip:
-            ${object.company_id.zip} ${object.company_id.city}<br/>
-        % endif
-        % if object.company_id.country_id:
-            ${object.company_id.state_id and ('%s, ' % object.company_id.state_id.name) or ''} ${object.company_id.country_id.name or ''}<br/>
-        % endif
-        </span>
-        % if object.company_id.phone:
-            <div style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; ">
-                Téléphone:&nbsp; ${object.company_id.phone}
-            </div>
-        % endif
-        % if object.company_id.website:
-            <div>
-                Site Web :&nbsp;<a href="${object.company_id.website}">${object.company_id.website}</a>
-            </div>
-        %endif
-        % if object.shop_id.eshop_website:
-            <div>
-                Boutique en ligne :&nbsp;<a href="${object.shop_id.eshop_website}">${object.shop_id.eshop_website}</a>
-            </div>
-        %endif
-        <p></p>
-    </div>
-</div>
-            ]]></field>
-        </record>
     </data>
 
 </openerp>
