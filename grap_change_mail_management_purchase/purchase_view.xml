@@ -1,37 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
     <data>
-        <record model="ir.ui.view" id="purchase_order_form_inherit">
-            <field name="name">purchase.order.form.inherit</field>
-            <field name="model">purchase.order</field>
-            <field name="inherit_id" ref="purchase.purchase_order_form"/>
-            <field name="arch" type="xml">
-                <!-- Add a button to send an email when purchase.order is 'approved' --> 
-                <xpath expr="//button[@name='wkf_send_rfq' and @states='confirmed']" position="after">
-                    <button name="wkf_send_rfq" states="approved" string="Resend Purchase Order" type="object" class="oe_highlight"/>
-                </xpath>
-                
-                <!-- Renaming and changing color for 'wkf_send_rfq' button --> 
-                <xpath expr="//button[@name='wkf_send_rfq' and @states='draft']" position="attributes">
-                    <attribute name="string">Send Request for Quotation</attribute>
-                    <attribute name="class" />
-                </xpath>
-                <xpath expr="//button[@name='wkf_send_rfq' and @states='sent']" position="attributes">
-                    <attribute name="string">Send Request for Quotation</attribute>
-                </xpath>
-                <xpath expr="//button[@name='wkf_send_rfq' and @states='confirmed']" position="attributes">
-                    <attribute name="string">Send Purchase Order</attribute>
-                </xpath>
-                
+<!--        <record id="view_purchase_order_form" model="ir.ui.view">-->
+<!--            <field name="model">purchase.order</field>-->
+<!--            <field name="inherit_id" ref="purchase.purchase_order_form"/>-->
+<!--            <field name="arch" type="xml">-->
+                <!-- Add a button to send an email when purchase.order is 'approved'  -->
+<!--                <xpath expr="//button[@name='wkf_send_rfq' and @states='confirmed']" position="after">-->
+<!--                    <button name="wkf_send_rfq" states="approved" string="Resend Purchase Order" type="object" class="oe_highlight"/>-->
+<!--                </xpath>-->
+<!--                -->
+                <!-- Renaming and changing color for 'wkf_send_rfq' button  -->
+<!--                <xpath expr="//button[@name='wkf_send_rfq' and @states='draft']" position="attributes">-->
+<!--                    <attribute name="string">Send Request for Quotation</attribute>-->
+<!--                    <attribute name="class" />-->
+<!--                </xpath>-->
+<!--                <xpath expr="//button[@name='wkf_send_rfq' and @states='confirmed']" position="attributes">-->
+<!--                    <attribute name="string">Send Purchase Order</attribute>-->
+<!--                </xpath>-->
+<!--                -->
                 <!-- Deleting the 'print_quotation' button -->
-                <xpath expr="//button[@name='print_quotation' and @states='draft']" position="replace" />
-                <xpath expr="//button[@name='print_quotation' and @states='sent']" position="replace" />
-                
+<!--                <xpath expr="//button[@name='print_quotation' and @states='draft']" position="replace" />-->
+<!--                <xpath expr="//button[@name='print_quotation' and @states='sent']" position="replace" />-->
+<!--                -->
                 <!-- Highlight the 'purchase_confirm' in states 'draft' -->
-                <xpath expr="//button[@name='purchase_confirm' and @states='draft']" position="attributes">
-                    <attribute name="class">oe_highlight</attribute>
-                </xpath>
-            </field>
-        </record>
+<!--                <xpath expr="//button[@name='purchase_confirm' and @states='draft']" position="attributes">-->
+<!--                    <attribute name="class">oe_highlight</attribute>-->
+<!--                </xpath>-->
+<!--            </field>-->
+<!--        </record>-->
     </data>
 </openerp>
+<!--                <xpath expr="//button[@name='wkf_send_rfq' and @states='sent']" position="attributes">-->
+<!--                    <attribute name="string">Send Request for Quotation</attribute>-->
+<!--                </xpath>-->

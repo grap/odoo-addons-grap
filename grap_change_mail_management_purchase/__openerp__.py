@@ -40,6 +40,7 @@ Copyright, Author and Licence:
     'license': 'AGPL-3',
     'depends': [
         'purchase',
+        'integrated_trade_purchase_sale',
     ],
     'data': [
         'purchase_view.xml',
