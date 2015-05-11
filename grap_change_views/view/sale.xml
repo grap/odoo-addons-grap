@@ -79,9 +79,9 @@
                 <field name="partner_id" position="after">
                     <field name="client_order_ref"/>
                 </field>
-                <xpath expr="//field[@name='order_line']/tree/field[@name='tax_id']" position="attributes">
-                    <attribute name="groups">base.group_no_one</attribute>
-                </xpath>
+<!--                <xpath expr="//field[@name='order_line']/tree/field[@name='tax_id']" position="attributes">-->
+<!--                    <attribute name="groups">base.group_no_one</attribute>-->
+<!--                </xpath>-->
             </field>
         </record>
 
