@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-07 15:13+0000\n"
-"PO-Revision-Date: 2015-04-07 15:13+0000\n"
+"POT-Creation-Date: 2015-05-26 10:06+0000\n"
+"PO-Revision-Date: 2015-05-26 10:06+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -280,7 +280,7 @@ msgstr "Afficher et gérer les types de travail."
 #. module: grap_cooperative
 #: model:ir.actions.act_window,help:grap_cooperative.action_grap_todo_task
 msgid "Display and manage todo tasks of OpenERP."
-msgstr "Afficher et gérer les tâches à réaliser d'OpenERP."
+msgstr "Afficher et gérer les tâches relatives à OpenERP."
 
 #. module: grap_cooperative
 #: model:ir.actions.act_window,help:grap_cooperative.action_grap_type
@@ -656,6 +656,11 @@ msgid "Task"
 msgstr "Tâche"
 
 #. module: grap_cooperative
+#: field:grap.activity,vat:0
+msgid "Taxe ID"
+msgstr "N° TVA"
+
+#. module: grap_cooperative
 #: view:grap.timesheet.report:0
 msgid "ThimeSheet Report"
 msgstr "Rapport de Feuille de Temps"
@@ -829,7 +834,7 @@ msgstr "Code Postal"
 #. module: grap_cooperative
 #: field:grap.activity,code:0
 msgid "code"
-msgstr "Code"
+msgstr "code"
 
 #. module: grap_cooperative
 #: model:res.groups,name:grap_cooperative.res_group_grap_computer_manager
@@ -879,3 +884,4 @@ msgstr "Types de travail"
 #: model:ir.ui.menu,name:grap_cooperative.menu_timesheet_line
 msgid "time Sheets"
 msgstr "Feuille de Temps"
+

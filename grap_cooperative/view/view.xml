@@ -21,7 +21,6 @@
     <data>
 <!-- View : grap.member -->
         <record id="view_grap_member_search" model="ir.ui.view">
-            <field name="name">grap.member.search</field>
             <field name="model">grap.member</field>
             <field name="arch" type="xml">
                 <search string="Member"> 
@@ -37,7 +36,6 @@
         </record>
         
         <record id="view_grap_member_tree" model="ir.ui.view">
-            <field name="name">grap.member.tree</field>
             <field name="model">grap.member</field>
             <field name="arch" type="xml">
                 <tree string="Members">
@@ -53,7 +51,6 @@
         </record>
 
         <record id="view_grap_member_form" model="ir.ui.view">
-            <field name="name">grap.member.form</field>
             <field name="model">grap.member</field>
             <field name="arch" type="xml">
                 <form string="Member" version="7.0">
@@ -91,7 +88,6 @@
 
 <!-- View : grap.people -->
         <record id="view_grap_people_search" model="ir.ui.view">
-            <field name="name">grap.people.search</field>
             <field name="model">grap.people</field>
             <field name="arch" type="xml">
                 <search string="People"> 
@@ -108,7 +104,6 @@
         </record>
 
         <record id="view_grap_people_tree" model="ir.ui.view">
-            <field name="name">grap.people.tree</field>
             <field name="model">grap.people</field>
             <field name="arch" type="xml">
                 <tree string="People">
@@ -123,7 +118,6 @@
         </record>
 
         <record id="view_grap_people_form" model="ir.ui.view">
-            <field name="name">grap.people.form</field>
             <field name="model">grap.people</field>
             <field name="arch" type="xml">
                 <form string="People" version="7.0">
@@ -185,7 +179,6 @@
         </record>
 
         <record id="view_grap_people_kanban" model="ir.ui.view">
-            <field name="name">grap.people.kanban</field>
             <field name="model">grap.people</field>
             <field name="arch" type="xml">
                 <kanban>
@@ -212,7 +205,6 @@
 
 <!-- View : grap.activity -->
         <record id="view_grap_activity_search" model="ir.ui.view">
-            <field name="name">grap.activity.search</field>
             <field name="model">grap.activity</field>
             <field name="arch" type="xml">
                 <search string="Activity"> 
@@ -235,7 +227,6 @@
         </record>
 
         <record id="view_grap_activity_tree" model="ir.ui.view">
-            <field name="name">grap.activity.tree</field>
             <field name="model">grap.activity</field>
             <field name="arch" type="xml">
                 <tree string="Activities">
@@ -253,7 +244,6 @@
         </record>
 
         <record id="view_grap_activity_form" model="ir.ui.view">
-            <field name="name">grap.activity.form</field>
             <field name="model">grap.activity</field>
             <field name="arch" type="xml">
                 <form string="Activity" version="7.0">
@@ -285,6 +275,7 @@
                             <group>
                                     <field name="fte"/>
                                     <field name="siret"/>
+                                    <field name="vat"/>
                                     <field name="date_in" string="Business In Date"
                                         attrs="{'invisible':[('state','not in',['working','obsolete'])]}"/>
                                     <field name="date_out" string="Business Out Date"
@@ -338,7 +329,6 @@
         </record>
 
         <record id="view_grap_activity_kanban" model="ir.ui.view">
-            <field name="name">grap.activity.kanban</field>
             <field name="model">grap.activity</field>
             <field name="arch" type="xml">
                 <kanban >
@@ -382,7 +372,6 @@
 
 <!-- View : grap.college -->
         <record id="view_grap_college_tree" model="ir.ui.view">
-            <field name="name">grap.college.tree</field>
             <field name="model">grap.college</field>
             <field name="arch" type="xml">
                 <tree string="Colleges">
@@ -394,7 +383,6 @@
         </record>
 
         <record id="view_grap_college_form" model="ir.ui.view">
-            <field name="name">grap.college.form</field>
             <field name="model">grap.college</field>
             <field name="arch" type="xml">
                 <form string="College" version="7.0">
@@ -419,7 +407,6 @@
 
 <!-- View : grap.mandate -->
         <record id="view_grap_mandate_tree" model="ir.ui.view">
-            <field name="name">grap.mandate.tree</field>
             <field name="model">grap.mandate</field>
             <field name="arch" type="xml">
                 <tree string="Mandates">
@@ -430,7 +417,6 @@
         </record>
 
         <record id="view_grap_mandate_form" model="ir.ui.view">
-            <field name="name">grap.mandate.form</field>
             <field name="model">grap.mandate</field>
             <field name="arch" type="xml">
                 <form string="Mandate" version="7.0">
@@ -455,7 +441,6 @@
         
 <!-- View : grap.category -->
         <record id="view_grap_category_tree" model="ir.ui.view">
-            <field name="name">grap.category.tree</field>
             <field name="model">grap.category</field>
             <field name="arch" type="xml">
                 <tree string="Categories">
@@ -466,7 +451,6 @@
         </record>
 
         <record id="view_grap_category_form" model="ir.ui.view">
-            <field name="name">grap.category.form</field>
             <field name="model">grap.category</field>
             <field name="arch" type="xml">
                 <form string="Category" version="7.0">
@@ -491,7 +475,6 @@
 
 <!-- View : grap.type -->
         <record id="view_grap_type_tree" model="ir.ui.view">
-            <field name="name">grap.type.tree</field>
             <field name="model">grap.type</field>
             <field name="arch" type="xml">
                 <tree string="Types">
@@ -502,7 +485,6 @@
         </record>
 
         <record id="view_grap_type_form" model="ir.ui.view">
-            <field name="name">grap.type.form</field>
             <field name="model">grap.type</field>
             <field name="arch" type="xml">
                 <form string="Type" version="7.0">
@@ -527,7 +509,6 @@
 
 <!-- View : grap.todo.task -->
          <record id="todo_task_search" model="ir.ui.view">
-            <field name="name">grap.todo.task.search</field>
             <field name="model">grap.todo.task</field>
             <field name="arch" type="xml">
                 <search string="Search Tasks">
@@ -546,7 +527,6 @@
         </record>
 
         <record id="view_grap_todo_task_tree" model="ir.ui.view">
-            <field name="name">grap.todo.task.tree</field>
             <field name="model">grap.todo.task</field>
             <field name="arch" type="xml">
                 <tree string="Todo Tasks"
@@ -569,7 +549,6 @@
         </record>
 
         <record id="view_grap_todo_task_form" model="ir.ui.view">
-            <field name="name">grap.todo.task.form</field>
             <field name="model">grap.todo.task</field>
             <field name="arch" type="xml">
                 <form string="Todo Task" version="7.0">
@@ -615,7 +594,6 @@
 
 <!-- View : grap.timesheet -->
         <record id="view_timesheet_search" model="ir.ui.view">
-            <field name="name">grap.timesheet.search</field>
             <field name="model">grap.timesheet</field>
             <field name="arch" type="xml">
                 <search string="Search Tasks">
@@ -627,7 +605,6 @@
         </record>
 
         <record id="view_timesheet_tree" model="ir.ui.view">
-            <field name="name">grap.timesheet.tree</field>
             <field name="model">grap.timesheet</field>
             <field name="arch" type="xml">
                 <tree string="TimeSheet" editable="top">
@@ -645,7 +622,6 @@
 
 <!-- View : grap.timesheet.type -->
         <record id="view_timesheet_type_tree" model="ir.ui.view">
-            <field name="name">grap.timesheet.type.tree</field>
             <field name="model">grap.timesheet.type</field>
             <field name="arch" type="xml">
                 <tree string="TimeSheet Type">
@@ -657,7 +633,6 @@
         </record>
 
         <record id="view_timesheet_type_form" model="ir.ui.view">
-            <field name="name">grap.timesheet.type.form</field>
             <field name="model">grap.timesheet.type</field>
             <field name="arch" type="xml">
                 <form string="TimeSheet Type" version="7.0">
@@ -679,7 +654,6 @@
 
 <!-- View : grap.timesheet.group -->
         <record id="view_timesheet_group_tree" model="ir.ui.view">
-            <field name="name">grap.timesheet.group.tree</field>
             <field name="model">grap.timesheet.group</field>
             <field name="arch" type="xml">
                 <tree string="TimeSheet Group">
@@ -690,7 +664,6 @@
         </record>
 
         <record id="view_timesheet_group_form" model="ir.ui.view">
-            <field name="name">grap.timesheet.group.form</field>
             <field name="model">grap.timesheet.group</field>
             <field name="arch" type="xml">
                 <form string="TimeSheet Group" version="7.0">
@@ -710,7 +683,6 @@
 
 <!-- View : grap.timesheet.group -->
         <record id="view_timesheet_report_search" model="ir.ui.view">
-            <field name="name">grap.timesheet.report.search</field>
             <field name="model">grap.timesheet.report</field>
             <field name="arch" type="xml">
                 <search string="TimeSheet Report"> 
@@ -728,7 +700,6 @@
         </record>
 
         <record id="view_timesheet_report_tree" model="ir.ui.view">
-            <field name="name">grap.timesheet.report.tree</field>
             <field name="model">grap.timesheet.report</field>
         <field name="arch" type="xml">
             <tree string="ThimeSheet Report" create="false">
@@ -743,7 +714,6 @@
     </record>
 
         <record id="view_timesheet_report_graph" model="ir.ui.view">
-            <field name="name">grap.timesheet.report.graph</field>
             <field name="model">grap.timesheet.report</field>
          <field name="arch" type="xml">
                 <graph string="ThimeSheet Report" type="bar">

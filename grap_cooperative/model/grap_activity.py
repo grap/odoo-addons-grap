@@ -57,6 +57,8 @@ class grap_activity(Model):
             'code', size=3),
         'siret': fields.char(
             'SIRET', size=64),
+        'vat': fields.char(
+            'Taxe ID', size=32),
         'web_site': fields.char(
             'Web Site', size=128),
         'state': fields.selection(
