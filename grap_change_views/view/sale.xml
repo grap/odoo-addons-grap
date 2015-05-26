@@ -79,9 +79,12 @@
                 <field name="partner_id" position="after">
                     <field name="client_order_ref"/>
                 </field>
-<!--                <xpath expr="//field[@name='order_line']/tree/field[@name='tax_id']" position="attributes">-->
-<!--                    <attribute name="groups">base.group_no_one</attribute>-->
-<!--                </xpath>-->
+                <xpath expr="//field[@name='order_line']/tree/field[@name='tax_id']" position="attributes">
+                    <attribute name="groups">account.group_account_manager</attribute>
+                 </xpath>
+                <xpath expr="//field[@name='order_line']/tree//field[@name='tax_id']" position="after">
+                    <field name="tax_ids_readonly" widget="many2many_tags"/>
+                 </xpath>
             </field>
         </record>
 
@@ -170,27 +173,27 @@
             <field name="context">{"search_default_filter_to_sell":1}</field>
         </record>
 
-        <menuitem id="menu_product_product_price" 
-            name="Products (Price)" 
+        <menuitem id="menu_product_product_price"
+            name="Products (Price)"
             parent="menu_product_product_editable_view" sequence="0"
             action="action_view_product_product_price_tree"/>
 
-       <menuitem id="sale_food.menu_product_product_food" 
+       <menuitem id="sale_food.menu_product_product_food"
             parent="menu_product_product_editable_view" sequence="1"/>
 
-       <menuitem id="sale_food.menu_product_product_origin" 
+       <menuitem id="sale_food.menu_product_product_origin"
             parent="menu_product_product_editable_view" sequence="2"/>
 
-       <menuitem id="sale_food.menu_product_product_pricetag" 
+       <menuitem id="sale_food.menu_product_product_pricetag"
             parent="menu_product_product_editable_view" sequence="3"/>
 
-       <menuitem id="product_ean_duplicates.menu_product_ean_duplicates" 
+       <menuitem id="product_ean_duplicates.menu_product_ean_duplicates"
             parent="menu_product_product_editable_view" sequence="4"/>
 
-       <menuitem id="sale_eshop.menu_product_product" 
+       <menuitem id="sale_eshop.menu_product_product"
             parent="menu_product_product_editable_view" sequence="5"/>
 
-       <menuitem id="sale_recovery_moment.menu_product_product" 
+       <menuitem id="sale_recovery_moment.menu_product_product"
             parent="menu_product_product_editable_view" sequence="6"/>
 
 <!-- enable Menu to basic user -->

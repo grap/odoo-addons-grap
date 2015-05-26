@@ -78,6 +78,9 @@ Copyright, Authors and Licence:
         'web_dashboard_tile',
         'stock_picking_mass_assign',
         'product_ean_duplicates',
+        'simple_tax_account',
+        'simple_tax_sale',
+        'simple_tax_purchase',
     ],
     'data': [
         'security/res_groups.yml',

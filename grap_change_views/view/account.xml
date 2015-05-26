@@ -151,7 +151,52 @@
             </field>
         </record>
 
-<!-- Model : account.invoice -->
+        <!-- Model : account.invoice -->
+        <record id="view_account_invoice_form_customer" model="ir.ui.view">
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <field name="account_id" position="attributes">
+                  <attribute name="groups">account.group_account_manager</attribute>
+                </field>
+                <xpath expr="//field[@name='invoice_line']/tree/field[@name='account_id']" position="attributes">
+                    <attribute name="groups">account.group_account_manager</attribute>
+                 </xpath>
+                <xpath expr="//field[@name='invoice_line']/tree/field[@name='invoice_line_tax_id']" position="attributes">
+                    <attribute name="groups">account.group_account_manager</attribute>
+                 </xpath>
+                <xpath expr="//field[@name='invoice_line']/tree//field[@name='invoice_line_tax_id']" position="after">
+                    <field name="tax_ids_readonly" widget="many2many_tags"/>
+                 </xpath>
+                 <xpath expr="//field[@name='tax_line']/tree/field[@name='account_id']" position="attributes">
+                     <attribute name="groups">account.group_account_manager</attribute>
+                  </xpath>
+            </field>
+        </record>
+
+        <record id="view_account_invoice_form_supplier" model="ir.ui.view">
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="arch" type="xml">
+                <field name="account_id" position="attributes">
+                  <attribute name="groups">account.group_account_manager</attribute>
+                </field>
+                <xpath expr="//field[@name='invoice_line']/tree/field[@name='account_id']" position="attributes">
+                    <attribute name="groups">account.group_account_manager</attribute>
+                 </xpath>
+                <xpath expr="//field[@name='invoice_line']/tree/field[@name='invoice_line_tax_id']" position="attributes">
+                    <attribute name="groups">account.group_account_manager</attribute>
+                 </xpath>
+                <xpath expr="//field[@name='invoice_line']/tree//field[@name='invoice_line_tax_id']" position="after">
+                    <field name="tax_ids_readonly" widget="many2many_tags"/>
+                 </xpath>
+                 <xpath expr="//field[@name='tax_line']/tree/field[@name='account_id']" position="attributes">
+                     <attribute name="groups">account.group_account_manager</attribute>
+                  </xpath>
+            </field>
+        </record>
+
+
         <record id="view_account_invoice_tree" model="ir.ui.view">
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_tree"/>
@@ -185,11 +230,9 @@
             <field name="model">account.invoice.line</field>
             <field name="inherit_id" ref="account.view_invoice_line_form"/>
             <field name="arch" type="xml">
-                <data>
-                    <field name="discount" position="attributes">
-                        <attribute name="groups"/>
-                    </field>
-                </data>
+                <field name="discount" position="attributes">
+                    <attribute name="groups"/>
+                </field>
             </field>
         </record>
 
@@ -197,13 +240,18 @@
             <field name="model">account.invoice.line</field>
             <field name="inherit_id" ref="account.view_invoice_line_tree"/>
             <field name="arch" type="xml">
-                <data>
-                    <field name="discount" position="attributes">
-                        <attribute name="groups"/>
-                    </field>
-                </data>
+                <field name="discount" position="attributes">
+                    <attribute name="groups"/>
+                </field>
             </field>
         </record>
+
+        <!-- <field name="invoice_line_tax_id" position="attributes">
+            <attribute name="groups">account.group_account_manager</attribute>
+        </field>
+        <field name="invoice_line_tax_id" position="after">
+            <field name="tax_ids_readonly" widget="many2many_tags"/>
+        </field> -->
 
 <!-- Model : account.tax.template -->
         <record id="view_account_tax_template_tree" model="ir.ui.view">
