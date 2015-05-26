@@ -28,6 +28,8 @@
 Change workflow of Mail in Purchase
 ===================================
 
+TODO: FIXME
+
 Copyright, Author and Licence:
 -------------------------------
     * Copyright: 2014, Groupement Régional Alimentaire de Proximité;
@@ -40,7 +42,7 @@ Copyright, Author and Licence:
     'license': 'AGPL-3',
     'depends': [
         'purchase',
-        'integrated_trade_purchase_sale',
+        # 'integrated_trade_purchase_sale',
     ],
     'data': [
         'purchase_view.xml',
