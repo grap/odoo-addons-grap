@@ -124,7 +124,7 @@
             <field name="name">Mass Processing</field>
         </record>
 
-
+<!-- Disable Menu to basic User -->
         <record model="ir.ui.menu" id="stock.menu_stock_configuration">
             <field eval="[(6, 0, [ref('base.group_no_one')])]" name="groups_id"/>
         </record>
@@ -150,6 +150,10 @@
         </record>
 
         <record model="ir.ui.menu" id="stock.menu_action_picking_tree6">
+            <field eval="[(6, 0, [ref('base.group_no_one')])]" name="groups_id"/>
+        </record>
+
+        <record model="ir.ui.menu" id="stock.menu_product_by_category_stock_form">
             <field eval="[(6, 0, [ref('base.group_no_one')])]" name="groups_id"/>
         </record>
 
