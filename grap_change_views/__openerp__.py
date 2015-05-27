@@ -62,6 +62,7 @@ Copyright, Authors and Licence:
         'procurement',
         'purchase',
         'sale',
+        'sale_margin',
         'sale_stock',
         'stock',
         'knowledge',
