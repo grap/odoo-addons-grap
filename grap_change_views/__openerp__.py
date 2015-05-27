@@ -64,6 +64,7 @@ Copyright, Authors and Licence:
         'sale',
         'sale_stock',
         'stock',
+        'knowledge',
         'pos_multicompany',
         'product_taxes_group',
         'sale_eshop',
