@@ -56,7 +56,7 @@
             </field>
         </record>
 
-        <record id="view_sale_order_form_sale" model="ir.ui.view">
+        <record id="view_sale_order_form_sale_2" model="ir.ui.view">
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
@@ -79,21 +79,23 @@
                 <field name="partner_id" position="after">
                     <field name="client_order_ref"/>
                 </field>
-                <xpath expr="//field[@name='order_line']/tree/field[@name='tax_id']" position="attributes">
-                    <attribute name="groups">account.group_account_manager</attribute>
-                 </xpath>
                 <xpath expr="//field[@name='order_line']/tree//field[@name='tax_id']" position="after">
                     <field name="tax_ids_readonly" widget="many2many_tags"/>
+                 </xpath>
+                <xpath expr="//field[@name='order_line']/tree/field[@name='tax_id']" position="attributes">
+                    <attribute name="groups">account.group_account_manager</attribute>
                  </xpath>
             </field>
         </record>
 
-
-        <record id="view_sale_order_form_sale_margin" model="ir.ui.view">
+        <record id="view_sale_order_form_delivery" model="ir.ui.view">
             <field name="model">sale.order</field>
-            <field name="inherit_id" ref="sale_margin.sale_margin_sale_order_line" />
+            <field name="inherit_id" ref="delivery.view_order_withcarrier_form"/>
             <field name="arch" type="xml">
-                <xpath expr="//field[@name='order_line']/tree/field[@name='purchase_price']" position="attributes">
+                <field name="carrier_id" position="attributes">
+                    <attribute name="groups">base.group_no_one</attribute>
+                </field>
+                <xpath expr="//label[@for='carrier_id']" position="attributes">
                     <attribute name="groups">base.group_no_one</attribute>
                 </xpath>
             </field>
@@ -110,18 +112,17 @@
             </field>
         </record>
 
-        <record id="view_sale_order_form_delivery" model="ir.ui.view">
+        <record id="view_sale_order_form_sale_margin" model="ir.ui.view">
             <field name="model">sale.order</field>
-            <field name="inherit_id" ref="delivery.view_order_withcarrier_form"/>
+            <field name="inherit_id" ref="sale_margin.sale_margin_sale_order_line_form" />
             <field name="arch" type="xml">
-                <field name="carrier_id" position="attributes">
-                    <attribute name="groups">base.group_no_one</attribute>
-                </field>
-                <xpath expr="//label[@for='carrier_id']" position="attributes">
+                <xpath expr="//field[@name='order_line']/tree/field[@name='purchase_price']" position="attributes">
                     <attribute name="groups">base.group_no_one</attribute>
                 </xpath>
             </field>
         </record>
+
+
 
         <!--
             * Reorder Sale / Sale items
