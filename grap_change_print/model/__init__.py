@@ -21,6 +21,7 @@
 ##############################################################################
 
 from . import account_invoice
+from . import account_invoice_line
 from . import res_company
 from . import product_summary_wizard
 from . import product_summary_wizard_picking

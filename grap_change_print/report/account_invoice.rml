@@ -209,7 +209,7 @@
             <td> <para style="terp_tblheader_Details_Centre">Taxes</para> </td>
             <td> <para style="terp_tblheader_Details_Centre">Qté</para> </td>
             <td> <para style="terp_tblheader_Details_Right">P.U. (HT)</para> </td>
-            <td> <para style="terp_tblheader_Details_Right">Rem. (%)</para> </td>
+            <td> <para style="terp_tblheader_Details_Right">[[ ((o.has_discount and 'Rem. (%)') or removeParentNode('para')) ]]</para> </td>
             <td> <para style="terp_tblheader_Details_Right">Total (HT)</para> </td>
         </tr>
         </blockTable>
@@ -229,7 +229,7 @@
           <para style="terp_tblheader_General_Right"><b>P.U. (HT)</b></para>
         </td>
         <td>
-          <para style="terp_tblheader_General_Right"><b>Rem. (%)</b></para>
+          <para style="terp_tblheader_General_Right"><b>[[ ((o.has_discount and 'Rem. (%)') or removeParentNode('para')) ]]</b></para>
         </td>
         <td>
           <para style="terp_tblheader_General_Right"><b>Total (HT)</b></para>
@@ -254,7 +254,7 @@
             <para style="terp_default_Right_9">[[ formatLang(l.price_unit_vat_excluded) ]]</para>
           </td>
           <td>
-            <para style="terp_default_Centre_9">[[ formatLang(l.discount, dp='Account') ]] </para>
+            <para style="terp_default_Centre_9">[[ ((o.has_discount and formatLang(l.discount, dp='Account')) or removeParentNode('para')) ]] </para>
           </td>
           <td>
             <para style="terp_default_Right_9">[[ formatLang(l.price_subtotal, dp='Account', currency_obj=o.currency_id) ]]</para>

@@ -22,57 +22,20 @@
 
 from openerp.osv.orm import Model
 from openerp.osv import fields
-from openerp.tools.translate import _
-import openerp.addons.decimal_precision as dp
 
 
-class account_invoice_line(Model):
-    _inherit = 'account.invoice.line'
+class AccountInvoice(Model):
+    _inherit = 'account.invoice'
 
     # Columns section
-    def _get_extra_food_info(self, cr, uid, ids, name, arg, context=None):
+    def _get_has_discount(self, cr, uid, ids, name, arg, context=None):
         res = {}
-        if context is None:
-            context = {}
-        for ail in self.browse(cr, uid, ids, context=context):
-            res[ail.id] = ""
-            product = ail.product_id
-            if product:
-                # Add country name
-                if product.country_id:
-                    res[ail.id] += _(" - Country : ")\
-                        + product.country_id.name
-                # Add country name
-                if product.fresh_category:
-                    res[ail.id] += _(" - Category : ")\
-                        + product.fresh_category
-                count_label = 0
-                for label in product.label_ids:
-                    if label.mandatory_on_invoice:
-                        if count_label == 0:
-                            count_label += 1
-                            res[ail.id] += _(" - Label : ")
-                        res[ail.id] += label.name
-        return res
-
-    def _get_price_unit_vat_excluded(
-            self, cr, uid, ids, name, arg, context=None):
-        at_obj = self.pool['account.tax']
-        res = {}
-        for line in self.browse(cr, uid, ids, context=context):
-            tmp = at_obj.compute_all(
-                cr, uid, line.invoice_line_tax_id,
-                line.price_unit, line.quantity, line.product_id,
-                line.invoice_id.partner_id)
-            res[line.id] = tmp['taxes'][0]['price_unit']
+        for ai in self.browse(cr, uid, ids, context=context):
+            res[ai.id] = any([line.discount for line in ai.invoice_line])
         return res
 
     _columns = {
-        'extra_food_info': fields.function(
-            _get_extra_food_info, type='char',
-            string='Extra information for invoices'),
-        'price_unit_vat_excluded': fields.function(
-            _get_price_unit_vat_excluded, type='float',
-            digits_compute=dp.get_precision('Purchase Price'),
-            string='Unit Price VAT Excluded'),
+        'has_discount': fields.function(
+            _get_has_discount, type='boolean',
+            string='Indicate that there is some discount in Invoice Lines'),
     }
