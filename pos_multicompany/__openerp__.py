@@ -40,7 +40,7 @@ Functionality:
     * OpenERP create a default pos_category 'Others' for products;
       This module will create pos_category 'Others' for each company;
       This pos_category will be the new default value;
-      (So add a field 'is_default' on pos_category that must be uniq 
+      (So add a field 'is_default' on pos_category that must be uniq
       by company)
     * It is forbidden to delete default pos_category
 
