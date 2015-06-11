@@ -58,7 +58,7 @@ Copyright, Authors and Licence:
         'product_margin',
         'product_margin_improve',
         'product_average_consumption',
-        'product_theoretical_margin',
+        'product_standard_margin',
         'procurement',
         'purchase',
         'sale',

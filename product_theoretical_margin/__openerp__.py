@@ -21,7 +21,7 @@
 ##############################################################################
 
 {
-    'name': 'Product - Theoretical Margin',
+    'name': 'Product - Theoretical Margin OBSOLETE',
     'version': '3.0',
     'category': 'Product',
     'description': """

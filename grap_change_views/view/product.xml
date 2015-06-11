@@ -171,10 +171,10 @@
                                         <field name="virtual_available"/>
                                     </group>
                                     <group string="Purchase / Produce">
-                                        <field name="tax_group_id" colspan="2" quick_create="false"/>
                                         <field name="property_account_expense" 
                                             domain="[('type','=','other')]" 
                                             groups="account.group_account_manager"/>
+                                        <field name="tax_group_id" colspan="2" quick_create="false"/>
                                         <field name="standard_price"/>
                                         <field name="uom_po_id"/>
                                     </group>
@@ -183,12 +183,13 @@
                                             domain="[('type','=','other')]" 
                                             groups="account.group_account_manager"/>
                                         <field name="list_price"/>
-                                        <field name="theoretical_margin" widget="progressbar"/>
+                                        <field name="standard_margin"/>
+                                        <field name="standard_margin_rate" widget="progressbar"/>
                                     </group>
-                                    <group string="Point Of Sale">
+                                    <group string="Point Of Sale" groups="point_of_sale.group_pos_user">
                                         <field name="available_in_pos" string="Tactile point of sale"/>
                                         <field name="pos_categ_id"/>
-                                        <field name="to_weight" />
+                                        <field name="to_weight"/>
                                     </group>
                                 </group>
                                 <group col="6">
