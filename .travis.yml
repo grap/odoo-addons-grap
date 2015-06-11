@@ -28,6 +28,7 @@ before_install:
 install:
   - git clone https://github.com/OCA/web.git $HOME/web -b 7.0
   - git clone https://github.com/OCA/pos.git $HOME/pos -b 7.0
+  - git clone https://github.com/OCA/margin-analysis.git $HOME/margin-analysis -b 7.0
   - git clone https://github.com/OCA/webkit-tools.git $HOME/webkit-tools -b 7.0
   - git clone https://github.com/OCA/stock-logistics-workflow.git $HOME/stock-logistics-workflow -b 7.0
   - bzr branch lp:openerp-french-localization/7.0 $HOME/openerp-french-localization
