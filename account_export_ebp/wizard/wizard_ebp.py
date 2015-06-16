@@ -101,6 +101,8 @@ class account_export_ebp(osv.TransientModel):
             'Empty Suffixes Partners', readonly=True),
         'empty_suffixes_tax': fields.boolean(
             'Empty Suffixes Taxes', readonly=True),
+        'description': fields.text(
+            'Description',  help="Extra Description for Accountant Manager."),
     }
 
     # Defaults Section
@@ -549,6 +551,7 @@ class account_export_ebp(osv.TransientModel):
             export_id = export_obj.create(cr, uid, {
                 'fiscalyear_id': fiscalyear.id,
                 'company_id': user_company.id,
+                'description': data['form']['description'],
             }, context=context)
             self.pool.get('account.move').write(cr, uid, exported_move_ids, {
                 'exported_ebp_id': export_id,

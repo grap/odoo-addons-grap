@@ -200,6 +200,7 @@
                       <field name="company_suffix"/>
                       <field name="partner_accounts"/>
                       <field name="tax_code_suffix"/>
+                      <field name="description"/>
                       <footer>
                           <button string="Export" name="export" type="object" class="oe_highlight" states="export_ebp"/>
                           <button string="Cancel" class="oe_link" special="cancel" states="export_ebp"/>
@@ -261,6 +262,7 @@
                         <p>And the exported accounts file: <field name="data_accounts" readonly="1" filename="name_accounts"/></p>
                         <p>And the exported balance file: <field name="data_balance" readonly="1" filename="name_balance"/></p>
                     </group>
+                    <field name="description" readonly='True' />
                 </form>
             </field>
         </record>

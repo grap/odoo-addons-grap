@@ -56,7 +56,10 @@ class ebp_export(Model):
         'date': fields.date(
             'Date', required=True),
         'name': fields.function(
-            _get_name, 'Name', type='char', store=True)
+            _get_name, 'Name', type='char', store=True),
+        'description': fields.text(
+            'Description', readonly=True,
+            help="Extra Description for Accountant Manager."),
     }
     _defaults = {
         'exported_moves': lambda * a: 0,
