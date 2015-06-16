@@ -174,8 +174,8 @@
                                         <field name="property_account_expense" 
                                             domain="[('type','=','other')]" 
                                             groups="account.group_account_manager"/>
+                                        <field name="standard_price" string="Prix de Revient (HT)"/>
                                         <field name="tax_group_id" colspan="2" quick_create="false"/>
-                                        <field name="standard_price"/>
                                         <field name="uom_po_id"/>
                                     </group>
                                     <group string="Sale">
