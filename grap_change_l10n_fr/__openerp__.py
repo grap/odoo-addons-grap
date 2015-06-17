@@ -46,5 +46,7 @@ Copyright, Author and Licence :
         'l10n_fr',
     ],
     'data': [
+        'data/account_account_template.xml',
+        'data/account_chart_template.xml',
     ],
 }
