@@ -21,6 +21,7 @@
 #
 ##############################################################################
 
+from openerp import SUPERUSER_ID
 from openerp.osv.orm import Model
 
 
@@ -32,5 +33,6 @@ class res_company(Model):
         pc_obj = self.pool['pos.category']
         rc_id = super(res_company, self).create(
             cr, uid, values, context=context)
-        pc_obj._create_pos_categ_for_company(cr, uid, rc_id, context=context)
+        pc_obj._create_pos_categ_for_company(
+            cr, SUPERUSER_ID, rc_id, context=context)
         return rc_id
