@@ -56,7 +56,7 @@
             </field>
         </record>
 
-        <record id="view_sale_order_form_sale_2" model="ir.ui.view">
+        <record id="view_sale_order_form_sale_3" model="ir.ui.view">
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
@@ -88,7 +88,7 @@
             </field>
         </record>
 
-        <record id="view_sale_order_form_delivery" model="ir.ui.view">
+        <record id="view_sale_order_form_delivery_3" model="ir.ui.view">
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="delivery.view_order_withcarrier_form"/>
             <field name="arch" type="xml">
@@ -101,7 +101,7 @@
             </field>
         </record>
 
-        <record id="view_sale_order_form_sale_order_dates" model="ir.ui.view">
+        <record id="view_sale_order_form_sale_order_dates_3" model="ir.ui.view">
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="sale_order_dates.view_sale_orderfor"/>
             <field name="arch" type="xml">
@@ -112,7 +112,7 @@
             </field>
         </record>
 
-        <record id="view_sale_order_form_sale_margin" model="ir.ui.view">
+        <record id="view_sale_order_form_sale_margin_3" model="ir.ui.view">
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="sale_margin.sale_margin_sale_order_line_form" />
             <field name="arch" type="xml">
