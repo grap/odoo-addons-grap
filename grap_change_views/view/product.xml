@@ -177,6 +177,7 @@
                                         <field name="standard_price" string="Prix de Revient (HT)"/>
                                         <field name="tax_group_id" colspan="2" quick_create="false"/>
                                         <field name="uom_po_id"/>
+                                        <field name="prepare_categ_id" groups="sale_recovery_moment.recovery_user"/>
                                     </group>
                                     <group string="Sale">
                                         <field name="property_account_income" 

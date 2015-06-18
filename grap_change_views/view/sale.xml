@@ -195,7 +195,8 @@
        <menuitem id="sale_eshop.menu_product_product"
             parent="menu_product_product_editable_view" sequence="5"/>
 
-       <menuitem id="sale_recovery_moment.menu_product_product"
+       <menuitem id="sale_recovery_moment.menu_product_product_prepare"
+            name="Products (Prepare)"
             parent="menu_product_product_editable_view" sequence="6"/>
 
 <!-- enable Menu to basic user -->
