@@ -35,6 +35,7 @@ Features :
     * 'product_uom_categ' is readonly;
     * 'res_country' is readonly;
     * 'res_country_state' is readonly;
+    * 'email_template' is readonly;
     * 'account_period' is readonly (except for account_manager);
     * stock_location.complete_name is refactored;
 
@@ -51,6 +52,7 @@ Copyright, Author and Licence :
     'website': 'http://www.grap.coop',
     'license': 'AGPL-3',
     'depends': [
+        'email_template',
         'delivery',
         'product',
         'stock',

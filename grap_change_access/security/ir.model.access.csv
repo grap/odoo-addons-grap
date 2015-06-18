@@ -55,3 +55,5 @@ point_of_sale.access_account_period_pos,account.period pos user,account_fiscal_c
 base.access_res_country_group_user,res_country res_country_manager,base.model_res_country,base.group_no_one,1,1,1,1
 
 base.access_res_country_state_group_user,res_country_state res_country_state_manager,base.model_res_country_state,base.group_no_one,1,1,1,1
+
+email_template.access_email_template,email.template,email_template.model_email_template,base.group_user,1,0,0,0
