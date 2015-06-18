@@ -52,6 +52,7 @@ Copyright, Authors and Licence:
     'depends': [
         'sale',
         'sale_recovery_moment',
+        'email_template_dateutil',
     ],
     'data': [
         'data/email_template.xml',
