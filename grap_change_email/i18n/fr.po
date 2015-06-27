@@ -14,6 +14,11 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
+#. module: grap_change_email
+#: view:purchase.order:0
+msgid "Send by Email"
+msgstr "Envoyer par courriel"
+
 
 #. module: sale
 #: model:email.template,body_html:sale.email_template_edi_sale

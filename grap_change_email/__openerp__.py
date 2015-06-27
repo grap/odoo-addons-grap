@@ -22,7 +22,7 @@
 
 {
     'name': 'GRAP - Change eMail',
-    'version': '1.1',
+    'version': '2.0',
     'category': 'GRAP - Custom',
     'description': """
 Change eMail Template
@@ -50,12 +50,14 @@ Copyright, Authors and Licence:
     'website': 'http://www.grap.coop',
     'license': 'AGPL-3',
     'depends': [
+        'purchase',
         'sale',
         'sale_recovery_moment',
         'email_template_dateutil',
     ],
     'data': [
         'data/email_template.xml',
+        'view/view.xml',
     ],
     'css': [
     ],
