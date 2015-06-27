@@ -28,8 +28,9 @@
 Change default french accounting setting
 ========================================
 
-* rename 6071 account;
-
+TODO
+* 445711 : TVA collectée (Taux Plein) -> TVA collectée 20%;
+* 445712 : TVA collectée (Taux Intermédiaire) -> TVA collectée 5.5%;
 
 Copyright, Author and Licence :
 -------------------------------
