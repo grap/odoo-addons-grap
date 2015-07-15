@@ -4,7 +4,6 @@
 
 <!-- Model : account.tax.code -->
         <record id="view_account_tax_code_suffix_tree" model="ir.ui.view">
-            <field name="name">view.account.tax.code.suffix.tree</field>
             <field name="model">account.tax.code</field>
             <field name="arch" type="xml">
                 <tree string="Tax Code" editable="bottom">
@@ -12,12 +11,12 @@
                     <field name="code" readonly="True"/>
                     <field name="ref_nb"/>
                     <field name="nb_moves" readonly="True"/>
+                    <field name="company_id"/>
                 </tree>
             </field>
         </record>
 
         <record id="view_account_tax_code_suffix_search" model="ir.ui.view">
-            <field name="name">view.account.tax.code.suffix.search</field>
             <field name="model">account.tax.code</field>
             <field name="arch" type="xml">
                 <search string="Search Tax Code">

@@ -28,7 +28,20 @@ from openerp.osv.orm import Model
 class res_company(Model):
     """Add parameters to export accounting moves to EBP's software"""
     _inherit = 'res.company'
+
+    # Columns section
+    def _get_ebp_trigram(self, cr, uid, ids, field_name, arg, context=None):
+        res = {}
+        for rc in self.browse(cr, uid, ids, context=context):
+            if rc.fiscal_type in ['fiscal_child', 'fiscal_mother']:
+                res[rc.id] = rc.code
+            else:
+                res[rc.id] = ''
+        return res
+
     _columns = {
+        'ebp_trigram': fields.function(
+            _get_ebp_trigram, type='char', string='EBP Trigram', store=True),
         'ebp_uri': fields.char(
             'EBP Share URI', size=256,
             help="""The URI of the network share containing the company's"""

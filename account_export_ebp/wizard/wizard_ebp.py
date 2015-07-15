@@ -296,6 +296,12 @@ class account_export_ebp(osv.TransientModel):
         l = 0
         moves = self.pool.get('account.move').browse(
             cr, uid, context.get('active_ids', []), context=context)
+
+        is_analytic_column = False
+        for move in moves:
+            if move.company_id.ebp_trigram != '':
+                is_analytic_column = True
+
         # The move summaries will be written to a CSV file encoded in
         # win-latin-1
         # TODO we should report errors more cleanly to the users here
@@ -316,8 +322,10 @@ class account_export_ebp(osv.TransientModel):
             "Sens",
             "Échéance",
             "Monnaie",
-            "Poste analytique"
         ])
+        if is_analytic_column:
+            move_line += ',Poste analytique'
+
         moves_file.write(move_line)
         moves_file.write('\r\n')
 
@@ -354,9 +362,9 @@ class account_export_ebp(osv.TransientModel):
                 # Make up the account number
                 account_nb = normalize(line.account_id.code)
                 if (data['form']['company_suffix'] and line.company_id and
-                    line.company_id.code and (
+                    line.company_id.ebp_trigram and (
                         line.account_id.type in ('payable', 'receivable'))):
-                    account_nb = account_nb + line.company_id.code
+                    account_nb = account_nb + line.company_id.ebp_trigram
                 if (data['form']['partner_accounts'] and line.partner_id and
                     line.partner_id.ref_nb and (
                         line.account_id.type in ('payable', 'receivable'))):
@@ -392,8 +400,8 @@ class account_export_ebp(osv.TransientModel):
                         'date': move.date,
                         'journal': move.journal_id.code,
                         'ref': normalize(
-                            ((line.company_id.code + ' ')
-                                if line.company_id.code else '') +
+                            ((line.company_id.ebp_trigram + ' ')
+                                if line.company_id.ebp_trigram else '') +
                             line.name + (
                                 (' (' + move.ref + ')')
                                 if move.ref else '')),
@@ -401,8 +409,10 @@ class account_export_ebp(osv.TransientModel):
                         'credit': line.credit,
                         'debit': line.debit,
                         'date_maturity': line.date_maturity,
-                        'analytic': line.company_id.code
                     }
+                    if is_analytic_column:
+                        moves_data[account_nb]['analytic'] =\
+                            line.company_id.ebp_trigram
                 else:
                     moves_data[account_nb]['credit'] += line.credit
                     moves_data[account_nb]['debit'] += line.debit
@@ -477,6 +487,7 @@ class account_export_ebp(osv.TransientModel):
             _logger.debug("Writing the move summary to the file")
             for account_nb, line in moves_data.iteritems():
                 l += 1
+                # TODO SLG : refactorer le if / else
                 if line['credit']:
                     move_line = ','.join([
                         # Line number
@@ -506,8 +517,9 @@ class account_export_ebp(osv.TransientModel):
                         # Currency
                         fiscalyear.company_id.currency_id.name.replace(
                             ',', ''),
-                        line['analytic'],
                     ])
+                    if is_analytic_column:
+                        move_line += ',' + line['analytic']
                     moves_file.write(unidecode(move_line))
                     moves_file.write('\r\n')
                 if line['debit']:
@@ -539,8 +551,9 @@ class account_export_ebp(osv.TransientModel):
                         # Currency
                         fiscalyear.company_id.currency_id.name.replace(
                             ',', ''),
-                        line['analytic'],
                     ])
+                    if is_analytic_column:
+                        move_line += ',' + line['analytic']
                     moves_file.write(unidecode(move_line))
                     moves_file.write('\r\n')
             exported_move_ids.append(move.id)
