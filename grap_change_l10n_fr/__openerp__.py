@@ -32,6 +32,9 @@ TODO
 * 445711 : TVA collectée (Taux Plein) -> TVA collectée 20%;
 * 445712 : TVA collectée (Taux Intermédiaire) -> TVA collectée 5.5%;
 
+* 6017 -> delete;
+* 601 -> 
+
 Copyright, Author and Licence :
 -------------------------------
     * Copyright : 2015-Today, Groupement Régional Alimentaire de Proximité;
