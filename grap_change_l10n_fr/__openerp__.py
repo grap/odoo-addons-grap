@@ -33,7 +33,7 @@ TODO
 * 445712 : TVA collectée (Taux Intermédiaire) -> TVA collectée 5.5%;
 
 * 6017 -> delete;
-* 601 -> 
+* 601 -> change from view to normal type;
 
 Copyright, Author and Licence :
 -------------------------------
