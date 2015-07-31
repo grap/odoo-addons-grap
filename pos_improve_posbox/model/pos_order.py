@@ -76,7 +76,7 @@ class pos_order(Model):
                 'product_name': line.product_id.name,
                 'price_display': line.price_subtotal_incl,
                 'price_with_tax': line.price_subtotal_incl,
-                'price_without_tax': line.price_subtotal,
+                'price_without_tax': line.price_subtotal_incl,
                 'tax': line.price_subtotal_incl - line.price_subtotal,
                 'product_description': line.product_id.description,
                 'product_description_sale': line.product_id.description_sale,
