@@ -36,7 +36,10 @@ Functionality:
         * account_invoice_line.price_unit;
         * purchase_order_line.price_unit;
         * product_template.standard_price;
-        * product_template.standard_price_vat_incl;
+
+# NO -> FIXME in V8, with real API that allow to change precision,
+# without rewriting all the wheel;
+        * product_template.standard_price_vat_included;
     * Add a new precision 'GRAP Purchase Unit Discount', used in:
         * account_invoice_line.discount;
 
