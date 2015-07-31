@@ -33,7 +33,7 @@ class product_template(Model):
         'standard_price': fields.float(
             'Cost',
             digits_compute=dp.get_precision('GRAP Purchase Unit Price')),
-#        'standard_price_vat_incl': fields.float(
-#            'Cost VAT Included',
-#            digits_compute=dp.get_precision('GRAP Purchase Unit Price')),
+        # 'standard_price_vat_incl': fields.float(
+        #    'Cost VAT Included',
+        #    digits_compute=dp.get_precision('GRAP Purchase Unit Price')),
     }
