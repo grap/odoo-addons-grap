@@ -158,7 +158,7 @@
                     <field name="standard_price"/>
                     <field name="list_price"/>
                     <field name="standard_margin"/>
-                    <field name="standard_margin_rate" widget="progressbar"/>
+                    <field name="standard_margin_rate"/>
                     <field name="sale_ok"/>
                     <field name="company_id" groups="base.group_multi_company"/>
                 </tree>
