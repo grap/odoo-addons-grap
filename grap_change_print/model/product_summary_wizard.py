@@ -89,7 +89,7 @@ class ProductSummaryWizard(TransientModel):
             'Print Summary', help="Display a summary by Products"),
         'standard_price_total': fields.function(
             _get_standard_price_total, string='Standard Price Total',
-                type='float'),
+            type='float'),
         'print_detail': fields.boolean(
             'Print Detail', help="Display a detail by Delivery Order"),
         'picking_line_ids': fields.one2many(
