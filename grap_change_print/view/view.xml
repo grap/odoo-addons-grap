@@ -66,6 +66,9 @@
               <field name="arch" type="xml">
                 <form string="Print Product Summary">
                     <group colspan="2">
+                        <group string="Selection" col="2" colspan="2">
+                            <field name="picking_line_qty"/>
+                        </group>
                         <group string="Parameters" col="4" colspan="2">
                             <field name="print_summary"/>
                             <field name="print_detail"/>

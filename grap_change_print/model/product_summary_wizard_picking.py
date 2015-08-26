@@ -34,7 +34,7 @@ class ProductSummaryWizardPicking(TransientModel):
         'picking_id': fields.many2one(
             'stock.picking.out', 'Picking', required=True, readonly=True),
         'min_date': fields.datetime(
-            'Scheduled Date', required=True, readonly=True),
+            'Scheduled Date', readonly=True),
         'partner_id': fields.many2one(
             'res.partner', 'Partner', required=True, readonly=True),
     }

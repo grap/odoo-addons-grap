@@ -38,7 +38,10 @@ class ProductSummaryWizard(TransientModel):
         return res
 
     # Fields Default Section
-    def _get_picking_line_ids(self, cr, uid, context=None):
+    def _default_picking_line_qty(self, cr, uid, context=None):
+        return len(context.get('active_ids', []))
+
+    def _default_picking_line_ids(self, cr, uid, context=None):
         res = []
         spo_obj = self.pool['stock.picking.out']
         spo_ids = context.get('active_ids', False)
@@ -51,7 +54,7 @@ class ProductSummaryWizard(TransientModel):
                 }))
         return res
 
-    def _get_product_line_ids(self, cr, uid, context=None):
+    def _default_product_line_ids(self, cr, uid, context=None):
         res = []
         product_lines = {}
         spo_obj = self.pool['stock.picking.out']
@@ -85,11 +88,14 @@ class ProductSummaryWizard(TransientModel):
         'print_summary': fields.boolean(
             'Print Summary', help="Display a summary by Products"),
         'standard_price_total': fields.function(
-            _get_standard_price_total, 'Standard Price Total'),
+            _get_standard_price_total, string='Standard Price Total',
+                type='float'),
         'print_detail': fields.boolean(
             'Print Detail', help="Display a detail by Delivery Order"),
         'picking_line_ids': fields.one2many(
             'product.summary.wizard.picking', 'wizard_id', 'Delivery Orders'),
+        'picking_line_qty': fields.integer(
+            string='Delivery Qty', readonly=True),
         'product_line_ids': fields.one2many(
             'product.summary.wizard.product', 'wizard_id',
             'Products Summary'),
@@ -99,6 +105,7 @@ class ProductSummaryWizard(TransientModel):
     _defaults = {
         'print_summary': True,
         'print_detail': True,
-        'picking_line_ids': _get_picking_line_ids,
-        'product_line_ids': _get_product_line_ids,
+        'picking_line_ids': _default_picking_line_ids,
+        'product_line_ids': _default_product_line_ids,
+        'picking_line_qty': _default_picking_line_qty,
     }
