@@ -44,7 +44,7 @@ class account_add_suffix(TransientModel):
         for suf in self.browse(cr, uid, ids, context=context):
             for line in suf.line_ids:
                 if line.suffix:
-                    rp_obj.write(cr, uid, line.partner_id.id, {
+                    rp_obj.write(cr, uid, [line.partner_id.id], {
                         'ref_nb': line.suffix,
                     }, context=context)
         return True
