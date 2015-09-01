@@ -72,12 +72,12 @@ class res_partner(Model):
     ]
 
     # Overloading section
-    def write(self, cr, uid, ids, values, context=None):
-        ref_nb = values.get('ref_nb', False)
+    def write(self, cr, uid, ids, vals, context=None):
+        ref_nb = vals.get('ref_nb', False)
         if ref_nb:
-            values['ref_nb'] = ref_nb.upper()
+            vals['ref_nb'] = ref_nb.upper()
         return super(res_partner, self).write(
-            cr, uid, ids, values, context=context)
+            cr, uid, ids, vals, context=context)
 
     # Private section
     def _get_search_moves_query(
