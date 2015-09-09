@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 6.1\n"
+"Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-23 16:33+0000\n"
-"PO-Revision-Date: 2013-04-23 16:33+0000\n"
+"POT-Creation-Date: 2015-09-09 13:14+0000\n"
+"PO-Revision-Date: 2015-09-09 13:14+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -17,15 +17,26 @@ msgstr ""
 
 #. module: invoice_verified_state
 #: view:account.invoice:0
-#: view:view.account.invoice.tree.account
-msgid "Verified"
-msgstr "Vérifiée"
+msgid "Confirm"
+msgstr "Confirmer"
 
 #. module: invoice_verified_state
-#: code:addons/invoice_verified_state/account_invoice.py:37
+#: code:addons/invoice_verified_state/account_invoice.py:62
 #, python-format
 msgid "Error!"
 msgstr "Erreur!"
+
+#. module: invoice_verified_state
+#: code:_description:0
+#: model:ir.model,name:invoice_verified_state.model_account_invoice
+#, python-format
+msgid "Invoice"
+msgstr "Facture"
+
+#. module: invoice_verified_state
+#: view:account.invoice:0
+msgid "Verified"
+msgstr "Vérifiée"
 
 #. module: invoice_verified_state
 #: view:account.invoice:0
@@ -33,13 +44,14 @@ msgid "Verified Invoices"
 msgstr "Factures Vérifiées"
 
 #. module: invoice_verified_state
-#: view:account.invoice:0
-msgid "Confirm"
-msgstr "Confirmer"
-
-#. module: invoice_verified_state
-#: code:addons/invoice_verified_state/account_invoice.py:37
+#: code:addons/invoice_verified_state/account_invoice.py:62
 #, python-format
-msgid "Verify a supplier invoice requires to set \"invoice date\" and \"due date\" fields."
-msgstr "Vérifier une facture fournisseur demande de renseigner les champs \"date de facture\" et \"date d'échéance\"."
+msgid "Verify a supplier invoice requires to set the following fields :\n"
+"* 'Invoice Date';\n"
+"* 'Due Date';\n"
+"* 'Supplier Invoice Number';"
+msgstr "Vérifier une facture fournisseur demande de renseigner les champs suivants :\n"
+"* 'Date de la facture';\n"
+"* 'Date d'échéance';\n"
+"* 'Référence de la facture chez le fournisseur';"
 

@@ -57,9 +57,13 @@ class account_invoice(Model):
 
     def wkf_verify_invoice(self, cr, uid, ids, context=None):
         for invoice in self.browse(cr, uid, ids, context=context):
-            if not invoice.date_invoice or not invoice.date_due:
+            if not invoice.date_invoice or not invoice.date_due\
+                    or not invoice.supplier_invoice_number:
                 raise osv.except_osv(_('Error!'), _(
-                    """Verify a supplier invoice requires to set"""
-                    """ 'invoice date' and 'due date' fields."""))
+                    "Verify a supplier invoice requires to set the following"
+                    " fields :\n"
+                    "* 'Invoice Date';\n"
+                    "* 'Due Date';\n"
+                    "* 'Supplier Invoice Number';"))
         self.write(cr, uid, ids, {'state': 'verified'})
         return True
