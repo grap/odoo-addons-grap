@@ -25,7 +25,6 @@
     'version': '1.3',
     'category': 'Accounting & Finance',
     'summary': 'Various Change in Account Move Lines Generation',
-    'license': 'AGPL-3',
     'description': """
 Various Change in Account Move Lines Generation
 ===============================================
