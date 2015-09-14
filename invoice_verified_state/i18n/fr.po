@@ -53,5 +53,5 @@ msgid "Verify a supplier invoice requires to set the following fields :\n"
 msgstr "Vérifier une facture fournisseur demande de renseigner les champs suivants :\n"
 "* 'Date de la facture';\n"
 "* 'Date d'échéance';\n"
-"* 'Référence de la facture chez le fournisseur';"
+"* 'Numéro de facture fournisseur';"
 
