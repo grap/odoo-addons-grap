@@ -20,7 +20,6 @@
             <field name="act_from" ref="act_verified"/>
             <field name="act_to" ref="account.act_open"/>
             <field name="signal">invoice_open</field>
-            <field name="group_id" ref="account.group_account_manager"/>
         </record>
 
     </data>

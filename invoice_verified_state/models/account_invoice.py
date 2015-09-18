@@ -29,7 +29,24 @@ from openerp.tools.translate import _
 class account_invoice(Model):
     _inherit = 'account.invoice'
 
+    def button_move_check(self, cr, uid, ids, context=None):
+        am_obj = self.pool['account.move']
+        am_ids = []
+        for ai in self.browse(cr, uid, ids, context=context):
+            if ai.move_id:
+                am_ids.append(ai.move_id.id)
+        am_obj.write(cr, uid, am_ids, {'to_check': False}, context=context)
+        return True
+
+    def _get_move_to_check(self, cr, uid, ids, name, arg, context=None):
+        res = {}
+        for item in self.browse(cr, uid, ids, context=context):
+            res[item.id] = item.move_id and item.move_id.to_check or False
+        return res
+
     _columns = {
+        'move_to_check': fields.function(
+            _get_move_to_check, type='boolean', string='Move To Check'),
         'state': fields.selection([
             ('draft', 'Draft'),
             ('verified', 'Verified'),

@@ -20,36 +20,15 @@
 #
 ##############################################################################
 
-{
-    'name': "Account - Invoice 'Verified' state",
-    'version': '2.0',
-    'category': 'Accounting',
-    'description': """
-Add a 'Verified' state on account.invoice.
-==========================================
-    * Add a Verified state on account.invoice;
-    * Only Account_manager can validate account.invoice;
-    * Modify the corresponding workflow;
+from openerp.osv.orm import Model
 
-Copyright, Author and Licence :
--------------------------------
-    * Copyright : 2013, Groupement Régional Alimentaire de Proximité;
-    * Author :
-        * Julien WESTE;
-    * Licence : AGPL-3 (http://www.gnu.org/licenses/)
-    """,
-    'author': 'GRAP',
-    'website': 'http://www.grap.coop',
-    'license': 'AGPL-3',
-    'depends': [
-        'account',
-        'account_voucher',
-    ],
-    'data': [
-        'views/view.xml',
-        'data/workflow.xml',
-    ],
-    'demo': [
-        'demo/res_groups.yml',
-    ],
-}
+
+class account_move(Model):
+    _inherit = 'account.move'
+
+    def create(self, cr, uid, vals, context=None):
+        aj_obj = self.pool['account.journal']
+        if vals.get('journal_id', False) and not vals.get('to_check'):
+            aj = aj_obj.browse(cr, uid, vals['journal_id'], context=context)
+            vals['to_check'] = aj.move_to_check
+        return super(account_move, self).create(cr, uid, vals, context=context)

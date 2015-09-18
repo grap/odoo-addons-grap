@@ -2,18 +2,22 @@
 <openerp>
     <data>
 
+<!-- Model: account.invoice -->
         <record id="view_account_invoice_tree" model="ir.ui.view">
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_tree"/>
             <field name="arch" type="xml">
                 <field name="state" position="after">
                     <field name="type" invisible="1" />
+                    <field name="move_to_check" invisible="1" />
                     <button name="invoice_verify" string="Verify"
                         icon="gtk-paste-v" groups="account.group_account_invoice"
                         attrs="{'invisible': ['|', ('state', 'not in', ['draft']), ('type', 'in', ['out_invoice', 'out_refund'])]}"/>
-                    <button name="invoice_open" string="Confirm"
-                        icon="terp-camera_test" groups="account.group_account_user"
-                        attrs="{'invisible': [('state', 'not in', ['draft,proforma2,verified'])]}"/>
+                    <button name="invoice_open" string="Confirm" states='verified'
+                        icon="terp-camera_test" groups="account.group_account_user"/>
+                    <button name="button_move_check" string="Review"
+                        icon="gtk-go-forward" groups="account.group_account_manager" type="object"
+                        attrs="{'invisible': [('move_to_check', '=', False)]}"/>
                 </field>
             </field>
         </record>
@@ -37,11 +41,16 @@
                 </button>
                 <button name="invoice_open" position="attributes">
                     <attribute name="icon">terp-camera_test</attribute>
-                    <attribute name="states">draft,proforma2,verified</attribute>
+                    <attribute name="states">verified</attribute>
+                    <attribute name="groups">account.group_account_user</attribute>
                 </button>
                 <button name="invoice_open" position="before">
                     <button name="invoice_verify" states="draft" string="Verify" class="oe_highlight"
                         icon="gtk-paste-v" groups="account.group_account_invoice"/>
+                    <field name="move_to_check" invisible="1" />
+                    <button name="button_move_check" string="Review"
+                        icon="gtk-go-forward" groups="account.group_account_manager" type="object"
+                        attrs="{'invisible': [('move_to_check', '=', False)]}"/>
                 </button>
             </field>
         </record>
@@ -51,7 +60,8 @@
             <field name="inherit_id" ref="account.view_account_invoice_filter"/>
             <field name="arch" type="xml">
                 <filter name="proforma" position="after">
-                    <filter name="verified" string="Verified" domain="[('state','=','verified')]" help="Verified Invoices"/>
+                    <filter name="verified" string="Verified" domain="[('state','=','verified')]"/>
+                    <filter name="to_check" string="Move to Check" domain="[('move_to_check', '=', True)]"/>
                 </filter>
             </field>
         </record>
@@ -63,6 +73,17 @@
                 <button name="invoice_pay_customer" position="attributes">
                     <attribute name="groups">account.group_account_manager</attribute>
                 </button>
+            </field>
+        </record>
+
+<!-- Model: account.journal -->
+        <record id="view_account_journal_form" model="ir.ui.view">
+            <field name="model">account.journal</field>
+            <field name="inherit_id" ref="account.view_account_journal_form"/>
+            <field name="arch" type="xml">
+                <field name="entry_posted" position="after">
+                    <field name="move_to_check" />
+                </field>
             </field>
         </record>
 
