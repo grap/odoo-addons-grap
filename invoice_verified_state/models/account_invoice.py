@@ -24,7 +24,6 @@ from openerp.osv.orm import Model
 from openerp.osv import fields
 from openerp.osv import osv
 from openerp.tools.translate import _
-from openerp.osv.orm import except_orm
 
 
 class account_invoice(Model):

@@ -68,6 +68,10 @@ class account_export_ebp(osv.TransientModel):
             'Export according to Tax Codes',
             help="""Append Tax Code's suffix to account if the option is"""
             """ checked in the account"""),
+        'ignore_unchecked': fields.boolean(
+            'Ignore unchecked moves',
+            help="""Please be aware that unchecked moves belong maybe some"""
+            """ errors."""),
         'ignore_draft': fields.boolean(
             'Ignore draft moves',
             help="""Please be aware that draft moves do not not have a"""
@@ -135,6 +139,7 @@ class account_export_ebp(osv.TransientModel):
         return False
 
     _defaults = {
+        'ignore_unchecked': lambda * a: True,
         'ignore_exported': lambda * a: True,
         'ignore_draft': lambda * a: True,
         'company_suffix': lambda * a: True,
@@ -333,6 +338,8 @@ class account_export_ebp(osv.TransientModel):
             # Ignore draft moves unless the user asked for them
             ignore_draft = (
                 data['form']['ignore_draft'] and move.state == 'draft')
+            ignore_unchecked = (
+                data['form']['ignore_unchecked'] and move.to_check)
             # Ignore moves in other fiscal years
             ignore_year = (move.period_id.fiscalyear_id.id !=
                            data['form']['fiscalyear_id'][0])
@@ -340,7 +347,8 @@ class account_export_ebp(osv.TransientModel):
             ignore_exported = (
                 data['form']['ignore_exported'] and move.exported_ebp_id)
             # Skip to next move if this one should be ignored
-            if ignore_draft or ignore_year or ignore_exported:
+            if ignore_draft or ignore_year or\
+                    ignore_exported or ignore_unchecked:
                 _logger.debug(
                     """Ignoring move %d - draft: %s, wrong year: %s,"""
                     """ exported: %s""" % (

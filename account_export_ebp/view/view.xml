@@ -195,10 +195,12 @@
                       <newline/>
                       <field name="download_file"/>
                       <field name="ignore_draft"/>
+                      <field name="ignore_unchecked"/>
                       <field name="ignore_exported"/>
                       <field name="company_suffix"/>
                       <field name="partner_accounts"/>
                       <field name="tax_code_suffix"/>
+                      <newline/>
                       <field name="description"/>
                       <footer>
                           <button string="Export" name="export" type="object" class="oe_highlight" states="export_ebp"/>
