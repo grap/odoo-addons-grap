@@ -24,10 +24,20 @@ from openerp.osv.orm import Model
 from openerp.osv import fields
 from openerp.osv import osv
 from openerp.tools.translate import _
+from openerp.osv.orm import except_orm
 
 
 class account_invoice(Model):
     _inherit = 'account.invoice'
+
+    def _search_move_to_check(self, cr, uid, obj, name, arg, context=None):
+        am_obj = self.pool['account.move']
+        ai_obj = self.pool['account.invoice']
+        am_ids = am_obj.search(
+            cr, uid, [('to_check', '=', True)], context=context)
+        ai_ids = ai_obj.search(
+            cr, uid, [('move_id', 'in', am_ids)], context=context)
+        return [('id', 'in', ai_ids)]
 
     def button_move_check(self, cr, uid, ids, context=None):
         am_obj = self.pool['account.move']
@@ -46,7 +56,8 @@ class account_invoice(Model):
 
     _columns = {
         'move_to_check': fields.function(
-            _get_move_to_check, type='boolean', string='Move To Check'),
+            _get_move_to_check, type='boolean', string='Move To Check',
+            fnct_search=_search_move_to_check),
         'state': fields.selection([
             ('draft', 'Draft'),
             ('verified', 'Verified'),
