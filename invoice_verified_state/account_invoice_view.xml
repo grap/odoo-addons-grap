@@ -7,15 +7,28 @@
             <field name="inherit_id" ref="account.invoice_tree"/>
             <field name="arch" type="xml">
                 <field name="state" position="after">
-                    <button name="invoice_verify" states="draft" string="Verify"
-                        icon="gtk-paste-v" groups="account.group_account_invoice"/>
-                    <button name="invoice_open" states="verified" string="Confirm"
-                        icon="terp-camera_test" groups="account.group_account_user"/>
+                    <field name="type" invisible="1" />
+                    <button name="invoice_verify" string="Verify"
+                        icon="gtk-paste-v" groups="account.group_account_invoice"
+                        attrs="{'invisible': ['|', ('state', 'not in', ['draft']), ('type', 'in', ['out_invoice', 'out_refund'])]}"/>
+                    <button name="invoice_open" string="Confirm"
+                        icon="terp-camera_test" groups="account.group_account_user"
+                        attrs="{'invisible': [('state', 'not in', ['draft,proforma2,verified'])]}"/>
                 </field>
             </field>
         </record>
 
-        <record id="view_account_invoice_form" model="ir.ui.view">
+        <record id="view_account_invoice_form_customer" model="ir.ui.view">
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='invoice_open'][@states='draft']" position="attributes">
+                    <attribute name="icon">terp-camera_test</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_account_invoice_form_supplier" model="ir.ui.view">
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_supplier_form"/>
             <field name="arch" type="xml">
@@ -23,8 +36,8 @@
                     <attribute name="states">cancel,verified</attribute>
                 </button>
                 <button name="invoice_open" position="attributes">
-                    <attribute name="states">verified,proforma2</attribute>
-                    <attribute name="groups">account.group_account_manager</attribute>
+                    <attribute name="icon">terp-camera_test</attribute>
+                    <attribute name="states">draft,proforma2,verified</attribute>
                 </button>
                 <button name="invoice_open" position="before">
                     <button name="invoice_verify" states="draft" string="Verify" class="oe_highlight"
