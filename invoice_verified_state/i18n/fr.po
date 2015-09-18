@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-09 13:14+0000\n"
-"PO-Revision-Date: 2015-09-09 13:14+0000\n"
+"POT-Creation-Date: 2015-09-18 11:59+0000\n"
+"PO-Revision-Date: 2015-09-18 11:59+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -44,6 +44,11 @@ msgid "Verified Invoices"
 msgstr "Factures Vérifiées"
 
 #. module: invoice_verified_state
+#: view:account.invoice:0
+msgid "Verify"
+msgstr "Vérifier"
+
+#. module: invoice_verified_state
 #: code:addons/invoice_verified_state/account_invoice.py:62
 #, python-format
 msgid "Verify a supplier invoice requires to set the following fields :\n"
@@ -54,4 +59,3 @@ msgstr "Vérifier une facture fournisseur demande de renseigner les champs suiva
 "* 'Date de la facture';\n"
 "* 'Date d'échéance';\n"
 "* 'Numéro de facture fournisseur';"
-
