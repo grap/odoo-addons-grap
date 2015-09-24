@@ -314,5 +314,26 @@
                 </field>
             </field>
         </record>
+
+<!-- Model : account.journal -->
+        <record id="view_account_journal_form" model="ir.ui.view">
+            <field name="model">account.journal</field>
+            <field name="inherit_id" ref="account.view_account_journal_form" />
+            <field name="arch" type="xml">
+                <field name="code" position="after">
+                    <field name="ebp_code"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_account_journal_tree" model="ir.ui.view">
+            <field name="model">account.journal</field>
+            <field name="inherit_id" ref="account.view_account_journal_tree" />
+            <field name="arch" type="xml">
+                <field name="code" position="after">
+                    <field name="ebp_code"/>
+                </field>
+            </field>
+        </record>
     </data>
 </openerp>

@@ -3,8 +3,7 @@
 #
 #    Export to EBP module for OpenERP
 #    Copyright (C) 2013-2014 GRAP (http://www.grap.coop)
-#    @author Julien WESTE
-#    based on a Numerigraphe module
+#    @author Sylvain LE GAL (https://twitter.com/legalsylvain)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -21,11 +20,16 @@
 #
 ##############################################################################
 
-from . import res_partner
-from . import res_company
-from . import account_account
-from . import account_journal
-from . import account_move
-from . import account_fiscalyear
-from . import ebp_export
-from . import account_tax_code
+from openerp.osv import fields
+from openerp.osv.orm import Model
+
+
+class account_journal(Model):
+    _inherit = 'account.journal'
+
+    # Columns section
+    _columns = {
+        'ebp_code': fields.char(
+            'EBP Code', help="This code will be used when exporting"
+            " entries in the journal column")
+    }

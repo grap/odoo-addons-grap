@@ -386,10 +386,18 @@ class account_export_ebp(osv.TransientModel):
                 # Check the most important fields are not above the maximum
                 # length so as not to export wrong data with catastrophic
                 # consequence
-                if len(move.journal_id.code) > 4:
-                    raise osv.except_osv(_('Journal code too long'), _(
-                        """Journal code '%s' is too long to be exported"""
-                        """ to EBP.""") % move.journal_id.code)
+                if not move.journal_id.ebp_code or\
+                        len(move.journal_id.ebp_code) == 0:
+                    raise osv.except_osv(
+                        _('Journal code Undefined'),
+                        _("Journal '%s' has no EBP Code defined." %
+                            move.journal_id.name))
+                if len(move.journal_id.ebp_code) > 4:
+                    raise osv.except_osv(
+                        _('Journal code too long'),
+                        _("Journal code '%s' is too long to be exported"
+                        " to EBP." % move.journal_id.ebp_code))
+
                 # The docs from EBP state that account codes may be up to
                 # 15 characters but "EBP Comptabilité" v13 will refuse anything
                 # longer than 10 characters
@@ -406,7 +414,7 @@ class account_export_ebp(osv.TransientModel):
                 if account_nb not in moves_data.keys():
                     moves_data[account_nb] = {
                         'date': move.date,
-                        'journal': move.journal_id.code,
+                        'journal': move.journal_id.ebp_code,
                         'ref': normalize(
                             ((line.company_id.ebp_trigram + ' ')
                                 if line.company_id.ebp_trigram else '') +
