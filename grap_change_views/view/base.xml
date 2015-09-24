@@ -31,9 +31,19 @@
             name="Indicateurs Synthétiques"
             parent="menu_grap_dashboard"/>
 
-        <menuitem id="mail.mail_feeds_main"
-            name="Messagerie"
-            groups="base.group_no_one" />
+<!--        <menuitem id="mail.mail_feeds_main"-->
+<!--            name="Messagerie"-->
+<!--            groups="base.group_no_one"-->
+<!--            parent="base.menu_administration"/>-->
+
+<!--        <record id="mail.mail_feeds_main" model="ir.ui.menu">-->
+<!--            <field name="groups" ref="base.group_no_one" />-->
+<!--        </record>-->
+
+        <record id="mail.mail_feeds_main" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6,0, [ref('base.group_no_one')])]" />
+        </record>
+        
 
         <!-- Model 'res.users' -->
         <record id="view_res_users_tree" model="ir.ui.view">
