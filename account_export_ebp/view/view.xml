@@ -35,7 +35,6 @@
 
 
         <record id="view_account_tax_code_form" model="ir.ui.view">
-            <field name="name">account.tax.code.form</field>
             <field name="model">account.tax.code</field>
             <field name="inherit_id" ref="account.view_tax_code_form" />
             <field name="arch" type="xml">
@@ -58,7 +57,6 @@
 
 <!-- Model : res.partner -->
         <record id="res_partner_ebp" model="ir.ui.view">
-            <field name="name">res.partner.ebp</field>
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="base.view_partner_form" />
             <field name="arch" type="xml">
@@ -70,7 +68,6 @@
         </record>
 
         <record id="res_partner_no_suffix" model="ir.ui.view">
-            <field name="name">res.partner.no.suffix</field>
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="base.view_res_partner_filter" />
             <field name="arch" type="xml">
@@ -96,7 +93,6 @@
         </record>
 
         <record id="view_partner_suffix_tree" model="ir.ui.view">
-            <field name="name">view.partner.no.suffix.tree</field>
             <field name="model">res.partner</field>
             <field name="arch" type="xml">
                 <tree string="Partner" editable="bottom">
@@ -110,7 +106,6 @@
 
 <!-- Model : res.company -->
         <record id="res_company_ebp" model="ir.ui.view">
-            <field name="name">res.company.ebp</field>
             <field name="model">res.company</field>
             <field name="inherit_id" ref="base.view_company_form" />
             <field name="arch" type="xml">
@@ -127,7 +122,6 @@
         
 <!-- Model : account.fiscalyear -->
         <record id="view_account_fiscalyear_form" model="ir.ui.view">
-            <field name="name">account_export_ebp.fiscalyear.form</field>
             <field name="model">account.fiscalyear</field>
             <field name="inherit_id" ref="account.view_account_fiscalyear_form" />
             <field name="arch" type="xml">
@@ -140,7 +134,6 @@
 
 <!-- Model : account.move -->
         <record id="view_move_tree" model="ir.ui.view">
-            <field name="name">account_export_ebp.move.tree</field>
             <field name="model">account.move</field>
             <field name="inherit_id" ref="account.view_move_tree" />
             <field name="arch" type="xml">
@@ -150,7 +143,6 @@
             </field>
         </record>
         <record id="view_move_form" model="ir.ui.view">
-            <field name="name">account_export_ebp.move.form</field>
             <field name="model">account.move</field>
             <field name="inherit_id" ref="account.view_move_form" />
             <field name="arch" type="xml">
@@ -161,7 +153,6 @@
         </record>
 
         <record id="view_account_move_line_filter" model="ir.ui.view">
-            <field name="name">account_export_ebp.move.select</field>
             <field name="model">account.move</field>
             <field name="inherit_id" ref="account.view_account_move_filter" />
             <field name="arch" type="xml">
@@ -175,7 +166,6 @@
 
 <!-- Model : account.export.ebp -->
         <record model="ir.ui.view" id="account_export_ebp_form">
-            <field name="name">account.export.ebp.form</field>
             <field name="model">account.export.ebp</field>
             <field name="arch" type="xml">
                 <form string="Wizard" version="7.0">
@@ -233,7 +223,6 @@
 
 <!-- Model : account.unexport.ebp -->
         <record model="ir.ui.view" id="account_unexport_ebp_form">
-            <field name="name">account.unexport.ebp.form</field>
             <field name="model">account.unexport.ebp</field>
             <field name="arch" type="xml">
                 <form string="Wizard" version="7.0">
@@ -249,7 +238,6 @@
 
 <!-- Model : account.export.ebp -->
         <record model="ir.ui.view" id="account_ebp_export_form">
-            <field name="name">ebp.export.form</field>
             <field name="model">ebp.export</field>
             <field name="arch" type="xml">
                 <form string="Wizard" version="7.0">
@@ -269,7 +257,6 @@
         </record>
 
         <record model="ir.ui.view" id="account_ebp_export_tree">
-            <field name="name">ebp.export.tree</field>
             <field name="model">ebp.export</field>
             <field name="arch" type="xml">
                 <tree string="Wizard" version="7.0">
@@ -285,7 +272,6 @@
 
 <!-- Model : account.add.suffix -->
         <record model="ir.ui.view" id="account_add_suffix_form">
-            <field name="name">account.add.suffix.tree</field>
             <field name="model">account.add.suffix</field>
             <field name="arch" type="xml">
                 <form string="Wizard" version="7.0" editable="bottom">
@@ -305,9 +291,8 @@
 
 <!-- Model : account.account -->
         <record model="ir.ui.view" id="view_account_form_ebp">
-            <field name="inherit_id" ref="account.view_account_form" />
-            <field name="name">account.account.form.ebp</field>
             <field name="model">account.account</field>
+            <field name="inherit_id" ref="account.view_account_form" />
             <field name="arch" type="xml">
                 <field name="company_id" position="before">
                     <field name="export_tax_code"/>
