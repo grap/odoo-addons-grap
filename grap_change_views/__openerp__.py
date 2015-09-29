@@ -83,6 +83,7 @@ Copyright, Authors and Licence:
         'simple_tax_account',
         'simple_tax_sale',
         'simple_tax_purchase',
+        'purchase_discount',
     ],
     'data': [
         'security/res_groups.yml',
