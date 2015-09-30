@@ -396,7 +396,7 @@ class account_export_ebp(osv.TransientModel):
                     raise osv.except_osv(
                         _('Journal code too long'),
                         _("Journal code '%s' is too long to be exported"
-                        " to EBP." % move.journal_id.ebp_code))
+                            " to EBP." % move.journal_id.ebp_code))
 
                 # The docs from EBP state that account codes may be up to
                 # 15 characters but "EBP Comptabilité" v13 will refuse anything
