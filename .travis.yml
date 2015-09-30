@@ -31,6 +31,7 @@ install:
   - git clone https://github.com/OCA/pos.git $HOME/pos -b 7.0
   - git clone https://github.com/OCA/margin-analysis.git $HOME/margin-analysis -b 7.0
   - git clone https://github.com/OCA/sale-workflow.git $HOME/sale-workflow -b 7.0
+  - git clone https://github.com/OCA/purchase-workflow.git $HOME/purchase-workflow -b 7.0
   - git clone https://github.com/OCA/webkit-tools.git $HOME/webkit-tools -b 7.0
   - git clone https://github.com/OCA/stock-logistics-workflow.git $HOME/stock-logistics-workflow -b 7.0
   - git clone https://github.com/OCA/l10n-france.git $HOME/l10n-france -b 7.0
