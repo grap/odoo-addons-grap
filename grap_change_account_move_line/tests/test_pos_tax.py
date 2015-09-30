@@ -83,7 +83,7 @@ class TestPosTax(TransactionCase):
         self.pmp_obj.check(cr, uid, [pmp_id], {'active_id': po_id})
 
         # Add Taxes to Product
-        self.pp_obj.write(cr, uid, self.product_1, {
+        self.pp_obj.write(cr, uid, [self.product_1], {
             'taxes_id': [[6, False, [self.account_tax_id]]]})
 
         # Create Order #2
