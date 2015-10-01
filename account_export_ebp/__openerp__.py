@@ -54,6 +54,7 @@ old ones if need be.
     'depends': [
         'account_accountant',
         'base_fiscal_company',
+        'intercompany_trade_fiscal_company',
     ],
     'data': [
         'view/view.xml',

@@ -369,19 +369,25 @@ class account_export_ebp(osv.TransientModel):
                     continue
                 # Make up the account number
                 account_nb = normalize(line.account_id.code)
-                if (data['form']['company_suffix'] and line.company_id and
-                    line.company_id.ebp_trigram and (
-                        line.account_id.type in ('payable', 'receivable'))):
+                print "*********"
+                print line
+                print line.account_id
+                if data['form']['company_suffix'] and line.company_id and\
+                        line.company_id.ebp_trigram and\
+                        line.account_id.type in ('payable', 'receivable')\
+                        and not line.account_id\
+                            .is_intercompany_trade_fiscal_company:
                     account_nb = account_nb + line.company_id.ebp_trigram
-                if (data['form']['partner_accounts'] and line.partner_id and
-                    line.partner_id.ref_nb and (
-                        line.account_id.type in ('payable', 'receivable'))):
+                if data['form']['partner_accounts'] and line.partner_id and\
+                    line.partner_id.ref_nb and\
+                        line.account_id.type in ('payable', 'receivable')\
+                        and not line.account_id\
+                            .is_intercompany_trade_fiscal_company:
                     # Partner account
                     account_nb = account_nb + line.partner_id.ref_nb
                 if (tax_code_suffix and line.account_id.export_tax_code and
                         line.tax_code_id.ref_nb):
-                    tmp = account_nb + line.tax_code_id.ref_nb
-                    account_nb = tmp
+                    account_nb = account_nb + line.tax_code_id.ref_nb
 
                 # Check the most important fields are not above the maximum
                 # length so as not to export wrong data with catastrophic
@@ -412,15 +418,20 @@ class account_export_ebp(osv.TransientModel):
 
                 # Collect data for the file of move lines
                 if account_nb not in moves_data.keys():
+                    ref = (
+                        (line.company_id.ebp_trigram + ' ')
+                        if line.company_id.ebp_trigram else '')
+                    if move.partner_id.intercompany_trade:
+                        ref += ' (' + move.partner_id.name + ')'
+                    else:
+                        ref += (
+                            line.name
+                            + ((' (' + move.ref + ')')
+                                if move.ref else ''))
                     moves_data[account_nb] = {
                         'date': move.date,
                         'journal': move.journal_id.ebp_code,
-                        'ref': normalize(
-                            ((line.company_id.ebp_trigram + ' ')
-                                if line.company_id.ebp_trigram else '') +
-                            line.name + (
-                                (' (' + move.ref + ')')
-                                if move.ref else '')),
+                        'ref': normalize(ref),
                         'name': normalize(move.name),
                         'credit': line.credit,
                         'debit': line.debit,

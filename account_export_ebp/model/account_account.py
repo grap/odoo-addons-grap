@@ -46,7 +46,11 @@ class account_account(Model):
     def _check_code_length(self, cr, uid, ids, context=None):
         for account in self.browse(cr, uid, ids, context=context):
             if account.company_id.fiscal_type == 'fiscal_mother':
-                if account.type in ('receivable', 'payable') and\
+                if account.is_intercompany_trade_fiscal_company and\
+                        len(account.code) > 6:
+                    return False
+                elif not account.is_intercompany_trade_fiscal_company and\
+                        account.type in ('receivable', 'payable') and\
                         len(account.code) > 3:
                     return False
             elif account.company_id.fiscal_type == 'normal':
@@ -58,8 +62,11 @@ class account_account(Model):
     _constraints = [
         (
             _check_code_length,
-            """The account code for a partner account cannot exceed 3"""
-            """ characters for Fiscal Mother Company, and 6 characters,"""
-            """ for Normal Company, so as to permit the EBP export""",
-            ['code', 'type', 'company_id']),
+            "The account code for a partner account cannot exceed\n"
+            " * 3 characters for Fiscal Mother Company (Regular Case);\n"
+            " * 6 characters for Fiscal Mother Company (Intercompany Trade);\n"
+            " * 6 characters for Normal Company ; \n"
+            " so as to permit the EBP export",
+            ['code', 'type', 'company_id',
+                'is_intercompany_trade_fiscal_company']),
     ]
