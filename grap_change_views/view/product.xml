@@ -260,6 +260,7 @@
                                                 packaging_notation, context)"/>
                                         <field name="fresh_category"/>
                                         <field name="fresh_range"/>
+                                        <field name="is_mercuriale"/>
                                     </group>
                                 </group>
                                 <group colspan="4" col="4">

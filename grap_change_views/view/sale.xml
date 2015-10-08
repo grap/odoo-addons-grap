@@ -202,6 +202,10 @@
             name="Products (Prepare)"
             parent="menu_product_product_editable_view" sequence="6"/>
 
+       <menuitem id="sale_recovery_moment.menu_product_product_delivery"
+            name="Products (Delivery)"
+            parent="menu_product_product_editable_view" sequence="7"/>
+
 <!-- enable Menu to basic user -->
         <record model="ir.ui.menu" id="product.menu_product_pricelist_action2">
             <field eval="[(6, 0, [ref('base.group_sale_salesman_all_leads')])]" name="groups_id"/>
