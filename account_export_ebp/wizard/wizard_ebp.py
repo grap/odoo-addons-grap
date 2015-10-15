@@ -458,8 +458,11 @@ class account_export_ebp(osv.TransientModel):
                             line.account_id.type in ('payable', 'receivable')):
                         # Partner account
                         # Get the default address
-                        partner = self.pool.get('res.partner').browse(
-                            cr, uid, [line.partner_id.id], context)[0]
+                        if line.account_id.\
+                                is_intercompany_trade_fiscal_company:
+                            partner = line.company_id.partner_id
+                        else:
+                            partner = line.partner_id
                         accounts_data[account_nb] = {
                             'name': normalize(partner.name),
                             'partner_name': normalize(partner.name),
