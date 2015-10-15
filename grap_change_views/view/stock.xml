@@ -82,28 +82,30 @@
             </field>
         </record>
 
+<!-- FIXME -->
         <!-- stock.picking.out Form -->
-        <record id="view_stock_picking_out_form" model="ir.ui.view">
-            <field name="model">stock.picking.out</field>
-            <field name="inherit_id" ref="stock.view_picking_form"/>
-            <field name="arch" type="xml">
-                <page string="Additional Info" position="attributes">
-                    <attribute name="groups">base.group_no_one</attribute>
-                </page>
-            </field>
-        </record>
+<!--        <record id="view_stock_picking_out_form" model="ir.ui.view">-->
+<!--            <field name="model">stock.picking.out</field>-->
+<!--            <field name="inherit_id" ref="stock.view_picking_form"/>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <page string="Additional Info" position="attributes">-->
+<!--                    <attribute name="groups">base.group_no_one</attribute>-->
+<!--                </page>-->
+<!--            </field>-->
+<!--        </record>-->
 
         <record id="view_stock_picking_out_form_sale_recovery_moment" model="ir.ui.view">
             <field name="model">stock.picking.out</field>
             <field name="inherit_id" ref="sale_recovery_moment.view_stock_picking_form"/>
             <field name="arch" type="xml">
                 <field name="sale_id" position="replace" />
-                <field name="moment_id" position="replace" />
-                <field name="group_id" position="replace" />
+                <field name="recovery_moment_id" position="replace" />
+                <field name="recovery_group_id" position="replace" />
                 <field name="date" position="before">
                     <field name="sale_id"/>
-                    <field name="moment_id" groups="sale_recovery_moment.recovery_user"/>
-                    <field name="group_id" groups="sale_recovery_moment.recovery_user"/>
+                    <field name="recovery_moment_id" groups="sale_recovery_moment.recovery_user"/>
+                    <field name="recovery_group_id" groups="sale_recovery_moment.recovery_user"/>
+                    <field name="delivery_moment_id" groups="sale_recovery_moment.delivery_user"/>
                 </field>
             </field>
         </record>
