@@ -369,9 +369,6 @@ class account_export_ebp(osv.TransientModel):
                     continue
                 # Make up the account number
                 account_nb = normalize(line.account_id.code)
-                print "*********"
-                print line
-                print line.account_id
                 if data['form']['company_suffix'] and line.company_id and\
                         line.company_id.ebp_trigram and\
                         line.account_id.type in ('payable', 'receivable')\
