@@ -74,6 +74,13 @@
                     <td>${ move_line.product_id.uom_id.name }</td>
                 </tr>
                 %endfor
+            %if picking_line.picking_id.note:
+                <tr class="line">
+                    <td colspan="100%">
+                        ${picking_line.picking_id.note}
+                    </td>
+                </tr>
+            %endif
             %endfor
         </table>
         %endif
