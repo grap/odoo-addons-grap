@@ -94,6 +94,7 @@
 <!--            </field>-->
 <!--        </record>-->
 
+<!-- FIXME -->
 <!--        <record id="view_stock_picking_out_form_sale_recovery_moment" model="ir.ui.view">-->
 <!--            <field name="model">stock.picking.out</field>-->
 <!--            <field name="inherit_id" ref="sale_recovery_moment.view_stock_picking_form"/>-->
