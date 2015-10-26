@@ -58,18 +58,19 @@
             <field name="context">{'search_default_to_process':1, 'contact_display': 'partner_address'}</field>
         </record>
 
-        <record id="view_picking_out_search_form" model="ir.ui.view">
-            <field name="model">stock.picking.out</field>
-            <field name="inherit_id" ref="stock.view_picking_out_search"/>
-            <field name="arch" type="xml">
-                <filter name="to_invoice" position="after">
-                    <filter name="to_process" string="To Process"
-                        domain="['|', ('state','not in',('done', 'cancel')), ('invoice_state','=', '2binvoiced')]"/>
-                    <filter string="Today of After" name="today_or_after"
-                        domain="[('min_date','&gt;=',(context_today()).strftime('%%Y-%%m-%%d'))]"/>
-                </filter>
-            </field>
-        </record>
+<!-- FIXME -->
+<!--        <record id="view_picking_out_search_form" model="ir.ui.view">-->
+<!--            <field name="model">stock.picking.out</field>-->
+<!--            <field name="inherit_id" ref="stock.view_picking_out_search"/>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <filter name="to_invoice" position="after">-->
+<!--                    <filter name="to_process" string="To Process"-->
+<!--                        domain="['|', ('state','not in',('done', 'cancel')), ('invoice_state','=', '2binvoiced')]"/>-->
+<!--                    <filter string="Today of After" name="today_or_after"-->
+<!--                        domain="[('min_date','&gt;=',(context_today()).strftime('%%Y-%%m-%%d'))]"/>-->
+<!--                </filter>-->
+<!--            </field>-->
+<!--        </record>-->
 
         <!-- stock.picking.in Form -->
         <record id="view_stock_picking_in_form" model="ir.ui.view">
