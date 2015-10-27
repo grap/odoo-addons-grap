@@ -20,8 +20,10 @@
 <openerp>
     <data>
 
+        <delete id="purchase.email_template_edi_purchase" model="email.template" />
+
         <record id="email_template_request_for_quotation" model="email.template">
-            <field name="name">GRAP - Demande de devis</field>
+            <field name="name">GRAP - Achat - (1) Demande de devis</field>
             <field name="email_from">${(object.validator.email or '')|safe}</field>
             <field name="subject">${object.company_id.name.replace("'", " ")|safe} - Devis (Réf ${object.name or 'n/a' })</field>
             <field name="email_recipients">${object.partner_id.id}</field>
@@ -84,7 +86,7 @@
 
 
         <record id="email_template_purchase_order" model="email.template">
-            <field name="name">GRAP - Bon de commande</field>
+            <field name="name">GRAP - Achat - (2) Bon de commande</field>
             <field name="email_from">${(object.validator.email or '')|safe}</field>
             <field name="subject">${object.company_id.name.replace("'", " ")|safe} - Bon de commande (Réf ${object.name or 'n/a' })</field>
             <field name="email_recipients">${object.partner_id.id}</field>
