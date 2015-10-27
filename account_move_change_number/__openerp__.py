@@ -53,7 +53,5 @@ Copyright, Author and Licence :
     ],
     'data': [
         'security/res_groups_data.yml',
-        'view/view.xml',
-        'view/action.xml',
     ],
 }

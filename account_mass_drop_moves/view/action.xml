@@ -20,15 +20,6 @@
 <openerp>
     <data>
 
-<!--        <record id="action_account_move_null_amount_tree" model="ir.actions.act_window">-->
-<!--            <field name="name">Account Move with Null Amounts</field>-->
-<!--            <field name="type">ir.actions.act_window</field>-->
-<!--            <field name="res_model">account.period</field>-->
-<!--            <field name="view_type">form</field>-->
-<!--            <field name="view_mode">tree,form</field>-->
-<!--            <field name="view_id" ref="view_account_move_null_amount_tree" />-->
-<!--        </record>-->
-        
         <record id="action_account_mass_drop_moves" model="ir.actions.act_window">
             <field name="name">Mass Drop Account Moves</field>
             <field name="type">ir.actions.act_window</field>
