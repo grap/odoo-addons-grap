@@ -28,14 +28,15 @@
     'description': """
 Set ir.values for default feature
 =================================
-Partners (res.partner):
------------------------
+
+Partners (res.partner)
+----------------------
     * Partners receive mail by default:
         * field : 'notification_email_send';
         * value : 'comment';
 
-Products (product.template):
-----------------------------
+Products (product.template)
+---------------------------
     * Products has no default UoM:
         * field : 'uom_id';
         * value : False;
@@ -65,6 +66,7 @@ Copyright, Author and Licence :
     """,
     'depends': [
         'mail',
+        'email_template',
         'product',
     ],
     'data': [
