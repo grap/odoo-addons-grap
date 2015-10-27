@@ -28,19 +28,20 @@
 Change eMail Template
 ====================================
 
-Functionality:
---------------
-    * Change Sale order eMail Template;
-        * Add recovery moment information;
+Functionality
+-------------
 
-Limits:
--------
-    * Trick. The changes are done updating only translation file.
-      GRAP doesn't need to communicate with non FR customers for the time
-      being;
+* Change Sale order eMail Template;
+    * Add recovery moment information;
 
-Copyright, Authors and Licence:
--------------------------------
+Limits
+------
+* Trick. The changes are done updating only translation file.
+  GRAP doesn't need to communicate with non FR customers for the time
+  being;
+
+Copyright, Authors and Licence
+------------------------------
     * Copyright: 2015-Today:
         * GRAP: Groupement Régional Alimentaire de Proximité;
     * Author:
@@ -57,8 +58,5 @@ Copyright, Authors and Licence:
     ],
     'data': [
         'data/email_template.xml',
-        'view/view.xml',
-    ],
-    'css': [
     ],
 }
