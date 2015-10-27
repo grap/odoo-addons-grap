@@ -50,6 +50,7 @@ Copyright, Authors and Licence:
         'base',
         'base_vat',
         'delivery',
+        'mail',
         'email_template',
         'sale_food',
         'point_of_sale',
@@ -96,6 +97,7 @@ Copyright, Authors and Licence:
         'view/purchase.xml',
         'view/sale.xml',
         'view/stock.xml',
+        'view/mail.xml',
     ],
     'css': [
         'static/src/css/css.css',
