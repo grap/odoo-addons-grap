@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-06 13:01+0000\n"
-"PO-Revision-Date: 2015-05-06 13:01+0000\n"
+"POT-Creation-Date: 2015-10-28 23:06+0000\n"
+"PO-Revision-Date: 2015-10-28 23:06+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -26,6 +26,11 @@ msgstr "7.0"
 #: model:ir.actions.act_window,name:grap_change_views.action_view_account_move_line_tree
 msgid "Account Move Lines"
 msgstr "Ecritures Comptables"
+
+#. module: grap_change_views
+#: view:stock.picking.in:0
+msgid "Additional Info"
+msgstr "Additional Info"
 
 #. module: grap_change_views
 #: view:pos.category:0
@@ -52,6 +57,11 @@ msgstr "Nom complet stocké"
 #: view:product.product:0
 msgid "Consumption"
 msgstr "Consommation"
+
+#. module: grap_change_views
+#: model:ir.ui.menu,name:grap_change_views.menu_res_partner_editable_view
+msgid "Customers (Other Views)"
+msgstr "Clients (Autres vues)"
 
 #. module: grap_change_views
 #: view:account.move:0
@@ -94,11 +104,6 @@ msgid "Food information"
 msgstr "Information alimentaire"
 
 #. module: grap_change_views
-#: help:stock.move,sequence:0
-msgid "Gives the sequence order when displaying a list of stock_moves."
-msgstr "Donner l'ordre des séquence lors de l'affichage de la liste des mouvements de stocks."
-
-#. module: grap_change_views
 #: view:product.product:0
 msgid "Incoming quantity"
 msgstr "Quantité entrante"
@@ -117,6 +122,13 @@ msgstr "Information"
 #: view:res.partner:0
 msgid "Internal Notes"
 msgstr "Notes internes"
+
+#. module: grap_change_views
+#: code:_description:0
+#: model:ir.model,name:grap_change_views.model_account_invoice_line
+#, python-format
+msgid "Invoice Line"
+msgstr "Lignes de facture"
 
 #. module: grap_change_views
 #: view:pos.order.line:0
@@ -143,7 +155,7 @@ msgstr "Lignes de Points de Vente"
 #. module: grap_change_views
 #: model:res.groups,name:grap_change_views.group_product_image_manager
 msgid "Manage Product Images"
-msgstr "Gérer les images des articles"
+msgstr "Gérer les images de Produit"
 
 #. module: grap_change_views
 #: view:ir.values:0
@@ -233,6 +245,11 @@ msgid "Print information"
 msgstr "Information liée à l'impression"
 
 #. module: grap_change_views
+#: view:product.product:0
+msgid "Prix de Revient (HT)"
+msgstr "Prix de Revient (HT)"
+
+#. module: grap_change_views
 #: code:_description:0
 #: model:ir.model,name:grap_change_views.model_product_product
 #: view:pos.category:0
@@ -249,32 +266,32 @@ msgstr "Liste des articles"
 #. module: grap_change_views
 #: field:pos.order.line,product_name:0
 msgid "Product Name"
-msgstr "Produit"
+msgstr "Nom du produit"
 
 #. module: grap_change_views
 #: field:pos.category,product_qty:0
 msgid "Product Number"
-msgstr "Nombre de produits"
+msgstr "Nombre d'articles"
 
 #. module: grap_change_views
 #: field:pos.category,product_ids:0
 msgid "Products"
-msgstr "Produits"
+msgstr "Articles"
 
 #. module: grap_change_views
 #: model:ir.actions.act_window,name:grap_change_views.action_view_old_product_form
 #: model:ir.ui.menu,name:grap_change_views.menu_view_old_product_form
 msgid "Products (Admin)"
-msgstr "Article (Admin)"
+msgstr "Articles (Admin)"
 
 #. module: grap_change_views
 #: model:ir.ui.menu,name:grap_change_views.menu_product_product_editable_view
-msgid "Products (Editable View)"
-msgstr "Articles (Vue éditable)"
+msgid "Products (Other Views)"
+msgstr "Articles (Autres vues)"
 
 #. module: grap_change_views
 #: model:ir.actions.act_window,name:grap_change_views.action_view_product_product_price_tree
-#: model:ir.ui.menu,name:grap_change_views.menu_product_product_price
+#: model:ir.ui.menu,name:grap_change_views.menu_product_product_price_3
 #: view:product.product:0
 msgid "Products (Price)"
 msgstr "Articles (Prix)"
@@ -292,6 +309,13 @@ msgid "Purchase / Produce"
 msgstr "Achat / Production"
 
 #. module: grap_change_views
+#: code:_description:0
+#: model:ir.model,name:grap_change_views.model_purchase_order_line
+#, python-format
+msgid "Purchase Order Line"
+msgstr "Ligne de commande d'achat"
+
+#. module: grap_change_views
 #: view:res.partner:0
 msgid "Put an internal note..."
 msgstr "Mettre une note interne..."
@@ -300,6 +324,18 @@ msgstr "Mettre une note interne..."
 #: view:product.product:0
 msgid "Sale"
 msgstr "Vente"
+
+#. module: grap_change_views
+#: code:_description:0
+#: model:ir.model,name:grap_change_views.model_sale_order_line
+#, python-format
+msgid "Sales Order Line"
+msgstr "Ligne de commandes de vente"
+
+#. module: grap_change_views
+#: view:mail.compose.message:0
+msgid "Save as new template"
+msgstr "Sauvegarder en tant que nouveau modèle"
 
 #. module: grap_change_views
 #: view:pos.order.line:0
@@ -312,9 +348,9 @@ msgid "Sellers"
 msgstr "Fournisseurs"
 
 #. module: grap_change_views
-#: field:stock.move,sequence:0
-msgid "Sequence"
-msgstr "Séquence"
+#: view:purchase.order:0
+msgid "Send by Email"
+msgstr "Envoyer par courriel"
 
 #. module: grap_change_views
 #: view:product.product:0
@@ -359,10 +395,16 @@ msgid "Taxe Mont."
 msgstr "Taxe Mont."
 
 #. module: grap_change_views
+#: field:account.invoice.line,tax_ids_readonly:0
+#: field:purchase.order.line,tax_ids_readonly:0
+#: field:sale.order.line,tax_ids_readonly:0
+msgid "Taxes"
+msgstr "Taxes"
+
+#. module: grap_change_views
 #: view:pos.session:0
 #: view:sale.order:0
 #: view:stock.picking.in:0
-#: view:stock.picking.out:0
 msgid "To Process"
 msgstr "A traiter"
 
@@ -374,7 +416,6 @@ msgstr "Quotidien"
 
 #. module: grap_change_views
 #: view:stock.picking.in:0
-#: view:stock.picking.out:0
 msgid "Today of After"
 msgstr "Aujourd'hui ou plus tard"
 
@@ -428,3 +469,5 @@ msgstr "Boutique en ligne"
 #: view:product.product:0
 msgid "update"
 msgstr "mettre à jour"
+
+

@@ -141,9 +141,28 @@
             <field name="groups_id" eval="[(6, 0, [ref('base.group_no_one')])]"/>
         </record>
 
+<!-- Customer Part refactoring -->
+        <record model="ir.ui.menu" id="menu_res_partner_editable_view">
+            <field name="name">Customers (Other Views)</field>
+            <field name="sequence">2</field>
+            <field name="parent_id" ref="base.menu_sales" />
+        </record>
+
+        <menuitem id="sale_eshop.menu_res_partner_3"
+            name="Customers (eShop)"
+            sequence="1"
+            parent="menu_res_partner_editable_view"/>
+
+
+        <menuitem id="sale_recovery_moment.menu_res_partner_delivery_5"
+            name="Customers (Delivery)"
+            sequence="2"
+            parent="menu_res_partner_editable_view"/>
+
+
 <!-- Product Part refactoring -->
         <record model="ir.ui.menu" id="menu_product_product_editable_view">
-            <field name="name">Products (Editable View)</field>
+            <field name="name">Products (Other Views)</field>
             <field name="sequence">2</field>
             <field name="parent_id" ref="base.menu_product" />
         </record>
@@ -178,32 +197,37 @@
             <field name="context">{"search_default_filter_to_sell":1}</field>
         </record>
 
-        <menuitem id="menu_product_product_price"
+        <menuitem id="menu_product_product_price_3"
             name="Products (Price)"
             parent="menu_product_product_editable_view" sequence="0"
             action="action_view_product_product_price_tree"/>
 
-       <menuitem id="sale_food.menu_product_product_food"
+       <menuitem id="sale_food.menu_product_product_food_3"
+            name="Products (Food)"
             parent="menu_product_product_editable_view" sequence="1"/>
 
-       <menuitem id="sale_food.menu_product_product_origin"
+       <menuitem id="sale_food.menu_product_product_origin_3"
+            name="Products (Origin)"
             parent="menu_product_product_editable_view" sequence="2"/>
 
-       <menuitem id="sale_food.menu_product_product_pricetag"
+       <menuitem id="sale_food.menu_product_product_pricetag_3"
+            name="Products (Price Tag)"
             parent="menu_product_product_editable_view" sequence="3"/>
 
-       <menuitem id="product_ean_duplicates.menu_product_ean_duplicates"
+       <menuitem id="sale_eshop.menu_product_product_3"
+            name="Products (eShop)"
             parent="menu_product_product_editable_view" sequence="4"/>
 
-       <menuitem id="sale_eshop.menu_product_product"
+       <menuitem id="sale_recovery_moment.menu_product_product_prepare_3"
+            name="Products (Prepare)"
             parent="menu_product_product_editable_view" sequence="5"/>
 
-       <menuitem id="sale_recovery_moment.menu_product_product_prepare"
-            name="Products (Prepare)"
+       <menuitem id="sale_recovery_moment.menu_product_product_delivery_3"
+            name="Products (Delivery)"
             parent="menu_product_product_editable_view" sequence="6"/>
 
-       <menuitem id="sale_recovery_moment.menu_product_product_delivery"
-            name="Products (Delivery)"
+       <menuitem id="product_ean_duplicates.menu_product_ean_duplicates_3"
+            name="Products (EAN Duplicate)"
             parent="menu_product_product_editable_view" sequence="7"/>
 
 <!-- enable Menu to basic user -->
