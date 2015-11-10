@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    GRAP - Change eMail module for Odoo
-#    Copyright (C) 2013-Today GRAP (http://www.grap.coop)
+#    Intercompany Trade - Purchase / Sale module for OpenERP
+#    Copyright (C) 2015-Today GRAP (http://www.grap.coop)
 #    @author Sylvain LE GAL (https://twitter.com/legalsylvain)
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -20,4 +20,17 @@
 #
 ##############################################################################
 
-from . import model
+from openerp.osv import fields
+from openerp.osv.orm import Model
+
+
+class email_template(Model):
+    _inherit = 'email.template'
+
+    _columns = {
+        'active': fields.boolean('Active'),
+    }
+
+    _defaults = {
+        'active': True
+    }

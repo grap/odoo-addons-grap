@@ -20,7 +20,10 @@
 <openerp>
     <data>
 
-        <delete id="purchase.email_template_edi_purchase" model="email.template" />
+        <record id="purchase.email_template_edi_purchase" model="email.template">
+            <field name="email_from">${(object.company_id.email or '')|safe}</field>
+            <field name="active" eval="False" />
+        </record>
 
         <record id="email_template_request_for_quotation" model="email.template">
             <field name="name">GRAP - Achat - (1) Demande de devis</field>
