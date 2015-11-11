@@ -21,7 +21,6 @@
     <data>
 
         <record id="purchase.email_template_edi_purchase" model="email.template">
-            <field name="email_from">${(object.company_id.email or '')|safe}</field>
             <field name="active" eval="False" />
         </record>
 
