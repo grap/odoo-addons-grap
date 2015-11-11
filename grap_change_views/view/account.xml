@@ -171,6 +171,9 @@
                  <xpath expr="//field[@name='tax_line']/tree/field[@name='account_id']" position="attributes">
                      <attribute name="groups">account.group_account_manager</attribute>
                   </xpath>
+                <xpath expr="//field[@name='invoice_line']/tree" position="attributes">
+                    <attribute name="colors">red:discount==100;black:discount==0;brown:True;</attribute>
+                 </xpath>
             </field>
         </record>
 
@@ -193,6 +196,9 @@
                  <xpath expr="//field[@name='tax_line']/tree/field[@name='account_id']" position="attributes">
                      <attribute name="groups">account.group_account_manager</attribute>
                   </xpath>
+                <xpath expr="//field[@name='invoice_line']/tree" position="attributes">
+                    <attribute name="colors">red:discount==100;black:discount==0;brown:True;</attribute>
+                 </xpath>
             </field>
         </record>
 
