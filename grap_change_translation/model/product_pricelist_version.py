@@ -20,15 +20,13 @@
 #
 ##############################################################################
 
-from . import account_payment_term
-from . import account_tax
-from . import account_tax_code
-from . import pos_category
-from . import product_category
-from . import product_pricelist
-from . import product_pricelist_version
-from . import product_template
-from . import product_ul
-from . import product_uom
-from . import res_partner_category
-from . import stock_location
+from openerp.osv.orm import Model
+from openerp.osv import fields
+
+
+class product_pricelist_version(Model):
+    _inherit = "product.pricelist.version"
+    _columns = {
+        'name': fields.char(
+            'Name', size=64, required=True, translate=False),
+    }
