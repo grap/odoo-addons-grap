@@ -67,11 +67,9 @@
             <field name="inherit_id" ref="account.view_move_tree"/>
             <field eval="4" name="priority"/>
             <field name="arch" type="xml">
-                <data>
-                    <field name="partner_id" position="before">
-                        <field name="company_id" groups="base.group_multi_company"/>
-                    </field>
-                </data>
+                <field name="partner_id" position="before">
+                    <field name="company_id" groups="base.group_multi_company"/>
+                </field>
             </field>
         </record>
 
@@ -80,11 +78,9 @@
             <field name="inherit_id" ref="account.view_account_move_filter"/>
             <field eval="4" name="priority"/>
             <field name="arch" type="xml">
-                <data>
-                    <field name="period_id" position="after">
-                        <field name="company_id" groups="base.group_multi_company" context="{'company_id':self}"/>
-                    </field>
-                </data>
+                <field name="period_id" position="after">
+                    <field name="company_id" groups="base.group_multi_company" context="{'company_id':self}"/>
+                </field>
             </field>
         </record>
 
@@ -127,14 +123,12 @@
             <field name="inherit_id" ref="account.view_account_move_line_filter"/>
             <field eval="4" name="priority"/>
             <field name="arch" type="xml">
-                <data>
-                    <field name="period_id" position="after">
-                        <field name="company_id" groups="base.group_multi_company" context="{'company_id':self}"/>
-                    </field>
-                    <xpath expr="//filter[@string='Period']" position="after">
-                        <filter string="Company" domain="[]" context="{'group_by':'company_id'}"/>
-                    </xpath>
-                </data>
+                <field name="period_id" position="after">
+                    <field name="company_id" groups="base.group_multi_company" context="{'company_id':self}"/>
+                </field>
+                <xpath expr="//filter[@string='Period']" position="after">
+                    <filter string="Company" domain="[]" context="{'group_by':'company_id'}"/>
+                </xpath>
             </field>
         </record>
 
@@ -143,11 +137,9 @@
             <field name="model">account.bank.statement</field>
             <field name="inherit_id" ref="account.view_bank_statement_form2"/>
             <field name="arch" type="xml">
-                <data>
-                    <field name="user_id" position="attributes">
-                        <attribute name="readonly">0</attribute>
-                    </field>
-                </data>
+                <field name="user_id" position="attributes">
+                    <attribute name="readonly">0</attribute>
+                </field>
             </field>
         </record>
 
@@ -207,15 +199,13 @@
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_tree"/>
             <field name="arch" type="xml">
-                <data>
-                    <field name="number" position="after">
-                        <field name="reference"/>
-                    </field>
-                    <field name="origin" position="replace"/>
-                    <field name="number" position="before">
-                        <field name="origin"/>
-                    </field>
-                </data>
+                <field name="number" position="after">
+                    <field name="reference"/>
+                </field>
+                <field name="origin" position="replace"/>
+                <field name="number" position="before">
+                    <field name="origin"/>
+                </field>
             </field>
         </record>
 
@@ -223,11 +213,9 @@
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.view_account_invoice_filter"/>
             <field name="arch" type="xml">
-                <data>
-                    <field name="number" position="attributes">
-                        <attribute name="filter_domain">['|', '|', ('number','ilike',self),('origin','ilike',self),('reference','ilike',self)]</attribute>
-                    </field>
-                </data>
+                <field name="number" position="attributes">
+                    <attribute name="filter_domain">['|', '|', ('number','ilike',self),('origin','ilike',self),('reference','ilike',self)]</attribute>
+                </field>
             </field>
         </record>
 
