@@ -25,8 +25,11 @@ from openerp.osv import fields
 
 
 class account_payment_term(Model):
-    _inherit = "account.payment.term"
+    _inherit = 'account.payment.term'
+
     _columns = {
         'name': fields.char(
             'Payment Term', size=64, translate=False, required=True),
+        'note': fields.text(
+            'Note', translate=False),
     }
