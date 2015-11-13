@@ -64,7 +64,10 @@ class account_invoice_line(Model):
                 cr, uid, line.invoice_line_tax_id,
                 line.price_unit, line.quantity, line.product_id,
                 line.invoice_id.partner_id)
-            res[line.id] = tmp['taxes'][0]['price_unit']
+            if tmp['taxes']:
+                res[line.id] = tmp['taxes'][0]['price_unit']
+            else:
+                res[line.id] = line.price_unit
         return res
 
     _columns = {
