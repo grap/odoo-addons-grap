@@ -60,12 +60,13 @@ class pos_session(Model):
             balance_end = 0
             difference = 0
             for ccl in record.cash_controls_list:
-                balance_end_real += ccl.cash_register_id.balance_end_real
-                balance_start += ccl.cash_register_id.balance_start
-                total_entry_encoding += \
-                    ccl.cash_register_id.total_entry_encoding
-                balance_end += ccl.cash_register_id.balance_end
-                difference += ccl.cash_register_id.difference
+                if ccl.cash_register_id:
+                    balance_end_real += ccl.cash_register_id.balance_end_real
+                    balance_start += ccl.cash_register_id.balance_start
+                    total_entry_encoding += \
+                        ccl.cash_register_id.total_entry_encoding
+                    balance_end += ccl.cash_register_id.balance_end
+                    difference += ccl.cash_register_id.difference
             result[record.id]['cash_register_balance_start'] = balance_start
             result[record.id]['cash_register_balance_end_real'] = \
                 balance_end_real
