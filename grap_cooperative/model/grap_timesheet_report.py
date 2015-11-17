@@ -32,8 +32,8 @@ class grap_timesheet_report(Model):
     _table_name = 'grap_timesheet_report'
 
     _columns = {
-        'worker_id': fields.many2one(
-            'grap.people', 'Worker', readonly=True),
+        'user_id': fields.many2one(
+            'res.users', 'User', readonly=True),
         'date': fields.date(
             'Date', readonly=True),
         'week': fields.char(
@@ -53,12 +53,12 @@ class grap_timesheet_report(Model):
 CREATE OR REPLACE VIEW %s AS (
     SELECT
         row_number() OVER () as id,
-        gt.date,
         gt.name,
-        to_char(DATE_TRUNC('week',gt.date),'YYYY/MM/DD') as week,
+        DATE_TRUNC('day', gt.min_date) as date,
+        to_char(DATE_TRUNC('week',gt.min_date),'YYYY/MM/DD') as week,
         gt.type_id,
         gtar.activity_id,
-        gt.worker_id,
+        gt.user_id,
         gt.amount_per_activity as amount
     FROM grap_timesheet_activity_rel gtar
     LEFT OUTER JOIN grap_timesheet gt

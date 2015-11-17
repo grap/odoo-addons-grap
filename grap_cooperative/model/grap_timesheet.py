@@ -20,6 +20,8 @@
 #
 ##############################################################################
 
+from datetime import datetime
+
 from openerp.osv import fields
 from openerp.osv.orm import Model
 
@@ -27,16 +29,21 @@ from openerp.osv.orm import Model
 class grap_timesheet(Model):
     _description = 'Time Sheet'
     _name = 'grap.timesheet'
-    _order = 'date desc, id desc'
+    _order = 'min_date, max_date, type_id'
 
     # Fields Function Section
-    def _get_activity(
+    def _get_amount_activity(
             self, cr, uid, ids, pFields, args, context=None):
         res = {}
         for gt in self.browse(cr, uid, ids, context=context):
+            fmt = '%Y-%m-%d %H:%M:%S'
+            d1 = datetime.strptime(gt.min_date, fmt)
+            d2 = datetime.strptime(gt.max_date, fmt)
+            amount = (d2 - d1).seconds / 3600.0
             res[gt.id] = {
+                'amount': amount,
                 'activity_qty': len(gt.activity_ids),
-                'amount_per_activity': gt.amount / len(gt.activity_ids),
+                'amount_per_activity': amount / len(gt.activity_ids),
             }
         return res
 
@@ -51,45 +58,62 @@ class grap_timesheet(Model):
     # Columns section
     _columns = {
         'name': fields.char('Name', size=256, required=True),
-        'worker_id': fields.many2one('grap.people', 'Worker', required=True),
-        'date': fields.date('Date', required=True),
-        'amount': fields.float(
-            'Hours', help='Specifies the amount of worked hours.',
-            required=True),
+        'user_id': fields.many2one('res.users', 'User', required=True),
+
+        'min_date': fields.datetime(
+            string='Minimum date', required=True),
+        'max_date': fields.datetime(
+            string='Maximum date', required=True),
+
         'activity_ids': fields.many2many(
             'grap.activity',
             'grap_timesheet_activity_rel', 'timesheet_id', 'activity_id',
-            'Activities'),
+            'Activities', required=True),
         'type_id': fields.many2one(
             'grap.timesheet.type', 'Work Type', required=True),
         'timesheet_group_id': fields.function(
             _get_timesheet_group_id, type='many2one',
             fnct_inv=_set_timesheet_group_id,
             relation='grap.timesheet.group', string='Group'),
-        'activity_qty': fields.function(
-            _get_activity, type='integer', string='Activities Quantity',
+
+        'amount': fields.function(
+            _get_amount_activity, type='float', string='Hours',
+            help='Specifies the amount of worked hours.',
             multi='activity', store={
                 'grap.timesheet': (
                     lambda self, cr, uid, ids, context=None: ids, [
-                        'activity_ids',
+                        'activity_ids', 'min_date', 'max_date',
+                    ], 10)}),
+
+        'activity_qty': fields.function(
+            _get_amount_activity, type='integer', string='Activities Quantity',
+            multi='activity', store={
+                'grap.timesheet': (
+                    lambda self, cr, uid, ids, context=None: ids, [
+                        'activity_ids', 'min_date', 'max_date',
                     ], 10)}),
         'amount_per_activity': fields.function(
-            _get_activity, type='float', string='Amount Per Activity',
+            _get_amount_activity, type='float', string='Amount Per Activity',
             multi='activity', store={
                 'grap.timesheet': (
                     lambda self, cr, uid, ids, context=None: ids, [
-                        'activity_ids',
+                        'activity_ids', 'min_date', 'max_date',
                     ], 10)}),
     }
 
     # Default Section
-    def _get_default_date(self, cr, uid, context=None):
+    def _get_default_min_date(self, cr, uid, context=None):
+        # TODO Make now without minut
+        return fields.date.context_today(self, cr, uid, context=context)
+
+    def _get_default_max_date(self, cr, uid, context=None):
         return fields.date.context_today(self, cr, uid, context=context)
 
     _defaults = {
         'name': '/',
-        'date': _get_default_date,
-        'amount': 0.00,
+        'user_id': lambda obj, cr, uid, context: uid,
+        'min_date': _get_default_min_date,
+        'max_date': _get_default_max_date,
     }
 
     # Views section

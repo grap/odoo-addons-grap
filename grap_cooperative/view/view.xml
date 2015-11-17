@@ -597,10 +597,21 @@
             <field name="model">grap.timesheet</field>
             <field name="arch" type="xml">
                 <search string="Search Tasks">
-                    <field name="worker_id"/>
-                    <field name="date"/>
-                    <filter name="filter_today" string="Today" domain="[('date', '>=', time.strftime('%%Y-%%m-%%d 00:00:00'))]" />
+                    <field name="user_id"/>
+                    <field name="type_id"/>
                 </search>
+            </field>
+        </record>
+
+        <record id="view_timesheet_calendar" model="ir.ui.view">
+            <field name="model">grap.timesheet</field>
+            <field name="arch" type="xml">
+            <calendar string="TimeSheet"
+                    date_start="min_date" date_stop="max_date"
+                    color="user_id" mode="week" day_length="12">
+                <field name="name"/>
+                <field name="type_id"/>
+            </calendar>
             </field>
         </record>
 
@@ -611,13 +622,46 @@
                     <field name="type_id"/>
                     <field name="timesheet_group_id" on_change="on_change_timesheet_group_id(timesheet_group_id)"/>
                     <field name="activity_ids" widget="many2many_tags"/>
-                    <field name="amount" widget="float_time"/>
                     <field name="name"/>
-                    <field name="date"/>
-                    <field name="worker_id"/>
+                    <field name="min_date"/>
+                    <field name="max_date"/>
+                    <field name="amount" widget="float_time"/>
+                    <field name="user_id"/>
                 </tree>
             </field>
         </record>
+
+        <record id="view_timesheet_form" model="ir.ui.view">
+            <field name="model">grap.timesheet</field>
+            <field name="arch" type="xml">
+                <form string="Recovery Moments" version="7.0">
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                            <h2>
+                                <field name="type_id"/>
+                            </h2>
+                        </div>
+                        <group col="4">
+                            <group col="4" colspan="4" string="Activities">
+                                <field name="timesheet_group_id" on_change="on_change_timesheet_group_id(timesheet_group_id)"/>
+                                <field name="activity_ids" widget="many2many_tags"/>
+                                <field name="amount_per_activity"/>
+                                <field name="user_id"/>
+                            </group>
+                            <group col="4" colspan="4" string="Date">
+                                <field name="min_date"/>
+                                <field name="max_date"/>
+                                <field name="amount"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
 
 
 <!-- View : grap.timesheet.type -->
@@ -681,17 +725,17 @@
             </field>
         </record>
 
-<!-- View : grap.timesheet.group -->
+<!-- View : grap.timesheet.report -->
         <record id="view_timesheet_report_search" model="ir.ui.view">
             <field name="model">grap.timesheet.report</field>
             <field name="arch" type="xml">
-                <search string="TimeSheet Report"> 
-                   <field name="worker_id"/>
+                <search string="TimeSheet Report">
+                   <field name="user_id"/>
                     <field name="type_id"/>
                     <field name="activity_id"/>
                    <group expand='0' string='Group by...'>
                        <filter string='Date' context="{'group_by' : 'date'}"/>
-                       <filter string='Worker' context="{'group_by' : 'worker_id'}"/>
+                       <filter string='User' context="{'group_by' : 'user_id'}"/>
                        <filter string='Activity' context="{'group_by' : 'activity_id'}"/>
                        <filter string='Type' context="{'group_by' : 'type_id'}"/>
                    </group>
@@ -704,7 +748,8 @@
         <field name="arch" type="xml">
             <tree string="ThimeSheet Report" create="false">
                 <field name="date"/>
-                <field name="worker_id"/>
+                <field name="week"/>
+                <field name="user_id"/>
                 <field name="activity_id"/>
                 <field name="type_id"/>
                 <field name="name"/>
