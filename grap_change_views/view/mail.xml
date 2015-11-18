@@ -34,7 +34,13 @@
         </record>
 
 <!-- Model: mail.compose.message                                            -->
-<!--        <delete id="email_template.email_compose_message_wizard_inherit_form" model="ir.ui.view" />-->
+        <record id="view_mail_compose_message_template_form" model="ir.ui.view">
+            <field name="model">mail.compose.message</field>
+            <field name="inherit_id" ref="email_template.email_compose_message_wizard_inherit_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@class='oe_right']" position="replace" />
+            </field>
+        </record>
 
         <record id="view_mail_compose_message_form" model="ir.ui.view">
             <field name="model">mail.compose.message</field>
