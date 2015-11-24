@@ -152,7 +152,7 @@
                                 <field name="state"/>
                                 <field name="company_id" groups="base.group_multi_company"/>
                                 <group string="Packaging" colspan="2">
-                                    <field name="prepare_categ_id" groups="sale_recovery_moment.recovery_user"/>
+                                    <field name="delivery_categ_id" groups="sale_recovery_moment.delivery_user"/>
                                     <field name="volume" attrs="{'readonly':[('type','=','service')]}"/>
                                     <field name="weight_net" attrs="{'readonly':[('type','=','service')]}"/>
                                 </group>
@@ -293,8 +293,10 @@
                                     <field name="eshop_category_id" colspan="4"/>
                                     <field name="eshop_minimum_qty"/>
                                     <field name="eshop_rounded_qty"/>
+                                    <field name="eshop_unpack_qty"/>
+                                    <field name="eshop_unpack_surcharge" attrs="{'invisible':[('eshop_unpack_qty','=', 0)]}"/>
                                     <field name="eshop_state"/>
-                                    <field name="description" colspan="4"/>
+                                    <field name="description" colspan="4" nolabel="1"/>
                                 </group>
                             </page>
                         </notebook>
