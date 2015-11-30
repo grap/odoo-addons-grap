@@ -29,13 +29,7 @@ class stock_inventory(Model):
     _inherit = 'stock.inventory'
 
     # Columns section
-    def _get_lines(self, cr, uid, ids, context=None):
-        sil_obj = self.pool.get('stock.inventory.line')
-        sil = sil_obj.browse(cr, uid, ids, context=context)
-        res = [s.inventory_id.id for s in sil]
-        return res
-
-    def _valuation(self, cr, uid, ids, field_name, arg, context=None):
+    def _get_valuation(self, cr, uid, ids, field_name, arg, context=None):
         res = {}
         for inv in self.browse(cr, uid, ids, context=context):
             val = 0
@@ -46,7 +40,7 @@ class stock_inventory(Model):
 
     _columns = {
         'valuation': fields.function(
-            _valuation, string='Valuation',
+            _get_valuation, string='Valuation (VAT Excl)',
             digits_compute=dp.get_precision('Product Price'),
             store=False),
     }

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-15 13:51+0000\n"
-"PO-Revision-Date: 2014-05-15 13:51+0000\n"
+"POT-Creation-Date: 2015-11-30 16:50+0000\n"
+"PO-Revision-Date: 2015-11-30 16:50+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -31,15 +31,13 @@ msgstr "Ligne d'inventaire"
 
 #. module: stock_inventory_valuation
 #: help:stock.inventory.line,price_unit:0
-msgid "Technical field used to record the product cost at \n"
-"                            the time of the inventory"
-msgstr "Ce champ est utilisé pour stocker le coût de valorisation du produit \n"
-"                            au moment de l'inventaire"
+msgid "Technical field used to record the product cost at the time of the inventory"
+msgstr "Champs technique utilisé pour enregistrer le coût de revient au moment de l'inventaire"
 
 #. module: stock_inventory_valuation
 #: view:stock.inventory:0
 msgid "Total Valuation"
-msgstr "Valuation totale"
+msgstr "Valorisation totale"
 
 #. module: stock_inventory_valuation
 #: field:stock.inventory.line,price_unit:0
@@ -49,6 +47,6 @@ msgstr "Prix Unitaire"
 #. module: stock_inventory_valuation
 #: field:stock.inventory,valuation:0
 #: field:stock.inventory.line,valuation:0
-msgid "Valuation"
-msgstr "Valuation"
+msgid "Valuation (VAT Excl)"
+msgstr "Valorisation (HT)"
 

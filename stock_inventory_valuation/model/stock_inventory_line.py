@@ -26,10 +26,10 @@ import openerp.addons.decimal_precision as dp
 
 
 class stock_inventory_line(Model):
-    _inherit = "stock.inventory.line"
+    _inherit = 'stock.inventory.line'
 
     # Columns section
-    def _valuation(self, cr, uid, ids, field_name, arg, context=None):
+    def _get_valuation(self, cr, uid, ids, field_name, arg, context=None):
         res = {}
         for line in self.browse(cr, uid, ids, context=context):
             res[line.id] = line.price_unit * line.product_qty
@@ -41,7 +41,7 @@ class stock_inventory_line(Model):
             help="""Technical field used to record the product cost at"""
             """ the time of the inventory"""),
         'valuation': fields.function(
-            _valuation, string='Valuation', store=True,
+            _get_valuation, string='Valuation (VAT Excl)', store=True,
             digits_compute=dp.get_precision('Product Price')),
     }
 
