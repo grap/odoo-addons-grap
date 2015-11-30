@@ -20,5 +20,18 @@
 #
 ##############################################################################
 
-from . import product_category
-from . import account_account_template
+
+from openerp.osv.orm import Model
+from openerp.osv import fields
+
+
+class account_account_template(Model):
+    _inherit = 'account.account.template'
+
+    _columns = {
+        'active': fields.boolean('active'),
+    }
+
+    _defaults = {
+        'active': True,
+    }

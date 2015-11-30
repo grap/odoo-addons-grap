@@ -28,14 +28,24 @@
 Change / Drop Unwished Data
 ===========================
 
-Functionality:
---------------
-    * Disable some data unwished by xml_id;
-        * Disable product.product_category_1;
+Functionality
+-------------
 
-Technical Information:
-----------------------
-    * For that, add an 'active' field on product.category;
+* Product Template;
+    * Disable product.product_category_1;
+
+
+* Change default french accounting setting:
+    * 445711 : TVA collectée (Taux Plein) -> TVA collectée 20%;
+    * 445712 : TVA collectée (Taux Intermédiaire) -> TVA collectée 5.5%;
+    * 601 -> change from view to normal type;
+    * disable some account template;
+
+Technical Information
+---------------------
+
+* Add an 'active' field on product.category;
+* Add an active field on
 
 Copyright, Authors and Licence:
 -------------------------------
@@ -48,10 +58,12 @@ Copyright, Authors and Licence:
     'license': 'AGPL-3',
     'depends': [
         'product',
+        'account',
+        'l10n_fr',
     ],
     'data': [
         'data/product_category.yml',
-    ],
-    'css': [
+        'data/account_account_template.xml',
+        'data/account_chart_template.xml',
     ],
 }

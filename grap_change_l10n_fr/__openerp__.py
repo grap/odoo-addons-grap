@@ -21,7 +21,7 @@
 ##############################################################################
 
 {
-    'name': 'GRAP - Change l10n_fr',
+    'name': 'GRAP - Change l10n_fr OBSOLETE',
     'version': '2.0',
     'category': 'GRAP - Custom',
     'description': """
@@ -29,11 +29,7 @@ Change default french accounting setting
 ========================================
 
 TODO
-* 445711 : TVA collectée (Taux Plein) -> TVA collectée 20%;
-* 445712 : TVA collectée (Taux Intermédiaire) -> TVA collectée 5.5%;
 
-* 6017 -> delete;
-* 601 -> change from view to normal type;
 
 Copyright, Author and Licence :
 -------------------------------
@@ -46,11 +42,6 @@ Copyright, Author and Licence :
     'website': 'http://www.grap.coop',
     'license': 'AGPL-3',
     'depends': [
-        'account',
-        'l10n_fr',
-    ],
-    'data': [
-        'data/account_account_template.xml',
-        'data/account_chart_template.xml',
+        'base',
     ],
 }
