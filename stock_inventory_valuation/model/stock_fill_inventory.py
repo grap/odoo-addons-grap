@@ -1,9 +1,8 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Stock Inventory - Valuation Module for Odoo
-#    Copyright (C) 2013-Today GRAP (http://www.grap.coop)
-#    @author Sylvain LE GAL (https://twitter.com/legalsylvain)
+#    OpenERP, Open Source Management Solution
+#    Copyright (C) 2004-2010 Tiny SPRL (<http://tiny.be>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -20,6 +19,19 @@
 #
 ##############################################################################
 
-from . import stock_fill_inventory
-from . import stock_inventory
-from . import stock_inventory_line
+from openerp.osv.orm import TransientModel
+
+
+class stock_fill_inventory(TransientModel):
+    _inherit = 'stock.fill.inventory'
+
+    # Overload Section
+    def fill_inventory(self, cr, uid, ids, context=None):
+        inventory_obj = self.pool['stock.inventory']
+        res = super(stock_fill_inventory, self).fill_inventory(
+            cr, uid, ids, context=context)
+
+        # Fix price_unit to 0
+        inventory_obj.reset_price_unit(
+            cr, uid, context['active_ids'], context=context)
+        return res
