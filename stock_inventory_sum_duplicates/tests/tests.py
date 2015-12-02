@@ -20,10 +20,10 @@
 #
 ##############################################################################
 
-from openerp.tests.common import TransactionCase
+# TODO FIXME ADD AGAIN TEST
+# from openerp.tests.common import TransactionCase
 
-
-#class TestAccountGroupMoveLines(TransactionCase):
+# class TestAccountGroupMoveLines(TransactionCase):
 
 #    def setUp(self):
 #        super(TestAccountGroupMoveLines, self).setUp()

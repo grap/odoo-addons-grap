@@ -30,7 +30,7 @@
 Feature
 -------
 * If a stock.inventory has several lines with same product, lot and
-  location, it is not possible to validate the inventory. 
+  location, it is not possible to validate the inventory.
   The duplicates lines are displayed and users has to fix it.
 
 * overload _compute_qty_obj to avoid to have an enigmatic message when uom

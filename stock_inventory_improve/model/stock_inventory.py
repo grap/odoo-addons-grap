@@ -47,7 +47,6 @@ class stock_inventory(Model):
             self._reset_stock_account(cr, uid, ids, context=context)
         return res
 
-
     # Private section
     def _reset_stock_account(self, cr, uid, ids, context=None):
         ip_obj = self.pool['ir.property']
