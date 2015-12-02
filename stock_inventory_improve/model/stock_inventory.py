@@ -47,15 +47,6 @@ class stock_inventory(Model):
             self._reset_stock_account(cr, uid, ids, context=context)
         return res
 
-    # Action section
-    def reset_price_unit(self, cr, uid, ids, context=None):
-        sil_obj = self.pool['stock.inventory.line']
-        for si in self.browse(cr, uid, ids, context=context):
-            for sil in si.inventory_line_id:
-                sil_obj.write(cr, uid, [sil.id], {
-                    'price_unit': sil.product_id.standard_price,
-                }, context=context)
-        return True
 
     # Private section
     def _reset_stock_account(self, cr, uid, ids, context=None):

@@ -26,18 +26,23 @@
     'version': '1.1',
     'category': 'Stock',
     'description': """
-Feature:
---------
-    * If a stock.inventory has several lines with same product, lot and
-      location, the lines will be merged and the quantities will be summed
-      before creating the stock.moves;
 
-Use Case:
----------
-    * This module is usefull when the product is in many location that are
-      not defined in OpenERP. For example, in a little shop, a product can be:
-        * in stock; (in one or many places);
-        * in the sales area; (in one or many places);
+Feature
+-------
+* If a stock.inventory has several lines with same product, lot and
+  location, it is not possible to validate the inventory. 
+  The duplicates lines are displayed and users has to fix it.
+
+* overload _compute_qty_obj to avoid to have an enigmatic message when uom
+  is not correct. (piece, instead of kilo for exemple)
+
+Use Case
+--------
+
+* This module is usefull when the product is in many location that are
+  not defined in OpenERP. For example, in a little shop, a product can be:
+    * in stock; (in one or many places);
+    * in the sales area; (in one or many places);
 
 Copyright, Author and Licence :
 -------------------------------
@@ -52,7 +57,9 @@ Copyright, Author and Licence :
     'license': 'AGPL-3',
     'depends': [
         'stock',
-        'delivery',
+    ],
+    'data': [
+        'views/stock_inventory_view.xml',
     ],
     'demo': [
         'demo/res_groups.yml',

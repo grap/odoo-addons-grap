@@ -1,0 +1,54 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* stock_inventory_sum_duplicates
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-12-02 15:20+0000\n"
+"PO-Revision-Date: 2015-12-02 15:20+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: stock_inventory_sum_duplicates
+#: view:stock.inventory:0
+#: field:stock.inventory,duplicates_ids:0
+msgid "Duplicates Items"
+msgstr "Items en doublon"
+
+#. module: stock_inventory_sum_duplicates
+#: field:stock.inventory,duplicates_qty:0
+msgid "Duplicates Qty"
+msgstr "Nombre de doublons"
+
+#. module: stock_inventory_sum_duplicates
+#: code:addons/stock_inventory_sum_duplicates/model/stock_inventory.py:138
+#, python-format
+msgid "Duplicates in '%s'!"
+msgstr "Doublons dans '%s'!"
+
+#. module: stock_inventory_sum_duplicates
+#: code:_description:0
+#: model:ir.model,name:stock_inventory_sum_duplicates.model_stock_inventory
+#, python-format
+msgid "Inventory"
+msgstr "Inventaire"
+
+#. module: stock_inventory_sum_duplicates
+#: view:stock.inventory:0
+msgid "Merge Duplicates"
+msgstr "Fusionner les doublons"
+
+#. module: stock_inventory_sum_duplicates
+#: code:addons/stock_inventory_sum_duplicates/model/stock_inventory.py:139
+#, python-format
+msgid "You can not confirm this inventory because there are %d duplicates lines in it.\n"
+" Please fix first this lines, merging quantities."
+msgstr "Vous ne pouvez pas confirmer cet inventaire, car il contient %d doublons dans les lignes d'inventaire.\n"
+" Veuillez d'abord corriger ces lignes, en fusionnant les quantités."
+

@@ -46,6 +46,6 @@ Copyright, Author and Licence :
     ],
     'data': [
         'data/stock_inventory_report.xml',
-        'view/view.xml',
+        'views/stock_inventory_view.xml',
     ],
 }

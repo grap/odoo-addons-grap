@@ -20,48 +20,81 @@
 #
 ##############################################################################
 
-from openerp.osv import osv
+from openerp.osv import fields
+from openerp.osv.orm import Model
+from openerp.osv.osv import except_osv
+from openerp.tools.translate import _
 
 
-class stock_inventory(osv.osv):
+class stock_inventory(Model):
     _inherit = 'stock.inventory'
-    _order = 'id desc'
 
-    def action_confirm(self, cr, uid, ids, context=None):
-        if context is None:
-            context = {}
-        inv_line_obj = self.pool.get('stock.inventory.line')
-        uom_obj = self.pool.get('product.uom')
-        product_obj = self.pool.get('product.product')
+    # Private Section
+    def _get_keys(self, cr, uid, id, context=None):
+        """This function return a list of keys / item mentioning duplicates
+        in stock.inventory lines.
+        key : (product_id, location_id, prod_lit_id);
+        value : {
+            'inventory_line_ids': [x, y],
+            'qty': {uom_id_1: sum_qty_1, uom_id_2: sum_qty_2}}
+        """
+        inventory = self.browse(cr, uid, id, context=context)
+        res = {}
 
-        for inv in self.browse(cr, uid, ids, context=context):
-            lines = {}
+        for line in inventory.inventory_line_id:
+            key = (
+                line.product_id.id,
+                line.location_id.id,
+                line.prod_lot_id.id,
+            )
+            res.setdefault(key, {'qty': {}, 'ids': []})
+            res[key]['qty'].setdefault(line.product_uom.id, 0)
+            res[key]['qty'][line.product_uom.id] += line.product_qty
+            res[key]['ids'] += [line.id]
 
-            for line in inv.inventory_line_id:
-                key = (
-                    line.product_id.id,
-                    line.location_id.id,
-                    line.prod_lot_id.id,
-                )
-                product_qty = line.product_qty
-                product_uom = line.product_uom.id
+        return res
 
-                # copy the inventory.lines line by line in a new dict,
-                # merging the duplicates
-                lines.setdefault(key, {'qty': {}, 'ids': []})
-                lines[key]['qty'].setdefault(product_uom, 0)
-                lines[key]['qty'][product_uom] += product_qty
-                lines[key]['ids'] += [line.id]
+    # Computed Section
+    def _get_duplicates(self, cr, uid, ids, field_name, arg, context=None):
+        res = {}
+        for inventory in self.browse(cr, uid, ids, context=context):
+            line_ids = []
+            tmp = self._get_keys(cr, uid, inventory.id, context=context)
+            for k, v in tmp.items():
+                if len(v['ids']) > 1:
+                    line_ids += v['ids']
+            res[inventory.id] = {
+                'duplicates_qty': len(line_ids),
+                'duplicates_ids': line_ids,
+            }
+        return res
 
-            # browse the new dict to find the duplicates, unlink the old
-            # lines and create a unique new one
+    _columns = {
+        'duplicates_qty': fields.function(
+            _get_duplicates, string='Duplicates Qty', type='float',
+            multi='duplicates'),
+        'duplicates_ids': fields.function(
+            _get_duplicates, string='Duplicates Items',
+            type='one2many', relation='stock.inventory.line',
+            multi='duplicates'),
+    }
+
+    # View Section
+    def action_merge_duplicates(self, cr, uid, ids, context=None):
+
+        product_obj = self.pool['product.product']
+        line_obj = self.pool['stock.inventory.line']
+        uom_obj = self.pool['product.uom']
+        for inventory in self.browse(cr, uid, ids, context=context):
+
+            lines = self._get_keys(cr, uid, inventory.id, context=context)
             for key in lines.keys():
                 (product_id, location_id, prod_lot_id) = key
                 product_uom = product_obj.browse(
                     cr, uid, [product_id], context=context
                 )[0].product_tmpl_id.uom_id
                 if len(lines[key]['ids']) > 1:
-                    inv_line_obj.unlink(
+                    line_obj.unlink(
                         cr, uid, lines[key]['ids'], context=context)
                     amount = 0
                     for uom in lines[key]['qty'].keys():
@@ -71,24 +104,26 @@ class stock_inventory(osv.osv):
                             cr, uid, from_uom, lines[key]['qty'][uom],
                             product_uom, context=context)
                     values = {
-                        'inventory_id': inv.id,
+                        'inventory_id': inventory.id,
                         'location_id': location_id,
                         'product_id': product_id,
                         'product_uom': product_uom.id,
                         'product_qty': amount,
                         'prod_lot_id': prod_lot_id,
                     }
-                    inv_line_obj.create(cr, uid, values, context=context)
-                else:
-                    # if the line is not a duplicate,
-                    # we still check the uom to prevent latter errors
-                    amount = 0
-                    for uom in lines[key]['qty'].keys():
-                        from_uom = uom_obj.browse(
-                            cr, uid, [uom], context=context)[0]
-                        amount += uom_obj._compute_qty_obj(
-                            cr, uid, from_uom, lines[key]['qty'][uom],
-                            product_uom, context=context)
+                    line_obj.create(cr, uid, values, context=context)
+        return True
 
+    # Overload Section
+    def action_confirm(self, cr, uid, ids, context=None):
+        for inventory in self.browse(cr, uid, ids, context=context):
+            if inventory.duplicates_qty:
+                raise except_osv(
+                    _("Duplicates in '%s'!") % (inventory.name),
+                    _(
+                        "You can not confirm this inventory because there are"
+                        " %d duplicates lines in it.\n Please fix first this"
+                        " lines, merging quantities.") % (
+                            inventory.duplicates_qty))
         return super(stock_inventory, self).action_confirm(
             cr, uid, ids, context=context)
