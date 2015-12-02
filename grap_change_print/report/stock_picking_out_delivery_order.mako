@@ -51,7 +51,7 @@
                 <td>${picking.origin or ''}</td>
                 <td>${formatLang(picking.min_date, date_time=True)}</td>
                 <td>${picking.weight}</td>
-                <td>${picking.moment_id and picking.moment_id.place_id.name or ''}</td>
+                <td>${picking.recovery_moment_id and picking.recovery_moment_id.place_id.name or ''}</td>
             </tr>
         </table>
     
