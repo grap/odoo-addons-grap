@@ -20,10 +20,20 @@
 #
 ##############################################################################
 
-from . import stock_picking
-from . import account_invoice
-from . import account_invoice_line
-from . import res_company
-from . import product_summary_wizard
-from . import product_summary_wizard_picking
-from . import product_summary_wizard_product
+from openerp.osv.orm import Model
+
+
+class stock_picking(Model):
+    _inherit = 'stock.picking'
+
+    def _prepare_invoice_line(
+            self, cr, uid, group, picking, move_line, invoice_id, invoice_vals,
+            context=None):
+        res = super(stock_picking, self)._prepare_invoice_line(
+            cr, uid, group, picking, move_line, invoice_id, invoice_vals,
+            context=context)
+        if group:
+            prefix = move_line.date_expected\
+                and move_line.date_expected.split(' ')[0] + ' - ' or ''
+            res['name'] = prefix + res['name']
+        return res

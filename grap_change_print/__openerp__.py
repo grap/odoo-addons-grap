@@ -28,21 +28,31 @@
     'description': """
 Change default reporting
 ========================
-    * account.invoice:
-        * Add extra mandatory information of each line about food;
-        * Remove Unit Price column and set an Unit Price VAT Exclude column;
 
-    * account.bank.statement:
-        * Add the number of lines at the end of the report;
+* account.invoice:
+    * Add extra mandatory information of each line about food;
+    * Remove Unit Price column and set an Unit Price VAT Exclude column;
 
-    * pos.order:
-        * Possibility to print receipt for draft pos.order;
-        * Improve of pos.receipt;
-            * Reduce the size of white space;
-            * Add logo of the company;
+    * On invoices that come from grouped picking, add the date of the delivery
+      date.
 
-Copyright, Author and Licence :
--------------------------------
+* account.bank.statement:
+    * Add the number of lines at the end of the report;
+
+* pos.order:
+    * Possibility to print receipt for draft pos.order;
+    * Improve of pos.receipt;
+        * Reduce the size of white space;
+        * Add logo of the company;
+
+Technical information
+---------------------
+
+change the name of the account invoice line, generated from grouped picking.
+
+
+Copyright, Author and Licence
+-----------------------------
     * Copyright : 2014-Today, Groupement Régional Alimentaire de Proximité;
     * Author :
         * Julien WESTE;
