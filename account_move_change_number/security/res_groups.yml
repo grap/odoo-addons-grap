@@ -19,43 +19,8 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-{
-    'name': 'Account - Move Change Number',
-    'version': '1.0',
-    'category': 'Accounting',
-    'description': """
-Allow special user to rename account move
-=========================================
 
-Features
---------
+- !record {model: res.groups, id: res_group_account_move_change_number_manager}:
+    category_id: base.module_category_usability
+    name: Account Move - Change Number
 
-* Allow special user to rename account move ;
-  Usefull if the account move doesn't have the good numeration.
-  (for exemple if you change account move sequence) ;
-
-Technical informations
-----------------------
-
-* change account move name with next sequence ;
-* add in the field 'narration' the old name ;
-
-Copyright, Author and Licence
------------------------------
-
-* Copyright : 2014, Groupement Régional Alimentaire de Proximité;
-* Author
-    * Sylvain LE GAL (https://twitter.com/legalsylvain);
-* Licence : AGPL-3 (http://www.gnu.org/licenses/)
-    """,
-    'author': 'GRAP',
-    'website': 'http://www.grap.coop',
-    'license': 'AGPL-3',
-    'depends': [
-        'account',
-    ],
-    'data': [
-        'security/res_groups.yml',
-        'views/account_move_view.xml',
-    ],
-}

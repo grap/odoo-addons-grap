@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-22 01:20+0000\n"
-"PO-Revision-Date: 2014-01-22 01:20+0000\n"
+"POT-Creation-Date: 2015-12-03 15:41+0000\n"
+"PO-Revision-Date: 2015-12-03 15:41+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,25 +16,26 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: account_move_change_number
-#: model:res.groups,name:account_move_change_number.res_group_account_move_change_number_manager
-msgid "account move change number manager"
-msgstr "account move change number manager"
+#: code:addons/account_move_change_number/model/account_move.py:53
+#, python-format
+msgid "\n"
+"Account move renamed. Old name : %s. New name : %s. Rename date : %s. Author : %s."
+msgstr "\n"
+"Pièce comptable renommée. Ancien nom: %s. Nouveau nom: %s. Date de l'opération: %s. Auteur: %s."
 
 #. module: account_move_change_number
+#: code:_description:0
 #: model:ir.model,name:account_move_change_number.model_account_move
+#, python-format
 msgid "Account Entry"
 msgstr "Pièce comptable"
 
 #. module: account_move_change_number
-#: code:addons/account_move_change_number/model/account_move.py:26
-#, python-format
-msgid "\n"
-"Account move renamed old name : %s ; new name : %s"
-msgstr "\n"
-"Pièce comptable renommé Ancien nom : %s ; Nouveau nom : %s"
+#: model:res.groups,name:account_move_change_number.res_group_account_move_change_number_manager
+msgid "Account Move - Change Number"
+msgstr "Pièce Comptable - Changer la numérotation"
 
 #. module: account_move_change_number
 #: view:account.move:0
 msgid "Rename Account Move (change Number)"
 msgstr "Renommer la pièce comptable (Changer la numérotation)"
-

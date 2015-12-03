@@ -8,12 +8,10 @@
             <field name="arch" type="xml">
                 <button name="button_cancel" position="after">
                     <button name="rename_account_move_change_number" 
-                        string="Rename Account Move (change Number)" type="object" states="posted" 
+                        string="Rename Account Move (change Number)" type="object" states="posted"
                         groups="account_move_change_number.res_group_account_move_change_number_manager"/>
                 </button>
             </field>
         </record>
     </data>
 </openerp>
-
-
