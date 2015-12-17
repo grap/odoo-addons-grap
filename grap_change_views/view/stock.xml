@@ -119,6 +119,13 @@
             <field name="name">Mass Processing</field>
         </record>
 
+
+<!-- Enable menu for standard User -->
+        <record model="ir.ui.menu" id="stock.menu_action_move_form2">
+            <field eval="[(6, 0, [])]" name="groups_id"/>
+        </record>
+
+
 <!-- Disable menu for standard User -->
         <record model="ir.ui.menu" id="stock.menu_stock_products_moves">
             <field eval="[(6, 0, [ref('base.group_no_one')])]" name="groups_id"/>
