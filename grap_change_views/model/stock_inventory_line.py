@@ -1,9 +1,8 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    GRAP - Change Views module for Odoo
-#    Copyright (C) 2013 GRAP (http://www.grap.coop)
-#    @author Julien WESTE
+#    GRAP - Change Views for Odoo
+#    Copyright (C) 2015-Today GRAP (http://www.grap.coop)
 #    @author Sylvain LE GAL (https://twitter.com/legalsylvain)
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -21,10 +20,9 @@
 #
 ##############################################################################
 
-from . import account_invoice_line
-from . import pos_category
-from . import pos_order_line
-from . import product_product
-from . import sale_order_line
-from . import purchase_order_line
-#from . import stock_inventory_line
+from openerp.osv.orm import Model
+
+
+class stock_inventory_line(Model):
+    _inherit = 'stock.inventory.line'
+    _order = 'inventory_id, id'
