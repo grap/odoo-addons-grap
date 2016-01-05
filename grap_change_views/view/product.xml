@@ -37,7 +37,7 @@
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">product.product</field>
             <field name="view_type">form</field>
-            <field name="view_mode">form,tree</field>
+            <field name="view_mode">tree,form</field>
             <field name="view_id" ref="product.product_normal_form_view" />
             <field name="help">display obsolete view for products.</field>
         </record>
@@ -174,6 +174,7 @@
                                         <field name="property_account_expense" 
                                             domain="[('type','=','other')]" 
                                             groups="account.group_account_manager"/>
+                                        <field name="consignor_id" groups="recurring_consignment.group_consignment_user"/>
                                         <field name="standard_price" string="Prix de Revient (HT)"/>
                                         <field name="tax_group_id" colspan="2" quick_create="false"/>
                                         <field name="uom_po_id"/>

@@ -86,6 +86,7 @@ Copyright, Authors and Licence:
         'simple_tax_purchase',
         'purchase_discount',
         'intercompany_trade_base',
+        'recurring_consignment',
     ],
     'data': [
         'security/res_groups.yml',

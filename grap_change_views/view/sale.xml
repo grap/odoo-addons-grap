@@ -176,6 +176,7 @@
                 <tree string="Products (Price)" editable="bottom">
                     <field name="code"/>
                     <field name="name"/>
+                    <field name="consignor_id" invisible="1"/>
                     <field name="tax_group_id"/>
                     <field name="standard_price"/>
                     <field name="list_price"/>
@@ -192,9 +193,34 @@
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">product.product</field>
             <field name="view_type">form</field>
-            <field name="view_mode">tree</field>
+            <field name="view_mode">tree,form</field>
             <field name="view_id" ref="view_product_product_price_tree"/>
             <field name="context">{"search_default_filter_to_sell":1}</field>
+        </record>
+
+        <!--
+            * Add an extra view product (Categories View)
+        -->
+        <record id="view_product_product_category_tree" model="ir.ui.view">
+            <field name="model">product.product</field>
+            <field name="arch" type="xml">
+                <tree string="Products (Categories)" editable="bottom">
+                    <field name="default_code"/>
+                    <field name="name"/>
+                    <field name="categ_id"/>
+                    <field name="pos_categ_id"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_product_product_category" model="ir.actions.act_window">
+            <field name="name">Products (Categories)</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.product</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_product_product_category_tree"/>
         </record>
 
         <menuitem id="menu_product_product_price_3"
@@ -229,6 +255,12 @@
        <menuitem id="product_ean_duplicates.menu_product_ean_duplicates_3"
             name="Products (EAN Duplicate)"
             parent="menu_product_product_editable_view" sequence="7"/>
+
+        <menuitem id="menu_product_product_category"
+            name="Products (Categories)"
+            parent="menu_product_product_editable_view" sequence="7"
+            action="action_product_product_category"/>
+
 
 <!-- enable Menu to basic user -->
         <record model="ir.ui.menu" id="product.menu_product_pricelist_action2">
