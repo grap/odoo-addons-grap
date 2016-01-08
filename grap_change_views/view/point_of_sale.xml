@@ -153,6 +153,7 @@
                     <button name="%(point_of_sale.action_pos_discount)d" string="Discount" icon="gtk-remove" type="action" states="draft" />
                 </field>
                 <xpath expr="//field[@name='lines']/tree" position="attributes">
+                    <attribute name="colors">red:discount==100;black:discount==0;brown:True;</attribute>
                     <attribute name="class">grap_change_views__view_pos_order_form</attribute>
                     <attribute name="version">7.0</attribute>
                 </xpath>
