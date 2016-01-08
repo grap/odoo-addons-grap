@@ -295,16 +295,18 @@
                                 </group>
                             </page>
                             <page string="eShop" groups="sale_eshop.res_groups_eshop_user">
-                                <group name="eShop" col="4">
-                                    <field name="eshop_start_date"/>
-                                    <field name="eshop_end_date"/>
-                                    <field name="eshop_category_id" colspan="4"/>
-                                    <field name="eshop_minimum_qty"/>
-                                    <field name="eshop_rounded_qty"/>
-                                    <field name="eshop_unpack_qty"/>
-                                    <field name="eshop_unpack_surcharge" attrs="{'invisible':[('eshop_unpack_qty','=', 0)]}"/>
-                                    <field name="eshop_state"/>
-                                    <field name="description" colspan="4" nolabel="1"/>
+                                <group col="4">
+                                        <field name="eshop_start_date"/>
+                                        <field name="eshop_end_date"/>
+                                        <field name="eshop_category_id" colspan="4"/>
+                                        <field name="eshop_minimum_qty"/>
+                                        <field name="eshop_rounded_qty"/>
+                                        <field name="eshop_unpack_qty"/>
+                                        <field name="eshop_unpack_surcharge" attrs="{'invisible':[('eshop_unpack_qty','=', 0)]}"/>
+                                        <field name="eshop_state"/>
+                                </group>
+                                <group string="Eshop Description">
+                                    <field name="eshop_description" widget="html" colspan="4" nolabel="1"/>
                                 </group>
                             </page>
                         </notebook>
