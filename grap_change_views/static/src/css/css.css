@@ -8,6 +8,13 @@
   background: #F0F0E0;
 }
 
+/* GENERAL - form view display */
+.openerp .oe_form .oe_form_group {
+    margin: 0px;
+}
+.openerp .oe_horizontal_separator {
+    margin: 6px 0px 0px;
+}
 /* point_of_sale - view_pos_order_form                                        */
 
 .grap_change_views__view_pos_order_form [data-id="product_id"]          {width: 50%;}
