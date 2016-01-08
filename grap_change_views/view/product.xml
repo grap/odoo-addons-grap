@@ -140,6 +140,7 @@
                                         <field name="ean13"/>
                                     </group>
                                     <group>
+                                        <field name="is_consignment" groups="recurring_consignment.group_consignment_user"/>
                                         <field name="purchase_ok"/>
                                         <field name="sale_ok"/>
                                         <field name="administrative_ok" />
@@ -149,7 +150,6 @@
                             <group>
                                 <field name="code"/>
                                 <field name="active"/>
-                                <field name="state"/>
                                 <field name="company_id" groups="base.group_multi_company"/>
                                 <group string="Packaging" colspan="2">
                                     <field name="delivery_categ_id" groups="sale_recovery_moment.delivery_user"/>
@@ -160,27 +160,23 @@
                         </group>
                         <notebook>
                             <page string="Information">
-                                <group col="8">
-                                    <group string="Stock">
-                                        <field name="qty_available"/>
-                                        <button name="%(stock.action_view_change_product_quantity)d" string="update"
-                                            type="action"
-                                            class="oe_link" colspan="2"/>
-                                        <field name="incoming_qty" string="Incoming quantity"/>
-                                        <field name="outgoing_qty" string="Outgoing quantity"/>
-                                        <field name="virtual_available"/>
-                                    </group>
-                                    <group string="Purchase / Produce">
+                                <group col="6">
+                                    <group>
+                                        <separator string="Purchase / Produce" colspan="2"/>
                                         <field name="property_account_expense" 
                                             domain="[('type','=','other')]" 
                                             groups="account.group_account_manager"/>
-                                        <field name="consignor_id" groups="recurring_consignment.group_consignment_user"/>
+                                        <field name="consignor_id"
+                                            attrs="{'readonly':[('is_consignment', '=', True)]}"
+                                            on_change="onchange_consignor_id(consignor_id)"
+                                            groups="recurring_consignment.group_consignment_user"/>
                                         <field name="standard_price" string="Prix de Revient (HT)"/>
                                         <field name="tax_group_id" colspan="2" quick_create="false"/>
                                         <field name="uom_po_id"/>
                                         <field name="prepare_categ_id" groups="sale_recovery_moment.recovery_user"/>
                                     </group>
-                                    <group string="Sale">
+                                    <group>
+                                        <separator string="Sale" colspan="2"/>
                                         <field name="property_account_income" 
                                             domain="[('type','=','other')]" 
                                             groups="account.group_account_manager"/>
@@ -188,19 +184,32 @@
                                         <field name="standard_margin"/>
                                         <field name="standard_margin_rate" widget="progressbar"/>
                                     </group>
-                                    <group string="Point Of Sale" groups="point_of_sale.group_pos_user">
-                                        <field name="available_in_pos" string="Tactile point of sale"/>
-                                        <field name="pos_categ_id"/>
-                                        <field name="to_weight"/>
+                                    <group>
+                                        <separator string="Point Of Sale" colspan="2"/>
+                                        <field name="available_in_pos" string="PoS - Is Displayed" groups="point_of_sale.group_pos_user"/>
+                                        <field name="pos_categ_id" string="PoS - Category" groups="point_of_sale.group_pos_user"/>
+                                        <field name="to_weight" string="PoS - To Weight" groups="point_of_sale.group_pos_user"/>
+                                        <field name="income_pdt" string="PoS - Cash In" groups="account.group_account_manager"/>
+                                        <field name="expense_pdt" string="PoS - Cash Out" groups="account.group_account_manager"/>
                                     </group>
                                 </group>
                                 <group col="6">
-                                    <group string="Consumption" colspan="2">
+                                    <group>
+                                        <separator string="Stock" colspan="2"/>
+                                        <field name="qty_available"/>
+                                        <button name="%(stock.action_view_change_product_quantity)d" string="update"
+                                            type="action"
+                                            class="oe_link" colspan="2"/>
+                                        <field name="incoming_qty" string="Incoming quantity"/>
+                                        <field name="outgoing_qty" string="Outgoing quantity"/>
+                                        <field name="virtual_available"/>
+                                        <separator string="Consumption" colspan="2"/>
                                         <field name="nb_days"/>
                                         <field name="total_consumption"/>
                                         <field name="average_consumption"/>
                                     </group>
-                                    <group string="Sellers" colspan="4">
+                                    <group colspan="4">
+                                        <separator string="Sellers" colspan="2"/>
                                         <field name="seller_ids" nolabel="1" context="{'uom_id': uom_po_id}"/>
                                     </group>
                                 </group>
@@ -225,8 +234,6 @@
                                     <field name="uos_id" />
                                     <field name="uos_coeff" />
                                     <field name="mes_type" />
-                                    <field name="income_pdt" />
-                                    <field name="expense_pdt" />
                                     <field name="valuation" />
                                     <field name="property_stock_account_input" />
                                     <field name="property_stock_account_output" />

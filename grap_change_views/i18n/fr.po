@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-28 23:06+0000\n"
-"PO-Revision-Date: 2015-10-28 23:06+0000\n"
+"POT-Creation-Date: 2016-01-06 15:18+0000\n"
+"PO-Revision-Date: 2016-01-06 15:18+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -125,6 +125,13 @@ msgstr "Notes internes"
 
 #. module: grap_change_views
 #: code:_description:0
+#: model:ir.model,name:grap_change_views.model_stock_inventory_line
+#, python-format
+msgid "Inventory Line"
+msgstr "Ligne d'inventaire"
+
+#. module: grap_change_views
+#: code:_description:0
 #: model:ir.model,name:grap_change_views.model_account_invoice_line
 #, python-format
 msgid "Invoice Line"
@@ -208,6 +215,31 @@ msgid "Partner"
 msgstr "Partenaire"
 
 #. module: grap_change_views
+#: view:product.product:0
+msgid "PoS - Cash In"
+msgstr "PdV - Entrée d'argent"
+
+#. module: grap_change_views
+#: view:product.product:0
+msgid "PoS - Cash Out"
+msgstr "PdV - Sortie d'argent"
+
+#. module: grap_change_views
+#: view:product.product:0
+msgid "PoS - Category"
+msgstr "PdV - Catégorie"
+
+#. module: grap_change_views
+#: view:product.product:0
+msgid "PoS - Is Displayed"
+msgstr "PdV - Est affiché"
+
+#. module: grap_change_views
+#: view:product.product:0
+msgid "PoS - To Weight"
+msgstr "PdV - A peser"
+
+#. module: grap_change_views
 #: model:ir.model,name:grap_change_views.model_pos_category
 msgid "PoS Category"
 msgstr "Catégorie PdV"
@@ -283,6 +315,13 @@ msgstr "Articles"
 #: model:ir.ui.menu,name:grap_change_views.menu_view_old_product_form
 msgid "Products (Admin)"
 msgstr "Articles (Admin)"
+
+#. module: grap_change_views
+#: model:ir.actions.act_window,name:grap_change_views.action_product_product_category
+#: model:ir.ui.menu,name:grap_change_views.menu_product_product_category
+#: view:product.product:0
+msgid "Products (Categories)"
+msgstr "Products (Catégories)"
 
 #. module: grap_change_views
 #: model:ir.ui.menu,name:grap_change_views.menu_product_product_editable_view
@@ -380,11 +419,6 @@ msgid "Stock by Location"
 msgstr "Stock par emplacement"
 
 #. module: grap_change_views
-#: view:product.product:0
-msgid "Tactile point of sale"
-msgstr "Point de vente tactile"
-
-#. module: grap_change_views
 #: view:account.move:0
 msgid "Taxe Cpte."
 msgstr "Taxe Cpte."
@@ -469,5 +503,3 @@ msgstr "Boutique en ligne"
 #: view:product.product:0
 msgid "update"
 msgstr "mettre à jour"
-
-
