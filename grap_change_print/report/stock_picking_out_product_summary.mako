@@ -4,7 +4,19 @@
     <head>
     <meta http-equiv="Content-Type" content="application/xhtml+xml;charset=utf-8" />
     <style type="text/css">
-        ${css}
+        table {
+            width:100%;
+            margin-top: 20px;
+            border-spacing : 0px;
+            border-collapse : collapse;
+        }
+        th {
+            border:1px black solid;
+        }
+        td {
+            border:1px black solid;
+        }
+        
     </style>
 </head>
 
@@ -14,7 +26,7 @@
         %if wizard.print_summary:
         <h1 style="clear:both;">${_(u'Products Summary') }</h1>
 
-        <table class="basic_table" width="100%" style="margin-top: 20px;">
+        <table>
             <thead>
                 <tr>
                     <th style="text-align:left;">${_("Description")}</th>
@@ -26,7 +38,7 @@
             </thead>
             <tbody>
             %for product_line in wizard.product_line_ids:
-                <tr class="line">
+                <tr>
                      <td style="text-align:left;">${ product_line.product_id.name }</td>
                     <td>${ formatLang(product_line.quantity) }</td>
                     <td>${ product_line.uom_id.name }</td>
@@ -47,7 +59,7 @@
     <!-- Detail Part -->
         %if wizard.print_detail:
         <h1 style="clear:both;">${_(u'Delivery Orders') }</h1>
-        <table class="basic_table" width="100%" style="margin-top: 20px;">
+        <table>
             <thead>
                 <tr>
                     <th>${_("Type")}</th>
@@ -65,7 +77,7 @@
                 </tr>
                 %for move_line in picking_line.picking_id.move_lines:
 
-                <tr class="line">
+                <tr class="line" style="color:${move_line.product_qty == 0 and 'gray' or 'black'}">
                     <td style="background-color:${move_line.product_id and move_line.product_id.prepare_categ_id and move_line.product_id.prepare_categ_id.color or ''}"
                         >${move_line.product_id and move_line.product_id.prepare_categ_id and move_line.product_id.prepare_categ_id.code or ''}</td>
                      <td style="text-align:left;">${ move_line.product_id.name }</td>
