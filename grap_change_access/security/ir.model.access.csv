@@ -44,6 +44,8 @@ stock.access_stock_location__partner_manager,stock.location.partner.manager,stoc
 stock.access_stock_location_manager, stock.location.manager,stock.model_stock_location,stock.group_stock_manager,1,0,0,0
 access_stock_location_manager,grap_change_access__stock_location_manager,stock.model_stock_location,base.group_no_one,1,1,1,1
 ,,,,,,,
+stock.access_stock_inventory_line_user,stock.inventory.line user,stock.model_stock_inventory_line,stock.group_stock_user,1,1,1,1
+,,,,,,,
 procurement.access_stock_warehouse_orderpoint_system,stock.warehouse.orderpoint system,procurement.model_stock_warehouse_orderpoint,stock.group_stock_manager,1,0,0,0
 access_stock_warehouse_orderpoint_manager,grap_change_access__stock_warehouse_orderpoint_manager,procurement.model_stock_warehouse_orderpoint,base.group_no_one,1,1,1,1
 ,,,,,,,
