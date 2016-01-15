@@ -30,6 +30,11 @@
             <field name="digits">4</field>
         </record>
 
+        <record id="product.decimal_purchase" model="decimal.precision">
+            <field name="name">Purchase Price</field>
+            <field name="digits">4</field>
+        </record>
+
     </data>
 </openerp>
 

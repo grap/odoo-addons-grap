@@ -48,12 +48,6 @@
             groups="base.group_no_one"
             sequence="1"/>
 
-        <!-- TODO: Move This -->
-        <record forcecreate="True" id="product.decimal_purchase" model="decimal.precision">
-            <field name="name">Purchase Price</field>
-            <field name="digits">4</field>
-        </record>
-
         <record id="product_supplierinfo_form" model="ir.ui.view">
             <field name="name">product.supplierinfo.form</field>
             <field name="model">product.supplierinfo</field>
