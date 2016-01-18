@@ -422,8 +422,8 @@ class account_export_ebp(osv.TransientModel):
                         ref += ' (' + move.partner_id.name + ')'
                     else:
                         ref += (
-                            line.name
-                            + ((' (' + move.ref + ')')
+                            line.name +
+                            ((' (' + move.ref + ')')
                                 if move.ref else ''))
                     moves_data[account_nb] = {
                         'date': move.date,
