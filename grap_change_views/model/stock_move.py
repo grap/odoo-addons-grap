@@ -12,7 +12,8 @@ class StockMove(Model):
             self, cr, uid, ids, name, args, context=None):
         res = {}
         for move in self.browse(cr, uid, ids, context=context):
-            res[move.id] = move.location_id.name + ' >> ' + move.location_dest_id.name
+            res[move.id] = move.location_id.name + ' >> '\
+                + move.location_dest_id.name
         return res
 
     # Column Section
