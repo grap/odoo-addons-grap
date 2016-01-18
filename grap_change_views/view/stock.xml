@@ -21,6 +21,8 @@
 <openerp>
     <data>
 
+<!-- MODEL : stock.inventory -->
+
         <record id="view_stock_inventory_form" model="ir.ui.view">
             <field name="model">stock.inventory</field>
             <field name="inherit_id" ref="stock.view_inventory_form"/>
@@ -34,6 +36,70 @@
                 </button>
             </field>
         </record>
+
+        <record id="view_stock_inventory_tree" model="ir.ui.view">
+            <field name="model">stock.inventory</field>
+            <field name="inherit_id" ref="stock.view_inventory_tree"/>
+            <field name="arch" type="xml">
+                <tree position="attributes">
+                    <attribute name="colors">blue:state=='draft';gray:state=='cancel'</attribute>
+                </tree>
+            </field>
+        </record>
+
+<!-- MODEL : stock.move -->
+
+        <record id="stock.act_product_stock_move_futur_open" model="ir.actions.act_window">
+            <field name="view_id" ref="stock.view_move_tree"/>
+        </record>
+
+        <record id="stock.act_product_stock_move_open" model="ir.actions.act_window">
+            <field name="view_id" ref="stock.view_move_tree"/>
+        </record>
+
+
+<!--        <record id="view_stock_move_search" model="ir.ui.view">-->
+<!--            <field name="model">stock.move</field>-->
+<!--            <field name="inherit_id" ref="stock.view_move_search"/>-->
+<!--            <field name="arch" type="xml">-->
+<!--            </field>-->
+<!--        </record>-->
+
+        <record id="view_stock_move_tree" model="ir.ui.view">
+            <field name="model">stock.move</field>
+            <field name="inherit_id" ref="stock.view_move_tree"/>
+            <field name="arch" type="xml">
+                <tree position="attributes">
+                    <attribute name="colors">blue:state=='draft';gray:state=='cancel';red:state in ('waiting','confirmed');brown:state in ('assigned')</attribute>
+                </tree>
+                <field name="state" position="after">
+                    <field name="company_id" groups="base.group_multi_company"/>
+                </field>
+                <field name="location_id" position="after">
+                    <field name="workflow_description" />
+                </field>
+<!--                <field name="name" position="attributes">-->
+<!--                    <attribute name="invisible">1</attribute>-->
+<!--                </field>-->
+                <field name="location_id" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="location_dest_id" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_stock_move_form" model="ir.ui.view">
+            <field name="model">stock.move</field>
+            <field name="inherit_id" ref="stock.view_move_form"/>
+            <field name="arch" type="xml">
+                <field name="date" position="after">
+                    <field name="date_expected" groups="base.group_no_one"/>
+                </field>
+            </field>
+        </record>
+<!-- MODEL : stock.picking.in -->
 
         <!-- Display To do stock picking in -->
         <record id="stock.action_picking_tree4" model="ir.actions.act_window">
@@ -53,26 +119,6 @@
             </field>
         </record>
 
-        <!-- Display To do stock picking out -->
-        <record id="stock.action_picking_tree" model="ir.actions.act_window">
-            <field name="context">{'search_default_to_process':1, 'contact_display': 'partner_address'}</field>
-        </record>
-
-<!-- FIXME -->
-<!--        <record id="view_picking_out_search_form" model="ir.ui.view">-->
-<!--            <field name="model">stock.picking.out</field>-->
-<!--            <field name="inherit_id" ref="stock.view_picking_out_search"/>-->
-<!--            <field name="arch" type="xml">-->
-<!--                <filter name="to_invoice" position="after">-->
-<!--                    <filter name="to_process" string="To Process"-->
-<!--                        domain="['|', ('state','not in',('done', 'cancel')), ('invoice_state','=', '2binvoiced')]"/>-->
-<!--                    <filter string="Today of After" name="today_or_after"-->
-<!--                        domain="[('min_date','&gt;=',(context_today()).strftime('%%Y-%%m-%%d'))]"/>-->
-<!--                </filter>-->
-<!--            </field>-->
-<!--        </record>-->
-
-        <!-- stock.picking.in Form -->
         <record id="view_stock_picking_in_form" model="ir.ui.view">
             <field name="model">stock.picking.in</field>
             <field name="inherit_id" ref="stock.view_picking_form"/>
@@ -83,34 +129,49 @@
             </field>
         </record>
 
-<!-- FIXME -->
-        <!-- stock.picking.out Form -->
-<!--        <record id="view_stock_picking_out_form" model="ir.ui.view">-->
-<!--            <field name="model">stock.picking.out</field>-->
-<!--            <field name="inherit_id" ref="stock.view_picking_form"/>-->
-<!--            <field name="arch" type="xml">-->
-<!--                <page string="Additional Info" position="attributes">-->
-<!--                    <attribute name="groups">base.group_no_one</attribute>-->
-<!--                </page>-->
-<!--            </field>-->
-<!--        </record>-->
+<!-- MODEL : stock.picking.out Form -->
+        <record id="stock.action_picking_tree" model="ir.actions.act_window">
+            <field name="context">{'search_default_to_process':1, 'contact_display': 'partner_address'}</field>
+        </record>
 
-<!-- FIXME -->
-<!--        <record id="view_stock_picking_out_form_sale_recovery_moment" model="ir.ui.view">-->
-<!--            <field name="model">stock.picking.out</field>-->
-<!--            <field name="inherit_id" ref="sale_recovery_moment.view_stock_picking_form"/>-->
-<!--            <field name="arch" type="xml">-->
-<!--                <field name="sale_id" position="replace" />-->
-<!--                <field name="recovery_moment_id" position="replace" />-->
-<!--                <field name="recovery_group_id" position="replace" />-->
-<!--                <field name="date" position="before">-->
-<!--                    <field name="sale_id"/>-->
-<!--                    <field name="recovery_moment_id" groups="sale_recovery_moment.recovery_user"/>-->
-<!--                    <field name="recovery_group_id" groups="sale_recovery_moment.recovery_user"/>-->
-<!--                    <field name="delivery_moment_id" groups="sale_recovery_moment.delivery_user"/>-->
-<!--                </field>-->
-<!--            </field>-->
-<!--        </record>-->
+        <record id="view_stock_picking_out_search" model="ir.ui.view">
+            <field name="model">stock.picking.out</field>
+            <field name="inherit_id" ref="stock.view_picking_out_search"/>
+            <field name="arch" type="xml">
+                <filter name="to_invoice" position="after">
+                    <filter name="to_process" string="To Process"
+                        domain="['|', ('state','not in',('done', 'cancel')), ('invoice_state','=', '2binvoiced')]"/>
+                    <filter string="Today of After" name="today_or_after"
+                        domain="[('min_date','&gt;=',(context_today()).strftime('%%Y-%%m-%%d'))]"/>
+                </filter>
+            </field>
+        </record>
+
+        <record id="view_stock_picking_out_form" model="ir.ui.view">
+            <field name="model">stock.picking.out</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <page string="Additional Info" position="attributes">
+                    <attribute name="groups">base.group_no_one</attribute>
+                </page>
+            </field>
+        </record>
+
+        <record id="view_stock_picking_out_form_sale_recovery_moment" model="ir.ui.view">
+            <field name="model">stock.picking.out</field>
+            <field name="inherit_id" ref="sale_recovery_moment.view_stock_picking_form"/>
+            <field name="arch" type="xml">
+                <field name="sale_id" position="replace" />
+                <field name="recovery_moment_id" position="replace" />
+                <field name="recovery_group_id" position="replace" />
+                <field name="date" position="before">
+                    <field name="sale_id"/>
+                    <field name="recovery_moment_id" groups="sale_recovery_moment.recovery_user"/>
+                    <field name="recovery_group_id" groups="sale_recovery_moment.recovery_user"/>
+                    <field name="delivery_moment_id" groups="sale_recovery_moment.delivery_user"/>
+                </field>
+            </field>
+        </record>
 
         <record id="stock_picking_mass_assign.action_check_assign_all_values" model="ir.values">
             <field name="name">Mass Processing</field>

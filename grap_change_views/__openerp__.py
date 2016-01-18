@@ -87,6 +87,7 @@ Copyright, Authors and Licence:
         'purchase_discount',
         'intercompany_trade_base',
         'recurring_consignment',
+        'purchase_compute_order',
     ],
     'data': [
         'security/res_groups.yml',

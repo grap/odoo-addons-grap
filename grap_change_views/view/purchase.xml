@@ -21,6 +21,68 @@
 <openerp>
     <data>
 
+<!-- Sale Order Part refactoring -->
+        <!--
+            * remove bad domain in Purchase Order Actions
+            * Add default filter context
+            * Add 'To Process' Filter
+            * Add color to Purchase Order
+        -->
+        <record id="purchase.purchase_form_action" model="ir.actions.act_window">
+            <field name="domain">[]</field>
+            <field name="context">{'search_default_to_process':1}</field>
+        </record>
+
+        <record id="view_purchase_order_search" model="ir.ui.view">
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.view_purchase_order_filter"/>
+            <field name="arch" type="xml">
+                <field name="product_id" position="after">
+                    <field name="company_id" groups="base.group_multi_company" />
+                    <filter name="to_process" string="To Process"
+                        domain="[('state','not in',('done', 'cancel'))]"/>
+                </field>
+                <xpath expr="//filter[@string='Supplier']" position="after">
+                    <filter name="company_id" string="Company" context="{'group_by':'company_id'}" groups="base.group_multi_company"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_purchase_order_tree" model="ir.ui.view">
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_tree"/>
+            <field name="arch" type="xml">
+                <tree position="attributes">
+                    <attribute name="colors">blue:state=='draft';gray:state=='cancel';red:state in ('except_picking','except_invoice');brown:state in ('sent', 'confirmed', 'approved')</attribute>
+                </tree>
+            </field>
+        </record>
+
+        <!--
+            * Reorder Purchase / Purchase items
+            * Disable Quotation
+        -->
+        
+        <record model="ir.ui.menu" id="purchase.menu_purchase_form_action">
+            <field name="sequence" eval="1" />
+            <field name="name">Quotations / Purchase Orders</field>
+        </record>
+        <record model="ir.ui.menu" id="base.menu_procurement_management_supplier_name">
+            <field name="sequence" eval="2" />
+        </record>
+
+        <record model="ir.ui.menu" id="purchase.menu_purchase_rfq">
+            <field name="name">Quotations (Admin)</field>
+            <field name="sequence" eval="99" />
+            <field name="groups_id" eval="[(6, 0, [ref('base.group_no_one')])]"/>
+        </record>
+        
+        <record model="ir.ui.menu" id="purchase_compute_order.menu_computed_purchase_order">
+            <field name="groups_id" eval="[(6, 0, [ref('base.group_no_one')])]"/>
+            <field name="sequence" eval="98" />
+        </record>
+
+
 <!--_______________________Vues Reporting (Tableau de bord) ____________________________-->
 
         <record model="ir.ui.menu" id="purchase.menu_board_purchase">

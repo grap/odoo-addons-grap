@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-06 15:18+0000\n"
-"PO-Revision-Date: 2016-01-06 15:18+0000\n"
+"POT-Creation-Date: 2016-01-15 13:30+0000\n"
+"PO-Revision-Date: 2016-01-15 13:30+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -29,8 +29,9 @@ msgstr "Ecritures Comptables"
 
 #. module: grap_change_views
 #: view:stock.picking.in:0
+#: view:stock.picking.out:0
 msgid "Additional Info"
-msgstr "Additional Info"
+msgstr "Informations complémentaires"
 
 #. module: grap_change_views
 #: view:pos.category:0
@@ -40,6 +41,7 @@ msgstr "Nom de la catégorie"
 #. module: grap_change_views
 #: view:account.move.line:0
 #: view:ir.values:0
+#: view:purchase.order:0
 msgid "Company"
 msgstr "Société"
 
@@ -92,6 +94,11 @@ msgstr "Payé"
 #: view:pos.order.line:0
 msgid "Draft"
 msgstr "Brouillon"
+
+#. module: grap_change_views
+#: view:product.product:0
+msgid "Eshop Description"
+msgstr "Description eBoutique"
 
 #. module: grap_change_views
 #: view:product.product:0
@@ -192,7 +199,7 @@ msgstr "Quantité sortante"
 #. module: grap_change_views
 #: view:product.product:0
 msgid "POS Category"
-msgstr "Categorie PdV"
+msgstr "Catégorie PdV"
 
 #. module: grap_change_views
 #: model:ir.actions.act_window,name:grap_change_views.action_pos_order_line
@@ -321,7 +328,7 @@ msgstr "Articles (Admin)"
 #: model:ir.ui.menu,name:grap_change_views.menu_product_product_category
 #: view:product.product:0
 msgid "Products (Categories)"
-msgstr "Products (Catégories)"
+msgstr "Articles (Catégories)"
 
 #. module: grap_change_views
 #: model:ir.ui.menu,name:grap_change_views.menu_product_product_editable_view
@@ -437,8 +444,10 @@ msgstr "Taxes"
 
 #. module: grap_change_views
 #: view:pos.session:0
+#: view:purchase.order:0
 #: view:sale.order:0
 #: view:stock.picking.in:0
+#: view:stock.picking.out:0
 msgid "To Process"
 msgstr "A traiter"
 
@@ -450,6 +459,7 @@ msgstr "Quotidien"
 
 #. module: grap_change_views
 #: view:stock.picking.in:0
+#: view:stock.picking.out:0
 msgid "Today of After"
 msgstr "Aujourd'hui ou plus tard"
 
@@ -488,11 +498,6 @@ msgstr "Utilisateur"
 #: view:pos.order.line:0
 msgid "Yesterday"
 msgstr "Hier"
-
-#. module: grap_change_views
-#: model:ir.actions.act_window,help:grap_change_views.action_view_old_product_form
-msgid "display obsolete view for products."
-msgstr "Affiche la vue obsolète pour les articles."
 
 #. module: grap_change_views
 #: view:product.product:0
