@@ -177,7 +177,7 @@
                 <tree string="Products (Price)" editable="bottom">
                     <field name="code"/>
                     <field name="name"/>
-                    <field name="consignor_id" invisible="1"/>
+                    <field name="consignor_partner_id" invisible="1"/>
                     <field name="tax_group_id"/>
                     <field name="standard_price"/>
                     <field name="list_price"/>
