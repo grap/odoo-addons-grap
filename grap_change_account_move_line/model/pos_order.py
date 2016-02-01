@@ -300,7 +300,8 @@ class pos_order(osv.osv):
         all_lines = []
         for group_key, group_data in grouped_data.iteritems():
             for value in group_data:
-                all_lines.append((0, 0, value),)
+                if value['credit'] != 0 or value['debit'] != 0:
+                    all_lines.append((0, 0, value),)
         if move_id: #In case no order was changed
             self.pool.get("account.move").write(cr, uid, [move_id],
                                         {'line_id':all_lines}, context=context)
