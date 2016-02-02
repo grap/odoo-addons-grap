@@ -73,7 +73,9 @@ class pos_order(osv.osv):
                 values['debit'] > 0)
             values.update({'name': _('Various Products')})
         elif data_type == 'tax':
-            key = ('tax', values['tax_code_id'], values['account_id'], values['debit'] > 0)
+            key = (
+                'tax', values['tax_code_id'], values['account_id'],
+                values['debit'] > 0, values['name'])
         elif data_type == 'counter_part':
             key = ('counter_part', values['account_id'], values['debit'] > 0)
         return key
