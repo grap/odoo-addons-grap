@@ -24,6 +24,7 @@ before_install:
   - sudo pip install bzr
   - sudo pip install cairosvg
   - sudo pip install unidecode
+  - sudo pip install unicodecsv
 
 install:
 
