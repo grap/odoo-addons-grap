@@ -6,20 +6,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-15 13:30+0000\n"
-"PO-Revision-Date: 2016-01-15 13:30+0000\n"
+"POT-Creation-Date: 2016-02-16 12:58+0000\n"
+"PO-Revision-Date: 2016-02-16 12:58+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-
-#. module: grap_change_views
-#: view:account.move:0
-#: view:pos.order:0
-msgid "7.0"
-msgstr "7.0"
 
 #. module: grap_change_views
 #: view:account.move.line:0
@@ -32,6 +26,11 @@ msgstr "Ecritures Comptables"
 #: view:stock.picking.out:0
 msgid "Additional Info"
 msgstr "Informations complémentaires"
+
+#. module: grap_change_views
+#: view:sale.order:0
+msgid "Amount (VAT Incl.)"
+msgstr "Total TTC"
 
 #. module: grap_change_views
 #: view:pos.category:0
@@ -132,6 +131,13 @@ msgstr "Notes internes"
 
 #. module: grap_change_views
 #: code:_description:0
+#: model:ir.model,name:grap_change_views.model_stock_inventory
+#, python-format
+msgid "Inventory"
+msgstr "Inventaire"
+
+#. module: grap_change_views
+#: code:_description:0
 #: model:ir.model,name:grap_change_views.model_stock_inventory_line
 #, python-format
 msgid "Inventory Line"
@@ -170,6 +176,11 @@ msgstr "Lignes de Points de Vente"
 #: model:res.groups,name:grap_change_views.group_product_image_manager
 msgid "Manage Product Images"
 msgstr "Gérer les images de Produit"
+
+#. module: grap_change_views
+#: view:sale.order:0
+msgid "Margin Total"
+msgstr "Total Marge"
 
 #. module: grap_change_views
 #: view:ir.values:0
@@ -494,10 +505,20 @@ msgid "User"
 msgstr "Utilisateur"
 
 #. module: grap_change_views
+#: field:stock.move,workflow_description:0
+msgid "Workflow Description"
+msgstr "Description du Flux"
+
+#. module: grap_change_views
 #: view:pos.order:0
 #: view:pos.order.line:0
 msgid "Yesterday"
 msgstr "Hier"
+
+#. module: grap_change_views
+#: model:ir.actions.act_window,help:grap_change_views.action_view_old_product_form
+msgid "display obsolete view for products."
+msgstr "Affiche la vue obsolète pour les articles."
 
 #. module: grap_change_views
 #: view:product.product:0

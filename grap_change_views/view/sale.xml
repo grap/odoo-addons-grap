@@ -53,6 +53,12 @@
                 <tree position="attributes">
                     <attribute name="colors">blue:state=='draft';gray:state=='cancel';red:state in ('shipping_except','invoice_except');brown:state in ('sent', 'waiting_date', 'progress', 'manual')</attribute>
                 </tree>
+                <field name="user_id" position="before">
+                    <field name="margin" sum="Margin Total"/>
+                </field>
+                <field name="amount_total" position="attributes">
+                    <attribute name="string">Amount (VAT Incl.)</attribute>
+                </field>
             </field>
         </record>
 
