@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-16 13:31+0000\n"
-"PO-Revision-Date: 2016-02-16 13:31+0000\n"
+"POT-Creation-Date: 2016-02-16 16:27+0000\n"
+"PO-Revision-Date: 2016-02-16 16:27+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -28,7 +28,7 @@ msgid "Confirm"
 msgstr "Confirmer"
 
 #. module: invoice_verified_state
-#: code:addons/invoice_verified_state/models/account_invoice.py:73
+#: code:addons/invoice_verified_state/models/account_invoice.py:76
 #, python-format
 msgid "Error!"
 msgstr "Erreur!"
@@ -74,6 +74,8 @@ msgstr "Contrôler"
 
 #. module: invoice_verified_state
 #: view:account.invoice:0
+#: code:addons/invoice_verified_state/models/account_invoice.py:18
+#, python-format
 msgid "Verified"
 msgstr "Vérifiée"
 
@@ -83,7 +85,7 @@ msgid "Verify"
 msgstr "Vérifier"
 
 #. module: invoice_verified_state
-#: code:addons/invoice_verified_state/models/account_invoice.py:73
+#: code:addons/invoice_verified_state/models/account_invoice.py:76
 #, python-format
 msgid "Verify a supplier invoice requires to set the following fields :\n"
 "* 'Invoice Date';\n"
@@ -93,6 +95,26 @@ msgstr "Vérifier une facture fournisseur demande de renseigner les champs suiva
 "* 'Date de la facture';\n"
 "* 'Date d'échéance';\n"
 "* 'Numéro de facture fournisseur';"
+
+#. module: invoice_verified_state
+#: view:account.invoice:0
+msgid "account.group_account_manager"
+msgstr "account.group_account_manager"
+
+#. module: invoice_verified_state
+#: view:account.invoice:0
+msgid "account.group_account_user"
+msgstr "account.group_account_user"
+
+#. module: invoice_verified_state
+#: view:account.invoice:0
+msgid "cancel,verified"
+msgstr "cancel,verified"
+
+#. module: invoice_verified_state
+#: view:account.invoice:0
+msgid "terp-camera_test"
+msgstr "terp-camera_test"
 
 #. module: invoice_verified_state
 #: view:account.invoice:0

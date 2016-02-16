@@ -13,6 +13,16 @@ from openerp.tools.translate import _
 class AccountInvoice(Model):
     _inherit = 'account.invoice'
 
+    _ACCOUNT_INVOICE_STATE = [
+        ('draft', 'Draft'),
+        ('verified', _('Verified')),
+        ('proforma', 'Pro-forma'),
+        ('proforma2', 'Pro-forma'),
+        ('open', 'Open'),
+        ('paid', 'Paid'),
+        ('cancel', 'Cancelled'),
+    ]
+
     def _search_move_to_check(self, cr, uid, obj, name, arg, context=None):
         am_obj = self.pool['account.move']
         ai_obj = self.pool['account.invoice']
@@ -41,29 +51,22 @@ class AccountInvoice(Model):
         'move_to_check': fields.function(
             _get_move_to_check, type='boolean', string='Move To Check',
             fnct_search=_search_move_to_check),
-        'state': fields.selection([
-            ('draft', 'Draft'),
-            ('verified', 'Verified'),
-            ('proforma', 'Pro-forma'),
-            ('proforma2', 'Pro-forma'),
-            ('open', 'Open'),
-            ('paid', 'Paid'),
-            ('cancel', 'Cancelled')
-        ], 'State', select=True, readonly=True,
-            help="""* The 'Draft' state is used when a user is encoding"""
-            """ a new and unconfirmed Invoice."""
-            """\n* The 'Pro-forma' when invoice is in Pro-forma state,"""
-            """ invoice does not have an invoice number."""
-            """\n* The 'Verified' state is used when the user has checked"""
-            """ that the invoice is conform to what he expected and is"""
-            """ ready to be processed by the accountants."""
-            """\n* The 'Open' state is used when user create invoice,"""
-            """ a invoice number is generated.Its in open state till user"""
-            """ does not pay invoice."""
-            """\n* The 'Paid' state is set automatically when the invoice"""
-            """ is paid. Its related journal entries may or may not be"""
-            """ reconciled."""
-            """\n* The 'Cancelled' state is used when user cancel invoice."""),
+        'state': fields.selection(
+            _ACCOUNT_INVOICE_STATE, string='State', select=True, readonly=True,
+            help="* The 'Draft' state is used when a user is encoding"
+            " a new and unconfirmed Invoice."
+            "\n* The 'Pro-forma' when invoice is in Pro-forma state,"
+            " invoice does not have an invoice number."
+            "\n* The 'Verified' state is used when the user has checked"
+            " that the invoice is conform to what he expected and is"
+            " ready to be processed by the accountants."
+            "\n* The 'Open' state is used when user create invoice,"
+            " a invoice number is generated.Its in open state till user"
+            " does not pay invoice."
+            "\n* The 'Paid' state is set automatically when the invoice"
+            " is paid. Its related journal entries may or may not be"
+            " reconciled."
+            "\n* The 'Cancelled' state is used when user cancel invoice."),
     }
 
     def wkf_verify_invoice(self, cr, uid, ids, context=None):
