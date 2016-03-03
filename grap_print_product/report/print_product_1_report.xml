@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <report id="report_print_product_1_report"
+            name="print.product_1.report"
+            model="print.product.wizard"
+            report_type="webkit"
+            file="grap_print_product/report/print_product_1_report.mako"
+            header="False"
+            auto="False"
+            string="Print Product"
+            />
+    </data>
+</openerp>

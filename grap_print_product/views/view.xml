@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ********************************************************************** -->
+<!-- GRAP - Print Product module for Odoo                                   -->
+<!-- Copyright (C) 2015-Today GRAP (http://www.grap.coop)                   -->
+<!-- @author Sylvain LE GAL (https://twitter.com/legalsylvain)              -->
+
+<!--This program is free software: you can redistribute it and/or modify    -->
+<!--it under the terms of the GNU Affero General Public License as          -->
+<!--published by the Free Software Foundation, either version 3 of the      -->
+<!--License, or (at your option) any later version.                         -->
+
+<!--This program is distributed in the hope that it will be useful,         -->
+<!--but WITHOUT ANY WARRANTY; without even the implied warranty of          -->
+<!--MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the           -->
+<!--GNU Affero General Public License for more details.                     -->
+
+<!--You should have received a copy of the GNU Affero General Public License-->
+<!--along with this program.  If not, see <http://www.gnu.org/licenses/>.   -->
+<!-- ********************************************************************** -->
+
+
+<openerp>
+    <data>
+        <!-- Model: print.product.type -->
+        <record id="view_print_product_type_form" model="ir.ui.view">
+            <field name="model">print.product.type</field>
+            <field name="arch" type="xml">
+                <form string="Label" version="7.0">
+                    <sheet>
+                        <field name="name"/>
+                        <group col="4">
+                            <separator string="Page Information" colspan="4"/>
+                            <field name="page_margin_top"/>
+                            <field name="page_margin_left"/>
+                            <field name="row_qty"/>
+                            <field name="column_qty"/>
+                            <field name="inner_margin_top"/>
+                            <field name="inner_margin_left"/>
+                        </group>
+
+                        <group col="4">
+                            <separator string="Label Information" colspan="4"/>
+                            <field name="label_height"/>
+                            <field name="label_width"/>
+                        </group>
+
+                        <group col="4">
+                            <separator string="Product Name Information" colspan="4"/>
+                            <field name="product_name_top"/>
+                            <field name="product_name_left"/>
+                            <field name="product_name_height"/>
+                            <field name="product_name_width"/>
+                            <field name="product_name_font_size"/>
+                        </group>
+
+                        <group col="4">
+                            <separator string="Barcode Information" colspan="4"/>
+                            <field name="barcode_top"/>
+                            <field name="barcode_left"/>
+                            <field name="barcode_height"/>
+                            <field name="barcode_width"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Model: product.product -->
+        <record id="view_product_product_form" model="ir.ui.view">
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view" />
+            <field name="arch" type="xml">
+                <field name="ean13" position="after">
+                    <button name="generate_ean13" type="object" colspan="2" string="Generate EAN"/>
+                </field>
+            </field>
+        </record>
+
+        <!-- Model: print.product.wizard -->
+        <record id="view_print_product_wizard_form" model="ir.ui.view">
+            <field name="model">print.product.wizard</field>
+            <field name="arch" type="xml">
+            <form string="Print Product">
+                <field name="print_type_id" />
+                <field name="product_id" />
+                    <group colspan="2">
+                        <group col="4" colspan="2">
+                            <button icon="gtk-cancel" special="cancel" string="Cancel"/>
+                            <button name="%(report_print_product_1_report)d" string="Print" type="action" icon="gtk-print"/>
+                       </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+    </data>
+</openerp>
