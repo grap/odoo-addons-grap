@@ -62,8 +62,11 @@ Copyright, Author and Licence :
         'sale',
         'procurement',
         'account_fiscal_company',
+        'crm',
+        'base_calendar',
     ],
     'data': [
+        'security/res_groups.yml',
         'security/ir.model.access.csv',
     ],
 }
