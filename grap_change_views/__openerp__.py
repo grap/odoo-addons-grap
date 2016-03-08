@@ -89,6 +89,9 @@ Copyright, Authors and Licence:
         'intercompany_trade_base',
         'recurring_consignment',
         'purchase_compute_order',
+        'grap_change_access',
+        'grap_reporting',
+        'grap_print_product',
     ],
     'data': [
         'security/res_groups.yml',

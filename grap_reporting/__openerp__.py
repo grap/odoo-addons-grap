@@ -25,11 +25,17 @@
     'version': '2.5',
     'category': 'Accounting & Finance',
     'description': """
-Correct & Add financial reports.
-================================
-    * Correct of l10n_fr "Balance Sheet" and "Profit & loss" reports;
-    * provide "IOR" report (Interim Operating Results);
-    * provide "CF" report (Cash Flow);
+Correct & Add financial reports
+===============================
+
+* Correct of l10n_fr "Balance Sheet" and "Profit & loss" reports;
+* provide "IOR" report (Interim Operating Results);
+* provide "CF" report (Cash Flow);
+
+TODO MIGRATION
+--------------
+
+* remove obsolete reporting;
 
 Copyright, Author and Licence :
 -------------------------------

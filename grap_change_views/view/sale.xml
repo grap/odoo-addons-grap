@@ -275,6 +275,11 @@
         </record>
 
 <!-- Disable Menu to basic User -->
+        <record model="ir.ui.menu" id="grap_print_product.menu_print_product">
+            <field eval="[(6, 0, [ref('base.group_no_one')])]" name="groups_id"/>
+        </record>
+
+
         <record model="ir.ui.menu" id="sale.menu_dashboard_sales">
             <field eval="[(6, 0, [ref('base.group_no_one')])]" name="groups_id"/>
         </record>
