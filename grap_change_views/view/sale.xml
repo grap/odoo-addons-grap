@@ -135,7 +135,19 @@
             </field>
         </record>
 
-
+        <record id="view_product_pricelist_item_tree" model="ir.ui.view">
+            <field name="model">product.pricelist.item</field>
+            <field name="inherit_id" ref="product.product_pricelist_item_tree_view" />
+            <field name="arch" type="xml">
+                <field name="min_quantity" position="attributes">
+                    <attribute name="groups">base.group_no_one</attribute>
+                </field>
+                <field name="base" position="after">
+                    <field name="price_discount" />
+                    <field name="price_surcharge" />
+                </field>
+            </field>
+        </record>
 
         <!--
             * Reorder Sale / Sale items
