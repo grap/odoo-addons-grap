@@ -69,16 +69,20 @@
                 <xpath expr="//page[@string='Other Information']" position="attributes">
                     <attribute name="groups">base.group_no_one</attribute>
                 </xpath>
+                <field name="user_id" position="replace"/>
+                <field name="pricelist_id" position="after">
+                    <field name="user_id"/>
+                </field>
                 <field name="shop_id" position="replace"/>
-                <field name="user_id" position="after">
+                <field name="payment_term" position="after">
                     <field name="shop_id"/>
                 </field>
                 <field name="partner_invoice_id" position="replace"/>
-                <field name="user_id" position="after">
+                <field name="payment_term" position="after">
                     <field name="partner_invoice_id"/>
                 </field>
                 <field name="partner_shipping_id" position="replace"/>
-                <field name="user_id" position="after">
+                <field name="payment_term" position="after">
                     <field name="partner_shipping_id"/>
                 </field>
                 <field name="client_order_ref" position="replace"/>
