@@ -24,7 +24,7 @@ class product_product(Model):
             if pp.ean13:
                 EAN = barcode.get_barcode_class('ean13')
                 ean = EAN(pp.ean13)
-                fullname = ean.save(pp.ean13)
+                fullname = ean.save('/tmp/' + pp.ean13)
                 f = open(fullname, 'r')
                 output = StringIO.StringIO()
                 svg = f.read()
