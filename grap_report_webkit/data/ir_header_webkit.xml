@@ -6,198 +6,135 @@
         <field name="name">GRAP - Entête de Rapport A4</field>
         <field name="orientation">Portrait</field>
         <field name="format">A4</field>
+        <field name="margin_top" eval="0.0"/>
+        <field name="margin_bottom" eval="0.0"/>
         <field name="html"><![CDATA[
 <html>
-<head>
-    <meta content="text/html; charset=UTF-8" http-equiv="content-type"/>
-    <script>
-        function subst() {
-        var vars={};
-        var x=document.location.search.substring(1).split('&');
-        for(var i in x) {var z=x[i].split('=',2);vars[z[0]] = unescape(z[1]);}
-        var x=['frompage','topage','page','webpage','section','subsection','subsubsection'];
-        for(var i in x) {
-        var y = document.getElementsByClassName(x[i]);
-        for(var j=0; j<y.length; ++j) y[j].textContent = vars[x[i]];
+    <head>
+        <meta content="text/html; charset=UTF-8" http-equiv="content-type"/>
+        <script>
+            function subst() {
+            var vars={};
+            var x=document.location.search.substring(1).split('&');
+            for(var i in x) {var z=x[i].split('=',2);vars[z[0]] = unescape(z[1]);}
+            var x=['frompage','topage','page','webpage','section','subsection','subsubsection'];
+            for(var i in x) {
+            var y = document.getElementsByClassName(x[i]);
+            for(var j=0; j<y.length; ++j) y[j].textContent = vars[x[i]];
+                }
             }
-        }
-    </script>
-    <style type="text/css">
-        ${css}
-    </style>
-</head>
-<body style="border:0; margin: 0;" onload="subst()">
-    <table class="header" style="border-bottom: 0px solid black; width: 100%">
-        <tr>
-            <td><img src="data:image/png;base64,${company.logo}" /></td>
-            <td style="text-align:right"> </td>
-        </tr>
-        <tr>
-            <td><br/></td>
-            <td style="text-align:right"> </td>
-        </tr>
-        <tr>
-            <td>${company.partner_id.name |entity}</td>
-            <td/>
-        </tr>
-        <tr>
-            <td >${company.partner_id.street or ''|entity}</td>
-            <td/>
-        </tr>
-        <tr>
-            <td>${_('Phone:')} ${company.partner_id.phone or ''|entity} </td>
-            <td/>
-        </tr>
-        <tr>
-            <td>${_('Mail:')} ${company.partner_id.email or ''|entity}<br/></td>
-        </tr>
-    </table> ${_debug or ''|n} </body>
+        </script>
+        <style type="text/css">
+            ${css}
+        </style>
+    </head>
+
+    <body onload="subst()">
+        <table class="header">
+            <tr>
+                <td style="width:20%">
+                    <img class="company_logo" src="data:image/png;base64,${company.logo}" />
+                <td style="width:25%">
+                    ${company.name |entity}<br />
+                    ${company.partner_id.street or ''|entity}<br />
+                    ${company.partner_id.zip or ''|entity}
+                    ${company.partner_id.city  or ''|entity}
+                </td>
+                <td style="width:45%">
+                    ${company.partner_id.phone or ''|entity}<br />
+                    ${company.partner_id.email or ''|entity}<br />
+                    ${company.partner_id.website or ''|entity}
+                </td>
+                <td style="width:10%; text-align: right; vertical-align:bottom;">
+                    <span class="page"/>/<span class="topage"/>
+                </td>
+            </tr>
+        </table>
+    </body>
+
 </html>]]>
         </field>
-        <field eval="55.0" name="margin_top"/>
-        <field eval="0.0" name="margin_bottom"/>
+        <field name="footer_html"><![CDATA[
+
+<html>
+    <head>
+        <meta content="text/html; charset=UTF-8" http-equiv="content-type"/>
+        <style type="text/css">
+            ${css}
+        </style>
+    </head>
+
+    <body>
+        <table class="footer">
+            <tr>
+%if company.fiscal_type == 'fiscal_child':
+                <td style="width:20%">
+                    ${company.name |entity}<br />
+                    est une activit&eacute; de<br />
+                    <img class="small_company_logo" src="data:image/png;base64,${company.fiscal_company.logo}" />
+                <td style="width:25%">
+                    ${company.fiscal_company.name |entity}<br />
+                    ${company.fiscal_company.partner_id.street or ''|entity}<br />
+                    ${company.fiscal_company.partner_id.zip or ''|entity}
+                    ${company.fiscal_company.partner_id.city  or ''|entity}<br />
+                    Service comptabilit&eacute;
+                    ${company.fiscal_company.administrative_department_email or ''|entity}<br />
+                    ${company.fiscal_company.partner_id.website or ''|entity}
+                </td>
+                <td style="width:55%">
+%else:
+                <td style="width:100%">
+%endif
+                    R&egrave;glement par ch&egrave;que &agrave; l'ordre de ${company.fiscal_company.name |entity}<br />
+%if company.bank_ids:
+                    R&egrave;glement par virement sur le compte de {company.bank_ids[0].bank_name}
+                    IBAN : {company.bank_ids[0].acc_number} - SWIFT/BIC : {company.bank_ids[0].bank_bic}<br />
+%endif
+                    SIRET : ${company.fiscal_company.siret or ''| entity}<br />
+                    TVA intracommunautaire : ${company.fiscal_company.vat or ''| entity}
+
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>
+
+]]></field>
         <field name="css"><![CDATA[
 
-body {
-font-family: helvetica;
-font-size: 11px;
+body{
+    margin: 0px;
+    padding: 0px;
+    font-size: 10pt;
+    font-family: "Myriad Pro", Myriad, Arial;
+}
+table{
+    width: 100%;
+}
+td{
+    text-align: left;
+    vertical-align: top;
 }
 
-table {
-font-family: helvetica;
-font-size: 11px;
+.company_logo{
+    width: 2.5cm;
+}
+.small_company_logo{
+    width: 1.5cm;
 }
 
-.header {
-margin-left: 0px;
-text-align: left;
-width: 300px;
-font-size: 12px;
+.header{
+    margin-top: 1.8cm;
+    font-size: 9pt;
+    margin-bottom: 0.5cm;
 }
-
-.title {
-font-size: 16px;
-font-weight: bold;
-}
-
-.basic_table{
-text-align: center;
-border: 1px solid lightGrey;
-border-collapse: collapse;
-}
-
-.basic_table th {
-border: 1px solid lightGrey;
-font-size: 12px;
-}
-
-.basic_table td {
-border: 1px solid lightGrey;
-font-size: 12px;
-}
-
-.list_table {
-border-color: black;
-text-align: center;
-border-collapse: collapse;
-}
-
-.list_table td {
-border-color: gray;
-border-top: 1px solid gray;
-text-align: left;
-font-size: 12px;
-padding-right: 3px;
-padding-left: 3px;
-padding-top: 3px;
-padding-bottom:3px;
-}
-
-.list_table th {
-border-bottom: 2px solid black;
-text-align: left;
-font-size: 12px;
-font-weight: bold;
-padding-right: 3px
-padding-left: 3px
-}
-
-.list_table thead {
-display: table-header-group;
-}
-
-.address table {
-font-size: 11px;
-border-collapse: collapse;
-margin: 0px;
-padding: 0px;
-}
-
-.address .shipping {
-
-}
-
-.address .invoice {
-margin-top: 10px;
-}
-
-.address .recipient {
-margin-right: 120px;
-float: right;
-}
-
-table .address_title {
-font-weight: bold;
-}
-
-.address td.name {
-font-weight: bold;
-}
-
-td.amount, th.amount {
-text-align: right;
-}
-
-h1 {
-font-size: 16px;
-font-weight: bold;
-}
-
-tr.line .note {
-border-style: none;
-font-size: 9px;
-padding-left: 10px;
-}
-
-tr.line {
-margin-bottom: 10px;
+.footer{
+    margin-bottom: 1.8cm;
+    font-size: 9pt;
 }
 
 ]]>
         </field>
-        <field name="footer_html"><![CDATA[
-<head>
-<meta content="text/html; charset=UTF-8" http-equiv="content-type"/>
-<script>
-    function subst() {
-    var vars={};
-    var x=document.location.search.substring(1).split('&');
-    for(var i in x) {var z=x[i].split('=',2);vars[z[0]] = unescape(z[1]);}
-    var x=['frompage','topage','page','webpage','section','subsection','subsubsection'];
-    for(var i in x) {
-    var y = document.getElementsByClassName(x[i]);
-    for(var j=0; j<y.length; ++j) y[j].textContent = vars[x[i]];
-        }
-    }
-</script>
-</head>
-<body style="border:0; margin: 0;" onload="subst()">
-<table style="border-top: 1px solid black; width: 100%">
-    <tr >
-        <td style="text-align:right;font-size:12;" width="95%">Page <span class="page"/></td><td style="text-align:left;font-size:12;">  of <span class="topage"/></td>
-    </tr>
-</table>
-</body>]]></field>
 
     </record>
 </data></openerp>
