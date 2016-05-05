@@ -208,33 +208,6 @@
                                     </group>
                                 </group>
                             </page>
-                            <page string="Extra-Information" groups="base.group_no_one">
-                                <group col="4">
-                                    <field name="variants" />
-                                    <field name="price_margin" />
-                                    <field name="price_extra" />
-                                    <field name="procure_method" />
-                                    <field name="supply_method" />
-                                    <field name="cost_method" />
-                                    <field name="produce_delay" />
-                                    <field name="state" />
-                                    <field name="product_manager" />
-                                    <field name="property_stock_procurement" />
-                                    <field name="property_stock_production" />
-                                    <field name="property_stock_inventory" />
-                                    <field name="weight" />
-                                    <field name="warranty" />
-                                    <field name="sale_delay" />
-                                    <field name="uos_id" />
-                                    <field name="uos_coeff" />
-                                    <field name="mes_type" />
-                                    <field name="valuation" />
-                                    <field name="property_stock_account_input" />
-                                    <field name="property_stock_account_output" />
-                                    <field name="supplier_taxes_id" widget="many2many_tags"/>
-                                    <field name="taxes_id" widget="many2many_tags"/>
-                                </group>
-                            </page>
                             <page string="Food information" groups="sale_food.group_food_user">
                                 <group colspan="4">
                                     <group>
@@ -301,6 +274,38 @@
                                 </group>
                                 <group string="Eshop Description">
                                     <field name="eshop_description" widget="html" colspan="4" nolabel="1"/>
+                                </group>
+                            </page>
+                            <page string="EAN13" attrs="{'invisible':[('ean13','=', False)]}">
+                                <group col="4">
+                                        <field name="ean13_image" widget='image' nolabel="1" readonly="1" colspan="4"/>
+                                </group>
+                            </page>
+                            <page string="Extra-Information" groups="base.group_no_one">
+                                <group col="4">
+                                    <field name="variants" />
+                                    <field name="price_margin" />
+                                    <field name="price_extra" />
+                                    <field name="procure_method" />
+                                    <field name="supply_method" />
+                                    <field name="cost_method" />
+                                    <field name="produce_delay" />
+                                    <field name="state" />
+                                    <field name="product_manager" />
+                                    <field name="property_stock_procurement" />
+                                    <field name="property_stock_production" />
+                                    <field name="property_stock_inventory" />
+                                    <field name="weight" />
+                                    <field name="warranty" />
+                                    <field name="sale_delay" />
+                                    <field name="uos_id" />
+                                    <field name="uos_coeff" />
+                                    <field name="mes_type" />
+                                    <field name="valuation" />
+                                    <field name="property_stock_account_input" />
+                                    <field name="property_stock_account_output" />
+                                    <field name="supplier_taxes_id" widget="many2many_tags"/>
+                                    <field name="taxes_id" widget="many2many_tags"/>
                                 </group>
                             </page>
                         </notebook>

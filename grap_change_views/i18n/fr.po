@@ -6,14 +6,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-16 12:58+0000\n"
-"PO-Revision-Date: 2016-02-16 12:58+0000\n"
+"POT-Creation-Date: 2016-05-05 11:49+0000\n"
+"PO-Revision-Date: 2016-05-05 11:49+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: grap_change_views
+#: view:account.move:0
+#: view:pos.order:0
+msgid "7.0"
+msgstr "7.0"
 
 #. module: grap_change_views
 #: view:account.move.line:0
@@ -96,6 +102,11 @@ msgstr "Brouillon"
 
 #. module: grap_change_views
 #: view:product.product:0
+msgid "EAN13"
+msgstr "EAN13"
+
+#. module: grap_change_views
+#: view:product.product:0
 msgid "Eshop Description"
 msgstr "Description eBoutique"
 
@@ -108,6 +119,11 @@ msgstr "Information Complémentaire"
 #: view:product.product:0
 msgid "Food information"
 msgstr "Information alimentaire"
+
+#. module: grap_change_views
+#: view:product.product:0
+msgid "Generate EAN"
+msgstr "Genérer EAN13"
 
 #. module: grap_change_views
 #: view:product.product:0
@@ -516,6 +532,63 @@ msgid "Yesterday"
 msgstr "Hier"
 
 #. module: grap_change_views
+#: view:account.invoice:0
+msgid "['|', '|', ('number','ilike',self),('origin','ilike',self),('reference','ilike',self)]"
+msgstr "['|', '|', ('number','ilike',self),('origin','ilike',self),('reference','ilike',self)]"
+
+#. module: grap_change_views
+#: view:account.invoice:0
+#: view:product.product:0
+#: view:purchase.order:0
+#: view:res.partner:0
+#: view:sale.order:0
+msgid "account.group_account_manager"
+msgstr "account.group_account_manager"
+
+#. module: grap_change_views
+#: view:account.move:0
+msgid "base.group_multi_currency"
+msgstr "base.group_multi_currency"
+
+#. module: grap_change_views
+#: view:account.voucher:0
+#: view:product.pricelist.item:0
+#: view:product.product:0
+#: view:product.supplierinfo:0
+#: view:purchase.order:0
+#: view:res.partner:0
+#: view:sale.order:0
+#: view:stock.picking.in:0
+#: view:stock.picking.out:0
+msgid "base.group_no_one"
+msgstr "base.group_no_one"
+
+#. module: grap_change_views
+#: view:product.product:0
+msgid "base.group_user"
+msgstr "base.group_user"
+
+#. module: grap_change_views
+#: view:stock.inventory:0
+msgid "blue:state=='draft';gray:state=='cancel'"
+msgstr "blue:state=='draft';gray:state=='cancel'"
+
+#. module: grap_change_views
+#: view:purchase.order:0
+msgid "blue:state=='draft';gray:state=='cancel';red:state in ('except_picking','except_invoice');brown:state in ('sent', 'confirmed', 'approved')"
+msgstr "blue:state=='draft';gray:state=='cancel';red:state in ('except_picking','except_invoice');brown:state in ('sent', 'confirmed', 'approved')"
+
+#. module: grap_change_views
+#: view:sale.order:0
+msgid "blue:state=='draft';gray:state=='cancel';red:state in ('shipping_except','invoice_except');brown:state in ('sent', 'waiting_date', 'progress', 'manual')"
+msgstr "blue:state=='draft';gray:state=='cancel';red:state in ('shipping_except','invoice_except');brown:state in ('sent', 'waiting_date', 'progress', 'manual')"
+
+#. module: grap_change_views
+#: view:stock.move:0
+msgid "blue:state=='draft';gray:state=='cancel';red:state in ('waiting','confirmed');brown:state in ('assigned')"
+msgstr "blue:state=='draft';gray:state=='cancel';red:state in ('waiting','confirmed');brown:state in ('assigned')"
+
+#. module: grap_change_views
 #: model:ir.actions.act_window,help:grap_change_views.action_view_old_product_form
 msgid "display obsolete view for products."
 msgstr "Affiche la vue obsolète pour les articles."
@@ -527,5 +600,34 @@ msgstr "Boutique en ligne"
 
 #. module: grap_change_views
 #: view:product.product:0
+msgid "grap_change_views.group_product_image_manager"
+msgstr "grap_change_views.group_product_image_manager"
+
+#. module: grap_change_views
+#: view:account.move:0
+msgid "grap_change_views__view_account_move_form"
+msgstr "grap_change_views__view_account_move_form"
+
+#. module: grap_change_views
+#: view:pos.order:0
+msgid "grap_change_views__view_pos_order_form"
+msgstr "grap_change_views__view_pos_order_form"
+
+#. module: grap_change_views
+#: view:account.invoice:0
+#: view:pos.order:0
+#: view:purchase.order:0
+#: view:sale.order:0
+msgid "red:discount==100;black:discount==0;brown:True;"
+msgstr "red:discount==100;black:discount==0;brown:True;"
+
+#. module: grap_change_views
+#: view:product.product:0
 msgid "update"
 msgstr "mettre à jour"
+
+#. module: grap_change_views
+#: view:pos.order:0
+msgid "{\"quick_create\": false}"
+msgstr "{\"quick_create\": false}"
+
