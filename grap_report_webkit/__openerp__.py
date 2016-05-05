@@ -22,12 +22,10 @@ Copyright, Author and Licence
     'license': 'AGPL-3',
     'depends': [
         'base',
-        # Reporting Modules
         'report_webkit',
         'report_custom_filename',
-        # Module To report
+        'product',
         'sale',
-        # Custom information
         'sale_food',
         'base_fiscal_company',
         'l10n_fr',
@@ -35,5 +33,6 @@ Copyright, Author and Licence
     'data': [
         'data/ir_header_webkit.xml',
         'data/sale_report.xml',
+        'views/view_product_pricelist.xml',
     ],
 }
