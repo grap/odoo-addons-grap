@@ -236,40 +236,6 @@
             </field>
         </record>
 
-<!-- Model : account.export.ebp -->
-        <record model="ir.ui.view" id="account_ebp_export_form">
-            <field name="model">ebp.export</field>
-            <field name="arch" type="xml">
-                <form string="Wizard" version="7.0">
-                    <field name="date" readonly='True'/>
-                    <group colspan="4">
-                        <field name="exported_moves" readonly='True'/>
-                        <field name="exported_lines" readonly='True'/>
-                        <field name="ignored_moves" readonly='True'/>
-                        <field name="exported_accounts" readonly='True'/>
-                        <p>Here is the exported moves file: <field name="data_moves" readonly="1" filename="name_moves"/></p>
-                        <p>And the exported accounts file: <field name="data_accounts" readonly="1" filename="name_accounts"/></p>
-                        <p>And the exported balance file: <field name="data_balance" readonly="1" filename="name_balance"/></p>
-                    </group>
-                    <field name="description" readonly='True' />
-                </form>
-            </field>
-        </record>
-
-        <record model="ir.ui.view" id="account_ebp_export_tree">
-            <field name="model">ebp.export</field>
-            <field name="arch" type="xml">
-                <tree string="Wizard" version="7.0">
-                    <field name="date" readonly='True'/>
-                    <field name="name" readonly='True'/>
-                    <field name="exported_moves" readonly='True'/>
-                    <field name="exported_lines" readonly='True'/>
-                    <field name="ignored_moves" readonly='True'/>
-                    <field name="exported_accounts" readonly='True'/>
-                </tree>
-            </field>
-        </record>
-
 <!-- Model : account.add.suffix -->
         <record model="ir.ui.view" id="account_add_suffix_form">
             <field name="model">account.add.suffix</field>

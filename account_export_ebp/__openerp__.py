@@ -58,6 +58,7 @@ old ones if need be.
     ],
     'data': [
         'view/view.xml',
+        'view/view_ebp_export.xml',
         'view/action.xml',
         'view/menu.xml',
         'security/ir_model_access.yml',

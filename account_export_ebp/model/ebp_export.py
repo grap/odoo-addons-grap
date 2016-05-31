@@ -33,10 +33,9 @@ class ebp_export(Model):
 
     _columns = {
         'company_id': fields.many2one(
-            'res.company', 'Company', required=True,
-            help="The company this fiscal year belongs to."),
+            'res.company', 'Company', required=True, readonly=True),
         'fiscalyear_id': fields.many2one(
-            'account.fiscalyear', 'Fiscal year', required=True,),
+            'account.fiscalyear', 'Fiscal year', required=True, readonly=True),
         'exported_moves': fields.integer(
             'Number of moves exported', readonly=True),
         'ignored_moves': fields.integer(
@@ -46,7 +45,8 @@ class ebp_export(Model):
         'exported_accounts': fields.integer(
             'Number of accounts exported', readonly=True),
         'exported_moves_ids': fields.one2many(
-            'account.move', 'exported_ebp_id', 'Exported Moves'),
+            'account.move', 'exported_ebp_id', 'Exported Moves',
+            readonly=True),
         'data_moves': fields.binary(
             'Moves file', readonly=True),
         'data_accounts': fields.binary(
@@ -54,9 +54,9 @@ class ebp_export(Model):
         'data_balance': fields.binary(
             'Balance file', readonly=True),
         'date': fields.date(
-            'Date', required=True),
+            'Date', required=True, readonly=True),
         'name': fields.function(
-            _get_name, 'Name', type='char', store=True),
+            _get_name, 'Name', type='char', store=True, readonly=True),
         'description': fields.text(
             'Description', readonly=True,
             help="Extra Description for Accountant Manager."),
