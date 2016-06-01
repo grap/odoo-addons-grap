@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ********************************************************************** -->
+<!--GRAP - Change Views module for Odoo                                     -->
+<!--Copyright (C) 2013 GRAP (http://www.grap.coop)                          -->
+<!--@author Julien WESTE                                                    -->
+<!--@author Sylvain LE GAL (https://twitter.com/legalsylvain)               -->
+
+<!--This program is free software: you can redistribute it and/or modify    -->
+<!--it under the terms of the GNU Affero General Public License as          -->
+<!--published by the Free Software Foundation, either version 3 of the      -->
+<!--License, or (at your option) any later version.                         -->
+
+<!--This program is distributed in the hope that it will be useful,         -->
+<!--but WITHOUT ANY WARRANTY; without even the implied warranty of          -->
+<!--MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the           -->
+<!--GNU Affero General Public License for more details.                     -->
+
+<!--You should have received a copy of the GNU Affero General Public License-->
+<!--along with this program.  If not, see <http://www.gnu.org/licenses/>.   -->
+<!-- ********************************************************************** -->
+<openerp><data>
+
+    <record id="view_account_tax_template_tree" model="ir.ui.view">
+        <field name="model">account.tax.template</field>
+        <field name="inherit_id" ref="account.view_account_tax_template_tree"/>
+        <field name="arch" type="xml">
+            <field name="description" position="after">
+                <field name="type_tax_use"/>
+                <field name="amount"/>
+                <field name="type"/>
+                <field name="price_include"/>
+                <field name="chart_template_id"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_account_tax_template_search" model="ir.ui.view">
+        <field name="model">account.tax.template</field>
+        <field name="inherit_id" ref="account.view_account_tax_template_search"/>
+        <field name="arch" type="xml">
+            <field name="chart_template_id" position="after">
+                <field name="type_tax_use"/>
+            </field>
+        </field>
+    </record>
+
+</data></openerp>

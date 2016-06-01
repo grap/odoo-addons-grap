@@ -95,6 +95,13 @@ Copyright, Authors and Licence:
     ],
     'data': [
         'security/res_groups.yml',
+        'view/view_account_bank_statement.xml',
+        'view/view_account_invoice.xml',
+        'view/view_account_invoice_line.xml',
+        'view/view_account_move.xml',
+        'view/view_account_move_line.xml',
+        'view/view_account_tax_template.xml',
+        'view/view_account_voucher.xml',
         'view/account.xml',
         'view/base.xml',
         'view/crm.xml',
