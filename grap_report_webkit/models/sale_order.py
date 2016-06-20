@@ -5,13 +5,14 @@
 
 from openerp.osv import fields
 from openerp.osv.orm import Model
+from openerp.tools.translate import _
 
 
 class SaleOrder(Model):
     _inherit = 'sale.order'
 
     def _compute_vat_text(self, cr, uid, ids, args, context=None):
-        res = {x:False for x in ids}
+        res = {x: False for x in ids}
         for order in self.browse(cr, uid, ids, context=context):
             vat_excl = False
             vat_incl = False
@@ -21,7 +22,7 @@ class SaleOrder(Model):
                         vat_incl = True
                     else:
                         vat_excl = True
-            if vat_excl and  vat_incl:
+            if vat_excl and vat_incl:
                 res[order.id] = _('(VAT Excl. / Incl.)')
             elif vat_excl:
                 res[order.id] = _('(VAT Excl.)')
@@ -32,7 +33,7 @@ class SaleOrder(Model):
         return res
 
     def _compute_has_discount(self, cr, uid, ids, args, context=None):
-        res = {x:False for x in ids}
+        res = {x: False for x in ids}
         for order in self.browse(cr, uid, ids, context=context):
             for line in order.order_line:
                 if line.discount:
