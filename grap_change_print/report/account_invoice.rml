@@ -178,7 +178,7 @@
           <para style="terp_tblheader_General_Centre"><b>Origine</b></para>
         </td>
         <td>
-          <para style="terp_tblheader_General_Centre"><b>Code Client</b></para>
+          <para style="terp_tblheader_General_Centre"><b>Echéance</b></para>
         </td>
       </tr>
     </blockTable>
@@ -188,13 +188,13 @@
           <para style="terp_default_Centre_9">[[ o.name or ' ' ]]</para>
         </td>
         <td>
-          <para style="terp_default_Centre_9">[[ formatLang(o.date_invoice,date=True) ]]</para>
+          <para style="terp_default_Centre_9">[[ formatLang(o.date_invoice, date=True) ]]</para>
         </td>
     <td>
-          <para style="terp_default_Centre_9">[[ o.origin or '' ]]</para>
+          <para style="terp_default_Centre_9">[[ o.origin or ' ' ]]</para>
         </td>
         <td>
-          <para style="terp_default_Centre_9">[[ (o.partner_id.ref) or ' ' ]]</para>
+          <para style="terp_default_Centre_9">[[ o.date_due and formatLang(o.date_due, date=True) or ' ' ]]</para>
         </td>
       </tr>
     </blockTable>
