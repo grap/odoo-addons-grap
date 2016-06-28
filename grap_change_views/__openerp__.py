@@ -102,6 +102,9 @@ Copyright, Authors and Licence:
         'view/view_account_move_line.xml',
         'view/view_account_tax_template.xml',
         'view/view_account_voucher.xml',
+        'view/view_stock_inventory.xml',
+        'view/view_stock_move.xml',
+        'view/view_stock_picking.xml',
         'view/account.xml',
         'view/base.xml',
         'view/crm.xml',
@@ -112,6 +115,7 @@ Copyright, Authors and Licence:
         'view/sale.xml',
         'view/stock.xml',
         'view/mail.xml',
+        'view/menu.xml',
     ],
     'css': [
         'static/src/css/css.css',

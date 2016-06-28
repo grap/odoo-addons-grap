@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-05 11:49+0000\n"
-"PO-Revision-Date: 2016-05-05 11:49+0000\n"
+"POT-Creation-Date: 2016-06-28 11:31+0000\n"
+"PO-Revision-Date: 2016-06-28 11:31+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -521,9 +521,10 @@ msgid "User"
 msgstr "Utilisateur"
 
 #. module: grap_change_views
+#: view:stock.move:0
 #: field:stock.move,workflow_description:0
-msgid "Workflow Description"
-msgstr "Description du Flux"
+msgid "Workflow"
+msgstr "Flux"
 
 #. module: grap_change_views
 #: view:pos.order:0

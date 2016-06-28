@@ -20,5 +20,9 @@ class StockMove(Model):
     _columns = {
         'workflow_description': fields.function(
             _get_workflow_description, type='char',
-            string='Workflow Description'),
+            string='Workflow', store={
+                'stock.move': (
+                    lambda self, cr, uid, ids, context=None: ids, [
+                        'location_id', 'location_dest_id',
+                    ], 10)}),
     }
