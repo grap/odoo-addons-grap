@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-28 11:31+0000\n"
-"PO-Revision-Date: 2016-06-28 11:31+0000\n"
+"POT-Creation-Date: 2016-07-18 14:32+0000\n"
+"PO-Revision-Date: 2016-07-18 14:32+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -24,6 +24,7 @@ msgstr "7.0"
 #. module: grap_change_views
 #: view:account.move.line:0
 #: model:ir.actions.act_window,name:grap_change_views.action_view_account_move_line_tree
+#: model:ir.ui.menu,name:grap_change_views.menu_account_move_line
 msgid "Account Move Lines"
 msgstr "Ecritures Comptables"
 
@@ -37,6 +38,12 @@ msgstr "Informations complémentaires"
 #: view:sale.order:0
 msgid "Amount (VAT Incl.)"
 msgstr "Total TTC"
+
+#. module: grap_change_views
+#: view:account.invoice.line:0
+#: field:account.invoice.line,categ_id:0
+msgid "Category"
+msgstr "Catégorie"
 
 #. module: grap_change_views
 #: view:pos.category:0
@@ -71,6 +78,11 @@ msgid "Customers (Other Views)"
 msgstr "Clients (Autres vues)"
 
 #. module: grap_change_views
+#: view:account.invoice.line:0
+msgid "Date"
+msgstr "Date"
+
+#. module: grap_change_views
 #: view:account.move:0
 msgid "Date Ech."
 msgstr "Date Ech."
@@ -84,6 +96,11 @@ msgstr "Date Min"
 #: view:pos.order.line:0
 msgid "Date To"
 msgstr "Date Max"
+
+#. module: grap_change_views
+#: field:account.invoice.line,date_invoice:0
+msgid "Date invoice"
+msgstr "Date de facture"
 
 #. module: grap_change_views
 #: view:pos.order:0
@@ -124,6 +141,11 @@ msgstr "Information alimentaire"
 #: view:product.product:0
 msgid "Generate EAN"
 msgstr "Genérer EAN13"
+
+#. module: grap_change_views
+#: view:account.invoice.line:0
+msgid "Group By..."
+msgstr "Regrouper par ..."
 
 #. module: grap_change_views
 #: view:product.product:0
@@ -244,9 +266,16 @@ msgid "Packaging"
 msgstr "Colisage"
 
 #. module: grap_change_views
+#: view:account.invoice.line:0
 #: field:pos.order.line,partner_id:0
 msgid "Partner"
 msgstr "Partenaire"
+
+#. module: grap_change_views
+#: view:account.invoice.line:0
+#: field:account.invoice.line,period_id:0
+msgid "Period"
+msgstr "Période"
 
 #. module: grap_change_views
 #: view:product.product:0
@@ -317,6 +346,7 @@ msgstr "Prix de Revient (HT)"
 
 #. module: grap_change_views
 #: code:_description:0
+#: view:account.invoice.line:0
 #: model:ir.model,name:grap_change_views.model_product_product
 #: view:pos.category:0
 #: view:product.product:0
@@ -374,7 +404,7 @@ msgstr "Articles (Prix)"
 #: model:ir.ui.menu,name:grap_change_views.menu_product_product_tactile
 #: view:product.product:0
 msgid "Products (Tactile)"
-msgstr "Article (Tactile)"
+msgstr "Articles (Tactile)"
 
 #. module: grap_change_views
 #: view:product.product:0
@@ -453,6 +483,13 @@ msgid "Stock by Location"
 msgstr "Stock par emplacement"
 
 #. module: grap_change_views
+#: view:account.invoice.line:0
+#: model:ir.actions.act_window,name:grap_change_views.action_account_invoice_line_tree_supplier
+#: model:ir.ui.menu,name:grap_change_views.menu_account_invoice_line_supplier
+msgid "Supplier Invoice Lines"
+msgstr "Lignes de facture fournisseur"
+
+#. module: grap_change_views
 #: view:account.move:0
 msgid "Taxe Cpte."
 msgstr "Taxe Cpte."
@@ -516,9 +553,20 @@ msgid "Total Qty"
 msgstr "Qté totale"
 
 #. module: grap_change_views
+#: field:account.invoice.line,state:0
+#: field:account.invoice.line,type:0
+msgid "Type"
+msgstr "Type"
+
+#. module: grap_change_views
 #: view:ir.values:0
 msgid "User"
 msgstr "Utilisateur"
+
+#. module: grap_change_views
+#: view:account.invoice.line:0
+msgid "VAT Excl. Subtotal"
+msgstr "Sous Total HT"
 
 #. module: grap_change_views
 #: view:stock.move:0
