@@ -53,6 +53,6 @@ class account_move(Model):
                 'narration': old_narration + _(
                     "\nAccount move renamed. Old name : %s."
                     " New name : %s. Rename date : %s. Author : %s.") % (
-                        old_name, new_name, date, author)
+                    old_name, new_name, date, author)
             }, context=context)
         return True

@@ -124,6 +124,6 @@ class stock_inventory(Model):
                         "You can not confirm this inventory because there are"
                         " %d duplicates lines in it.\n Please fix first this"
                         " lines, merging quantities.") % (
-                            inventory.duplicates_qty))
+                        inventory.duplicates_qty))
         return super(stock_inventory, self).action_confirm(
             cr, uid, ids, context=context)
