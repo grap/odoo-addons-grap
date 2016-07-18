@@ -13,7 +13,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="arch" type="xml">
             <search>
                 <field name="partner_id"/>
-                <field name="date"/>
+                <field name="date_invoice"/>
                 <field name="categ_id"/>
                 <group expand="0" string="Group By...">
                     <filter string="Product" name="groupby_product_id" context="{'group_by':'product_id'}"/>
