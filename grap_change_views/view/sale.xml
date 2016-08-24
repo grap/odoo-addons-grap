@@ -92,6 +92,10 @@
                 <xpath expr="//field[@name='order_line']/tree//field[@name='tax_id']" position="after">
                     <field name="tax_ids_readonly" widget="many2many_tags"/>
                  </xpath>
+                <xpath expr="//field[@name='order_line']/tree//field[@name='product_uom']" position="after">
+                    <field name="product_uos_qty" groups="base.group_no_one"/>
+                    <field name="product_uos" groups="base.group_no_one"/>
+                 </xpath>
                 <xpath expr="//field[@name='order_line']/tree/field[@name='tax_id']" position="attributes">
                     <attribute name="groups">account.group_account_manager</attribute>
                  </xpath>
