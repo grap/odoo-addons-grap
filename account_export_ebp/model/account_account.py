@@ -35,6 +35,12 @@ class account_account(Model):
             'Export according to Tax Codes',
             help="""If checked, when you export moves from this account,"""
             """ it will create one account for each Tax Code"""),
+        'ebp_code_no_tax': fields.char(
+            'Tax Code\'s Account suffix in EBP (if no tax)', size=4,
+            help="When exporting Entries to EBP, this suffix will be"
+            " appended to the Account Number to make it a new Account,"
+            " if Export according to tax Codes is checked, and"
+            " if no taxes is defined on the account move line."),
     }
 
     # Defaults section

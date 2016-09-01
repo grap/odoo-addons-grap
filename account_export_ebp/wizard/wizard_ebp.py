@@ -382,9 +382,12 @@ class account_export_ebp(osv.TransientModel):
                             .is_intercompany_trade_fiscal_company:
                     # Partner account
                     account_nb = account_nb + line.partner_id.ref_nb
-                if (tax_code_suffix and line.account_id.export_tax_code and
-                        line.tax_code_id.ref_nb):
-                    account_nb = account_nb + line.tax_code_id.ref_nb
+                if (tax_code_suffix and line.account_id.export_tax_code):
+                    if line.tax_code_id.ref_nb:
+                        account_nb = account_nb + line.tax_code_id.ref_nb
+                    else:
+                        account_nb = account_nb +\
+                            line.account_id.ebp_code_no_tax
 
                 # Check the most important fields are not above the maximum
                 # length so as not to export wrong data with catastrophic

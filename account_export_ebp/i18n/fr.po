@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-31 13:57+0000\n"
-"PO-Revision-Date: 2016-05-31 13:57+0000\n"
+"POT-Creation-Date: 2016-09-01 10:32+0000\n"
+"PO-Revision-Date: 2016-09-01 10:32+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -30,13 +30,13 @@ msgid "Account Entry"
 msgstr "Pièce comptable"
 
 #. module: account_export_ebp
-#: code:addons/account_export_ebp/wizard/wizard_ebp.py:408
+#: code:addons/account_export_ebp/wizard/wizard_ebp.py:411
 #, python-format
 msgid "Account code '%s' is too long to be exported to EBP."
 msgstr "Le code du compte '%s' est trop long pour être exporté sous EBP."
 
 #. module: account_export_ebp
-#: code:addons/account_export_ebp/wizard/wizard_ebp.py:408
+#: code:addons/account_export_ebp/wizard/wizard_ebp.py:411
 #, python-format
 msgid "Account code too long"
 msgstr "Code de compte trop long"
@@ -327,6 +327,11 @@ msgid "Fiscal year"
 msgstr "Exercice fiscal"
 
 #. module: account_export_ebp
+#: view:ebp.export:0
+msgid "Group by..."
+msgstr "Regrouper par ..."
+
+#. module: account_export_ebp
 #: view:account.export.ebp:0
 #: view:ebp.export:0
 msgid "Here is the exported moves file:"
@@ -365,7 +370,7 @@ msgid "Journal"
 msgstr "Journal"
 
 #. module: account_export_ebp
-#: code:addons/account_export_ebp/wizard/wizard_ebp.py:396
+#: code:addons/account_export_ebp/wizard/wizard_ebp.py:399
 #, python-format
 msgid "Journal '%s' has no EBP Code defined."
 msgstr "Le journal '%s' n'a pas de code EBP défini."
@@ -376,31 +381,31 @@ msgid "Journal Entries not yet exported to EBP"
 msgstr "Pièces comptables non exportées vers EBP"
 
 #. module: account_export_ebp
-#: code:addons/account_export_ebp/wizard/wizard_ebp.py:401
+#: code:addons/account_export_ebp/wizard/wizard_ebp.py:404
 #, python-format
 msgid "Journal code '%s' is too long to be exported to EBP."
 msgstr "Le code du journal '%s' est trop long pour être exporter vers EBP."
 
 #. module: account_export_ebp
-#: code:addons/account_export_ebp/wizard/wizard_ebp.py:395
+#: code:addons/account_export_ebp/wizard/wizard_ebp.py:398
 #, python-format
 msgid "Journal code Undefined"
 msgstr "Code du journal non défini"
 
 #. module: account_export_ebp
-#: code:addons/account_export_ebp/wizard/wizard_ebp.py:400
+#: code:addons/account_export_ebp/wizard/wizard_ebp.py:403
 #, python-format
 msgid "Journal code too long"
 msgstr "Code de journal trop long"
 
 #. module: account_export_ebp
-#: code:addons/account_export_ebp/wizard/wizard_ebp.py:412
+#: code:addons/account_export_ebp/wizard/wizard_ebp.py:415
 #, python-format
 msgid "Move name '%s' is too long to be exported to EBP."
 msgstr "Le nom de l'écriture '%s' est trop long pour être exporter vers EBP."
 
 #. module: account_export_ebp
-#: code:addons/account_export_ebp/wizard/wizard_ebp.py:412
+#: code:addons/account_export_ebp/wizard/wizard_ebp.py:415
 #, python-format
 msgid "Move name too long"
 msgstr "Nom d'écriture trop long"
@@ -527,7 +532,7 @@ msgstr "Validé"
 #. module: account_export_ebp
 #: selection:account.export.ebp,state:0
 msgid "Prepare Export"
-msgstr "Preparation de l'export"
+msgstr "Preparation Export"
 
 #. module: account_export_ebp
 #: selection:account.export.ebp,state:0
@@ -568,6 +573,11 @@ msgid "Tax Code's Account suffix in EBP"
 msgstr "Suffixe du Code Taxe dans EBP"
 
 #. module: account_export_ebp
+#: field:account.account,ebp_code_no_tax:0
+msgid "Tax Code's Account suffix in EBP (if no tax)"
+msgstr "Suffixe du Code Taxe dans EBP (si pas de taxe)"
+
+#. module: account_export_ebp
 #: help:res.company,ebp_uri:0
 msgid "The URI of the network share containing the company's EBP folder. Format: smb://SERVER/SHARE/DIR"
 msgstr "The URI of the network share containing the company's EBP folder. Format: smb://SERVER/SHARE/DIR"
@@ -583,7 +593,7 @@ msgstr "Le code pour un partenaire ne peut pas excéder\n"
 " * 3 caractères pour les sociétés intégrées (Cas normal);\n"
 " * 6 caractères pour les sociétés intégrées (Achat Inter société);\n"
 " * 6 caractères pour les sociétés normales ; \n"
-" so as to permit the EBP export"
+" cela, pour permettre l'export EBP"
 
 #. module: account_export_ebp
 #: help:res.company,ebp_domain:0
@@ -665,6 +675,11 @@ msgstr "Attention! Certains partenaires n'ont pas de suffixe."
 #: help:res.partner,ref_nb:0
 msgid "When exporting Entries to EBP, this suffix will be appended to the Account Number to make it a Partner Account."
 msgstr "Lors de l'export d'écriture vers EBP, le suffixe sera ajouté au numéro de compte pour créer le numéro de compte du partenaire."
+
+#. module: account_export_ebp
+#: help:account.account,ebp_code_no_tax:0
+msgid "When exporting Entries to EBP, this suffix will be appended to the Account Number to make it a new Account, if Export according to tax Codes is checked, and if no taxes is defined on the account move line."
+msgstr "Lors de l'export d'écriture vers EBP, ce suffixe sera ajouté au numéro de compte pour créer le numéro de compte, si l'export selon les taxes est activés et qu'aucune taxe n'est définie sur l'écriture comptable."
 
 #. module: account_export_ebp
 #: help:account.tax.code,ref_nb:0

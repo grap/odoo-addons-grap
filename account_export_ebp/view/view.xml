@@ -262,6 +262,7 @@
             <field name="arch" type="xml">
                 <field name="company_id" position="before">
                     <field name="export_tax_code"/>
+                    <field name="ebp_code_no_tax"/>
                 </field>
             </field>
         </record>
