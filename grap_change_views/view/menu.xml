@@ -9,8 +9,13 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 <openerp><data>
 
 <!-- Accounting Menu -->
+    <menuitem id="menu_account_invoice_line_customer"
+        name="Customer Invoices Lines"
+        parent="account.menu_finance_payables" sequence="120"
+        action="action_account_invoice_line_tree_customer"/>
+
     <menuitem id="menu_account_invoice_line_supplier"
-        name="Supplier Invoice Lines"
+        name="Supplier Invoices Lines"
         parent="account.menu_finance_payables" sequence="120"
         action="action_account_invoice_line_tree_supplier"/>
 
@@ -19,6 +24,37 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="groups_id" eval="[(6, 0, [ref('base.group_no_one')])]" />
     </record>
 
+    <!-- disable weird voucher menu -->
+    <record model="ir.ui.menu" id="account_voucher.menu_action_sale_receipt">
+        <field name="groups_id" eval="[(6, 0, [ref('base.group_no_one')])]" />
+    </record>
+    <record model="ir.ui.menu" id="account_voucher.menu_action_purchase_receipt">
+        <field name="groups_id" eval="[(6, 0, [ref('base.group_no_one')])]" />
+    </record>
+
+    <!-- Up to somes menu just for Account Manager -->
+    <record model="ir.ui.menu" id="account.menu_finance_charts">
+        <field name="groups_id" eval="[(6, 0, [ref('account.group_account_manager')])]" />
+    </record>
+    <record model="ir.ui.menu" id="account.menu_finance_periodical_processing">
+        <field name="groups_id" eval="[(6, 0, [ref('account.group_account_manager')])]" />
+    </record>
+    <record model="ir.ui.menu" id="account.menu_finance_entries">
+        <field name="groups_id" eval="[(6, 0, [ref('account.group_account_manager')])]" />
+    </record>
+
+    <!-- Down to somes menu just for Invoice User -->
+    <record model="ir.ui.menu" id="account.menu_finance_bank_and_cash">
+        <field name="groups_id" eval="[(6, 0, [ref('account.group_account_invoice')])]" />
+    </record>
+
+    <!-- Disable unused accounting feature -->
+    <record model="ir.ui.menu" id="account_statement_reconciliation.menu_menu_Bank_process">
+        <field name="groups_id" eval="[(6, 0, [ref('base.group_no_one')])]" />
+    </record>
+
+
+    <!-- reorder some items -->
     <menuitem id="menu_account_move_line"
         name="Account Move Lines"
         parent="account.menu_finance_entries" sequence="1"

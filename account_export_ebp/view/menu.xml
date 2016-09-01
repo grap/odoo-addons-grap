@@ -8,6 +8,7 @@
         <menuitem id="menu_export_ebp"
             name="OpenERP - EBP"
             parent="account.menu_finance"
+            groups="account.group_account_manager"
             sequence="12"/>
 
         <menuitem id="menu_partner_suffix"

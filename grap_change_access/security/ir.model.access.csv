@@ -1,6 +1,10 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 ,,,,,,,
-product.access_product_category_sale_manager, product.category salemanager,product.model_product_category,base.group_sale_manager,1,0,0,0
+bank_statement_invoice_user,account.bank.statement invoice user,account.model_account_bank_statement,account.group_account_invoice,1,0,0,0
+,,,,,,,
+bank_statement_line_invoice_user,account.bank.statement invoice line user,account.model_account_bank_statement_line,account.group_account_invoice,1,0,0,0
+,,,,,,,
+product.access_product_category_sale_manager,product.category salemanager,product.model_product_category,base.group_sale_manager,1,0,0,0
 stock.access_product_category_stock_manager,product.category stock_manager,product.model_product_category,stock.group_stock_manager,1,0,0,0
 purchase.access_product_category_purchase_manager,product.category purchase_manager,product.model_product_category,purchase.group_purchase_manager,1,0,0,0
 sale.access_product_category_sale_manager,product.category salemanager,product.model_product_category,base.group_sale_manager,1,0,0,0

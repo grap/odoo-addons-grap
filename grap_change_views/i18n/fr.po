@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-01 08:37+0000\n"
-"PO-Revision-Date: 2016-09-01 08:37+0000\n"
+"POT-Creation-Date: 2016-09-01 13:21+0000\n"
+"PO-Revision-Date: 2016-09-01 13:21+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -71,6 +71,12 @@ msgstr "Nom complet stocké"
 #: view:product.product:0
 msgid "Consumption"
 msgstr "Consommation"
+
+#. module: grap_change_views
+#: model:ir.actions.act_window,name:grap_change_views.action_account_invoice_line_tree_customer
+#: model:ir.ui.menu,name:grap_change_views.menu_account_invoice_line_customer
+msgid "Customer Invoices Lines"
+msgstr "Lignes de factures clients"
 
 #. module: grap_change_views
 #: model:ir.ui.menu,name:grap_change_views.menu_res_partner_editable_view
@@ -197,6 +203,11 @@ msgstr "Lignes de facture"
 #: view:pos.order.line:0
 msgid "Invoiced"
 msgstr "Facturé"
+
+#. module: grap_change_views
+#: view:account.invoice.line:0
+msgid "Invoices Lines"
+msgstr "Lignes de factures"
 
 #. module: grap_change_views
 #: view:account.move:0
@@ -482,11 +493,10 @@ msgid "Stock by Location"
 msgstr "Stock par emplacement"
 
 #. module: grap_change_views
-#: view:account.invoice.line:0
 #: model:ir.actions.act_window,name:grap_change_views.action_account_invoice_line_tree_supplier
 #: model:ir.ui.menu,name:grap_change_views.menu_account_invoice_line_supplier
-msgid "Supplier Invoice Lines"
-msgstr "Lignes de facture fournisseur"
+msgid "Supplier Invoices Lines"
+msgstr "Lignes de factures fournisseurs"
 
 #. module: grap_change_views
 #: view:account.move:0

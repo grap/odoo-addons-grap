@@ -45,10 +45,10 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         </field>
     </record>
 
-    <record id="view_account_invoice_line_tree_supplier" model="ir.ui.view">
+    <record id="view_account_invoice_line_tree_customer_supplier" model="ir.ui.view">
         <field name="model">account.invoice.line</field>
         <field name="arch" type="xml">
-            <tree colors="red:discount==100;black:discount==0;brown:True;" string="Supplier Invoice Lines">
+            <tree colors="red:discount==100;black:discount==0;brown:True;" string="Invoices Lines">
                 <field name="date_invoice"/>
                 <field name="partner_id"/>
                 <field name="product_id"/>
@@ -56,10 +56,10 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                 <field name="account_id" groups="account.group_account_manager"/>
                 <field name="quantity"/>
                 <field name="uos_id"/>
-                <field name="type" invisible="1"/>
                 <field name="price_unit"/>
                 <field name="discount"/>
                 <field name="price_subtotal" sum="VAT Excl. Subtotal"/>
+                <field name="type"/>
                 <field name="company_id" groups="base.group_multi_company"/>
             </tree>
         </field>

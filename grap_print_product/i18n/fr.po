@@ -1,0 +1,223 @@
+
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* grap_print_product
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-09-01 08:39+0000\n"
+"PO-Revision-Date: 2016-09-01 08:39+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: grap_print_product
+#: field:print.product.type,barcode_height:0
+msgid "Barcode Height"
+msgstr "Hauteur du code barre"
+
+#. module: grap_print_product
+#: view:print.product.type:0
+msgid "Barcode Information"
+msgstr "Information sur le code barre"
+
+#. module: grap_print_product
+#: field:print.product.type,barcode_left:0
+msgid "Barcode Left (Relative Position)"
+msgstr "Marge gauche du code barre (position relative)"
+
+#. module: grap_print_product
+#: field:print.product.type,barcode_top:0
+msgid "Barcode Top (Relative Position)"
+msgstr "Marge supérieure du code barre (position relative)"
+
+#. module: grap_print_product
+#: field:print.product.type,barcode_width:0
+msgid "Barcode Width"
+msgstr "Largeur du code barre"
+
+#. module: grap_print_product
+#: view:print.product.wizard:0
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: grap_print_product
+#: field:print.product.type,column_qty:0
+msgid "Column Quantity"
+msgstr "Nombre de colonne"
+
+#. module: grap_print_product
+#: field:print.product.type,company_id:0
+msgid "Company"
+msgstr "Société"
+
+#. module: grap_print_product
+#: model:ir.actions.act_window,name:grap_print_product.action_print_product_type
+msgid "Configuration Print"
+msgstr "Configuration Print"
+
+#. module: grap_print_product
+#: view:product.product:0
+msgid "Generate Custom EAN13"
+msgstr "Code barre EAN13 personnalisé"
+
+#. module: grap_print_product
+#: model:res.groups,name:grap_print_product.group_generate_custom_ean13
+msgid "Generate Custom EAN13 for Products"
+msgstr "Générer des codes barre EAN13 personnalisés pour les produits"
+
+#. module: grap_print_product
+#: view:product.product:0
+msgid "Generate Weight EAN13"
+msgstr "Code barre EAN13 Poids"
+
+#. module: grap_print_product
+#: model:res.groups,name:grap_print_product.group_generate_weight_ean13
+msgid "Generate Weight EAN13 for Products"
+msgstr "Générer des codes barre EAN13 poids pour les produits"
+
+#. module: grap_print_product
+#: field:product.product,ean13_image:0
+msgid "Image of the EAN13"
+msgstr "Image EAN13"
+
+#. module: grap_print_product
+#: field:print.product.type,inner_margin_left:0
+msgid "Inner Margin Left"
+msgstr "Marge gauche intérieur"
+
+#. module: grap_print_product
+#: field:print.product.type,inner_margin_top:0
+msgid "Inner Margin Top"
+msgstr "Marge supérieur intérieur"
+
+#. module: grap_print_product
+#: view:print.product.type:0
+msgid "Label"
+msgstr "Etiquette"
+
+#. module: grap_print_product
+#: field:print.product.type,label_height:0
+msgid "Label Height"
+msgstr "Hauteur de l'étiquette"
+
+#. module: grap_print_product
+#: view:print.product.type:0
+msgid "Label Information"
+msgstr "Information de l'étiquette"
+
+#. module: grap_print_product
+#: field:print.product.type,label_width:0
+msgid "Label Width"
+msgstr "Largeur de l'étiquette"
+
+#. module: grap_print_product
+#: field:print.product.type,name:0
+msgid "Name"
+msgstr "Nom"
+
+#. module: grap_print_product
+#: view:print.product.type:0
+msgid "Page Information"
+msgstr "Information de la page"
+
+#. module: grap_print_product
+#: field:print.product.type,page_margin_left:0
+msgid "Page Margin Left"
+msgstr "Marge gauche de la page"
+
+#. module: grap_print_product
+#: field:print.product.type,page_margin_top:0
+msgid "Page Margin Top"
+msgstr "Marge supérieur de la page"
+
+#. module: grap_print_product
+#: view:print.product.wizard:0
+msgid "Print"
+msgstr "Imprimer"
+
+#. module: grap_print_product
+#: model:ir.ui.menu,name:grap_print_product.menu_print_product
+#: field:print.product.wizard,print_type_id:0
+msgid "Print Configuration"
+msgstr "Configuration d'impression"
+
+#. module: grap_print_product
+#: model:ir.actions.act_window,name:grap_print_product.act_window_print_product_wizard_form
+#: model:ir.actions.report.xml,name:grap_print_product.report_print_product_1_report
+#: view:print.product.wizard:0
+msgid "Print Product"
+msgstr "Imprimer le produit"
+
+#. module: grap_print_product
+#: model:res.groups,name:grap_print_product.group_print_product_manager
+msgid "Print Product Manager"
+msgstr "Manager d'impression d'étiquette"
+
+#. module: grap_print_product
+#: code:_description:0
+#: model:ir.model,name:grap_print_product.model_product_product
+#: field:print.product.wizard,product_id:0
+#, python-format
+msgid "Product"
+msgstr "Article"
+
+#. module: grap_print_product
+#: field:print.product.type,product_name_font_size:0
+msgid "Product Name Font Size"
+msgstr "Taille de la police pour le nom du produit"
+
+#. module: grap_print_product
+#: field:print.product.type,product_name_height:0
+msgid "Product Name Height"
+msgstr "Hauteur du nom du produit"
+
+#. module: grap_print_product
+#: view:print.product.type:0
+msgid "Product Name Information"
+msgstr "Information sur le nom du produit"
+
+#. module: grap_print_product
+#: field:print.product.type,product_name_left:0
+msgid "Product Name Left (Relative Position)"
+msgstr "Largeur à gauche du nom (Position relative)"
+
+#. module: grap_print_product
+#: field:print.product.type,product_name_top:0
+msgid "Product Name Top (Relative Position)"
+msgstr "Hauteur supérieur du nom (Position relative)"
+
+#. module: grap_print_product
+#: field:print.product.type,product_name_width:0
+msgid "Product Name Width"
+msgstr "Largeur du nom produit"
+
+#. module: grap_print_product
+#: field:print.product.type,row_qty:0
+msgid "Row Quantity"
+msgstr "Nombre de colonnes"
+
+#. module: grap_print_product
+#: field:print.product.type,sequence:0
+msgid "Sequence"
+msgstr "Séquence"
+
+#. module: grap_print_product
+#: code:_description:0
+#: model:ir.model,name:grap_print_product.model_print_product_type
+#, python-format
+msgid "print.product.type"
+msgstr "print.product.type"
+
+#. module: grap_print_product
+#: code:_description:0
+#: model:ir.model,name:grap_print_product.model_print_product_wizard
+#, python-format
+msgid "print.product.wizard"
+msgstr "print.product.wizard"
+
