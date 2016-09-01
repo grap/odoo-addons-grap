@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-18 14:32+0000\n"
-"PO-Revision-Date: 2016-07-18 14:32+0000\n"
+"POT-Creation-Date: 2016-09-01 08:37+0000\n"
+"PO-Revision-Date: 2016-09-01 08:37+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -139,8 +139,13 @@ msgstr "Information alimentaire"
 
 #. module: grap_change_views
 #: view:product.product:0
-msgid "Generate EAN"
-msgstr "Genérer EAN13"
+msgid "Generate Custom EAN13"
+msgstr "Code barre EAN13 personnalisé"
+
+#. module: grap_change_views
+#: view:product.product:0
+msgid "Generate Weight EAN13"
+msgstr "Code barre EAN13 Poids"
 
 #. module: grap_change_views
 #: view:account.invoice.line:0
@@ -272,12 +277,6 @@ msgid "Partner"
 msgstr "Partenaire"
 
 #. module: grap_change_views
-#: view:account.invoice.line:0
-#: field:account.invoice.line,period_id:0
-msgid "Period"
-msgstr "Période"
-
-#. module: grap_change_views
 #: view:product.product:0
 msgid "PoS - Cash In"
 msgstr "PdV - Entrée d'argent"
@@ -404,7 +403,7 @@ msgstr "Articles (Prix)"
 #: model:ir.ui.menu,name:grap_change_views.menu_product_product_tactile
 #: view:product.product:0
 msgid "Products (Tactile)"
-msgstr "Articles (Tactile)"
+msgstr "Article (Tactile)"
 
 #. module: grap_change_views
 #: view:product.product:0

@@ -11,7 +11,8 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="inherit_id" ref="product.product_normal_form_view" />
         <field name="arch" type="xml">
             <field name="ean13" position="after">
-                <button name="generate_ean13" type="object" colspan="2" string="Generate EAN" groups="grap_print_product.group_generate_product_barcode" attrs="{'invisible': [('ean13', '!=', False)]}"/>
+                <button name="generate_custom_ean13" type="object" colspan="2" string="Generate Custom EAN13" groups="grap_print_product.group_generate_custom_ean13" attrs="{'invisible': [('ean13', '!=', False)]}"/>
+                <button name="generate_weight_ean13" type="object" colspan="2" string="Generate Weight EAN13" groups="grap_print_product.group_generate_weight_ean13" attrs="{'invisible': [('ean13', '!=', False)]}"/>
             </field>
         </field>
     </record>

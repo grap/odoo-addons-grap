@@ -131,7 +131,8 @@
                                         <field name="type"/>
                                         <field name="uom_id" on_change="onchange_uom(uom_id,uom_po_id)" groups="product.group_uom"/>
                                         <field name="ean13"/>
-                                        <button name="generate_ean13" type="object" colspan="2" string="Generate EAN" groups="grap_print_product.group_generate_product_barcode" attrs="{'invisible': [('ean13', '!=', False)]}"/>
+                                        <button name="generate_custom_ean13" type="object" colspan="2" string="Generate Custom EAN13" groups="grap_print_product.group_generate_custom_ean13" attrs="{'invisible': [('ean13', '!=', False)]}"/>
+                                        <button name="generate_weight_ean13" type="object" colspan="2" string="Generate Weight EAN13" groups="grap_print_product.group_generate_weight_ean13" attrs="{'invisible': [('ean13', '!=', False)]}"/>
                                     </group>
                                     <group>
                                         <field name="is_consignment" groups="recurring_consignment.group_consignment_user"/>
