@@ -59,8 +59,8 @@ class product_product(Model):
             product = self.browse(cr, uid, pp_id[0], context=context)
             number = int(product.ean13[len(prefix):len(prefix) + size]) + 1
             ean13 = EAN(
-                prefix + str(number).rjust(size, '0')
-                + '0' * (12 - (len(prefix) + size)))
+                prefix + str(number).rjust(size, '0') +
+                '0' * (12 - (len(prefix) + size)))
         return self.write(cr, uid, ids, {'ean13': ean13}, context=context)
 
     def generate_custom_ean13(self, cr, uid, ids, context=None):
@@ -68,4 +68,3 @@ class product_product(Model):
 
     def generate_weight_ean13(self, cr, uid, ids, context=None):
         return self._generate_ean13(cr, uid, ids, '21', 5, context=context)
-
