@@ -11,7 +11,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 <!-- Accounting Menu -->
     <menuitem id="menu_account_invoice_line_customer"
         name="Customer Invoices Lines"
-        parent="account.menu_finance_payables" sequence="120"
+        parent="account.menu_finance_receivables" sequence="120"
         action="action_account_invoice_line_tree_customer"/>
 
     <menuitem id="menu_account_invoice_line_supplier"
