@@ -386,8 +386,17 @@ class account_export_ebp(osv.TransientModel):
                     if line.tax_code_id.ref_nb:
                         account_nb = account_nb + line.tax_code_id.ref_nb
                     else:
-                        account_nb = account_nb +\
-                            line.account_id.ebp_code_no_tax
+                        if not line.account_id.ebp_code_no_tax:
+                            raise osv.except_osv(
+                                _('Incorrect Setting'),
+                                _("The account %s - %s is set 'export with tax"
+                                " suffix' but no tax suffix is defined for"
+                                " the account.\n Move %s" % (
+                                    line.account_id.code, line.account_id.name,
+                                    line.move_id.name)))
+                        else:
+                            account_nb = account_nb +\
+                                line.account_id.ebp_code_no_tax
 
                 # Check the most important fields are not above the maximum
                 # length so as not to export wrong data with catastrophic
