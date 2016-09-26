@@ -390,10 +390,11 @@ class account_export_ebp(osv.TransientModel):
                             raise osv.except_osv(
                                 _('Incorrect Setting'),
                                 _("The account %s - %s is set 'export with tax"
-                                " suffix' but no tax suffix is defined for"
-                                " the account.\n Move %s" % (
-                                    line.account_id.code, line.account_id.name,
-                                    line.move_id.name)))
+                                    " suffix' but no tax suffix is defined for"
+                                    " the account.\n Move %s" % (
+                                        line.account_id.code,
+                                        line.account_id.name,
+                                        line.move_id.name)))
                         else:
                             account_nb = account_nb +\
                                 line.account_id.ebp_code_no_tax
