@@ -58,17 +58,19 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         </field>
     </record>
 
-
     <record id="view_account_invoice_tree" model="ir.ui.view">
         <field name="model">account.invoice</field>
         <field name="inherit_id" ref="account.invoice_tree"/>
         <field name="arch" type="xml">
-            <field name="number" position="after">
-                <field name="reference"/>
+            <field name="user_id" position="attributes">
+                <attribute name="invisible">1</attribute>
             </field>
-            <field name="origin" position="replace"/>
-            <field name="number" position="before">
-                <field name="origin"/>
+            <field name="name" position="attributes">
+                <attribute name="invisible">0</attribute>
+                <attribute name="string">Partner Invoice Number</attribute>
+            </field>
+            <field name="origin" position="after">
+                <field name="supplier_invoice_number"/>
             </field>
         </field>
     </record>

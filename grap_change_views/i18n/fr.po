@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-01 13:21+0000\n"
-"PO-Revision-Date: 2016-09-01 13:21+0000\n"
+"POT-Creation-Date: 2016-11-03 15:53+0000\n"
+"PO-Revision-Date: 2016-11-03 15:53+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -286,6 +286,11 @@ msgstr "Colisage"
 #: field:pos.order.line,partner_id:0
 msgid "Partner"
 msgstr "Partenaire"
+
+#. module: grap_change_views
+#: view:account.invoice:0
+msgid "Partner Invoice Number"
+msgstr "Numéro de facture partenaire"
 
 #. module: grap_change_views
 #: view:product.product:0
