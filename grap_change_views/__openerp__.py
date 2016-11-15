@@ -71,6 +71,7 @@ Copyright, Authors and Licence:
         'pos_multicompany',
         'product_taxes_group',
         'sale_eshop',
+        'product_to_scale_bizerba',
         'pos_multiple_cash_control',
         'product_fiscal_company',
         'product_category_recursive_property',
