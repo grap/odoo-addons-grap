@@ -7,6 +7,7 @@ class report_webkit_html(report_sxw.rml_parse):
         super(report_webkit_html, self).__init__(
             cr, uid, name, context=context)
 
+
 report_sxw.report_sxw(
     'report.print.product_1.report',
     'print.product.wizard',

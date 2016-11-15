@@ -42,8 +42,10 @@ class stock_inventory_move(stock_inventory_move_report.stock_inventory_move):
             total += obj.valuation
         return total
 
+
 # remove previous sale.report service :
 del Service._services['report.stock.inventory.move']
+
 
 # register the new report service :
 report_sxw.report_sxw(

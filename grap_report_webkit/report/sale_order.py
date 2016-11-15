@@ -58,6 +58,7 @@ class SaleOrderReport(report_sxw.rml_parse):
         ).company_id.partner_id.vat
         return company_vat
 
+
 report_sxw.report_sxw('report.sale.order.webkit',
                       'sale.order',
                       'addons/sale_report_webkit/report/sale_order.mako',
