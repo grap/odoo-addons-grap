@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-03 15:53+0000\n"
-"PO-Revision-Date: 2016-11-03 15:53+0000\n"
+"POT-Creation-Date: 2016-11-15 19:57+0000\n"
+"PO-Revision-Date: 2016-11-15 19:57+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -318,11 +318,6 @@ msgid "PoS - To Weight"
 msgstr "PdV - A peser"
 
 #. module: grap_change_views
-#: model:ir.model,name:grap_change_views.model_pos_category
-msgid "PoS Category"
-msgstr "Catégorie PdV"
-
-#. module: grap_change_views
 #: view:product.product:0
 msgid "Point Of Sale"
 msgstr "Point de Vente"
@@ -334,6 +329,7 @@ msgstr "Point de Vente"
 
 #. module: grap_change_views
 #: code:_description:0
+#: model:ir.model,name:grap_change_views.model_pos_category
 #, python-format
 msgid "Point of Sale Category"
 msgstr "Catégorie de point de vente"
@@ -473,12 +469,7 @@ msgstr "Envoyer par courriel"
 #. module: grap_change_views
 #: view:product.product:0
 msgid "Spider Chart"
-msgstr "Radar"
-
-#. module: grap_change_views
-#: field:pos.order.line,state:0
-msgid "State"
-msgstr "État"
+msgstr "Graphique radar"
 
 #. module: grap_change_views
 #: view:product.product:0
@@ -650,11 +641,6 @@ msgstr "blue:state=='draft';gray:state=='cancel';red:state in ('shipping_except'
 #: view:stock.move:0
 msgid "blue:state=='draft';gray:state=='cancel';red:state in ('waiting','confirmed');brown:state in ('assigned')"
 msgstr "blue:state=='draft';gray:state=='cancel';red:state in ('waiting','confirmed');brown:state in ('assigned')"
-
-#. module: grap_change_views
-#: model:ir.actions.act_window,help:grap_change_views.action_view_old_product_form
-msgid "display obsolete view for products."
-msgstr "Affiche la vue obsolète pour les articles."
 
 #. module: grap_change_views
 #: view:product.product:0

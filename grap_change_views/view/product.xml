@@ -236,6 +236,7 @@
                                                 packaging_notation, context)"/>
                                         <field name="fresh_category"/>
                                         <field name="fresh_range"/>
+                                        <field name="expiration_date_day"/>
                                         <field name="is_mercuriale"/>
                                     </group>
                                 </group>
@@ -260,6 +261,9 @@
                                                 img_height="120" img_width="120" colspan="2"/>
                                         </group>
                                     </group>
+                                </group>
+                                <group colspan="4" col="2">
+                                    <field name="ingredients" />
                                 </group>
                             </page>
                             <page string="eShop" groups="sale_eshop.res_groups_eshop_user">
