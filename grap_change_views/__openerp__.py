@@ -93,6 +93,7 @@ Copyright, Authors and Licence:
         'grap_change_access',
         'grap_reporting',
         'grap_print_product',
+        'barcodes_generator_abstract',
     ],
     'data': [
         'security/res_groups.yml',

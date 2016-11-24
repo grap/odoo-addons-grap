@@ -13,11 +13,9 @@
             .label_container{
                 page-break-inside: avoid;
                 width:7.0cm; height:4cm; float:left;
-                background-color:green;
                 border:1px solid;
             }
             .barcode_container{
-                background-color:yellow;
                 border:1px solid;
                 position:absolute;
             }
@@ -28,7 +26,6 @@
             .product_name{
                 text-align:center;
                 position:relative;
-                background-color:blue;
             }
             
         </style>

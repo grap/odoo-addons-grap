@@ -44,27 +44,3 @@ class product_product(Model):
                     lambda self, cr, uid, ids, context=None: ids,
                     ['ean13'], 10)}),
     }
-
-    # Action Section
-    def _generate_ean13(self, cr, uid, ids, prefix, size, context=None):
-        EAN = barcode.get_barcode_class('ean13')
-        pp_id = self.search(
-            cr, uid, [('ean13', '=ilike', prefix + '%')],
-            order='ean13 desc', limit=1, context=context)
-        if not pp_id:
-            # Generate the first one EAN13
-            ean13 = EAN('%s%s' % (prefix, '0' * (12 - len(prefix))))
-        else:
-            # Create the next EAN13
-            product = self.browse(cr, uid, pp_id[0], context=context)
-            number = int(product.ean13[len(prefix):len(prefix) + size]) + 1
-            ean13 = EAN(
-                prefix + str(number).rjust(size, '0') +
-                '0' * (12 - (len(prefix) + size)))
-        return self.write(cr, uid, ids, {'ean13': ean13}, context=context)
-
-    def generate_custom_ean13(self, cr, uid, ids, context=None):
-        return self._generate_ean13(cr, uid, ids, '20', 10, context=context)
-
-    def generate_weight_ean13(self, cr, uid, ids, context=None):
-        return self._generate_ean13(cr, uid, ids, '21', 5, context=context)

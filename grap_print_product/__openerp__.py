@@ -58,7 +58,6 @@ Copyright, Authors and Licence
         'report/print_product_1_report.xml',
         'views/print_product_type_view.xml',
         'views/print_product_wizard_view.xml',
-        'views/product_product_view.xml',
         'views/action.xml',
         'views/menu.xml',
     ],
