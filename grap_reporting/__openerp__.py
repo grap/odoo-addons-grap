@@ -58,4 +58,5 @@ Copyright, Author and Licence :
         "wizard/fr_report_compute_grap_view.xml",
         "report/grap_report_lines.xml",
     ],
+    'installable': False,
 }

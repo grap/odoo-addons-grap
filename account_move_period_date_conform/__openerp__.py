@@ -63,4 +63,5 @@ Copyright, Author and Licence :
         'view/menu.xml',
         'view/account_period_view.xml',
     ],
+    'installable': False,
 }

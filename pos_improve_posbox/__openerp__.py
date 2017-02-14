@@ -66,4 +66,5 @@ Copyright, Authors and Licence:
     'qweb': [
         'static/src/xml/pip.xml',
     ],
+    'installable': False,
 }

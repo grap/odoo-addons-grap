@@ -58,4 +58,5 @@ Copyright, Authors and Licence:
     'css': [
         'static/src/css/pih.css',
     ],
+    'installable': False,
 }

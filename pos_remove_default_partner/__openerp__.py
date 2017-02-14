@@ -45,4 +45,5 @@ Copyright, Authors and Licence:
     'depends': [
         'point_of_sale',
     ],
+    'installable': False,
 }

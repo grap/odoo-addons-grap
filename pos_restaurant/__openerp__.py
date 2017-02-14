@@ -76,4 +76,5 @@ Copyright, Authors and Licence:
         'static/src/img/screenshots/covers_weekly_distribution.png',
         'static/src/img/screenshots/covers_weekly_evolution.png',
     ],
+    'installable': False,
 }

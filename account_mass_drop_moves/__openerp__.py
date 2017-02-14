@@ -54,4 +54,5 @@ Copyright, Author and Licence :
         'view/menu.xml',
         #        'view/account_journal_view.xml',
     ],
+    'installable': False,
 }

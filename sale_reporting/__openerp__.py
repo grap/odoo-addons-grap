@@ -46,4 +46,5 @@ Copyright, Author and Licence :
         'view/sale_report_view.xml',
         'security/ir_rule_data.xml',
     ],
+    'installable': False,
 }

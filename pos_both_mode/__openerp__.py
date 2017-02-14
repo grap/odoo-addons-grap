@@ -50,4 +50,5 @@ Copyright, Author and Licence :
         'security/res_groups_data.xml',
         'view/view.xml',
     ],
+    'installable': False,
 }

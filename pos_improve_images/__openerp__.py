@@ -59,4 +59,5 @@ Copyright, Authors and Licence:
     'js': [
         'static/src/js/pii.js',
     ],
+    'installable': False,
 }
