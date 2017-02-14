@@ -25,7 +25,7 @@
 
 from openerp.osv import osv, fields
 from openerp.osv.orm import TransientModel
-from tools.translate import _
+from openerp.tools.translate import _
 
 
 class pos_box_out(TransientModel):
