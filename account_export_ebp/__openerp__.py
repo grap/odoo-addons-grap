@@ -56,6 +56,9 @@ old ones if need be.
         'base_fiscal_company',
         'intercompany_trade_fiscal_company',
     ],
+    'external_dependencies': {
+        'python': ['unidecode'],
+    },
     'data': [
         'view/view.xml',
         'view/view_ebp_export.xml',

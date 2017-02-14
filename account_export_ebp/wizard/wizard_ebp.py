@@ -24,17 +24,23 @@
 import base64
 import cStringIO
 import codecs
-from unidecode import unidecode
+import logging
+
+from openerp.tools.translate import _
+from openerp.osv import fields, osv
+
+_logger = logging.getLogger(__name__)
+
+try:
+    from unidecode import unidecode
+except ImportError:
+    _logger.debug("account_export_ebp - 'unidecode' librairy not found")
 
 try:
     import smbc
 except:
+    _logger.debug("account_export_ebp - 'smbc' librairy not found")
     smbc = False
-
-from tools.translate import _
-from openerp.osv import fields, osv
-import logging
-_logger = logging.getLogger(__name__)
 
 # TODO
 # We should write to a temporary file instead, for security and reliability.

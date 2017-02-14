@@ -20,10 +20,10 @@
 #
 ##############################################################################
 
-from netsvc import Service
+from openerp.netsvc import Service
 
 from openerp.report import report_sxw
-from stock.report import stock_inventory_move_report
+from openerp.stock.report import stock_inventory_move_report
 
 
 class stock_inventory_move(stock_inventory_move_report.stock_inventory_move):

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from report import report_sxw
+from openerp.report import report_sxw
 
 
 class report_webkit_html(report_sxw.rml_parse):

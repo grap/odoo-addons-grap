@@ -65,7 +65,7 @@ Copyright, Authors and Licence
         'demo/res_groups.yml',
     ],
     'external_dependencies': {
-        'python': ['cairosvg'],
+        'python': ['cairosvg', 'barcode'],
         'bin': ['wkhtmltopdf'],
     },
 }

@@ -5,12 +5,23 @@
 
 import os
 import base64
-import cairosvg
 import StringIO
-import barcode
+import logging
 
 from openerp.osv.orm import Model
 from openerp.osv import fields
+
+logger = logging.getLogger(__name__)
+
+try:
+    import cairosvg
+except ImportError:
+    logger.debug("grap_print_product - 'cairosvg' librairy not found")
+
+try:
+    import barcode
+except ImportError:
+    logger.debug("grap_print_product - 'barcode' librairy not found")
 
 
 class product_product(Model):

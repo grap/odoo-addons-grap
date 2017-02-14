@@ -21,9 +21,17 @@
 #
 ##############################################################################
 
-import unidecode
+import logging
+
 from openerp.osv.orm import TransientModel
 from openerp.osv import fields
+
+logger = logging.getLogger(__name__)
+
+try:
+    from unidecode import unidecode
+except ImportError:
+    logger.debug("account_export_ebp - 'unidecode' librairy not found")
 
 
 class account_add_suffix(TransientModel):
