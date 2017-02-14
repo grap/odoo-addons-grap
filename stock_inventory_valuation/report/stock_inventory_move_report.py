@@ -20,38 +20,38 @@
 #
 ##############################################################################
 
-from openerp.netsvc import Service
+# from openerp import netsvc
 
-from openerp.report import report_sxw
-from openerp.stock.report import stock_inventory_move_report
-
-
-class stock_inventory_move(stock_inventory_move_report.stock_inventory_move):
-
-    def __init__(self, cr, uid, name, context):
-        super(stock_inventory_move, self).__init__(
-            cr, uid, name, context=context)
-        self.total_valuation = 0
-        self.localcontext.update({
-            'total_valuation': self._get_total_valuation,
-        })
-
-    def _get_total_valuation(self, objects):
-        total = 0.0
-        for obj in objects:
-            total += obj.valuation
-        return total
+# from openerp.report import report_sxw
+# from openerp.stock.report import stock_inventory_move_report
 
 
-# remove previous sale.report service :
-del Service._services['report.stock.inventory.move']
+# class stock_inventory_move(stock_inventory_move_report.stock_inventory_move):
+
+#    def __init__(self, cr, uid, name, context):
+#        super(stock_inventory_move, self).__init__(
+#            cr, uid, name, context=context)
+#        self.total_valuation = 0
+#        self.localcontext.update({
+#            'total_valuation': self._get_total_valuation,
+#        })
+
+#    def _get_total_valuation(self, objects):
+#        total = 0.0
+#        for obj in objects:
+#            total += obj.valuation
+#        return total
 
 
-# register the new report service :
-report_sxw.report_sxw(
-    'report.stock.inventory.move',
-    'stock.inventory',
-    'addons/stock_inventory_valuation/report/stock_inventory_move.rml',
-    parser=stock_inventory_move,
-    header='internal'
-)
+# # remove previous sale.report service :
+# del netsvc.Service._services['report.stock.inventory.move']
+
+
+# # register the new report service :
+# report_sxw.report_sxw(
+#    'report.stock.inventory.move',
+#    'stock.inventory',
+#    'addons/stock_inventory_valuation/report/stock_inventory_move.rml',
+#    parser=stock_inventory_move,
+#    header='internal'
+# )
