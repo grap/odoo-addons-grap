@@ -63,7 +63,7 @@ Copyright, Author and Licence :
         'procurement',
         'account_fiscal_company',
         'crm',
-        'base_calendar',
+        'calendar',
     ],
     'data': [
         'security/res_groups.yml',
