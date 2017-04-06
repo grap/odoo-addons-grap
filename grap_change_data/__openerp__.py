@@ -62,7 +62,7 @@ Copyright, Authors and Licence:
         'l10n_fr',
     ],
     'data': [
-        'data/product_category.yml',
+        # 'data/product_category.yml', #  temporary disable for OpenUpgrade
         'data/account_account_template.xml',
         'data/account_chart_template.xml',
     ],
