@@ -46,9 +46,6 @@ access_stock_location_manager,grap_change_access__stock_location_manager,stock.m
 ,,,,,,,
 stock.access_stock_inventory_line_user,stock.inventory.line user,stock.model_stock_inventory_line,stock.group_stock_user,1,1,1,1
 ,,,,,,,
-procurement.access_stock_warehouse_orderpoint_system,stock.warehouse.orderpoint system,procurement.model_stock_warehouse_orderpoint,stock.group_stock_manager,1,0,0,0
-access_stock_warehouse_orderpoint_manager,grap_change_access__stock_warehouse_orderpoint_manager,procurement.model_stock_warehouse_orderpoint,base.group_no_one,1,1,1,1
-,,,,,,,
 delivery.access_delivery_carrier_manager, delivery.carrier ,delivery.model_delivery_carrier,base.group_sale_manager,1,0,0,0
 access_delivery_carrier_manager,grap_change_access__delivery_carrier_manager,delivery.model_delivery_carrier,base.group_no_one,1,1,1,1
 ,,,,,,,
@@ -84,7 +81,3 @@ crm_case_categ,crm_case_categ,crm.model_crm_case_categ,grap_change_access.group_
 crm.access_crm_case_stage,crm.access_crm_case_stage,crm.model_crm_case_stage,,1,0,0,0
 crm.access_crm_case_stage_manager,crm.access_crm_case_stage_manager,crm.model_crm_case_stage,,1,0,0,0
 crm_case_stage,crm_case_stage,crm.model_crm_case_stage,grap_change_access.group_crm_manager,1,1,1,1
-,,,,,,,
-crm.access_crm_case_channel_user,crm.access_crm_case_channel_user,crm.model_crm_case_channel,,1,0,0,0
-crm.access_crm_case_channel_manager,crm.access_crm_case_channel_manager,crm.model_crm_case_channel,,1,0,0,0
-crm_case_channel,crm_case_channel,crm.model_crm_case_channel,grap_change_access.group_crm_manager,1,1,1,1

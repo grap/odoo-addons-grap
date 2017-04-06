@@ -55,7 +55,6 @@ Copyright, Authors and Licence:
         'email_template',
         'sale_food',
         'point_of_sale',
-        'pos_both_mode',
         'product',
         'product_margin',
         'product_margin_improve',
