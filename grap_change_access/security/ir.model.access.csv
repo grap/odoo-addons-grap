@@ -22,10 +22,6 @@ sale.access_product_uom_categ_sale_manager,product.uom.categ salemanager,product
 purchase.access_product_uom_categ_purchase_manager,product.uom.categ purchase_manager,product.model_product_uom_categ,purchase.group_purchase_manager,1,0,0,0
 access_product_uom_categ_manager,grap_change_access__product_uom_categ_manager,product.model_product_uom_categ,base.group_no_one,1,1,1,1
 ,,,,,,,
-sale.access_sale_shop_manager,account.journal sale order.user,sale.model_sale_shop,base.group_sale_manager,1,0,0,0
-sale.access_sale_shop_sale_manager,sale.shop.sale.manager,sale.model_sale_shop,base.group_sale_manager,1,0,0,0
-access_sale_shop_manager,grap_change_access__sale_shop_manager,sale.model_sale_shop,base.group_no_one,1,1,1,1
-,,,,,,,
 stock.access_product_pricelist_stock_manager,product.pricelist stock_manager,product.model_product_pricelist,stock.group_stock_manager,1,0,0,0
 sale.access_product_pricelist_sale_manager,product.pricelist salemanager,product.model_product_pricelist,base.group_sale_manager,1,0,0,0
 purchase.access_product_pricelist_purchase_manager,product.pricelist purchase_manager,product.model_product_pricelist,purchase.group_purchase_manager,1,0,0,0

@@ -72,8 +72,8 @@ Copyright, Authors and Licence:
         'point_of_sale',
     ],
     'data': [
-        'security/ir_rule.yml',
-        'security/ir_model_access.yml',
-        'view/view.xml',
+#        'security/ir_rule.yml',
+#        'security/ir_model_access.yml',
+#        'view/view.xml',
     ],
 }
