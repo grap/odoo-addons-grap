@@ -73,10 +73,12 @@ Copyright, Author and Licence
         'report_webkit',
         'base_headers_webkit',
         'stock',
-        'delivery'
+        'delivery',
+        'stock_inventory_valuation',
     ],
     'data': [
         'data/report.xml',
+        'data/stock_inventory_report.xml',
         'data/ir_actions_report_xml.xml',
         'view/action.xml',
         'view/view.xml',
