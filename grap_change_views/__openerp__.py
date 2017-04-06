@@ -93,7 +93,7 @@ Copyright, Authors and Licence:
         'grap_change_access',
         'grap_reporting',
         'grap_print_product',
-        'barcodes_generator_product',
+#        'barcodes_generator_product',
     ],
     'data': [
         'security/res_groups.yml',
@@ -112,6 +112,7 @@ Copyright, Authors and Licence:
         'view/view_pos_order_line.xml',
         'view/view_pos_session.xml',
         'view/view_product_product.xml',
+        'view/view_product_category.xml',
         'view/base.xml',
         'view/crm.xml',
         'view/grap_change_views.xml',
