@@ -12,33 +12,9 @@ Change the point of sale module for Multi company context.
 Functionality
 -------------
 
-* Add a 'company_id' related fields on 'pos_config' and 'pos_session'
-  objects and restrict access right;
-* Add a new field 'company_id' on 'pos_category' objects and new
-  constraint on product_product to force a product to be linked to a
-  pos_category that belong to the same company;
-* OpenERP create a default pos_category 'Others' for products;
-  This module will create pos_category 'Others' for each company;
-  This pos_category will be the new default value;
-  (So add a field 'is_default' on pos_category that must be uniq
-  by company)
-* It is forbidden to delete default pos_category
-
-Remark and limits
------------------
-
-* This module is interesting only if you design you multicompany
-  with products that belong to a defined company.
-  Otherwise, if you have 'gobal' products, the pos_category
-  will not be available for this products;
-* this module give read access to all user, to avoid ACL error, if user
-  want to create a product and don't belong to POS user Group;
-
-
-
-
-.. figure:: ./stock_inventory_valuation/static/description/stock_inventory_form.png
-   :width: 800px
+* Add a Company related field on PoS Sessions model and restrict access right
+* Add a new Company field on PoS categories model and restrict access right
+  if defined
 
 Contributors
 ------------
