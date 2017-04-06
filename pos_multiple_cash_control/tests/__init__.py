@@ -23,7 +23,3 @@
 
 
 from . import test_pos_multiple_cash_control
-
-fast_suite = [
-    test_pos_multiple_cash_control,
-]

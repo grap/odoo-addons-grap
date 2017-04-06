@@ -27,12 +27,3 @@ from . import test_group_without_partner_id
 from . import test_group_with_partner_id
 from . import test_group_with_partner_id_invoice
 from . import test_group_date
-
-fast_suite = [
-    test_group_date,
-    test_pos_tax,
-    test_group_account,
-    test_group_without_partner_id,
-    test_group_with_partner_id,
-    test_group_with_partner_id_invoice,
-]
