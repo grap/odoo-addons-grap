@@ -81,7 +81,7 @@ Copyright, Authors and Licence:
         'pos_order_pricelist_change',
         'grap_cooperative',
         'web_dashboard_tile',
-        'stock_picking_mass_assign',
+        'stock_picking_mass_action',
         'product_ean_duplicates',
         'simple_tax_account',
         'simple_tax_sale',
