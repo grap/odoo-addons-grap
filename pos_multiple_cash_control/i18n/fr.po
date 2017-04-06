@@ -39,11 +39,6 @@ msgstr "<p class=\"oe_view_nocontent_create\">\n"
 "            "
 
 #. module: pos_multiple_cash_control
-#: field:pos.box.out,amount:0
-msgid "Amount VAT Included"
-msgstr "Total TVA inclu"
-
-#. module: pos_multiple_cash_control
 #: code:_description:0
 #: model:ir.model,name:pos_multiple_cash_control.model_account_bank_statement
 #, python-format
@@ -54,12 +49,6 @@ msgstr "Relevé bancaire"
 #: view:pos.cash.controls:0
 msgid "Caisse"
 msgstr "Caisse"
-
-#. module: pos_multiple_cash_control
-#: view:pos.box.entries:0
-#: view:pos.box.out:0
-msgid "Cancel"
-msgstr "Annuler"
 
 #. module: pos_multiple_cash_control
 #: field:pos.cash.controls,details_ids:0
@@ -82,13 +71,6 @@ msgstr "Entrée d'argent"
 #: model:product.category,name:pos_multiple_cash_control.cat_cash_product
 msgid "Cash Products"
 msgstr "Produits Manipulation de caisse"
-
-#. module: pos_multiple_cash_control
-#: field:pos.box.entries,statement_id:0
-#: field:pos.box.out,statement_id:0
-#: field:pos.cash.controls,cash_register_id:0
-msgid "Cash Register"
-msgstr "Caisse"
 
 #. module: pos_multiple_cash_control
 #: view:account.bank.statement.line:0
@@ -148,11 +130,6 @@ msgid "Customer operations"
 msgstr "Opérations Clients"
 
 #. module: pos_multiple_cash_control
-#: view:pos.box.out:0
-msgid "Describe why you take money from the cash register:"
-msgstr "Motif du retrait de liquide de la caisse enregitreuse"
-
-#. module: pos_multiple_cash_control
 #: model:ir.actions.act_window,help:pos_multiple_cash_control.action_view_account_bank_statement_line_tree
 msgid "Display cashs manipulation."
 msgstr "Afficher les opérations liées aux caisses"
@@ -161,21 +138,6 @@ msgstr "Afficher les opérations liées aux caisses"
 #: field:pos.cash.controls,closing_total:0
 msgid "Ending Balance"
 msgstr "Balance de clôture"
-
-#. module: pos_multiple_cash_control
-#: code:addons/pos_multiple_cash_control/model/pos_box_entries.py:85
-#: code:addons/pos_multiple_cash_control/model/pos_box_entries.py:92
-#: code:addons/pos_multiple_cash_control/model/pos_box_out.py:86
-#: code:addons/pos_multiple_cash_control/model/pos_box_out.py:95
-#: code:addons/pos_multiple_cash_control/model/pos_box_out.py:116
-#, python-format
-msgid "Error !"
-msgstr "Erreur !"
-
-#. module: pos_multiple_cash_control
-#: view:pos.box.entries:0
-msgid "Fill in this form if you put money in the cash register:"
-msgstr "Remplissez ce formulaire si vous ajoutez de l'argent en caisse"
 
 #. module: pos_multiple_cash_control
 #: view:account.bank.statement.line:0
@@ -210,61 +172,14 @@ msgid "Opening Subtotal"
 msgstr "Sous-total d'ouverture"
 
 #. module: pos_multiple_cash_control
-#: field:pos.box.out,product_id:0
-msgid "Operation"
-msgstr "Opération"
-
-#. module: pos_multiple_cash_control
 #: view:account.bank.statement.line:0
 msgid "Other operations"
 msgstr "Opérations diverses"
 
 #. module: pos_multiple_cash_control
-#: view:pos.box.out:0
-msgid "Output Operation"
-msgstr "Opération de sortie"
-
-#. module: pos_multiple_cash_control
 #: view:pos.cash.controls:0
 msgid "POS Cash Controls"
 msgstr "Contrôles de caisse"
-
-#. module: pos_multiple_cash_control
-#: code:addons/pos_multiple_cash_control/model/pos_box_out.py:117
-#, python-format
-msgid "Please check tax settings against product %s"
-msgstr "Merci de vérifier le paramétrage des taxes sur le produit %s"
-
-#. module: pos_multiple_cash_control
-#: code:addons/pos_multiple_cash_control/model/pos_box_out.py:96
-#, python-format
-msgid "Please check that expense account is set to %s"
-msgstr "Veuillez vérifier le compte de dépense associé à %s"
-
-#. module: pos_multiple_cash_control
-#: code:addons/pos_multiple_cash_control/model/pos_box_entries.py:93
-#, python-format
-msgid "Please check that income account is set to %s"
-msgstr "Veuillez vérifier le compte de profit associé à %s"
-
-#. module: pos_multiple_cash_control
-#: view:pos.box.out:0
-msgid "Please write the name of the statement on the invoice, if you have some"
-msgstr "Veuillez écrire le nom du relevé sur la facture, si vous l'avez"
-
-#. module: pos_multiple_cash_control
-#: code:_description:0
-#: model:ir.model,name:pos_multiple_cash_control.model_pos_box_entries
-#, python-format
-msgid "Pos Box Entries"
-msgstr "Entrées de caisse de point de vente"
-
-#. module: pos_multiple_cash_control
-#: code:_description:0
-#: model:ir.model,name:pos_multiple_cash_control.model_pos_box_out
-#, python-format
-msgid "Pos Box Out"
-msgstr "Sortie de caisse du PdV"
 
 #. module: pos_multiple_cash_control
 #: code:_description:0
@@ -274,19 +189,9 @@ msgid "Product"
 msgstr "Article"
 
 #. module: pos_multiple_cash_control
-#: view:pos.box.entries:0
-msgid "Put Money"
-msgstr "Ajouter la monnaie"
-
-#. module: pos_multiple_cash_control
 #: view:pos.session:0
 msgid "Put Money In"
 msgstr "Faire une entrée de liquide"
-
-#. module: pos_multiple_cash_control
-#: field:pos.box.out,ref:0
-msgid "Ref"
-msgstr "Ref"
 
 #. module: pos_multiple_cash_control
 #: code:addons/pos_multiple_cash_control/model/pos_session_opening.py:54
@@ -311,40 +216,10 @@ msgid "Supplier operations"
 msgstr "Opérations fournisseurs"
 
 #. module: pos_multiple_cash_control
-#: view:pos.box.out:0
-msgid "Take Money"
-msgstr "Prendre la monnaie"
-
-#. module: pos_multiple_cash_control
-#: view:pos.session:0
-msgid "Take Money Out"
-msgstr "Retirer de l'argent"
-
-#. module: pos_multiple_cash_control
-#: field:pos.box.out,tax_name:0
-msgid "Taxes"
-msgstr "Taxes"
-
-#. module: pos_multiple_cash_control
-#: help:pos.box.out,amount:0
-msgid "The amount you take in your cash register"
-msgstr "La quantité d'argent que vous prenez dans la caisse"
-
-#. module: pos_multiple_cash_control
-#: help:pos.box.out,amount_VAT:0
-msgid "The tax amount mentionned on the invoice, if any"
-msgstr "Le montant de la taxe mentionné sur la facture, si disponible"
-
-#. module: pos_multiple_cash_control
 #: view:account.bank.statement.line:0
 #: view:pos.cash.controls:0
 msgid "Total"
 msgstr "Total"
-
-#. module: pos_multiple_cash_control
-#: field:pos.box.out,amount_VAT:0
-msgid "VAT Amount"
-msgstr "Quantité de TVA"
 
 #. module: pos_multiple_cash_control
 #: constraint:product.product:0
@@ -385,13 +260,6 @@ msgstr "Vous ne pouvez pas créer deux sessions actives avec le même responsabl
 #: constraint:pos.config:0
 msgid "You cannot have two cash controls in one Point Of Sale !"
 msgstr "Vous ne pouvez pas avoir deux contrôles de caisse dans un point de vente !"
-
-#. module: pos_multiple_cash_control
-#: code:addons/pos_multiple_cash_control/model/pos_box_entries.py:85
-#: code:addons/pos_multiple_cash_control/model/pos_box_out.py:87
-#, python-format
-msgid "You have to open at least one cashbox"
-msgstr "Vous devez ouvrir au moins une caisse"
 
 #. module: pos_multiple_cash_control
 #: view:pos.session:0
@@ -451,20 +319,11 @@ msgstr "imprimer"
 msgid "put_money_in"
 msgstr "put_money_in"
 
-#. module: pos_multiple_cash_control
-#: field:pos.box.out,session_id:0
-msgid "session"
-msgstr "session"
 
 #. module: pos_multiple_cash_control
 #: view:pos.session:0
 msgid "take_money_out"
 msgstr "take_money_out"
-
-#. module: pos_multiple_cash_control
-#: field:pos.box.out,name:0
-msgid "unknown"
-msgstr "inconnu"
 
 #. module: pos_multiple_cash_control
 #: view:pos.session.opening:0

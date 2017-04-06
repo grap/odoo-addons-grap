@@ -194,25 +194,3 @@ class pos_session(Model):
                 'state': 'closing_control',
                 'stop_at': time.strftime('%Y-%m-%d %H:%M:%S')},
             context=context)
-
-    def put_money_in(self, cr, uid, ids, context=None):
-        context.update({'pos_session_ids': ids})
-        return {
-            'type': 'ir.actions.act_window',
-            'view_type': 'form',
-            'view_mode': 'form',
-            'res_model': 'pos.box.entries',
-            'target': 'new',
-            'context': context,
-        }
-
-    def take_money_out(self, cr, uid, ids, context=None):
-        context.update({'pos_session_ids': ids})
-        return {
-            'type': 'ir.actions.act_window',
-            'view_type': 'form',
-            'view_mode': 'form',
-            'res_model': 'pos.box.out',
-            'target': 'new',
-            'context': context,
-        }

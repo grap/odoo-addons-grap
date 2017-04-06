@@ -28,8 +28,8 @@ Copyright, Author and Licence :
 #        'purchase',
     ],
     'data': [
-#        'view/pos_box_out.xml',
-#        'view/pos_box_entries.xml',
+        'views/view_account_journal.xml',
+
 #        'view/point_of_sale_view.xml',
 #        'security/ir.model.access.csv',
 #        'view/pos_session_opening.xml',
@@ -39,8 +39,9 @@ Copyright, Author and Licence :
 #        'view/menu.xml',
     ],
     'demo': [
-#        'demo/res_users.xml',
-#        'demo/account_journal.yml',
+        'demo/res_groups.xml',
+        'demo/account_journal.xml',
 #        'demo/account_tax.yml',
+        'demo/pos_config.xml',
     ]
 }
