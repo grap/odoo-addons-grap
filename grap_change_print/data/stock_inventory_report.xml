@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <report
+            id="stock.report_stock_inventory_move"
+            string="Stock Inventory"
+            model="stock.inventory"
+            name="stock.inventory.move"
+            rml="addons/stock_inventory_valuation/report/stock_inventory_move.rml"
+             />
+    </data>
+</openerp>
