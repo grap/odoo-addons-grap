@@ -7,10 +7,10 @@
             <field name="name">GRAP Invoice</field>
         </record>
 
-        <record model="ir.actions.report.xml" id="point_of_sale.account_statement">
-            <field name="report_file">grap_change_print/report/account_bank_statement.rml</field>
-            <field name="name">GRAP Statement</field>
-        </record>
+<!--        <record model="ir.actions.report.xml" id="point_of_sale.account_statement">-->
+<!--            <field name="report_file">grap_change_print/report/account_bank_statement.rml</field>-->
+<!--            <field name="name">GRAP Statement</field>-->
+<!--        </record>-->
 
     </data>
 </openerp>
