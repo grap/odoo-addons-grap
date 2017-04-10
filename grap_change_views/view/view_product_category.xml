@@ -8,23 +8,23 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 <openerp><data>
 
-    <record id="view_product_category_tree" model="ir.ui.view">
-        <field name="model">product.category</field>
-        <field name="inherit_id" ref="product_category_recursive_property.view_product_category_tree"/>
-        <field name="arch" type="xml">
-            <field name="property_stock_journal" position="attributes">
-                <attribute name="groups">base.group_no_one</attribute>
-            </field>
-            <field name="property_stock_account_input_categ" position="attributes">
-                <attribute name="groups">base.group_no_one</attribute>
-            </field>
-            <field name="property_stock_account_output_categ" position="attributes">
-                <attribute name="groups">base.group_no_one</attribute>
-            </field>
-            <field name="property_stock_valuation_account_id" position="attributes">
-                <attribute name="groups">base.group_no_one</attribute>
-            </field>
-        </field>
-    </record>
+<!--    <record id="view_product_category_tree" model="ir.ui.view">-->
+<!--        <field name="model">product.category</field>-->
+<!--        <field name="inherit_id" ref="product_category_recursive_property.view_product_category_tree"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <field name="property_stock_journal" position="attributes">-->
+<!--                <attribute name="groups">base.group_no_one</attribute>-->
+<!--            </field>-->
+<!--            <field name="property_stock_account_input_categ" position="attributes">-->
+<!--                <attribute name="groups">base.group_no_one</attribute>-->
+<!--            </field>-->
+<!--            <field name="property_stock_account_output_categ" position="attributes">-->
+<!--                <attribute name="groups">base.group_no_one</attribute>-->
+<!--            </field>-->
+<!--            <field name="property_stock_valuation_account_id" position="attributes">-->
+<!--                <attribute name="groups">base.group_no_one</attribute>-->
+<!--            </field>-->
+<!--        </field>-->
+<!--    </record>-->
 
 </data></openerp>

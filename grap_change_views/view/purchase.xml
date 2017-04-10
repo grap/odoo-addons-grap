@@ -77,17 +77,17 @@
             <field name="groups_id" eval="[(6, 0, [ref('base.group_no_one')])]"/>
         </record>
         
-        <record model="ir.ui.menu" id="purchase_compute_order.menu_computed_purchase_order">
-            <field name="groups_id" eval="[(6, 0, [ref('base.group_no_one')])]"/>
-            <field name="sequence" eval="98" />
-        </record>
+<!--        <record model="ir.ui.menu" id="purchase_compute_order.menu_computed_purchase_order">-->
+<!--            <field name="groups_id" eval="[(6, 0, [ref('base.group_no_one')])]"/>-->
+<!--            <field name="sequence" eval="98" />-->
+<!--        </record>-->
 
 
 <!--_______________________Vues Reporting (Tableau de bord) ____________________________-->
 
-        <record model="ir.ui.menu" id="purchase.menu_board_purchase">
-            <field eval="[(6, 0, [ref('base.group_no_one')])]" name="groups_id"/>
-        </record>
+<!--        <record model="ir.ui.menu" id="purchase.menu_board_purchase">-->
+<!--            <field eval="[(6, 0, [ref('base.group_no_one')])]" name="groups_id"/>-->
+<!--        </record>-->
 
         <record model="ir.ui.menu" id="purchase.menu_action_purchase_order_report_all">
             <field eval="[(6, 0, [ref('base.group_no_one')])]" name="groups_id"/>
@@ -104,9 +104,9 @@
 
 
 <!--_______________________Vues Reporting (Entrepot) ____________________________-->
-        <record model="ir.ui.menu" id="purchase.menu_action_stock_move_report_po">
-            <field eval="[(6, 0, [ref('base.group_no_one')])]" name="groups_id"/>
-        </record>
+<!--        <record model="ir.ui.menu" id="purchase.menu_action_stock_move_report_po">-->
+<!--            <field eval="[(6, 0, [ref('base.group_no_one')])]" name="groups_id"/>-->
+<!--        </record>-->
 
 <!-- Model purchase.order -->
 
@@ -121,12 +121,12 @@
                 <field name="pricelist_id" position="attributes">
                     <attribute name="groups">base.group_no_one</attribute>
                 </field>
-                <field name="warehouse_id" position="attributes">
-                    <attribute name="groups">base.group_no_one</attribute>
-                </field>
-                <xpath expr="//page[@string='Incoming Shipments &amp; Invoices']" position="attributes">
-                    <attribute name="groups">base.group_no_one</attribute>
-                </xpath>
+<!--                <field name="warehouse_id" position="attributes">-->
+<!--                    <attribute name="groups">base.group_no_one</attribute>-->
+<!--                </field>-->
+<!--                <xpath expr="//page[@string='Incoming Shipments &amp; Invoices']" position="attributes">-->
+<!--                    <attribute name="groups">base.group_no_one</attribute>-->
+<!--                </xpath>-->
                 <xpath expr="//field[@name='order_line']/tree/field[@name='taxes_id']" position="attributes">
                     <attribute name="groups">account.group_account_manager</attribute>
                  </xpath>

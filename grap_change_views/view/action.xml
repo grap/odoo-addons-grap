@@ -44,6 +44,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="context">{"search_default_filter_to_sell":1}</field>
     </record>
 
+<<<<<<< d39ccc6869f971414f98e08723ea3e5165e6e212
     <record id="action_product_product_scale_tree" model="ir.actions.act_window">
         <field name="name">Products (Scale)</field>
         <field name="type">ir.actions.act_window</field>

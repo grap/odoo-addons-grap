@@ -8,10 +8,6 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 <openerp><data>
 
-    <record id="stock.act_product_stock_move_futur_open" model="ir.actions.act_window">
-        <field name="view_id" ref="stock.view_move_tree"/>
-    </record>
-
     <record id="stock.act_product_stock_move_open" model="ir.actions.act_window">
         <field name="view_id" ref="stock.view_move_tree"/>
     </record>

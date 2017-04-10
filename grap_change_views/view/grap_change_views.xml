@@ -75,13 +75,13 @@
             <field name="sequence">201</field>
         </record>
 
-        <record model="ir.ui.menu" id="grap_reporting.menu_finance_management_reports">
-            <field name="groups_id" eval="[(6, 0, [ref('base.group_no_one')])]"/>
-        </record>
+<!--        <record model="ir.ui.menu" id="grap_reporting.menu_finance_management_reports">-->
+<!--            <field name="groups_id" eval="[(6, 0, [ref('base.group_no_one')])]"/>-->
+<!--        </record>-->
 
-        <record model="ir.ui.menu" id="grap_reporting.menu_finance_management_reports">
-            <field name="groups_id" eval="[(6, 0, [ref('base.group_no_one')])]"/>
-        </record>
+<!--        <record model="ir.ui.menu" id="grap_reporting.menu_finance_management_reports">-->
+<!--            <field name="groups_id" eval="[(6, 0, [ref('base.group_no_one')])]"/>-->
+<!--        </record>-->
 
     </data>
 </openerp>

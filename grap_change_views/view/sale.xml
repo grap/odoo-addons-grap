@@ -73,10 +73,6 @@
                 <field name="pricelist_id" position="after">
                     <field name="user_id"/>
                 </field>
-                <field name="shop_id" position="replace"/>
-                <field name="payment_term" position="after">
-                    <field name="shop_id"/>
-                </field>
                 <field name="partner_invoice_id" position="replace"/>
                 <field name="payment_term" position="after">
                     <field name="partner_invoice_id"/>
@@ -299,17 +295,17 @@
             <field eval="[(6, 0, [ref('base.group_no_one')])]" name="groups_id"/>
         </record>
 
-        <record model="ir.ui.menu" id="sale.menu_dashboard_sales">
-            <field eval="[(6, 0, [ref('base.group_no_one')])]" name="groups_id"/>
-        </record>
+<!--        <record model="ir.ui.menu" id="sale.menu_dashboard_sales">-->
+<!--            <field eval="[(6, 0, [ref('base.group_no_one')])]" name="groups_id"/>-->
+<!--        </record>-->
 
         <record model="ir.ui.menu" id="product.menu_product_uom_form_action">
             <field eval="[(6, 0, [ref('base.group_no_one')])]" name="groups_id"/>
         </record>
 
-        <record model="ir.ui.menu" id="sale_stock.menu_action_shop_form">
-            <field eval="[(6, 0, [ref('base.group_no_one')])]" name="groups_id"/>
-        </record>
+<!--        <record model="ir.ui.menu" id="sale_stock.menu_action_shop_form">-->
+<!--            <field eval="[(6, 0, [ref('base.group_no_one')])]" name="groups_id"/>-->
+<!--        </record>-->
 
         <record model="ir.ui.menu" id="base.menu_config_address_book">
             <field eval="[(6, 0, [ref('base.group_no_one')])]" name="groups_id"/>
