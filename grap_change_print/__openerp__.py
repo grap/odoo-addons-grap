@@ -67,7 +67,7 @@ Copyright, Author and Licence
         'sale_food',
         'point_of_sale',
         'report_webkit',
-        # 'pos_improve_posbox', TODO Why ?
+        # 'pos_improve_posbox', TODO Why ?
         'sale_recovery_moment',
         'base',
         'report_webkit',
