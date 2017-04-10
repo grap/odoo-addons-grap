@@ -13,7 +13,8 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="arch" type="xml">
             <!-- Opening and Closing Controls -->
             <xpath expr="//group[@string='Opening Cash Control']" position="before">
-                <field name="control_statement_ids" nolabel="1" colspan="4">
+                <field name="control_statement_ids" nolabel="1" colspan="4"
+                        attrs="{'invisible': [('state', 'in', ['opening_control'])]}">
                     <tree colors="grey: is_pos_control == False">
                         <field name="name" />
                         <field name="journal_id" />
@@ -50,6 +51,13 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
             </xpath>
             <xpath expr="//field[@name='opening_details_ids']/tree/field[@name='pieces']" position="attributes">
                 <attribute name="readonly">0</attribute>
+                <attribute name="attrs">{'readonly': [('is_piece', '=', True)]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='opening_details_ids']/tree/field[@name='pieces']" position="after">
+                <field name="is_piece" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='opening_details_ids']/tree" position="attributes">
+                <attribute name="colors">brown: is_piece == False</attribute>
             </xpath>
             <!-- Closing Cash Control -->
             <xpath expr="//group[@string='Closing Cash Control']" position="attributes">

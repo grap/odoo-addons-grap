@@ -81,3 +81,10 @@ class PosSession(models.Model):
             session.control_register_difference = sum(
                 session.statement_ids.filtered(
                     lambda x: x.is_pos_control==True).mapped('difference'))
+
+    # Overload Section
+    @api.model
+    def create(self, vals):
+        session = super(PosSession, self).create(vals)
+        session.opening_details_ids.write({'is_piece': True})
+        return session
