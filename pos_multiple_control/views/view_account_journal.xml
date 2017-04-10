@@ -11,8 +11,8 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="model">account.journal</field>
         <field name="inherit_id" ref="account.view_account_journal_form"/>
         <field name="arch" type="xml">
-            <field name="cash_control" position="attributes">
-                <attribute name="attrs">{'invisible': [('type', 'not in', ['cash', 'bank'])]}</attribute>
+            <field name="cash_control" position="after">
+                <field name="bank_control" attrs="{'invisible': [('type', 'not in', 'bank')]}"/>
             </field>
         </field>
     </record>

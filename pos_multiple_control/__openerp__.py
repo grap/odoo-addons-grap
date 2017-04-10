@@ -29,6 +29,7 @@ Copyright, Author and Licence :
     ],
     'data': [
         'views/view_account_journal.xml',
+        'views/view_pos_session.xml',
 
 #        'view/point_of_sale_view.xml',
 #        'security/ir.model.access.csv',
@@ -41,7 +42,6 @@ Copyright, Author and Licence :
     'demo': [
         'demo/res_groups.xml',
         'demo/account_journal.xml',
-#        'demo/account_tax.yml',
         'demo/pos_config.xml',
     ]
 }

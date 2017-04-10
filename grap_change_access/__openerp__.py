@@ -40,6 +40,12 @@ Features :
     * stock_location.complete_name is refactored;
 
 
+* Add extra constraint on product if income_pdt or expense_pdt:
+    * This product are manage by account manager only;
+    * this product must have account_income (or account_expense);
+    * This product must have only one VAT (if expense_pdt);
+    * this product can not be 'sale_ok' or 'purchase_ok';
+
 Copyright, Author and Licence :
 -------------------------------
     * Copyright : 2014, Groupement Régional Alimentaire de Proximité;

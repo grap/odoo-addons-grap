@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright (C) 2017 - Today: GRAP (http://www.grap.coop)
+@author Sylvain LE GAL (https://twitter.com/legalsylvain)
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+
+<openerp><data>
+
+    <record id="view_pos_session_form" model="ir.ui.view">
+        <field name="model">pos.session</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_session_form"/>
+        <field name="arch" type="xml">
+            <!-- Opening and Closing Controls -->
+            <xpath expr="//group[@string='Opening Cash Control']" position="before">
+                <field name="control_statement_ids" nolabel="1" colspan="4">
+                    <tree colors="grey: is_pos_control == False">
+                        <field name="name" />
+                        <field name="journal_id" />
+                        <field name="balance_start" />
+                        <field name="total_entry_encoding" />
+                        <field name="balance_end_real" />
+                        <field name="difference" />
+                        <field name="currency" groups="base.group_multi_currency" />
+                        <field name="state" invisible="1"/>
+                        <field name="is_pos_control" invisible="1"/>
+                    </tree>
+                    <form>
+                        <group col="4">
+                            <field name="name" />
+                            <field name="journal_id" />
+                            <field name="balance_start" />
+                            <field name="total_entry_encoding" />
+                            <field name="balance_end_real" />
+                            <field name="difference" />
+                            <field name="currency" groups="base.group_multi_currency" />
+                            <field name="state" />
+                            <vbnewline />
+                            <group col="4">
+                                <field name="opening_details_ids" />
+                                <field name="details_ids" />
+                            </group>
+                        </group>
+                    </form>
+                </field>
+            </xpath>
+            <!-- Opening Cash Control -->
+            <xpath expr="//group[@string='Opening Cash Control']" position="attributes">
+                <attribute name="attrs">{'invisible': [('state', 'not in', ('opening_control'))]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='opening_details_ids']/tree/field[@name='pieces']" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </xpath>
+            <!-- Closing Cash Control -->
+            <xpath expr="//group[@string='Closing Cash Control']" position="attributes">
+                <attribute name="invisible" >1</attribute>
+            </xpath>
+            <!-- Theoritical Summary -->
+            <xpath expr="//field[@name='cash_register_balance_start']/.." position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='cash_register_balance_start']/.." position="after">
+                <group class="oe_subtotal_footer oe_right">
+                    <field name="control_register_balance_start" readonly="1" class="oe_subtotal_footer_separator" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                    <label for="control_register_total_entry_encoding" attrs="{'invisible' : [('state', '=', 'opening_control')]}" string="+ Transactions" class="oe_force_bold oe_opening_total"/>
+                    <field name="control_register_total_entry_encoding" nolabel="1" attrs="{'invisible' : [('state', '=', 'opening_control')]}" class="oe_bold oe_pos_total" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                    <label for="control_register_total_entry_encoding" attrs="{'invisible' : [('state', '=', 'opening_control')]}" string="Theoretical Closing Balances" class="oe_force_bold oe_opening_total"/>
+                    <field name="control_register_balance_end" nolabel="1" attrs="{'invisible' : [('state', '=', 'opening_control')]}" class="oe_subtotal_footer_separator" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                </group>
+            </xpath>
+            <!-- Real Summary -->
+            <xpath expr="//field[@name='cash_register_balance_end_real']/.." position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='cash_register_balance_end_real']/.." position="after">
+                <group class="oe_subtotal_footer oe_right"
+                        attrs="{'invisible': ['|', ('cash_control', '=', False), ('state', '=', 'opening_control')]}">
+                    <field name="control_register_balance_end_real"
+                        class="oe_subtotal_footer_separator" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                </group>
+            </xpath>
+
+            <xpath expr="//field[@name='cash_register_difference']/.." position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='cash_register_difference']/.." position="after">
+                <group class="oe_subtotal_footer oe_right" attrs="{'invisible': ['|', ('cash_control', '=', False), ('state', '=', 'opening_control')]}">
+                    <field name="control_register_difference"
+                        class="oe_subtotal_footer_separator oe_right oe_pos_total oe_pos_difference"
+                        widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                </group>
+            </xpath>
+
+            <!--  Summary by Payment Methods -->
+            <xpath expr="//field[@name='statement_ids']/tree/field[@name='balance_start']" position="attributes">
+                <attribute name="invisible" >1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='statement_ids']/tree/field[@name='balance_end_real']" position="attributes">
+                <attribute name="invisible" >1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='statement_ids']/tree/field[@name='difference']" position="attributes">
+                <attribute name="invisible" >1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='statement_ids']/tree/field[@name='state']" position="attributes">
+                <attribute name="invisible" >1</attribute>
+            </xpath>
+        </field>
+    </record>
+
+</data></openerp>

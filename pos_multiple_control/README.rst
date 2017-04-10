@@ -6,27 +6,22 @@
 Allow the cash control on all cash registers for a session
 ==========================================================
 
+It's now allowed to control all the payment method when user open or close
+his session.
+
 Functionnality
 --------------
 
 * Disable constrains on number of journals with cash control enabled,
   on pos config.
 
-    * Add extra functionnality on pos_session:
-        * It's now allowed to control all the payment method when user
-    open or close his session;
 
-TODO:
------
-    * description;
-    * test;
+TODO : 
+rename table pos.cash.controls -> pos_cash_control
+dans pos_cash_control. 
+pos_session_id -> session_id
+cash_register_id -> statement_id
 
---> MOVE THIS FEATURE IN ANOTHER MODULE
-    * Add extra constraint on product if income_pdt or expense_pdt:
-        * This product are manage by account manager only;
-        * this product must have account_income (or account_expense);
-        * This product must have only one VAT (if expense_pdt);
-        * this product can not be 'sale_ok' or 'purchase_ok';
 
 Contributors
 ------------
