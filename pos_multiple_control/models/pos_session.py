@@ -4,7 +4,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from openerp import _, api, fields, models
-from openerp.exceptions import Warning
+from openerp.exceptions import Warning as UserError
 
 
 class PosSession(models.Model):
@@ -29,9 +29,9 @@ class PosSession(models.Model):
         compute='_compute_control_register_balance_end',
         string='Theoretical Closing Balances')
 
-    control_register_balance_end_real = fields.Float(
-        compute='_compute_control_register_balance_end_real',
-        string='Real Closing Balance')
+    control_register_balance = fields.Float(
+        compute='_compute_control_register_balance',
+        string='Real Closing Balances')
 
     control_register_difference = fields.Float(
         compute='_compute_control_register_difference',
@@ -44,7 +44,7 @@ class PosSession(models.Model):
         for session in self:
             session.control_register_balance_start = sum(
                 session.statement_ids.filtered(
-                    lambda x: x.is_pos_control==True).mapped('balance_start'))
+                    lambda x: x.is_pos_control).mapped('balance_start'))
 
     @api.multi
     @api.depends(
@@ -53,34 +53,34 @@ class PosSession(models.Model):
         for session in self:
             session.control_register_total_entry_encoding = sum(
                 session.statement_ids.filtered(
-                    lambda x: x.is_pos_control==True).mapped(
-                        'total_entry_encoding'))
+                    lambda x: x.is_pos_control).mapped('total_entry_encoding'))
 
     @api.multi
-    @api.depends('statement_ids.is_pos_control', 'statement_ids.balance_end')
+    @api.depends(
+        'statement_ids.is_pos_control', 'statement_ids.balance_end')
     def _compute_control_register_balance_end(self):
         for session in self:
             session.control_register_balance_end = sum(
                 session.statement_ids.filtered(
-                    lambda x: x.is_pos_control==True).mapped('balance_end'))
+                    lambda x: x.is_pos_control).mapped('balance_end'))
 
     @api.multi
     @api.depends(
-        'statement_ids.is_pos_control', 'statement_ids.balance_end_real')
-    def _compute_control_register_balance_end_real(self):
+        'statement_ids.is_pos_control', 'statement_ids.control_balance')
+    def _compute_control_register_balance(self):
         for session in self:
-            session.control_register_balance_end_real = sum(
+            session.control_register_balance = sum(
                 session.statement_ids.filtered(
-                    lambda x: x.is_pos_control==True).mapped(
-                        'balance_end_real'))
+                    lambda x: x.is_pos_control).mapped('control_balance'))
 
     @api.multi
-    @api.depends('statement_ids.is_pos_control', 'statement_ids.difference')
+    @api.depends(
+        'statement_ids.is_pos_control', 'statement_ids.control_difference')
     def _compute_control_register_difference(self):
         for session in self:
             session.control_register_difference = sum(
                 session.statement_ids.filtered(
-                    lambda x: x.is_pos_control==True).mapped('difference'))
+                    lambda x: x.is_pos_control).mapped('control_difference'))
 
     # Overload Section
     @api.model
@@ -88,3 +88,45 @@ class PosSession(models.Model):
         session = super(PosSession, self).create(vals)
         session.opening_details_ids.write({'is_piece': True})
         return session
+
+    @api.multi
+    def wkf_action_close(self):
+        for session in self:
+            for statement in session.statement_ids:
+                if statement.control_difference != 0:
+                    raise UserError(_(
+                        "You can not close this session because the statement"
+                        " %s has a not null difference: \n\n%f"
+                        ) % (statement.name, statement.control_difference))
+        return super(PosSession, self).wkf_action_close()
+
+    @api.multi
+    def _check_unicity(self):
+        for session in self:
+            domain = [
+                ('state', '=', 'opened'),
+                ('user_id', '=', session.user_id.id)
+            ]
+            if self.search_count(domain) > 1:
+                return False
+        return True
+
+    @api.multi
+    def _check_pos_config(self):
+        for session in self:
+            domain = [
+                ('state', '=', 'opened'),
+                ('config_id', '=', session.config_id.id)
+            ]
+            if self.search_count(domain) > 1:
+                return False
+        return True
+
+    _constraints = [
+        (
+            _check_unicity, "You cannot create two active sessions with the"
+            " same responsible!", ['user_id', 'state']),
+        (
+            _check_pos_config, "You cannot create two active sessions related"
+            " to the same point of sale!", ['config_id', 'state']),
+    ]

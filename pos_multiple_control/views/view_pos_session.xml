@@ -20,28 +20,23 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                         <field name="journal_id" />
                         <field name="balance_start" />
                         <field name="total_entry_encoding" />
-                        <field name="balance_end_real" />
-                        <field name="difference" />
+                        <field name="control_balance" />
+                        <field name="control_difference" />
                         <field name="currency" groups="base.group_multi_currency" />
                         <field name="state" invisible="1"/>
                         <field name="is_pos_control" invisible="1"/>
                     </tree>
                     <form>
-                        <group col="4">
-                            <field name="name" />
-                            <field name="journal_id" />
-                            <field name="balance_start" />
-                            <field name="total_entry_encoding" />
-                            <field name="balance_end_real" />
-                            <field name="difference" />
-                            <field name="currency" groups="base.group_multi_currency" />
-                            <field name="state" />
-                            <vbnewline />
-                            <group col="4">
-                                <field name="opening_details_ids" />
-                                <field name="details_ids" />
-                            </group>
-                        </group>
+                        <field name="state" invisible="1" />
+                            <field name="details_ids" nolabel="1" colspan="2">
+                            <tree string="Cashbox Lines" editable="bottom">
+                                <field name="pieces"/>
+                                <field name="number_opening" />
+                                <field name="subtotal_opening" string="Opening Subtotal" sum="Total"/>
+                                <field name="number_closing" />
+                                <field name="subtotal_closing" string="Closing Subtotal" sum="Total"/>
+                            </tree>
+                        </field>
                     </form>
                 </field>
             </xpath>
@@ -83,7 +78,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
             <xpath expr="//field[@name='cash_register_balance_end_real']/.." position="after">
                 <group class="oe_subtotal_footer oe_right"
                         attrs="{'invisible': ['|', ('cash_control', '=', False), ('state', '=', 'opening_control')]}">
-                    <field name="control_register_balance_end_real"
+                    <field name="control_register_balance"
                         class="oe_subtotal_footer_separator" widget="monetary" options="{'currency_field': 'currency_id'}"/>
                 </group>
             </xpath>
