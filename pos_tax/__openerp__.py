@@ -38,4 +38,5 @@ Please unistall and delete:
         'base',
         'grap_change_account_move_line',
     ],
+    'installable': False,
 }
