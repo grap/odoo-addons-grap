@@ -1,13 +1,14 @@
-web
-server-tools
-pos
-margin-analysis
-sale-workflow
-purchase-workflow
-webkit-tools
-stock-logistics-workflow
 l10n-france
+margin-analysis
+pos
+purchase-workflow
 reporting-engine
+sale-workflow
+server-tools
+stock-logistics-barcode
+stock-logistics-workflow
+web
+webkit-tools
 
 odoo-addons-it https://github.com/grap/odoo-addons-it.git 8.0
 odoo-addons-cis https://github.com/grap/odoo-addons-cis.git 8.0
@@ -16,3 +17,5 @@ odoo-addons-misc https://github.com/grap/odoo-addons-misc.git 8.0
 odoo-addons-cons https://github.com/grap/odoo-addons-cons.git 8.0
 
 pos_01_barcodes https://github.com/grap/pos.git 8.0_BACKPORT_barcodes
+
+stock-logistics-barcode_01_barcodes_generator https://github.com/grap/stock-logistics-barcode.git 8.0_BACKPORT_barcodes_generator
