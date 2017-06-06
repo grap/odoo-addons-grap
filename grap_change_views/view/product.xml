@@ -128,18 +128,18 @@
                                 </group>
                                 <group colspan="4">
                                     <group>
-<!--                                                on_change="onchange_barcode_rule_id(barcode_rule_id)"-->
                                         <field name="type"/>
                                         <field name="uom_id" on_change="onchange_uom(uom_id,uom_po_id)" groups="product.group_uom"/>
                                         <field name="barcode_rule_id"
-                                                domain="[('generate_model', '=', 'product.product')]"
-                                                groups="barcodes_generator_abstract.generate_barcode" colspan="2"/>
-                                            <field name="generate_type" invisible="1" />
-                                            <field name="barcode_base" attrs="{
-                                                'invisible': [('barcode_rule_id', '=', False)],
-                                                'readonly': True}"
-                                                groups="barcodes_generator_abstract.generate_barcode" colspan="2"/>
-                                            <button name="generate_base" type="object" string="Generate Base (Using Sequence)" attrs="{'invisible': ['|',
+                                            domain="[('generate_model', '=', 'product.product')]"
+                                            groups="barcodes_generator_abstract.generate_barcode" colspan="2"
+                                            on_change="onchange_barcode_rule_id(barcode_rule_id)"/>
+                                        <field name="generate_type" invisible="1"/>
+                                        <field name="barcode_base" attrs="{
+                                            'invisible': [('barcode_rule_id', '=', False)],
+                                            'readonly': [('generate_type', '!=', 'manual')]}"
+                                            groups="barcodes_generator_abstract.generate_barcode" colspan="2"/>
+                                        <button name="generate_base" type="object" string="Generate Base (Using Sequence)" attrs="{'invisible': ['|',
                                             ('generate_type', '!=', 'sequence'),
                                             ('barcode_base', '!=', 0)]}"
                                             groups="barcodes_generator_abstract.generate_barcode" colspan="2"/>
@@ -288,7 +288,6 @@
                                 <group string="Scale Communication">
                                     <group>
                                         <field name="scale_group_id"/>
-                                        <field name="scale_sequence"/>
                                         <field name="scale_tare_weight"/>
                                     </group>
                                     <group groups="base.group_no_one">
