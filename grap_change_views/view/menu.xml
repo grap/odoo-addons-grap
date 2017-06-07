@@ -94,6 +94,11 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         parent="point_of_sale.menu_point_of_sale_product" sequence="3" 
         action="action_product_product_tactile_tree"/>
 
+    <menuitem id="menu_product_product_scale" 
+        parent="point_of_sale.menu_point_of_sale_product" sequence="4"
+        groups="product_to_scale_bizerba.group_user"
+        action="action_product_product_scale_tree"/>
+
     <menuitem id="menu_pos_order_line" name="Pos Order Lines" 
         groups="point_of_sale.group_pos_user" sequence="3" 
         parent="point_of_sale.menu_point_of_sale_product" 

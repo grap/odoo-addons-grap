@@ -22,6 +22,35 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         </field>
     </record>
 
+    <record id="view_product_product_scale_tree" model="ir.ui.view">
+        <field name="model">product.product</field>
+        <field name="arch" type="xml">
+            <tree string="Products (Scale)" editable="bottom">
+                <field name="name" />
+                <field name="scale_group_id"/>
+                <field name="scale_tare_weight"/>
+                <field name="generate_type" invisible="1"/>
+                <field name="barcode_rule_id"
+                    domain="[('generate_model', '=', 'product.product')]"
+                    groups="barcodes_generator_abstract.generate_barcode" colspan="2"
+                    on_change="onchange_barcode_rule_id(barcode_rule_id)"/>
+                <field name="barcode_base"
+                    attrs="{
+                            'invisible': [('barcode_rule_id', '=', False)],
+                            'readonly': [('generate_type', '!=', 'manual')]}"
+                    groups="barcodes_generator_abstract.generate_barcode" />
+                <field name="ean13"
+                    attrs ="{'readonly': [('generate_type', 'in', ('sequence', 'manual'))]}" />
+                <button name="generate_barcode" type="object" string="Generate Barcode (Using Barcode Rule)"
+                    icon="gtk-execute"
+                    attrs="{'invisible': ['|',
+                            ('barcode_rule_id', '=', False),
+                            ('barcode_base', '=', 0)]}"
+                    groups="barcodes_generator_abstract.generate_barcode" colspan="2"/>
+            </tree>
+        </field>
+    </record>
+
     <record id="product_normal_form_view" model="ir.ui.view">
         <field name="model">product.product</field>
         <field name="inherit_id" ref="point_of_sale.product_normal_form_view"/>
