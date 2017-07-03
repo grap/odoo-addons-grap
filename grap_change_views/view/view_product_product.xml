@@ -29,18 +29,22 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                 <field name="name" />
                 <field name="scale_group_id"/>
                 <field name="scale_tare_weight"/>
-                <field name="generate_type" invisible="1"/>
                 <field name="barcode_rule_id"
                     domain="[('generate_model', '=', 'product.product')]"
                     groups="barcodes_generator_abstract.generate_barcode" colspan="2"
                     on_change="onchange_barcode_rule_id(barcode_rule_id)"/>
-                <field name="barcode_base"
-                    attrs="{
-                            'invisible': [('barcode_rule_id', '=', False)],
-                            'readonly': [('generate_type', '!=', 'manual')]}"
-                    groups="barcodes_generator_abstract.generate_barcode" />
+                <field name="generate_type" invisible="1"/>
+                <field name="barcode_base" attrs="{
+                    'invisible': [('barcode_rule_id', '=', False)],
+                    'readonly': [('generate_type', '!=', 'manual')]}"
+                    groups="barcodes_generator_abstract.generate_barcode" colspan="2"/>
+                <button name="generate_base" type="object" string="Generate Base (Using Sequence)" attrs="{'invisible': ['|',
+                    ('generate_type', '!=', 'sequence'),
+                    ('barcode_base', '!=', 0)]}"
+                    icon="gtk-execute"
+                    groups="barcodes_generator_abstract.generate_barcode" colspan="2"/>
                 <field name="ean13"
-                    attrs ="{'readonly': [('generate_type', 'in', ('sequence', 'manual'))]}" />
+                    attrs ="{'readonly': [('generate_type', '=', 'sequence')]}" />
                 <button name="generate_barcode" type="object" string="Generate Barcode (Using Barcode Rule)"
                     icon="gtk-execute"
                     attrs="{'invisible': ['|',
