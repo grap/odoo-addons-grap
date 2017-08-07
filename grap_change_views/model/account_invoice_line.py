@@ -39,5 +39,6 @@ class AccountInvoiceLine(models.Model):
     @api.depends('invoice_line_tax_id')
     def _compute_tax_ids_description(self):
         for line in self:
-            line.tax_ids_description =\
-                ','.join(line.invoice_line_tax_id.mapped('description'))
+            line.tax_ids_description = ','.join(
+                [x.description and x.description or x.name
+                    for x in line.invoice_line_tax_id])
