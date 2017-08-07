@@ -21,10 +21,10 @@
 #
 ##############################################################################
 
-import inspect
-from openerp.osv import osv
+# import inspect
+# from openerp.osv import osv
 from openerp.osv.orm import Model
-from openerp.tools.translate import _
+# from openerp.tools.translate import _
 
 
 class product_uom(Model):
