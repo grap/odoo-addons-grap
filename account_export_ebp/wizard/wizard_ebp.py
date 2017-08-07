@@ -112,7 +112,7 @@ class account_export_ebp(osv.TransientModel):
         'empty_suffixes_tax': fields.boolean(
             'Empty Suffixes Taxes', readonly=True),
         'description': fields.text(
-            'Description',  help="Extra Description for Accountant Manager."),
+            'Description', help="Extra Description for Accountant Manager."),
     }
 
     # Defaults Section

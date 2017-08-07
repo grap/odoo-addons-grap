@@ -30,10 +30,10 @@ from openerp.tools.translate import _
 class product_uom(Model):
     _inherit = 'product.uom'
 
-
     # TODO FIXME
 #    # Overload Section
-#    def _compute_qty_obj(self, cr, uid, from_unit, qty, to_unit, context=None):
+#    def _compute_qty_obj(
+#            self, cr, uid, from_unit, qty, to_unit, context=None):
 #        if context is None:
 #            context = {}
 #        if from_unit.category_id.id != to_unit.category_id.id:

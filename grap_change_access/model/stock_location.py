@@ -12,10 +12,7 @@ class StockLocation(models.Model):
 
     @api.multi
     def name_get(self):
-        print ">>>>>>>>>>>>>>>>>>>>"
-        print "name_get"
         res = super(StockLocation, self).name_get()
-        print res
         return res
 
 #    def _complete_name(self, cr, uid, ids, name, args, context=None):

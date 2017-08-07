@@ -96,8 +96,8 @@ class PosSession(models.Model):
                 if statement.control_difference != 0:
                     raise UserError(_(
                         "You can not close this session because the statement"
-                        " %s has a not null difference: \n\n%f"
-                        ) % (statement.name, statement.control_difference))
+                        " %s has a not null difference: \n\n%f") % (
+                            statement.name, statement.control_difference))
         return super(PosSession, self).wkf_action_close()
 
     @api.multi
