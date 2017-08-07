@@ -105,6 +105,7 @@ Copyright, Authors and Licence:
         'view/view_stock_inventory.xml',
         'view/view_stock_move.xml',
         'view/view_stock_picking.xml',
+        'view/view_stock_picking_type.xml',
         'view/view_pos_category.xml',
         'view/view_pos_order.xml',
         'view/view_pos_order_line.xml',

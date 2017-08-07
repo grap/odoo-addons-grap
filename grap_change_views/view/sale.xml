@@ -86,7 +86,7 @@
                     <field name="client_order_ref"/>
                 </field>
                 <xpath expr="//field[@name='order_line']/tree//field[@name='tax_id']" position="after">
-                    <field name="tax_ids_readonly" widget="many2many_tags"/>
+                    <field name="tax_ids_description"/>
                  </xpath>
                 <xpath expr="//field[@name='order_line']/tree//field[@name='product_uom']" position="after">
                     <field name="product_uos_qty" groups="base.group_no_one"/>

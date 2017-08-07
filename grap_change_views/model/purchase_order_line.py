@@ -1,28 +1,23 @@
 # -*- coding: utf-8 -*-
+# Copyright (C) 2015-Today: GRAP (http://www.grap.coop)
+# @author: Sylvain LE GAL (https://twitter.com/legalsylvain)
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp.osv.orm import Model
-from openerp.osv import fields
+from openerp import models, api, fields
 
 
-class PurchaseOrderLine(Model):
+class PurchaseOrderLine(models.Model):
     _inherit = 'purchase.order.line'
 
     # Column Section
-    _columns = {
-        'tax_ids_readonly': fields.related(
-            'taxes_id', type='many2many', relation='account.tax',
-            readonly=True, string='Taxes'),
-    }
+    tax_ids_description = fields.Char(
+        string='Taxes', compute='_compute_tax_ids_description',
+        store=True)
 
-    def onchange_product_id(
-            self, cr, uid, ids, pricelist_id, product_id, qty, uom_id,
-            partner_id, date_order=False, fiscal_position_id=False,
-            date_planned=False, name=False, price_unit=False, context=None):
-        res = super(PurchaseOrderLine, self).onchange_product_id(
-            cr, uid, ids, pricelist_id, product_id, qty, uom_id,
-            partner_id, date_order=date_order,
-            fiscal_position_id=fiscal_position_id, date_planned=date_planned,
-            name=name, price_unit=price_unit, context=context)
-        res['value']['tax_ids_readonly'] =\
-            res['value'].get('taxes_id', False)
-        return res
+    # Compute Section
+    @api.multi
+    @api.depends('taxes_id')
+    def _compute_tax_ids_description(self):
+        for line in self:
+            line.tax_ids_description =\
+                ','.join(line.taxes_id.mapped('description'))

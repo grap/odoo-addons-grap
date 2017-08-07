@@ -41,7 +41,6 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                 <filter icon="gtk-go-forward" string="Yesterday" domain="[('create_date','&lt;',datetime.date.today().strftime('%%Y-%%m-%%d 00:00:00')),('create_date','&gt;=',(datetime.date.today() - relativedelta(days=1)).strftime('%%Y-%%m-%%d 00:00:00'))]"/>
                 <separator orientation="vertical"/>
                 <field name="name"/>
-                <field name="product_name"/>
                 <field name="product_id"/>
                 <field name="partner_id"/>
                 <newline/>

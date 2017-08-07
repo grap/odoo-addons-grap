@@ -131,7 +131,7 @@
                     <attribute name="groups">account.group_account_manager</attribute>
                  </xpath>
                 <xpath expr="//field[@name='order_line']/tree//field[@name='taxes_id']" position="after">
-                    <field name="tax_ids_readonly" widget="many2many_tags"/>
+                    <field name="tax_ids_description"/>
                  </xpath>
             </field>
         </record>

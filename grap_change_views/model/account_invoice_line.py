@@ -1,78 +1,43 @@
-
 # -*- coding: utf-8 -*-
+# Copyright (C) 2014-Today: GRAP (http://www.grap.coop)
+# @author: Sylvain LE GAL (https://twitter.com/legalsylvain)
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp.osv.orm import Model
-from openerp.osv import fields
+from openerp import models, api, fields
 
 
-class AccountInvoiceLine(Model):
+class AccountInvoiceLine(models.Model):
     _inherit = 'account.invoice.line'
 
-    # Invalidation Section
-    def _get_invoice_line_by_invoice(self, cr, uid, ids, context=None):
-        """ids are account.invoice"""
-        return self.pool['account.invoice.line'].search(
-            cr, uid, [('invoice_id', 'in', ids)], context=context)
-
-    def _get_invoice_line_by_product(self, cr, uid, ids, context=None):
-        """ids are product.product"""
-        return self.pool['account.invoice.line'].search(
-            cr, uid, [('product_id', 'in', ids)], context=context)
-
     # Column Section
-    _columns = {
-        'tax_ids_readonly': fields.related(
-            'invoice_line_tax_id', type='many2many', relation='account.tax',
-            readonly=True, string='Taxes'),
+    type = fields.Selection(
+        related='invoice_id.type', string='Type', select=True, store=True,
+        readonly=True)
 
-        # Invoice related
-        'type': fields.related(
-            'invoice_id', 'type', string='Type', type='char', select=True,
-            store={
-                'account.invoice': (
-                    _get_invoice_line_by_invoice, ['type'], 10),
-            }),
-        'state': fields.related(
-            'invoice_id', 'state', string='Type', type='char', select=True,
-            store={
-                'account.invoice': (
-                    _get_invoice_line_by_invoice, ['state'], 10),
-            }),
-        'partner_id': fields.related(
-            'invoice_id', 'partner_id', string='Partner',
-            relation='res.partner', type='many2one', select=True, store={
-                'account.invoice': (
-                    _get_invoice_line_by_invoice, ['period_id'], 10),
-            }),
-        'date_invoice': fields.related(
-            'invoice_id', 'date_invoice', string='Date invoice', type='date',
-            select=True, store={
-                'account.invoice': (
-                    _get_invoice_line_by_invoice, ['date_invoice'], 10),
-            }),
+    state = fields.Selection(
+        related='invoice_id.state', string='State', select=True, store=True,
+        readonly=True)
 
-        # product related
-        'categ_id': fields.related(
-            'product_id', 'categ_id', string='Category', select=True,
-            relation='product.category', type='many2one', store={
-                'account.invoice.line': (
-                    lambda self, cr, uid, ids, c=None: ids, ['product_id'],
-                    10),
-                'product.product': (
-                    _get_invoice_line_by_product, ['categ_id'], 10),
-            }),
-    }
+    partner_id = fields.Many2one(
+        related='invoice_id.partner_id', string='Partner',
+        comodel_name='res.partner', select=True, store=True, readonly=True)
 
-    def product_id_change(
-            self, cr, uid, ids, product, uom_id, qty=0, name='',
-            type='out_invoice', partner_id=False, fposition_id=False,
-            price_unit=False, currency_id=False, context=None,
-            company_id=None):
-        res = super(AccountInvoiceLine, self).product_id_change(
-            cr, uid, ids, product, uom_id, qty=qty, name=name,
-            type=type, partner_id=partner_id, fposition_id=fposition_id,
-            price_unit=price_unit, currency_id=currency_id, context=context,
-            company_id=company_id)
-        res['value']['tax_ids_readonly'] =\
-            res['value'].get('invoice_line_tax_id', False)
-        return res
+    date_invoice = fields.Date(
+        related='invoice_id.date_invoice', string='Date invoice', select=True,
+        store=True, readonly=True)
+
+    categ_id = fields.Many2one(
+        related='product_id.categ_id', string='Category', select=True,
+        comodel_name='product.category', store=True, readonly=True)
+
+    tax_ids_description = fields.Char(
+        string='Taxes', compute='_compute_tax_ids_description',
+        store=True)
+
+    # Compute Section
+    @api.multi
+    @api.depends('invoice_line_tax_id')
+    def _compute_tax_ids_description(self):
+        for line in self:
+            line.tax_ids_description =\
+                ','.join(line.invoice_line_tax_id.mapped('description'))
