@@ -35,8 +35,7 @@ Please unistall and delete:
     * account_group_move_lines;
     """,
     'depends': [
-        'base',
-        'grap_change_account_move_line',
+        'point_of_sale',
     ],
-    'installable': False,
+    'installable': True,
 }

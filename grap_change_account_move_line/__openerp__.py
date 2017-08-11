@@ -67,22 +67,15 @@ Copyright, Author and Licence:
     'website': 'http://www.grap.coop',
     'license': 'AGPL-3',
     'depends': [
-        'account',
-        'base',
         'point_of_sale',
-        'pos_invoicing',
-        'pos_multiple_cash_control',
-        'pos_store_draft_order',  # previously, pos_keep_draft_order
+##        'pos_multiple_cash_control',
+#        'pos_store_draft_order',  # previously, pos_keep_draft_order
     ],
     'data': [
         'security/ir_model_access_data.yml',
         'view/view.xml',
     ],
     'demo': [
-        'demo/res_groups.yml',
-        'demo/account_tax.yml',
-        'demo/product_product.yml',
-        'demo/account_journal.yml',
     ],
-    'installable': False,
+    'installable': True,
 }

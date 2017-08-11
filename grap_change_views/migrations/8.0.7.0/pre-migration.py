@@ -19,14 +19,14 @@ def create_tax_ids_description_field(
     cr.execute("""
         ALTER TABLE %s
         ADD COLUMN "%s" VARCHAR""" % (
-            table_line_name,
-            field_description))
+        table_line_name,
+        field_description))
 
     cr.execute("""
         SELECT %s, array_agg(%s)
         FROM %s GROUP BY %s;""" % (
-            field_line_id, field_tax_id,
-            table_tax_rel_name, field_line_id))
+        field_line_id, field_tax_id,
+        table_tax_rel_name, field_line_id))
 
     mapping = {}
     res = cr.fetchall()
@@ -55,10 +55,10 @@ def create_tax_ids_description_field(
             UPDATE %s
             set %s = '%s'
             WHERE id in %s""" % (
-                table_line_name,
-                field_description,
-                tax_ids_description,
-                tuple(line_ids)))
+            table_line_name,
+            field_description,
+            tax_ids_description,
+            tuple(line_ids)))
 
 
 @openupgrade.migrate()
