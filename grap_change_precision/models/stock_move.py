@@ -10,5 +10,6 @@ from openerp.addons import decimal_precision as dp
 class StockMove(models.Model):
     _inherit = 'stock.move'
 
-    price_unit = fields.Float(
-        digits=dp.get_precision('GRAP Purchase Unit Price'))
+    # TODO investigate
+    #    price_unit = fields.Float(
+    #        digits=dp.get_precision('GRAP Purchase Unit Price'))
