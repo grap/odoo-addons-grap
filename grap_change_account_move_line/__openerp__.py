@@ -68,8 +68,8 @@ Copyright, Author and Licence:
     'license': 'AGPL-3',
     'depends': [
         'point_of_sale',
-##        'pos_multiple_cash_control',
-#        'pos_store_draft_order',  # previously, pos_keep_draft_order
+        #        'pos_multiple_cash_control',
+        #        'pos_store_draft_order',  # previously, pos_keep_draft_order
     ],
     'data': [
         'security/ir_model_access_data.yml',
