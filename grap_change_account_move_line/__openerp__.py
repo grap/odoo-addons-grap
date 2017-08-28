@@ -77,5 +77,5 @@ Copyright, Author and Licence:
     ],
     'demo': [
     ],
-    'installable': True,
+    'installable': False,
 }
