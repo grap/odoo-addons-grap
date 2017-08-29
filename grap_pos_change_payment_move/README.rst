@@ -14,12 +14,14 @@ a lot of useless account moves for an accountant.
 
 With this module, when closing a PoS session, an account move is created for
 each combination of: 
-- pos order partner (*)
-- account (counterpart account)
-- pos order date (without time, just date)
+
+* journal
+* pos order partner (*)
+* account (counterpart account)
+* pos order date (without time, just date)
 
 (*) : Note that if a pos order is associated to a partner, without an invoice,
-the partner is ignored, reducing more move quantity.
+the partner is ignored, reducing more, moves quantity.
 
 Credits
 =======

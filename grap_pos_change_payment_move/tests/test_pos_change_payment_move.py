@@ -3,6 +3,8 @@
 # @author: Sylvain LE GAL (https://twitter.com/legalsylvain)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
+from datetime import datetime, timedelta
+
 from openerp.tests.common import TransactionCase
 
 
@@ -24,7 +26,7 @@ class TetsChangePaymentMove(TransactionCase):
     def _open_session(self):
         return self.session_obj.create({'config_id': self.pos_config.id})
 
-    def _sale(self, session, partner, journal, qty):
+    def _sale(self, session, partner, journal, qty, date_diff=0):
         order = self.order_obj.create({
             'session_id': session.id,
             'partner_id': partner and partner.id or False,
@@ -34,6 +36,10 @@ class TetsChangePaymentMove(TransactionCase):
                 'product_id': self.product_evian.id,
                 'qty': qty}]]
         })
+        if date_diff:
+            order.date_order =\
+                datetime.strptime(order.date_order, "%Y-%m-%d %H:%M:%S") +\
+                timedelta(days=date_diff)
         self.order_obj.add_payment(
             order.id, {'amount': qty, 'journal': journal.id})
 
@@ -135,3 +141,22 @@ class TetsChangePaymentMove(TransactionCase):
         self.assertEquals(
             bank_line.debit, 60,
             "incorrect Debit value for 2 invoiced orders (20, 40)")
+
+    # Test Section
+    def test_03_move_per_day(self):
+        """Test if making many PoS orders invoiced generated a single
+            good accounting entry.
+        """
+        session = self._open_session()
+        # sale #1 date 1
+        self._sale(session, False, self.cash_journal, 10)
+        # sale #2 date 2
+        self._sale(session, False, self.cash_journal, 20, date_diff=1)
+        self._close_session(session)
+
+        anonymous_payment_moves = self._get_payment_move(
+            session, self.cash_journal, False)
+
+        self.assertEquals(
+            len(anonymous_payment_moves), 2,
+            "Closing session should generate 1 payment move per day.")
