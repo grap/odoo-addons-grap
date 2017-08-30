@@ -23,6 +23,8 @@ each combination of:
 (*) : Note that if a pos order is associated to a partner, without an invoice,
 the partner is ignored, reducing more, moves quantity.
 
+This module should be used with grap_pos_change_sale_move.
+
 Credits
 =======
 

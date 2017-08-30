@@ -92,7 +92,7 @@ class AccountBankStatement(models.Model):
                 keys = (
                     statement_line.account_id.id,
                     partner_id,
-                    pos_order.date_order[:10])
+                    pos_order._prepare_date_payment_move_point_of_sale())
                 groups.setdefault(keys, [])
                 groups[keys].append(statement_line.id)
 
