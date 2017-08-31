@@ -210,4 +210,3 @@ class PosSession(models.Model):
             'debit': ((amount > 0) and amount) or 0.0,
             'credit': ((amount < 0) and - amount) or 0.0,
         }
-

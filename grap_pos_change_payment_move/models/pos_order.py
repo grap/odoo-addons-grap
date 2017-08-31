@@ -9,7 +9,6 @@ from datetime import datetime
 from openerp import api, models, tools
 
 
-
 class PosOrder(models.Model):
     _inherit = "pos.order"
 
