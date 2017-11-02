@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp><data>
+
+    <template id="report_product_product_1_document">
+        <t t-call="report.html_container">
+            <t t-set="per_page" t-value="14"/>
+            <t t-set="product_qty" t-value="len(docs)"/>
+            <t t-set="page_qty"
+                    t-value="(product_qty % per_page) == 0
+                    and product_qty / per_page
+                    or (product_qty / per_page) + 1"/>
+            
+            <t t-foreach="range(page_qty)" t-as="current_page">
+                <div class="page">
+                    <t t-set="page_products" t-value="docs[current_page * per_page:(current_page+1) * per_page]"/>
+
+                    Per Page : <strong t-esc="per_page"/>
+                    Product Qty : <strong t-esc="product_qty"/><br />
+                    <br />
+                    Pages : <strong t-esc="current_page"/> / <strong t-esc="page_qty"/>
+
+                    <div class="row">
+                        <t t-foreach="page_products" t-as="product">
+                            <div class="col-6">
+                                <strong t-esc="product.name"/>
+                            </div>
+                        </t>
+                        <div class="w-100"></div>
+                    </div>
+
+
+
+                </div>
+            </t>
+            
+<!--            <t t-foreach="docs" t-as="product">-->
+
+<!--                <t t-set="count" t-value="count + 1"/>-->
+
+<!--                <t t-if="(count % per_page) == 1">-->
+<!--                     New Page -->
+<!--                    <div class="page" />-->
+<!--                </t>-->
+
+<!--                <h2>ETIQUETTE</h2>-->
+<!--                <strong t-esc="count"/> / <strong t-esc="total"/> - <strong t-esc="product.name"/>-->
+
+
+
+<!--            </t>-->
+        </t>
+    </template>
+
+</data></openerp>
+
+
+
+<!--                <t t-if="(count % per_page) == 0 or count == total">-->
+                    <!-- End of the Page -->
+<!--                    </div>-->
+<!--                </t>-->
