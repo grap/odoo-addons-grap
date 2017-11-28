@@ -38,3 +38,38 @@
 .grap_change_views__view_account_move_form [data-id="state"]                {width: 5%;}
 .grap_change_views__view_account_move_form [data-id="reconcile_id"]         {width: 3%;}
 .grap_change_views__view_account_move_form [data-id="reconcile_partial_id"] {width: 3%;}
+
+/* Point Of Sale Front-Office - Improve delete payment button */
+
+.point-of-sale a.delete-payment-line {
+    height: 40px;
+    width: 40px;
+    border: 1px solid #CACACA;
+    display: inline-block;
+    border-radius: 4px;
+    background: linear-gradient(#F0F0F0, #E2E2E2) repeat scroll 0% 0% transparent;
+}
+
+.point-of-sale td.pos-right-align img {
+    height: 36px;
+    width: 36px;
+    margin: 2px;
+}
+
+/* Point Of Sale Front-Office - Improve value input option */
+
+.point-of-sale td.pos-right-align input {
+    height: 36px;
+}
+
+/* Point Of Sale Front-Office - Improve clear search button */
+
+.point-of-sale img.search-clear {
+    display: inline-block;
+    height: 30px;
+    top: 5px;
+    right: 20px;
+    border: 1px solid #CACACA;
+    border-radius: 4px;
+    background: linear-gradient(#F0F0F0, #E2E2E2) repeat scroll 0% 0% transparent;
+}
