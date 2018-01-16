@@ -8,6 +8,368 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 <openerp><data>
 
+<!--    <record id="action_view_old_product_form" model="ir.actions.act_window">-->
+<!--        <field name="type">ir.actions.act_window</field>-->
+<!--        <field name="res_model">product.product</field>-->
+<!--        <field name="view_type">form</field>-->
+<!--        <field name="view_mode">tree,form</field>-->
+<!--        <field name="view_id" ref="product.product_normal_form_view" />-->
+<!--    </record>-->
+
+<!--    <menuitem id="menu_view_old_product_form"-->
+<!--        parent="base.menu_product"-->
+<!--        action="action_view_old_product_form" -->
+<!--        groups="base.group_no_one"-->
+<!--        sequence="1"/>-->
+
+    <record id="view_product_normal_form_view" model="ir.ui.view">
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <data>
+                <field name="product_manager" position="attributes">
+                    <attribute name="groups">base.group_no_one</attribute>
+                </field>
+                <field name="image_medium" position="attributes">
+                    <attribute name="groups">grap_change_views.group_product_image_manager</attribute>
+                </field>
+            </data>
+        </field>
+    </record>
+
+    <record id="view_product_product_search" model="ir.ui.view">
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_search_form_view"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+               <field name="pos_categ_id"/>
+            </field>
+            <xpath expr="//filter[@string='Category']" position="after">
+                <filter string="POS Category" context="{'group_by' : 'pos_categ_id'}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_product_product_form" model="ir.ui.view">
+        <field name="model">product.product</field>
+        <field name="priority" eval="1"/>
+        <field name="arch" type="xml">
+            <form string="Product" version="7.0">
+                <sheet>
+                    <group col="6">
+                        <group colspan="4" col="4">
+                            <group colspan="4" col="8">
+                                <group colspan="1" col="1">
+                                    <field name="image_medium" widget="image" nolabel="1"
+                                        groups="grap_change_views.group_product_image_manager" class="oe_avatar"/>
+                                </group>
+                                <group colspan="7">
+                                    <label for="name" class="oe_edit_only"/>
+                                    <h2><field name="name"/></h2>
+                                    <label for="categ_id" class="oe_edit_only"/>
+                                    <h2><field name="categ_id"/></h2>
+                                </group>
+                            </group>
+                            <group colspan="4">
+                                <group>
+                                    <field name="type"/>
+                                    <field name="uom_id" on_change="onchange_uom(uom_id,uom_po_id)" groups="product.group_uom"/>
+                                    <field name="barcode_rule_id"
+                                        domain="[('generate_model', '=', 'product.product')]"
+                                        groups="barcodes_generator_abstract.generate_barcode" colspan="2"
+                                        on_change="onchange_barcode_rule_id(barcode_rule_id)"/>
+                                    <field name="generate_type" invisible="1"/>
+                                    <field name="barcode_base" attrs="{
+                                        'invisible': [('barcode_rule_id', '=', False)],
+                                        'readonly': [('generate_type', '!=', 'manual')]}"
+                                        groups="barcodes_generator_abstract.generate_barcode" colspan="2"/>
+                                    <button name="generate_base" type="object" string="Generate Base (Using Sequence)" attrs="{'invisible': ['|',
+                                        ('generate_type', '!=', 'sequence'),
+                                        ('barcode_base', '!=', 0)]}"
+                                        groups="barcodes_generator_abstract.generate_barcode" colspan="2"/>
+                                    <field name="ean13"
+                                        attrs ="{'readonly': [('generate_type', '=', 'sequence')]}" />
+                                    <button name="generate_barcode" type="object" string="Generate Barcode (Using Barcode Rule)"
+                                        attrs="{'invisible': ['|',
+                                                ('barcode_rule_id', '=', False),
+                                                ('barcode_base', '=', 0)]}"
+                                        groups="barcodes_generator_abstract.generate_barcode" colspan="2"/>
+                                </group>
+                                <group>
+                                    <field name="is_consignment" groups="recurring_consignment.group_consignment_user"/>
+                                    <field name="purchase_ok"/>
+                                    <field name="sale_ok"/>
+                                    <field name="administrative_ok" />
+                                </group>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="code"/>
+                            <field name="active"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <group string="Packaging" colspan="2">
+                                <field name="delivery_categ_id" groups="sale_recovery_moment.delivery_user"/>
+                                <field name="volume" attrs="{'readonly':[('type','=','service')]}"/>
+                                <field name="weight_net" attrs="{'readonly':[('type','=','service')]}"/>
+                            </group>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Information">
+                            <group col="6">
+                                <group>
+                                    <separator string="Purchase / Produce" colspan="2"/>
+                                    <field name="property_account_expense" 
+                                        domain="[('type','=','other')]" 
+                                        groups="account.group_account_manager"/>
+                                    <field name="consignor_partner_id"
+                                        attrs="{'readonly':[('is_consignment', '=', True)]}"
+                                        on_change="onchange_consignor_partner_id(consignor_partner_id)"
+                                        groups="recurring_consignment.group_consignment_user"/>
+                                    <field name="standard_price" string="Prix de Revient (HT)"/>
+                                    <field name="tax_group_id" colspan="2" quick_create="false"/>
+                                    <field name="uom_po_id"/>
+                                    <field name="prepare_categ_id" groups="sale_recovery_moment.recovery_user"/>
+                                </group>
+                                <group>
+                                    <separator string="Sale" colspan="2"/>
+                                    <field name="property_account_income" 
+                                        domain="[('type','=','other')]" 
+                                        groups="account.group_account_manager"/>
+                                    <field name="list_price"/>
+                                    <field name="standard_margin"/>
+                                    <field name="standard_margin_rate" widget="progressbar"/>
+                                </group>
+                                <group>
+                                    <separator string="Point Of Sale" colspan="2"/>
+                                    <field name="available_in_pos" string="PoS - Is Displayed" groups="point_of_sale.group_pos_user"/>
+                                    <field name="pos_categ_id" string="PoS - Category" groups="point_of_sale.group_pos_user"/>
+                                    <field name="to_weight" string="PoS - To Weight" groups="point_of_sale.group_pos_user"/>
+                                    <field name="income_pdt" string="PoS - Cash In" groups="account.group_account_manager"/>
+                                    <field name="expense_pdt" string="PoS - Cash Out" groups="account.group_account_manager"/>
+                                </group>
+                            </group>
+                            <group col="6">
+                                <group>
+                                    <separator string="Stock" colspan="2"/>
+                                    <field name="qty_available"/>
+                                    <button name="%(stock.action_view_change_product_quantity)d" string="update"
+                                        type="action"
+                                        class="oe_link" colspan="2"/>
+                                    <field name="incoming_qty" string="Incoming quantity"/>
+                                    <field name="outgoing_qty" string="Outgoing quantity"/>
+                                    <field name="virtual_available"/>
+                                </group>
+                                <group colspan="4">
+                                    <separator string="Sellers" colspan="2"/>
+                                    <field name="seller_ids" nolabel="1" context="{'uom_id': uom_po_id}"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Food information" groups="sale_food.group_food_user">
+                            <group colspan="4">
+                                <group>
+                                    <separator string="Origin information" colspan="2"/>
+                                    <field name="country_id" options="{'quick_create':false}"
+                                        on_change="onchange_country_id(
+                                            country_id,
+                                            department_id)"/>
+                                    <field name="department_id" options="{'quick_create':false}"
+                                        on_change="onchange_department_id(
+                                            country_id, 
+                                            department_id)"/>
+                                    <field name="origin_description"/>
+                                    <field name="maker_description"/>
+                                </group>
+                                <group>
+                                    <separator string="Food information" colspan="2"/>
+                                    <field name="label_ids" options="{'quick_create':false}"
+                                        widget="many2many_tags"
+                                        on_change="onchange_label_ids(
+                                            label_ids,
+                                            social_notation,
+                                            local_notation,
+                                            organic_notation,
+                                            packaging_notation, context)"/>
+                                    <field name="fresh_category"/>
+                                    <field name="fresh_range"/>
+                                    <field name="expiration_date_day"/>
+                                    <field name="is_mercuriale"/>
+                                </group>
+                            </group>
+                            <group colspan="4" col="4">
+                                <group colspan="2">
+                                    <separator string="Print information" colspan="2"/>
+                                    <field name="pricetag_state"/>
+                                    <field name="pricetag_type_id" options="{'quick_create':false}"/>
+                                    <field name="pricetag_organic_text_ignore"/>
+                                </group>
+                                <group colspan="2" col="4">
+                                    <group colspan="2">
+                                        <separator string="Notation" colspan="2"/>
+                                        <field name="local_notation"/>
+                                        <field name="social_notation"/>
+                                        <field name="packaging_notation"/>
+                                        <field name="organic_notation"/>
+                                    </group>
+                                    <group colspan="2">
+                                        <separator string="Spider Chart" colspan="2"/>
+                                        <field name="spider_chart_image" widget='image' nolabel="1" readonly="1" 
+                                            img_height="120" img_width="120" colspan="2"/>
+                                    </group>
+                                </group>
+                            </group>
+                            <group colspan="4" col="2">
+                                <field name="ingredients" />
+                            </group>
+                        </page>
+                        <page string="Scale" groups="product_to_scale_bizerba.group_user">
+                            <group string="Scale Communication">
+                                <group>
+                                    <field name="scale_group_id"/>
+                                    <field name="scale_tare_weight"/>
+                                </group>
+                                <group groups="base.group_no_one">
+                                    <button name="send_scale_create" type="object" string="Resend Creation To the Scale System"
+                                        colspan="2"/>
+                                    <button name="send_scale_write" type="object" string="Resend Update To the Scale System"
+                                        colspan="2"/>
+                                    <button name="send_scale_unlink" type="object" string="Manual Deletion in the Scale System"
+                                        colspan="2"/>
+                                </group>
+                            </group>
+                        </page>
+
+                        <page string="eShop" groups="sale_eshop.res_groups_eshop_user">
+                            <group col="4">
+                                    <field name="eshop_start_date"/>
+                                    <field name="eshop_end_date"/>
+                                    <field name="eshop_category_id" colspan="4"/>
+                                    <field name="eshop_minimum_qty"/>
+                                    <field name="eshop_rounded_qty"/>
+                                    <field name="eshop_unpack_qty"/>
+                                    <field name="eshop_unpack_surcharge" attrs="{'invisible':[('eshop_unpack_qty','=', 0)]}"/>
+                                    <field name="eshop_state"/>
+                            </group>
+                            <group string="Eshop Description">
+                                <field name="eshop_description" widget="html" colspan="4" nolabel="1"/>
+                            </group>
+                        </page>
+                        <page string="EAN13" attrs="{'invisible':[('ean13','=', False)]}">
+                            <group col="4">
+                                    <field name="ean13_image" widget='image' nolabel="1" readonly="1" colspan="4"/>
+                            </group>
+                        </page>
+                        <page string="Extra-Information" groups="base.group_no_one">
+                            <group col="4">
+                                <field name="property_stock_account_input" />
+                                <field name="property_stock_account_output" />
+                                <field name="supplier_taxes_id" widget="many2many_tags"/>
+                                <field name="taxes_id" widget="many2many_tags"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="view_product_template_point_of_sale_form" model="ir.ui.view">
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="point_of_sale.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <field name="income_pdt" position="attributes">
+                <attribute name="groups">account.group_account_manager</attribute>
+            </field>
+            <field name="expense_pdt" position="attributes">
+                <attribute name="groups">account.group_account_manager</attribute>
+            </field>
+        </field>
+    </record>
+
+
+<!-- Extra Tree views -->
+    <record model="ir.ui.menu" id="menu_product_product_editable_view">
+        <field name="name">Products (Other Views)</field>
+        <field name="sequence">2</field>
+        <field name="parent_id" ref="base.menu_product" />
+    </record>
+
+    <!--
+        * Add an extra view product (Price View) #1
+    -->
+    <record id="view_product_product_price_tree" model="ir.ui.view">
+        <field name="model">product.product</field>
+        <field name="arch" type="xml">
+            <tree string="Products (Price)" editable="bottom">
+                <field name="code"/>
+                <field name="name"/>
+                <field name="consignor_partner_id" invisible="1"/>
+                <field name="tax_group_id"/>
+                <field name="standard_price"/>
+                <field name="list_price"/>
+                <field name="standard_margin"/>
+                <field name="standard_margin_rate"/>
+                <field name="sale_ok"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_view_product_product_price_tree" model="ir.actions.act_window">
+        <field name="name">Products (Price)</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.product</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_product_product_price_tree"/>
+        <field name="context">{"search_default_filter_to_sell":1}</field>
+    </record>
+
+    <menuitem id="menu_product_product_price"
+        name="Products (Price)"
+        parent="menu_product_product_editable_view" sequence="1"
+        action="action_view_product_product_price_tree"/>
+
+    <!--
+        * Add an extra view product (Categories View) #2
+    -->
+    <record id="view_product_product_category_tree" model="ir.ui.view">
+        <field name="model">product.product</field>
+        <field name="arch" type="xml">
+            <tree string="Products (Categories)" editable="bottom">
+                <field name="default_code"/>
+                <field name="name"/>
+                <field name="categ_id"/>
+                <field name="pos_categ_id"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_product_product_category" model="ir.actions.act_window">
+        <field name="name">Products (Categories)</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.product</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_product_product_category_tree"/>
+    </record>
+
+    <menuitem id="menu_product_product_category"
+        name="Products (Categories)"
+        parent="menu_product_product_editable_view" sequence="2"
+        action="action_product_product_category"/>
+
+    <!--
+        * Add an extra view product (Tactile View) #3
+    -->
+
     <record id="view_product_product_tactile_tree" model="ir.ui.view">
         <field name="model">product.product</field>
         <field name="arch" type="xml">
@@ -21,6 +383,26 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
             </tree>
         </field>
     </record>
+
+    <record id="action_product_product_tactile_tree" model="ir.actions.act_window">
+        <field name="name">Products (Tactile)</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.product</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_product_product_tactile_tree"/>
+        <field name="context">{"search_default_filter_to_sell":1}</field>
+    </record>
+
+    <menuitem id="menu_product_product_tactile"
+        name="Products (Tactile)"
+        parent="menu_product_product_editable_view" sequence="3" 
+        action="action_product_product_tactile_tree"/>
+
+    <!--
+        * Add an extra view product (Scale View) #4
+    -->
+
 
     <record id="view_product_product_scale_tree" model="ir.ui.view">
         <field name="model">product.product</field>
@@ -55,31 +437,228 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         </field>
     </record>
 
-    <record id="view_product_template_point_of_sale_form" model="ir.ui.view">
-        <field name="model">product.template</field>
-        <field name="inherit_id" ref="point_of_sale.product_template_form_view"/>
+    <record id="action_product_product_scale_tree" model="ir.actions.act_window">
+        <field name="name">Products (Scale)</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.product</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_product_product_scale_tree"/>
+        <field name="context">{"search_default_filter_to_sell":1}</field>
+    </record>
+
+    <menuitem id="menu_product_product_scale"
+        name="Products (Scale)"
+        parent="menu_product_product_editable_view" sequence="4"
+        groups="product_to_scale_bizerba.group_user"
+        action="action_product_product_scale_tree"/>
+
+    <!--
+        * Add an extra view product (Pricetag View) #5
+    -->
+
+    <record id="view_product_product_pricetag_tree" model="ir.ui.view">
+        <field name="model">product.product</field>
         <field name="arch" type="xml">
-            <field name="income_pdt" position="attributes">
-                <attribute name="groups">account.group_account_manager</attribute>
-            </field>
-            <field name="expense_pdt" position="attributes">
-                <attribute name="groups">account.group_account_manager</attribute>
-            </field>
+            <tree string="Products (Price Tags)" editable="bottom">
+                <field name="name" readonly="1"/>
+                <field name="pricetag_type_id"/>
+                <field name="pricetag_state" />
+            </tree>
         </field>
     </record>
 
-<!--    <record id="product_normal_form_view" model="ir.ui.view">-->
-<!--        <field name="model">product.product</field>-->
-<!--        <field name="inherit_id" ref="point_of_sale.product_normal_form_view"/>-->
-<!--        <field name="priority" eval="20"/>-->
-<!--        <field name="arch" type="xml">-->
-<!--            <field name="income_pdt" position="attributes">-->
-<!--                <attribute name="groups">account.group_account_manager</attribute>-->
-<!--            </field>-->
-<!--            <field name="expense_pdt" position="attributes">-->
-<!--                <attribute name="groups">account.group_account_manager</attribute>-->
-<!--            </field>-->
-<!--        </field>-->
-<!--    </record>-->
+    <record id="action_product_product_pricetag" model="ir.actions.act_window">
+        <field name="name">Products (Price Tags)</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.product</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+        <field name="context">{'search_default_print_todo':1}</field>
+        <field name="search_view_id" ref="view_product_product_search"/>
+        <field name="view_id" ref="view_product_product_pricetag_tree"/>
+    </record>
+
+    <menuitem id="menu_product_product_pricetag"
+        name="Products (Price Tags)"
+        parent="menu_product_product_editable_view" sequence="5"
+        action="action_product_product_pricetag"/>
+
+    <!--
+        * Add an extra view product (Food View) #6
+    -->
+    <record id="view_product_product_food_tree" model="ir.ui.view">
+        <field name="model">product.product</field>
+        <field name="arch" type="xml">
+            <tree string="Products (Food)" editable="bottom">
+                <field name="name" readonly="1"/>
+                <field name="is_mercuriale"/>
+                <field name="label_ids" widget="many2many_tags"/>
+                <field name="fresh_category"/>
+                <field name="fresh_range"/>
+                <field name="organic_notation"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_product_product_food" model="ir.actions.act_window">
+        <field name="name">Products (Food)</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.product</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_product_product_food_tree"/>
+    </record>
+
+   <menuitem id="menu_product_product_food"
+        name="Products (Food)"
+        action="action_product_product_food"
+        parent="menu_product_product_editable_view" sequence="6"/>
+
+    <!--
+        * Add an extra view product (Origin View) #7
+    -->
+
+    <record id="view_product_product_origin_tree" model="ir.ui.view">
+        <field name="model">product.product</field>
+        <field name="arch" type="xml">
+            <tree string="Products (Origin)" editable="bottom">
+                <field name="name" readonly="1"/>
+                <field name="country_id" 
+                    options="{'quick_create':false}"
+                    on_change="onchange_country_id(
+                        country_id,
+                        department_id)"/>
+                <field name="department_id"
+                    options="{'quick_create':false}"
+                    on_change="onchange_department_id(
+                        country_id,
+                        department_id)"/>
+                <field name="maker_description"/>
+                <field name="origin_description"/>
+                <field name="local_notation"/>
+                <field name="social_notation"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_product_product_origin" model="ir.actions.act_window">
+        <field name="name">Products (Origin)</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.product</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_product_product_origin_tree"/>
+    </record>
+
+   <menuitem id="menu_product_product_origin"
+        name="Products (Origin)"
+        action="action_product_product_food"
+        parent="menu_product_product_editable_view" sequence="7"/>
+
+    <!--
+        * Add an extra view product (eShop View) #8
+    -->
+
+    <record id="view_product_product_eshop_tree" model="ir.ui.view">
+        <field name="model">product.product</field>
+        <field name="arch" type="xml">
+            <tree string="Products (eShop)" editable="bottom"
+                    colors="black:eshop_state == 'available'; blue:eshop_state == 'disabled'; gray: eshop_state == 'unavailable'" 
+                    fonts="bold:eshop_unpack_qty!=0">
+                <field name="name" readonly="1"/>
+                <field name="eshop_minimum_qty"/>
+                <field name="eshop_rounded_qty"/>
+                <field name="eshop_unpack_qty"/>
+                <field name="eshop_unpack_surcharge" attrs="{'invisible':[('eshop_unpack_qty','=', 0)]}"/>
+                <field name="eshop_category_id"/>
+                <field name="eshop_start_date"/>
+                <field name="eshop_end_date"/>
+                <field name="eshop_state"/>
+                <field name="sale_ok"/>
+                <field name="company_id" groups="base.group_multi_company" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_product_product_eshop" model="ir.actions.act_window">
+        <field name="name">Products (eShop)</field>
+        <field name="res_model">product.product</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+        <field name="context">{'search_default_eshop_setup':1}</field>
+        <field name="view_id" ref="view_product_product_eshop_tree" />
+    </record>
+
+   <menuitem id="menu_product_product_eshop"
+        name="Products (eShop)"
+        parent="menu_product_product_editable_view" sequence="8"
+        groups="sale_eshop.res_groups_eshop_user"
+        action="action_product_product_eshop"/>
+
+    <!--
+        * Add an extra view product (Prepare View) #9
+    -->
+
+    <record id="view_product_product_prepare_tree" model="ir.ui.view">
+        <field name="model">product.product</field>
+        <field name="arch" type="xml">
+            <tree string="Products (Prepare)" editable="bottom">
+                <field name="name" readonly="1"/>
+                <field name="prepare_categ_id" groups="sale_recovery_moment.prepare_user"/>
+                <field name="company_id" groups="base.group_multi_company" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_product_product_prepare" model="ir.actions.act_window">
+        <field name="name">Products (Prepare)</field>
+        <field name="res_model">product.product</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_product_product_prepare_tree" />
+    </record>
+
+   <menuitem id="menu_product_product_prepare"
+        name="Products (Prepare)"
+        parent="menu_product_product_editable_view" sequence="9"
+        groups="sale_recovery_moment.prepare_user"
+        action="action_product_product_prepare"/>
+
+    <!--
+        * Add an extra view product (Delivery View) #10
+    -->
+
+    <record id="view_product_product_delivery_tree" model="ir.ui.view">
+        <field name="model">product.product</field>
+        <field name="arch" type="xml">
+            <tree string="Products (Delivery)" editable="bottom">
+                <field name="name" readonly="1"/>
+                <field name="delivery_categ_id" groups="sale_recovery_moment.delivery_user"/>
+                <field name="company_id" groups="base.group_multi_company" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_product_product_delivery" model="ir.actions.act_window">
+        <field name="name">Products (Delivery)</field>
+        <field name="res_model">product.product</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_product_product_delivery_tree" />
+    </record>
+
+   <menuitem id="menu_product_product_delivery"
+        name="Products (Delivery)"
+        parent="menu_product_product_editable_view" sequence="10"
+        groups="sale_recovery_moment.delivery_user"
+        action="action_product_product_delivery"/>
+
+    <!--
+        * Add an extra view product (EAN Duplicates View) #11
+    -->
+   <menuitem id="product_ean_duplicates.menu_product_ean_duplicates_3"
+        name="Products (EAN Duplicate)"
+        parent="menu_product_product_editable_view" sequence="11"/>
 
 </data></openerp>

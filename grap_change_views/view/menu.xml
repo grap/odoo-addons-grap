@@ -8,6 +8,225 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 <openerp><data>
 
+<!-- Reorder Main Menu-->
+    <record model="ir.ui.menu" id="grap_cooperative.menu_grap_root">
+        <field name="sequence">1</field>
+    </record>
+
+    <record model="ir.ui.menu" id="base.menu_purchase_root">
+        <field name="sequence">2</field>
+    </record>
+
+    <record model="ir.ui.menu" id="stock.menu_stock_root">
+        <field name="sequence">3</field>
+    </record>
+
+    <record model="ir.ui.menu" id="base.menu_base_partner">
+        <field name="sequence">4</field>
+    </record>
+
+    <record model="ir.ui.menu" id="point_of_sale.menu_point_root">
+        <field name="sequence">5</field>
+    </record>
+
+    <record model="ir.ui.menu" id="intercompany_trade_base.menu_intercompany_trade_root">
+        <field name="sequence">6</field>
+    </record>
+
+    <record model="ir.ui.menu" id="account.menu_finance">
+        <field name="sequence">7</field>
+    </record>
+
+    <record model="ir.ui.menu" id="base.menu_reporting">
+        <field name="sequence">8</field>
+    </record>
+
+    <record model="ir.ui.menu" id="base.menu_administration">
+        <field name="sequence">100</field>
+    </record>
+
+    <record model="ir.ui.menu" id="knowledge.menu_document">
+        <field name="sequence">200</field>
+    </record>
+
+    <record model="ir.ui.menu" id="mail.mail_feeds_main">
+        <field name="sequence">201</field>
+    </record>
+
+
+<!-- enable Menu to basic user -->
+    <record model="ir.ui.menu" id="product.menu_product_pricelist_action2">
+        <field eval="[(6, 0, [ref('base.group_sale_salesman_all_leads')])]" name="groups_id"/>
+    </record>
+
+<!-- Enable menu for standard User -->
+        <record model="ir.ui.menu" id="stock.menu_action_move_form2">
+            <field eval="[(6, 0, [])]" name="groups_id"/>
+        </record>
+
+<!-- Disable menu for standard User -->
+
+    <record model="ir.ui.menu" id="stock.menu_stock_configuration">
+        <field eval="[(6, 0, [ref('base.group_no_one')])]" name="groups_id"/>
+    </record>
+
+    <record model="ir.ui.menu" id="stock.menu_action_location_form">
+        <field eval="[(6, 0, [ref('stock.group_stock_user')])]" name="groups_id"/>
+    </record>
+
+    <record model="ir.ui.menu" id="delivery.menu_action_delivery_carrier_form">
+        <field eval="[(6, 0, [ref('base.group_no_one')])]" name="groups_id"/>
+    </record>
+
+    <record model="ir.ui.menu" id="stock.menu_product_by_category_stock_form">
+        <field eval="[(6, 0, [ref('base.group_no_one')])]" name="groups_id"/>
+    </record>
+
+<!-- Disable Menu to basic User -->
+    <record model="ir.ui.menu" id="grap_print_product.menu_print_product">
+        <field eval="[(6, 0, [ref('base.group_no_one')])]" name="groups_id"/>
+    </record>
+
+    <record model="ir.ui.menu" id="product.menu_product_uom_form_action">
+        <field eval="[(6, 0, [ref('base.group_no_one')])]" name="groups_id"/>
+    </record>
+
+    <record model="ir.ui.menu" id="base.menu_config_address_book">
+        <field eval="[(6, 0, [ref('base.group_no_one')])]" name="groups_id"/>
+    </record>
+
+    <record model="ir.ui.menu" id="product.menu_product_pricelist_action">
+        <field eval="[(6, 0, [ref('base.group_no_one')])]" name="groups_id"/>
+    </record>
+
+    <record model="ir.ui.menu" id="product.menu_products_category">
+        <field eval="[(6, 0, [ref('base.group_no_one')])]" name="groups_id"/>
+    </record>
+
+    <!--
+        * Reorder Sale / Sale items
+        * Disable Quotation
+    -->
+    <record model="ir.ui.menu" id="sale.menu_sale_order">
+        <field name="sequence" eval="1" />
+    </record>
+    <record model="ir.ui.menu" id="base.menu_partner_form">
+        <field name="sequence" eval="2" />
+    </record>
+    <record model="ir.ui.menu" id="sale.menu_sale_quotations">
+        <field name="name">Quotations (Admin)</field>
+        <field name="groups_id" eval="[(6, 0, [ref('base.group_no_one')])]"/>
+    </record>
+
+<!-- Customer Part refactoring -->
+    <record model="ir.ui.menu" id="menu_res_partner_editable_view">
+        <field name="name">Customers (Other Views)</field>
+        <field name="sequence">2</field>
+        <field name="parent_id" ref="base.menu_sales" />
+    </record>
+
+    <menuitem id="sale_eshop.menu_res_partner_3"
+        name="Customers (eShop)"
+        sequence="1"
+        parent="menu_res_partner_editable_view"/>
+
+
+    <menuitem id="sale_recovery_moment.menu_res_partner_delivery_5"
+        name="Customers (Delivery)"
+        sequence="2"
+        parent="menu_res_partner_editable_view"/>
+
+<!-- Purchase / Purchase Menu -->
+
+    <record model="ir.ui.menu" id="purchase.menu_product_by_category_purchase_form">
+        <field name="groups_id" eval="[(6, 0, [ref('base.group_no_one')])]"/>
+    </record>
+
+<!-- Purchase / Reporting Menu -->
+    <record model="ir.ui.menu" id="purchase.menu_action_purchase_order_report_all">
+        <field name="groups_id" eval="[(6, 0, [ref('base.group_no_one')])]"/>
+    </record>
+
+    <record model="ir.ui.menu" id="product_margin.menu_action_product_margin">
+        <field name="groups_id" eval="[(6, 0, [ref('base.group_no_one')])]"/>
+    </record>
+
+    <record model="ir.ui.menu" id="product_margin_improve.menu_action_product_margin_categ">
+        <field name="groups_id" eval="[(6, 0, [ref('base.group_no_one')])]"/>
+    </record>
+
+<!-- Purchase purchase.order Menu refactoring -->
+    <!--
+        * Reorder Purchase / Purchase items
+        * Disable Quotation
+    -->
+    
+    <record model="ir.ui.menu" id="purchase.menu_purchase_form_action">
+        <field name="sequence" eval="1" />
+        <field name="name">Quotations / Purchase Orders</field>
+    </record>
+    <record model="ir.ui.menu" id="base.menu_procurement_management_supplier_name">
+        <field name="sequence" eval="2" />
+    </record>
+
+    <record model="ir.ui.menu" id="purchase.menu_purchase_rfq">
+        <field name="name">Quotations (Admin)</field>
+        <field name="sequence" eval="99" />
+        <field name="groups_id" eval="[(6, 0, [ref('base.group_no_one')])]"/>
+    </record>
+
+
+<!-- CRM / Sale Menu -->
+    <record model="ir.ui.menu" id="crm.menu_crm_leads">
+        <field name="groups_id" eval="[(6, 0, [ref('grap_change_access.group_crm_manager')])]"/>
+    </record>
+
+    <record model="ir.ui.menu" id="crm.menu_crm_opportunities">
+        <field name="groups_id" eval="[(6, 0, [ref('grap_change_access.group_crm_manager')])]"/>
+    </record>
+
+    <record model="ir.ui.menu" id="crm.menu_crm_case_phone">
+        <field name="groups_id" eval="[(6, 0, [ref('grap_change_access.group_crm_manager')])]"/>
+    </record>
+
+    <record model="ir.ui.menu" id="base.menu_crm_config_lead">
+        <field name="groups_id" eval="[(6, 0, [ref('grap_change_access.group_crm_manager')])]"/>
+    </record>
+
+    <record model="ir.ui.menu" id="crm.menu_crm_lead_stage_act">
+        <field name="groups_id" eval="[(6, 0, [ref('grap_change_access.group_crm_manager')])]"/>
+    </record>
+
+<!-- CRM / Reporting Menu -->
+    <record model="ir.ui.menu" id="crm.menu_report_crm_leads_tree">
+        <field name="groups_id" eval="[(6, 0, [ref('grap_change_access.group_crm_manager')])]"/>
+    </record>
+
+    <record model="ir.ui.menu" id="crm.menu_report_crm_opportunities_tree">
+        <field name="groups_id" eval="[(6, 0, [ref('grap_change_access.group_crm_manager')])]"/>
+    </record>
+
+    <record model="ir.ui.menu" id="crm.menu_report_crm_phonecalls_tree">
+        <field name="groups_id" eval="[(6, 0, [ref('grap_change_access.group_crm_manager')])]"/>
+    </record>
+
+
+<!-- GRAP Menu -->
+    <menuitem id="menu_grap_dashboard"
+        name="Indicateurs"
+        parent="grap_cooperative.menu_grap_root"
+        sequence="0"
+        groups="base.group_user"/>
+
+    <menuitem id="web_dashboard_tile.mail_dashboard" 
+        name="Indicateurs Synthétiques"
+        parent="menu_grap_dashboard"/>
+
+    <record id="mail.mail_feeds_main" model="ir.ui.menu">
+        <field name="groups_id" eval="[(6,0, [ref('base.group_no_one')])]" />
+    </record>
+
+
 <!-- Accounting Menu -->
     <menuitem id="menu_account_invoice_line_customer"
         name="Customer Invoices Lines"
@@ -86,15 +305,6 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="groups_id" eval="[(6, 0, [ref('base.group_no_one')])]"/>
     </record>
 
-    <menuitem id="menu_product_product_tactile" 
-        parent="point_of_sale.menu_point_of_sale_product" sequence="3" 
-        action="action_product_product_tactile_tree"/>
-
-    <menuitem id="menu_product_product_scale" 
-        parent="point_of_sale.menu_point_of_sale_product" sequence="4"
-        groups="product_to_scale_bizerba.group_user"
-        action="action_product_product_scale_tree"/>
-
     <menuitem id="menu_pos_order_line" name="Pos Order Lines" 
         groups="point_of_sale.group_pos_user" sequence="3" 
         parent="point_of_sale.menu_point_of_sale_product" 
@@ -125,12 +335,6 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field eval="[(6, 0, [])]" name="groups_id"/>
     </record>
 
-
-<!-- Disable menu for standard User -->
-<!--    <record model="ir.ui.menu" id="stock.menu_stock_products_moves">-->
-<!--        <field eval="[(6, 0, [ref('base.group_no_one')])]" name="groups_id"/>-->
-<!--    </record>-->
-
     <record model="ir.ui.menu" id="stock.menu_stock_configuration">
         <field eval="[(6, 0, [ref('base.group_no_one')])]" name="groups_id"/>
     </record>
@@ -139,25 +343,9 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field eval="[(6, 0, [ref('stock.group_stock_user')])]" name="groups_id"/>
     </record>
 
-<!--    <record model="ir.ui.menu" id="stock.menu_action_location_tree">-->
-<!--        <field eval="[(6, 0, [ref('base.group_no_one')])]" name="groups_id"/>-->
-<!--    </record>-->
-
-<!--    <record model="ir.ui.menu" id="procurement.menu_stock_sched">-->
-<!--        <field eval="[(6, 0, [ref('base.group_no_one')])]" name="groups_id"/>-->
-<!--    </record>-->
-
-<!--    <record model="ir.ui.menu" id="procurement.menu_stock_order_points">-->
-<!--        <field eval="[(6, 0, [ref('base.group_no_one')])]" name="groups_id"/>-->
-<!--    </record>-->
-
     <record model="ir.ui.menu" id="delivery.menu_action_delivery_carrier_form">
         <field eval="[(6, 0, [ref('base.group_no_one')])]" name="groups_id"/>
     </record>
-
-<!--    <record model="ir.ui.menu" id="stock.menu_action_picking_tree6">-->
-<!--        <field eval="[(6, 0, [ref('base.group_no_one')])]" name="groups_id"/>-->
-<!--    </record>-->
 
     <record model="ir.ui.menu" id="stock.menu_product_by_category_stock_form">
         <field eval="[(6, 0, [ref('base.group_no_one')])]" name="groups_id"/>
