@@ -104,11 +104,6 @@ msgid "{\"quick_create\": false}"
 msgstr "{\"quick_create\": false}"
 
 #. module: grap_change_views
-#: view:pos.session.opening:0
-msgid "Start Selling"
-msgstr "Ancienne interface"
-
-#. module: grap_change_views
 #: code:addons/grap_change_views/point_of_sale.py:75
 #, python-format
 msgid "Error!"
@@ -123,11 +118,6 @@ msgstr "base.group_user"
 #: view:pos.session.opening:0
 msgid "Start Tactile Selling"
 msgstr "Interface Tactile"
-
-#. module: grap_change_views
-#: view:pos.session.opening:0
-msgid "Start Old Selling"
-msgstr "Ancienne Interface"
 
 #. module: grap_change_views
 #: view:pos.session:0
