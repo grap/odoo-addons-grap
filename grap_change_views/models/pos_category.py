@@ -7,7 +7,7 @@ from openerp.osv.orm import Model
 from openerp.osv import fields
 
 
-class pos_category(Model):
+class PosCategory(Model):
     _inherit = 'pos.category'
     _order = 'complete_name_order'
 
