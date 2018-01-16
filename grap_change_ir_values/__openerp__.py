@@ -9,12 +9,12 @@
     'version': '8.0.1.0.0',
     'category': 'GRAP - Custom',
     'author': 'GRAP',
+    'licence': 'AGPL-3',
     'depends': [
+        'purchase',
         'mail',
-        'email_template',
         'product',
     ],
-    'licence': 'AGPL-3',
     'data': [
         'data/ir_values.xml',
     ],
