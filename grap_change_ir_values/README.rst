@@ -1,45 +1,42 @@
-.. image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
    :target: https://www.gnu.org/licenses/agpl
    :alt: License: AGPL-3
 
-==============
-{module_title}
-==============
+=======================
+GRAP - Change Ir Values
+=======================
 
-This module extends the functionality of ... to support ...
-and to allow you to ...
+Set ir.values for default feature
 
-Installation
-============
+Partners (res.partner)
+----------------------
 
-To install this module, you need to:
+* Partners receive mail by default:
+    * field : 'notification_email_send';
+    * value : 'comment';
 
-* 
+Products (product.template)
+---------------------------
 
-Configuration
-=============
+* Products has no default UoM:
+    * field : 'uom_id';
+    * value : False;
+* Products has no default Purchase UoM:
+    * field : 'uom_po_id';
+    * value : False;
+* Products has Null Produce Delay:
+    * field : 'produce_delay';
+    * value : 0;
+* Products has Null Sale Delay:
+    * field : 'sale_delay';
+    * value : 0;
 
-To configure this module, you need to:
+Technical Information:
+----------------------
 
-* 
-
-.. figure:: path/to/local/image.png
-   :alt: alternative description
-   :width: 600 px
-
-Usage
-=====
-
-To use this module, you need to:
-
-* ...
-
-
-Known issues / Roadmap
-======================
-
-* ...
-
+* for product_template.uom_id and uom_po_id, a special test is done to
+  know if creation come from the load of a new module. In that special
+  case, default value is unchanged;
 
 Credits
 =======
@@ -48,11 +45,9 @@ Contributors
 ------------
 
 * Julien WESTE
-* Sylvain LE GAL (https://twitter.com/legalsylvain)
+* Sylvain LE GAL <https://twitter.com/legalsylvain>
 
 Funders
 -------
 
-The development of this module has been financially supported by:
-
-* GRAP, Groupement Régional Alimentaire de Proximité (http://www.grap.coop)
+* GRAP, Groupement Régional Alimentaire de Proximité <http://www.grap.coop>
