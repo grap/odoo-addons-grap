@@ -103,6 +103,10 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field eval="[(6, 0, [ref('base.group_no_one')])]" name="groups_id"/>
     </record>
 
+    <record model="ir.ui.menu" id="purchase.menu_purchase_config_pricelist">
+        <field eval="[(6, 0, [ref('base.group_no_one')])]" name="groups_id"/>
+    </record>
+
     <!--
         * Reorder Sale / Sale items
         * Disable Quotation
@@ -139,6 +143,22 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 <!-- Purchase / Purchase Menu -->
 
     <record model="ir.ui.menu" id="purchase.menu_product_by_category_purchase_form">
+        <field name="groups_id" eval="[(6, 0, [ref('base.group_no_one')])]"/>
+    </record>
+    
+    <record model="ir.ui.menu" id="purchase.menu_procurement_management_inventory">
+        <field name="groups_id" eval="[(6, 0, [ref('base.group_no_one')])]"/>
+    </record>
+
+    <record model="ir.ui.menu" id="purchase.menu_procurement_management_pending_invoice">
+        <field name="groups_id" eval="[(6, 0, [ref('base.group_no_one')])]"/>
+    </record>
+
+    <record model="ir.ui.menu" id="purchase.menu_purchase_line_order_draft">
+        <field name="groups_id" eval="[(6, 0, [ref('base.group_no_one')])]"/>
+    </record>
+
+    <record model="ir.ui.menu" id="purchase.menu_action_picking_tree_picking_to_invoice">
         <field name="groups_id" eval="[(6, 0, [ref('base.group_no_one')])]"/>
     </record>
 
@@ -305,11 +325,10 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="groups_id" eval="[(6, 0, [ref('base.group_no_one')])]"/>
     </record>
 
-    <menuitem id="menu_pos_order_line" name="Pos Order Lines" 
-        groups="point_of_sale.group_pos_user" sequence="3" 
-        parent="point_of_sale.menu_point_of_sale_product" 
+    <menuitem id="menu_pos_order_line" name="Order Lines"
+        sequence="3"
+        parent="point_of_sale.menu_point_of_sale" 
         action="action_pos_order_line"/>
-
 
 <!-- Point Of Sale Menu -->
     <record model="ir.ui.menu" id="point_of_sale.menu_point_config_product">

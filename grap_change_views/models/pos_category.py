@@ -3,40 +3,32 @@
 # @author: Sylvain LE GAL (https://twitter.com/legalsylvain)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp.osv.orm import Model
-from openerp.osv import fields
+from openerp import models, api, fields
 
 
-class PosCategory(Model):
+class PosCategory(models.Model):
     _inherit = 'pos.category'
     _order = 'complete_name_order'
 
-    # Field Functions Section
-    def _get_complete_name_order(
-            self, cr, uid, ids, name, args, context=None):
-        res = dict.fromkeys(ids, False)
-        for pc in self.browse(cr, uid, ids, context=context):
-            res[pc.id] = pc.complete_name
-        return res
+    # Columns Section
+    complete_name_order = fields.Char(
+        string='Complete Name Stored', store=True,
+        compute = '_compute_complete_name_order')
 
-    def _get_product_qty(
-            self, cr, uid, ids, name, args, context=None):
-        res = dict.fromkeys(ids, False)
-        for pc in self.browse(cr, uid, ids, context=context):
-            res[pc.id] = len(pc.product_ids)
-        return res
+    product_ids = fields.One2many(
+        comodel_name='product.product', inverse_name='pos_categ_id',
+        string='Products', readonly=True)
 
-    # Column Section
-    _columns = {
-        'complete_name_order': fields.function(
-            _get_complete_name_order, type='char',
-            string='Complete Name Stored',
-            store={
-                'pos.category': (
-                    lambda self, cr, uid, ids, c={}: ids, ['name'], 10)
-            }),
-        'product_ids': fields.one2many(
-            'product.product', 'pos_categ_id', 'Products', readonly=True),
-        'product_qty': fields.function(
-            _get_product_qty, type='integer', string='Product Number'),
-    }
+    product_qty = fields.Integer(
+        string='Product Qty', compute='_compute_product_qty', store=True)
+
+    # Compute Section
+    @api.depends('name', 'parent_id.name')
+    def _compute_complete_name_order(self):
+        for category in self:
+            category.complete_name_order = category.complete_name
+
+    @api.depends('product_ids')
+    def _compute_product_qty(self):
+        for category in self:
+            category.product_qty = len(category.product_ids)

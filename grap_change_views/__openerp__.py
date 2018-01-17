@@ -7,25 +7,6 @@
     'name': 'GRAP - Change Views',
     'version': '8.0.7.0.0',
     'category': 'GRAP - Custom',
-    'description': """
-Show / Hide / change views for users
-====================================
-
-Functionality:
---------------
-    * Hide a lot of field from 'basic users';
-    * Change size of some columns;
-    * Add product's function field in pos_category;
-
-TODO: update description
-
-Copyright, Authors and Licence:
--------------------------------
-    * Copyright: 2013, GRAP: Groupement Régional Alimentaire de Proximité;
-    * Author:
-        * Julien WESTE;
-        * Sylvain LE GAL (https://twitter.com/legalsylvain);
-    * Licence: AGPL-3 (http://www.gnu.org/licenses/);""",
     'author': 'GRAP',
     'website': 'http://www.grap.coop',
     'license': 'AGPL-3',
@@ -42,7 +23,6 @@ Copyright, Authors and Licence:
         'product',
         'product_margin',
         'product_margin_improve',
-        # 'product_average_consumption',
         'product_standard_margin',
         'procurement',
         'purchase',
@@ -71,9 +51,7 @@ Copyright, Authors and Licence:
         'purchase_discount',
         'intercompany_trade_base',
         'recurring_consignment',
-        # 'purchase_compute_order',
         'grap_change_access',
-        # 'grap_reporting',
         'grap_print_product',
         'barcodes_generator_product',
     ],
@@ -108,8 +86,9 @@ Copyright, Authors and Licence:
         'views/view_workflow_workitem.xml',
         'views/action.xml',
         'views/menu.xml',
+        'views/grap_change_views.xml',
     ],
-    'css': [
-        'static/src/css/css.css',
+    'demo': [
+        'demo/res_groups.xml',
     ],
 }

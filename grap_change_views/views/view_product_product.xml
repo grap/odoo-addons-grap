@@ -8,35 +8,98 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 <openerp><data>
 
-<!--    <record id="action_view_old_product_form" model="ir.actions.act_window">-->
-<!--        <field name="type">ir.actions.act_window</field>-->
-<!--        <field name="res_model">product.product</field>-->
-<!--        <field name="view_type">form</field>-->
-<!--        <field name="view_mode">tree,form</field>-->
-<!--        <field name="view_id" ref="product.product_normal_form_view" />-->
-<!--    </record>-->
-
-<!--    <menuitem id="menu_view_old_product_form"-->
-<!--        parent="base.menu_product"-->
-<!--        action="action_view_old_product_form" -->
-<!--        groups="base.group_no_one"-->
-<!--        sequence="1"/>-->
-
-    <record id="view_product_normal_form_view" model="ir.ui.view">
-        <field name="model">product.product</field>
-        <field name="inherit_id" ref="product.product_normal_form_view"/>
-        <field name="arch" type="xml">
-            <data>
-                <field name="product_manager" position="attributes">
-                    <attribute name="groups">base.group_no_one</attribute>
-                </field>
-                <field name="image_medium" position="attributes">
-                    <attribute name="groups">grap_change_views.group_product_image_manager</attribute>
-                </field>
-            </data>
-        </field>
+<!-- Disable product.template menu entry in Purchase / products -->
+    <record model="ir.ui.menu" id="purchase.menu_procurement_partner_contact_form">
+        <field name="name">Products (Admin)</field>
+        <field  name="groups_id" eval="[(6, 0, [ref('base.group_no_one')])]"/>
     </record>
 
+<!-- Disable product.template menu entry in Warehouse / products -->
+    <record model="ir.ui.menu" id="stock.menu_stock_products_menu">
+        <field name="name">Products (Admin)</field>
+        <field  name="groups_id" eval="[(6, 0, [ref('base.group_no_one')])]"/>
+    </record>
+
+<!-- Disable product.template menu entry in Sale / products -->
+    <record model="ir.ui.menu" id="product.menu_product_template_action">
+        <field name="name">Products (Admin)</field>
+        <field  name="groups_id" eval="[(6, 0, [ref('base.group_no_one')])]"/>
+    </record>
+
+<!-- Disable product.template menu entry in Point of Sale / products -->
+    <record model="ir.ui.menu" id="point_of_sale.menu_pos_products">
+        <field name="name">Products (Admin)</field>
+        <field  name="groups_id" eval="[(6, 0, [ref('base.group_no_one')])]"/>
+    </record>
+
+<!-- Add Variant Menu in Purchase / Products -->
+    <record id="action_product_product_purchase" model="ir.actions.act_window">
+        <field name="name">Products</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.product</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="context">{"search_default_filter_to_purchase":1}</field>
+    </record>
+
+    <record model="ir.ui.menu" id="menu_purchase_product_product">
+        <field name="name">Products</field>
+        <field name="sequence">0</field>
+        <field name="action" ref="action_product_product_purchase" />
+        <field name="parent_id" ref="purchase.menu_procurement_management_product" />
+    </record>
+
+<!-- Add Variant Menu in Warehouse / Products -->
+    <record id="action_product_product_stock" model="ir.actions.act_window">
+        <field name="name">Products</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.product</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,kanban,form</field>
+    </record>
+
+    <record model="ir.ui.menu" id="menu_warehouse_product_product">
+        <field name="name">Products</field>
+        <field name="sequence">0</field>
+        <field name="action" ref="action_product_product_stock" />
+        <field name="parent_id" ref="stock.menu_stock_product" />
+    </record>
+
+<!-- Add Variant Menu in Sale / Products -->
+    <record id="action_product_product_sale" model="ir.actions.act_window">
+        <field name="name">Products</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.product</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="context">{"search_default_filter_to_sell":1}</field>
+    </record>
+
+    <record model="ir.ui.menu" id="menu_sale_product_product">
+        <field name="name">Products</field>
+        <field name="sequence">0</field>
+        <field name="action" ref="action_product_product_sale" />
+        <field name="parent_id" ref="base.menu_product" />
+    </record>
+
+<!-- Add Variant Menu in Point Of Sale / Products -->
+    <record id="action_product_product_pos" model="ir.actions.act_window">
+        <field name="name">Products</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.product</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="context">{"search_default_filter_to_pos":1}</field>
+    </record>
+
+    <record model="ir.ui.menu" id="menu_pos_product_product">
+        <field name="name">Products</field>
+        <field name="sequence">0</field>
+        <field name="action" ref="action_product_product_pos" />
+        <field name="parent_id" ref="point_of_sale.menu_point_of_sale_product" />
+    </record>
+
+<!-- Search View -->
     <record id="view_product_product_search" model="ir.ui.view">
         <field name="model">product.product</field>
         <field name="inherit_id" ref="product.product_search_form_view"/>
@@ -46,10 +109,12 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
             </field>
             <xpath expr="//filter[@string='Category']" position="after">
                 <filter string="POS Category" context="{'group_by' : 'pos_categ_id'}"/>
+                <filter string="Available in Point Of Sale" name="filter_to_pos" domain="[('available_in_pos','=',1)]"/>
             </xpath>
         </field>
     </record>
 
+<!-- Form View Overwritten -->
     <record id="view_product_product_form" model="ir.ui.view">
         <field name="model">product.product</field>
         <field name="priority" eval="1"/>

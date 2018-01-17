@@ -15,6 +15,13 @@
 .openerp .oe_horizontal_separator {
     margin: 6px 0px 0px;
 }
+
+/* stock - stock_picking_type_kanban                                        */
+/*TODO FIXME, doesn't work*/
+.oe_kanban_stock_picking_type {
+    min-height: 150px !important;
+    height: 150px !important;
+}
 /* point_of_sale - view_pos_order_form                                        */
 
 .grap_change_views__view_pos_order_form [data-id="product_id"]          {width: 50%;}
