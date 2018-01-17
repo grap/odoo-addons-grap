@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-16 16:06+0000\n"
-"PO-Revision-Date: 2018-01-16 16:06+0000\n"
+"POT-Creation-Date: 2018-01-17 13:41+0000\n"
+"PO-Revision-Date: 2018-01-17 13:41+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -36,9 +36,24 @@ msgid "Account Move Lines"
 msgstr "Ecritures Comptables"
 
 #. module: grap_change_views
+#: view:stock.picking.type:grap_change_views.view_stock_picking_type_kanban
+msgid "All Operations"
+msgstr "Toutes les opérations"
+
+#. module: grap_change_views
 #: view:sale.order:grap_change_views.view_sale_order_tree
 msgid "Amount (VAT Incl.)"
 msgstr "Total TTC"
+
+#. module: grap_change_views
+#: view:product.product:grap_change_views.view_product_product_search
+msgid "Available in Point Of Sale"
+msgstr "Disponible dans le point de vente"
+
+#. module: grap_change_views
+#: view:stock.picking.type:grap_change_views.view_stock_picking_type_kanban
+msgid "Backorders"
+msgstr "Reliquats"
 
 #. module: grap_change_views
 #: view:account.invoice.line:grap_change_views.view_account_invoice_line_search
@@ -70,7 +85,7 @@ msgstr "Nom complet stocké"
 #. module: grap_change_views
 #: field:pos.order.line,partner_id:0
 msgid "Customer"
-msgstr "Customer"
+msgstr "Client"
 
 #. module: grap_change_views
 #: model:ir.actions.act_window,name:grap_change_views.action_account_invoice_line_tree_customer
@@ -147,13 +162,13 @@ msgstr "Information alimentaire"
 #: view:product.product:grap_change_views.view_product_product_form
 #: view:product.product:grap_change_views.view_product_product_scale_tree
 msgid "Generate Barcode (Using Barcode Rule)"
-msgstr "Generate Barcode (Using Barcode Rule)"
+msgstr "Générer un code barre (Via une Règle)"
 
 #. module: grap_change_views
 #: view:product.product:grap_change_views.view_product_product_form
 #: view:product.product:grap_change_views.view_product_product_scale_tree
 msgid "Generate Base (Using Sequence)"
-msgstr "Generate Base (Using Sequence)"
+msgstr "Générer une base (Via séquence)"
 
 #. module: grap_change_views
 #: view:account.invoice.line:grap_change_views.view_account_invoice_line_search
@@ -208,7 +223,12 @@ msgstr "Lignes de factures"
 #. module: grap_change_views
 #: help:account.invoice.line,date_invoice:0
 msgid "Keep empty to use the current date"
-msgstr "Keep empty to use the current date"
+msgstr "Laisser vide pour utiliser la date courante"
+
+#. module: grap_change_views
+#: view:stock.picking.type:grap_change_views.view_stock_picking_type_kanban
+msgid "Late"
+msgstr "En retard"
 
 #. module: grap_change_views
 #: view:account.move:grap_change_views.view_account_move_form
@@ -254,6 +274,11 @@ msgstr "Notation"
 #: view:account.move:grap_change_views.view_account_move_form
 msgid "Num. Fact."
 msgstr "Num. Fact."
+
+#. module: grap_change_views
+#: model:ir.ui.menu,name:grap_change_views.menu_pos_order_line
+msgid "Order Lines"
+msgstr "Lignes de commandes"
 
 #. module: grap_change_views
 #: view:product.product:grap_change_views.view_product_product_form
@@ -331,11 +356,6 @@ msgid "Point of Sale"
 msgstr "Point de Vente"
 
 #. module: grap_change_views
-#: model:ir.ui.menu,name:grap_change_views.menu_pos_order_line
-msgid "Pos Order Lines"
-msgstr "Lignes de Points de Vente"
-
-#. module: grap_change_views
 #: view:pos.order:grap_change_views.view_pos_order_search
 #: view:pos.order.line:grap_change_views.view_pos_order_line_search
 msgid "Posted"
@@ -348,7 +368,7 @@ msgstr "Information liée à l'impression"
 
 #. module: grap_change_views
 #: view:product.product:grap_change_views.view_product_product_form
-msgid "Prix de Revient (HT)"
+msgid "Cost Price (VAT Excl.)"
 msgstr "Prix de Revient (HT)"
 
 #. module: grap_change_views
@@ -366,10 +386,18 @@ msgstr "Liste des articles"
 
 #. module: grap_change_views
 #: field:pos.category,product_qty:0
-msgid "Product Number"
-msgstr "Nombre d'articles"
+msgid "Product Qty"
+msgstr "Qté Produits"
 
 #. module: grap_change_views
+#: model:ir.actions.act_window,name:grap_change_views.action_product_product_pos
+#: model:ir.actions.act_window,name:grap_change_views.action_product_product_purchase
+#: model:ir.actions.act_window,name:grap_change_views.action_product_product_sale
+#: model:ir.actions.act_window,name:grap_change_views.action_product_product_stock
+#: model:ir.ui.menu,name:grap_change_views.menu_pos_product_product
+#: model:ir.ui.menu,name:grap_change_views.menu_purchase_product_product
+#: model:ir.ui.menu,name:grap_change_views.menu_sale_product_product
+#: model:ir.ui.menu,name:grap_change_views.menu_warehouse_product_product
 #: field:pos.category,product_ids:0
 msgid "Products"
 msgstr "Articles"
@@ -470,6 +498,11 @@ msgid "Put an internal note..."
 msgstr "Mettre une note interne..."
 
 #. module: grap_change_views
+#: view:stock.picking.type:grap_change_views.view_stock_picking_type_kanban
+msgid "Ready"
+msgstr "Prêt"
+
+#. module: grap_change_views
 #: view:product.product:grap_change_views.view_product_product_form
 msgid "Resend Creation To the Scale System"
 msgstr "Envoyer une création au système de balance"
@@ -512,7 +545,7 @@ msgstr "Recherche de Lignes de PdV"
 #. module: grap_change_views
 #: help:account.invoice.line,categ_id:0
 msgid "Select category for the current product"
-msgstr "Select category for the current product"
+msgstr "Choisir la catégorie pour le produit"
 
 #. module: grap_change_views
 #: view:product.product:grap_change_views.view_product_product_form
@@ -621,6 +654,11 @@ msgid "VAT Excl. Subtotal"
 msgstr "Sous Total HT"
 
 #. module: grap_change_views
+#: view:stock.picking.type:grap_change_views.view_stock_picking_type_kanban
+msgid "Waiting Availability"
+msgstr "En attente de disponibilité"
+
+#. module: grap_change_views
 #: view:stock.move:grap_change_views.view_stock_move_search
 #: field:stock.move,workflow_description:0
 msgid "Workflow"
@@ -655,7 +693,7 @@ msgstr "base.group_multi_currency"
 #. module: grap_change_views
 #: view:account.voucher:grap_change_views.view_account_voucher_form
 #: view:product.pricelist.item:grap_change_views.view_product_pricelist_item_tree
-#: view:product.product:grap_change_views.view_product_normal_form_view
+#: view:product.product:grap_change_views.view_product_product_tree
 #: view:product.supplierinfo:grap_change_views.product_supplierinfo_form
 #: view:product.supplierinfo:grap_change_views.product_supplierinfo_tree
 #: view:res.partner:grap_change_views.view_res_partner_delivery_form
@@ -666,6 +704,7 @@ msgstr "base.group_multi_currency"
 #: view:sale.order:grap_change_views.view_sale_order_form_delivery_3
 #: view:sale.order:grap_change_views.view_sale_order_form_sale_3
 #: view:sale.order:grap_change_views.view_sale_order_form_sale_margin_3
+#: view:stock.picking.type:grap_change_views.view_stock_picking_type_kanban
 msgid "base.group_no_one"
 msgstr "base.group_no_one"
 
@@ -688,11 +727,6 @@ msgstr "blue:state=='draft';gray:state=='cancel';red:state in ('waiting','confir
 #: view:product.product:grap_change_views.view_product_product_form
 msgid "eShop"
 msgstr "Boutique en ligne"
-
-#. module: grap_change_views
-#: view:product.product:grap_change_views.view_product_normal_form_view
-msgid "grap_change_views.group_product_image_manager"
-msgstr "grap_change_views.group_product_image_manager"
 
 #. module: grap_change_views
 #: view:account.move:grap_change_views.view_account_move_form
