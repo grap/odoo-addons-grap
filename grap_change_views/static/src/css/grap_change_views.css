@@ -33,6 +33,17 @@
     margin: 6px 0px 0px;
 }
 
+/* purchase - view_purchase_order_form --------------------------------------------- */
+.grap_change_views__view_purchase_order_form [data-id="product_id"]          {width: 33%;}
+.grap_change_views__view_purchase_order_form [data-id="name"]                {width: 25%;}
+.grap_change_views__view_purchase_order_form [data-id="product_qty"]         {width: 6%;}
+.grap_change_views__view_purchase_order_form [data-id="product_uom"]         {width: 6%;}
+.grap_change_views__view_purchase_order_form [data-id="price_unit"]          {width: 6%;}
+.grap_change_views__view_purchase_order_form [data-id="discount"]            {width: 6%;}
+.grap_change_views__view_purchase_order_form [data-id="tax_ids_description"] {width 12%;}
+.grap_change_views__view_purchase_order_form [data-id="price_subtotal"]      {width: 6%;}
+
+
 /* sale - view_sale_order_form --------------------------------------------- */
 .grap_change_views__view_sale_order_form [data-id="product_id"]          {width: 33%;}
 .grap_change_views__view_sale_order_form [data-id="name"]                {width: 25%;}

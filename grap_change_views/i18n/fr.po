@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-17 13:56+0000\n"
-"PO-Revision-Date: 2018-01-17 13:56+0000\n"
+"POT-Creation-Date: 2018-02-03 16:24+0000\n"
+"PO-Revision-Date: 2018-02-03 16:24+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -69,6 +69,7 @@ msgstr "Nom de la catégorie"
 #. module: grap_change_views
 #: view:account.move.line:grap_change_views.view_account_move_line_search
 #: view:ir.values:grap_change_views.view_ir_values_search
+#: view:purchase.order:grap_change_views.view_purchase_order_search
 msgid "Company"
 msgstr "Société"
 
@@ -127,6 +128,12 @@ msgstr "Date Max"
 #: field:account.invoice.line,date_invoice:0
 msgid "Date invoice"
 msgstr "Date de facture"
+
+#. module: grap_change_views
+#: view:purchase.order:grap_change_views.view_purchase_order_form
+#: view:sale.order:grap_change_views.view_sale_order_form_sale_3
+msgid "Disc (%)"
+msgstr "Rem. (%)"
 
 #. module: grap_change_views
 #: view:pos.order:grap_change_views.view_pos_order_form
@@ -498,6 +505,12 @@ msgid "Put an internal note..."
 msgstr "Mettre une note interne..."
 
 #. module: grap_change_views
+#: view:purchase.order:grap_change_views.view_purchase_order_form
+#: view:sale.order:grap_change_views.view_sale_order_form_sale_3
+msgid "Qty"
+msgstr "Qté"
+
+#. module: grap_change_views
 #: view:stock.picking.type:grap_change_views.view_stock_picking_type_kanban
 msgid "Ready"
 msgstr "Prêt"
@@ -603,6 +616,7 @@ msgstr "Taxes"
 
 #. module: grap_change_views
 #: view:pos.session:grap_change_views.view_pos_session_search
+#: view:purchase.order:grap_change_views.view_purchase_order_search
 #: view:sale.order:grap_change_views.view_sale_order_search
 msgid "To Process"
 msgstr "A traiter"
@@ -644,6 +658,12 @@ msgid "Type"
 msgstr "Type"
 
 #. module: grap_change_views
+#: view:purchase.order:grap_change_views.view_purchase_order_form
+#: view:sale.order:grap_change_views.view_sale_order_form_sale_3
+msgid "UoM"
+msgstr "UdM"
+
+#. module: grap_change_views
 #: view:ir.values:grap_change_views.view_ir_values_search
 msgid "User"
 msgstr "Utilisateur"
@@ -679,6 +699,7 @@ msgstr "['|', '|', ('number','ilike',self),('origin','ilike',self),('reference',
 #: view:account.invoice:grap_change_views.view_account_invoice_form_customer
 #: view:account.invoice:grap_change_views.view_account_invoice_form_supplier
 #: view:product.template:grap_change_views.view_product_template_point_of_sale_form
+#: view:purchase.order:grap_change_views.view_purchase_order_form
 #: view:res.partner:grap_change_views.view_res_partner_account_form
 #: view:res.partner:grap_change_views.view_res_partner_base_vat_form
 #: view:sale.order:grap_change_views.view_sale_order_form_sale_3
@@ -696,6 +717,7 @@ msgstr "base.group_multi_currency"
 #: view:product.product:grap_change_views.view_product_product_tree
 #: view:product.supplierinfo:grap_change_views.product_supplierinfo_form
 #: view:product.supplierinfo:grap_change_views.product_supplierinfo_tree
+#: view:purchase.order:grap_change_views.view_purchase_order_form
 #: view:res.partner:grap_change_views.view_res_partner_delivery_form
 #: view:res.partner:grap_change_views.view_res_partner_email_template_form
 #: view:res.partner:grap_change_views.view_res_partner_form
@@ -712,6 +734,11 @@ msgstr "base.group_no_one"
 #: view:stock.inventory:grap_change_views.view_stock_inventory_tree
 msgid "blue:state=='draft';gray:state=='cancel'"
 msgstr "blue:state=='draft';gray:state=='cancel'"
+
+#. module: grap_change_views
+#: view:purchase.order:grap_change_views.view_purchase_order_tree
+msgid "blue:state=='draft';gray:state=='cancel';red:state in ('except_picking','except_invoice');brown:state in ('sent', 'confirmed', 'approved')"
+msgstr "blue:state=='draft';gray:state=='cancel';red:state in ('except_picking','except_invoice');brown:state in ('sent', 'confirmed', 'approved')"
 
 #. module: grap_change_views
 #: view:sale.order:grap_change_views.view_sale_order_tree
@@ -739,9 +766,20 @@ msgid "grap_change_views__view_pos_order_form"
 msgstr "grap_change_views__view_pos_order_form"
 
 #. module: grap_change_views
+#: view:purchase.order:grap_change_views.view_purchase_order_form
+msgid "grap_change_views__view_purchase_order_form"
+msgstr "grap_change_views__view_purchase_order_form"
+
+#. module: grap_change_views
+#: view:sale.order:grap_change_views.view_sale_order_form_sale_3
+msgid "grap_change_views__view_sale_order_form"
+msgstr "grap_change_views__view_sale_order_form"
+
+#. module: grap_change_views
 #: view:account.invoice:grap_change_views.view_account_invoice_form_customer
 #: view:account.invoice:grap_change_views.view_account_invoice_form_supplier
 #: view:pos.order:grap_change_views.view_pos_order_form
+#: view:purchase.order:grap_change_views.view_purchase_order_discount_form
 #: view:sale.order:grap_change_views.view_sale_order_form_sale_3
 msgid "red:discount==100;black:discount==0;brown:True;"
 msgstr "red:discount==100;black:discount==0;brown:True;"

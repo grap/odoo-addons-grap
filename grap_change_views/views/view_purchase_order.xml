@@ -44,11 +44,41 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
             <field name="pricelist_id" position="attributes">
                 <attribute name="groups">base.group_no_one</attribute>
             </field>
+            <field name="picking_type_id" position="attributes">
+                <attribute name="groups">base.group_no_one</attribute>
+            </field>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='date_planned']" position="attributes">
+                <attribute name="groups">base.group_no_one</attribute>
+             </xpath>
             <xpath expr="//field[@name='order_line']/tree/field[@name='taxes_id']" position="attributes">
                 <attribute name="groups">account.group_account_manager</attribute>
              </xpath>
-            <xpath expr="//field[@name='order_line']/tree//field[@name='taxes_id']" position="after">
+            <xpath expr="//field[@name='order_line']/tree/field[@name='taxes_id']" position="after">
                 <field name="tax_ids_description"/>
+             </xpath>
+             <xpath expr="//field[@name='order_line']/tree/field[@name='product_qty']" position="attributes">
+                <attribute name="string">Qty</attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='product_uom']" position="attributes">
+                <attribute name="string">UoM</attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='price_unit']" position="attributes">
+                <attribute name="string">UP</attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='discount']" position="attributes">
+                <attribute name="string">Disc (%)</attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='price_subtotal']" position="attributes">
+                <attribute name="string">ST</attribute>
+            </xpath>
+            <xpath expr="//page[@string='RFQ &amp; Bid']" position="attributes">
+                <attribute name="groups">base.group_no_one</attribute>
+            </xpath>
+            <xpath expr="//page[@string='Deliveries &amp; Invoices']" position="attributes">
+                <attribute name="groups">base.group_no_one</attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree" position="attributes">
+                <attribute name="class">grap_change_views__view_purchase_order_form</attribute>
              </xpath>
         </field>
     </record>
