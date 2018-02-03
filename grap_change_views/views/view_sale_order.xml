@@ -58,10 +58,25 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
             <field name="partner_id" position="after">
                 <field name="client_order_ref"/>
             </field>
-            <xpath expr="//field[@name='order_line']/tree//field[@name='tax_id']" position="after">
+            <xpath expr="//field[@name='order_line']/tree/field[@name='product_uom_qty']" position="attributes">
+                <attribute name="string">Qty</attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='product_uom']" position="attributes">
+                <attribute name="string">UoM</attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='price_unit']" position="attributes">
+                <attribute name="string">UP</attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='discount']" position="attributes">
+                <attribute name="string">Disc (%)</attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='price_subtotal']" position="attributes">
+                <attribute name="string">ST</attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='tax_id']" position="after">
                 <field name="tax_ids_description"/>
              </xpath>
-            <xpath expr="//field[@name='order_line']/tree//field[@name='product_uom']" position="after">
+            <xpath expr="//field[@name='order_line']/tree/field[@name='product_uom']" position="after">
                 <field name="product_uos_qty" groups="base.group_no_one"/>
                 <field name="product_uos" groups="base.group_no_one"/>
              </xpath>
@@ -69,6 +84,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                 <attribute name="groups">account.group_account_manager</attribute>
              </xpath>
             <xpath expr="//field[@name='order_line']/tree" position="attributes">
+                <attribute name="class">grap_change_views__view_sale_order_form</attribute>
                 <attribute name="colors">red:discount==100;black:discount==0;brown:True;</attribute>
              </xpath>
         </field>

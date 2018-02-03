@@ -1,28 +1,50 @@
 @charset "utf-8";
 
-/* GENERAL - field type date */
-.openerp .oe_form_editable .oe_form .oe_form_field_date input {width: 115px;} /* initial value 100px */ 
-
-/* GENERAL - hover on tree view */
+/* GENERAL - Tree View ----------------------------------------------------- */
+/*    Add an hover effect on tree view rows*/
 .openerp .oe_list_content tbody tr:hover{
   background: #F0F0E0;
 }
 
-/* GENERAL - form view display */
+.openerp .oe_searchview_drawer dt{
+    width: 110px; /* before 160px */
+}
+
+.openerp .oe_searchview_drawer dd{
+    margin-left: 120px /* before 180px */
+}
+
+
+.openerp .oe_searchview_drawer .col-md-7{
+    width:45%;
+}
+
+.openerp .oe_searchview_drawer .col-md-5{
+    width:55%;
+}
+
+/* GENERAL - Form View ----------------------------------------------------- */
+/*Reduce blank space arround group*/
 .openerp .oe_form .oe_form_group {
     margin: 0px;
 }
+/*Reduce blank space before separator*/
 .openerp .oe_horizontal_separator {
     margin: 6px 0px 0px;
 }
 
-/* stock - stock_picking_type_kanban                                        */
-/*TODO FIXME, doesn't work*/
-.oe_kanban_stock_picking_type {
-    min-height: 150px !important;
-    height: 150px !important;
-}
-/* point_of_sale - view_pos_order_form                                        */
+/* sale - view_sale_order_form --------------------------------------------- */
+.grap_change_views__view_sale_order_form [data-id="product_id"]          {width: 33%;}
+.grap_change_views__view_sale_order_form [data-id="name"]                {width: 25%;}
+.grap_change_views__view_sale_order_form [data-id="product_uom_qty"]     {width: 6%;}
+.grap_change_views__view_sale_order_form [data-id="product_uom"]         {width: 6%;}
+.grap_change_views__view_sale_order_form [data-id="price_unit"]          {width: 6%;}
+.grap_change_views__view_sale_order_form [data-id="tax_ids_description"] {width 12%;}
+.grap_change_views__view_sale_order_form [data-id="discount"]            {width: 6%;}
+.grap_change_views__view_sale_order_form [data-id="price_subtotal"]      {width: 6%;}
+
+
+/* point_of_sale - view_pos_order_form  ------------------------------------ */
 
 .grap_change_views__view_pos_order_form [data-id="product_id"]          {width: 50%;}
 .grap_change_views__view_pos_order_form [data-id="qty"]                 {width: 10%;}
