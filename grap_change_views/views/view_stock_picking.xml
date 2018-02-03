@@ -8,77 +8,69 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 <openerp><data>
 
-<!--    <record id="view_stock_picking_in_search" model="ir.ui.view">-->
-<!--        <field name="model">stock.picking.in</field>-->
-<!--        <field name="inherit_id" ref="stock.view_picking_in_search"/>-->
-<!--        <field name="arch" type="xml">-->
-<!--            <filter name="to_invoice" position="after">-->
-<!--                <filter name="to_process" string="To Process"-->
-<!--                    domain="['|', ('state','not in',('done', 'cancel')), ('invoice_state','=', '2binvoiced')]"/>-->
-<!--                <filter string="Today of After" name="today_or_after"-->
-<!--                    domain="[('min_date','&gt;=',(context_today()).strftime('%%Y-%%m-%%d'))]"/>-->
-<!--            </filter>-->
-<!--        </field>-->
-<!--    </record>-->
+    <record id="view_stock_picking_search_sale_stock" model="ir.ui.view">
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="sale_stock.view_picking_internal_search_inherit"/>
+        <field name="arch" type="xml">
+            <filter name="to_invoice" position="after">
+                <filter name="to_process" string="To Process"
+                    domain="['|', ('state','not in',('done', 'cancel')), ('invoice_state','=', '2binvoiced')]"/>
+                <filter string="Today of After" name="today_or_after"
+                    domain="[('min_date','&gt;=',(context_today()).strftime('%%Y-%%m-%%d'))]"/>
+            </filter>
+        </field>
+    </record>
 
-<!--    <record id="view_stock_picking_in_form" model="ir.ui.view">-->
-<!--        <field name="model">stock.picking.in</field>-->
-<!--        <field name="inherit_id" ref="stock.view_picking_form"/>-->
-<!--        <field name="arch" type="xml">-->
-<!--            <page string="Additional Info" position="attributes">-->
-<!--                <attribute name="groups">base.group_no_one</attribute>-->
-<!--            </page>-->
-<!--        </field>-->
-<!--    </record>-->
+    <record id="stock.action_picking_tree" model="ir.actions.act_window">
+        <field name="context">{ 'search_default_picking_type_id': [active_id], 'default_picking_type_id': active_id, 'contact_display': 'partner_address', 'search_default_to_process':1}</field>
+    </record>
 
-<!--    <record id="stock.action_picking_tree" model="ir.actions.act_window">-->
-<!--        <field name="context">{'search_default_to_process':1, 'contact_display': 'partner_address'}</field>-->
-<!--    </record>-->
+    <record id="view_stock_picking_tree" model="ir.ui.view">
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.vpicktree"/>
+        <field name="arch" type="xml">
+            <field name="location_dest_id" position="before">
+                <field name="location_id"/>
+            </field>
+            <field name="location_dest_id" position="attributes">
+                <attribute name="groups">stock.group_locations</attribute>
+            </field>
+            <field name="min_date" position="attributes">
+                <attribute name="invisible">0</attribute>
+            </field>
+            <field name="picking_type_id" position="after">
+                <field name="company_id" groups="base.group_multi_company"/>
+            </field>
+        </field>
+    </record>
 
-<!--    <record id="view_stock_picking_out_search" model="ir.ui.view">-->
-<!--        <field name="model">stock.picking.out</field>-->
-<!--        <field name="inherit_id" ref="stock.view_picking_out_search"/>-->
-<!--        <field name="arch" type="xml">-->
-<!--            <filter name="to_invoice" position="after">-->
-<!--                <filter name="to_process" string="To Process"-->
-<!--                    domain="['|', ('state','not in',('done', 'cancel')), ('invoice_state','=', '2binvoiced')]"/>-->
-<!--                <filter string="Today of After" name="today_or_after"-->
-<!--                    domain="[('min_date','&gt;=',(context_today()).strftime('%%Y-%%m-%%d'))]"/>-->
-<!--            </filter>-->
-<!--        </field>-->
-<!--    </record>-->
+    <record id="view_stock_picking_form" model="ir.ui.view">
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <page string="Additional Info" position="attributes">
+                <attribute name="groups">base.group_no_one</attribute>
+            </page>
+            <field name="picking_type_id" position="replace"/>
+            <field name="partner_id" position="after">
+                <field name="picking_type_id"/>
+            </field>
+        </field>
+    </record>
 
-<!--    <record id="view_stock_picking_out_form" model="ir.ui.view">-->
-<!--        <field name="model">stock.picking.out</field>-->
-<!--        <field name="inherit_id" ref="stock.view_picking_form"/>-->
-<!--        <field name="arch" type="xml">-->
-<!--            <page string="Additional Info" position="attributes">-->
-<!--                <attribute name="groups">base.group_no_one</attribute>-->
-<!--            </page>-->
-<!--        </field>-->
-<!--    </record>-->
-
-<!--    <record id="view_stock_picking_out_form_sale_recovery_moment" model="ir.ui.view">-->
-<!--        <field name="model">stock.picking.out</field>-->
-<!--        <field name="inherit_id" ref="sale_recovery_moment.view_stock_picking_form"/>-->
-<!--        <field name="arch" type="xml">-->
-<!--            <field name="sale_id" position="replace" />-->
-<!--            <field name="recovery_moment_id" position="replace" />-->
-<!--            <field name="recovery_group_id" position="replace" />-->
-<!--            <field name="date" position="before">-->
-<!--                <field name="sale_id"/>-->
-<!--                <field name="recovery_moment_id" groups="sale_recovery_moment.recovery_user"/>-->
-<!--                <field name="recovery_group_id" groups="sale_recovery_moment.recovery_user"/>-->
-<!--                <field name="delivery_moment_id" groups="sale_recovery_moment.delivery_user"/>-->
-<!--            </field>-->
-<!--        </field>-->
-<!--    </record>-->
-
-<!--    <record id="stock_picking_mass_action.action_check_assign_all_values" model="ir.values">-->
-<!--        <field name="name">Mass Processing</field>-->
-<!--    </record>-->
-<!--    <record id="stock_picking_mass_action.action_check_assign_all" model="ir.actions.act_window">-->
-<!--        <field name="name">Mass Processing</field>-->
-<!--    </record>-->
+    <record id="view_stock_picking_form_sale_recovery_moment" model="ir.ui.view">
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="sale_recovery_moment.view_stock_picking_form"/>
+        <field name="arch" type="xml">
+            <field name="recovery_moment_id" position="replace" />
+            <field name="recovery_group_id" position="replace" />
+            <field name="delivery_moment_id" position="replace" />
+            <field name="date" position="before">
+                <field name="recovery_moment_id" groups="sale_recovery_moment.recovery_user"/>
+                <field name="recovery_group_id" groups="sale_recovery_moment.recovery_user"/>
+                <field name="delivery_moment_id" groups="sale_recovery_moment.delivery_user"/>
+            </field>
+        </field>
+    </record>
 
 </data></openerp>
