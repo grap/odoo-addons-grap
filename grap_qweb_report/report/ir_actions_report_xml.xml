@@ -11,8 +11,8 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         string="Quotation / Order (GRAP)"
         model="sale.order"
         report_type="qweb-pdf"
-        file="grap_qweb_report.template_sale_order"
-        name="grap_qweb_report.template_sale_order"
+        file="grap_qweb_report.grap_template_sale_order"
+        name="grap_qweb_report.grap_template_sale_order"
     />
 
 </data></openerp>
