@@ -21,4 +21,9 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="report_name">grap_qweb_report.grap_template_purchase_order</field>
     </record>
 
+    <record id="account.account_invoices" model="ir.actions.report.xml">
+        <field name="report_rml">grap_qweb_report.grap_template_account_invoice</field>
+        <field name="report_name">grap_qweb_report.grap_template_account_invoice</field>
+    </record>
+
 </data></openerp>

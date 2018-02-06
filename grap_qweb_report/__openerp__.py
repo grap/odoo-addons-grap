@@ -7,6 +7,7 @@
     'website': 'http://www.grap.coop',
     'license': 'AGPL-3',
     'depends': [
+        'account',
         'purchase',
         'sale',
         'l10n_fr_siret',
@@ -17,6 +18,7 @@
         'report/qweb_template_sale_order.xml',
         'report/qweb_template_purchase_order.xml',
         'report/qweb_template_purchase_order_quotation.xml',
+        'report/qweb_template_account_invoice.xml',
         'report/ir_actions_report_xml.xml',
     ],
 }
