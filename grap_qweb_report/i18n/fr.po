@@ -6,14 +6,39 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-06 15:57+0000\n"
-"PO-Revision-Date: 2018-02-06 15:57+0000\n"
+"POT-Creation-Date: 2018-02-06 16:57+0000\n"
+"PO-Revision-Date: 2018-02-06 16:57+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: grap_qweb_report
+#: view:website:grap_qweb_report.grap_template_account_invoice_document
+msgid "Amount"
+msgstr "Montant"
+
+#. module: grap_qweb_report
+#: view:website:grap_qweb_report.grap_template_account_invoice_document
+msgid "Base"
+msgstr "Base de calcul"
+
+#. module: grap_qweb_report
+#: view:website:grap_qweb_report.grap_template_account_invoice_document
+msgid "Cancelled Invoice"
+msgstr "Facture annulée"
+
+#. module: grap_qweb_report
+#: view:website:grap_qweb_report.grap_template_account_invoice_document
+msgid "Comment:"
+msgstr "Note:"
+
+#. module: grap_qweb_report
+#: view:website:grap_qweb_report.grap_template_account_invoice_document
+msgid "Customer Code:"
+msgstr "Référence client:"
 
 #. module: grap_qweb_report
 #: view:website:grap_qweb_report.grap_template_sale_order_document
@@ -26,6 +51,7 @@ msgid "Date Req."
 msgstr "Date prévue"
 
 #. module: grap_qweb_report
+#: view:website:grap_qweb_report.grap_template_account_invoice_document
 #: view:website:grap_qweb_report.grap_template_purchase_order_document
 #: view:website:grap_qweb_report.grap_template_purchase_order_quotation_document
 #: view:website:grap_qweb_report.grap_template_sale_order_document
@@ -33,9 +59,24 @@ msgid "Description"
 msgstr "Description"
 
 #. module: grap_qweb_report
+#: view:website:grap_qweb_report.grap_template_account_invoice_document
+msgid "Description:"
+msgstr "Description:"
+
+#. module: grap_qweb_report
 #: view:website:grap_qweb_report.grap_template_sale_order_document
 msgid "Disc.(%)"
 msgstr "Rem.(%)"
+
+#. module: grap_qweb_report
+#: view:website:grap_qweb_report.grap_template_account_invoice_document
+msgid "Discount (%)"
+msgstr "Remise (%)"
+
+#. module: grap_qweb_report
+#: view:website:grap_qweb_report.grap_template_account_invoice_document
+msgid "Draft Invoice"
+msgstr "Facture Brouillon"
 
 #. module: grap_qweb_report
 #: view:website:grap_qweb_report.grap_template_purchase_order_quotation_document
@@ -43,9 +84,24 @@ msgid "Expected Date"
 msgstr "Date prévue"
 
 #. module: grap_qweb_report
+#: view:website:grap_qweb_report.grap_template_account_invoice_document
+msgid "Fiscal Position Remark:"
+msgstr "Remarque de Position Fiscale:"
+
+#. module: grap_qweb_report
 #: view:website:grap_qweb_report.grap_layout_footer
 msgid "IBAN"
 msgstr "IBAN"
+
+#. module: grap_qweb_report
+#: view:website:grap_qweb_report.grap_template_account_invoice_document
+msgid "Invoice"
+msgstr "Facture"
+
+#. module: grap_qweb_report
+#: view:website:grap_qweb_report.grap_template_account_invoice_document
+msgid "Invoice Date:"
+msgstr "Date de facture:"
 
 #. module: grap_qweb_report
 #: view:website:grap_qweb_report.grap_template_sale_order_document
@@ -83,6 +139,11 @@ msgid "Our Order Reference:"
 msgstr "Notre référence de commande :"
 
 #. module: grap_qweb_report
+#: view:website:grap_qweb_report.grap_template_account_invoice_document
+msgid "PRO-FORMA"
+msgstr "PRO-FORMA"
+
+#. module: grap_qweb_report
 #: view:website:grap_qweb_report.grap_layout_footer
 msgid "Page:"
 msgstr "Page :"
@@ -93,6 +154,7 @@ msgid "Pas d'escompte pour paiement anticipé - Pénalité de retard: 3 fois le 
 msgstr "Pas d'escompte pour paiement anticipé - Pénalité de retard: 3 fois le taux d'intérêt légal"
 
 #. module: grap_qweb_report
+#: view:website:grap_qweb_report.grap_template_account_invoice_document
 #: view:website:grap_qweb_report.grap_template_sale_order_document
 msgid "Payment Term:"
 msgstr "Conditions de règlement :"
@@ -114,6 +176,7 @@ msgid "Qty"
 msgstr "Qté"
 
 #. module: grap_qweb_report
+#: view:website:grap_qweb_report.grap_template_account_invoice_document
 #: view:website:grap_qweb_report.grap_template_sale_order_document
 msgid "Quantity"
 msgstr "Quantité"
@@ -127,6 +190,16 @@ msgstr "Date du devis:"
 #: view:website:grap_qweb_report.grap_template_sale_order_document
 msgid "Quotation N°"
 msgstr "Devis N°"
+
+#. module: grap_qweb_report
+#: view:website:grap_qweb_report.grap_template_account_invoice_document
+msgid "Reference:"
+msgstr "Référence:"
+
+#. module: grap_qweb_report
+#: view:website:grap_qweb_report.grap_template_account_invoice_document
+msgid "Refund"
+msgstr "Avoir"
 
 #. module: grap_qweb_report
 #: view:website:grap_qweb_report.grap_template_purchase_order_quotation_document
@@ -155,8 +228,8 @@ msgstr "Règlement par virement sur le compte"
 
 #. module: grap_qweb_report
 #: view:website:grap_qweb_report.grap_layout_footer
-msgid "SIRET"
-msgstr "SIRET"
+msgid "SIRET :"
+msgstr "SIRET :"
 
 #. module: grap_qweb_report
 #: view:website:grap_qweb_report.grap_layout_footer
@@ -181,29 +254,58 @@ msgid "Shipping address:"
 msgstr "Adresse de livraison :"
 
 #. module: grap_qweb_report
-#: view:website:grap_qweb_report.grap_layout_footer
-msgid "TVA intracommunautaire"
-msgstr "TVA intracommunautaire"
+#: view:website:grap_qweb_report.grap_template_account_invoice_document
+msgid "Source:"
+msgstr "Source :"
 
 #. module: grap_qweb_report
+#: view:website:grap_qweb_report.grap_template_account_invoice_document
+msgid "Supplier Invoice"
+msgstr "Facture fournisseur"
+
+#. module: grap_qweb_report
+#: view:website:grap_qweb_report.grap_template_account_invoice_document
+msgid "Supplier Refund"
+msgstr "Avoir fournisseur"
+
+#. module: grap_qweb_report
+#: view:website:grap_qweb_report.grap_template_account_invoice_document
+msgid "TIN:"
+msgstr "Numéro TVA :"
+
+#. module: grap_qweb_report
+#: view:website:grap_qweb_report.grap_layout_footer
+msgid "TVA intracommunautaire :"
+msgstr "TVA intracommunautaire :"
+
+#. module: grap_qweb_report
+#: view:website:grap_qweb_report.grap_template_account_invoice_document
+msgid "Tax"
+msgstr "Taxes"
+
+#. module: grap_qweb_report
+#: view:website:grap_qweb_report.grap_template_account_invoice_document
 #: view:website:grap_qweb_report.grap_template_purchase_order_document
 #: view:website:grap_qweb_report.grap_template_sale_order_document
 msgid "Taxes"
 msgstr "Taxes"
 
 #. module: grap_qweb_report
+#: view:website:grap_qweb_report.grap_template_account_invoice_document
 #: view:website:grap_qweb_report.grap_template_purchase_order_document
 #: view:website:grap_qweb_report.grap_template_sale_order_document
 msgid "Total"
 msgstr "Total"
 
 #. module: grap_qweb_report
+#: view:website:grap_qweb_report.grap_template_account_invoice_document
 #: view:website:grap_qweb_report.grap_template_purchase_order_document
 #: view:website:grap_qweb_report.grap_template_sale_order_document
 msgid "Total Without Taxes"
 msgstr "Total HT"
 
 #. module: grap_qweb_report
+#: view:website:grap_qweb_report.grap_template_account_invoice_document
 #: view:website:grap_qweb_report.grap_template_purchase_order_document
 #: view:website:grap_qweb_report.grap_template_sale_order_document
 msgid "Unit Price"
