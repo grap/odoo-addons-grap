@@ -125,7 +125,12 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                         </div>
                     </div>
                     <div>
-                        <b>SIRET</b> : <span t-esc="company.siret"/> <b>TVA intracommunautaire</b> : <span t-esc="company.vat"/>
+                        <ul class="list-inline">
+                            <li t-if="company.siret"><b>SIRET :</b></li>
+                            <li t-if="company.siret"><span t-esc="company.siret"/></li>
+                            <li t-if="company.vat"><b>TVA intracommunautaire :</b></li>
+                            <li t-if="company.vat"><span t-esc="company.vat"/></li>
+                        </ul>
                     </div>
                 </div>
                 <div class="col-xs-2 text-center">
