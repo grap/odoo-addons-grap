@@ -7,9 +7,18 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 <openerp><data>
 
     <record id="sale.report_sale_order" model="ir.actions.report.xml">
-        <field name="name">Quotation / Order</field>
         <field name="report_rml">grap_qweb_report.grap_template_sale_order</field>
         <field name="report_name">grap_qweb_report.grap_template_sale_order</field>
+    </record>
+
+    <record id="purchase.report_purchase_quotation" model="ir.actions.report.xml">
+        <field name="report_rml">grap_qweb_report.grap_template_purchase_order_quotation</field>
+        <field name="report_name">grap_qweb_report.grap_template_purchase_order_quotation</field>
+    </record>
+
+    <record id="purchase.action_report_purchase_order" model="ir.actions.report.xml">
+        <field name="report_rml">grap_qweb_report.grap_template_purchase_order</field>
+        <field name="report_name">grap_qweb_report.grap_template_purchase_order</field>
     </record>
 
 </data></openerp>
