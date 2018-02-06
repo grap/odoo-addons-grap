@@ -6,13 +6,13 @@
 from openerp import _, api, fields, models
 from openerp.exceptions import Warning as UserError
 
-class AccountTax(models.Model):
-    _inherit = 'account.tax'
+class AccountInvoice(models.Model):
+    _inherit = 'account.invoice'
 
-    report_short_code = fields.Char(compute='_compute_report_short_code')
+    has_discount = fields.Boolean(compute='_compute_has_discount')
 
     @api.multi
-    def _compute_report_short_code(self):
-        for tax in self:
-            tax.report_short_code = "%s%% (%s)" % (
-                str(tax.amount * 100).replace('.', ','))
+    def _compute_has_discount(self):
+        for invoice in self:
+            invoice.has_discount = len(
+                invoice.invoice_line.filtered(lambda x: x.discount))

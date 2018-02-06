@@ -28,5 +28,6 @@ class ProductProduct(models.Model):
     @api.multi
     def _compute_report_label_ids_info(self):
         for product in self:
-            label_info = product.mapped('label_ids.code')
+            label_info = product.label_ids.filtered(
+                    lambda x: x.mandatory_on_invoice).mapped('code')
             product.report_label_ids_info = ', '.join(label_info)

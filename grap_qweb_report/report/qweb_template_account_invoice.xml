@@ -76,8 +76,8 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                             <td class="text-right">
                                 <span t-field="l.price_unit_vat_excluded"/>
                             </td>
-                            <td class="text-right" groups="sale.group_discount_per_so_line">
-                                <span t-if="o.has_discount"><span t-field="l.discount"/></span>
+                            <td t-if="o.has_discount" class="text-right" groups="sale.group_discount_per_so_line">
+                                <span t-field="l.discount"/>
                             </td>
                             <td class="text-right">
                                 <span t-esc="', '.join(map(lambda x: x.report_short_code, l.invoice_line_tax_id))"/>
