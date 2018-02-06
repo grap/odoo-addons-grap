@@ -10,6 +10,7 @@
         'sale',
         'report', # TMP
         'report_webkit',
+        'base_fiscal_company',
     ],
     'data': [
         'report/qweb_template_layout.xml',

@@ -20,27 +20,75 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
     </template>
 
     <template id="grap_layout_header">
+
         <div class="header">
-            <div class="row">
-                <div class="col-xs-3">
-                    <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" style="max-height: 45px;"/>
-                </div>
-                <div class="col-xs-9 text-right" style="margin-top:20px;" t-field="company.rml_header1"/>
-            </div>
+
+<!-- Ligne horizontale -->
             <div class="row zero_min_height">
                 <div class="col-xs-12">
-                    <div style="border-bottom: 1px solid black;"></div>
+                    <div style="border-bottom: 1px solid black;"/>
                 </div>
             </div>
+
+<!-- Entete Societe(s) -->
             <div class="row">
-                <div class="col-xs-5">
-                    <div t-field="company.partner_id" 
-                        t-field-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}'
-                        style="border-bottom: 1px solid black;"
-                        class="pull-left"
-                    />
+<!-- Partie societe fille -->
+                <div class="col-xs-2">
+                    <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" style="max-height: 45px;"/>
+                </div>
+                <div class="col-xs-4 text-center">
+                    <span t-esc="company.name.replace('|', '')"/>
+                     <br />
+                    <span t-esc="company.street"/> <span t-esc="company.street2"/>
+                     <br />
+                    <span t-esc="company.zip"/> <span t-esc="company.city"/>
+                     <br />
+                    <span t-esc="company.phone"/>
+                     <br />
+                    <span t-esc="company.email"/>
+                    <div t-if="company.website">
+                         <br />
+                        <span t-esc="company.website.replace('http://', '')"/>
+                    </div>
+                </div>
+
+<!-- Partie societe mere -->
+                <div class="col-xs-2" t-if="company.fiscal_company.id != company.id">
+                    <img t-if="company.fiscal_company.logo" t-att-src="'data:image/png;base64,%s' % company.fiscal_company.logo" style="max-height: 45px;"/>
+                </div>
+                <div class="col-xs-4 text-center" t-if="company.fiscal_company.id != company.id">
+                    <span t-esc="company.fiscal_company.name.replace('|', '')"/>
+                     <br />
+                    <span t-esc="company.fiscal_company.street"/> <span t-esc="company.fiscal_company.street2"/>
+                     <br />
+                    <span t-esc="company.fiscal_company.zip"/> <span t-esc="company.fiscal_company.city"/>
+                     <br />
+                    <span t-esc="company.fiscal_company.phone"/>
+                     <br />
+                    <span t-esc="company.fiscal_company.administrative_department_email"/>
+                    <div t-if="company.fiscal_company.website">
+                         <br />
+                        <span t-esc="company.fiscal_company.website.replace('http://', '')"/>
+                    </div>
                 </div>
             </div>
+
+<!-- Ligne horizontale -->
+            <div class="row zero_min_height">
+                <div class="col-xs-12">
+                    <div style="border-bottom: 1px solid black;"/>
+                </div>
+            </div>
+
+<!-- Certification bio / slogan -->
+            <div class="row zero_min_height" t-if="company.rml_header1">
+                <div class="col-xs-12">
+                    <div style="border-bottom: 1px solid black;">
+                        <span t-esc="company.rml_header1"/>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </template>
 
