@@ -43,7 +43,7 @@ class ProductSummaryWizard(TransientModel):
 
     def _default_picking_line_ids(self, cr, uid, context=None):
         res = []
-        spo_obj = self.pool['stock.picking.out']
+        spo_obj = self.pool['stock.picking']
         spo_ids = context.get('active_ids', False)
         if spo_ids:
             for spo in spo_obj.browse(cr, uid, spo_ids, context=context):
@@ -57,7 +57,7 @@ class ProductSummaryWizard(TransientModel):
     def _default_product_line_ids(self, cr, uid, context=None):
         res = []
         product_lines = {}
-        spo_obj = self.pool['stock.picking.out']
+        spo_obj = self.pool['stock.picking']
         spo_ids = context.get('active_ids', False)
         if spo_ids:
             for spo in spo_obj.browse(cr, uid, spo_ids, context=context):
