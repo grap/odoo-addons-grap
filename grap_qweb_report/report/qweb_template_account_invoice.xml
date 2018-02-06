@@ -55,9 +55,10 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                     <thead>
                         <tr>
                             <th>Description</th>
+                            <th>Labels</th>
                             <th>Quantity</th>
                             <th class="text-right">Unit Price</th>
-                            <th class="text-right" groups="sale.group_discount_per_so_line">Discount (%)</th>
+                            <th t-if="o.has_discount" class="text-right" groups="sale.group_discount_per_so_line">Discount (%)</th>
                             <th class="text-right">Taxes</th>
                             <th class="text-right">Amount</th>
                         </tr>
@@ -66,15 +67,20 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                         <tr t-foreach="o.invoice_line" t-as="l">
                             <td><span t-field="l.name"/></td>
                             <td>
+                                <span t-if="l.product_id"><span t-field="l.product_id.report_label_ids_info"/></span>
+                            </td>
+                            <td>
                                 <span t-field="l.quantity"/>
                                 <span t-field="l.uos_id"  groups="product.group_uom"/>
                             </td>
                             <td class="text-right">
-                                <span t-field="l.price_unit"/>
+                                <span t-field="l.price_unit_vat_excluded"/>
                             </td>
-                            <td class="text-right" groups="sale.group_discount_per_so_line"><span t-field="l.discount"/></td>
+                            <td class="text-right" groups="sale.group_discount_per_so_line">
+                                <span t-if="o.has_discount"><span t-field="l.discount"/></span>
+                            </td>
                             <td class="text-right">
-                                <span t-esc="', '.join(map(lambda x: x.name, l.invoice_line_tax_id))"/>
+                                <span t-esc="', '.join(map(lambda x: x.report_short_code, l.invoice_line_tax_id))"/>
                             </td>
                             <td class="text-right">
                                 <span t-field="l.price_subtotal" 
