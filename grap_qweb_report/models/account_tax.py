@@ -14,5 +14,5 @@ class AccountTax(models.Model):
     @api.multi
     def _compute_report_short_code(self):
         for tax in self:
-            tax.report_short_code = "%s%% (%s)" % (
+            tax.report_short_code = "%s%%" % (
                 str(tax.amount * 100).replace('.', ','))
