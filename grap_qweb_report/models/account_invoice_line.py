@@ -18,10 +18,10 @@ class AccountInvoiceLine(models.Model):
 
     @api.multi
     def _compute_price_unit_vat_excluded(self):
-            for line in self:
-                tmp = line.invoice_line_tax_id.compute_all(
-                    line.price_unit, line.quantity, line.product_id,
-                    line.invoice_id.partner_id)
+        for line in self:
+            tmp = line.invoice_line_tax_id.compute_all(
+                line.price_unit, line.quantity, line.product_id,
+                line.invoice_id.partner_id)
             line.price_unit_vat_excluded = (
                 tmp['taxes'] and tmp['taxes'][0]['price_unit'] or
                 line.price_unit)

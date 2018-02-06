@@ -116,7 +116,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                 </div>
 
                 <div class="row" t-if="o.tax_line">
-                    <div class="col-xs-6">
+                    <div class="col-xs-9">
                         <table class="table table-condensed">
                             <thead>
                                 <tr>
