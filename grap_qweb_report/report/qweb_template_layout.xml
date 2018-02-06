@@ -6,6 +6,9 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 -->
 <openerp><data>
 
+<!--                 -->
+<!--General Layout   -->
+<!--                 -->
     <template id="grap_layout">
         <t t-if="o and 'company_id' in o">
             <t t-set="company" t-value="o.company_id"></t>
@@ -19,10 +22,14 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <t t-call="grap_qweb_report.grap_layout_footer" />
     </template>
 
+
+<!--                 -->
+<!--Header Layout    -->
+<!--                 -->
+
     <template id="grap_layout_header">
 
         <div class="header">
-
 <!-- Ligne horizontale -->
             <div class="row zero_min_height">
                 <div class="col-xs-12">
@@ -32,10 +39,10 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 <!-- Entete Societe(s) -->
             <div class="row">
-<!-- Partie societe fille -->
                 <div class="col-xs-2">
                     <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" style="max-height: 45px;"/>
                 </div>
+
                 <div class="col-xs-4 text-center">
                     <span t-esc="company.name.replace('|', '')"/>
                      <br />
@@ -52,10 +59,10 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                     </div>
                 </div>
 
-<!-- Partie societe mere -->
                 <div class="col-xs-2" t-if="company.fiscal_company.id != company.id">
                     <img t-if="company.fiscal_company.logo" t-att-src="'data:image/png;base64,%s' % company.fiscal_company.logo" style="max-height: 45px;"/>
                 </div>
+
                 <div class="col-xs-4 text-center" t-if="company.fiscal_company.id != company.id">
                     <span t-esc="company.fiscal_company.name.replace('|', '')"/>
                      <br />
@@ -88,39 +95,44 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                     </div>
                 </div>
             </div>
-
         </div>
+
     </template>
+
+<!--                 -->
+<!--Footer Layout    -->
+<!--                 -->
 
     <template id="grap_layout_footer">
         <div class="footer">
-            <div class="text-center" style="border-top: 1px solid black;">
-                <ul t-if="not company.custom_footer" class="list-inline">
-                    <li t-if="company.phone">Phone: <span t-field="company.phone"/></li>
-
-                    <li t-if="company.fax and company.phone">&amp;bull;</li>
-                    <li t-if="company.fax">Fax: <span t-field="company.fax"/></li>
-
-                    <li t-if="company.email">&amp;bull;</li>
-                    <li t-if="company.email">Email: <span t-field="company.email"/></li>
-
-                    <li t-if="company.website">&amp;bull;</li>
-                    <li t-if="company.website">Website: <span t-field="company.website"/></li>
-                </ul>
-
-                <t t-if="company.custom_footer">
-                    <span t-raw="company.rml_footer"/>
-                </t>
-
-                <ul class="list-inline">
-                    <li>Page:</li>
-                    <li><span class="page"/></li>
-                    <li>/</li>
-                    <li><span class="topage"/></li>
-                </ul>
+            <div style="border-top: 1px solid black;">
+                <div class="col-xs-10 text-center">
+                    <div t-if="o._name in ('sale.order', 'account.invoice')">
+                        <div>Pas d'escompte pour paiement anticipé - Pénalité de retard: 3 fois le taux d'intérêt légal</div>
+                        <div>Montant forfaitaire pour frais de recouvrement dû au créancier en cas de retard de paiement: 40€</div>   
+                    </div>
+                    <div>Règlement par chèque à l'ordre de <span t-esc="company.fiscal_company.name.replace('|', '')"/></div>
+                    <div t-if="company.bank_ids[0]">
+                        <div>Règlement par virement sur le compte <span t-esc="company.bank_ids[0].bank_name"/></div>
+                        <div>
+                            <b>IBAN</b> : <span t-esc="company.bank_ids[0].iban"/>
+                            <b>SWIFT/BIC</b> : <span t-esc="company.bank_ids[0].bank_bic"/>
+                        </div>
+                    </div>
+                    <div>
+                        <b>SIRET</b> : <span t-esc="company.siret"/> <b>TVA intracommunautaire</b> : <span t-esc="company.vat"/>
+                    </div>
+                </div>
+                <div class="col-xs-2 text-center">
+                    <ul class="list-inline">
+                        <li>Page:</li>
+                        <li><span class="page"/></li>
+                        <li>/</li>
+                        <li><span class="topage"/></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </template>
-
 
 </data></openerp>
