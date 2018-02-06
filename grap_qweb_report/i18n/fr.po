@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-06 16:57+0000\n"
-"PO-Revision-Date: 2018-02-06 16:57+0000\n"
+"POT-Creation-Date: 2018-02-06 19:01+0000\n"
+"PO-Revision-Date: 2018-02-06 19:01+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -34,6 +34,12 @@ msgstr "Facture annulée"
 #: view:website:grap_qweb_report.grap_template_account_invoice_document
 msgid "Comment:"
 msgstr "Note:"
+
+#. module: grap_qweb_report
+#: code:addons/grap_qweb_report/models/product_product.py:23
+#, python-format
+msgid "Country: %s"
+msgstr "Pays : %s"
 
 #. module: grap_qweb_report
 #: view:website:grap_qweb_report.grap_template_account_invoice_document
@@ -89,11 +95,23 @@ msgid "Fiscal Position Remark:"
 msgstr "Remarque de Position Fiscale:"
 
 #. module: grap_qweb_report
+#: code:addons/grap_qweb_report/models/product_product.py:25
+#, python-format
+msgid "Fresh Category: %s"
+msgstr "Catégorie de produit frais : %s"
+
+#. module: grap_qweb_report
+#: field:account.invoice,has_discount:0
+msgid "Has discount"
+msgstr "Contient une remise"
+
+#. module: grap_qweb_report
 #: view:website:grap_qweb_report.grap_layout_footer
 msgid "IBAN"
 msgstr "IBAN"
 
 #. module: grap_qweb_report
+#: model:ir.model,name:grap_qweb_report.model_account_invoice
 #: view:website:grap_qweb_report.grap_template_account_invoice_document
 msgid "Invoice"
 msgstr "Facture"
@@ -104,6 +122,11 @@ msgid "Invoice Date:"
 msgstr "Date de facture:"
 
 #. module: grap_qweb_report
+#: model:ir.model,name:grap_qweb_report.model_account_invoice_line
+msgid "Invoice Line"
+msgstr "Lignes de facture"
+
+#. module: grap_qweb_report
 #: view:website:grap_qweb_report.grap_template_sale_order_document
 msgid "Invoice address:"
 msgstr "Adresse de facturation :"
@@ -112,6 +135,11 @@ msgstr "Adresse de facturation :"
 #: view:website:grap_qweb_report.grap_template_sale_order_document
 msgid "Invoice and shipping address:"
 msgstr "Adresse de facturation et livraison"
+
+#. module: grap_qweb_report
+#: view:website:grap_qweb_report.grap_template_account_invoice_document
+msgid "Labels"
+msgstr "Labels"
 
 #. module: grap_qweb_report
 #: view:website:grap_qweb_report.grap_layout_footer
@@ -165,6 +193,16 @@ msgid "Price"
 msgstr "Prix"
 
 #. module: grap_qweb_report
+#: field:account.invoice.line,price_unit_vat_excluded:0
+msgid "Price unit vat excluded"
+msgstr "Prix Unitaire HT"
+
+#. module: grap_qweb_report
+#: model:ir.model,name:grap_qweb_report.model_product_product
+msgid "Product"
+msgstr "Article"
+
+#. module: grap_qweb_report
 #: view:website:grap_qweb_report.grap_template_purchase_order_document
 msgid "Purchase Order Confirmation N°"
 msgstr "Confirmation de commande n°"
@@ -205,6 +243,21 @@ msgstr "Avoir"
 #: view:website:grap_qweb_report.grap_template_purchase_order_quotation_document
 msgid "Regards,"
 msgstr "Bien à vous,"
+
+#. module: grap_qweb_report
+#: field:product.product,report_extra_food_info:0
+msgid "Report extra food info"
+msgstr "Info alimentaire pour les rapports"
+
+#. module: grap_qweb_report
+#: field:product.product,report_label_ids_info:0
+msgid "Report label ids info"
+msgstr "Info de labels pour les rapports"
+
+#. module: grap_qweb_report
+#: field:account.tax,report_short_code:0
+msgid "Report short code"
+msgstr "Code pour les rapports"
 
 #. module: grap_qweb_report
 #: view:website:grap_qweb_report.grap_template_purchase_order_quotation_document
@@ -279,6 +332,7 @@ msgid "TVA intracommunautaire :"
 msgstr "TVA intracommunautaire :"
 
 #. module: grap_qweb_report
+#: model:ir.model,name:grap_qweb_report.model_account_tax
 #: view:website:grap_qweb_report.grap_template_account_invoice_document
 msgid "Tax"
 msgstr "Taxes"
