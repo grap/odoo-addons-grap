@@ -132,7 +132,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="model">product.product</field>
         <field name="priority" eval="1"/>
         <field name="arch" type="xml">
-            <form string="Product" version="7.0">
+            <form>
                 <sheet>
                     <group col="6">
                         <group colspan="4" col="4">
@@ -154,8 +154,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                                     <field name="uom_id" on_change="onchange_uom(uom_id,uom_po_id)" groups="product.group_uom"/>
                                     <field name="barcode_rule_id"
                                         domain="[('generate_model', '=', 'product.product')]"
-                                        groups="barcodes_generator_abstract.generate_barcode" colspan="2"
-                                        on_change="onchange_barcode_rule_id(barcode_rule_id)"/>
+                                        groups="barcodes_generator_abstract.generate_barcode" colspan="2"/>
                                     <field name="generate_type" invisible="1"/>
                                     <field name="barcode_base" attrs="{
                                         'invisible': [('barcode_rule_id', '=', False)],
@@ -202,7 +201,6 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                                         groups="account.group_account_manager"/>
                                     <field name="consignor_partner_id"
                                         attrs="{'readonly':[('is_consignment', '=', True)]}"
-                                        on_change="onchange_consignor_partner_id(consignor_partner_id)"
                                         groups="recurring_consignment.group_consignment_user"/>
                                     <field name="standard_price" string="Cost Price (VAT Excl.)"/>
                                     <field name="tax_group_id" colspan="2" quick_create="false"/>
@@ -491,8 +489,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                 <field name="scale_tare_weight"/>
                 <field name="barcode_rule_id"
                     domain="[('generate_model', '=', 'product.product')]"
-                    groups="barcodes_generator_abstract.generate_barcode" colspan="2"
-                    on_change="onchange_barcode_rule_id(barcode_rule_id)"/>
+                    groups="barcodes_generator_abstract.generate_barcode" colspan="2"/>
                 <field name="generate_type" invisible="1"/>
                 <field name="barcode_base" attrs="{
                     'invisible': [('barcode_rule_id', '=', False)],
