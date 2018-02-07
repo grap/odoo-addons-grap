@@ -22,6 +22,7 @@
         'report/qweb_template_purchase_order.xml',
         'report/qweb_template_purchase_order_quotation.xml',
         'report/qweb_template_sale_order.xml',
+        'report/qweb_template_stock_picking.xml',
         'report/ir_actions_report_xml.xml',
         'views/action.xml',
         'views/view_picking_summary_wizard.xml',
