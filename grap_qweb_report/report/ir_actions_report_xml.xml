@@ -6,6 +6,17 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 -->
 <openerp><data>
 
+    <!-- New Report -->
+        <report 
+            id="report_picking_summary_wizard"
+            string="Picking Summary"
+            model="picking.summary.wizard"
+            report_type="qweb-pdf"
+            file="grap_qweb_report.grap_template_picking_summary_wizard"
+            name="grap_qweb_report.grap_template_picking_summary_wizard"
+        />
+
+<!-- Overloaded Report -->
     <record id="sale.report_sale_order" model="ir.actions.report.xml">
         <field name="report_rml">grap_qweb_report.grap_template_sale_order</field>
         <field name="report_name">grap_qweb_report.grap_template_sale_order</field>

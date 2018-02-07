@@ -20,7 +20,7 @@
 #
 ##############################################################################
 
-from . import stock_picking
+#from . import stock_picking
 from . import product_summary_wizard
 from . import product_summary_wizard_picking
 from . import product_summary_wizard_product

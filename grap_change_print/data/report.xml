@@ -2,20 +2,20 @@
 <openerp>
     <data>
 
-        <report id="stock.report_picking_list_out"
-            name="webkit.stock_picking_out_delivery_order"
-            auto="False"
-            model="stock.picking.out"
-            file="grap_change_print/report/stock_picking_out_delivery_order.mako"
-            string="Delivery Order"
-            report_type="webkit"
-            header="False"/>
+<!--        <report id="stock.report_picking_list_out"-->
+<!--            name="webkit.stock_picking_out_delivery_order"-->
+<!--            auto="False"-->
+<!--            model="stock.picking.out"-->
+<!--            file="grap_change_print/report/stock_picking_out_delivery_order.mako"-->
+<!--            string="Delivery Order"-->
+<!--            report_type="webkit"-->
+<!--            header="False"/>-->
 
         <report id="report_summary_report"
             name="summary.report"
             auto="False"
             model="product.summary.wizard"
-            file="grap_change_print/report/stock_picking_out_product_summary.mako"
+            file="grap_change_print/report/stock_picking_product_summary.mako"
             string="Products Summary"
             report_type="webkit"
             header="False"/>

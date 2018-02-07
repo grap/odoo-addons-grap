@@ -78,11 +78,11 @@ Copyright, Author and Licence
     ],
     'data': [
         'data/report.xml',
-        'data/stock_inventory_report.xml',
-        'data/ir_actions_report_xml.xml',
+##        'data/stock_inventory_report.xml',
+##        'data/ir_actions_report_xml.xml',
         'view/action.xml',
         'view/view.xml',
-        'data/ir_header_webkit.xml',
-        'data/ir_property.xml',
+##        'data/ir_header_webkit.xml',
+##        'data/ir_property.xml',
     ],
 }
