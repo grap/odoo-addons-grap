@@ -11,9 +11,6 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
             <t t-foreach="docs" t-as="o">
                 <t t-call="grap_qweb_report.grap_layout">
                     <div class="page">
-                        <div class="row"><div class="col-xs-4 pull-right">
-                        <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', o.name, 600, 100)" style="width:300px;height:50px;"/>
-                        </div></div>
                         <div class="row">
                             <div class="col-xs-6">
                                 <div t-if="o.picking_type_id.code=='incoming' and o.partner_id">
@@ -82,7 +79,6 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                                 <th><strong>Product</strong></th>
                                 <th class="text-right"><strong>Quantity</strong></th>
                                 <t t-if="o.picking_type_id.code != 'incoming'"><th><strong>Source</strong></th></t>
-                                <th><strong>Barcode</strong></th>
                                 <t t-if="o.picking_type_id.code != 'outgoing'"><th><strong>Destination</strong></th></t>
                             </tr>
                           </thead>
@@ -99,11 +95,6 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                                         </t>
                                     </td>
                                     <t t-if="o.picking_type_id.code != 'incoming'"><td><span t-field="move.location_id"/></td></t>
-                                    <td>
-                                        <span t-if="move.product_id and move.product_id.ean13">
-                                            <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('EAN13', move.product_id.ean13, 600, 100)" style="width:300px;height:50px"/>
-                                        </span>
-                                    </td>
                                     <t t-if="o.picking_type_id.code != 'outgoing'"><td><span t-field="move.location_dest_id"/></td></t>
                                 </t>
                             </tr>
@@ -115,7 +106,6 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                                 <th><strong>Product</strong></th>
                                 <th class="text-right"><strong>Quantity</strong></th>
                                 <t t-if="o.picking_type_id.code != 'incoming'"><th><strong>Source</strong></th></t>
-                                <th><strong>Barcode</strong></th>
                                 <t t-if="o.picking_type_id.code != 'outgoing'"><th><strong>Destination</strong></th></t>
                             </tr>
                           </thead>
@@ -131,17 +121,6 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                                     <span t-field="pack_operation.lot_id"/>
                                     </td>
                                 </t>
-                                <td>
-                                    <span t-if="pack_operation.lot_id">
-                                        <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', pack_operation.lot_id.name, 600, 100)" style="width:300px;height:50px"/>
-                                    </span>
-                                    <span t-if="pack_operation.product_id and not pack_operation.lot_id and pack_operation.product_id.ean13">
-                                        <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('EAN13', pack_operation.product_id.ean13, 600, 100)" style="width:300px;height:50px"/>
-                                    </span>
-                                    <span t-if="pack_operation.package_id and not pack_operation.product_id">
-                                        <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', pack_operation.package_id.name, 600, 100)" style="width:300px;height:50px"/>
-                                    </span>
-                                </td>
                                 <t t-if="o.picking_type_id.code != 'outgoing'"><td><span t-field="pack_operation.location_dest_id"/>
                                     <span t-if="pack_operation.result_package_id">:</span>
                                     <span t-field="pack_operation.result_package_id"/>
