@@ -8,51 +8,55 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
     <template id="grap_template_picking_summary_wizard_document">
         <t t-call="grap_qweb_report.grap_layout">
-            <style type="text/css">
-                table {
-                    width:100%;
-                    margin-top: 20px;
-                    border-spacing : 0px;
-                    border-collapse : collapse;
-                }
-                th {
-                    border:1px black solid;
-                }
-                td {
-                    border:1px black solid;
-                }
-                
-            </style>
+
             <div class="page">
                 <div class="oe_structure"/>
+
+                <style type="text/css">
+                    table.picking_summary_wizard {
+                         !important;
+                         !important;
+                         !important;
+                         !important;
+                    }
+                    picking_summary_wizard th {
+                         !important;
+                    }
+                    picking_summary_wizard td {
+                        border:1px black solid !important;
+                    }
+                    
+                </style>
+                    <t t-set="table_style" t-value="'width:100%; margin-top: 20px; border-spacing : 0px; border-collapse : collapse;'"/>
+                    <t t-set="td_th_style" t-value="'border:1px black solid;'"/>
 
                     <!-- Summary Part -->
                     <p t-if="o.print_summary">
                         <h1>Products Summary</h1>
-                        <table>
+                        <table t-att-style="table_style">
                             <thead>
                                 <tr>
-                                    <th style="text-align:left;">Description</th>
-                                    <th>Quantity</th>
-                                    <th>UoM</th>
-                                    <th>Standard Price</th>
-                                    <th>Standard Price Total</th>
+                                    <th t-att-style="td_th_style">Description</th>
+                                    <th t-att-style="td_th_style">Quantity</th>
+                                    <th t-att-style="td_th_style">UoM</th>
+                                    <th t-att-style="td_th_style">Standard Price</th>
+                                    <th t-att-style="td_th_style">Standard Price Total</th>
                                 </tr>
                             </thead>
                             <tbody>
-                            <tr t-foreach="o.product_line_ids" t-as="product_line">
-                                <td style="text-align:left;"><span t-field="product_line.product_id.name"/></td>
-                                <td><span t-field="product_line.quantity_total"/></td>
-                                <td><span t-field="product_line.product_id.uom_id.name"/></td>
-                                <td><span t-field="product_line.product_id.standard_price"/></td>
-                                <td><span t-field="product_line.standard_price_total"/></td>
+                                <tr t-foreach="o.product_line_ids" t-as="product_line">
+                                    <td t-att-style="td_th_style"><span t-field="product_line.product_id.name"/></td>
+                                    <td t-att-style="td_th_style"><span t-field="product_line.quantity_total"/></td>
+                                    <td t-att-style="td_th_style"><span t-field="product_line.product_id.uom_id.name"/></td>
+                                    <td t-att-style="td_th_style"><span t-field="product_line.product_id.standard_price"/></td>
+                                    <td t-att-style="td_th_style"><span t-field="product_line.standard_price_total"/></td>
 
-                            </tr>
+                                </tr>
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th style="text-align:right;" colspan="4">Standard Price Total</th>
-                                    <td><span t-field="o.standard_price_total"/></td>
+                                    <th t-att-style="td_th_style" colspan="4">Standard Price Total</th>
+                                    <td t-att-style="td_th_style"><span t-field="o.standard_price_total"/></td>
                                 </tr>
                             </tfoot>
                         </table>
@@ -60,48 +64,47 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
                     <!-- Detail Part -->
                     <p t-if="o.print_detail">
-                        <h1 style="clear:both;">Pickings</h1>
-                        <table>
+                        <h1 style="clear:both;">Pickings List</h1>
+                        <table t-att-style="table_style">
                             <thead>
                                 <tr>
-                                    <th>Type</th>
-                                    <th style="text-align:left;">Description</th>
-                                    <th>Quantity</th>
-                                    <th style="width:60px;"> / </th>
-                                    <th>UoM</th>
+                                    <th t-att-style="td_th_style">Type</th>
+                                    <th t-att-style="td_th_style">Description</th>
+                                    <th t-att-style="td_th_style">Quantity</th>
+                                    <th t-att-style="td_th_style"> --- </th>
+                                    <th t-att-style="td_th_style">UoM</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <t t-foreach="o.picking_line_ids" t-as="picking_line">
                                     <tr class="line" style="background-color:#ddd">
-                                        <th colspan="2"><span t-field="picking_line.picking_id.partner_id.name" /></th>
-                                        <th colspan="3"><span t-field="picking_line.picking_id.name" /></th>
+                                        <th t-att-style="td_th_style" colspan="2"><span t-field="picking_line.picking_id.partner_id.name" /></th>
+                                        <th t-att-style="td_th_style" colspan="3"><span t-field="picking_line.picking_id.name" /></th>
                                     </tr>
                                     <t t-foreach="picking_line.picking_id.move_lines" t-as="move_line">
 
-<!--style="color:${move_line.product_qty == 0 and 'gray' or 'black'}"-->
-                                        <tr class="line">
-<!--                                        style="background-color:${move_line.product_id and move_line.product_id.prepare_categ_id and move_line.product_id.prepare_categ_id.color or ''}"-->
-                                            <td >
-<!--                                                ${move_line.product_id and move_line.product_id.prepare_categ_id and move_line.product_id.prepare_categ_id.code or ''}-->
+                                        <t t-set="td_move_style" t-value="move_line.product_qty == 0 and 'border:1px black solid; color:gray;' or 'border:1px black solid; color:black;'"/>
+                                        <t t-set="td_categ_style" t-value="move_line.product_id.prepare_categ_id and 'background-color: %s' % (move_line.product_id.prepare_categ_id.color) or ''"/>
+                                        <tr t-att-style="td_move_style">
+                                            <td t-att-style="td_categ_style">
+                                                <span t-esc="move_line.product_id.prepare_categ_id and move_line.product_id.prepare_categ_id.code or ''"/>
                                             </td>
-                                             <td style="text-align:left;">
+                                             <td t-att-style="td_th_style">
                                                 <span t-field="move_line.product_id.name"/>
                                             </td>
-                                            <td>
+                                            <td t-att-style="td_th_style">
                                                 <span t-field="move_line.product_qty"/>
                                             </td>
-                                            <td></td>
-                                            <td>
+                                            <td t-att-style="td_th_style"></td>
+                                            <td t-att-style="td_th_style">
                                                 <span t-field="move_line.product_uom.name"/>
                                             </td>
                                         </tr>
-
                                     </t>
 
                                     <t t-if="picking_line.picking_id.note">
                                         <tr class="line">
-                                            <td colspan="100%">
+                                            <td t-att-style="td_th_style" colspan="100%">
                                                 <span t-field="picking_line.picking_id.note" />
                                             </td>
                                         </tr>

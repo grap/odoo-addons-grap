@@ -8,10 +8,11 @@
     'license': 'AGPL-3',
     'depends': [
         'account',
+        'base_fiscal_company',
+        'l10n_fr_siret',
         'purchase',
         'sale',
-        'l10n_fr_siret',
-        'base_fiscal_company',
+        'sale_recovery_moment',
         'sale_food',
     ],
     'data': [
