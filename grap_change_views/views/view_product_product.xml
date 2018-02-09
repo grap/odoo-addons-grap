@@ -106,10 +106,17 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="arch" type="xml">
             <field name="name" position="after">
                <field name="pos_categ_id"/>
+                <field name="margin_classification_id" />
             </field>
             <xpath expr="//filter[@string='Category']" position="after">
-                <filter string="POS Category" context="{'group_by' : 'pos_categ_id'}"/>
-                <filter string="Available in Point Of Sale" name="filter_to_pos" domain="[('available_in_pos','=',1)]"/>
+                <filter string="POS Category" name="group_by_pos_categ_id"
+                    context="{'group_by' : 'pos_categ_id'}"/>
+                <filter string="Available in Point Of Sale" name="filter_available_in_pos"
+                    domain="[('available_in_pos','=',1)]"/>
+            </xpath>
+            <xpath expr="//filter[@string='Type']" position="after">
+                <filter string="Margin Classifications" name="group_by_margin_classification_id"
+                    context="{'group_by': 'margin_classification_id'}" />
             </xpath>
         </field>
     </record>
@@ -197,11 +204,11 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                                 <group>
                                     <separator string="Purchase / Produce" colspan="2"/>
                                     <field name="property_account_expense" 
-                                        domain="[('type','=','other')]" 
-                                        groups="account.group_account_manager"/>
+                                            domain="[('type','=','other')]" 
+                                            groups="account.group_account_manager"/>
                                     <field name="consignor_partner_id"
-                                        attrs="{'readonly':[('is_consignment', '=', True)]}"
-                                        groups="recurring_consignment.group_consignment_user"/>
+                                            attrs="{'readonly':[('is_consignment', '=', True)]}"
+                                            groups="recurring_consignment.group_consignment_user"/>
                                     <field name="standard_price" string="Cost Price (VAT Excl.)"/>
                                     <field name="tax_group_id" colspan="2" quick_create="false"/>
                                     <field name="uom_po_id"/>
@@ -209,11 +216,25 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                                 </group>
                                 <group>
                                     <separator string="Sale" colspan="2"/>
-                                    <field name="property_account_income" 
-                                        domain="[('type','=','other')]" 
+                                    <field name="property_account_income"
+                                            domain="[('type','=','other')]"
                                         groups="account.group_account_manager"/>
+                                    <field name="margin_classification_id"/>
+                                    <label for="theoretical_price" attrs="{'invisible': [('margin_state', '=', 'ok')]}"/>
+                                    <div attrs="{'invisible': [('margin_state', '=', 'ok')]}">
+                                        <field name="theoretical_price" class="oe_inline"/>
+                                        <button name="use_theoretical_price" string="⇒ Increase Price"
+                                                type="object" class="oe_link"
+                                                attrs="{'invisible': [('margin_state', '!=', 'cheap')]}"
+                                                help="Increase the Sale Price up to Theoretical Price"/>
+                                        <button name="use_theoretical_price" string="⇒ Decrease Price"
+                                                type="object" class="oe_link"
+                                                attrs="{'invisible': [('margin_state', '!=', 'expensive')]}"
+                                                help="Decrease the Sale Price down to Theoretical Price"/>
+                                    </div>
+                                    <field name="theoretical_difference" invisible="1" />
+                                    <field name="margin_state" invisible="1" />
                                     <field name="list_price"/>
-                                    <field name="standard_margin"/>
                                     <field name="standard_margin_rate" widget="progressbar"/>
                                 </group>
                                 <group>
@@ -389,7 +410,6 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                 <field name="tax_group_id"/>
                 <field name="standard_price"/>
                 <field name="list_price"/>
-                <field name="standard_margin"/>
                 <field name="standard_margin_rate"/>
                 <field name="sale_ok"/>
                 <field name="company_id" groups="base.group_multi_company"/>
