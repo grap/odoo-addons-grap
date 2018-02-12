@@ -74,4 +74,13 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         </t>
     </template>
 
+    <!-- We replace purchase.report_purchasequotation because it is called instead of the name of the report -->
+    <template id="purchase.report_purchasequotation">
+        <t t-call="report.html_container">
+            <t t-foreach="doc_ids" t-as="doc_id">
+                <t t-raw="translate_doc(doc_id, doc_model, 'partner_id.lang', 'grap_qweb_report.grap_template_purchase_order_quotation_document')"/>
+            </t>
+        </t>
+    </template>
+
 </data></openerp>
