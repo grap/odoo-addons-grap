@@ -13,6 +13,12 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         </xpath>
     </template>
 
+    <template id="assets_point_of_sale" name="grap_change_views index" inherit_id="point_of_sale.index">
+        <xpath expr="//link[@id='pos-stylesheet']" position="after">
+            <link rel="stylesheet" href="/grap_change_views/static/src/css/point_of_sale.css" id="point_of_sale-stylesheet"/>
+        </xpath>
+    </template>
+
     <template id="grap_change_views.login_layout" inherit_id="web.login_layout">
         <xpath expr="//div[@class='oe_single_form_logo']/img" position="replace">
             <img t-attf-src="/grap_change_views/static/src/img/grap_logo.png"/>

@@ -6,6 +6,7 @@
   background: #F0F0E0;
 }
 
+/* GENERAL - Tree View Improve Search Zone --------------------------------- */
 .openerp .oe_searchview_drawer dt{
     width: 110px; /* before 160px */
 }
@@ -13,7 +14,6 @@
 .openerp .oe_searchview_drawer dd{
     margin-left: 120px /* before 180px */
 }
-
 
 .openerp .oe_searchview_drawer .col-md-7{
     width:45%;
@@ -32,6 +32,7 @@
 .openerp .oe_horizontal_separator {
     margin: 6px 0px 0px;
 }
+
 
 /* purchase - view_purchase_order_form --------------------------------------------- */
 .grap_change_views__view_purchase_order_form [data-id="product_id"]          {width: 33%;}
@@ -56,7 +57,6 @@
 
 
 /* point_of_sale - view_pos_order_form  ------------------------------------ */
-
 .grap_change_views__view_pos_order_form [data-id="product_id"]          {width: 50%;}
 .grap_change_views__view_pos_order_form [data-id="qty"]                 {width: 10%;}
 .grap_change_views__view_pos_order_form [data-id="price_unit"]          {width: 10%;}
@@ -64,8 +64,8 @@
 .grap_change_views__view_pos_order_form [data-id="price_subtotal"]      {width: 10%;}
 .grap_change_views__view_pos_order_form [data-id="price_subtotal_incl"] {width: 10%;}
 
-/* account - view_account_move_form                                           */
 
+/* account - view_account_move_form                                           */
 .grap_change_views__view_account_move_form [data-id="invoice"]              {width: 3%;}
 .grap_change_views__view_account_move_form [data-id="name"]                 {width: 18%;}
 .grap_change_views__view_account_move_form [data-id="partner_id"]           {width: 12%;}
@@ -78,38 +78,3 @@
 .grap_change_views__view_account_move_form [data-id="state"]                {width: 5%;}
 .grap_change_views__view_account_move_form [data-id="reconcile_id"]         {width: 3%;}
 .grap_change_views__view_account_move_form [data-id="reconcile_partial_id"] {width: 3%;}
-
-/* Point Of Sale Front-Office - Improve delete payment button */
-
-.point-of-sale a.delete-payment-line {
-    height: 40px;
-    width: 40px;
-    border: 1px solid #CACACA;
-    display: inline-block;
-    border-radius: 4px;
-    background: linear-gradient(#F0F0F0, #E2E2E2) repeat scroll 0% 0% transparent;
-}
-
-.point-of-sale td.pos-right-align img {
-    height: 36px;
-    width: 36px;
-    margin: 2px;
-}
-
-/* Point Of Sale Front-Office - Improve value input option */
-
-.point-of-sale td.pos-right-align input {
-    height: 36px;
-}
-
-/* Point Of Sale Front-Office - Improve clear search button */
-
-.point-of-sale img.search-clear {
-    display: inline-block;
-    height: 30px;
-    top: 5px;
-    right: 20px;
-    border: 1px solid #CACACA;
-    border-radius: 4px;
-    background: linear-gradient(#F0F0F0, #E2E2E2) repeat scroll 0% 0% transparent;
-}
