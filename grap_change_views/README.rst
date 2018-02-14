@@ -2,9 +2,9 @@
    :target: https://www.gnu.org/licenses/agpl
    :alt: License: AGPL-3
 
-=======================
-GRAP - Change Ir Values
-=======================
+===================
+GRAP - Change Views
+===================
 
 * Hide a lot of field from 'basic users' to group no_one users
 
