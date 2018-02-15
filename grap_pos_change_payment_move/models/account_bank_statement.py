@@ -3,10 +3,12 @@
 # @author: Sylvain LE GAL (https://twitter.com/legalsylvain)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
+import pytz
 import time
+from datetime import datetime
 
 from openerp.osv import osv
-from openerp import _, api, models
+from openerp import _, api, models, tools
 
 
 class AccountBankStatement(models.Model):
@@ -74,6 +76,14 @@ class AccountBankStatement(models.Model):
         """This function is called instead of button_confirm_bank() core
         function, if the statement is a statement from point of sale."""
 
+        def _prepare_local_date(obj, date):
+            context_tz = pytz.timezone(obj.env.user.tz)
+            timestamp = datetime.strptime(
+                date, tools.DEFAULT_SERVER_DATETIME_FORMAT)
+            utc_timestamp = pytz.utc.localize(timestamp, is_dst=False)
+            tz_timestamp = utc_timestamp.astimezone(context_tz)
+            return tz_timestamp.strftime("%Y-%m-%d")
+
         move_obj = self.env['account.move']
         statement_line_obj = self.env['account.bank.statement.line']
 
@@ -83,16 +93,20 @@ class AccountBankStatement(models.Model):
             # parse the lines to group the ids according to the key fields
             for statement_line in statement.line_ids:
                 pos_order = statement_line.pos_statement_id
-                # We keep partner information only if
-                # an invoice has been generated
-                if pos_order and pos_order.state == 'invoiced':
-                    partner_id = statement_line.partner_id.id
-                else:
-                    partner_id = False
+
+                partner_id = False
+                statement_date = statement.date
+                if pos_order:
+                    statement_date = _prepare_local_date(
+                        self, pos_order.date_order)
+                    if  pos_order.state == 'invoiced':
+                        # We keep partner information only if
+                        # an invoice has been generated
+                        partner_id = statement_line.partner_id.id
                 keys = (
                     statement_line.account_id.id,
                     partner_id,
-                    pos_order._prepare_date_payment_move_point_of_sale())
+                    statement_date)
                 groups.setdefault(keys, [])
                 groups[keys].append(statement_line.id)
 
