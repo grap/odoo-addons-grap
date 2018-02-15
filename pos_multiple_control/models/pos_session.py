@@ -90,6 +90,18 @@ class PosSession(models.Model):
         return session
 
     @api.multi
+    def wkf_action_closing_control(self):
+        for session in self:
+            draft_orders = session.order_ids.filtered(
+                lambda x: x.state == 'draft')
+            if len(draft_orders):
+                raise UserError(_(
+                    "You can not end this session because there are some"
+                    " draft orders: \n\n- %s") % (
+                        '\n- '.join([x.name for x in draft_orders])))
+        return super(PosSession, self).wkf_action_closing_control()
+
+    @api.multi
     def wkf_action_close(self):
         for session in self:
             for statement in session.statement_ids:

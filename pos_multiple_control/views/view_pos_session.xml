@@ -30,11 +30,13 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                         <field name="state" invisible="1" />
                             <field name="details_ids" nolabel="1" colspan="2">
                             <tree string="Cashbox Lines" editable="bottom">
-                                <field name="pieces"/>
-                                <field name="number_opening" />
+
+                                <field name="pieces" attrs="{'readonly': [('is_piece', '=', True)]}"/>
+                                <field name="number_opening"/>
                                 <field name="subtotal_opening" string="Opening Subtotal" sum="Total"/>
                                 <field name="number_closing" />
                                 <field name="subtotal_closing" string="Closing Subtotal" sum="Total"/>
+                                <field name="is_piece" invisible="1"/>
                             </tree>
                         </field>
                     </form>

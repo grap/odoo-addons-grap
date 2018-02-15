@@ -12,10 +12,15 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="model">workflow.instance</field>
         <field name="arch" type="xml">
             <form string="Workflow Instances">
-                <field name="wkf_id"/>
-                <field name="res_id"/>
-                <field name="res_type"/>
-                <field name="state"/>
+                <group>
+                    <field name="wkf_id"/>
+                    <field name="res_id"/>
+                    <field name="res_type"/>
+                    <field name="state"/>
+                </group>
+                <group name="transition" string="Transitions">
+                    <field name="transition_ids" nolabel="1"/>
+                </group>
             </form>
         </field>
     </record>
