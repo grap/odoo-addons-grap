@@ -22,7 +22,7 @@
     ],
     'demo': [
         'demo/res_groups.xml',
-        'demo/account_journal.xml',
-        'demo/pos_config.xml',
+#        'demo/account_journal.xml',
+#        'demo/pos_config.xml',
     ]
 }

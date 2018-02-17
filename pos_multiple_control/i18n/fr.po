@@ -1,13 +1,13 @@
-# Translation of OpenERP Server.
+# Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* pos_multiple_cash_control
+#	* pos_multiple_control
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 7.0\n"
+"Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-08 20:33+0000\n"
-"PO-Revision-Date: 2014-09-08 20:33+0000\n"
+"POT-Creation-Date: 2018-02-15 19:19+0000\n"
+"PO-Revision-Date: 2018-02-15 19:19+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -15,318 +15,168 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
-#. module: pos_multiple_cash_control
-#: model:ir.actions.act_window,help:pos_multiple_cash_control.product_cash_products
-msgid "<p class=\"oe_view_nocontent_create\">\n"
-"                Click to add a new product.\n"
-"              </p><p>\n"
-"                You must define a product for everything you sell through\n"
-"                the point of sale interface.\n"
-"              </p><p>\n"
-"                Do not forget to set the price and the point of sale category\n"
-"                in which it should appear. If a product has no point of sale\n"
-"                category, you can not sell it through the point of sale\n"
-"                interface.\n"
-"              </p>\n"
-"            "
-msgstr "<p class=\"oe_view_nocontent_create\">\n"
-"                Cliquez pour ajouter un nouvel article.\n"
-"              </p><p>\n"
-"                Vous devez définir un article pour tout ce que vous vendez à travers l'interface du point de vente.\n"
-"              </p><p>\n"
-"                N'oubliez pas de configurer le prix et la catégorie de point de vente dans laquelle il devrait apparaître. Si un produit n'a pas de catégorie de point de vente, vous ne pouvez pas le vendre à travers l'interface de point de vente.\n"
-"              </p>\n"
-"            "
+#. module: pos_multiple_control
+#: view:pos.session:pos_multiple_control.view_pos_session_form
+msgid "+ Transactions"
+msgstr "+ Transactions"
 
-#. module: pos_multiple_cash_control
-#: code:_description:0
-#: model:ir.model,name:pos_multiple_cash_control.model_account_bank_statement
-#, python-format
+#. module: pos_multiple_control
+#: model:ir.model,name:pos_multiple_control.model_account_bank_statement
 msgid "Bank Statement"
 msgstr "Relevé bancaire"
 
-#. module: pos_multiple_cash_control
-#: view:pos.cash.controls:0
-msgid "Caisse"
-msgstr "Caisse"
+#. module: pos_multiple_control
+#: field:account.journal,bank_control:0
+msgid "Bank and Checks Control"
+msgstr "Contrôle de caisse (Banque et Chèque)"
 
-#. module: pos_multiple_cash_control
-#: field:pos.cash.controls,details_ids:0
-msgid "Cash Control"
-msgstr "Contrôle de caisse"
+#. module: pos_multiple_control
+#: model:ir.model,name:pos_multiple_control.model_account_cashbox_line
+msgid "CashBox Line"
+msgstr "Ligne de caisse"
 
-#. module: pos_multiple_cash_control
-#: model:product.category,name:pos_multiple_cash_control.cat_expense_product
-msgid "Cash Expense"
-msgstr "Retrait d'argent"
+#. module: pos_multiple_control
+#: view:pos.session:pos_multiple_control.view_pos_session_form
+msgid "Cashbox Lines"
+msgstr "Mouvements de caisse"
 
-#. module: pos_multiple_cash_control
-#: model:product.category,name:pos_multiple_cash_control.cat_income_product
-msgid "Cash Income"
-msgstr "Entrée d'argent"
-
-#. module: pos_multiple_cash_control
-#: model:ir.actions.act_window,name:pos_multiple_cash_control.product_cash_products
-#: model:ir.ui.menu,name:pos_multiple_cash_control.menu_pos_cash_products
-#: model:product.category,name:pos_multiple_cash_control.cat_cash_product
-msgid "Cash Products"
-msgstr "Produits Manipulation de caisse"
-
-#. module: pos_multiple_cash_control
-#: view:account.bank.statement.line:0
-#: model:ir.actions.act_window,name:pos_multiple_cash_control.action_view_account_bank_statement_line_tree
-#: model:ir.ui.menu,name:pos_multiple_cash_control.menu_cash_register_operation
-msgid "Cash register operations"
-msgstr "Opérations de caisses"
-
-#. module: pos_multiple_cash_control
-#: view:pos.session.opening:0
-msgid "Close Session"
-msgstr "Fermer la session"
-
-#. module: pos_multiple_cash_control
-#: view:pos.session:0
-msgid "Closing Balance"
-msgstr "Solde de clôture"
-
-#. module: pos_multiple_cash_control
-#: view:pos.cash.controls:0
-msgid "Closing Cash Control"
-msgstr "Contrôle de clôture"
-
-#. module: pos_multiple_cash_control
-#: view:pos.cash.controls:0
-msgid "Closing Cashbox Lines"
-msgstr "Décompte de clôture"
-
-#. module: pos_multiple_cash_control
-#: view:pos.cash.controls:0
+#. module: pos_multiple_control
+#: view:pos.session:pos_multiple_control.view_pos_session_form
 msgid "Closing Subtotal"
-msgstr "Sous-total de clôture"
+msgstr "Sous-total de fermeture"
 
-#. module: pos_multiple_cash_control
-#: field:pos.config,company_id:0
-msgid "Company"
-msgstr "Société"
+#. module: pos_multiple_control
+#: field:account.bank.statement,control_difference:0
+msgid "Control Difference"
+msgstr "Différence"
 
-#. module: pos_multiple_cash_control
-#: help:pos.cash.controls,opening_total:0
-msgid "Computed using the cash control at the opening."
-msgstr "Calculé en utilisant le contrôle à l'ouverture"
+#. module: pos_multiple_control
+#: field:account.bank.statement,control_balance:0
+msgid "Controled Balance"
+msgstr "Balance de fermeture"
 
-#. module: pos_multiple_cash_control
-#: help:pos.cash.controls,closing_total:0
-msgid "Computed using the cash control lines"
-msgstr "Calculé en se basant sur les lignes de caisses"
+#. module: pos_multiple_control
+#: field:pos.session,control_register_difference:0
+msgid "Differences"
+msgstr "Differences"
 
-#. module: pos_multiple_cash_control
-#: field:pos.session,cash_controls_list:0
-msgid "Control List"
-msgstr "Liste de controle"
+#. module: pos_multiple_control
+#: help:account.journal,bank_control:0
+msgid "If you want this journal should be control at opening/closing, check this option"
+msgstr "Si vous voulez que ce journal soit contrôlé à l'ouverture / fermeture, cochez cette option"
 
-#. module: pos_multiple_cash_control
-#: view:account.bank.statement.line:0
-msgid "Customer operations"
-msgstr "Opérations Clients"
+#. module: pos_multiple_control
+#: field:account.cashbox.line,is_piece:0
+msgid "Is Piece"
+msgstr "Est une pièce"
 
-#. module: pos_multiple_cash_control
-#: model:ir.actions.act_window,help:pos_multiple_cash_control.action_view_account_bank_statement_line_tree
-msgid "Display cashs manipulation."
-msgstr "Afficher les opérations liées aux caisses"
-
-#. module: pos_multiple_cash_control
-#: field:pos.cash.controls,closing_total:0
-msgid "Ending Balance"
-msgstr "Balance de clôture"
-
-#. module: pos_multiple_cash_control
-#: view:account.bank.statement.line:0
-msgid "Group by..."
-msgstr "Regroupé par"
-
-#. module: pos_multiple_cash_control
-#: view:pos.cash.controls:0
-#: field:pos.cash.controls,journal_id:0
+#. module: pos_multiple_control
+#: field:cash.box.in,journal_id:0
+#: field:cash.box.out,journal_id:0
+#: model:ir.model,name:pos_multiple_control.model_account_journal
 msgid "Journal"
 msgstr "Journal"
 
-#. module: pos_multiple_cash_control
-#: view:pos.session:0
-msgid "Opening Balance"
-msgstr "Solde initial"
+#. module: pos_multiple_control
+#: field:pos.session,control_register_balance_start:0
+msgid "Opening Balances"
+msgstr "Soldes d'ouverture"
 
-#. module: pos_multiple_cash_control
-#: view:pos.cash.controls:0
-#: field:pos.cash.controls,opening_details_ids:0
-msgid "Opening Cash Control"
-msgstr "Fonds de caisse"
-
-#. module: pos_multiple_cash_control
-#: view:pos.cash.controls:0
-msgid "Opening Cashbox Lines"
-msgstr "Décompte du fonds de caisse"
-
-#. module: pos_multiple_cash_control
-#: view:pos.cash.controls:0
+#. module: pos_multiple_control
+#: view:pos.session:pos_multiple_control.view_pos_session_form
 msgid "Opening Subtotal"
 msgstr "Sous-total d'ouverture"
 
-#. module: pos_multiple_cash_control
-#: view:account.bank.statement.line:0
-msgid "Other operations"
-msgstr "Opérations diverses"
+#. module: pos_multiple_control
+#: field:account.bank.statement,is_pos_control:0
+msgid "PoS Control"
+msgstr "Contrôle en Point de Vente"
 
-#. module: pos_multiple_cash_control
-#: view:pos.cash.controls:0
-msgid "POS Cash Controls"
-msgstr "Contrôles de caisse"
+#. module: pos_multiple_control
+#: model:ir.model,name:pos_multiple_control.model_pos_make_payment
+msgid "Point of Sale Payment"
+msgstr "Paiement du ticket"
 
-#. module: pos_multiple_cash_control
-#: code:_description:0
-#: model:ir.model,name:pos_multiple_cash_control.model_product_product
-#, python-format
-msgid "Product"
-msgstr "Article"
+#. module: pos_multiple_control
+#: field:pos.session,control_register_balance:0
+msgid "Real Closing Balances"
+msgstr "Soldes de clôture réelle"
 
-#. module: pos_multiple_cash_control
-#: view:pos.session:0
-msgid "Put Money In"
-msgstr "Faire une entrée de liquide"
+#. module: pos_multiple_control
+#: field:cash.box.in,statement_id:0
+#: field:cash.box.out,statement_id:0
+msgid "Statement"
+msgstr "Relevé"
 
-#. module: pos_multiple_cash_control
-#: code:addons/pos_multiple_cash_control/model/pos_session_opening.py:54
-#: field:pos.cash.controls,pos_session_id:0
-#, python-format
-msgid "Session"
-msgstr "Session"
+#. module: pos_multiple_control
+#: field:pos.session,control_statement_ids:0
+msgid "Statements"
+msgstr "Relevés"
 
-#. module: pos_multiple_cash_control
-#: field:pos.cash.controls,opening_total:0
-msgid "Starting Balance"
-msgstr "Solde d'ouverture"
+#. module: pos_multiple_control
+#: view:pos.session:pos_multiple_control.view_pos_session_form
+#: field:pos.session,control_register_balance_end:0
+msgid "Theoretical Closing Balances"
+msgstr "Soldes de clôture théoriques"
 
-#. module: pos_multiple_cash_control
-#: field:pos.cash.controls,state:0
-msgid "State"
-msgstr "Etat"
-
-#. module: pos_multiple_cash_control
-#: view:account.bank.statement.line:0
-msgid "Supplier operations"
-msgstr "Opérations fournisseurs"
-
-#. module: pos_multiple_cash_control
-#: view:account.bank.statement.line:0
-#: view:pos.cash.controls:0
+#. module: pos_multiple_control
+#: view:pos.session:pos_multiple_control.view_pos_session_form
 msgid "Total"
 msgstr "Total"
 
-#. module: pos_multiple_cash_control
-#: constraint:product.product:0
-msgid "You can not create a product that is both salable or purchasable and POS expense or income product !"
-msgstr "Vous ne pouvez pas créer un produit qui soit vendable ou achetable ET qui soit un produit de manipulation de caisse !"
+#. module: pos_multiple_control
+#: field:pos.session,control_register_total_entry_encoding:0
+msgid "Transactions"
+msgstr "Transactions"
 
-#. module: pos_multiple_cash_control
-#: constraint:product.product:0
-msgid "You can not create an POS expense or income product if you're not account manager !"
-msgstr "Vous me pouvez pas créer un produit de manipulation de caisse si vous n'êtes pas responsable comptable !"
+#. module: pos_multiple_control
+#: code:addons/pos_multiple_control/models/pos_session.py:109
+#, python-format
+msgid "You can not close this session because the statement %s has a not null difference: \n"
+"\n"
+"%f"
+msgstr "Vous ne pouvez pas fermer cette session car le relevé %s a une différence non nulle : \n"
+"\n"
+"%f"
 
-#. module: pos_multiple_cash_control
-#: constraint:product.product:0
-msgid "You can not create an POS expense product without account expense !"
-msgstr "Vous ne pouvez pas créer un produit de sortie de caisse sans compte de dépense associé !"
+#. module: pos_multiple_control
+#: code:addons/pos_multiple_control/models/pos_session.py:98
+#, python-format
+msgid "You can not end this session because there are some draft orders: \n"
+"\n"
+"- %s"
+msgstr "Vous ne pouvez pas fermer cette session car il y a des ventes en brouillon: \n"
+"\n"
+"- %s"
 
-#. module: pos_multiple_cash_control
-#: constraint:product.product:0
-msgid "You can not create an POS expense with many taxes !"
-msgstr "Vous ne pouvez pas créer un produit de sortie de caisse avec plusieurs TVA !"
-
-#. module: pos_multiple_cash_control
-#: constraint:product.product:0
-msgid "You can not create an POS income product without account income !"
-msgstr "Vous ne pouvez pas créer un produit d'entrée de caisse sans compte de profit associé !"
-
-#. module: pos_multiple_cash_control
+#. module: pos_multiple_control
 #: constraint:pos.session:0
 msgid "You cannot create two active sessions related to the same point of sale!"
 msgstr "Vous ne pouvez pas créer deux sessions actives associées au même point de vente !"
 
-#. module: pos_multiple_cash_control
+#. module: pos_multiple_control
 #: constraint:pos.session:0
 msgid "You cannot create two active sessions with the same responsible!"
 msgstr "Vous ne pouvez pas créer deux sessions actives avec le même responsable !"
 
-#. module: pos_multiple_cash_control
-#: constraint:pos.config:0
-msgid "You cannot have two cash controls in one Point Of Sale !"
-msgstr "Vous ne pouvez pas avoir deux contrôles de caisse dans un point de vente !"
-
-#. module: pos_multiple_cash_control
-#: view:pos.session:0
-msgid "control"
-msgstr "contrôle"
-
-#. module: pos_multiple_cash_control
-#: view:pos.session:0
-msgid "false"
-msgstr "false"
-
-#. module: pos_multiple_cash_control
-#: view:pos.session:0
-msgid "object"
-msgstr "Objet"
-
-#. module: pos_multiple_cash_control
-#: view:pos.session:0
-msgid "oe_edit_only"
-msgstr "oe_edit_only"
-
-#. module: pos_multiple_cash_control
-#: code:_description:0
-#: model:ir.model,name:pos_multiple_cash_control.model_pos_cash_controls
+#. module: pos_multiple_control
+#: code:addons/pos_multiple_control/models/pos_box.py:47
 #, python-format
-msgid "pos.cash.controls"
-msgstr "pos.cash.controls"
+msgid "You cannot put/take money in/out for the statement %s which is closed"
+msgstr "Vous ne pouvez pas prendre ou retirer de l'argent sur le relevé %s car celui ci est fermé"
 
-#. module: pos_multiple_cash_control
-#: code:_description:0
-#: model:ir.model,name:pos_multiple_cash_control.model_pos_config
-#, python-format
-msgid "pos.config"
-msgstr "pos.config"
+#. module: pos_multiple_control
+#: view:pos.session:pos_multiple_control.view_pos_session_form
+msgid "brown: is_piece == False"
+msgstr "brown: is_piece == False"
 
-#. module: pos_multiple_cash_control
-#: code:_description:0
-#: model:ir.model,name:pos_multiple_cash_control.model_pos_session
-#, python-format
-msgid "pos.session"
-msgstr "pos.session"
+#. module: pos_multiple_control
+#: view:pos.session:pos_multiple_control.view_pos_session_form
+msgid "{'invisible': [('state', 'not in', ('opening_control'))]}"
+msgstr "{'invisible': [('state', 'not in', ('opening_control'))]}"
 
-#. module: pos_multiple_cash_control
-#: code:_description:0
-#: model:ir.model,name:pos_multiple_cash_control.model_pos_session_opening
-#, python-format
-msgid "pos.session.opening"
-msgstr "pos.session.opening"
-
-#. module: pos_multiple_cash_control
-#: view:pos.session:0
-msgid "print"
-msgstr "imprimer"
-
-#. module: pos_multiple_cash_control
-#: view:pos.session:0
-msgid "put_money_in"
-msgstr "put_money_in"
-
-
-#. module: pos_multiple_cash_control
-#: view:pos.session:0
-msgid "take_money_out"
-msgstr "take_money_out"
-
-#. module: pos_multiple_cash_control
-#: view:pos.session.opening:0
-msgid "{'invisible' : [('pos_state', '=', 'opened')]}"
-msgstr "{'invisible' : [('pos_state', '=', 'opened')]}"
+#. module: pos_multiple_control
+#: view:pos.session:pos_multiple_control.view_pos_session_form
+msgid "{'readonly': [('is_piece', '=', True)]}"
+msgstr "{'readonly': [('is_piece', '=', True)]}"
 
