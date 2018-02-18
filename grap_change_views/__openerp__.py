@@ -54,6 +54,7 @@
         'grap_change_access',
         'grap_print_product',
         'barcodes_generator_product',
+        'product_margin_classification',
     ],
     'data': [
         'security/res_groups.yml',
