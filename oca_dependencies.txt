@@ -10,6 +10,8 @@ stock-logistics-workflow
 web
 webkit-tools
 
+grap-odoo-incubator https://github.com/grap/grap-odoo-incubator.git 8.0
+
 odoo-addons-it https://github.com/grap/odoo-addons-it.git 8.0
 odoo-addons-cis https://github.com/grap/odoo-addons-cis.git 8.0
 odoo-addons-cpo https://github.com/grap/odoo-addons-cpo.git 8.0
