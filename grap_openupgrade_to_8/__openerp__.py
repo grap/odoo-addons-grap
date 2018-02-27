@@ -27,8 +27,10 @@
 Prepare for OpenUpgrade migration
 =================================
 
-    * Load extra data with noupdate=1, that we have deleted and that break
-      openupgrade process
+* Load extra data with noupdate=1, that we have deleted and that break
+  openupgrade process
+
+* make public recompute_parent for stock.location model
 
 Copyright, Authors and Licence:
 -------------------------------
@@ -41,6 +43,7 @@ Copyright, Authors and Licence:
     'license': 'AGPL-3',
     'depends': [
         'product',
+        'stock',
     ],
     'data': [
         'data/product.xml',
