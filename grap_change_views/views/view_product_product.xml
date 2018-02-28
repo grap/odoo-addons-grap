@@ -234,7 +234,14 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                                     </div>
                                     <field name="theoretical_difference" invisible="1" />
                                     <field name="margin_state" invisible="1" />
+                                    <field name="sale_tax_price_include" attrs="{'invisible': 1}"/>
+                                    <field name="price_vat_excl" attrs="{'invisible': [
+                                            ('sale_tax_price_include', '!=', 'all_tax_incl'),
+                                            ('sale_tax_price_include', '!=', 'various_taxes')]}"/>
                                     <field name="list_price"/>
+                                    <field name="price_vat_incl" attrs="{'invisible': [
+                                            ('sale_tax_price_include', '!=', 'all_tax_excl'),
+                                            ('sale_tax_price_include', '!=', 'various_taxes')]}"/>
                                     <field name="standard_margin_rate" widget="progressbar"/>
                                 </group>
                                 <group>

@@ -55,6 +55,7 @@
         'grap_print_product',
         'barcodes_generator_product',
         'product_margin_classification',
+        'product_sale_tax_price_included',
     ],
     'data': [
         'security/res_groups.yml',
