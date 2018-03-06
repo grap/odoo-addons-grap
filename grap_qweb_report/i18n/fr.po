@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-07 16:50+0000\n"
-"PO-Revision-Date: 2018-02-07 16:50+0000\n"
+"POT-Creation-Date: 2018-03-06 13:55+0000\n"
+"PO-Revision-Date: 2018-03-06 13:55+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,18 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: grap_qweb_report
+#. openerp-web
+#: code:addons/grap_qweb_report/static/src/xml/grap_qweb_report.xml:12
+#: code:addons/grap_qweb_report/static/src/xml/grap_qweb_report.xml:25
+#, python-format
+msgid "------------------------------------------"
+msgstr "------------------------------------------"
+
+#. module: grap_qweb_report
+#. openerp-web
+#: code:addons/grap_qweb_report/static/src/xml/grap_qweb_report.xml:16
 #: view:website:grap_qweb_report.grap_template_account_invoice_document
+#, python-format
 msgid "Amount"
 msgstr "Montant"
 
@@ -59,6 +70,13 @@ msgstr "Check if, this is a product you can use to put cash into a statement for
 #: help:product.product,expense_pdt:0
 msgid "Check if, this is a product you can use to take cash from a statement for the point of sale backend, example: money lost, transfer to bank, etc."
 msgstr "Check if, this is a product you can use to take cash from a statement for the point of sale backend, example: money lost, transfer to bank, etc."
+
+#. module: grap_qweb_report
+#: view:website:grap_qweb_report.qweb_template_label_big
+#: view:website:grap_qweb_report.qweb_template_label_normal
+#: view:website:grap_qweb_report.qweb_template_label_small
+msgid "Code:"
+msgstr "Code:"
 
 #. module: grap_qweb_report
 #: view:website:grap_qweb_report.grap_template_account_invoice_document
@@ -623,6 +641,20 @@ msgid "UoM"
 msgstr "UdM"
 
 #. module: grap_qweb_report
+#. openerp-web
+#: code:addons/grap_qweb_report/static/src/xml/grap_qweb_report.xml:14
+#, python-format
+msgid "VAT"
+msgstr "TVA"
+
+#. module: grap_qweb_report
+#. openerp-web
+#: code:addons/grap_qweb_report/static/src/js/grap_qweb_report.js:39
+#, python-format
+msgid "VAT "
+msgstr "TVA "
+
+#. module: grap_qweb_report
 #: view:website:grap_qweb_report.grap_template_purchase_order_document
 #: view:website:grap_qweb_report.grap_template_purchase_order_quotation_document
 #: view:website:grap_qweb_report.grap_template_sale_order_document
@@ -655,4 +687,11 @@ msgstr "Votre Référence Commande"
 #: view:website:grap_qweb_report.grap_template_sale_order_document
 msgid "Your Reference:"
 msgstr "Votre Référence:"
+
+#. module: grap_qweb_report
+#. openerp-web
+#: code:addons/grap_qweb_report/static/src/xml/grap_qweb_report.xml:15
+#, python-format
+msgid "___________ Base"
+msgstr "___________ Base"
 

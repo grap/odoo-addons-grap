@@ -15,6 +15,7 @@
         'sale_recovery_moment',
         'sale_food',
         'product_print_category',
+        'point_of_sale',
     ],
     'data': [
         'report/qweb_template_layout.xml',
@@ -27,7 +28,11 @@
         'report/qweb_template_product_product.xml',
         'report/ir_actions_report_xml.xml',
         'views/action.xml',
+        'views/templates.xml',
         'views/view_picking_summary_wizard.xml',
+    ],
+    'qweb': [
+        'static/src/xml/grap_qweb_report.xml',
     ],
     'demo': [
         'demo/res_groups.xml',
