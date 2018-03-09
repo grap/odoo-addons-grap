@@ -184,6 +184,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                                     <field name="purchase_ok"/>
                                     <field name="sale_ok"/>
                                     <field name="administrative_ok" />
+                                    <field name="is_impact_standard_price" />
                                 </group>
                             </group>
                         </group>

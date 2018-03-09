@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-03 16:24+0000\n"
-"PO-Revision-Date: 2018-02-03 16:24+0000\n"
+"POT-Creation-Date: 2018-03-09 00:09+0000\n"
+"PO-Revision-Date: 2018-03-09 00:09+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -29,11 +29,46 @@ msgstr " * The 'Draft' status is used when a user is encoding a new and unconfir
 " * The 'Cancelled' status is used when user cancel invoice."
 
 #. module: grap_change_views
+#: view:wizard.update.invoice.supplierinfo:grap_change_views.view_wizard_update_invoice_supplierinfo_form
+msgid "#EF3D47:new_discount2<current_discount2;#90EE90:new_discount2>current_discount2;"
+msgstr "#EF3D47:new_discount2<current_discount2;#90EE90:new_discount2>current_discount2;"
+
+#. module: grap_change_views
+#: view:wizard.update.invoice.supplierinfo:grap_change_views.view_wizard_update_invoice_supplierinfo_form
+msgid "#EF3D47:new_discount3>current_discount3;#90EE90:new_discount3<current_discount3;"
+msgstr "#EF3D47:new_discount3>current_discount3;#90EE90:new_discount3<current_discount3;"
+
+#. module: grap_change_views
+#: view:wizard.update.invoice.supplierinfo:grap_change_views.view_wizard_update_invoice_supplierinfo_form
+msgid "#EF3D47:new_discount<current_discount;#90EE90:new_discount>current_discount;"
+msgstr "#EF3D47:new_discount<current_discount;#90EE90:new_discount>current_discount;"
+
+#. module: grap_change_views
+#: view:wizard.update.invoice.supplierinfo:grap_change_views.view_wizard_update_invoice_supplierinfo_form
+msgid "#EF3D47:new_price>current_price;#90EE90:new_price<current_price;"
+msgstr "#EF3D47:new_price>current_price;#90EE90:new_price<current_price;"
+
+#. module: grap_change_views
+#: view:wizard.update.invoice.supplierinfo:grap_change_views.view_wizard_update_invoice_supplierinfo_form
+msgid "#EF3D47:new_standard_price>current_standard_price;#90EE90:new_standard_price<current_standard_price;"
+msgstr "#EF3D47:new_standard_price>current_standard_price;#90EE90:new_standard_price<current_standard_price;"
+
+#. module: grap_change_views
 #: view:account.move.line:grap_change_views.view_account_move_line_tree
 #: model:ir.actions.act_window,name:grap_change_views.action_view_account_move_line_tree
 #: model:ir.ui.menu,name:grap_change_views.menu_account_move_line
 msgid "Account Move Lines"
 msgstr "Ecritures Comptables"
+
+#. module: grap_change_views
+#: view:procurement.rule:grap_change_views.view_procurement_rule_search
+msgid "Action"
+msgstr "Action"
+
+#. module: grap_change_views
+#: view:stock.picking:grap_change_views.view_stock_picking_form
+msgid "Additional Info"
+msgstr "Informations complémentaires."
 
 #. module: grap_change_views
 #: view:stock.picking.type:grap_change_views.view_stock_picking_type_kanban
@@ -69,7 +104,9 @@ msgstr "Nom de la catégorie"
 #. module: grap_change_views
 #: view:account.move.line:grap_change_views.view_account_move_line_search
 #: view:ir.values:grap_change_views.view_ir_values_search
+#: view:procurement.rule:grap_change_views.view_procurement_rule_search
 #: view:purchase.order:grap_change_views.view_purchase_order_search
+#: view:stock.location:grap_change_views.view_stock_location_search
 msgid "Company"
 msgstr "Société"
 
@@ -87,6 +124,31 @@ msgstr "Nom complet stocké"
 #: view:product.product:grap_change_views.view_product_product_form
 msgid "Cost Price (VAT Excl.)"
 msgstr "Prix de Revient (HT)"
+
+#. module: grap_change_views
+#: view:wizard.update.invoice.supplierinfo:grap_change_views.view_wizard_update_invoice_supplierinfo_form
+msgid "Current Disc. 1 (%)"
+msgstr "Actuelle Rem. 1 (%)"
+
+#. module: grap_change_views
+#: view:wizard.update.invoice.supplierinfo:grap_change_views.view_wizard_update_invoice_supplierinfo_form
+msgid "Current Disc. 2 (%)"
+msgstr "Actuelle Rem. 2 (%)"
+
+#. module: grap_change_views
+#: view:wizard.update.invoice.supplierinfo:grap_change_views.view_wizard_update_invoice_supplierinfo_form
+msgid "Current Disc. 3 (%)"
+msgstr "Actuelle Rem. 3 (%)"
+
+#. module: grap_change_views
+#: view:wizard.update.invoice.supplierinfo:grap_change_views.view_wizard_update_invoice_supplierinfo_form
+msgid "Current SP"
+msgstr "Actuel PdR"
+
+#. module: grap_change_views
+#: view:wizard.update.invoice.supplierinfo:grap_change_views.view_wizard_update_invoice_supplierinfo_form
+msgid "Current UP"
+msgstr "Actuel PU"
 
 #. module: grap_change_views
 #: field:pos.order.line,partner_id:0
@@ -130,10 +192,30 @@ msgid "Date invoice"
 msgstr "Date de facture"
 
 #. module: grap_change_views
+#: view:product.product:grap_change_views.view_product_product_form
+msgid "Decrease the Sale Price down to Theoretical Price"
+msgstr "Baisser le prix de vente pour atteindre le prix théorique"
+
+#. module: grap_change_views
 #: view:purchase.order:grap_change_views.view_purchase_order_form
 #: view:sale.order:grap_change_views.view_sale_order_form_sale_3
 msgid "Disc (%)"
 msgstr "Rem. (%)"
+
+#. module: grap_change_views
+#: view:account.invoice:grap_change_views.view_account_invoice_form_customer
+msgid "Disc. (%)"
+msgstr "Rem. (%)"
+
+#. module: grap_change_views
+#: view:account.invoice:grap_change_views.view_account_invoice_form_supplier_discount
+msgid "Disc. 1 (%)"
+msgstr "Rem. 1 (%)"
+
+#. module: grap_change_views
+#: view:account.invoice:grap_change_views.view_account_invoice_form_supplier_discount
+msgid "Disc. 2 (%)"
+msgstr "Rem. 2 (%)"
 
 #. module: grap_change_views
 #: view:pos.order:grap_change_views.view_pos_order_form
@@ -183,6 +265,11 @@ msgid "Generate Base (Using Sequence)"
 msgstr "Générer une base (Via séquence)"
 
 #. module: grap_change_views
+#: view:stock.location:grap_change_views.view_stock_location_search
+msgid "Group By"
+msgstr "Grouper Par"
+
+#. module: grap_change_views
 #: view:account.invoice.line:grap_change_views.view_account_invoice_line_search
 msgid "Group By..."
 msgstr "Regrouper par ..."
@@ -191,6 +278,11 @@ msgstr "Regrouper par ..."
 #: view:product.product:grap_change_views.view_product_product_form
 msgid "Incoming quantity"
 msgstr "Quantité entrante"
+
+#. module: grap_change_views
+#: view:product.product:grap_change_views.view_product_product_form
+msgid "Increase the Sale Price up to Theoretical Price"
+msgstr "Augmenter le prix de vente pour atteindre le prix théorique"
 
 #. module: grap_change_views
 #: model:ir.ui.menu,name:grap_change_views.menu_grap_dashboard
@@ -258,6 +350,11 @@ msgid "Lines of Point of Sale"
 msgstr "Lignes de Points de Vente"
 
 #. module: grap_change_views
+#: view:stock.location:grap_change_views.view_stock_location_search
+msgid "Location Type"
+msgstr "Type d'emplacement"
+
+#. module: grap_change_views
 #: model:res.groups,name:grap_change_views.group_product_image_manager
 msgid "Manage Product Images"
 msgstr "Gérer les images de Produit"
@@ -268,6 +365,11 @@ msgid "Manual Deletion in the Scale System"
 msgstr "Suppression manuel dans le système de balance"
 
 #. module: grap_change_views
+#: view:product.product:grap_change_views.view_product_product_search
+msgid "Margin Classifications"
+msgstr "Catégories de marge"
+
+#. module: grap_change_views
 #: view:sale.order:grap_change_views.view_sale_order_tree
 msgid "Margin Total"
 msgstr "Total Marge"
@@ -276,6 +378,31 @@ msgstr "Total Marge"
 #: view:ir.values:grap_change_views.view_ir_values_search
 msgid "Name"
 msgstr "Nom"
+
+#. module: grap_change_views
+#: view:wizard.update.invoice.supplierinfo:grap_change_views.view_wizard_update_invoice_supplierinfo_form
+msgid "New Disc. 1 (%)"
+msgstr "Nouv. Rem. 1 (%)"
+
+#. module: grap_change_views
+#: view:wizard.update.invoice.supplierinfo:grap_change_views.view_wizard_update_invoice_supplierinfo_form
+msgid "New Disc. 2 (%)"
+msgstr "Nouv. Rem. 2 (%)"
+
+#. module: grap_change_views
+#: view:wizard.update.invoice.supplierinfo:grap_change_views.view_wizard_update_invoice_supplierinfo_form
+msgid "New Disc. 3 (%)"
+msgstr "Nouv. Rem. 3 (%)"
+
+#. module: grap_change_views
+#: view:wizard.update.invoice.supplierinfo:grap_change_views.view_wizard_update_invoice_supplierinfo_form
+msgid "New SP"
+msgstr "Nouv. PdR"
+
+#. module: grap_change_views
+#: view:wizard.update.invoice.supplierinfo:grap_change_views.view_wizard_update_invoice_supplierinfo_form
+msgid "New UP"
+msgstr "Nouv. PU"
 
 #. module: grap_change_views
 #: view:product.product:grap_change_views.view_product_product_form
@@ -333,6 +460,11 @@ msgid "Partner Invoice Number"
 msgstr "Numéro de facture partenaire"
 
 #. module: grap_change_views
+#: model:ir.model,name:grap_change_views.model_stock_picking
+msgid "Picking List"
+msgstr "Opération de manutention"
+
+#. module: grap_change_views
 #: view:product.product:grap_change_views.view_product_product_form
 msgid "PoS - Cash In"
 msgstr "PdV - Entrée d'argent"
@@ -379,10 +511,14 @@ msgid "Print information"
 msgstr "Information liée à l'impression"
 
 #. module: grap_change_views
+#: view:procurement.rule:grap_change_views.view_procurement_rule_search
+msgid "Procurement Location"
+msgstr "Procurement Location"
+
+#. module: grap_change_views
 #: view:account.invoice.line:grap_change_views.view_account_invoice_line_search
 #: model:ir.model,name:grap_change_views.model_product_product
 #: view:pos.category:grap_change_views.view_pos_category_form
-#: view:product.product:grap_change_views.view_product_product_form
 msgid "Product"
 msgstr "Article"
 
@@ -505,6 +641,8 @@ msgid "Put an internal note..."
 msgstr "Mettre une note interne..."
 
 #. module: grap_change_views
+#: view:account.invoice:grap_change_views.view_account_invoice_form_customer
+#: view:account.invoice:grap_change_views.view_account_invoice_form_supplier
 #: view:purchase.order:grap_change_views.view_purchase_order_form
 #: view:sale.order:grap_change_views.view_sale_order_form_sale_3
 msgid "Qty"
@@ -566,6 +704,11 @@ msgid "Sellers"
 msgstr "Fournisseurs"
 
 #. module: grap_change_views
+#: view:procurement.rule:grap_change_views.view_procurement_rule_search
+msgid "Source Location"
+msgstr "Emplacement d'origine"
+
+#. module: grap_change_views
 #: view:product.product:grap_change_views.view_product_product_form
 msgid "Spider Chart"
 msgstr "Radar"
@@ -618,6 +761,7 @@ msgstr "Taxes"
 #: view:pos.session:grap_change_views.view_pos_session_search
 #: view:purchase.order:grap_change_views.view_purchase_order_search
 #: view:sale.order:grap_change_views.view_sale_order_search
+#: view:stock.picking:grap_change_views.view_stock_picking_search_sale_stock
 msgid "To Process"
 msgstr "A traiter"
 
@@ -626,6 +770,11 @@ msgstr "A traiter"
 #: view:pos.order.line:grap_change_views.view_pos_order_line_search
 msgid "Today"
 msgstr "Quotidien"
+
+#. module: grap_change_views
+#: view:stock.picking:grap_change_views.view_stock_picking_search_sale_stock
+msgid "Today of After"
+msgstr "Aujourd'hui ou plus tard"
 
 #. module: grap_change_views
 #: view:account.move.line:grap_change_views.view_account_move_line_tree
@@ -658,6 +807,8 @@ msgid "Type"
 msgstr "Type"
 
 #. module: grap_change_views
+#: view:account.invoice:grap_change_views.view_account_invoice_form_customer
+#: view:account.invoice:grap_change_views.view_account_invoice_form_supplier
 #: view:purchase.order:grap_change_views.view_purchase_order_form
 #: view:sale.order:grap_change_views.view_sale_order_form_sale_3
 msgid "UoM"
@@ -696,6 +847,7 @@ msgid "['|', '|', ('number','ilike',self),('origin','ilike',self),('reference','
 msgstr "['|', '|', ('number','ilike',self),('origin','ilike',self),('reference','ilike',self)]"
 
 #. module: grap_change_views
+#: view:account.bank.statement:grap_change_views.view_account_bank_statement1
 #: view:account.invoice:grap_change_views.view_account_invoice_form_customer
 #: view:account.invoice:grap_change_views.view_account_invoice_form_supplier
 #: view:product.template:grap_change_views.view_product_template_point_of_sale_form
@@ -713,6 +865,7 @@ msgstr "base.group_multi_currency"
 
 #. module: grap_change_views
 #: view:account.voucher:grap_change_views.view_account_voucher_form
+#: view:pos.session:grap_change_views.view_pos_session_form
 #: view:product.pricelist.item:grap_change_views.view_product_pricelist_item_tree
 #: view:product.product:grap_change_views.view_product_product_tree
 #: view:product.supplierinfo:grap_change_views.product_supplierinfo_form
@@ -726,7 +879,9 @@ msgstr "base.group_multi_currency"
 #: view:sale.order:grap_change_views.view_sale_order_form_delivery_3
 #: view:sale.order:grap_change_views.view_sale_order_form_sale_3
 #: view:sale.order:grap_change_views.view_sale_order_form_sale_margin_3
+#: view:stock.picking:grap_change_views.view_stock_picking_form
 #: view:stock.picking.type:grap_change_views.view_stock_picking_type_kanban
+#: view:wizard.update.invoice.supplierinfo:grap_change_views.view_wizard_update_invoice_supplierinfo_form
 msgid "base.group_no_one"
 msgstr "base.group_no_one"
 
@@ -756,6 +911,16 @@ msgid "eShop"
 msgstr "Boutique en ligne"
 
 #. module: grap_change_views
+#: view:account.invoice:grap_change_views.view_account_invoice_form_customer
+msgid "grap_change_views__view_account_invoice_customer_form"
+msgstr "grap_change_views__view_account_invoice_customer_form"
+
+#. module: grap_change_views
+#: view:account.invoice:grap_change_views.view_account_invoice_form_supplier
+msgid "grap_change_views__view_account_invoice_supplier_form"
+msgstr "grap_change_views__view_account_invoice_supplier_form"
+
+#. module: grap_change_views
 #: view:account.move:grap_change_views.view_account_move_form
 msgid "grap_change_views__view_account_move_form"
 msgstr "grap_change_views__view_account_move_form"
@@ -776,6 +941,11 @@ msgid "grap_change_views__view_sale_order_form"
 msgstr "grap_change_views__view_sale_order_form"
 
 #. module: grap_change_views
+#: view:wizard.update.invoice.supplierinfo:grap_change_views.view_wizard_update_invoice_supplierinfo_form
+msgid "grap_change_views__view_wizard_update_invoice_supplierinfo_form"
+msgstr "grap_change_views__view_wizard_update_invoice_supplierinfo_form"
+
+#. module: grap_change_views
 #: view:account.invoice:grap_change_views.view_account_invoice_form_customer
 #: view:account.invoice:grap_change_views.view_account_invoice_form_supplier
 #: view:pos.order:grap_change_views.view_pos_order_form
@@ -783,6 +953,11 @@ msgstr "grap_change_views__view_sale_order_form"
 #: view:sale.order:grap_change_views.view_sale_order_form_sale_3
 msgid "red:discount==100;black:discount==0;brown:True;"
 msgstr "red:discount==100;black:discount==0;brown:True;"
+
+#. module: grap_change_views
+#: view:stock.picking:grap_change_views.view_stock_picking_tree
+msgid "stock.group_locations"
+msgstr "stock.group_locations"
 
 #. module: grap_change_views
 #: view:product.product:grap_change_views.view_product_product_form
@@ -793,4 +968,14 @@ msgstr "mettre à jour"
 #: view:pos.order:grap_change_views.view_pos_order_form
 msgid "{\"quick_create\": false}"
 msgstr "{\"quick_create\": false}"
+
+#. module: grap_change_views
+#: view:product.product:grap_change_views.view_product_product_form
+msgid "⇒ Decrease Price"
+msgstr "⇒ Baisser le prix"
+
+#. module: grap_change_views
+#: view:product.product:grap_change_views.view_product_product_form
+msgid "⇒ Increase Price"
+msgstr "⇒ Augmenter le prix"
 

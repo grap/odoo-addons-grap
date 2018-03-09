@@ -56,6 +56,9 @@
         'barcodes_generator_product',
         'product_margin_classification',
         'product_sale_tax_price_included',
+        'account_invoice_supplierinfo_update_standard_price',
+        'account_invoice_triple_discount',
+        'web_tree_dynamic_colored_field',
     ],
     'data': [
         'security/res_groups.yml',
@@ -91,6 +94,7 @@
         'views/view_stock_warehouse.xml',
         'views/view_workflow_instance.xml',
         'views/view_workflow_workitem.xml',
+        'views/view_ wizard_update_invoice_supplierinfo.xml',
         'views/action.xml',
         'views/menu.xml',
         'views/grap_change_views.xml',

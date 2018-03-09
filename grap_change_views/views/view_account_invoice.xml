@@ -12,6 +12,23 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="model">account.invoice</field>
         <field name="inherit_id" ref="account.invoice_form"/>
         <field name="arch" type="xml">
+            <xpath expr="//field[@name='invoice_line']/tree/field[@name='quantity']" position="attributes">
+                <attribute name="string">Qty</attribute>
+            </xpath>
+            <xpath expr="//field[@name='invoice_line']/tree/field[@name='uos_id']" position="attributes">
+                <attribute name="string">UoM</attribute>
+            </xpath>
+            <xpath expr="//field[@name='invoice_line']/tree/field[@name='price_unit']" position="attributes">
+                <attribute name="string">UP</attribute>
+            </xpath>
+            <xpath expr="//field[@name='invoice_line']/tree/field[@name='discount']" position="attributes">
+                <attribute name="string">Disc. (%)</attribute>
+            </xpath>
+            <xpath expr="//field[@name='invoice_line']/tree/field[@name='price_subtotal']" position="attributes">
+                <attribute name="string">ST</attribute>
+            </xpath>
+
+
             <field name="account_id" position="attributes">
               <attribute name="groups">account.group_account_manager</attribute>
             </field>
@@ -28,6 +45,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                  <attribute name="groups">account.group_account_manager</attribute>
               </xpath>
             <xpath expr="//field[@name='invoice_line']/tree" position="attributes">
+                <attribute name="class">grap_change_views__view_account_invoice_customer_form</attribute>
                 <attribute name="colors">red:discount==100;black:discount==0;brown:True;</attribute>
              </xpath>
         </field>
@@ -37,6 +55,18 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="model">account.invoice</field>
         <field name="inherit_id" ref="account.invoice_supplier_form"/>
         <field name="arch" type="xml">
+            <xpath expr="//field[@name='invoice_line']/tree/field[@name='quantity']" position="attributes">
+                <attribute name="string">Qty</attribute>
+            </xpath>
+            <xpath expr="//field[@name='invoice_line']/tree/field[@name='uos_id']" position="attributes">
+                <attribute name="string">UoM</attribute>
+            </xpath>
+            <xpath expr="//field[@name='invoice_line']/tree/field[@name='price_unit']" position="attributes">
+                <attribute name="string">UP</attribute>
+            </xpath>
+            <xpath expr="//field[@name='invoice_line']/tree/field[@name='price_subtotal']" position="attributes">
+                <attribute name="string">ST</attribute>
+            </xpath>
             <field name="account_id" position="attributes">
               <attribute name="groups">account.group_account_manager</attribute>
             </field>
@@ -53,7 +83,22 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                  <attribute name="groups">account.group_account_manager</attribute>
               </xpath>
             <xpath expr="//field[@name='invoice_line']/tree" position="attributes">
+                <attribute name="class">grap_change_views__view_account_invoice_supplier_form</attribute>
                 <attribute name="colors">red:discount==100;black:discount==0;brown:True;</attribute>
+             </xpath>
+        </field>
+    </record>
+
+    <record id="view_account_invoice_form_supplier_discount" model="ir.ui.view">
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account_invoice_triple_discount.invoice_supplier_triple_discount_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='invoice_line']/tree/field[@name='discount']" position="attributes">
+                <attribute name="string">Disc. 1 (%)</attribute>
+            </xpath>
+             <xpath expr="//field[@name='invoice_line']/tree//field[@name='discount2']" position="attributes">
+                 <attribute name="string">Disc. 2 (%)</attribute>
+                 <attribute name="groups"/>
              </xpath>
         </field>
     </record>
