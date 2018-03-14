@@ -282,6 +282,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                                     <field name="maker_description"/>
                                 </group>
                                 <group string="Food">
+                                    <field name="fresh_category"/>
                                     <field name="is_mercuriale"/>
                                     <field name="is_alcohol"/>
                                     <separator string="Pricetag" colspan="2"/>
@@ -582,6 +583,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
             <tree string="Products (Food)" editable="bottom">
                 <field name="name" readonly="1"/>
                 <field name="label_ids" widget="many2many_tags"/>
+                <field name="fresh_category"/>
                 <field name="is_mercuriale"/>
                 <field name="is_food"/>
                 <field name="is_alcohol"/>
