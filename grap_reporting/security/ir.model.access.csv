@@ -1,3 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_grap_reporting_sig,account.sig.report,model_account_sig_report,,1,1,1,1
-access_grap_reporting_treso,account.treso.report,model_account_treso_report,,1,1,1,1
