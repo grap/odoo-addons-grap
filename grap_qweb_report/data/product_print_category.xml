@@ -30,12 +30,12 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
             (4, ref('product.field_product_product_list_price'))]" />
     </record>
 
-<!--    <record id="category_label_bulk_selling" model="product.print.category">-->
-<!--        <field name="name">Bulk Selling</field>-->
-<!--        <field name="qweb_view_id" ref="qweb_template_bulk_selling" />-->
-<!--        <field name="field_ids" eval="[-->
-<!--            (4, ref('product.field_product_product_name')),-->
-<!--            (4, ref('product.field_product_product_list_price'))]" />-->
-<!--    </record>-->
+    <record id="category_label_bulk_selling" model="product.print.category">
+        <field name="name">Bulk Selling (Bio création bois)</field>
+        <field name="qweb_view_id" ref="qweb_template_label_bulk_selling" />
+        <field name="field_ids" eval="[
+            (4, ref('product.field_product_product_name')),
+            (4, ref('product.field_product_product_list_price'))]" />
+    </record>
 
 </data></openerp>

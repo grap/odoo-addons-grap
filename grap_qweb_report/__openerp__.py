@@ -49,8 +49,8 @@
     'demo': [
         'demo/res_groups.xml',
         'demo/product_uom.xml',
+        'demo/product_pricetag_type.xml',
         'demo/product_product.xml',
         'demo/product_print_category.xml',
-        'demo/product_pricetag_type.xml',
     ],
 }

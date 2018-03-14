@@ -73,7 +73,8 @@ class ProductProduct(models.Model):
                 product.packaging_notation,
                 product.local_notation,
                 ]
-            notation.remove('0')
+            if '0' in notation:
+                notation.remove('0')
             product.pricetag_display_spider_chart = (len(notation) >= 3)
 
     @api.multi
@@ -115,8 +116,9 @@ class ProductProduct(models.Model):
         for product in self:
             if product.volume:
                 price_volume = product.list_price / product.volume
-                product.price_volume = "%.2f € / L" % (
-                    round(price_volume, 2).replace('.', ','))
+                product.price_volume = 'TODO'
+                    # "%.2f € / L" % (
+                    # round(price_volume, 2))
 
     @api.multi
     def _compute_pricetag_price_weight_net(self):
@@ -129,5 +131,6 @@ class ProductProduct(models.Model):
                     product.list_price / product.pricetag_uom_id.factor
                 unit = product.pricetag_uom_id.name
             if price_weight_net:
-                product.price_weight_net = "%.2f € / %s" % (
-                    round(price_weight_net, 2).replace('.', ','), unit)
+                product.price_weight_net = 'TODO'
+                    # "%.2f € / %s" % (
+                    # round(price_weight_net, 2), unit)

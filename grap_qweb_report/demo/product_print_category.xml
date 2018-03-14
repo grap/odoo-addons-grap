@@ -28,10 +28,10 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         ]" />
     </record>
 
-<!--    <record id="category_label_bulk_selling" model="product.print.category">-->
-<!--        <field name="product_ids" eval="[-->
-<!--            (4, ref('sale_food.infusion_girl_power')),-->
-<!--        ]" />-->
-<!--    </record>-->
+    <record id="category_label_bulk_selling" model="product.print.category">
+        <field name="product_ids" eval="[
+            (4, ref('sale_food.infusion_girl_power')),
+        ]" />
+    </record>
 
 </data></openerp>
