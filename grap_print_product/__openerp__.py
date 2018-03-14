@@ -15,7 +15,6 @@ Possibility to print product information
 Functionality
 -------------
 
-* Possibility to generate EAN13 code;
 * Possibility to print ean13 codes;
 
 Limits / Roadmap
@@ -49,6 +48,7 @@ Copyright, Authors and Licence
     'license': 'AGPL-3',
     'depends': [
         'product',
+        'product_ean13_image',
         'report_webkit',
     ],
     'data': [
@@ -65,7 +65,6 @@ Copyright, Authors and Licence
         'demo/res_groups.yml',
     ],
     'external_dependencies': {
-        'python': ['cairosvg', 'barcode'],
         'bin': ['wkhtmltopdf'],
     },
 }

@@ -19,7 +19,10 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         name="Print Product"
         src_model="product.product"
         res_model="print.product.wizard"
+        view_mode="form"
+        target="new"
+        key2="client_action_multi"
         view_id="view_print_product_wizard_form"
-        target="new"/>
+    />
 
 </data></openerp>
