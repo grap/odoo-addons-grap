@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-14 13:46+0000\n"
-"PO-Revision-Date: 2018-03-14 13:46+0000\n"
+"POT-Creation-Date: 2018-03-14 17:54+0000\n"
+"PO-Revision-Date: 2018-03-14 17:54+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -29,8 +29,8 @@ msgid "100 gr"
 msgstr "100 gr"
 
 #. module: grap_qweb_report
-#: field:product.product,allergens:0
-msgid "Allergens"
+#: view:website:grap_qweb_report.qweb_template_label_bulk_selling
+msgid "Allergènes"
 msgstr "Allergènes"
 
 #. module: grap_qweb_report
@@ -45,11 +45,6 @@ msgstr "Montant"
 #: field:product.uom,pricetag_available:0
 msgid "Available for Pricetag"
 msgstr "Disponible pour les étiquettes"
-
-#. module: grap_qweb_report
-#: field:product.product,available_in_pos:0
-msgid "Available in the Point of Sale"
-msgstr "Available in the Point of Sale"
 
 #. module: grap_qweb_report
 #: view:website:grap_qweb_report.grap_template_account_invoice_document
@@ -67,26 +62,6 @@ msgid "Cancelled Invoice"
 msgstr "Facture annulée"
 
 #. module: grap_qweb_report
-#: help:product.product,to_weight:0
-msgid "Check if the product should be weighted using the hardware scale integration"
-msgstr "Check if the product should be weighted using the hardware scale integration"
-
-#. module: grap_qweb_report
-#: help:product.product,available_in_pos:0
-msgid "Check if you want this product to appear in the Point of Sale"
-msgstr "Check if you want this product to appear in the Point of Sale"
-
-#. module: grap_qweb_report
-#: help:product.product,income_pdt:0
-msgid "Check if, this is a product you can use to put cash into a statement for the point of sale backend."
-msgstr "Check if, this is a product you can use to put cash into a statement for the point of sale backend."
-
-#. module: grap_qweb_report
-#: help:product.product,expense_pdt:0
-msgid "Check if, this is a product you can use to take cash from a statement for the point of sale backend, example: money lost, transfer to bank, etc."
-msgstr "Check if, this is a product you can use to take cash from a statement for the point of sale backend, example: money lost, transfer to bank, etc."
-
-#. module: grap_qweb_report
 #: help:res.company,pricetag_ignore_organic_warning:0
 msgid "Check this box if you want to hide the mention 'Not From Organic Farming' that is displayed on pricetags for foods products that don't have an organic label"
 msgstr "Cochez cette case si vous voulez cacher la mention 'Non issu de l'agriculture biologique' qui sera affichée sur les étiquettes pour les produits alimentaire qui n'ont pas de label biologique"
@@ -97,11 +72,15 @@ msgid "Check this box if you want to use this Unit of Mesure to display price pe
 msgstr "Cochez cette case si vous voulez utiliser cette unité de mesure pour afficher le prix selon cette unité, sur les étiquettes"
 
 #. module: grap_qweb_report
-#: view:website:grap_qweb_report.qweb_template_label_big
-#: view:website:grap_qweb_report.qweb_template_label_normal
-#: view:website:grap_qweb_report.qweb_template_label_small
-msgid "Code:"
-msgstr "Code:"
+#: field:product.pricetag.type,color:0
+msgid "Color"
+msgstr "Couleur"
+
+#. module: grap_qweb_report
+#: help:product.pricetag.type,color:0
+#: help:res.company,pricetag_color:0
+msgid "Color of the Pricetag by default. Format #RRGGBB"
+msgstr "Couleur de l'étiquette par défaut. Format #RRGGBB"
 
 #. module: grap_qweb_report
 #: view:website:grap_qweb_report.grap_template_account_invoice_document
@@ -119,7 +98,12 @@ msgid "Companies"
 msgstr "Sociétés"
 
 #. module: grap_qweb_report
-#: code:addons/grap_qweb_report/models/product_product.py:101
+#: field:product.pricetag.type,company_id:0
+msgid "Company"
+msgstr "Société"
+
+#. module: grap_qweb_report
+#: code:addons/grap_qweb_report/models/product_product.py:111
 #, python-format
 msgid "Country: %s"
 msgstr "Pays : %s"
@@ -128,6 +112,7 @@ msgstr "Pays : %s"
 #: field:picking.summary.wizard,create_uid:0
 #: field:picking.summary.wizard.picking,create_uid:0
 #: field:picking.summary.wizard.product,create_uid:0
+#: field:product.pricetag.type,create_uid:0
 msgid "Created by"
 msgstr "Created by"
 
@@ -135,6 +120,7 @@ msgstr "Created by"
 #: field:picking.summary.wizard,create_date:0
 #: field:picking.summary.wizard.picking,create_date:0
 #: field:picking.summary.wizard.product,create_date:0
+#: field:product.pricetag.type,create_date:0
 msgid "Created on"
 msgstr "Created on"
 
@@ -149,14 +135,14 @@ msgid "Customer Code:"
 msgstr "Référence client:"
 
 #. module: grap_qweb_report
+#: view:website:grap_qweb_report.qweb_template_label_bulk_selling
+msgid "DLUO :"
+msgstr "DLUO :"
+
+#. module: grap_qweb_report
 #: view:website:grap_qweb_report.grap_template_sale_order_document
 msgid "Date Ordered:"
 msgstr "Date de commande :"
-
-#. module: grap_qweb_report
-#: field:res.company,print_category_id:0
-msgid "Default Print Category"
-msgstr "Default Print Category"
 
 #. module: grap_qweb_report
 #: view:website:grap_qweb_report.grap_template_stock_picking
@@ -201,6 +187,7 @@ msgstr "Remise (%)"
 #: field:picking.summary.wizard,display_name:0
 #: field:picking.summary.wizard.picking,display_name:0
 #: field:picking.summary.wizard.product,display_name:0
+#: field:product.pricetag.type,display_name:0
 msgid "Display Name"
 msgstr "Nom affiché"
 
@@ -220,12 +207,18 @@ msgid "Fiscal Position Remark:"
 msgstr "Remarque de Position Fiscale:"
 
 #. module: grap_qweb_report
-#: field:product.product,is_food:0
-msgid "Food Product"
-msgstr "Produit alimentaire"
+#: code:addons/grap_qweb_report/models/product_product.py:139
+#, python-format
+msgid "For %s"
+msgstr "Pour %s"
 
 #. module: grap_qweb_report
-#: code:addons/grap_qweb_report/models/product_product.py:103
+#: view:website:grap_qweb_report.qweb_template_label_bulk_selling
+msgid "Fournisseur"
+msgstr "Fournisseur"
+
+#. module: grap_qweb_report
+#: code:addons/grap_qweb_report/models/product_product.py:113
 #, python-format
 msgid "Fresh Category: %s"
 msgstr "Catégorie de produit frais : %s"
@@ -244,6 +237,7 @@ msgstr "IBAN"
 #: field:picking.summary.wizard,id:0
 #: field:picking.summary.wizard.picking,id:0
 #: field:picking.summary.wizard.product,id:0
+#: field:product.pricetag.type,id:0
 msgid "ID"
 msgstr "ID"
 
@@ -251,6 +245,11 @@ msgstr "ID"
 #: field:res.company,pricetag_ignore_organic_warning:0
 msgid "Ignore Organic Warning"
 msgstr "Ignorer l'avertissement Biologique"
+
+#. module: grap_qweb_report
+#: view:website:grap_qweb_report.qweb_template_label_bulk_selling
+msgid "Ingrédients"
+msgstr "Ingrédients"
 
 #. module: grap_qweb_report
 #: model:ir.model,name:grap_qweb_report.model_account_invoice
@@ -287,6 +286,7 @@ msgstr "Labels"
 #: field:picking.summary.wizard,__last_update:0
 #: field:picking.summary.wizard.picking,__last_update:0
 #: field:picking.summary.wizard.product,__last_update:0
+#: field:product.pricetag.type,__last_update:0
 msgid "Last Modified on"
 msgstr "Last Modified on"
 
@@ -294,6 +294,7 @@ msgstr "Last Modified on"
 #: field:picking.summary.wizard,write_uid:0
 #: field:picking.summary.wizard.picking,write_uid:0
 #: field:picking.summary.wizard.product,write_uid:0
+#: field:product.pricetag.type,write_uid:0
 msgid "Last Updated by"
 msgstr "Last Updated by"
 
@@ -301,6 +302,7 @@ msgstr "Last Updated by"
 #: field:picking.summary.wizard,write_date:0
 #: field:picking.summary.wizard.picking,write_date:0
 #: field:picking.summary.wizard.product,write_date:0
+#: field:product.pricetag.type,write_date:0
 msgid "Last Updated on"
 msgstr "Last Updated on"
 
@@ -315,10 +317,15 @@ msgid "Net Price"
 msgstr "Prix net"
 
 #. module: grap_qweb_report
-#: code:addons/grap_qweb_report/models/product_product.py:64
+#: code:addons/grap_qweb_report/models/product_product.py:72
 #, python-format
 msgid "Not From Organic Farming"
 msgstr "Non issu de l'agriculture biologique"
+
+#. module: grap_qweb_report
+#: view:website:grap_qweb_report.qweb_template_label_bulk_selling
+msgid "N° Lot :"
+msgstr "N° Lot :"
 
 #. module: grap_qweb_report
 #: view:website:grap_qweb_report.grap_template_stock_picking
@@ -336,15 +343,22 @@ msgid "Order N°"
 msgstr "N° de commande"
 
 #. module: grap_qweb_report
-#: code:addons/grap_qweb_report/models/product_product.py:61
+#: code:addons/grap_qweb_report/models/product_product.py:69
 #, python-format
 msgid "Organic Product, certified by %s"
 msgstr "Produit issu de l'agriculture biologique, certifié par %s"
 
 #. module: grap_qweb_report
-#: field:product.product,state_id:0
-msgid "Origin State"
-msgstr "Région d'origine"
+#: view:website:grap_qweb_report.qweb_template_label_bulk_selling
+msgid "Origine"
+msgstr "Origine"
+
+#. module: grap_qweb_report
+#: view:website:grap_qweb_report.qweb_template_label_big
+#: view:website:grap_qweb_report.qweb_template_label_normal
+#: view:website:grap_qweb_report.qweb_template_label_small
+msgid "Origine :"
+msgstr "Origine :"
 
 #. module: grap_qweb_report
 #: view:website:grap_qweb_report.grap_template_purchase_order_document
@@ -404,24 +418,28 @@ msgid "Pickings List"
 msgstr "Liste des Opérations"
 
 #. module: grap_qweb_report
-#: field:product.product,income_pdt:0
-msgid "Point of Sale Cash In"
-msgstr "Point of Sale Cash In"
-
-#. module: grap_qweb_report
-#: field:product.product,expense_pdt:0
-msgid "Point of Sale Cash Out"
-msgstr "Point of Sale Cash Out"
-
-#. module: grap_qweb_report
-#: field:product.product,pos_categ_id:0
-msgid "Point of Sale Category"
-msgstr "Point of Sale Category"
+#: view:website:grap_qweb_report.qweb_template_label_big
+#: view:website:grap_qweb_report.qweb_template_label_normal
+#: view:website:grap_qweb_report.qweb_template_label_small
+msgid "Poids net"
+msgstr "Poids net"
 
 #. module: grap_qweb_report
 #: view:website:grap_qweb_report.grap_template_sale_order_document
 msgid "Price"
 msgstr "Prix"
+
+#. module: grap_qweb_report
+#: code:addons/grap_qweb_report/models/product_product.py:133
+#, python-format
+msgid "Price per Kilo"
+msgstr "Prix au kilo"
+
+#. module: grap_qweb_report
+#: code:addons/grap_qweb_report/models/product_product.py:128
+#, python-format
+msgid "Price per Liter"
+msgstr "Prix au litre"
 
 #. module: grap_qweb_report
 #: field:account.invoice.line,price_unit_vat_excluded:0
@@ -435,6 +453,16 @@ msgid "Pricetag"
 msgstr "Etiquette"
 
 #. module: grap_qweb_report
+#: field:res.company,pricetag_color:0
+msgid "Pricetag Color"
+msgstr "Couleur de l'étiquette"
+
+#. module: grap_qweb_report
+#: field:product.product,pricetag_type_id:0
+msgid "Pricetag Type"
+msgstr "Type d'étiquette"
+
+#. module: grap_qweb_report
 #: model:ir.actions.act_window,name:grap_qweb_report.action_product_pricetag_type
 #: model:ir.ui.menu,name:grap_qweb_report.menu_product_pricetag_type
 msgid "Pricetag Types"
@@ -446,19 +474,39 @@ msgid "Pricetag UoM"
 msgstr "UdM de l'étiquette"
 
 #. module: grap_qweb_report
+#: field:product.product,pricetag_color:0
+msgid "Pricetag color"
+msgstr "Couleur d'étiquette"
+
+#. module: grap_qweb_report
 #: field:product.product,pricetag_display_spider_chart:0
 msgid "Pricetag display spider chart"
 msgstr "Pricetag display spider chart"
 
 #. module: grap_qweb_report
-#: field:product.product,pricetag_price_volume:0
-msgid "Pricetag price volume"
-msgstr "Pricetag price volume"
+#: field:product.product,pricetag_is_second_price:0
+msgid "Pricetag is second price"
+msgstr "Pricetag is second price"
 
 #. module: grap_qweb_report
-#: field:product.product,pricetag_price_weight_net:0
-msgid "Pricetag price weight net"
-msgstr "Pricetag price weight net"
+#: field:product.product,pricetag_organic_text:0
+msgid "Pricetag organic text"
+msgstr "Pricetag organic text"
+
+#. module: grap_qweb_report
+#: field:product.product,pricetag_origin:0
+msgid "Pricetag origin"
+msgstr "Pricetag origin"
+
+#. module: grap_qweb_report
+#: field:product.product,pricetag_second_price:0
+msgid "Pricetag second price"
+msgstr "Pricetag second price"
+
+#. module: grap_qweb_report
+#: field:product.product,pricetag_second_price_uom_text:0
+msgid "Pricetag second price uom text"
+msgstr "Pricetag second price uom text"
 
 #. module: grap_qweb_report
 #: field:picking.summary.wizard,print_detail:0
@@ -496,6 +544,13 @@ msgstr "Product id"
 #: field:picking.summary.wizard,product_line_ids:0
 msgid "Product line ids"
 msgstr "Product line ids"
+
+#. module: grap_qweb_report
+#: view:website:grap_qweb_report.qweb_template_label_big
+#: view:website:grap_qweb_report.qweb_template_label_normal
+#: view:website:grap_qweb_report.qweb_template_label_small
+msgid "Producteur :"
+msgstr "Producteur :"
 
 #. module: grap_qweb_report
 #: view:website:grap_qweb_report.grap_template_picking_summary_wizard_document
@@ -660,11 +715,6 @@ msgid "State"
 msgstr "État"
 
 #. module: grap_qweb_report
-#: help:product.product,state_id:0
-msgid "State of production of the product"
-msgstr "Région de production du produit"
-
-#. module: grap_qweb_report
 #: model:ir.model,name:grap_qweb_report.model_stock_move
 msgid "Stock Move"
 msgstr "Mouvement de stock"
@@ -708,16 +758,6 @@ msgid "Taxes"
 msgstr "Taxes"
 
 #. module: grap_qweb_report
-#: help:product.product,pos_categ_id:0
-msgid "Those categories are used to group similar products for point of sale."
-msgstr "Those categories are used to group similar products for point of sale."
-
-#. module: grap_qweb_report
-#: field:product.product,to_weight:0
-msgid "To Weigh With Scale"
-msgstr "To Weigh With Scale"
-
-#. module: grap_qweb_report
 #: view:website:grap_qweb_report.grap_template_account_invoice_document
 #: view:website:grap_qweb_report.grap_template_purchase_order_document
 #: view:website:grap_qweb_report.grap_template_sale_order_document
@@ -735,6 +775,11 @@ msgstr "Total HT"
 #: view:website:grap_qweb_report.grap_template_picking_summary_wizard_document
 msgid "Type"
 msgstr "Type"
+
+#. module: grap_qweb_report
+#: field:product.pricetag.type,name:0
+msgid "Type Name"
+msgstr "Nom du Type"
 
 #. module: grap_qweb_report
 #: view:website:grap_qweb_report.grap_template_account_invoice_document
@@ -775,6 +820,13 @@ msgstr "TVA :"
 #: view:website:grap_qweb_report.grap_template_purchase_order_document
 msgid "Validated By:"
 msgstr "Validé par:"
+
+#. module: grap_qweb_report
+#: view:website:grap_qweb_report.qweb_template_label_big
+#: view:website:grap_qweb_report.qweb_template_label_normal
+#: view:website:grap_qweb_report.qweb_template_label_small
+msgid "Volume"
+msgstr "Volume"
 
 #. module: grap_qweb_report
 #: view:website:grap_qweb_report.grap_template_stock_picking

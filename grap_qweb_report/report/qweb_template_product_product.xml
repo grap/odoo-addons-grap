@@ -148,8 +148,10 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                             <t t-if="line.product_id.weight_net">Poids net<br/><b><t t-esc="line.product_id.weight_net"/> kg</b><br/></t>
                         </div>
                         <div class="product_price_per_uom_price floating_box">
-                            <t t-if="line.product_id.pricetag_price_volume">Prix au litre<br/><b><t t-esc="line.product_id.pricetag_price_volume"/> €</b><br/></t>
-                            <t t-if="line.product_id.pricetag_price_weight_net">Prix au kg<br/><b><t t-esc="line.product_id.pricetag_price_weight_net"/> €</b><br/></t>
+                            <t t-if="line.product_id.pricetag_is_second_price">
+                                <t t-esc="line.product_id.pricetag_second_price_uom_text"/><br/>
+                                <b><t t-esc="'%0.2f' % (line.product_id.pricetag_second_price)"/> €</b>
+                            </t>
                         </div>
                         <div class="product_image">
                             <t t-if="line.product_id.pricetag_display_spider_chart">
@@ -287,8 +289,10 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                             <t t-if="line.product_id.weight_net">Poids net<br/><b><t t-esc="line.product_id.weight_net"/> kg</b><br/></t>
                         </div>
                         <div class="product_price_per_uom_price floating_box">
-                            <t t-if="line.product_id.pricetag_price_volume">Prix au litre<br/><b><t t-esc="line.product_id.pricetag_price_volume"/> €</b><br/></t>
-                            <t t-if="line.product_id.pricetag_price_weight_net">Prix au kg<br/><b><t t-esc="line.product_id.pricetag_price_weight_net"/> €</b><br/></t>
+                            <t t-if="line.product_id.pricetag_is_second_price">
+                                <t t-esc="line.product_id.pricetag_second_price_uom_text"/><br/>
+                                <b><t t-esc="'%0.2f' % (line.product_id.pricetag_second_price)"/> €</b>
+                            </t>
                         </div>
                         <div class="label_bottom_right">
                             <t t-if="line.product_id.ean13"><t t-esc="line.product_id.ean13"/></t>
@@ -439,8 +443,10 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                             <t t-if="line.product_id.weight_net">Poids net<br/><b><t t-esc="line.product_id.weight_net"/> kg</b><br/></t>
                         </div>
                         <div class="product_price_per_uom_price floating_box">
-                            <t t-if="line.product_id.pricetag_price_volume">Prix au litre<br/><b><t t-esc="line.product_id.pricetag_price_volume"/> €</b><br/></t>
-                            <t t-if="line.product_id.pricetag_price_weight_net">Prix au kg<br/><b><t t-esc="line.product_id.pricetag_price_weight_net"/> €</b><br/></t>
+                            <t t-if="line.product_id.pricetag_is_second_price">
+                                <t t-esc="line.product_id.pricetag_second_price_uom_text"/><br/>
+                                <b><t t-esc="'%0.2f' % (line.product_id.pricetag_second_price)"/> €</b>
+                            </t>
                         </div>
                         <div class="product_image">
                             <t t-if="line.product_id.pricetag_display_spider_chart">
@@ -637,7 +643,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                                 <t t-if="line.product_id.ingredients"><b>Ingrédients</b><br/><t t-raw="line.product_id.ingredients"/><br/></t>
                             </div> 
                             <div class="label_allergens label_left_div">
-                                <b>Peut contenir des traces de de soja, oeuf, fruits à coque, sésame et arachide.</b><br/>
+                                <t t-if="line.product_id.allergens"><b>Allergènes</b><br/><t t-raw="line.product_id.allergens"/><br/></t>
                             </div>
                             <div class="label_bulk_infos label_left_div">
                                 <span>N° Lot :</span><br/>
@@ -692,8 +698,10 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                             <t t-if="line.product_id.pricetag_display_spider_chart">
                                 <div class="product_price_per_uom_price_big">
                                     <div class="product_price_big">
-                                        <t t-if="line.product_id.pricetag_price_volume"><b><t t-esc="line.product_id.pricetag_price_volume"/>€</b><span class="product_uom_big">/L</span><br/></t>
-                                        <t t-if="line.product_id.pricetag_price_weight_net"><b><t t-esc="line.product_id.pricetag_price_weight_net"/> €</b><span class="product_uom_big">/kg</span><br/></t>
+                                        <t t-if="line.product_id.pricetag_is_second_price">
+                                            <span class="product_uom_big"><t t-esc="line.product_id.pricetag_second_price_uom_text"/></span><br/>
+                                            <b><t t-esc="'%0.2f' % (line.product_id.pricetag_second_price)"/> €</b>
+                                        </t>
                                     </div>
                                 </div>
                             </t>

@@ -83,10 +83,6 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
     </record>
 
 <!-- Disable Menu to basic User -->
-    <record model="ir.ui.menu" id="grap_print_product.menu_print_product">
-        <field eval="[(6, 0, [ref('base.group_no_one')])]" name="groups_id"/>
-    </record>
-
     <record model="ir.ui.menu" id="product.menu_product_uom_form_action">
         <field eval="[(6, 0, [ref('base.group_no_one')])]" name="groups_id"/>
     </record>

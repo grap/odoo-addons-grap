@@ -18,6 +18,7 @@
         'sale',
         'sale_recovery_moment',
         'sale_food',
+        'product_ean13_image',
         'product_print_category',
         'point_of_sale',
     ],

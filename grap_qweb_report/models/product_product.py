@@ -4,6 +4,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from openerp import _, api, fields, models
+import openerp.addons.decimal_precision as dp
 
 
 class ProductProduct(models.Model):
@@ -28,17 +29,24 @@ class ProductProduct(models.Model):
     report_label_ids_info = fields.Char(
         compute='_compute_report_label_ids_info')
 
+    pricetag_is_second_price = fields.Boolean(
+        compute='_compute_pricetag_second_price',
+        multi='pricetag_second_price')
+
+    pricetag_second_price = fields.Float(
+        compute='_compute_pricetag_second_price',
+        digits_compute=dp.get_precision('Product Price'),
+        multi='pricetag_second_price')
+
+    pricetag_second_price_uom_text = fields.Char(
+        compute='_compute_pricetag_second_price',
+        multi='pricetag_second_price')
+
     pricetag_uom_id = fields.Many2one(
         comodel_name='product.uom', string='Pricetag UoM',
         domain="[('pricetag_available', '=', True)]",
         help="Set an alternative Unit of Mesure if you want to display"
         " the price on your pricetags relative to this Unit.")
-
-    pricetag_price_volume = fields.Char(
-        compute='_compute_pricetag_price_volume')
-
-    pricetag_price_weight_net = fields.Char(
-        compute='_compute_pricetag_price_weight_net')
 
     # Compute Section
     @api.multi
@@ -82,10 +90,11 @@ class ProductProduct(models.Model):
         for product in self:
             localization_info = ""
             if product.department_id:
-                localization_info = product.department_id.name
-            if product.state_id:
+                localization_info = '%s (%s)' % (
+                    product.department_id.name, product.department_id.code)
+            elif product.state_id:
                 localization_info = product.state_id.name
-            if product.country_id:
+            elif product.country_id:
                 localization_info = product.country_id.name
 
             if not localization_info:
@@ -112,25 +121,21 @@ class ProductProduct(models.Model):
             product.report_label_ids_info = ', '.join(label_info)
 
     @api.multi
-    def _compute_pricetag_price_volume(self):
-        for product in self:
+    def _compute_pricetag_second_price(self):
+        for product in self.filtered(lambda x: x.list_price):
             if product.volume:
-                price_volume = product.list_price / product.volume
-                product.price_volume = 'TODO'
-                    # "%.2f € / L" % (
-                    # round(price_volume, 2))
-
-    @api.multi
-    def _compute_pricetag_price_weight_net(self):
-        for product in self:
-            if product.weight_net:
-                price_weight_net = product.list_price / product.weight_net
-                unit = "kg"
+                product.pricetag_is_second_price = True
+                product.pricetag_second_price_uom_text = _('Price per Liter')
+                product.pricetag_second_price =\
+                    product.list_price / product.volume
+            elif product.weight_net:
+                product.pricetag_is_second_price = True
+                product.pricetag_second_price_uom_text = _('Price per Kilo')
+                product.pricetag_second_price =\
+                    product.list_price / product.weight_net
             elif product.pricetag_uom_id:
-                price_weight_net =\
+                product.pricetag_is_second_price = True
+                product.pricetag_second_price_uom_text =\
+                    _('For %s') % product.pricetag_uom_id.name
+                product.pricetag_second_price =\
                     product.list_price / product.pricetag_uom_id.factor
-                unit = product.pricetag_uom_id.name
-            if price_weight_net:
-                product.price_weight_net = 'TODO'
-                    # "%.2f € / %s" % (
-                    # round(price_weight_net, 2), unit)

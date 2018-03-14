@@ -52,7 +52,7 @@
         'intercompany_trade_base',
         'recurring_consignment',
         'grap_change_access',
-        'grap_print_product',
+        'product_ean13_image',
         'barcodes_generator_product',
         'product_margin_classification',
         'product_sale_tax_price_included',
