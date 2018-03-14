@@ -6,6 +6,13 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 -->
 <openerp><data>
 
+    <record id="action_product_pricetag_type" model="ir.actions.act_window">
+        <field name="name">Pricetag Types</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.pricetag.type</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
 
     <record id="action_picking_summary" model="ir.actions.act_window">
       <field name="name">Picking Summary</field>
