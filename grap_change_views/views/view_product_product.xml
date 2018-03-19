@@ -180,6 +180,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                                         groups="barcodes_generator_abstract.generate_barcode" colspan="2"/>
                                 </group>
                                 <group>
+                                    <field name="is_food"/>
                                     <field name="is_consignment" groups="recurring_consignment.group_consignment_user"/>
                                     <field name="purchase_ok"/>
                                     <field name="sale_ok"/>
