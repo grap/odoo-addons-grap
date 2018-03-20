@@ -42,6 +42,7 @@
         'views/view_product_uom.xml',
         'views/view_product_pricetag_type.xml',
         'views/view_product_product.xml',
+        'views/view_stock_picking.xml',
         'data/product_print_category.xml',
     ],
     'qweb': [
