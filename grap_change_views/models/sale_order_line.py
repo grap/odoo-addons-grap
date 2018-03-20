@@ -19,5 +19,6 @@ class SaleOrderLine(models.Model):
     @api.depends('tax_id')
     def _compute_tax_ids_description(self):
         for line in self:
-            line.tax_ids_description =\
-                ','.join(line.tax_id.mapped('description'))
+            line.tax_ids_description =','.join(
+                [x.description and x.description or x.name
+                    for x in line.tax_id])

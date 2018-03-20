@@ -19,6 +19,6 @@ class PurchaseOrderLine(models.Model):
     @api.depends('taxes_id')
     def _compute_tax_ids_description(self):
         for line in self:
-            line.tax_ids_description =\
-                ','.join(line.taxes_id.filtered(
-                    lambda x: x.description).mapped('description'))
+            line.tax_ids_description = ','.join(
+                [x.description and x.description or x.name
+                    for x in line.taxes_id])
