@@ -59,6 +59,7 @@
         'account_invoice_supplierinfo_update_standard_price',
         'account_invoice_triple_discount',
         'web_tree_dynamic_colored_field',
+        'grap_qweb_report',
     ],
     'data': [
         'security/res_groups.yml',
