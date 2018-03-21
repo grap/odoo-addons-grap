@@ -28,7 +28,7 @@ Prepare for OpenUpgrade migration
 =================================
 
     * Load extra data with noupdate=1, that we have deleted and that break
-      openupgrade process
+      openupgrade process (temporaly disabled)
 
 Copyright, Authors and Licence:
 -------------------------------
@@ -41,8 +41,10 @@ Copyright, Authors and Licence:
     'license': 'AGPL-3',
     'depends': [
         'product',
+        'stock',
     ],
     'data': [
-        'data/product.xml',
+#        'data/product.xml',
+        'views/view_stock_location.xml',
     ],
 }
