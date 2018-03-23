@@ -77,6 +77,7 @@
         'views/view_pos_order.xml',
         'views/view_pos_order_line.xml',
         'views/view_pos_session.xml',
+        'views/view_pos_session_opening.xml',
         'views/view_procurement_rule.xml',
         'views/view_product_category.xml',
         'views/view_product_pricelist_item.xml',
