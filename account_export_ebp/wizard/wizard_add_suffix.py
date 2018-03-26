@@ -31,6 +31,7 @@ logger = logging.getLogger(__name__)
 try:
     from unidecode import unidecode
 except ImportError:
+    unidecode = False
     logger.debug("account_export_ebp - 'unidecode' librairy not found")
 
 
@@ -104,7 +105,7 @@ class account_add_suffix(TransientModel):
             return False
         # first try: return the 4 fisrt caracters
         suffix = name2[:min(4, len(name2))].upper()
-        suffix = unidecode.unidecode(suffix)
+        suffix = unidecode(suffix)
         if suffix and not(suffix in existing_suffixes):
             return suffix
         # second try: look for different words in the name
@@ -120,25 +121,25 @@ class account_add_suffix(TransientModel):
                             suffix = (
                                 names[0][:n].upper() +
                                 names[j][:(4 - n)].upper())
-                            suffix = unidecode.unidecode(suffix)
+                            suffix = unidecode(suffix)
                             if suffix and not(suffix in existing_suffixes):
                                 return suffix
-#        third try: takes first 3 caracters and add a one digit number
+        # third try: takes first 3 caracters and add a one digit number
         for x in range(2, 10):
             suffix = name2[:min(3, len(name2))].upper() + str(x)
-            suffix = unidecode.unidecode(suffix)
+            suffix = unidecode(suffix)
             if suffix and not(suffix in existing_suffixes):
                 return suffix
-#        fourth try: takes first 2 caracters and add a two digit number
+        # fourth try: takes first 2 caracters and add a two digit number
         for x in range(10, 100):
             suffix = name2[:min(2, len(name2))].upper() + str(x)
-            suffix = unidecode.unidecode(suffix)
+            suffix = unidecode(suffix)
             if suffix and not(suffix in existing_suffixes):
                 return suffix
-#        fifth try: takes first 1 caracters and add a three digit number
+        # fifth try: takes first 1 caracters and add a three digit number
         for x in range(100, 1000):
             suffix = name2[:1].upper() + str(x)
-            suffix = unidecode.unidecode(suffix)
+            suffix = unidecode(suffix)
             if suffix and not(suffix in existing_suffixes):
                 return suffix
         return False
