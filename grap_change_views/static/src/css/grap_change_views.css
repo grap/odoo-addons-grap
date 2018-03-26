@@ -23,6 +23,10 @@
     width:55%;
 }
 
+.modal-lg{
+    width: 95%;
+}
+
 /* GENERAL - Form View ----------------------------------------------------- */
 /*Reduce blank space arround group*/
 .openerp .oe_form .oe_form_group {
