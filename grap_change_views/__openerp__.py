@@ -96,7 +96,7 @@
         'views/view_stock_warehouse.xml',
         'views/view_workflow_instance.xml',
         'views/view_workflow_workitem.xml',
-        'views/view_ wizard_update_invoice_supplierinfo.xml',
+        'views/view_wizard_update_invoice_supplierinfo.xml',
         'views/action.xml',
         'views/menu.xml',
         'views/grap_change_views.xml',

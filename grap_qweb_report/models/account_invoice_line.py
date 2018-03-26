@@ -11,7 +11,7 @@ import openerp.addons.decimal_precision as dp
 class AccountInvoiceLine(models.Model):
     _inherit = 'account.invoice.line'
 
-    price_unit_vat_excluded = fields.Char(
+    price_unit_vat_excluded = fields.Float(
         compute='_compute_price_unit_vat_excluded',
         digits_compute=dp.get_precision('Purchase Price'))
 
