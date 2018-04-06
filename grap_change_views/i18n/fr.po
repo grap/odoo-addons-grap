@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-14 14:17+0000\n"
-"PO-Revision-Date: 2018-03-14 14:17+0000\n"
+"POT-Creation-Date: 2018-04-06 15:12+0000\n"
+"PO-Revision-Date: 2018-04-06 15:12+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -254,11 +254,6 @@ msgstr "Informations Complémentaires"
 
 #. module: grap_change_views
 #: view:product.product:grap_change_views.view_product_product_form
-msgid "Hidden Informations"
-msgstr "Informations cachées"
-
-#. module: grap_change_views
-#: view:product.product:grap_change_views.view_product_product_form
 msgid "Food"
 msgstr "Alimentaire"
 
@@ -283,6 +278,11 @@ msgstr "Grouper Par"
 #: view:account.invoice.line:grap_change_views.view_account_invoice_line_search
 msgid "Group By..."
 msgstr "Regrouper par ..."
+
+#. module: grap_change_views
+#: view:product.product:grap_change_views.view_product_product_form
+msgid "Hidden Informations"
+msgstr "Informations cachées"
 
 #. module: grap_change_views
 #: view:product.product:grap_change_views.view_product_product_form
@@ -432,7 +432,7 @@ msgstr "Num. Fact."
 #. module: grap_change_views
 #: model:ir.ui.menu,name:grap_change_views.menu_pos_order_line
 msgid "Order Lines"
-msgstr "Lignes de commandes"
+msgstr "Lignes de ventes"
 
 #. module: grap_change_views
 #: view:product.product:grap_change_views.view_product_product_form
@@ -477,7 +477,7 @@ msgstr "Numéro de facture partenaire"
 #. module: grap_change_views
 #: model:ir.model,name:grap_change_views.model_stock_picking
 msgid "Picking List"
-msgstr "Opération de manutention"
+msgstr "Liste de colisage"
 
 #. module: grap_change_views
 #: view:product.product:grap_change_views.view_product_product_form
@@ -545,7 +545,7 @@ msgstr "Liste des articles"
 #. module: grap_change_views
 #: field:pos.category,product_qty:0
 msgid "Product Qty"
-msgstr "Qté Produits"
+msgstr "Qté de Produit"
 
 #. module: grap_change_views
 #: model:ir.actions.act_window,name:grap_change_views.action_product_product_pos
@@ -579,14 +579,14 @@ msgstr "Articles (Livraison)"
 #: model:ir.ui.menu,name:grap_change_views.menu_product_product_food
 #: view:product.product:grap_change_views.view_product_product_food_tree
 msgid "Products (Food)"
-msgstr "Articles (Alimentaire)"
+msgstr "Produits (Alimentaire)"
 
 #. module: grap_change_views
 #: model:ir.actions.act_window,name:grap_change_views.action_product_product_origin
 #: model:ir.ui.menu,name:grap_change_views.menu_product_product_origin
 #: view:product.product:grap_change_views.view_product_product_origin_tree
 msgid "Products (Origin)"
-msgstr "Articles (Origine)"
+msgstr "Produits (Origine)"
 
 #. module: grap_change_views
 #: model:ir.ui.menu,name:grap_change_views.menu_product_product_editable_view
@@ -679,6 +679,13 @@ msgid "Resend Update To the Scale System"
 msgstr "Envoyer une modification au système de balance"
 
 #. module: grap_change_views
+#: view:account.invoice:grap_change_views.view_account_invoice_form_customer
+#: view:purchase.order:grap_change_views.view_purchase_order_form
+#: view:sale.order:grap_change_views.view_sale_order_form_sale_3
+msgid "S.T."
+msgstr "S.T."
+
+#. module: grap_change_views
 #: view:product.product:grap_change_views.view_product_product_form
 msgid "Sale"
 msgstr "Vente"
@@ -732,7 +739,7 @@ msgstr "Radar"
 #: field:account.invoice.line,state:0
 #: field:pos.order.line,state:0
 msgid "State"
-msgstr "State"
+msgstr "État"
 
 #. module: grap_change_views
 #: view:product.product:grap_change_views.view_product_product_form
@@ -820,6 +827,13 @@ msgstr "Qté totale"
 #: field:account.invoice.line,type:0
 msgid "Type"
 msgstr "Type"
+
+#. module: grap_change_views
+#: view:account.invoice:grap_change_views.view_account_invoice_form_customer
+#: view:purchase.order:grap_change_views.view_purchase_order_form
+#: view:sale.order:grap_change_views.view_sale_order_form_sale_3
+msgid "U.P."
+msgstr "P.U."
 
 #. module: grap_change_views
 #: view:account.invoice:grap_change_views.view_account_invoice_form_customer

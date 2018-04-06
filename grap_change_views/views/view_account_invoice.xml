@@ -19,13 +19,13 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                 <attribute name="string">UoM</attribute>
             </xpath>
             <xpath expr="//field[@name='invoice_line']/tree/field[@name='price_unit']" position="attributes">
-                <attribute name="string">UP</attribute>
+                <attribute name="string">U.P.</attribute>
             </xpath>
             <xpath expr="//field[@name='invoice_line']/tree/field[@name='discount']" position="attributes">
                 <attribute name="string">Disc. (%)</attribute>
             </xpath>
             <xpath expr="//field[@name='invoice_line']/tree/field[@name='price_subtotal']" position="attributes">
-                <attribute name="string">ST</attribute>
+                <attribute name="string">S.T.</attribute>
             </xpath>
 
 
