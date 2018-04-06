@@ -1,3 +1,4 @@
+knowledge
 l10n-france
 margin-analysis
 pos
