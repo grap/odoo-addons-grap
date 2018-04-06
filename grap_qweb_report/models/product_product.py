@@ -29,6 +29,11 @@ class ProductProduct(models.Model):
     report_label_ids_info = fields.Char(
         compute='_compute_report_label_ids_info')
 
+    pricetag_special_quantity_price = fields.Boolean(
+        default=False,
+        compute='_compute_pricetag_second_price',
+        multi='pricetag_second_price')
+
     pricetag_is_second_price = fields.Boolean(
         compute='_compute_pricetag_second_price',
         multi='pricetag_second_price')
@@ -123,7 +128,14 @@ class ProductProduct(models.Model):
     @api.multi
     def _compute_pricetag_second_price(self):
         for product in self.filtered(lambda x: x.list_price):
-            if product.volume:
+            if product.pricetag_uom_id:
+                product.pricetag_is_second_price = True
+                product.pricetag_special_quantity_price = True
+                product.pricetag_second_price_uom_text =\
+                    _('For %s') % product.pricetag_uom_id.name
+                product.pricetag_second_price =\
+                    product.list_price / product.pricetag_uom_id.factor
+            elif product.volume:
                 product.pricetag_is_second_price = True
                 product.pricetag_second_price_uom_text = _('Price per Liter')
                 product.pricetag_second_price =\
@@ -133,9 +145,3 @@ class ProductProduct(models.Model):
                 product.pricetag_second_price_uom_text = _('Price per Kilo')
                 product.pricetag_second_price =\
                     product.list_price / product.weight_net
-            elif product.pricetag_uom_id:
-                product.pricetag_is_second_price = True
-                product.pricetag_second_price_uom_text =\
-                    _('For %s') % product.pricetag_uom_id.name
-                product.pricetag_second_price =\
-                    product.list_price / product.pricetag_uom_id.factor

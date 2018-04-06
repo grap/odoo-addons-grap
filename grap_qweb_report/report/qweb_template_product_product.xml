@@ -18,20 +18,17 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                 margin : 0 -0.2cm -0.1cm 0;
                 padding : 5px;
             }
-            div.product:last-child {
-                padding-right: 0.08cm;
-                position: relative;
-                top: 2.3px;
-            }
             div.floating_box {
                 display : inline-block;
                 vertical-align: top;
             }
             div.label_left {
-                width : 6cm;
+                width : 5.8cm;
             }
             div.label_right {
                 width : 3cm;
+                height: 3.6cm;
+                overflow: hidden;
             }
             div.product_informations {
                 text-align:left; font-size:8px;
@@ -39,10 +36,19 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
             }
             div.product_name{
                 font-size:15px; font-weight:bold;
-                height: 1cm;
+                height: 1.3cm;
                 padding-bottom : 5px;
                 padding-top : 5px;
                 overflow: hidden;
+            }
+            div.pricetag_second_product_price {
+                font-size: 20px; font-weight: bold;
+                text-align: center;
+                overflow: hidden;
+            }
+            div.pricetag_second_price_uom_text {
+                font-size: 10px; font-weight: bold;
+                text-align: center; line-height: 0.5em;
             }
             div.product_price {
                 font-size: 26px; font-weight: bold;
@@ -57,7 +63,11 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                 height : 0.8cm;
                 overflow : hidden;
                 word-wrap : normal;
-            }            
+            }
+            div.product_price_per_uom_price_only {
+                font-size: 9px; line-height: 3em;
+                width: 100%; text-align: center;
+            }
             div.label_bottom_right {
                 margin-top:0.2cm;
                 text-align:center; font-size:7px;
@@ -76,7 +86,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                 font-size:9px;
             }
             img.product_label{
-                width:0.6cm; height:0.6cm; margin: 0.1cm 0.1cm 0.1cm -0.1cm;
+                width:0.6cm; height:0.6cm; margin: 0.1cm 0.1cm 0.1cm -0.05cm;
             }
             div.organic_text{
                 width:4cm;
@@ -87,7 +97,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                 overflow: hidden;
                 position: relative;
                 height: 1.1cm;
-                bottom: 21px;
+                bottom: 30px;
                 right: 5px;
             }
             img.ean13_image{
@@ -97,8 +107,8 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                 top: 0.5cm;
             }
             img.product_image{
-                width: 2.3cm; height: 2.3cm;
-                position: relative; bottom: 0.17cm; left: 0.25cm;
+                width: 2cm; height: 2cm;
+                position: relative; bottom: 0.20cm; left: 0.37cm;
             }
         </style>
         <t t-foreach="category_data['lines']" t-as="line">
@@ -125,8 +135,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                             </t>
                         </div>
                         <div class="organic_text">
-                            <!-- Organic warning, if any -->
-                            <t t-if="not line.product_id.pricetag_organic_text">
+                            <t t-if="line.product_id.pricetag_organic_text">
                                 <t t-esc="line.product_id.pricetag_organic_text"/><br/>
                             </t>
                         </div>
@@ -140,19 +149,39 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                         </div>
                     </div>
                     <div class="label_right floating_box">
-                        <div class="product_price">
-                            <t t-esc="'%0.2f' % (line.product_id.list_price)"/> €
-                        </div>
-                        <div class="product_price_per_uom_qty floating_box">
-                            <t t-if="line.product_id.volume">Volume<br/><b><t t-esc="line.product_id.volume"/> L</b><br/></t>
-                            <t t-if="line.product_id.weight_net">Poids net<br/><b><t t-esc="line.product_id.weight_net"/> kg</b><br/></t>
-                        </div>
-                        <div class="product_price_per_uom_price floating_box">
-                            <t t-if="line.product_id.pricetag_is_second_price">
-                                <t t-esc="line.product_id.pricetag_second_price_uom_text"/><br/>
-                                <b><t t-esc="'%0.2f' % (line.product_id.pricetag_second_price)"/> €</b>
+                        <t t-if="not line.product_id.pricetag_special_quantity_price">
+                            <div class="product_price">
+                                <t t-esc="'%0.2f' % (line.product_id.list_price)"/> €
+                            </div>
+                            <t t-if="line.product_id.is_food">
+                                <div class="product_price_per_uom_qty floating_box">
+                                    <t t-if="line.product_id.volume">Volume<br/><b><t t-esc="line.product_id.volume"/> L</b><br/></t>
+                                    <t t-if="not line.product_id.volume">
+                                        <t t-if="line.product_id.weight_net">Poids net<br/><b><t t-esc="line.product_id.weight_net"/> kg</b><br/></t>
+                                    </t>
+                                </div>
+                                <div class="product_price_per_uom_price floating_box">
+                                    <t t-if="line.product_id.pricetag_is_second_price">
+                                        <t t-esc="line.product_id.pricetag_second_price_uom_text"/><br/>
+                                        <b><t t-esc="'%0.2f' % (line.product_id.pricetag_second_price)"/> €</b>
+                                    </t>
+                                </div>
                             </t>
-                        </div>
+                        </t>
+                        <t t-if="line.product_id.pricetag_special_quantity_price">
+                            <div class="second_product_price">
+                                <div class="pricetag_second_product_price"><t t-esc="'%0.2f' % (line.product_id.pricetag_second_price)"/> €</div>
+                                <div class="pricetag_second_price_uom_text"><t t-esc="line.product_id.pricetag_second_price_uom_text"/></div>
+                            </div>
+                            <div class="product_price_per_uom_price_only floating_box">
+                                <t t-if="line.product_id.uom_id.category_id.name == 'Volume'"><span>Au L : </span></t>
+                                <t t-if="not line.product_id.uom_id.category_id.name == 'Volume'">
+                                    <t t-if="not line.product_id.uom_id.category_id.name == 'Weight'"><span>Pièce : </span></t>
+                                    <t t-if="line.product_id.uom_id.category_id.name == 'Weight'"><span>Au kg : </span></t>
+                                </t>
+                                <t t-esc="'%0.2f' % (line.product_id.list_price)"/> €
+                            </div>
+                        </t>
                         <div class="product_image">
                             <t t-if="line.product_id.pricetag_display_spider_chart">
                                 <img class="product_image" t-attf-src="data:image/*;base64,{{line.product_id.spider_chart_image}}"/>
@@ -176,20 +205,16 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                 margin : 0 -0.2cm -0.1cm 0;
                 padding : 5px;
             }
-            div.product:last-child {
-                padding-right: 0.08cm;
-                position: relative;
-                top: 2.3px;
-            }
             div.floating_box {
                 display : inline-block;
                 vertical-align: top;
             }
             div.label_left {
-                width : 6cm;
+                width : 5.8cm;
             }
             div.label_right {
-                width : 3cm;
+                width : 2.7cm;
+                position: relative; left: 10px;
             }
             div.product_informations {
                 text-align:left; font-size:9px;
@@ -202,19 +227,34 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                 padding-top : 5px;
                 overflow: hidden;
             }
+            div.second_product_price {
+                height: 5em; position: relative; top: 2em;
+            }
+            div.pricetag_second_product_price {
+                font-size: 26px; font-weight: bold;
+                text-align: center; overflow: hidden;
+            }
+            div.pricetag_second_price_uom_text {
+                font-size: 10px; font-weight: bold;
+                text-align: center; line-height: 0.5em;
+            }
             div.product_price {
                 font-size: 26px; font-weight: bold;
                 height: 2cm; line-height: 2cm;
                 text-align: center;
                 overflow: hidden;
             }
+            div.product_price_per_uom_price_only {
+                font-size: 9px; line-height: 3em;
+                width: 100%; text-align: center;
+            }
             div.product_price_per_uom_qty, div.product_price_per_uom_price {
-                width : 45%;
                 text-align : center;
                 font-size:9px;
                 height : 1cm;
                 overflow : hidden;
                 word-wrap : normal;
+                position: relative; left: 2px;
             }            
             div.label_bottom_right {
                 margin-top:0.2cm;
@@ -224,21 +264,25 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                 position: relative; top: 6px;
             }
             div.product_labels{
-                width:100%;
-                height:1.0cm;
+                height:1.15cm;
                 overflow: hidden; float:left;
                 font-size:9px;
                 text-align:left;
                 padding-top: 10px;
+                position : relative; bottom: 7px;
             }
             img.product_label{
-                width:0.8cm; height:0.8cm; margin: 0.1cm 0.1cm 0.1cm -0.1cm;
+                width:0.8cm; height:0.8cm; margin: 0.1cm 0.1cm 0.1cm 0cm;
+            }
+            div.organic_text{
+                position: relative; top: 0.32cm;
+                font-size: 7px;
             }
             div.wrap_ean13_image{
                 overflow: hidden;
                 position: relative;
                 height: 1.1cm;
-                bottom: 17px;
+                bottom: 16px;
                 right: 5px;
             }
             img.ean13_image{
@@ -266,9 +310,10 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                             <t t-foreach="line.product_id.label_ids" t-as="label">
                                 <img class="product_label" t-attf-src="data:image/*;base64,{{label.image}}" t-att-alt="label.name"/>
                             </t>
-                            <!-- Organic warning, if any -->
-                            <t t-if="not line.product_id.label_ids">
-                                <t t-if="line.product_id.pricetag_organic_text"><t t-esc="line.product_id.pricetag_organic_text"/><br/></t>
+                        </div>
+                        <div class="organic_text">
+                            <t t-if="line.product_id.pricetag_organic_text">
+                                <t t-esc="line.product_id.pricetag_organic_text"/><br/>
                             </t>
                         </div>
                         <!-- EAN 13 Image -->
@@ -281,19 +326,39 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                         </div>
                     </div>
                     <div class="label_right floating_box">
-                        <div class="product_price">
-                            <t t-esc="'%0.2f' % (line.product_id.list_price)"/> €
-                        </div>
-                        <div class="product_price_per_uom_qty floating_box">
-                            <t t-if="line.product_id.volume">Volume<br/><b><t t-esc="line.product_id.volume"/> L</b><br/></t>
-                            <t t-if="line.product_id.weight_net">Poids net<br/><b><t t-esc="line.product_id.weight_net"/> kg</b><br/></t>
-                        </div>
-                        <div class="product_price_per_uom_price floating_box">
-                            <t t-if="line.product_id.pricetag_is_second_price">
-                                <t t-esc="line.product_id.pricetag_second_price_uom_text"/><br/>
-                                <b><t t-esc="'%0.2f' % (line.product_id.pricetag_second_price)"/> €</b>
+                        <t t-if="not line.product_id.pricetag_special_quantity_price">
+                            <div class="product_price">
+                                <t t-esc="'%0.2f' % (line.product_id.list_price)"/> €
+                            </div>
+                            <t t-if="line.product_id.is_food">
+                                <div class="product_price_per_uom_qty floating_box">
+                                    <t t-if="line.product_id.volume">Volume<br/><b><t t-esc="line.product_id.volume"/> L</b><br/></t>
+                                    <t t-if="not line.product_id.volume">
+                                        <t t-if="line.product_id.weight_net">Poids net<br/><b><t t-esc="line.product_id.weight_net"/> kg</b><br/></t>
+                                    </t>
+                                </div>
+                                <div class="product_price_per_uom_price floating_box">
+                                    <t t-if="line.product_id.pricetag_is_second_price">
+                                        <t t-esc="line.product_id.pricetag_second_price_uom_text"/><br/>
+                                        <b><t t-esc="'%0.2f' % (line.product_id.pricetag_second_price)"/> €</b>
+                                    </t>
+                                </div>
                             </t>
-                        </div>
+                        </t>
+                        <t t-if="line.product_id.pricetag_special_quantity_price">
+                            <div class="second_product_price">
+                                <div class="pricetag_second_product_price"><t t-esc="'%0.2f' % (line.product_id.pricetag_second_price)"/> €</div>
+                                <div class="pricetag_second_price_uom_text"><t t-esc="line.product_id.pricetag_second_price_uom_text"/></div>
+                            </div>
+                            <div class="product_price_per_uom_price_only floating_box">
+                                <t t-if="line.product_id.uom_id.category_id.name == 'Volume'"><span>Au L : </span></t>
+                                <t t-if="not line.product_id.uom_id.category_id.name == 'Volume'">
+                                    <t t-if="not line.product_id.uom_id.category_id.name == 'Weight'"><span>Pièce : </span></t>
+                                    <t t-if="line.product_id.uom_id.category_id.name == 'Weight'"><span>Au kg : </span></t>
+                                </t>
+                                <t t-esc="'%0.2f' % (line.product_id.list_price)"/> €
+                            </div>
+                        </t>
                         <div class="label_bottom_right">
                             <t t-if="line.product_id.ean13"><t t-esc="line.product_id.ean13"/></t>
                             <t t-if=" not line.product_id.ean13">
@@ -314,7 +379,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
             div.product {
                 border: 1px solid grey; 
                 background-color:white;
-                width:9.3cm; height:3.7cm;
+                width:9.3cm; height:5.22cm;
                 margin : 0 -0.2cm -0.1cm 0;
                 padding: 0.8cm 5px;
             }
@@ -326,15 +391,23 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                 width : 6cm;
             }
             div.label_right {
-                width : 3.1cm;
+                width : 2.9cm;
             }
             div.product_informations {
                 text-align:left; font-size:9px;
                 overflow : hidden;
             }
+            div.pricetag_second_product_price {
+                font-size: 26px; font-weight: bold;
+                text-align: center; overflow: hidden;
+            }
+            div.pricetag_second_price_uom_text {
+                font-size: 10px; font-weight: bold;
+                text-align: center; line-height: 0.5em;
+            }
             div.product_name{
                 font-size:15px; font-weight:bold;
-                height: 1cm;
+                height: 1.3cm;
                 padding-bottom : 5px;
                 padding-top : 5px;
                 overflow: hidden;
@@ -344,6 +417,10 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                 height: 1cm; line-height: 1cm;
                 text-align: center;
                 overflow: hidden;
+            }
+            div.product_price_per_uom_price_only {
+                font-size: 9px; line-height: 3em;
+                width: 100%; text-align: center;
             }
             div.product_price_per_uom_qty, div.product_price_per_uom_price {
                 width : 45%;
@@ -420,8 +497,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                             </t>
                         </div>
                         <div class="organic_text">
-                            <!-- Organic warning, if any -->
-                            <t t-if="not line.product_id.pricetag_organic_text">
+                            <t t-if="line.product_id.pricetag_organic_text">
                                 <t t-esc="line.product_id.pricetag_organic_text"/><br/>
                             </t>
                         </div>
@@ -435,19 +511,39 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                         </div>
                     </div>
                     <div class="label_right floating_box">
-                        <div class="product_price">
-                            <t t-esc="'%0.2f' % (line.product_id.list_price)"/> €
-                        </div>
-                        <div class="product_price_per_uom_qty floating_box">
-                            <t t-if="line.product_id.volume">Volume<br/><b><t t-esc="line.product_id.volume"/> L</b><br/></t>
-                            <t t-if="line.product_id.weight_net">Poids net<br/><b><t t-esc="line.product_id.weight_net"/> kg</b><br/></t>
-                        </div>
-                        <div class="product_price_per_uom_price floating_box">
-                            <t t-if="line.product_id.pricetag_is_second_price">
-                                <t t-esc="line.product_id.pricetag_second_price_uom_text"/><br/>
-                                <b><t t-esc="'%0.2f' % (line.product_id.pricetag_second_price)"/> €</b>
+                        <t t-if="not line.product_id.pricetag_special_quantity_price">
+                            <div class="product_price">
+                                <t t-esc="'%0.2f' % (line.product_id.list_price)"/> €
+                            </div>
+                            <t t-if="line.product_id.is_food">
+                                <div class="product_price_per_uom_qty floating_box">
+                                    <t t-if="line.product_id.volume">Volume<br/><b><t t-esc="line.product_id.volume"/> L</b><br/></t>
+                                    <t t-if="not line.product_id.volume">
+                                        <t t-if="line.product_id.weight_net">Poids net<br/><b><t t-esc="line.product_id.weight_net"/> kg</b><br/></t>
+                                    </t>
+                                </div>
+                                <div class="product_price_per_uom_price floating_box">
+                                    <t t-if="line.product_id.pricetag_is_second_price">
+                                        <t t-esc="line.product_id.pricetag_second_price_uom_text"/><br/>
+                                        <b><t t-esc="'%0.2f' % (line.product_id.pricetag_second_price)"/> €</b>
+                                    </t>
+                                </div>
                             </t>
-                        </div>
+                        </t>
+                        <t t-if="line.product_id.pricetag_special_quantity_price">
+                            <div class="second_product_price">
+                                <div class="pricetag_second_product_price"><t t-esc="'%0.2f' % (line.product_id.pricetag_second_price)"/> €</div>
+                                <div class="pricetag_second_price_uom_text"><t t-esc="line.product_id.pricetag_second_price_uom_text"/></div>
+                            </div>
+                            <div class="product_price_per_uom_price_only floating_box">
+                                <t t-if="line.product_id.uom_id.category_id.name == 'Volume'"><span>Au L : </span></t>
+                                <t t-if="not line.product_id.uom_id.category_id.name == 'Volume'">
+                                    <t t-if="not line.product_id.uom_id.category_id.name == 'Weight'"><span>Pièce : </span></t>
+                                    <t t-if="line.product_id.uom_id.category_id.name == 'Weight'"><span>Au kg : </span></t>
+                                </t>
+                                <t t-esc="'%0.2f' % (line.product_id.list_price)"/> €
+                            </div>
+                        </t>
                         <div class="product_image">
                             <t t-if="line.product_id.pricetag_display_spider_chart">
                                 <img class="product_image" t-attf-src="data:image/*;base64,{{line.product_id.spider_chart_image}}"/>
@@ -465,9 +561,9 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                 font-family: arial, verdana, sans-serif;
             }
             div.product {
-                border: 3px solid black; 
+                border: 2px solid black; 
                 background-color:white;
-                width:11.65cm; height:11.37cm;
+                width:11.40cm; height:11.37cm;
                 margin : 0 -0.1cm 0.05cm 0;
             }
             div.floating_box {
@@ -484,7 +580,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
             div.label_left {
                 width : 6cm;
                 border-right: 3px solid;
-                height: 9.27cm;
+                height: 9.35cm;
                 position: relative;
                 bottom: 2px;
                 padding-top: 2px;
@@ -510,10 +606,6 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                 height: 1.6cm;
                 position: relative; top: 7px; left: 1px;
             }
-            div.product_informations {
-                text-align:left; font-size:8px;
-                overflow : hidden;
-            }
             div.product_name{
                 font-size:18px; font-weight:bold;
                 text-transform: uppercase;
@@ -529,16 +621,16 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
             div.label_ingredients {
                 font-size: 15px;
                 line-height: 1.2em;
-                height: 5cm;
+                height: 5.1cm;
             }
             div.label_allergens {
                 font-size: 13px;
-                max-height: 1.4cm;
+                height: 2cm;
             }
             div.label_bulk_infos {
                 font-size: 13px;
                 line-height: 1.5em;
-                height: 1.2cm;
+                height: 1.3cm;
             }
             div.label_maker, div.label_origin {
                 height : 1.55cm;
@@ -549,20 +641,13 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                 position: relative;
                 text-align: center; 
             }
-            div.product_price_per_uom_qty, div.product_price_per_uom_price {
-                width: 5.65cm;
-                font-size: 28px;
-                height: 1.5cm;
-                overflow: hidden;
-                word-wrap: normal;
-                border-top: 3px solid;
-                position: relative;
-                right: 13px;
-                top: 10px;
-                line-height: 1.5cm;
+            div.product_price_per_uom_price_only {
+                font-size: 12px;
+                width: 100%; text-align: center;
+                position: relative; bottom: 5px;
             }
             div.product_price_per_uom_price_big {
-                height: 3cm; width: 5.65cm;
+                height: 3cm; width: 5.33cm;
                 overflow: hidden;
                 word-wrap: normal;
                 border-top: 3px solid;
@@ -570,21 +655,16 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                 top: 10px; right: 13px;
             }
             div.product_price_big {
-                position: relative; top: 30px;
+                position: relative; top: 27px;
                 font-size: 40px; text-align: center;
             }
             span.product_uom {
-                font-size:13px;
+                font-size:22px;
             }
-            span.product_uom_big {
-                font-size:25px;
-            }
-            div.label_bottom_right {
-                margin-top:0.2cm;
-                text-align:center; font-size:7px;
-                overflow:hidden;
-                font-family:monospace;
-                position: relative; top: 6px;
+            div.product_uom_special {
+                font-size: 15px;
+                position: relative;
+                bottom: 8px; font-weight: bold;
             }
             div.product_labels, div.organic_text{
                 overflow: hidden; float:left;
@@ -592,12 +672,11 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
             }            
             div.product_labels{
                 padding-left : 2px; margin-top: 2px;
-                font-size:9px;
-                height:1.9cm; width: 100%;
+                font-size:9px;  
+                height:1.5cm; width: 100%;
             }
             img.product_label{
-                width:1.6cm; height:1.6cm;
-                position: relative; left: -0.2cm;
+                width:1.5cm; height:1.5cm;
             }
             div.organic_text{
                 font-size: 9px;
@@ -618,16 +697,11 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                 position: relative;
                 top: 0.3cm;
             }
-            img.product_image{
-                width: 2.3cm; height: 2.3cm;
-                position: relative; left: 45px;
-            }
         </style>
         <t t-foreach="category_data['lines']" t-as="line">
             <t t-foreach="line.quantity" t-as="q">
                 <div class="product floating_box">
-                    <!-- Label top
-                    <t t-raw="line.product_id.pricetag_type_id.color"/> -->
+                    <!-- Label top -->
                     <div class="label_top" t-attf-style="background-color: {{ line.product_id.pricetag_type_id.color }};">
                         <div class="company_logo" style="background-color:white;">
                             <img class="company_logo_image" t-attf-src="data:image/*;base64,{{line.product_id.company_id.logo}}"/>
@@ -677,32 +751,40 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                                     </t>
                                 </div>
                                 <div class="organic_text">
-                                    <!-- Organic warning, if any -->
-                                    <t t-if="not line.product_id.pricetag_organic_text">
+                                    <t t-if="line.product_id.pricetag_organic_text">
                                         <t t-esc="line.product_id.pricetag_organic_text"/><br/>
                                     </t>
                                 </div>
-                            </div><!--
-                            <t t-if="line.product_id.pricetag_display_spider_chart">
-                                <div class="product_price_per_uom_price">
-                                    <div class="product_price">
-                                        <t t-if="line.product_id.pricetag_price_volume"><b><t t-esc="line.product_id.pricetag_price_volume"/> €</b><span class="product_uom">/L</span><br/></t>
-                                        <t t-if="line.product_id.pricetag_price_weight_net"><b><t t-esc="line.product_id.pricetag_price_weight_net"/> €</b><span class="product_uom">/kg</span><br/></t>
-                                    </div>
-                                </div>
-                                <div class="product_image">
-                                    <img class="product_image" t-attf-src="data:image/*;base64,{{line.product_id.spider_chart_image}}"/>
-                                </div>
-                            </t>-->
-                            <!--<t t-if="not line.product_id.pricetag_display_spider_chart">-->
-                            <t t-if="line.product_id.pricetag_display_spider_chart">
+                            </div>
+                            <t t-if="not line.product_id.pricetag_special_quantity_price">
                                 <div class="product_price_per_uom_price_big">
                                     <div class="product_price_big">
-                                        <t t-if="line.product_id.pricetag_is_second_price">
-                                            <span class="product_uom_big"><t t-esc="line.product_id.pricetag_second_price_uom_text"/></span><br/>
-                                            <b><t t-esc="'%0.2f' % (line.product_id.pricetag_second_price)"/> €</b>
+                                        <b><t t-esc="'%0.2f' % (line.product_id.list_price)"/> €</b><!-- 
+                                         --><t t-if="line.product_id.uom_id.category_id.name == 'Volume'"><!-- 
+                                             --><span class="product_uom">/L</span><br/>
+                                        </t>
+                                        <t t-if="not line.product_id.uom_id.category_id.name == 'Volume'"><!-- 
+                                             --><t t-if="not line.product_id.uom_id.category_id.name == 'Weight'"><!-- 
+                                            --><span class="product_uom">/kg</span><br/>
+                                            </t>
                                         </t>
                                     </div>
+                                </div>
+                            </t>
+                            <t t-if="line.product_id.pricetag_special_quantity_price">
+                                <div class="product_price_per_uom_price_big">
+                                    <div class="product_price_big">
+                                        <b><t t-esc="'%0.2f' % (line.product_id.pricetag_second_price)"/> €</b><!-- 
+                                         --><div class="product_uom_special"><t t-esc="line.product_id.pricetag_second_price_uom_text"/></div>
+                                    </div>
+                                </div>
+                                <div class="product_price_per_uom_price_only floating_box">
+                                    <t t-if="line.product_id.uom_id.category_id.name == 'Volume'"><span>Au L : </span></t>
+                                    <t t-if="not line.product_id.uom_id.category_id.name == 'Volume'">
+                                        <t t-if="not line.product_id.uom_id.category_id.name == 'Weight'"><span>Pièce : </span></t>
+                                        <t t-if="line.product_id.uom_id.category_id.name == 'Weight'"><span>Au kg : </span></t>
+                                    </t>
+                                    <t t-esc="'%0.2f' % (line.product_id.list_price)"/> €
                                 </div>
                             </t>
                         </div>
