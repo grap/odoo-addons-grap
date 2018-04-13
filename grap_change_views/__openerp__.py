@@ -64,6 +64,7 @@
     'data': [
         'security/res_groups.yml',
         'views/view_account_bank_statement.xml',
+        'views/view_account_bank_statement_line.xml',
         'views/view_account_invoice.xml',
         'views/view_account_invoice_line.xml',
         'views/view_account_journal.xml',
