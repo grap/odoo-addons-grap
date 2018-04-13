@@ -80,6 +80,7 @@
         'views/view_pos_session_opening.xml',
         'views/view_procurement_rule.xml',
         'views/view_product_category.xml',
+        'views/view_product_margin_classification.xml',
         'views/view_product_pricelist_item.xml',
         'views/view_product_product.xml',
         'views/view_product_supplierinfo.xml',
