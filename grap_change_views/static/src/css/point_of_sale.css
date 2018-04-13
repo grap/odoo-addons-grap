@@ -19,11 +19,20 @@
     width: 28px;
 }
 
-/* Point Of Sale Front-Office - Improve Search Zone */
+/* Point Of Sale Front-Office - Improve Product Search Zone */
 .pos .searchbox input {
     width: 300px;
     font-size: 18px;
     background: url("/point_of_sale/static/src/img/search_reset.gif") no-repeat 15px;
     background-color: #FFF;
     margin-top: 3px;
+}
+
+/* Point Of Sale Front-Office - Improve Customer Search Zone */
+.pos .clientlist-screen .searchbox {
+    margin-left: -300px;
+}
+
+.pos .clientlist-screen .searchbox input {
+    width: 300px;
 }
