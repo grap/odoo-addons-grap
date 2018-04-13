@@ -79,6 +79,7 @@ class ProductProduct(models.Model):
 
     @api.multi
     def _compute_pricetag_display_spider_chart(self):
+        # import pdb; pdb.set_trace();
         for product in self:
             notation = [
                 product.social_notation,
@@ -87,7 +88,7 @@ class ProductProduct(models.Model):
                 product.local_notation,
                 ]
             if '0' in notation:
-                notation.remove('0')
+                notation = filter(lambda a: a != '0', notation)
             product.pricetag_display_spider_chart = (len(notation) >= 3)
 
     @api.multi
