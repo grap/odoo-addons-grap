@@ -9,6 +9,7 @@ from openerp import models, fields
 
 class PosOrderLine(models.Model):
     _inherit = 'pos.order.line'
+    _order = 'create_date desc'
 
     state = fields.Selection(
         related='order_id.state', string='State', readonly=True)
