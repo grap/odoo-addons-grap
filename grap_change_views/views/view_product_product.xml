@@ -305,7 +305,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                                         img_height="120" img_width="120" colspan="2"/>
                                 </group>
                             </group>
-                            <group attrs="{'invisible': [('is_food', '=', False)]}">
+                            <group>
                                 <group string="Ingredients">
                                     <field name="ingredients" widget="html" nolabel="1"/>
                                 </group>
