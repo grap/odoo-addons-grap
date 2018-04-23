@@ -73,7 +73,6 @@
         'views/view_account_tax_template.xml',
         'views/view_account_voucher.xml',
         'views/view_ir_values.xml',
-        'views/view_mail_compose_message.xml',
         'views/view_pos_category.xml',
         'views/view_pos_order.xml',
         'views/view_pos_order_line.xml',
