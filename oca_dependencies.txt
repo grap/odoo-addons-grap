@@ -1,3 +1,5 @@
+sale-workflow_01                https://github.com/grap/sale-workflow.git                   8.0_FIX_IMP_product_margin_classification
+
 knowledge
 l10n-france
 margin-analysis
@@ -23,4 +25,3 @@ odoo-addons-cons                https://github.com/grap/odoo-addons-cons.git    
 pos_01                          https://github.com/grap/pos.git                             8.0_BACKPORT_barcodes
 product-attribute_01            https://github.com/quentinDupont/product-attribute.git      8.0_ADD_product_sale_tax_price_included_2
 stock-logistics-barcode_01      https://github.com/grap/stock-logistics-barcode.git         8.0_BACKPORT_barcodes_generator
-sale-workflow_01                https://github.com/grap/sale-workflow.git                   8.0_FIX_IMP_product_margin_classification
