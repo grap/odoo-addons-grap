@@ -79,7 +79,6 @@ class ProductProduct(models.Model):
 
     @api.multi
     def _compute_pricetag_display_spider_chart(self):
-        # import pdb; pdb.set_trace();
         for product in self:
             notation = [
                 product.social_notation,
@@ -103,11 +102,14 @@ class ProductProduct(models.Model):
             elif product.country_id:
                 localization_info = product.country_id.name
 
-            if not localization_info:
-                product.pricetag_origin = product.origin_description
-            elif product.origin_description:
-                product.pricetag_origin = "%s - %s" % (
-                    localization_info, product.origin_description)
+            if product.origin_description:
+                if localization_info:
+                    product.pricetag_origin = "%s - %s" % (
+                            localization_info, product.origin_description)
+                else:
+                    product.pricetag_origin = product.origin_description
+            else:
+                product.pricetag_origin = localization_info
 
     @api.multi
     def _compute_report_extra_food_info(self):
