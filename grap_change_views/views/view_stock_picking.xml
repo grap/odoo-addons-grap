@@ -33,7 +33,10 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                 <field name="location_id"/>
             </field>
             <field name="location_dest_id" position="attributes">
-                <attribute name="groups">stock.group_locations</attribute>
+                <attribute name="groups">base.group_no_one</attribute>
+            </field>
+            <field name="location_id" position="attributes">
+                <attribute name="groups">base.group_no_one</attribute>
             </field>
             <field name="min_date" position="attributes">
                 <attribute name="invisible">0</attribute>
