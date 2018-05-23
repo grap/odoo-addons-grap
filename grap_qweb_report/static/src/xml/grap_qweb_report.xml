@@ -8,6 +8,13 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 <templates id="template" xml:space="preserve">
 
     <t t-extend="XmlReceipt">
+        <t t-jquery="t[t-if='receipt.header']" t-operation="replace"></t>
+        <t t-jquery="t[t-if='receipt.company.contact_address']" t-operation="after">
+            <t t-if='receipt.header'>
+                <div><t t-raw='receipt.header' /></div>
+            </t>
+        </t>
+        <t t-jquery="t[t-if='receipt.shop.name']" t-operation="replace"></t>
         <t t-jquery="t[t-if='taxincluded']" t-operation="replace">
             <div>------------------------------------------</div>
             <line>
