@@ -110,8 +110,14 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
     <template id="grap_layout_footer">
 
         <div class="footer">
-            <div style="border-top: 1px solid black; font-size:10px;">
+            <div style="border-top: 1px solid black; font-size:9px;">
                 <div class="col-xs-10 text-center">
+                    <div t-if="company.custom_footer">
+                        <div><span t-esc="company.rml_footer"/></div>
+                    </div>
+                    <div t-if="len(company.certifier_organization_id)">
+                        <div>Tous ces produits sont issus de l'agriculture biologique et certifiés par <span t-esc="company.certifier_organization_id.name"/> <span t-esc="company.certifier_organization_id.code"/></div>
+                    </div>
                     <div t-if="o._name in ('sale.order', 'account.invoice')">
                         <div>Pas d'escompte pour paiement anticipé - Pénalité de retard: 3 fois le taux d'intérêt légal</div>
                         <div>Montant forfaitaire pour frais de recouvrement dû au créancier en cas de retard de paiement : 40€</div>
