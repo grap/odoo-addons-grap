@@ -72,7 +72,6 @@
         'views/view_account_move_line.xml',
         'views/view_account_tax_template.xml',
         'views/view_account_voucher.xml',
-        'views/view_document_page.xml',
         'views/view_ir_values.xml',
         'views/view_pos_category.xml',
         'views/view_pos_order.xml',
