@@ -32,6 +32,7 @@
         'stock',
         'knowledge',
         'pos_multicompany',
+        'pos_sector',
         'product_taxes_group',
         'sale_eshop',
         'product_to_scale_bizerba',

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-13 12:59+0000\n"
-"PO-Revision-Date: 2018-04-13 12:59+0000\n"
+"POT-Creation-Date: 2018-05-31 08:40+0000\n"
+"PO-Revision-Date: 2018-05-31 08:40+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -88,6 +88,11 @@ msgid "Amount (VAT Incl.)"
 msgstr "Total TTC"
 
 #. module: grap_change_views
+#: view:product.product:grap_change_views.view_product_product_tree_stock
+msgid "Available Qty"
+msgstr "Qté Stock"
+
+#. module: grap_change_views
 #: view:product.product:grap_change_views.view_product_product_search
 msgid "Available in Point Of Sale"
 msgstr "Disponible dans le point de vente"
@@ -139,6 +144,11 @@ msgstr "Nom Complet"
 #: field:pos.category,complete_name_order:0
 msgid "Complete Name Stored"
 msgstr "Nom complet stocké"
+
+#. module: grap_change_views
+#: view:product.product:grap_change_views.view_product_product_tree
+msgid "Cost P."
+msgstr "P. Revient"
 
 #. module: grap_change_views
 #: view:product.product:grap_change_views.view_product_product_form
@@ -278,6 +288,11 @@ msgid "Food"
 msgstr "Alimentaire"
 
 #. module: grap_change_views
+#: view:product.product:grap_change_views.view_product_product_tree_stock
+msgid "Forcasted Qty"
+msgstr "Qté prév."
+
+#. module: grap_change_views
 #: view:product.product:grap_change_views.view_product_product_form
 #: view:product.product:grap_change_views.view_product_product_scale_tree
 msgid "Generate Barcode (Using Barcode Rule)"
@@ -405,6 +420,11 @@ msgid "Manual Deletion in the Scale System"
 msgstr "Suppression manuel dans le système de balance"
 
 #. module: grap_change_views
+#: view:product.product:grap_change_views.view_product_product_tree
+msgid "Margin Categ."
+msgstr "Catég Marge"
+
+#. module: grap_change_views
 #: view:product.product:grap_change_views.view_product_product_search
 msgid "Margin Classifications"
 msgstr "Catégories de marge"
@@ -457,7 +477,7 @@ msgstr "Num. Fact."
 #. module: grap_change_views
 #: model:ir.ui.menu,name:grap_change_views.menu_pos_order_line
 msgid "Order Lines"
-msgstr "Lignes de vente"
+msgstr "Lignes de tickets"
 
 #. module: grap_change_views
 #: view:product.product:grap_change_views.view_product_product_form
@@ -580,7 +600,7 @@ msgstr "Liste des articles"
 #. module: grap_change_views
 #: field:pos.category,product_qty:0
 msgid "Product Qty"
-msgstr "Qté d'articles"
+msgstr "Product Qty"
 
 #. module: grap_change_views
 #: model:ir.actions.act_window,name:grap_change_views.action_product_product_pos
@@ -699,6 +719,11 @@ msgid "Ready"
 msgstr "Prêt"
 
 #. module: grap_change_views
+#: view:product.product:grap_change_views.view_product_product_tree
+msgid "Ref"
+msgstr "Réf"
+
+#. module: grap_change_views
 #: view:product.product:grap_change_views.view_product_product_form
 msgid "Resend Creation To the Scale System"
 msgstr "Envoyer une création au système de balance"
@@ -721,14 +746,14 @@ msgid "Sale"
 msgstr "Vente"
 
 #. module: grap_change_views
+#: view:product.product:grap_change_views.view_product_product_tree
+msgid "Sale P."
+msgstr "P. Vente"
+
+#. module: grap_change_views
 #: model:ir.model,name:grap_change_views.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Ligne de commandes de vente"
-
-#. module: grap_change_views
-#: view:mail.compose.message:grap_change_views.view_mail_compose_message_form
-msgid "Save as new template"
-msgstr "Sauvegarder en tant que nouveau modèle"
 
 #. module: grap_change_views
 #: view:product.product:grap_change_views.view_product_product_form
@@ -873,6 +898,7 @@ msgstr "P.U."
 #. module: grap_change_views
 #: view:account.invoice:grap_change_views.view_account_invoice_form_customer
 #: view:account.invoice:grap_change_views.view_account_invoice_form_supplier
+#: view:product.product:grap_change_views.view_product_product_tree
 #: view:purchase.order:grap_change_views.view_purchase_order_form
 #: view:sale.order:grap_change_views.view_sale_order_form_sale_3
 msgid "UoM"
@@ -945,7 +971,9 @@ msgstr "base.group_multi_currency"
 #: view:sale.order:grap_change_views.view_sale_order_form_sale_3
 #: view:sale.order:grap_change_views.view_sale_order_form_sale_margin_3
 #: view:stock.picking:grap_change_views.view_stock_picking_form
+#: view:stock.picking:grap_change_views.view_stock_picking_tree
 #: view:stock.picking.type:grap_change_views.view_stock_picking_type_kanban
+#: view:stock.transfer_details:grap_change_views.view_stock_transfer_details
 #: view:wizard.update.invoice.supplierinfo:grap_change_views.view_wizard_update_invoice_supplierinfo_form
 msgid "base.group_no_one"
 msgstr "base.group_no_one"
@@ -1018,11 +1046,6 @@ msgstr "grap_change_views__view_wizard_update_invoice_supplierinfo_form"
 #: view:sale.order:grap_change_views.view_sale_order_form_sale_3
 msgid "red:discount==100;black:discount==0;brown:True;"
 msgstr "red:discount==100;black:discount==0;brown:True;"
-
-#. module: grap_change_views
-#: view:stock.picking:grap_change_views.view_stock_picking_tree
-msgid "stock.group_locations"
-msgstr "stock.group_locations"
 
 #. module: grap_change_views
 #: view:product.product:grap_change_views.view_product_product_form

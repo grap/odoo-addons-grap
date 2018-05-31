@@ -127,12 +127,42 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="model">product.product</field>
         <field name="inherit_id" ref="product.product_product_tree_view"/>
         <field name="arch" type="xml">
+            <field name="default_code" position="attributes">
+                <attribute name="string">Ref</attribute>
+            </field>
+            <field name="lst_price" position="attributes">
+                <attribute name="string">Cost P.</attribute>
+            </field>
+            <field name="lst_price" position="before">
+                <field name="standard_price" string="Sale P."/>
+            </field>
+            <field name="lst_price" position="after">
+                <field name="margin_classification_id" string="Margin Categ."/>
+            </field>
+            <field name="uom_id" position="attributes">
+                <attribute name="string">UoM</attribute>
+            </field>
             <field name="attribute_value_ids" position="attributes">
+                <attribute name="groups">base.group_no_one</attribute>
+            </field>
+            <field name="ean13" position="attributes">
                 <attribute name="groups">base.group_no_one</attribute>
             </field>
         </field>
     </record>
-
+    
+    <record id="view_product_product_tree_stock" model="ir.ui.view">
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="stock.view_stock_product_tree"/>
+        <field name="arch" type="xml">
+            <field name="qty_available" position="attributes">
+                <attribute name="string">Available Qty</attribute>
+            </field>
+            <field name="virtual_available" position="attributes">
+                <attribute name="string">Forcasted Qty</attribute>
+            </field>
+        </field>
+    </record>
 
 <!-- Form View Overwritten -->
     <record id="view_product_product_form" model="ir.ui.view">
@@ -251,6 +281,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                                     <field name="available_in_pos" string="PoS - Is Displayed" groups="point_of_sale.group_pos_user"/>
                                     <field name="pos_categ_id" string="PoS - Category" groups="point_of_sale.group_pos_user"/>
                                     <field name="to_weight" string="PoS - To Weight" groups="point_of_sale.group_pos_user"/>
+                                    <field name="sector_id" string="PoS - Sector" groups="pos_sector.group_pos_sector_product_user"/>
                                     <field name="income_pdt" string="PoS - Cash In" groups="account.group_account_manager"/>
                                     <field name="expense_pdt" string="PoS - Cash Out" groups="account.group_account_manager"/>
                                 </group>
