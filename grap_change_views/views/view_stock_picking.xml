@@ -67,11 +67,9 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="arch" type="xml">
             <field name="recovery_moment_id" position="replace" />
             <field name="recovery_group_id" position="replace" />
-            <field name="delivery_moment_id" position="replace" />
             <field name="date" position="before">
                 <field name="recovery_moment_id" groups="sale_recovery_moment.recovery_user"/>
                 <field name="recovery_group_id" groups="sale_recovery_moment.recovery_user"/>
-                <field name="delivery_moment_id" groups="sale_recovery_moment.delivery_user"/>
             </field>
         </field>
     </record>

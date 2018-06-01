@@ -23,10 +23,6 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="users" eval="[(4, ref('base.user_demo'))]" />
     </record>
 
-    <record id="sale_recovery_moment.delivery_user" model="res.groups">
-        <field name="users" eval="[(4, ref('base.user_demo'))]" />
-    </record>
-
     <record id="sale_recovery_moment.prepare_user" model="res.groups">
         <field name="users" eval="[(4, ref('base.user_demo'))]" />
     </record>

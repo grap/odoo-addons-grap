@@ -130,12 +130,6 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         sequence="1"
         parent="menu_res_partner_editable_view"/>
 
-
-    <menuitem id="sale_recovery_moment.menu_res_partner_delivery_5"
-        name="Customers (Delivery)"
-        sequence="2"
-        parent="menu_res_partner_editable_view"/>
-
 <!-- Purchase / Purchase Menu -->
 
     <record model="ir.ui.menu" id="purchase.menu_product_by_category_purchase_form">

@@ -224,7 +224,6 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                             <field name="active"/>
                             <field name="company_id" groups="base.group_multi_company"/>
                             <group string="Packaging" colspan="2">
-                                <field name="delivery_categ_id" groups="sale_recovery_moment.delivery_user"/>
                                 <field name="volume" attrs="{'readonly':[('type','=','service')]}"/>
                                 <field name="weight_net" attrs="{'readonly':[('type','=','service')]}"/>
                             </group>
@@ -747,34 +746,5 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         parent="menu_product_product_editable_view" sequence="9"
         groups="sale_recovery_moment.prepare_user"
         action="action_product_product_prepare"/>
-
-    <!--
-        * Add an extra view product (Delivery View) #10
-    -->
-
-    <record id="view_product_product_delivery_tree" model="ir.ui.view">
-        <field name="model">product.product</field>
-        <field name="arch" type="xml">
-            <tree string="Products (Delivery)" editable="bottom">
-                <field name="name" readonly="1"/>
-                <field name="delivery_categ_id" groups="sale_recovery_moment.delivery_user"/>
-                <field name="company_id" groups="base.group_multi_company" />
-            </tree>
-        </field>
-    </record>
-
-    <record id="action_product_product_delivery" model="ir.actions.act_window">
-        <field name="name">Products (Delivery)</field>
-        <field name="res_model">product.product</field>
-        <field name="view_type">form</field>
-        <field name="view_mode">tree</field>
-        <field name="view_id" ref="view_product_product_delivery_tree" />
-    </record>
-
-   <menuitem id="menu_product_product_delivery"
-        name="Products (Delivery)"
-        parent="menu_product_product_editable_view" sequence="10"
-        groups="sale_recovery_moment.delivery_user"
-        action="action_product_product_delivery"/>
 
 </data></openerp>
