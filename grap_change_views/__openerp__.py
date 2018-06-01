@@ -104,6 +104,9 @@
         'views/menu.xml',
         'views/grap_change_views.xml',
     ],
+    'qweb': [
+        'views/grap_change_views_qweb.xml',
+    ],
     'demo': [
         'demo/res_groups.xml',
     ],

@@ -1,5 +1,23 @@
 @charset "utf-8";
 
+/* GENERAL - Menu ----------------------------------------------------- */
+/*    Add an hover effect s*/
+.openerp .oe_menu_leaf:hover, .openerp .oe_menu_toggler:hover{
+  background: #fff;
+}
+
+.openerp .oe_view_manager_switch .oe_button_group .oe_right li:hover{
+  background: #fff;
+}
+
+.oe_view_manager_switch .oe_button_group .oe_right{
+  background: blue;
+}
+
+.oe_view_manager_switch li:hover, .oe_pager_group a:hover{
+  background: #efefef;
+}
+
 /* GENERAL - Tree View ----------------------------------------------------- */
 /*    Add an hover effect on tree view rows*/
 .openerp .oe_list_content tbody tr:hover{
@@ -23,8 +41,44 @@
     width:55%;
 }
 
-.modal-lg{
+.openerp .oe_searchview_unfold_drawer {
+    width: 150px;
+    left: -160px;
+    background: #fff;
+    color: black !important;
+    border-radius: 13px;
+    border: 1px solid #ababab;
+    text-align: center;
+    line-height: 1.55em;
+} 
+
+.openerp .oe_searchview_unfold_drawer:hover {
+    background: #e3e3e3;
+    border-color: #a1a1a1;
+}
+
+.openerp .oe_searchview_clear {
+    right: 6px !important;
+}
+
+.openerp .oe_searchview_search {
+    padding-left: 2px;
+}
+
+x.modal-lg{
     width: 95%;
+}
+
+/* GENERAL - Tree View Improve manager header ------------------------------ */
+.openerp .oe_pager_value {
+    cursor: pointer;
+    padding: 0px 8px;
+} 
+
+.openerp .oe_pager_value:hover {
+    border-radius: 6px;
+    background: #fff;
+    border-color: #a1a1a1;
 }
 
 /* GENERAL - Form View ----------------------------------------------------- */
