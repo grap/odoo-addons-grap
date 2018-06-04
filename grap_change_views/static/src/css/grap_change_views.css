@@ -91,6 +91,15 @@
     margin: 6px 0px 0px;
 }
 
+.openerp .oe_application .oe_breadcrumb_item:not(:last-child) {
+    max-width: 9em;
+}
+
+.openerp .oe_application .oe_breadcrumb_item {
+    white-space: nowrap;
+    max-width: 80em;
+    text-overflow: ellipsis;
+}
 
 /* purchase - view_purchase_order_form --------------------------------------------- */
 .grap_change_views__view_purchase_order_form [data-id="product_id"]          {width: 33%;}
