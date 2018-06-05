@@ -131,10 +131,10 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                 <attribute name="string">Ref</attribute>
             </field>
             <field name="lst_price" position="attributes">
-                <attribute name="string">Cost P.</attribute>
+                <attribute name="string">Sale P.</attribute>
             </field>
             <field name="lst_price" position="before">
-                <field name="standard_price" string="Sale P."/>
+                <field name="standard_price" string="Cost P."/>
             </field>
             <field name="lst_price" position="after">
                 <field name="margin_classification_id" string="Margin Categ."/>

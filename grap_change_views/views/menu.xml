@@ -320,6 +320,12 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         parent="point_of_sale.menu_point_of_sale" 
         action="action_pos_order_line"/>
 
+<!-- (Sale) Reporting Menu -->
+    <record model="ir.ui.menu" id="sale.menu_report_product_all">
+        <field name="groups_id" eval="[(6, 0, [ref('base.group_no_one')])]"/>
+    </record>
+
+
 <!-- Point Of Sale Menu -->
     <record model="ir.ui.menu" id="point_of_sale.menu_point_config_product">
         <field name="groups_id" eval="[(6, 0, [ref('base.group_no_one')])]" />
