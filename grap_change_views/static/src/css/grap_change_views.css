@@ -97,7 +97,7 @@
 
 .openerp .oe_application .oe_breadcrumb_item {
     white-space: nowrap;
-    max-width: 80em;
+    max-width: 72em;
     text-overflow: ellipsis;
 }
 
