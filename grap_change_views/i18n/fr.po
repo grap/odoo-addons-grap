@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-31 09:01+0000\n"
-"PO-Revision-Date: 2018-05-31 09:01+0000\n"
+"POT-Creation-Date: 2018-06-08 09:01+0000\n"
+"PO-Revision-Date: 2018-06-08 09:01+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -367,7 +367,7 @@ msgstr "Ligne d'inventaire"
 #. module: grap_change_views
 #: model:ir.model,name:grap_change_views.model_account_invoice_line
 msgid "Invoice Line"
-msgstr "Ligne de facturation"
+msgstr "Lignes de facture"
 
 #. module: grap_change_views
 #: view:pos.order.line:grap_change_views.view_pos_order_line_search
@@ -493,6 +493,11 @@ msgstr "Opérations diverses"
 #: view:product.product:grap_change_views.view_product_product_form
 msgid "Outgoing quantity"
 msgstr "Quantité sortante"
+
+#. module: grap_change_views
+#: view:account.move.line:grap_change_views.view_account_move_line_tree
+msgid "P. Rec."
+msgstr "Let. P."
 
 #. module: grap_change_views
 #: view:product.product:grap_change_views.view_product_product_search
@@ -628,13 +633,6 @@ msgid "Products (Categories)"
 msgstr "Articles (Catégories)"
 
 #. module: grap_change_views
-#: model:ir.actions.act_window,name:grap_change_views.action_product_product_delivery
-#: model:ir.ui.menu,name:grap_change_views.menu_product_product_delivery
-#: view:product.product:grap_change_views.view_product_product_delivery_tree
-msgid "Products (Delivery)"
-msgstr "Articles (Livraison)"
-
-#. module: grap_change_views
 #: model:ir.actions.act_window,name:grap_change_views.action_product_product_food
 #: model:ir.ui.menu,name:grap_change_views.menu_product_product_food
 #: view:product.product:grap_change_views.view_product_product_food_tree
@@ -722,6 +720,11 @@ msgstr "Qté"
 #: view:stock.picking.type:grap_change_views.view_stock_picking_type_kanban
 msgid "Ready"
 msgstr "Prêt"
+
+#. module: grap_change_views
+#: view:account.move.line:grap_change_views.view_account_move_line_tree
+msgid "Rec."
+msgstr "Let."
 
 #. module: grap_change_views
 #: view:product.product:grap_change_views.view_product_product_tree

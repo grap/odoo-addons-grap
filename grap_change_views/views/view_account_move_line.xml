@@ -22,6 +22,8 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                 <field name="partner_id" />
                 <field name="debit" sum="Total Debit"/>
                 <field name="credit" sum="Total Credit"/>
+                <field name="reconcile_id" string="Rec."/>
+                <field name="reconcile_partial_id" string="P. Rec."/>
                 <field name="company_id" groups="base.group_multi_company"/>
             </tree>
         </field>
