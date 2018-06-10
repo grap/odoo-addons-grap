@@ -12,6 +12,7 @@
     'license': 'AGPL-3',
     'depends': [
         'account',
+        'account_invoice_supplier_update',
         'account_statement_reconciliation',
         'base_vat',
         'crm',

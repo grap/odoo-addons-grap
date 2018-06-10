@@ -89,6 +89,16 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         </field>
     </record>
 
+    <record id="view_account_invoice_form_supplier_update" model="ir.ui.view">
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account_invoice_supplier_update.view_account_invoice_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='check_supplierinfo']" position="attributes">
+                <attribute name="attrs">{'invisible': ['|', ('supplierinfo_ok', '=', True), ('type', '=', 'in_refund')]}</attribute>
+            </xpath>
+        </field>
+    </record>
+
     <record id="view_account_invoice_form_supplier_discount" model="ir.ui.view">
         <field name="model">account.invoice</field>
         <field name="inherit_id" ref="account_invoice_triple_discount.invoice_supplier_triple_discount_form_view"/>
