@@ -241,7 +241,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                                             attrs="{'readonly':[('is_consignment', '=', True)]}"
                                             groups="recurring_consignment.group_consignment_user"/>
                                     <field name="standard_price" string="Cost Price (VAT Excl.)"/>
-                                    <field name="tax_group_id" colspan="2" quick_create="false"/>
+                                    <field name="fiscal_classification_id" colspan="2" quick_create="false"/>
                                     <field name="uom_po_id"/>
                                     <field name="prepare_categ_id" groups="sale_recovery_moment.recovery_user"/>
                                 </group>
@@ -431,7 +431,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                 <field name="code"/>
                 <field name="name"/>
                 <field name="consignor_partner_id" invisible="1"/>
-                <field name="tax_group_id"/>
+                <field name="fiscal_classification_id"/>
                 <field name="standard_price"/>
                 <field name="list_price"/>
                 <field name="standard_margin_rate"/>

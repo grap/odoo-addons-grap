@@ -1,5 +1,6 @@
 sale-workflow_01                https://github.com/grap/sale-workflow.git                   8.0_FIX_IMP_product_margin_classification
 
+account-fiscal-rule
 knowledge
 l10n-france
 margin-analysis
