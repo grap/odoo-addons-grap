@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-14 17:54+0000\n"
-"PO-Revision-Date: 2018-03-14 17:54+0000\n"
+"POT-Creation-Date: 2018-07-03 16:41+0000\n"
+"PO-Revision-Date: 2018-07-03 16:41+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -17,11 +17,16 @@ msgstr ""
 
 #. module: grap_qweb_report
 #. openerp-web
-#: code:addons/grap_qweb_report/static/src/xml/grap_qweb_report.xml:12
-#: code:addons/grap_qweb_report/static/src/xml/grap_qweb_report.xml:25
+#: code:addons/grap_qweb_report/static/src/xml/grap_qweb_report.xml:19
+#: code:addons/grap_qweb_report/static/src/xml/grap_qweb_report.xml:32
 #, python-format
 msgid "------------------------------------------"
 msgstr "------------------------------------------"
+
+#. module: grap_qweb_report
+#: view:website:grap_qweb_report.qweb_template_label_bulk_selling
+msgid "/kg"
+msgstr "/kg"
 
 #. module: grap_qweb_report
 #: model:product.uom,name:grap_qweb_report.uom_100_gr
@@ -35,11 +40,27 @@ msgstr "Allergènes"
 
 #. module: grap_qweb_report
 #. openerp-web
-#: code:addons/grap_qweb_report/static/src/xml/grap_qweb_report.xml:16
+#: code:addons/grap_qweb_report/static/src/xml/grap_qweb_report.xml:23
 #: view:website:grap_qweb_report.grap_template_account_invoice_document
 #, python-format
 msgid "Amount"
 msgstr "Montant"
+
+#. module: grap_qweb_report
+#: view:website:grap_qweb_report.qweb_template_label_big
+#: view:website:grap_qweb_report.qweb_template_label_bulk_selling
+#: view:website:grap_qweb_report.qweb_template_label_normal
+#: view:website:grap_qweb_report.qweb_template_label_small
+msgid "Au L :"
+msgstr "Au L :"
+
+#. module: grap_qweb_report
+#: view:website:grap_qweb_report.qweb_template_label_big
+#: view:website:grap_qweb_report.qweb_template_label_bulk_selling
+#: view:website:grap_qweb_report.qweb_template_label_normal
+#: view:website:grap_qweb_report.qweb_template_label_small
+msgid "Au kg :"
+msgstr "Au kg :"
 
 #. module: grap_qweb_report
 #: field:product.uom,pricetag_available:0
@@ -103,7 +124,7 @@ msgid "Company"
 msgstr "Société"
 
 #. module: grap_qweb_report
-#: code:addons/grap_qweb_report/models/product_product.py:111
+#: code:addons/grap_qweb_report/models/product_product.py:119
 #, python-format
 msgid "Country: %s"
 msgstr "Pays : %s"
@@ -197,6 +218,11 @@ msgid "Draft Invoice"
 msgstr "Facture Brouillon"
 
 #. module: grap_qweb_report
+#: view:website:grap_qweb_report.grap_template_account_invoice_document
+msgid "Due Date:"
+msgstr "Date d'échéance :"
+
+#. module: grap_qweb_report
 #: view:website:grap_qweb_report.grap_template_purchase_order_quotation_document
 msgid "Expected Date"
 msgstr "Date prévue"
@@ -207,7 +233,7 @@ msgid "Fiscal Position Remark:"
 msgstr "Remarque de Position Fiscale:"
 
 #. module: grap_qweb_report
-#: code:addons/grap_qweb_report/models/product_product.py:139
+#: code:addons/grap_qweb_report/models/product_product.py:138
 #, python-format
 msgid "For %s"
 msgstr "Pour %s"
@@ -218,7 +244,7 @@ msgid "Fournisseur"
 msgstr "Fournisseur"
 
 #. module: grap_qweb_report
-#: code:addons/grap_qweb_report/models/product_product.py:113
+#: code:addons/grap_qweb_report/models/product_product.py:121
 #, python-format
 msgid "Fresh Category: %s"
 msgstr "Catégorie de produit frais : %s"
@@ -308,8 +334,8 @@ msgstr "Last Updated on"
 
 #. module: grap_qweb_report
 #: view:website:grap_qweb_report.grap_layout_footer
-msgid "Montant forfaitaire pour frais de recouvrement dû au créancier en cas de retard de paiement: 40€"
-msgstr "Montant forfaitaire pour frais de recouvrement dû au créancier en cas de retard de paiement: 40€"
+msgid "Montant forfaitaire pour frais de recouvrement dû au créancier en cas de retard de paiement : 40€"
+msgstr "Montant forfaitaire pour frais de recouvrement dû au créancier en cas de retard de paiement : 40€"
 
 #. module: grap_qweb_report
 #: view:website:grap_qweb_report.grap_template_purchase_order_document
@@ -317,7 +343,7 @@ msgid "Net Price"
 msgstr "Prix net"
 
 #. module: grap_qweb_report
-#: code:addons/grap_qweb_report/models/product_product.py:72
+#: code:addons/grap_qweb_report/models/product_product.py:77
 #, python-format
 msgid "Not From Organic Farming"
 msgstr "Non issu de l'agriculture biologique"
@@ -343,7 +369,7 @@ msgid "Order N°"
 msgstr "N° de commande"
 
 #. module: grap_qweb_report
-#: code:addons/grap_qweb_report/models/product_product.py:69
+#: code:addons/grap_qweb_report/models/product_product.py:74
 #, python-format
 msgid "Organic Product, certified by %s"
 msgstr "Produit issu de l'agriculture biologique, certifié par %s"
@@ -419,6 +445,14 @@ msgstr "Liste des Opérations"
 
 #. module: grap_qweb_report
 #: view:website:grap_qweb_report.qweb_template_label_big
+#: view:website:grap_qweb_report.qweb_template_label_bulk_selling
+#: view:website:grap_qweb_report.qweb_template_label_normal
+#: view:website:grap_qweb_report.qweb_template_label_small
+msgid "Pièce :"
+msgstr "Pièce :"
+
+#. module: grap_qweb_report
+#: view:website:grap_qweb_report.qweb_template_label_big
 #: view:website:grap_qweb_report.qweb_template_label_normal
 #: view:website:grap_qweb_report.qweb_template_label_small
 msgid "Poids net"
@@ -430,13 +464,13 @@ msgid "Price"
 msgstr "Prix"
 
 #. module: grap_qweb_report
-#: code:addons/grap_qweb_report/models/product_product.py:133
+#: code:addons/grap_qweb_report/models/product_product.py:148
 #, python-format
 msgid "Price per Kilo"
 msgstr "Prix au kilo"
 
 #. module: grap_qweb_report
-#: code:addons/grap_qweb_report/models/product_product.py:128
+#: code:addons/grap_qweb_report/models/product_product.py:143
 #, python-format
 msgid "Price per Liter"
 msgstr "Prix au litre"
@@ -507,6 +541,11 @@ msgstr "Pricetag second price"
 #: field:product.product,pricetag_second_price_uom_text:0
 msgid "Pricetag second price uom text"
 msgstr "Pricetag second price uom text"
+
+#. module: grap_qweb_report
+#: field:product.product,pricetag_special_quantity_price:0
+msgid "Pricetag special quantity price"
+msgstr "Pricetag special quantity price"
 
 #. module: grap_qweb_report
 #: field:picking.summary.wizard,print_detail:0
@@ -772,6 +811,11 @@ msgid "Total Without Taxes"
 msgstr "Total HT"
 
 #. module: grap_qweb_report
+#: view:website:grap_qweb_report.grap_layout_footer
+msgid "Tous ces produits sont issus de l'agriculture biologique et certifiés par"
+msgstr "Tous ces produits sont issus de l'agriculture biologique et certifiés par"
+
+#. module: grap_qweb_report
 #: view:website:grap_qweb_report.grap_template_picking_summary_wizard_document
 msgid "Type"
 msgstr "Type"
@@ -796,7 +840,7 @@ msgstr "UdM"
 
 #. module: grap_qweb_report
 #. openerp-web
-#: code:addons/grap_qweb_report/static/src/xml/grap_qweb_report.xml:14
+#: code:addons/grap_qweb_report/static/src/xml/grap_qweb_report.xml:21
 #, python-format
 msgid "VAT"
 msgstr "TVA"
@@ -851,8 +895,32 @@ msgstr "Votre Référence:"
 
 #. module: grap_qweb_report
 #. openerp-web
-#: code:addons/grap_qweb_report/static/src/xml/grap_qweb_report.xml:15
+#: code:addons/grap_qweb_report/static/src/xml/grap_qweb_report.xml:22
 #, python-format
 msgid "___________ Base"
 msgstr "___________ Base"
+
+#. module: grap_qweb_report
+#: view:website:grap_qweb_report.qweb_template_label_big
+#: view:website:grap_qweb_report.qweb_template_label_normal
+#: view:website:grap_qweb_report.qweb_template_label_small
+msgid "la pièce"
+msgstr "la pièce"
+
+#. module: grap_qweb_report
+#: view:website:grap_qweb_report.qweb_template_label_big
+#: view:website:grap_qweb_report.qweb_template_label_normal
+#: view:website:grap_qweb_report.qweb_template_label_small
+msgid "le kilo"
+msgstr "le kilo"
+
+#. module: grap_qweb_report
+#: view:stock.picking:grap_qweb_report.view_stock_picking_form
+msgid "{'invisible': True}"
+msgstr "{'invisible': True}"
+
+#. module: grap_qweb_report
+#: view:website:grap_qweb_report.grap_template_account_invoice_document
+msgid "⚠ ATTENTION ⚠ Changement de coordonnées bancaires, veuillez en prendre acte en bas de ce document."
+msgstr "⚠ ATTENTION ⚠ Changement de coordonnées bancaires, veuillez en prendre acte en bas de ce document."
 

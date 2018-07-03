@@ -42,6 +42,10 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                         <strong>Invoice Date:</strong>
                         <p t-field="o.date_invoice"/>
                     </div>
+                    <div class="col-xs-2" t-if="o.date_due">
+                        <strong>Due Date:</strong>
+                        <p t-field="o.date_due"/>
+                    </div>
                     <div class="col-xs-2" t-if="o.origin">
                         <strong>Source:</strong>
                         <p t-field="o.origin"/>
