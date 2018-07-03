@@ -1,5 +1,5 @@
 # coding: utf-8
-# Copyright (C) 2013 - Today: GRAP (http://www.grap.coop)
+# Copyright (C) 2018 - Today: GRAP (http://www.grap.coop)
 # @author: Sylvain LE GAL (https://twitter.com/legalsylvain)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
@@ -19,5 +19,8 @@ class StockInventory(models.Model):
     @api.multi
     @api.depends('line_ids.valuation')
     def _compute_valuation(self):
-        for inventory in self:
-            inventory.valuation = sum(inventory.mapped('line_ids.valuation'))
+        ctx = self.env.context.copy()
+        if 'do_not_check_duplicates' in ctx.keys():
+            ctx.pop('do_not_check_duplicates')
+        super(
+            StockInventory, self.with_context(ctx))._compute_valuation()
