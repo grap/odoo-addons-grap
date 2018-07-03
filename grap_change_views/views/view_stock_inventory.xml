@@ -15,6 +15,17 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
             <button name="action_done" position="attributes">
                 <attribute name="groups" ref="stock.group_stock_user" />
             </button>
+            <button name="reset_real_qty" position="attributes">
+                <attribute name="states">draft, cancel, confirm, done</attribute>
+                <attribute name="attrs">{'invisible': ['|', ('filter', 'in', ['partial', 'product']), ('state', '!=', 'disabled')]}</attribute>
+            </button>
+            <field name="filter" position="attributes">
+                <attribute name="readonly">1</attribute>
+            </field>
+            <field name="location_id" position="attributes">
+                <attribute name="domain">[('usage', '=', 'internal')]</attribute>
+            </field>
+
         </field>
     </record>
 
