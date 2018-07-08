@@ -18,8 +18,8 @@ env:
 
   matrix:
 #  - LINT_CHECK="1"
-  - TESTS="1" ODOO_REPO="OCA/OCB" EXCLUDE=account_export_ebp,grap_change_views
   - TESTS="1" ODOO_REPO="OCA/OCB" UNIT_TEST="1" EXCLUDE=account_export_ebp,grap_change_views
+  - TESTS="1" ODOO_REPO="OCA/OCB" EXCLUDE=account_export_ebp,grap_change_views
 
 virtualenv:
   system_site_packages: true
