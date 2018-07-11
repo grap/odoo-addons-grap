@@ -8,9 +8,10 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 <openerp><data>
 
-    <record id="view_account_invoice_form_customer" model="ir.ui.view">
+    <record id="view_account_invoice_form" model="ir.ui.view">
         <field name="model">account.invoice</field>
         <field name="inherit_id" ref="account.invoice_form"/>
+        <field name="priority">200</field>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='invoice_line']/tree/field[@name='quantity']" position="attributes">
                 <attribute name="string">Qty</attribute>
@@ -27,8 +28,6 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
             <xpath expr="//field[@name='invoice_line']/tree/field[@name='price_subtotal']" position="attributes">
                 <attribute name="string">S.T.</attribute>
             </xpath>
-
-
             <field name="account_id" position="attributes">
               <attribute name="groups">account.group_account_manager</attribute>
             </field>
@@ -51,10 +50,37 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         </field>
     </record>
 
+<!--            <xpath expr="//button[@string='Refund Invoice']" position="attributes">-->
+<!--                <attribute name="attrs">{'invisible': ['|', ('forbid_payment','=',True), ('state','not in',('open','proforma2','paid'))]}</attribute>-->
+<!--                <attribute name="states"/>-->
+<!--            </xpath>-->
+
     <record id="view_account_invoice_form_supplier" model="ir.ui.view">
         <field name="model">account.invoice</field>
         <field name="inherit_id" ref="account.invoice_supplier_form"/>
+        <field name="priority">300</field>
         <field name="arch" type="xml">
+            <button name="invoice_verify" position="attributes">
+                <attribute name="attrs">{'invisible': ['|',
+                    ('intercompany_trade_readonly','=', True),
+                    ('state','not in', ('draft')),
+                ]}</attribute>
+                <attribute name="states" position="replace"/>
+            </button>
+            <button name="invoice_cancel" position="attributes">
+                <attribute name="attrs">{'invisible': ['|',
+                    ('intercompany_trade_readonly','=', True),
+                    ('state','not in', ('draft', 'proforma2', 'open')),
+                ]}</attribute>
+                <attribute name="states" position="replace"/>
+            </button>
+            <button name="action_cancel_draft" position="attributes">
+                <attribute name="attrs">{'invisible': ['|',
+                    ('intercompany_trade_readonly','=', True),
+                    ('state','not in', ('cancel', 'verified')),
+                ]}</attribute>
+                <attribute name="states" position="replace"/>
+            </button>
             <xpath expr="//field[@name='invoice_line']/tree/field[@name='quantity']" position="attributes">
                 <attribute name="string">Qty</attribute>
             </xpath>

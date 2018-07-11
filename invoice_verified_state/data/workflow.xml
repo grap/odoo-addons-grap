@@ -14,7 +14,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="action">wkf_verify_invoice()</field>
     </record>
     <record id="account.t4" model="workflow.transition">
-        <field name="condition">type=="out_invoice" or type=="out_refund"</field>
+        <field name="condition">type=="out_invoice" or type=="out_refund" or type=="in_invoice" or type=="in_refund"</field>
     </record>
     <record id="t15" model="workflow.transition">
         <field name="act_from" ref="account.act_draft"/>

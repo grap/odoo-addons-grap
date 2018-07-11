@@ -52,6 +52,7 @@
         'simple_tax_purchase',
         'purchase_discount',
         'intercompany_trade_base',
+        'intercompany_trade_account',
         'recurring_consignment',
         'grap_change_access',
         'product_ean13_image',
@@ -62,6 +63,7 @@
         'account_invoice_triple_discount',
         'web_tree_dynamic_colored_field',
         'grap_qweb_report',
+        'invoice_verified_state',
     ],
     'data': [
         'security/res_groups.yml',
