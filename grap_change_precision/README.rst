@@ -7,27 +7,20 @@ GRAP Custom - Change the precisions names and values of some fields
 ===================================================================
 
 
-* Add a new precision 'GRAP Purchase Unit Price', used in:
-    * account_invoice_line.price_unit
-    * pricelist_partnerinfo.price
-    * product_template.standard_price
-    * purchase_order_line.price_unit
-    * stock_move.unit_price
+1. Add a new precision 'GRAP Purchase Unit Price', used in:
+* account_invoice_line.price_unit
+* pricelist_partnerinfo.price
+* product_template.standard_price
+* product_template.standard_price_tax_included
+* purchase_order_line.price_unit
 
 
-* Add a new precision 'GRAP Purchase Unit Discount', used in:
-    * account_invoice_line.discount
+2. Add a new precision 'GRAP Purchase Unit Discount', used in:
+* account_invoice_line.discount
 
+3. Change Precision to 'Product UoS' for the following fields:
+* pos_order_line.qty
 
-* Change Precision to 'Product UoS' for the following fields:
-    * pos_order_line.qty
-
-
-Roadmap / Issues
-----------------
-
-* TODO : set to 'GRAP Purchase Unit Price' the following fields:
-    * product_template.standard_price_vat_included
 
 Contributors
 ------------
