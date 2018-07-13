@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding: utf-8
 # Copyright (C) 2013 - Today: GRAP (http://www.grap.coop)
 # @author: Sylvain LE GAL (https://twitter.com/legalsylvain)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
@@ -15,7 +15,7 @@
         'stock_account',
     ],
     'demo': [
-        'demo/res_users.xml',
+        'demo/res_groups.xml',
         'demo/product_category.xml',
     ],
 }

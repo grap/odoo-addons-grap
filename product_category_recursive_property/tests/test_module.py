@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding: utf-8
 # Copyright (C) 2017 - Today: GRAP (http://www.grap.coop)
 # @author: Sylvain LE GAL (https://twitter.com/legalsylvain)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
@@ -6,10 +6,10 @@
 from openerp.tests.common import TransactionCase
 
 
-class TestProductCategoryRecursiveProperty(TransactionCase):
+class TestModule(TransactionCase):
 
     def setUp(self):
-        super(TestProductCategoryRecursiveProperty, self).setUp()
+        super(TestModule, self).setUp()
         self.category_obj = self.env['product.category']
         self.property_obj = self.env['ir.property']
         self.mother_category = self.env.ref(
