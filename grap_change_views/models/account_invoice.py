@@ -5,6 +5,7 @@
 
 from openerp import models
 
+
 class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
     _order = 'date_invoice desc, state'

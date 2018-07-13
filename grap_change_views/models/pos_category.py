@@ -13,7 +13,7 @@ class PosCategory(models.Model):
     # Columns Section
     complete_name_order = fields.Char(
         string='Complete Name Stored', store=True,
-        compute = '_compute_complete_name_order')
+        compute='_compute_complete_name_order')
 
     product_ids = fields.One2many(
         comodel_name='product.product', inverse_name='pos_categ_id',

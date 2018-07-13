@@ -7,8 +7,7 @@ import pytz
 import time
 from datetime import datetime
 
-from openerp.osv import osv
-from openerp import _, api, models, tools
+from openerp import api, models, tools
 
 
 class AccountBankStatement(models.Model):
@@ -22,34 +21,6 @@ class AccountBankStatement(models.Model):
         See file odoo/addons/account/account_cash_statement.py
         This function is written in old api, because of a weird call
         of the function button_confirm_, that forbid new api call."""
-        statement_line_obj = self.pool.get('account.bank.statement.line')
-
-        # for obj in self.browse(cr, uid, ids, context=context):
-        #    if obj.difference == 0.0:
-        #        continue
-        #    elif obj.difference < 0.0:
-        #        account = obj.journal_id.loss_account_id
-        #        name = _('Loss')
-        #        if not obj.journal_id.loss_account_id:
-        #            raise osv.except_osv(_('Error!'), _(
-        #                'There is no Loss Account on the journal %s.') % (
-        #                    obj.journal_id.name,))
-        #    else:
-        #        account = obj.journal_id.profit_account_id
-        #        name = _('Profit')
-        #        if not obj.journal_id.profit_account_id:
-        #            raise osv.except_osv(_('Error!'), _(
-        #                'There is no Profit Account on the journal %s.') % (
-        #                    obj.journal_id.name,))
-
-        #    values = {
-        #        'statement_id': obj.id,
-        #        'journal_id': obj.journal_id.id,
-        #        'account_id': account.id,
-        #        'amount': obj.difference,
-        #        'name': name,
-        #    }
-        #    statement_line_obj.create(cr, uid, values, context=context)
 
         return self.button_confirm_bank(cr, uid, ids, context=context)
 
@@ -99,7 +70,7 @@ class AccountBankStatement(models.Model):
                 if pos_order:
                     statement_date = _prepare_local_date(
                         self, pos_order.date_order)
-                    if  pos_order.state == 'invoiced':
+                    if pos_order.state == 'invoiced':
                         # We keep partner information only if
                         # an invoice has been generated
                         partner_id = statement_line.partner_id.id

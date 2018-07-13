@@ -130,7 +130,7 @@ class account_add_suffix(TransientModel):
             suffix = unidecode(suffix)
             if suffix and not(suffix in existing_suffixes):
                 return suffix
-        # fourth try: takes first 2 caracters and add a two digit number
+        # fourth try: takes first 2 caracters and add a two digit number
         for x in range(10, 100):
             suffix = name2[:min(2, len(name2))].upper() + str(x)
             suffix = unidecode(suffix)

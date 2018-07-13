@@ -85,7 +85,7 @@ class ProductProduct(models.Model):
                 product.organic_notation,
                 product.packaging_notation,
                 product.local_notation,
-                ]
+            ]
             if '0' in notation:
                 notation = filter(lambda a: a != '0', notation)
             product.pricetag_display_spider_chart = (len(notation) >= 3)
@@ -105,7 +105,7 @@ class ProductProduct(models.Model):
             if product.origin_description:
                 if localization_info:
                     product.pricetag_origin = "%s - %s" % (
-                            localization_info, product.origin_description)
+                        localization_info, product.origin_description)
                 else:
                     product.pricetag_origin = product.origin_description
             else:
@@ -125,7 +125,7 @@ class ProductProduct(models.Model):
     def _compute_report_label_ids_info(self):
         for product in self:
             label_info = product.label_ids.filtered(
-                    lambda x: x.mandatory_on_invoice).mapped('code')
+                lambda x: x.mandatory_on_invoice).mapped('code')
             product.report_label_ids_info = ', '.join(label_info)
 
     @api.multi
