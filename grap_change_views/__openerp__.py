@@ -22,8 +22,6 @@
         'sale_food',
         'point_of_sale',
         'product',
-        'product_margin',
-        'product_margin_improve',
         'product_standard_margin',
         'procurement',
         'purchase',
