@@ -20,12 +20,11 @@ env:
   - VERSION="7.0" ODOO_REPO="OCA/OCB" LINT_CHECK="0"
 
 before_install:
-  - sudo pip install GitPython
-  - sudo pip install bzr
-  - sudo pip install cairosvg
+  - sudo pip install GitPython bzr
+  - sudo pip install cairosvg==1.0.22
   - sudo pip install unidecode
   - sudo pip install unicodecsv
-  - sudo pip install pyBarcode
+  - sudo pip install pyBarcode==0.7
 
 install:
 
