@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright (C) 2015 - Today: GRAP (http://www.grap.coop)
+@author: Sylvain LE GAL (https://twitter.com/legalsylvain)
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+<openerp><data>
+
+    <record id="view_account_tax_code_search" model="ir.ui.view">
+        <field name="model">account.tax.code</field>
+        <field name="arch" type="xml">
+            <search string="Search Tax Code">
+               <filter string="Without suffix" 
+                    name="no_suffix" 
+                    domain="[('ref_nb', '=', False)]"
+                    groups="account.group_account_manager"/>
+                <separator/>
+                <filter string="With moves" 
+                    name="with_moves" 
+                    domain="[('nb_moves', '!=', 0)]"
+                    groups="account.group_account_manager"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_account_tax_code_form" model="ir.ui.view">
+        <field name="model">account.tax.code</field>
+        <field name="inherit_id" ref="account.view_tax_code_form" />
+        <field name="arch" type="xml">
+            <field name="code" position="after">
+                <field name="ref_nb" groups="account.group_account_manager"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_account_tax_code_tree" model="ir.ui.view">
+        <field name="model">account.tax.code</field>
+        <field name="inherit_id" ref="account.view_tax_code_tree" />
+        <field name="arch" type="xml">
+            <field name="code" position="after">
+                <field name="ref_nb" groups="account.group_account_manager"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_account_tax_code_tree_suffix" model="ir.ui.view">
+        <field name="model">account.tax.code</field>
+        <field name="arch" type="xml">
+            <tree string="Tax Code" editable="bottom">
+                <field name="name" readonly="True"/>
+                <field name="code" readonly="True"/>
+                <field name="ref_nb"/>
+                <field name="nb_moves" readonly="True"/>
+                <field name="company_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_account_tax_code_suffix" model="ir.actions.act_window">
+        <field name="name">Tax Code Suffix View</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">account.tax.code</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_account_tax_code_tree_suffix"/>
+        <field name="context">{'search_default_with_moves': 1, 'search_default_no_suffix': 1}</field>
+    </record>
+
+    <menuitem id="menu_account_tax_code_suffix"
+        name="Tax Code Suffix"
+        parent="menu_export_ebp"
+        action="action_account_tax_code_suffix"
+        sequence="2"/>
+
+</data></openerp>

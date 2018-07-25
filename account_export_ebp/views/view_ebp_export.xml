@@ -57,4 +57,19 @@
         </field>
     </record>
 
+    <record id="action_ebp_export" model="ir.actions.act_window">
+        <field name="name">EBP Exports</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">ebp.export</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_account_ebp_export"
+        name="EBP exports"
+        parent="menu_export_ebp"
+        action="action_ebp_export"
+        sequence="3"/>
+
+
 </data></openerp>
