@@ -34,4 +34,16 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         ]" />
     </record>
 
+    <record id="category_label_small_square" model="product.print.category">
+        <field name="product_ids" eval="[
+            (4, ref('product.product_product_20')),
+        ]" />
+    </record>
+
+    <record id="category_label_counter" model="product.print.category">
+        <field name="product_ids" eval="[
+            (4, ref('product.product_product_21')),
+        ]" />
+    </record>
+
 </data></openerp>
