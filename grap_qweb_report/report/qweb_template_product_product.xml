@@ -295,7 +295,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                 width : 5.8cm;
             }
             div.label_right {
-                width : 2.7cm;
+                width : 2.7cm; overflow: hidden;
                 position: relative; left: 10px;
             }
             div.product_informations {
@@ -351,7 +351,6 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                 text-align:center; font-size:7px;
                 overflow:hidden;
                 font-family:monospace;
-                position: relative; top: 6px;
             }
             div.product_labels{
                 height:1.15cm; max-width: 4cm;

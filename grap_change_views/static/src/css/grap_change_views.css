@@ -97,8 +97,36 @@
 
 .openerp .oe_application .oe_breadcrumb_item {
     white-space: nowrap;
-    max-width: 80em;
+    max-width: 72em;
     text-overflow: ellipsis;
+}
+
+/* project - view_task_kanban                                           */
+.openerp span[data-original-title="Remaining hours"] {
+    display: none !important;
+}
+
+.openerp .project_kanban_project_id {
+    display: none;
+}
+
+.openerp .oe_kanban_view .oe_kanban_bottom_right {
+    max-height: 23px;
+}
+
+.openerp .oe_kanban_status {
+    position: relative;
+    bottom: 4px;
+}
+
+.openerp .oe_kanban_group_title_text {
+    margin-left: 3px;
+    position: relative; top: 5px;
+}
+
+.openerp ul.oe_kanban_aggregates {
+    background-color: red;
+    display: none;
 }
 
 /* purchase - view_purchase_order_form --------------------------------------------- */
