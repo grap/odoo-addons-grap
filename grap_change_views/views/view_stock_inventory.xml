@@ -10,7 +10,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
     <record id="view_stock_inventory_form" model="ir.ui.view">
         <field name="model">stock.inventory</field>
-        <field name="inherit_id" ref="stock.view_inventory_form"/>
+        <field name="inherit_id" ref="stock_inventory_merge.view_stock_inventory_form"/>
         <field name="arch" type="xml">
             <button name="action_done" position="attributes">
                 <attribute name="groups" ref="stock.group_stock_user" />
@@ -25,6 +25,12 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
             <field name="location_id" position="attributes">
                 <attribute name="domain">[('usage', '=', 'internal')]</attribute>
             </field>
+            <xpath expr="//div[@name='buttons']" position="inside">
+                <button class="oe_inline oe_stat_button" type="object"
+                        name="action_view_lines" icon="fa-list-ul" string="Lines"
+                        attrs="{'invisible': [('line_ids', '=', 0)]}">
+                    </button>
+            </xpath>
 
         </field>
     </record>
