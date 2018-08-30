@@ -135,6 +135,9 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="model">account.invoice</field>
         <field name="inherit_id" ref="account.invoice_tree"/>
         <field name="arch" type="xml">
+            <xpath expr="//tree" position="attributes">
+                <attribute name="colors">red: amount_total &lt; 0; blue:state == 'draft' ; black:state in ('proforma','proforma2','open') ; gray:state == 'cancel';</attribute>
+            </xpath>
             <field name="user_id" position="attributes">
                 <attribute name="invisible">1</attribute>
             </field>
