@@ -26,6 +26,7 @@
         'project',
         'product',
         'product_standard_margin',
+        'product_standard_price_tax_included',
         'procurement',
         'purchase',
         'sale',
