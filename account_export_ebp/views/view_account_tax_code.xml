@@ -14,7 +14,6 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                     name="no_suffix" 
                     domain="[('ebp_suffix', '=', False)]"
                     groups="account.group_account_manager"/>
-                <separator/>
                 <filter string="With moves" 
                     name="with_moves" 
                     domain="[('move_line_qty', '!=', 0)]"
@@ -35,16 +34,6 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
     <record id="view_account_tax_code_tree" model="ir.ui.view">
         <field name="model">account.tax.code</field>
-        <field name="inherit_id" ref="account.view_tax_code_tree" />
-        <field name="arch" type="xml">
-            <field name="code" position="after">
-                <field name="ebp_suffix" groups="account.group_account_manager"/>
-            </field>
-        </field>
-    </record>
-
-    <record id="view_account_tax_code_tree_suffix" model="ir.ui.view">
-        <field name="model">account.tax.code</field>
         <field name="arch" type="xml">
             <tree string="Tax Code" editable="bottom">
                 <field name="name" readonly="True"/>
@@ -56,20 +45,20 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         </field>
     </record>
 
-    <record id="action_account_tax_code_suffix" model="ir.actions.act_window">
+    <record id="action_account_tax_code" model="ir.actions.act_window">
         <field name="name">Tax Code Suffix View</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">account.tax.code</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree</field>
-        <field name="view_id" ref="view_account_tax_code_tree_suffix"/>
+        <field name="view_id" ref="view_account_tax_code_tree"/>
         <field name="context">{'search_default_with_moves': 1, 'search_default_no_suffix': 1}</field>
     </record>
 
-    <menuitem id="menu_account_tax_code_suffix"
-        name="Tax Code Suffix"
-        parent="menu_export_ebp"
-        action="action_account_tax_code_suffix"
+    <menuitem id="menu_account_tax_code"
+        name="Tax Code Suffixes"
+        parent="menu_ebp"
+        action="action_account_tax_code"
         sequence="2"/>
 
 </data></openerp>

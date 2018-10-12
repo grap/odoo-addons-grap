@@ -32,8 +32,8 @@ class EbpExport(models.Model):
         help="Extra Description for Accountant Manager.")
 
     exported_move_qty = fields.Integer(
-        oldname='exported_moves'
-        'Quantity of Moves Exported', readonly=True)
+        oldname='exported_moves',
+        string='Quantity of Moves Exported', readonly=True)
 
     exported_account_qty = fields.Integer(
         oldname='exported_accounts',

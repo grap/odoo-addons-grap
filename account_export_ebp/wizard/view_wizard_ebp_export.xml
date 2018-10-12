@@ -6,8 +6,8 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 -->
 <openerp><data>
 
-    <record  id="view_account_export_ebp_form" model="ir.ui.view">
-        <field name="model">account.export.ebp</field>
+    <record  id="view_wizard_ebp_export_form" model="ir.ui.view">
+        <field name="model">wizard.ebp.export</field>
         <field name="arch" type="xml">
             <form>
                 <field invisible="1" name="state" />
@@ -61,13 +61,12 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         </field>
     </record>
 
-    <record id="action_account_export_ebp" model="ir.actions.act_window">
+    <record id="action_wizard_ebp_export" model="ir.actions.act_window">
         <field name="name">Export to EBP</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="res_model">account.export.ebp</field>
+        <field name="res_model">wizard.ebp.export</field>
         <field name="view_type">form</field>
         <field name="view_mode">form</field>
-        <field name="view_id" ref="view_account_export_ebp_form"/>
         <field name="target">new</field>
     </record>
 

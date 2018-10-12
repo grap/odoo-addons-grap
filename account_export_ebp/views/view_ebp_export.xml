@@ -51,9 +51,9 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                         <field name="description" colspan="4"/>
                     </group>
                     <group string="Files">
-                        <p>Here is the exported moves file: <field name="data_moves" filename="name_moves"/></p>
-                        <p>And the exported accounts file: <field name="data_accounts" filename="name_accounts"/></p>
-                        <p>And the exported balance file: <field name="data_balance" filename="name_balance"/></p>
+                        <p>Here is the exported moves file: <field name="data_moves" filename="file_name_moves"/></p>
+                        <p>And the exported accounts file: <field name="data_accounts" filename="file_name_accounts"/></p>
+                        <p>And the exported balance file: <field name="data_balance" filename="file_name_balance"/></p>
                     </group>
                 </sheet>
             </form>

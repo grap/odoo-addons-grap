@@ -24,7 +24,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         </field>
     </record>
 
-    <record id="action_wizard_res_partner_add_suffix_form" model="ir.actions.act_window">
+    <record id="action_wizard_res_partner_add_suffix" model="ir.actions.act_window">
         <field name="name">Add EBP Suffixes</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">wizard.res.partner.add.suffix</field>
