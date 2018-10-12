@@ -24,27 +24,19 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="inherit_id" ref="base.view_res_partner_filter" />
         <field name="arch" type="xml">
             <filter help="My Partners" position="after">
-               <separator/>
                <filter string="Without suffix" 
                         name="no_suffix" 
                         domain="[('ebp_suffix', '=', False)]"
                         groups="account.group_account_manager"/>
-               <separator/>
                <filter string="With moves" 
                         name="with_moves" 
                         domain="[('move_line_qty', '!=', 0)]"
                         groups="account.group_account_manager"/>
             </filter>
-            <filter string="Company" position="replace">
-                   <filter string="Company" context="{'group_by': 'company_id'}"/>
-            </filter>
-            <filter string="Country" position="before">
-                   <filter string="Parent" context="{'group_by': 'parent_id'}"/>
-            </filter>
         </field>
     </record>
 
-    <record id="view_res_partner_tree_suffix" model="ir.ui.view">
+    <record id="view_res_partner_tree" model="ir.ui.view">
         <field name="model">res.partner</field>
         <field name="arch" type="xml">
             <tree string="Partner" editable="bottom">
@@ -58,7 +50,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         </field>
     </record>
 
-    <record id="action_res_partner_suffix" model="ir.actions.act_window">
+    <record id="action_res_partner" model="ir.actions.act_window">
         <field name="name">Partner Suffixes</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">res.partner</field>
@@ -69,16 +61,16 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
     </record>
 
     <menuitem id="menu_partner_suffix"
-        name="Partner Suffix"
-        parent="menu_export_ebp"
-        action="action_res_partner_suffix"
+        name="Partner Suffixes"
+        parent="menu_ebp"
+        action="action_res_partner"
         sequence="1"/>
 
-    <record id="value_account_add_suffix" model="ir.values">
-        <field name="model_id" ref="model_account_add_suffix" />
-        <field name="name">Add EBP Suffix</field>
+    <record id="value_res_partner_add_suffix" model="ir.values">
+        <field name="model_id" ref="model_wizard_res_partner_add_suffix" />
+        <field name="name">Add EBP Suffixes</field>
         <field name="key2">client_action_multi</field>
-        <field name="value" eval="'ir.actions.act_window,' + str(ref('action_account_add_suffix'))" />
+        <field name="value" eval="'ir.actions.act_window,' + str(ref('action_wizard_res_partner_add_suffix'))" />
         <field name="key">action</field>
         <field name="model">res.partner</field>
     </record>

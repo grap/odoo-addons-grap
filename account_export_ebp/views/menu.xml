@@ -6,7 +6,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 -->
 <openerp><data>
 
-    <menuitem id="menu_export_ebp"
+    <menuitem id="menu_ebp"
         name="EBP"
         parent="account.menu_finance"
         groups="account.group_account_manager"

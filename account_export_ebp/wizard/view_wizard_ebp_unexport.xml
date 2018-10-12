@@ -6,27 +6,26 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 -->
 <openerp><data>
 
-    <record id="view_account_unexport_ebp_form" model="ir.ui.view">
-        <field name="model">account.unexport.ebp</field>
+    <record id="view_wizard_ebp_unexport_form" model="ir.ui.view">
+        <field name="model">wizard.ebp.unexport</field>
         <field name="arch" type="xml">
             <form>
                 <h1>The export will be canceled for the selected moves.</h1>
                 <h1>Be sure to delete the corresponding lines in EBP.</h1>
                 <footer>
-                    <button string="Unexport" name="unexport" type="object" class="oe_highlight"/>
+                    <button string="Unexport" name="button_unexport" type="object" class="oe_highlight"/>
                     <button string="Cancel" class="oe_link" special="cancel"/>
                 </footer>
             </form>
         </field>
     </record>
 
-    <record id="action_account_unexport_ebp" model="ir.actions.act_window">
+    <record id="action_wizard_ebp_unexport" model="ir.actions.act_window">
         <field name="name">Cancel EBP Export</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="res_model">account.unexport.ebp</field>
+        <field name="res_model">wizard.ebp.unexport</field>
         <field name="view_type">form</field>
         <field name="view_mode">form</field>
-        <field name="view_id" ref="view_account_unexport_ebp_form"/>
         <field name="target">new</field>
     </record>
 

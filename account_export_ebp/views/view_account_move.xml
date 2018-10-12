@@ -37,20 +37,20 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         </field>
     </record>
 
-    <record id="value_account_export_ebp" model="ir.values">
-        <field name="model_id" ref="model_account_export_ebp" />
+<!--     <record id="value_wizard_ebp_export" model="ir.values">
+        <field name="model_id" ref="model_wizard_ebp_export" />
         <field name="name">Export to EBP</field>
         <field name="key2">client_action_multi</field>
-        <field name="value" eval="'ir.actions.act_window,' + str(ref('action_account_export_ebp'))" />
+        <field name="value" eval="'ir.actions.act_window,' + str(ref('action_wizard_ebp_export'))" />
         <field name="key">action</field>
         <field name="model">account.move</field>
     </record>
-
-    <record id="value_account_unexport_ebp" model="ir.values" >
-        <field name="model_id" ref="model_account_unexport_ebp" />
+ -->
+    <record id="value_wizard_ebp_unexport" model="ir.values" >
+        <field name="model_id" ref="model_wizard_ebp_unexport" />
         <field name="name">Cancel EBP Export</field>
         <field name="key2">client_action_multi</field>
-        <field name="value" eval="'ir.actions.act_window,' + str(ref('action_account_unexport_ebp'))" />
+        <field name="value" eval="'ir.actions.act_window,' + str(ref('action_wizard_ebp_unexport'))" />
         <field name="key">action</field>
         <field name="model">account.move</field>
     </record>

@@ -19,8 +19,8 @@ except ImportError:
     logger.debug("account_export_ebp - 'unidecode' librairy not found")
 
 
-class account_add_suffix(TransientModel):
-    _name = "account.add.suffix"
+class WizardResPartnerAddSuffix(TransientModel):
+    _name = "wizard.res.partner.add.suffix"
 
     _columns = {
         'line_ids': fields.one2many(
