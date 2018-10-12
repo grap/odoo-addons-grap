@@ -29,7 +29,7 @@ class ebp_export(Model):
         'exported_accounts': fields.integer(
             'Number of accounts exported', readonly=True),
         'exported_moves_ids': fields.one2many(
-            'account.move', 'exported_ebp_id', 'Exported Moves',
+            'account.move', 'ebp_export_id', 'Exported Moves',
             readonly=True),
         'data_moves': fields.binary(
             'Moves file', readonly=True),

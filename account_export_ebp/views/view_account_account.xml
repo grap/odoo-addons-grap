@@ -11,7 +11,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="inherit_id" ref="account.view_account_form" />
         <field name="arch" type="xml">
             <field name="company_id" position="before">
-                <field name="export_tax_code"/>
+                <field name="ebp_export_tax_code"/>
                 <field name="ebp_code_no_tax"/>
             </field>
         </field>

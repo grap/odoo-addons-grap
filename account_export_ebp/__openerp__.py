@@ -53,12 +53,10 @@ old ones if need be.
         'views/view_account_add_suffix.xml',
         'views/view_account_export_ebp.xml',
         'views/view_account_unexport_ebp.xml',
-        'views/view_account_fiscalyear.xml',
         'views/view_account_journal.xml',
         'views/view_account_move.xml',
         'views/view_account_tax_code.xml',
         'views/view_ebp_export.xml',
-        'views/view_res_company.xml',
         'views/view_res_partner.xml',
     ],
 }

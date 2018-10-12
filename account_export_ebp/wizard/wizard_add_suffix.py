@@ -38,7 +38,7 @@ class account_add_suffix(TransientModel):
             for line in suf.line_ids:
                 if line.suffix:
                     rp_obj.write(cr, uid, [line.partner_id.id], {
-                        'ref_nb': line.suffix,
+                        'ebp_suffix': line.suffix,
                     }, context=context)
         return True
 
@@ -54,17 +54,17 @@ class account_add_suffix(TransientModel):
             return res
         existing_suffixes = {}
         sql_req = """
-            SELECT rp.company_id, rp.ref_nb from res_partner rp
-            WHERE ref_nb is not Null """
+            SELECT rp.company_id, rp.ebp_suffix from res_partner rp
+            WHERE ebp_suffix is not Null """
         cr.execute(sql_req)
         result = cr.dictfetchall()
         for item in result:
             existing_suffixes.setdefault(item['company_id'], [])
-            existing_suffixes[item['company_id']] += [item['ref_nb']]
+            existing_suffixes[item['company_id']] += [item['ebp_suffix']]
 
         for partner in rp_obj.browse(cr, uid, partner_ids, context=context):
-            if partner.ref_nb:
-                suffix = partner.ref_nb
+            if partner.ebp_suffix:
+                suffix = partner.ebp_suffix
             else:
                 suffix = self._get_suffix(
                     partner.name, existing_suffixes.get(

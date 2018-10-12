@@ -23,7 +23,7 @@ class account_unexport_ebp(osv.TransientModel):
         unexport_ids = context.get('active_ids', False)
         am_obj = self.pool.get('account.move')
         am_obj.write(cr, uid, unexport_ids, {
-            'exported_ebp_id': False,
+            'ebp_export_id': False,
         }, context=context)
         # TODO: find the file in ebp.export model and remove the move lines
         return ids

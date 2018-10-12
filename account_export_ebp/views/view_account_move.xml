@@ -11,7 +11,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="inherit_id" ref="account.view_move_tree" />
         <field name="arch" type="xml">
             <field name="to_check" position="before">
-                <field name="exported_ebp" />
+                <field name="ebp_export_id" />
             </field>
         </field>
     </record>
@@ -20,7 +20,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="inherit_id" ref="account.view_move_form" />
         <field name="arch" type="xml">
             <field name="to_check" position="before">
-                <field name="exported_ebp" />
+                <field name="ebp_export_id" />
             </field>
         </field>
     </record>
@@ -32,7 +32,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
             <filter string="Posted" position="after">
                 <separator orientation="vertical" />
                 <filter icon="terp-accessories-archiver-minus" string="Not Exported"
-                    domain="[('exported_ebp_id', '=', False)]" help="Journal Entries not yet exported to EBP" />
+                    domain="[('ebp_export_id', '=', False)]" help="Journal Entries not yet exported to EBP" />
             </filter>
         </field>
     </record>

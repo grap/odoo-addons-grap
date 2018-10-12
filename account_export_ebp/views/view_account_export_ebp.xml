@@ -24,7 +24,6 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                 <group states="export_ebp" col="4">
                   <field name="fiscalyear_id"/>
                   <newline/>
-                  <field name="download_file"/>
                   <field name="ignore_draft"/>
                   <field name="ignore_unchecked"/>
                   <field name="ignore_exported"/>

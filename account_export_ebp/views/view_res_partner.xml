@@ -13,7 +13,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="inherit_id" ref="base.view_partner_form" />
         <field name="arch" type="xml">
             <field name="property_account_position" position="after">
-                <field name="ref_nb" groups="account.group_account_manager"/>
+                <field name="ebp_suffix" groups="account.group_account_manager"/>
                 <newline />
             </field>
         </field>
@@ -27,12 +27,12 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                <separator/>
                <filter string="Without suffix" 
                         name="no_suffix" 
-                        domain="[('ref_nb', '=', False)]"
+                        domain="[('ebp_suffix', '=', False)]"
                         groups="account.group_account_manager"/>
                <separator/>
                <filter string="With moves" 
                         name="with_moves" 
-                        domain="[('nb_moves', '!=', 0)]"
+                        domain="[('move_line_qty', '!=', 0)]"
                         groups="account.group_account_manager"/>
             </filter>
             <filter string="Company" position="replace">
@@ -49,8 +49,8 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="arch" type="xml">
             <tree string="Partner" editable="bottom">
                 <field name="name" readonly="1"/>
-                <field name="ref_nb"/>
-                <field name="nb_moves" readonly="1"/>
+                <field name="ebp_suffix"/>
+                <field name="move_line_qty" readonly="1"/>
                 <field name="customer" readonly="1"/>
                 <field name="supplier" readonly="1"/>
                 <field name="company_id" readonly="1" groups="base.group_multi_company"/>

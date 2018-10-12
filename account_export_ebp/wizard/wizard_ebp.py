@@ -7,11 +7,10 @@
 
 import base64
 import cStringIO
-import codecs
 import logging
 
-from openerp.tools.translate import _
 from openerp.osv import fields, osv
+from openerp.tools.translate import _
 
 _logger = logging.getLogger(__name__)
 
@@ -20,18 +19,12 @@ try:
 except ImportError:
     _logger.debug("account_export_ebp - 'unidecode' librairy not found")
 
-try:
-    import smbc
-except:
-    _logger.debug("account_export_ebp - 'smbc' librairy not found")
-    smbc = False
-
 # TODO
 # We should write to a temporary file instead, for security and reliability.
 # We should raise a clean exception if something goes wrong.
 
 
-class account_export_ebp(osv.TransientModel):
+class AccountExportEbp(osv.TransientModel):
     _name = "account.export.ebp"
 
     # Columns Section
@@ -70,11 +63,6 @@ class account_export_ebp(osv.TransientModel):
         'ignore_exported': fields.boolean(
             'Ignore moves already exported',
             help="Check this box unless you want to re-export moves to EBP"),
-        'download_file': fields.boolean(
-            'Download file', help="""Check this box if you want to"""
-            """ download the result as a file on your computer. Otherwise,"""
-            """ the file will be saved at the place defined in the company"""
-            """ settings."""),
         'data_moves': fields.binary('File', readonly=True),
         'data_accounts': fields.binary('File', readonly=True),
         'data_balance': fields.binary('File', readonly=True),
@@ -105,7 +93,7 @@ class account_export_ebp(osv.TransientModel):
         aml_obj = self.pool.get('account.move.line')
 
         rp_ids = rp_obj.search(
-            cr, uid, [('ref_nb', '=', False)], context=context)
+            cr, uid, [('ebp_suffix', '=', False)], context=context)
         aml_ids = aml_obj.search(cr, uid, [
             ('date', '>=', '01/12/2012'), ('partner_id', 'in', rp_ids)],
             context=context)
@@ -119,7 +107,7 @@ class account_export_ebp(osv.TransientModel):
         aml_obj = self.pool.get('account.move.line')
 
         atc_ids = atc_obj.search(
-            cr, uid, [('ref_nb', '=', False)], context=context)
+            cr, uid, [('ebp_suffix', '=', False)], context=context)
         aml_ids = aml_obj.search(cr, uid, [
             ('date', '>=', '01/12/2012'), ('tax_code_id', 'in', atc_ids)],
             context=context)
@@ -134,7 +122,6 @@ class account_export_ebp(osv.TransientModel):
         'ignore_draft': lambda * a: True,
         'company_suffix': lambda * a: True,
         'partner_accounts': lambda * a: True,
-        'download_file': lambda * a: True,
         'tax_code_suffix': lambda * a: True,
         'state': 'export_ebp',
         'empty_suffixes_partner': _get_empty_suffixes_partner,
@@ -144,11 +131,7 @@ class account_export_ebp(osv.TransientModel):
     def export(self, cr, uid, ids, context=None):
         if context is None:
             context = {}
-        this = self.browse(cr, uid, ids, context=context)[0]
-        if this.download_file:
-            return self._download(cr, uid, ids, context=context)
-        else:
-            return self._save(cr, uid, ids, context=context)
+        return self._download(cr, uid, ids, context=context)
 
     def _download(self, cr, uid, ids, context=None):
         export_obj = self.pool.get('ebp.export')
@@ -193,44 +176,6 @@ class account_export_ebp(osv.TransientModel):
             'views': [(False, 'form')],
             'target': 'new',
         }
-
-    def _save(self, cr, uid, ids, context):
-        if context is None:
-            context = {}
-
-        # Stream writer to convert Unicode to Windows Latin-1
-        win_writer = codecs.getwriter('cp1252')
-
-        # Connect to the network share
-        company = self.pool.get('res.users').browse(
-            cr, uid, uid, context=context).company_id
-        data = {'form': self.read(cr, uid, ids, context=context)[0]}
-        fiscalyear = self.pool.get('account.fiscalyear').browse(
-            cr, uid, data['form']['fiscalyear_id'][0], context)
-
-        path = '%s/Compta.%s' % (company.ebp_uri, fiscalyear.ebp_nb)
-        _logger.debug("Connecting to %s as user %s, domain %s" % (
-            path, fiscalyear.company_id.ebp_username,
-            fiscalyear.company_id.ebp_domain))
-        win_share = smbc.Context(
-            auth_fn=lambda server, share, workgroup, username, password: (
-                fiscalyear.company_id.ebp_domain,
-                fiscalyear.company_id.ebp_username,
-                fiscalyear.company_id.ebp_password))
-        moves_file = win_writer(win_share.creat('%s/ECRITURES.TXT' % path))
-        account_file = win_writer(win_share.creat('%s/COMPTES.TXT' % path))
-        balance_file = win_writer(win_share.creat('%s/BALANCES.TXT' % path))
-        self._export(
-            cr, uid, ids, moves_file, account_file, context=None)
-
-        # Close the move summaries file
-        moves_file.close()
-        account_file.close()
-        balance_file.close()
-#        _logger.debug(
-#            """%d line(s) representing %d move(s) exported to"""
-#            """ ECRITURES.TXT in %s - %d move(s) ignored""" % (
-#                l, len(exported_move_ids), path, len(ignored_move_ids)))
 
     def _export(
             self, cr, uid, ids, moves_file, account_file, balance_file,
@@ -335,7 +280,7 @@ class account_export_ebp(osv.TransientModel):
                            data['form']['fiscalyear_id'][0])
             # Ignore moves already exported
             ignore_exported = (
-                data['form']['ignore_exported'] and move.exported_ebp_id)
+                data['form']['ignore_exported'] and move.ebp_export_id)
             # Skip to next move if this one should be ignored
             if ignore_draft or ignore_year or\
                     ignore_exported or ignore_unchecked:
@@ -366,15 +311,15 @@ class account_export_ebp(osv.TransientModel):
                             .is_intercompany_trade_fiscal_company:
                     account_nb = account_nb + line.company_id.ebp_trigram
                 if data['form']['partner_accounts'] and line.partner_id and\
-                    line.partner_id.ref_nb and\
+                    line.partner_id.ebp_suffix and\
                         line.account_id.type in ('payable', 'receivable')\
                         and not line.account_id\
                             .is_intercompany_trade_fiscal_company:
                     # Partner account
-                    account_nb = account_nb + line.partner_id.ref_nb
-                if (tax_code_suffix and line.account_id.export_tax_code):
-                    if line.tax_code_id.ref_nb:
-                        account_nb = account_nb + line.tax_code_id.ref_nb
+                    account_nb = account_nb + line.partner_id.ebp_suffix
+                if (tax_code_suffix and line.account_id.ebp_export_tax_code):
+                    if line.tax_code_id.ebp_suffix:
+                        account_nb = account_nb + line.tax_code_id.ebp_suffix
                     else:
                         if not line.account_id.ebp_code_no_tax:
                             raise osv.except_osv(
@@ -454,7 +399,7 @@ class account_export_ebp(osv.TransientModel):
                 # we want to export may be partner specific
                 if account_nb not in accounts_data.keys():
                     if (data['form']['partner_accounts'] and
-                            line.partner_id and line.partner_id.ref_nb and
+                            line.partner_id and line.partner_id.ebp_suffix and
                             line.account_id.type in ('payable', 'receivable')):
                         # Partner account
                         # Get the default address
@@ -479,8 +424,8 @@ class account_export_ebp(osv.TransientModel):
                             'fax': partner.fax or '',
                         }
                     elif (tax_code_suffix and
-                            line.account_id.export_tax_code and
-                            line.tax_code_id.ref_nb):
+                            line.account_id.ebp_export_tax_code and
+                            line.tax_code_id.ebp_suffix):
                         accounts_data[account_nb] = {
                             'name': (
                                 normalize(line.account_id.name) +
@@ -597,7 +542,7 @@ class account_export_ebp(osv.TransientModel):
                 'description': data['form']['description'],
             }, context=context)
             self.pool.get('account.move').write(cr, uid, exported_move_ids, {
-                'exported_ebp_id': export_id,
+                'ebp_export_id': export_id,
             }, context=context)
 
         # Header for Balance File
