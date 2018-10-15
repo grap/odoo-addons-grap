@@ -23,9 +23,23 @@ _logger = logging.getLogger(__name__)
 class WizardEbpExport(models.TransientModel):
     _name = "wizard.ebp.export"
 
+    _STATE_SELECTION = [
+        ('draft', 'Draft'),
+        ('done', 'Done'),
+    ]
+
     # Columns Section
     ebp_export_id = fields.Many2one(
         string='EBP Export', comodel_name='ebp.export', readonly=True)
+
+    state = fields.Selection(
+        selection=_STATE_SELECTION, string='State', default='draft')
+
+    fiscalyear_id = fields.Many2one(
+        comodel_name='account.fiscalyear', string='Fiscal year',
+        required=True, default=lambda s: s._default_fiscalyear_id(),
+        domain="[('state', '=', 'draft')]",
+        help='Only the moves in this fiscal will be exported')
 
     file_name_moves = fields.Char(
         related='ebp_export_id.file_name_moves', readonly=True)
@@ -45,17 +59,67 @@ class WizardEbpExport(models.TransientModel):
     data_balance = fields.Binary(
         related='ebp_export_id.data_balance', readonly=True)
 
-    fiscalyear_id = fields.Many2one(
-        comodel_name='account.fiscalyear', string='Fiscal year',
-        required=True, default=lambda s: s._default_fiscalyear_id(),
-        help='Only the moves in this fiscal will be exported')
+    selected_move_qty = fields.Integer(
+        string='Quantity of Selected Moves', readonly=True,
+        compute='_compute_move_selection', multi='move_selection')
+
+    exported_move_ids = fields.Many2many(
+        string='Exported Moves', comodel_name='account.move',
+        compute='_compute_move_selection', multi='move_selection')
+
+    exported_move_qty = fields.Integer(
+        string='Quantity of Exported Moves', readonly=True,
+        compute='_compute_move_selection', multi='move_selection')
 
     # Default Section
     @api.model
     def _default_fiscalyear_id(self):
         AccountMove = self.env['account.move']
         moves = AccountMove.browse(self.env.context.get('active_ids', []))
-        return self.env.context.get('active_id', False)
+        fiscalyears = moves.mapped('period_id.fiscalyear_id')
+        if len(fiscalyears) == 1:
+            return fiscalyears[0].id
+        else:
+            return False
+
+    @api.multi
+    @api.depends('fiscalyear_id')
+    def _compute_move_selection(self):
+        for wizard in self:
+            wizard.selected_move_qty = len(
+                self.env.context.get('active_ids', []))
+            wizard.exported_move_ids = wizard._get_exported_moves()
+            wizard.exported_move_qty = len(exported_moves.ids)
+
+    @api.multi
+    def _get_exported_moves(self):
+        self.ensure_one()
+        AccountMove = self.env['account.move']
+        AccountJournal = self.env['account.journal']
+        domain = [('id', 'in', self.env.context.get('active_ids', []))]
+        # filter by state (remove draft)
+        domain.append(('state', '!=', 'draft'))
+        # filter by period (from fiscalyear)
+        periods = self.fiscalyear_id.period_ids
+        domain.append(('period_id', 'in', periods.ids))
+        # Filter by journal (ebp_code should be defined)
+        journals = AccountJournal.search(['ebp_code', '!=', False])
+        domain.append(('journal_id', 'in', journals.ids))
+        # filter moves to check
+        domain.append(('to_check', '=', False))
+        # filter yet exported moves
+        domain.append(('ebp_export_id', '=', False))
+        return AccountMove.search(domain)
+
+
+    @api.multi
+    def button_export(self):
+        EbpExport = self.env['ebp.export']
+        for wizard in self:
+            wizard.ebp_export_id = EbpExport.create({
+                'fiscalyear_id': wizard.fiscalyear_id.id,
+                })
+            wizard.ebp_export_id.generate_files(wizard._get_exported_moves())
 
     # 'company_suffix': fields.boolean(
     #     'Append company\'s code to accounts',
@@ -93,11 +157,7 @@ class WizardEbpExport(models.TransientModel):
     #     'Number of lines exported', readonly=True),
     # 'exported_accounts': fields.integer(
     #     'Number of accounts exported', readonly=True),
-    # 'state': fields.selection([
-    #     ('export_ebp', 'Prepare Export'),
-    #     ('export_ebp_end', 'Export Done'),
-    #     ('export_ebp_download', 'Ready to download')
-    # ]),
+
     # 'empty_suffixes_partner': fields.boolean(
     #     'Empty Suffixes Partners', readonly=True),
     # 'empty_suffixes_tax': fields.boolean(

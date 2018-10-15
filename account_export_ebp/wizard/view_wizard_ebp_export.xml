@@ -10,8 +10,11 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="model">wizard.ebp.export</field>
         <field name="arch" type="xml">
             <form>
-                <field invisible="1" name="state" />
-                <group col="1" attrs="{'invisible': ['|', ('state','!=','export_ebp'),('empty_suffixes_partner','=',False)]}">
+                <header>
+                    <field name="state" widget="statusbar" nolabel="1"/>
+                </header>
+
+<!--                <group col="1" attrs="{'invisible': ['|', ('state','!=','export_ebp'),('empty_suffixes_partner','=',False)]}">
                     <field name="empty_suffixes_partner" invisible="1"/>
                     <h1>Warning! Some partners don't have a suffix.</h1>
                     <h1>You should run the wizard to populate them before exporting.</h1>
@@ -21,23 +24,19 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                     <h1>Warning! Some Tax Codes don't have a suffix.</h1>
                     <h1>You should run the wizard to populate them before exporting.</h1>
                 </group>
-                <group states="export_ebp" col="4">
+-->
+                <group states="draft">
+                  <field name="selected_move_qty"/>
                   <field name="fiscalyear_id"/>
-                  <newline/>
-                  <field name="ignore_draft"/>
-                  <field name="ignore_unchecked"/>
-                  <field name="ignore_exported"/>
-                  <field name="company_suffix"/>
-                  <field name="partner_accounts"/>
-                  <field name="tax_code_suffix"/>
-                  <newline/>
+                  <field name="exported_move_qty"/>
                   <field name="description"/>
                   <footer>
-                      <button string="Export" name="export" type="object" class="oe_highlight" states="export_ebp"/>
-                      <button string="Cancel" class="oe_link" special="cancel" states="export_ebp"/>
+                      <button string="Export" name="button_export" type="object" class="oe_highlight"/>
+                      <button string="Cancel" class="oe_link" special="cancel"/>
                   </footer>
                 </group>
-                <group states="export_ebp_end,export_ebp_download">
+  <!--
+                <group states="done">
                     <h2>Export Complete</h2>
                     <separator string="Moves exported to EBP" colspan="4"/>
                     <field name="exported_moves"/>
@@ -45,18 +44,13 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                     <field name="ignored_moves"/>
                     <field name="exported_accounts"/>
                     <footer>
-                        <button string="OK" class="oe_link" special="cancel" states="export_ebp_end,export_ebp_download"/>
+                        <button string="OK" class="oe_link" special="cancel"/>
                     </footer>
-                </group>
-                <group states="export_ebp_end">
-                    <label string="The file was saved in the EBP folder." colspan="4"/>
-                    <label string="You may need to close and reopen the folder for EBP to detect the new data files." colspan="4"/>
-                </group>
-                <group states="export_ebp_download">
                     <p>Here is the exported moves file: <field name="data_moves" readonly="1" filename="name_moves"/></p>
                     <p>And the exported accounts file: <field name="data_accounts" readonly="1" filename="name_accounts"/></p>
                     <p>And the exported balance file: <field name="data_balance" readonly="1" filename="name_balance"/></p>
                 </group>
+-->
             </form>
         </field>
     </record>
