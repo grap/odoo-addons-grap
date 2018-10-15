@@ -147,12 +147,11 @@ class EbpExport(models.Model):
         balance_file.close()
 
         # Save Datas
-        vals.update()
-        {
+        vals.update({
             'data_moves': data_moves,
             'data_accounts': data_accounts,
             'data_balance': data_balance,
-        }
+        })
         self.write(vals)
 
         # Mark moves as exported
