@@ -7,6 +7,14 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 <openerp><data>
 
+        <record id="action_account_move_from_ebp_export" model="ir.actions.act_window">
+            <field name="name">Journal Items</field>
+            <field name="res_model">account.move</field>
+            <field name="context">{'search_default_ebp_export_id': [active_id], 'default_ebp_export_id': active_id}</field>
+<!--             <field name="view_id" ref="view_move_line_tree"/>
+ -->        </record>
+
+
     <record id="view_ebp_export_search" model="ir.ui.view" >
         <field name="model">ebp.export</field>
         <field name="arch" type="xml">
@@ -39,6 +47,12 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="arch" type="xml">
             <form string="EBP Export">
                 <sheet>
+                    <div class="oe_right oe_button_box" name="buttons">
+                        <button type="action" class="oe_stat_button" icon="fa-list"
+                                name="%(action_account_move_from_ebp_export)d">
+                            <field string="Journal Items" name="ebp_move_qty" widget="statinfo"/>
+                        </button>
+                    </div>
                     <div class="oe_title">
                         <h1><field name="name"/></h1>
                         <h2><field name="date"/></h2>
@@ -47,13 +61,14 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                         <field name="exported_account_qty"/>
                         <field name="exported_move_qty"/>
                         <field name="company_id" groups="base.group_multi_company" />
-                        <newline/>
-                        <field name="description" colspan="4"/>
                     </group>
                     <group string="Files">
-                        <p>Here is the exported moves file: <field name="data_moves" filename="file_name_moves"/></p>
-                        <p>And the exported accounts file: <field name="data_accounts" filename="file_name_accounts"/></p>
-                        <p>And the exported balance file: <field name="data_balance" filename="file_name_balance"/></p>
+                        <field name="data_moves" filename="file_name_moves"/>
+                        <field name="data_accounts" filename="file_name_accounts"/>
+                        <field name="data_balance" filename="file_name_balance"/>
+                    </group>
+                    <group string="Description">
+                        <field name="description" nolabel="1"/>
                     </group>
                 </sheet>
             </form>

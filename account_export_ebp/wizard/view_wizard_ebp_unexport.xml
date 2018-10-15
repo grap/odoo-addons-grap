@@ -14,7 +14,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                     The export will be canceled for the selected moves. Be sure to delete the corresponding lines in EBP.
                 </p>
                 <footer>
-                    <button string="Unexport" name="button_unexport" type="object" class="oe_highlight"/>
+                    <button string="Unexport" name="button_unexport" type="object" class="oe_highlight" confirm="Are you sure you want to cancel EBP Export ?"/>
                     <button string="Cancel" class="oe_link" special="cancel"/>
                 </footer>
             </form>

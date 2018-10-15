@@ -14,11 +14,6 @@ from openerp.exceptions import Warning as UserError
 
 _logger = logging.getLogger(__name__)
 
-try:
-    from unidecode import unidecode
-except ImportError:
-    _logger.debug("account_export_ebp - 'unidecode' librairy not found")
-
 
 class EbpExport(models.Model):
     _name = 'ebp.export'
@@ -54,9 +49,13 @@ class EbpExport(models.Model):
         oldname='exported_accounts',
         string='Quantity of accounts exported', readonly=True)
 
-    exported_moves_ids = fields.One2many(
+    ebp_move_ids = fields.One2many(
         comodel_name='account.move', inverse_name='ebp_export_id',
-        string='Exported Moves', readonly=True)
+        string='EBP Moves', readonly=True)
+
+    ebp_move_qty = fields.Integer(
+        compute='_compute_ebp_move_qty', string='EBP Moves Quantity',
+        store=True)
 
     data_moves = fields.Binary(
         string='Moves file', readonly=True)
@@ -87,9 +86,16 @@ class EbpExport(models.Model):
 
     # Compute Section
     @api.multi
+    @api.depends('date')
     def _compute_name(self):
         for export in self:
             export.name = 'export_%d' % export.id
+
+    @api.multi
+    @api.depends('ebp_move_ids.ebp_export_id')
+    def _compute_ebp_move_qty(self):
+        for export in self:
+            export.ebp_move_qty = len(export.ebp_move_ids)
 
     @api.multi
     def _compute_file_name_moves(self):
@@ -128,9 +134,11 @@ class EbpExport(models.Model):
 
         # Export into files
         self._write_header_into_moves_file(moves_file)
+        self._write_header_into_accounts_file(accounts_file)
         self._write_header_into_balance_file(balance_file)
 
-        self._export_to_files(moves, moves_file, accounts_file, balance_file)
+        vals = self._export_to_files(
+            moves, moves_file, accounts_file, balance_file)
         data_moves = base64.encodestring(moves_file.getvalue())
         data_accounts = base64.encodestring(accounts_file.getvalue())
         data_balance = base64.encodestring(balance_file.getvalue())
@@ -139,11 +147,13 @@ class EbpExport(models.Model):
         balance_file.close()
 
         # Save Datas
-        self.write({
+        vals.update()
+        {
             'data_moves': data_moves,
             'data_accounts': data_accounts,
             'data_balance': data_balance,
-        })
+        }
+        self.write(vals)
 
         # Mark moves as exported
         moves.write({
@@ -195,38 +205,13 @@ class EbpExport(models.Model):
         # Write the accounts into the file
         self._write_into_accounts_file(i, accounts_data, accounts_file)
 
-    #     # Write the balance of accounts into the file
+        # Write the balance of accounts into the file
         self._write_into_balance_file(i, accounts_data, balance_file)
 
-    @api.model
-    def _write_header_into_moves_file(self, moves_file):
-        # Move File header
-        data = [
-            "Ligne",
-            "Date",
-            "Code journal",
-            "N° de compte",
-            "Intitulé",
-            "Pièce",
-            "Montant (associé au sens)",
-            "Sens",
-            "Échéance",
-            "Monnaie",
-        ]
-        self._write_into_file(data, moves_file)
-
-    @api.model
-    def _write_header_into_balance_file(self, balance_file):
-        # Move File header
-        data = [
-            "Account number",
-            "Account name",
-            "Debit",
-            "Credit",
-            "Debit Balance",
-            "Credit Balance",
-        ]
-        self._write_into_file(data, balance_file)
+        return {
+            'exported_move_qty': len(moves),
+            'exported_account_qty': len(accounts_data),
+        }
 
     @api.model
     def _get_account_code(self, move, line):
@@ -234,25 +219,21 @@ class EbpExport(models.Model):
         company = line.company_id
         partner = line.partner_id
         res = account.code
-        # TODO CHECK Camille E
-        company_suffix = True
-        partner_accounts = True
-        tax_code_suffix = True
 
         # Company Suffix
-        if company_suffix and company.ebp_trigram\
+        if company.fiscal_company.fiscal_type == 'fiscal_mother'\
                 and account.type in ('payable', 'receivable')\
                 and not account.is_intercompany_trade_fiscal_company:
-            res += company.ebp_trigram
+            res += company.code
 
         # Partner Suffix
-        if partner_accounts and partner and partner.ebp_suffix\
+        if partner and partner.ebp_suffix\
                 and account.type in ('payable', 'receivable')\
                 and not account.is_intercompany_trade_fiscal_company:
             res += partner.ebp_suffix
 
         # Tax Suffix
-        if tax_code_suffix and account.ebp_export_tax_code:
+        if account.ebp_export_tax_code:
             if line.tax_code_id.ebp_suffix:
                 # Tax code is defined
                 res += line.tax_code_id.ebp_suffix
@@ -278,16 +259,38 @@ class EbpExport(models.Model):
 
     @api.model
     def _prepare_move_line_dict(self, move, line):
-        ref = (
-            (line.company_id.ebp_trigram + ' ')
-            if line.company_id.ebp_trigram else '')
+        analytic_user_type_ids = [
+            self.env.ref('account.data_account_type_income').id,
+            self.env.ref('account.data_account_type_expense').id,
+        ]
         if move.partner_id.intercompany_trade:
-            ref += ' (' + move.partner_id.name + ')'
+            ref = ' (' + move.partner_id.name + ')'
         else:
-            ref += (
+            ref = (
                 line.name +
                 ((' (' + move.ref + ')')
                     if move.ref else ''))
+
+        # Manage analytic cases
+        if line.company_id.fiscal_company.fiscal_type == 'fiscal_mother':
+            allow_analytic = True
+            analytic_code = line.company_id.code
+            ref = line.company_id.code + ' ' + ref
+
+        elif line.company_id.ebp_analytic_enabled:
+            allow_analytic =\
+                line.account_id.user_type in analytic_user_type_ids
+            if allow_analytic:
+                if line.analytic_account_id:
+                    analytic_code = line.analytic_account_id.code
+                elif line.company_id.ebp_default_analytic_account_id:
+                    analytic_code =\
+                        line.company_id.ebp_default_analytic_account_id
+
+        else:
+            allow_analytic = False
+            analytic_code = ''
+
         return {
             'date': move.date,
             'journal': move.journal_id.ebp_code,
@@ -297,8 +300,30 @@ class EbpExport(models.Model):
             'debit': line.debit,
             'date_maturity': line.date_maturity,
             'currency_name': move.company_id.currency_id.name,
-            'analytic': line.company_id.ebp_trigram,
+            'analytic_code': analytic_code,
+            'allow_analytic': allow_analytic and '1' or '',
         }
+
+    @api.model
+    def _write_header_into_moves_file(self, moves_file):
+        # Move File header
+        data = [
+            _("Line"),
+            _("Date"),
+            _("Journal Code"),
+            _("Account Number"),
+            _("Name"),
+            _("Move Number"),
+            _("Amount (related to the direction)"),
+            _("Direction"),
+            _("Due Date"),
+            _("Currency"),
+            _("Analytic Account"),
+            _("Allow Analytic"),
+            _("Payment Mode"),
+            _("Allow Use of Personal Datas"),
+        ]
+        self._write_into_file(data, moves_file)
 
     @api.model
     def _write_into_moves_file(self, count, moves_data, moves_file):
@@ -347,11 +372,12 @@ class EbpExport(models.Model):
                 # Currency
                 line['currency_name'],
             ]
-            # TODO Check analytic
-            if True:
-                data += [
-                    line['analytic'],
-                ]
+            data += [
+                line['analytic_code'],
+                line['allow_analytic'],
+                "CH30",
+                "N",
+            ]
             self._write_into_file(data, moves_file)
 
     @api.model
@@ -413,6 +439,10 @@ class EbpExport(models.Model):
         return res
 
     @api.model
+    def _write_header_into_accounts_file(self, accounts_file):
+        pass
+
+    @api.model
     def _write_into_accounts_file(self, count, accounts_data, accounts_file):
         for account_code, account_data in accounts_data.iteritems():
             data = [
@@ -428,6 +458,19 @@ class EbpExport(models.Model):
                 (account_data['fax'] or '').replace(',', '')[:20],
             ]
             self._write_into_file(data, accounts_file)
+
+    @api.model
+    def _write_header_into_balance_file(self, balance_file):
+        # Move File header
+        data = [
+            _("Account Number"),
+            _("Account name"),
+            _("Debit"),
+            _("Credit"),
+            _("Debit Balance"),
+            _("Credit Balance"),
+        ]
+        self._write_into_file(data, balance_file)
 
     @api.model
     def _write_into_balance_file(self, count, accounts_data, balance_file):

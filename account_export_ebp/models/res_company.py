@@ -6,19 +6,19 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 
-from openerp import api, fields, models
+from openerp import fields, models
 
 
 class ResCompany(models.Model):
     _inherit = 'res.company'
 
     # Column Section
-    ebp_trigram = fields.Char(
-        string='EBP Trigram', compute='_compute_ebp_trigram', store=True)
+    ebp_analytic_enabled = fields.Boolean(
+        string='Enable Analytic in EBP', default=False,
+        help="Check this box if you want to enable the analytic when"
+        " exporting in EBP. Note that this setting has will not been"
+        " taken into account for Companies that belong to a CAE")
 
-    @api.multi
-    @api.depends('fiscal_type')
-    def _compute_ebp_trigram(self):
-        for company in self.filtered(
-                lambda x: x.fiscal_type in ['fiscal_child', 'fiscal_mother']):
-            company.ebp_trigram = company.code
+    ebp_default_analytic_account_id = fields.Many2one(
+        string="Default Analytic Account for EBP",
+        comodel_name='account.analytic.account')
