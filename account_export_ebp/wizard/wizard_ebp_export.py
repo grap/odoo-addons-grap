@@ -27,7 +27,7 @@ class WizardEbpExport(models.TransientModel):
         comodel_name='account.fiscalyear', string='Fiscal year',
         required=True, default=lambda s: s._default_fiscalyear_id(),
         domain="[('state', '=', 'draft')]",
-        help='Only the moves in this fiscal will be exported')
+        help='Only the moves in this fiscal year will be exported')
 
     description = fields.Text(
         string='Description',

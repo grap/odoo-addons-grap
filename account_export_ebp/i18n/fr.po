@@ -1,19 +1,27 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* account_export_ebp
+#   * account_export_ebp
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-25 16:41+0000\n"
-"PO-Revision-Date: 2018-07-25 16:41+0000\n"
+"POT-Creation-Date: 2018-10-15 22:53+0000\n"
+"PO-Revision-Date: 2018-10-16 01:07+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
+"Language: fr\n"
+"X-Generator: Poedit 2.0.6\n"
+
+#. module: account_export_ebp
+#: code:addons/account_export_ebp/models/ebp_export.py:110
+#, python-format
+msgid "ACCOUNTS"
+msgstr "COMPTES"
 
 #. module: account_export_ebp
 #: model:ir.model,name:account_export_ebp.model_account_account
@@ -26,99 +34,99 @@ msgid "Account Entry"
 msgstr "Pièce comptable"
 
 #. module: account_export_ebp
-#: code:addons/account_export_ebp/wizard/wizard_ebp.py:427
+#: code:addons/account_export_ebp/models/ebp_export.py:313
+#: code:addons/account_export_ebp/models/ebp_export.py:465
+#, python-format
+msgid "Account Number"
+msgstr "N° Compte"
+
+#. module: account_export_ebp
+#: code:addons/account_export_ebp/models/ebp_export.py:254
 #, python-format
 msgid "Account code '%s' is too long to be exported to EBP."
-msgstr "Le code du compte '%s' est trop long pour être exporté sous EBP."
+msgstr "Le code comptable '%s' est trop long pour être exporté dans EBP."
 
 #. module: account_export_ebp
-#: code:addons/account_export_ebp/wizard/wizard_ebp.py:427
+#: code:addons/account_export_ebp/models/ebp_export.py:466
 #, python-format
-msgid "Account code too long"
-msgstr "Code de compte trop long"
+msgid "Account name"
+msgstr "Nom du compte"
 
 #. module: account_export_ebp
-#: field:ebp.export,data_accounts:0
+#: field:ebp.export,data_accounts:0 field:wizard.ebp.export,data_accounts:0
 msgid "Accounts file"
 msgstr "Fichier des comptes"
 
 #. module: account_export_ebp
-#: model:ir.actions.act_window,name:account_export_ebp.action_account_add_suffix
-msgid "Add EBP Suffix"
-msgstr "Add EBP Suffix"
+#: model:ir.actions.act_window,name:account_export_ebp.action_wizard_res_partner_add_suffix
+msgid "Add EBP Suffixes"
+msgstr "Ajouter des suffixes EBP"
 
 #. module: account_export_ebp
-#: field:account.add.suffix.line,account_add_suffix_id:0
-msgid "Add Suffix Id"
-msgstr "Ajouter un suffixe"
-
-#. module: account_export_ebp
-#: field:account.add.suffix,line_ids:0
-msgid "Add Suffix Lines"
-msgstr "Lignes d'ajout de suffixe"
-
-#. module: account_export_ebp
-#: view:account.add.suffix:account_export_ebp.view_account_add_suffix_form
+#: view:wizard.res.partner.add.suffix:account_export_ebp.view_wizard_res_partner_add_suffix_form
 msgid "Affect Suffix"
-msgstr "Affecter les suffixes"
+msgstr "Affecter un suffixe"
 
 #. module: account_export_ebp
-#: view:account.export.ebp:account_export_ebp.view_account_export_ebp_form
-#: view:ebp.export:account_export_ebp.view_ebp_export_form
-msgid "And the exported accounts file:"
-msgstr "et le fichier des comptes comptables:"
+#: code:addons/account_export_ebp/models/ebp_export.py:321
+#, python-format
+msgid "Allow Analytic"
+msgstr "Autoriser l'analytique"
 
 #. module: account_export_ebp
-#: view:account.export.ebp:account_export_ebp.view_account_export_ebp_form
-#: view:ebp.export:account_export_ebp.view_ebp_export_form
-msgid "And the exported balance file:"
-msgstr "Et le fichier des balances:"
+#: code:addons/account_export_ebp/models/ebp_export.py:323
+#, python-format
+msgid "Allow Use of Personal Datas"
+msgstr "Autoriser l'utilisation de données personnelles"
 
 #. module: account_export_ebp
-#: help:account.export.ebp,tax_code_suffix:0
-msgid "Append Tax Code's suffix to account if the option is checked in the account"
-msgstr "Ajoute le suffixe du Code de Taxe au compte si l'option est cochée pour le compte"
+#: code:addons/account_export_ebp/models/ebp_export.py:316
+#, python-format
+msgid "Amount (related to the direction)"
+msgstr "Montant (lié au sens)"
 
 #. module: account_export_ebp
-#: field:account.export.ebp,company_suffix:0
-msgid "Append company's code to accounts"
-msgstr "Ajouter le code de la société aux comptes"
+#: code:addons/account_export_ebp/models/ebp_export.py:320
+#, python-format
+msgid "Analytic Account"
+msgstr "Compte analytique"
 
 #. module: account_export_ebp
-#: field:account.export.ebp,partner_accounts:0
-msgid "Append partners' code to accounts"
-msgstr "Ajouter le code partenaire au compte"
+#: view:wizard.ebp.unexport:account_export_ebp.view_wizard_ebp_unexport_form
+msgid "Are you sure you want to cancel EBP Export ?"
+msgstr "Etes vous sûr d'annuler l'export EBP ?"
 
 #. module: account_export_ebp
-#: field:ebp.export,data_balance:0
+#: code:addons/account_export_ebp/models/ebp_export.py:116
+#, python-format
+msgid "BALANCE"
+msgstr "BALANCE"
+
+#. module: account_export_ebp
+#: field:ebp.export,data_balance:0 field:wizard.ebp.export,data_balance:0
 msgid "Balance file"
 msgstr "Fichier des balances"
 
 #. module: account_export_ebp
-#: view:account.unexport.ebp:account_export_ebp.view_account_unexport_ebp_form
-msgid "Be sure to delete the corresponding lines in EBP."
-msgstr "Il est conseillé de supprimer les lignes correspondantes dans EBP pour éviter les doublons."
-
-#. module: account_export_ebp
-#: view:account.export.ebp:account_export_ebp.view_account_export_ebp_form
-#: view:account.unexport.ebp:account_export_ebp.view_account_unexport_ebp_form
+#: view:wizard.ebp.export:account_export_ebp.view_wizard_ebp_export_form
+#: view:wizard.ebp.unexport:account_export_ebp.view_wizard_ebp_unexport_form
 msgid "Cancel"
 msgstr "Annuler"
 
 #. module: account_export_ebp
-#: model:ir.actions.act_window,name:account_export_ebp.action_account_unexport_ebp
+#: model:ir.actions.act_window,name:account_export_ebp.action_wizard_ebp_unexport
 msgid "Cancel EBP Export"
 msgstr "Annuler l'export EBP"
 
 #. module: account_export_ebp
-#: help:account.export.ebp,download_file:0
-msgid "Check this box if you want to download the result as a file on your computer. Otherwise, the file will be saved at the place defined in the company settings."
-msgstr "Cocher cette case pour pouvoir télécharger les exports sur votre ordinateur. Sinon, ils seront enregistrer dans le dossier EBP défini dans la société."
+#: help:res.company,ebp_analytic_enabled:0
+msgid "Check this box if you want to enable the analytic when exporting in EBP. Note that this setting has will not been taken into account for Companies that belong to a CAE"
+msgstr "Cochez cette case si vous voulez activer l'analytique quand vous exportez dans EBP. Notez que ce paramétrage sera ignoré pour les sociétés appartenant à une CAE."
 
 #. module: account_export_ebp
-#: help:account.export.ebp,ignore_exported:0
-msgid "Check this box unless you want to re-export moves to EBP"
-msgstr "Cochez cette case sauf si vous voulez réexporter des pièces"
+#: view:wizard.ebp.export:account_export_ebp.view_wizard_ebp_export_form
+msgid "Close"
+msgstr "Fermer"
 
 #. module: account_export_ebp
 #: model:ir.model,name:account_export_ebp.model_res_company
@@ -126,75 +134,110 @@ msgid "Companies"
 msgstr "Sociétés"
 
 #. module: account_export_ebp
-#: field:account.add.suffix.line,company_id:0
 #: view:ebp.export:account_export_ebp.view_ebp_export_search
 #: field:ebp.export,company_id:0
-#: view:res.partner:account_export_ebp.view_res_partner_search
+#: field:wizard.res.partner.add.suffix.line,company_id:0
 msgid "Company"
 msgstr "Société"
 
 #. module: account_export_ebp
-#: view:res.company:account_export_ebp.view_res_company_form
-msgid "Configuration"
-msgstr "Configuration"
-
-#. module: account_export_ebp
-#: view:res.partner:account_export_ebp.view_res_partner_search
-msgid "Country"
-msgstr "Pays"
-
-#. module: account_export_ebp
-#: field:account.add.suffix,create_uid:0
-#: field:account.add.suffix.line,create_uid:0
-#: field:account.export.ebp,create_uid:0
-#: field:account.unexport.ebp,create_uid:0
-#: field:ebp.export,create_uid:0
+#: field:ebp.export,create_uid:0 field:wizard.ebp.export,create_uid:0
+#: field:wizard.ebp.unexport,create_uid:0
+#: field:wizard.res.partner.add.suffix,create_uid:0
+#: field:wizard.res.partner.add.suffix.line,create_uid:0
 msgid "Created by"
 msgstr "Created by"
 
 #. module: account_export_ebp
-#: field:account.add.suffix,create_date:0
-#: field:account.add.suffix.line,create_date:0
-#: field:account.export.ebp,create_date:0
-#: field:account.unexport.ebp,create_date:0
-#: field:ebp.export,create_date:0
+#: field:ebp.export,create_date:0 field:wizard.ebp.export,create_date:0
+#: field:wizard.ebp.unexport,create_date:0
+#: field:wizard.res.partner.add.suffix,create_date:0
+#: field:wizard.res.partner.add.suffix.line,create_date:0
 msgid "Created on"
 msgstr "Created on"
 
 #. module: account_export_ebp
+#: code:addons/account_export_ebp/models/ebp_export.py:468
+#, python-format
+msgid "Credit"
+msgstr "Crédit"
+
+#. module: account_export_ebp
+#: code:addons/account_export_ebp/models/ebp_export.py:470
+#, python-format
+msgid "Credit Balance"
+msgstr "Balance Crédit"
+
+#. module: account_export_ebp
+#: code:addons/account_export_ebp/models/ebp_export.py:319
+#, python-format
+msgid "Currency"
+msgstr "Monnaie"
+
+#. module: account_export_ebp
+#: code:addons/account_export_ebp/models/ebp_export.py:311
 #: field:ebp.export,date:0
+#, python-format
 msgid "Date"
 msgstr "Date"
 
 #. module: account_export_ebp
-#: field:account.export.ebp,description:0
-#: field:ebp.export,description:0
+#: code:addons/account_export_ebp/models/ebp_export.py:467
+#, python-format
+msgid "Debit"
+msgstr "Débit"
+
+#. module: account_export_ebp
+#: code:addons/account_export_ebp/models/ebp_export.py:469
+#, python-format
+msgid "Debit Balance"
+msgstr "Balance Débit"
+
+#. module: account_export_ebp
+#: field:res.company,ebp_default_analytic_account_id:0
+msgid "Default Analytic Account for EBP"
+msgstr "Compte analytique par défaut pour EBP"
+
+#. module: account_export_ebp
+#: view:ebp.export:account_export_ebp.view_ebp_export_form
+#: field:ebp.export,description:0 field:wizard.ebp.export,description:0
 msgid "Description"
 msgstr "Description"
 
 #. module: account_export_ebp
-#: field:account.add.suffix,display_name:0
-#: field:account.add.suffix.line,display_name:0
-#: field:account.export.ebp,display_name:0
-#: field:account.unexport.ebp,display_name:0
-#: field:ebp.export,display_name:0
+#: code:addons/account_export_ebp/models/ebp_export.py:317
+#, python-format
+msgid "Direction"
+msgstr "Direction"
+
+#. module: account_export_ebp
+#: field:ebp.export,display_name:0 field:wizard.ebp.export,display_name:0
+#: field:wizard.ebp.unexport,display_name:0
+#: field:wizard.res.partner.add.suffix,display_name:0
+#: field:wizard.res.partner.add.suffix.line,display_name:0
 msgid "Display Name"
 msgstr "Display Name"
 
 #. module: account_export_ebp
-#: field:account.export.ebp,download_file:0
-msgid "Download file"
-msgstr "Télécharger le fichier"
+#: selection:wizard.ebp.export,state:0
+msgid "Done"
+msgstr "Terminé"
 
 #. module: account_export_ebp
-#: model:ir.ui.menu,name:account_export_ebp.menu_export_ebp
+#: selection:wizard.ebp.export,state:0
+msgid "Draft"
+msgstr "En brouillon"
+
+#. module: account_export_ebp
+#: code:addons/account_export_ebp/models/ebp_export.py:318
+#, python-format
+msgid "Due Date"
+msgstr "Date d'échéance"
+
+#. module: account_export_ebp
+#: model:ir.ui.menu,name:account_export_ebp.menu_ebp
 msgid "EBP"
 msgstr "EBP"
-
-#. module: account_export_ebp
-#: view:res.company:account_export_ebp.view_res_company_form
-msgid "EBP Accounting Software"
-msgstr "EBP Comptabilité"
 
 #. module: account_export_ebp
 #: field:account.journal,ebp_code:0
@@ -202,118 +245,79 @@ msgid "EBP Code"
 msgstr "Code EBP"
 
 #. module: account_export_ebp
+#: field:account.move,ebp_export_id:0
 #: view:ebp.export:account_export_ebp.view_ebp_export_form
-#: view:ebp.export:account_export_ebp.view_ebp_export_tree
+#: field:wizard.ebp.export,ebp_export_id:0
 msgid "EBP Export"
 msgstr "Export EBP"
 
 #. module: account_export_ebp
 #: model:ir.actions.act_window,name:account_export_ebp.action_ebp_export
+#: model:ir.ui.menu,name:account_export_ebp.menu_ebp_export
 msgid "EBP Exports"
-msgstr "EBP Exports"
-
-#. module: account_export_ebp
-#: field:account.fiscalyear,ebp_nb:0
-msgid "EBP Fiscal Year Number"
-msgstr "Numéro d'exercice EBP"
-
-#. module: account_export_ebp
-#: field:res.company,ebp_uri:0
-msgid "EBP Share URI"
-msgstr "URI du partage EBP"
-
-#. module: account_export_ebp
-#: field:res.company,ebp_trigram:0
-msgid "EBP Trigram"
-msgstr "Trigramme EBP"
-
-#. module: account_export_ebp
-#: field:res.company,ebp_domain:0
-msgid "EBP User Domain"
-msgstr "Domaine de l'utilisateur EBP"
-
-#. module: account_export_ebp
-#: field:res.company,ebp_username:0
-msgid "EBP User Name"
-msgstr "Nom d'utilisateur EBP"
-
-#. module: account_export_ebp
-#: field:res.company,ebp_password:0
-msgid "EBP User Password"
-msgstr "Mot de passe de l'utilisateur EBP"
-
-#. module: account_export_ebp
-#: model:ir.ui.menu,name:account_export_ebp.menu_account_ebp_export
-msgid "EBP exports"
 msgstr "Exports EBP"
 
 #. module: account_export_ebp
-#: field:account.export.ebp,empty_suffixes_partner:0
-msgid "Empty Suffixes Partners"
-msgstr "Suffixes Partenaires vides"
+#: field:ebp.export,ebp_move_ids:0
+msgid "EBP Moves"
+msgstr "EBP Moves"
 
 #. module: account_export_ebp
-#: field:account.export.ebp,empty_suffixes_tax:0
-msgid "Empty Suffixes Taxes"
-msgstr "Suffixes de Taxes vides"
+#: field:ebp.export,ebp_move_qty:0
+msgid "EBP Moves Quantity"
+msgstr "EBP Moves Quantity"
 
 #. module: account_export_ebp
-#: view:account.export.ebp:account_export_ebp.view_account_export_ebp_form
+#: field:wizard.res.partner.add.suffix.line,ebp_suffix:0
+msgid "EBP Suffix"
+msgstr "Suffixe EBP"
+
+#. module: account_export_ebp
+#: field:res.company,ebp_analytic_enabled:0
+msgid "Enable Analytic in EBP"
+msgstr "Activer l'analytique dans EBP"
+
+#. module: account_export_ebp
+#: view:wizard.ebp.export:account_export_ebp.view_wizard_ebp_export_form
 msgid "Export"
 msgstr "Export"
 
 #. module: account_export_ebp
-#: view:account.export.ebp:account_export_ebp.view_account_export_ebp_form
-msgid "Export Complete"
-msgstr "Export Terminé"
-
-#. module: account_export_ebp
-#: selection:account.export.ebp,state:0
-msgid "Export Done"
-msgstr "Export Terminé"
-
-#. module: account_export_ebp
-#: field:account.account,export_tax_code:0
-#: field:account.export.ebp,tax_code_suffix:0
-msgid "Export according to Tax Codes"
-msgstr "Exporter selon le Code de Taxe"
-
-#. module: account_export_ebp
-#: model:ir.actions.act_window,name:account_export_ebp.action_account_export_ebp
+#: model:ir.actions.act_window,name:account_export_ebp.action_wizard_ebp_export
 msgid "Export to EBP"
-msgstr "Export to EBP"
+msgstr "Exporter dans EBP"
 
 #. module: account_export_ebp
-#: field:ebp.export,exported_moves_ids:0
+#: field:account.account,ebp_export_tax_code:0
+msgid "Export to EBP according to Tax Codes"
+msgstr "Exporter dans EBP selon les codes de taxes"
+
+#. module: account_export_ebp
+#: field:wizard.ebp.export,exported_move_ids:0
 msgid "Exported Moves"
 msgstr "Pièces exportées"
 
 #. module: account_export_ebp
-#: code:addons/account_export_ebp/model/account_move.py:42
-#: code:addons/account_export_ebp/model/account_move.py:55
-#, python-format
-msgid "Exported move!"
-msgstr "Pièce exportée!"
-
-#. module: account_export_ebp
-#: help:account.export.ebp,description:0
-#: help:ebp.export,description:0
+#: help:ebp.export,description:0 help:wizard.ebp.export,description:0
 msgid "Extra Description for Accountant Manager."
 msgstr "Description supplémentaire pour le comptable."
 
 #. module: account_export_ebp
-#: field:account.export.ebp,data_accounts:0
-#: field:account.export.ebp,data_balance:0
-#: field:account.export.ebp,data_moves:0
-msgid "File"
-msgstr "Fichier"
+#: field:ebp.export,file_name_accounts:0
+#: field:wizard.ebp.export,file_name_accounts:0
+msgid "File name accounts"
+msgstr "File name accounts"
 
 #. module: account_export_ebp
-#: field:account.export.ebp,name_accounts:0
-#: field:account.export.ebp,name_balance:0
-#: field:account.export.ebp,name_moves:0
-msgid "File Name"
-msgstr "Nom du fichier"
+#: field:ebp.export,file_name_balance:0
+#: field:wizard.ebp.export,file_name_balance:0
+msgid "File name balance"
+msgstr "File name balance"
+
+#. module: account_export_ebp
+#: field:ebp.export,file_name_moves:0 field:wizard.ebp.export,file_name_moves:0
+msgid "File name moves"
+msgstr "File name moves"
 
 #. module: account_export_ebp
 #: view:ebp.export:account_export_ebp.view_ebp_export_form
@@ -321,66 +325,67 @@ msgid "Files"
 msgstr "Fichiers"
 
 #. module: account_export_ebp
-#: model:ir.model,name:account_export_ebp.model_account_fiscalyear
-msgid "Fiscal Year"
-msgstr "Exercice comptable"
-
-#. module: account_export_ebp
-#: field:account.export.ebp,fiscalyear_id:0
-#: field:ebp.export,fiscalyear_id:0
+#: field:ebp.export,fiscalyear_id:0 field:wizard.ebp.export,fiscalyear_id:0
 msgid "Fiscal year"
 msgstr "Exercice fiscal"
 
 #. module: account_export_ebp
-#: view:ebp.export:account_export_ebp.view_ebp_export_search
-msgid "Group by..."
-msgstr "Regrouper par ..."
+#: field:account.tax.code,has_ebp_move_line:0
+#: field:res.partner,has_ebp_move_line:0
+msgid "Has Account Move Lines exportable in EBP"
+msgstr "A des écritures comptables exportables dans EBP"
 
 #. module: account_export_ebp
-#: view:account.export.ebp:account_export_ebp.view_account_export_ebp_form
-#: view:ebp.export:account_export_ebp.view_ebp_export_form
-msgid "Here is the exported moves file:"
-msgstr "Voici le fichier des écritures comptables:"
-
-#. module: account_export_ebp
-#: field:account.add.suffix,id:0
-#: field:account.add.suffix.line,id:0
-#: field:account.export.ebp,id:0
-#: field:account.unexport.ebp,id:0
-#: field:ebp.export,id:0
+#: field:ebp.export,id:0 field:wizard.ebp.export,id:0
+#: field:wizard.ebp.unexport,id:0 field:wizard.res.partner.add.suffix,id:0
+#: field:wizard.res.partner.add.suffix.line,id:0
 msgid "ID"
 msgstr "ID"
 
 #. module: account_export_ebp
-#: help:account.account,export_tax_code:0
+#: help:account.account,ebp_export_tax_code:0
 msgid "If checked, when you export moves from this account, it will create one account for each Tax Code"
-msgstr "Si cette case est cochée, quand vous exportez les écriture de ce compte vers EBP, cela va créer un compte pour chaque code de taxe."
+msgstr "Si coché, quand vous exportez des écritures comptables liées à ce compte, cela créera un compte pour chaque code de taxe"
 
 #. module: account_export_ebp
-#: field:account.export.ebp,ignore_draft:0
-msgid "Ignore draft moves"
-msgstr "Ignorer les pièces en brouillon"
+#: field:wizard.ebp.export,ignored_draft_move_qty:0
+msgid "Ignored draft move qty"
+msgstr "Ignored draft move qty"
 
 #. module: account_export_ebp
-#: field:account.export.ebp,ignore_exported:0
-msgid "Ignore moves already exported"
-msgstr "Ignorer les pièces déjà exportées"
+#: field:wizard.ebp.export,ignored_exported_move_qty:0
+msgid "Ignored exported move qty"
+msgstr "Ignored exported move qty"
 
 #. module: account_export_ebp
-#: field:account.export.ebp,ignore_unchecked:0
-msgid "Ignore unchecked moves"
-msgstr "Ignorer les pièces non contrôlées"
+#: field:wizard.ebp.export,ignored_journal_code_move_qty:0
+msgid "Ignored journal code move qty"
+msgstr "Ignored journal code move qty"
 
 #. module: account_export_ebp
-#: code:addons/account_export_ebp/wizard/wizard_ebp.py:397
-#, python-format
-msgid "Incorrect Setting"
-msgstr "Paramétrage incorrect"
+#: field:wizard.ebp.export,ignored_partner_move_qty:0
+msgid "Ignored partner move qty"
+msgstr "Ignored partner move qty"
 
 #. module: account_export_ebp
-#: help:account.move,exported_ebp_id:0
+#: field:wizard.ebp.export,ignored_period_move_qty:0
+msgid "Ignored period move qty"
+msgstr "Ignored period move qty"
+
+#. module: account_export_ebp
+#: field:wizard.ebp.export,ignored_tax_code_move_qty:0
+msgid "Ignored tax code move qty"
+msgstr "Ignored tax code move qty"
+
+#. module: account_export_ebp
+#: field:wizard.ebp.export,ignored_to_check_move_qty:0
+msgid "Ignored to check move qty"
+msgstr "Ignored to check move qty"
+
+#. module: account_export_ebp
+#: help:account.move,ebp_export_id:0
 msgid "Indicates whether the move has already been exported to EBP or not. It is changed automatically."
-msgstr "Indique si la pièce comptable a été exportée vers EBP. Automatiquement actualisé."
+msgstr "Indiquer si la pièce a déjà été exportées dans EBP ou pas. Valeur changée automatiquement."
 
 #. module: account_export_ebp
 #: model:ir.model,name:account_export_ebp.model_account_journal
@@ -388,10 +393,10 @@ msgid "Journal"
 msgstr "Journal"
 
 #. module: account_export_ebp
-#: code:addons/account_export_ebp/wizard/wizard_ebp.py:415
+#: code:addons/account_export_ebp/models/ebp_export.py:312
 #, python-format
-msgid "Journal '%s' has no EBP Code defined."
-msgstr "Le journal '%s' n'a pas de code EBP défini."
+msgid "Journal Code"
+msgstr "Code Journal"
 
 #. module: account_export_ebp
 #: view:account.move:account_export_ebp.view_account_move_search
@@ -399,69 +404,60 @@ msgid "Journal Entries not yet exported to EBP"
 msgstr "Pièces comptables non exportées vers EBP"
 
 #. module: account_export_ebp
-#: code:addons/account_export_ebp/wizard/wizard_ebp.py:420
-#, python-format
-msgid "Journal code '%s' is too long to be exported to EBP."
-msgstr "Le code du journal '%s' est trop long pour être exporter vers EBP."
+#: view:ebp.export:account_export_ebp.view_ebp_export_form
+#: model:ir.actions.act_window,name:account_export_ebp.action_account_move_from_ebp_export
+msgid "Journal Items"
+msgstr "Écritures comptables"
 
 #. module: account_export_ebp
-#: code:addons/account_export_ebp/wizard/wizard_ebp.py:414
-#, python-format
-msgid "Journal code Undefined"
-msgstr "Code du journal non défini"
-
-#. module: account_export_ebp
-#: code:addons/account_export_ebp/wizard/wizard_ebp.py:419
-#, python-format
-msgid "Journal code too long"
-msgstr "Code de journal trop long"
-
-#. module: account_export_ebp
-#: field:account.add.suffix,__last_update:0
-#: field:account.add.suffix.line,__last_update:0
-#: field:account.export.ebp,__last_update:0
-#: field:account.unexport.ebp,__last_update:0
-#: field:ebp.export,__last_update:0
+#: field:ebp.export,__last_update:0 field:wizard.ebp.export,__last_update:0
+#: field:wizard.ebp.unexport,__last_update:0
+#: field:wizard.res.partner.add.suffix,__last_update:0
+#: field:wizard.res.partner.add.suffix.line,__last_update:0
 msgid "Last Modified on"
 msgstr "Last Modified on"
 
 #. module: account_export_ebp
-#: field:account.add.suffix,write_uid:0
-#: field:account.add.suffix.line,write_uid:0
-#: field:account.export.ebp,write_uid:0
-#: field:account.unexport.ebp,write_uid:0
-#: field:ebp.export,write_uid:0
+#: field:ebp.export,write_uid:0 field:wizard.ebp.export,write_uid:0
+#: field:wizard.ebp.unexport,write_uid:0
+#: field:wizard.res.partner.add.suffix,write_uid:0
+#: field:wizard.res.partner.add.suffix.line,write_uid:0
 msgid "Last Updated by"
 msgstr "Last Updated by"
 
 #. module: account_export_ebp
-#: field:account.add.suffix,write_date:0
-#: field:account.add.suffix.line,write_date:0
-#: field:account.export.ebp,write_date:0
-#: field:account.unexport.ebp,write_date:0
-#: field:ebp.export,write_date:0
+#: field:ebp.export,write_date:0 field:wizard.ebp.export,write_date:0
+#: field:wizard.ebp.unexport,write_date:0
+#: field:wizard.res.partner.add.suffix,write_date:0
+#: field:wizard.res.partner.add.suffix.line,write_date:0
 msgid "Last Updated on"
 msgstr "Last Updated on"
 
 #. module: account_export_ebp
-#: code:addons/account_export_ebp/wizard/wizard_ebp.py:431
+#: code:addons/account_export_ebp/models/ebp_export.py:310
 #, python-format
-msgid "Move name '%s' is too long to be exported to EBP."
-msgstr "Le nom de l'écriture '%s' est trop long pour être exporter vers EBP."
+msgid "Line"
+msgstr "Ligne"
 
 #. module: account_export_ebp
-#: code:addons/account_export_ebp/wizard/wizard_ebp.py:431
+#: field:wizard.res.partner.add.suffix,line_ids:0
+msgid "Lines"
+msgstr "Lignes"
+
+#. module: account_export_ebp
+#: code:addons/account_export_ebp/models/ebp_export.py:104
 #, python-format
-msgid "Move name too long"
-msgstr "Nom d'écriture trop long"
+msgid "MOVES"
+msgstr "ECRITURES"
 
 #. module: account_export_ebp
-#: view:account.export.ebp:account_export_ebp.view_account_export_ebp_form
-msgid "Moves exported to EBP"
-msgstr "Pièces exportées vers EBP"
+#: code:addons/account_export_ebp/models/ebp_export.py:315
+#, python-format
+msgid "Move Number"
+msgstr "N° Pièce"
 
 #. module: account_export_ebp
-#: field:ebp.export,data_moves:0
+#: field:ebp.export,data_moves:0 field:wizard.ebp.export,data_moves:0
 msgid "Moves file"
 msgstr "Fichier des écritures comptables"
 
@@ -471,91 +467,40 @@ msgid "My Partners"
 msgstr "Mes partenaires"
 
 #. module: account_export_ebp
+#: code:addons/account_export_ebp/models/ebp_export.py:314
+#: field:ebp.export,name:0
+#, python-format
+msgid "Name"
+msgstr "Nom"
+
+#. module: account_export_ebp
 #: view:account.move:account_export_ebp.view_account_move_search
 msgid "Not Exported"
 msgstr "Non transféré"
 
 #. module: account_export_ebp
-#: help:res.partner,nb_moves:0
-msgid "Number of account moves for this partner"
-msgstr "Nombre de pièces comptables pour ce partenaire"
-
-#. module: account_export_ebp
-#: help:account.tax.code,nb_moves:0
-msgid "Number of account moves for this tax code"
-msgstr "Nombre de pièces comptables pour ce code de taxe"
-
-#. module: account_export_ebp
-#: field:account.export.ebp,exported_accounts:0
-#: field:ebp.export,exported_accounts:0
-msgid "Number of accounts exported"
-msgstr "Nombre de comptes exportés"
-
-#. module: account_export_ebp
-#: field:account.export.ebp,exported_lines:0
-#: field:ebp.export,exported_lines:0
-msgid "Number of lines exported"
-msgstr "Nombre de lignes exportées"
-
-#. module: account_export_ebp
-#: field:account.tax.code,nb_moves:0
-#: field:res.partner,nb_moves:0
-msgid "Number of moves"
-msgstr "Nombre de pièces comptables"
-
-#. module: account_export_ebp
-#: field:account.export.ebp,exported_moves:0
-#: field:ebp.export,exported_moves:0
-msgid "Number of moves exported"
-msgstr "Nombre de pièces exportées"
-
-#. module: account_export_ebp
-#: field:account.export.ebp,ignored_moves:0
-#: field:ebp.export,ignored_moves:0
-msgid "Number of moves ignored"
-msgstr "Nombre de pièces ignorées"
-
-#. module: account_export_ebp
-#: help:account.export.ebp,fiscalyear_id:0
+#: help:wizard.ebp.export,fiscalyear_id:0
 msgid "Only the moves in this fiscal will be exported"
-msgstr "Seuls les pièces appartenant à cette exercice fiscal seront exportée"
+msgstr "Seulement les pièces de cet exercice seront exportées"
 
 #. module: account_export_ebp
-#: view:res.partner:account_export_ebp.view_res_partner_search
-msgid "Parent"
-msgstr "Parent"
-
-#. module: account_export_ebp
-#: field:account.add.suffix.line,partner_id:0
 #: model:ir.model,name:account_export_ebp.model_res_partner
-#: view:res.partner:account_export_ebp.view_res_partner_tree_suffix
+#: view:res.partner:account_export_ebp.view_res_partner_tree
+#: field:wizard.res.partner.add.suffix.line,partner_id:0
 msgid "Partner"
 msgstr "Partenaire"
 
 #. module: account_export_ebp
+#: model:ir.actions.act_window,name:account_export_ebp.action_res_partner
 #: model:ir.ui.menu,name:account_export_ebp.menu_partner_suffix
-msgid "Partner Suffix"
-msgstr "Suffixe du partenaire"
-
-#. module: account_export_ebp
-#: model:ir.actions.act_window,name:account_export_ebp.action_res_partner_suffix
 msgid "Partner Suffixes"
 msgstr "Suffixes de partenaires"
 
 #. module: account_export_ebp
-#: field:res.partner,ref_nb:0
-msgid "Partner's Account suffix in EBP"
-msgstr "Suffixe du compte de tiers dans EBP"
-
-#. module: account_export_ebp
-#: help:account.export.ebp,ignore_draft:0
-msgid "Please be aware that draft moves do not not have a move number attached to them. As a consequence, they might not be imported correctly into EBP accounting software"
-msgstr "Gardez à l'esprit que les pièces en brouillon n'ont pas de numéro. Elle peuvent donc ne pas être importées correctement dans EBP."
-
-#. module: account_export_ebp
-#: help:account.export.ebp,ignore_unchecked:0
-msgid "Please be aware that unchecked moves belong maybe some errors."
-msgstr "Gardez à l'esprit que les pièces non contrôlées peuvent contenir des erreurs."
+#: code:addons/account_export_ebp/models/ebp_export.py:322
+#, python-format
+msgid "Payment Mode"
+msgstr "Mode de paiement"
 
 #. module: account_export_ebp
 #: view:account.move:account_export_ebp.view_account_move_search
@@ -563,14 +508,29 @@ msgid "Posted"
 msgstr "Validé"
 
 #. module: account_export_ebp
-#: selection:account.export.ebp,state:0
-msgid "Prepare Export"
-msgstr "Preparation Export"
+#: field:wizard.ebp.export,exported_move_qty:0
+msgid "Quantity of Exported Moves"
+msgstr "Quantity of Exported Moves"
 
 #. module: account_export_ebp
-#: selection:account.export.ebp,state:0
-msgid "Ready to download"
-msgstr "Prêt à télécharger"
+#: field:ebp.export,exported_move_qty:0
+msgid "Quantity of Moves Exported"
+msgstr "Quantity of Moves Exported"
+
+#. module: account_export_ebp
+#: field:wizard.ebp.export,selected_move_qty:0
+msgid "Quantity of Selected Moves"
+msgstr "Quantity of Selected Moves"
+
+#. module: account_export_ebp
+#: field:ebp.export,exported_account_qty:0
+msgid "Quantity of accounts exported"
+msgstr "Quantity of accounts exported"
+
+#. module: account_export_ebp
+#: view:wizard.ebp.export:account_export_ebp.view_wizard_ebp_export_form
+msgid "Results"
+msgstr "Résultats"
 
 #. module: account_export_ebp
 #: view:account.tax.code:account_export_ebp.view_account_tax_code_search
@@ -578,91 +538,78 @@ msgid "Search Tax Code"
 msgstr "Chercher un Code de Taxe"
 
 #. module: account_export_ebp
-#: field:account.add.suffix.line,suffix:0
-msgid "Suggested EBP Suffix"
-msgstr "Suffixe suggéré"
+#: view:wizard.ebp.export:account_export_ebp.view_wizard_ebp_export_form
+msgid "Settings"
+msgstr "Paramétrages"
 
 #. module: account_export_ebp
-#: view:account.tax.code:account_export_ebp.view_account_tax_code_tree_suffix
+#: field:wizard.ebp.export,state:0
+msgid "State"
+msgstr "Etat"
+
+#. module: account_export_ebp
+#: field:account.tax.code,ebp_suffix:0 field:res.partner,ebp_suffix:0
+msgid "Suffix in EBP"
+msgstr "Suffix in EBP"
+
+#. module: account_export_ebp
+#: view:account.tax.code:account_export_ebp.view_account_tax_code_tree
 #: model:ir.model,name:account_export_ebp.model_account_tax_code
 msgid "Tax Code"
 msgstr "Code de taxe"
 
 #. module: account_export_ebp
-#: model:ir.ui.menu,name:account_export_ebp.menu_account_tax_code_suffix
-msgid "Tax Code Suffix"
-msgstr "Suffixe de Code de Taxe"
-
-#. module: account_export_ebp
-#: model:ir.actions.act_window,name:account_export_ebp.action_account_tax_code_suffix
+#: model:ir.actions.act_window,name:account_export_ebp.action_account_tax_code
 msgid "Tax Code Suffix View"
 msgstr "Tax Code Suffix View"
 
 #. module: account_export_ebp
-#: field:account.tax.code,ref_nb:0
-msgid "Tax Code's Account suffix in EBP"
-msgstr "Suffixe du Code Taxe dans EBP"
-
-#. module: account_export_ebp
 #: field:account.account,ebp_code_no_tax:0
-msgid "Tax Code's Account suffix in EBP (if no tax)"
-msgstr "Suffixe du Code Taxe dans EBP (si pas de taxe)"
+msgid "Tax Code Suffix in EBP (if no tax)"
+msgstr "Suffixe de code de taxe dans EBP (si pas de taxe)"
 
 #. module: account_export_ebp
-#: help:res.company,ebp_uri:0
-msgid "The URI of the network share containing the company's EBP folder. Format: smb://SERVER/SHARE/DIR"
-msgstr "The URI of the network share containing the company's EBP folder. Format: smb://SERVER/SHARE/DIR"
-
-#. module: account_export_ebp
-#: code:addons/account_export_ebp/wizard/wizard_ebp.py:400
-#, python-format
-msgid "The account %s - %s is set 'export with tax suffix' but no tax suffix is defined for the account.\n"
-" Move %s"
-msgstr "Le compte %s - %s est paramétré avec l'option 'Exporter avec le suffixe de taxe' mais aucun suffixe de taxe n'est défini.\n"
-" Pièce comptable : %s"
-
-#. module: account_export_ebp
-#: constraint:account.account:0
-msgid "The account code for a partner account cannot exceed\n"
-" * 3 characters for Fiscal Mother Company (Regular Case);\n"
-" * 6 characters for Fiscal Mother Company (Intercompany Trade);\n"
-" * 6 characters for Normal Company ; \n"
-" so as to permit the EBP export"
-msgstr "Le code pour un partenaire ne peut pas excéder\n"
-" * 3 caractères pour les sociétés intégrées (Cas normal);\n"
-" * 6 caractères pour les sociétés intégrées (Achat Inter société);\n"
-" * 6 caractères pour les sociétés normales ; \n"
-" cela, pour permettre l'export EBP"
-
-#. module: account_export_ebp
-#: help:res.company,ebp_domain:0
-msgid "The domain of the user to access the company's EBP folder."
-msgstr "Le domaine de l'utilisateur pour accéder au dossier EBP de la société."
-
-#. module: account_export_ebp
-#: view:account.unexport.ebp:account_export_ebp.view_account_unexport_ebp_form
-msgid "The export will be canceled for the selected moves."
-msgstr "L'export sera annulé pour les pièces sélectionnées."
-
-#. module: account_export_ebp
-#: view:account.export.ebp:account_export_ebp.view_account_export_ebp_form
-msgid "The file was saved in the EBP folder."
-msgstr "Le fichier a été enregistré dans le répertoire EBP."
-
-#. module: account_export_ebp
-#: help:res.company,ebp_username:0
-msgid "The name of the user to access the company's EBP folder."
-msgstr "Le nom de l'utilisateur pour accéder au dossier EBP."
+#: model:ir.ui.menu,name:account_export_ebp.menu_account_tax_code
+msgid "Tax Code Suffixes"
+msgstr "Suffixes de code de taxe"
 
 #. module: account_export_ebp
 #: sql_constraint:res.partner:0
-msgid "The partner suffix must be unique per company!"
-msgstr "Le suffixe du partenaire doit être unique pour une société!"
+msgid "The EBP suffix must be unique per company!"
+msgstr "Le suffixe EBP doit être unique par société"
 
 #. module: account_export_ebp
-#: help:res.company,ebp_password:0
-msgid "The password of the user to access the company's EBP folder."
-msgstr "Le mot de passe pour accéder au dossier EBP de la société."
+#: code:addons/account_export_ebp/models/ebp_export.py:244
+#, python-format
+msgid ""
+"The account %s - %s is set 'export with tax suffix' but no tax suffix is defined for the account.\n"
+" Move %s"
+msgstr ""
+"The account %s - %s is set 'export with tax suffix' but no tax suffix is defined for the account.\n"
+" Move %s"
+
+#. module: account_export_ebp
+#: code:addons/account_export_ebp/models/account_account.py:47
+#, python-format
+msgid "The account code for a partner account cannot exceed 3 characters for Fiscal Mother Company (Regular Case) so as to permit the EBP export"
+msgstr "The account code for a partner account cannot exceed 3 characters for Fiscal Mother Company (Regular Case) so as to permit the EBP export"
+
+#. module: account_export_ebp
+#: code:addons/account_export_ebp/models/account_account.py:39
+#, python-format
+msgid "The account code for a partner account cannot exceed 6 characters for Fiscal Mother Company (Intercompany Trade) so as to permit the EBP export"
+msgstr "The account code for a partner account cannot exceed 6 characters for Fiscal Mother Company (Intercompany Trade) so as to permit the EBP export"
+
+#. module: account_export_ebp
+#: code:addons/account_export_ebp/models/account_account.py:55
+#, python-format
+msgid "The account code for a partner account cannot exceed 6 characters for Normal Company so as to permit the EBP export"
+msgstr "The account code for a partner account cannot exceed 6 characters for Normal Company so as to permit the EBP export"
+
+#. module: account_export_ebp
+#: view:wizard.ebp.unexport:account_export_ebp.view_wizard_ebp_unexport_form
+msgid "The export will be canceled for the selected moves. Be sure to delete the corresponding lines in EBP."
+msgstr "The export will be canceled for the selected moves. Be sure to delete the corresponding lines in EBP."
 
 #. module: account_export_ebp
 #: help:account.journal,ebp_code:0
@@ -670,109 +617,85 @@ msgid "This code will be used when exporting entries in the journal column"
 msgstr "Ce code sera utilisé lors de l'export des écritures dans la colonne journal"
 
 #. module: account_export_ebp
-#: help:account.fiscalyear,ebp_nb:0
-msgid "This value should reflect the number of the fiscal year as used by the EBP accounting software. This should be set to the number of fiscal years recorded in EBP accounting before this one - So for the first year the number is 0, for the second year the number is 1 and so on. This is used for exporting accounting moves to EBP."
-msgstr "Cette valeur doit refléter le numéro d'exercice utilisé dans EBP Comptabilité. Indiquez le nombre d'exercice enregistrés dans EBP avant celui-ci : ainsi pour le premier exercice indiquez 0 ; pour le second indiquez 1 etc. Cette information est utilisée lors de l'exportation des écritures vers EBP."
-
-#. module: account_export_ebp
-#: code:addons/account_export_ebp/wizard/wizard_ebp.py:302
-#, python-format
-msgid "This wizard should only be used on accounting moves"
-msgstr "Cet assistant ne peut être utilisé que sur des écritures comptables"
-
-#. module: account_export_ebp
-#: field:account.move,exported_ebp_id:0
-msgid "Transfer id"
-msgstr "Export"
-
-#. module: account_export_ebp
-#: view:account.unexport.ebp:account_export_ebp.view_account_unexport_ebp_form
+#: view:wizard.ebp.unexport:account_export_ebp.view_wizard_ebp_unexport_form
 msgid "Unexport"
-msgstr "Annuler l'export"
+msgstr "Unexport"
 
 #. module: account_export_ebp
-#: view:account.export.ebp:account_export_ebp.view_account_export_ebp_form
-msgid "Warning! Some Tax Codes don't have a suffix."
-msgstr "Attention! Certains Codes de Taxe utilisés n'ont pas de suffixe."
-
-#. module: account_export_ebp
-#: view:account.export.ebp:account_export_ebp.view_account_export_ebp_form
-msgid "Warning! Some partners don't have a suffix."
-msgstr "Attention! Certains partenaires n'ont pas de suffixe."
-
-#. module: account_export_ebp
-#: help:res.partner,ref_nb:0
+#: help:res.partner,ebp_suffix:0
 msgid "When exporting Entries to EBP, this suffix will be appended to the Account Number to make it a Partner Account."
-msgstr "Lors de l'export d'écriture vers EBP, le suffixe sera ajouté au numéro de compte pour créer le numéro de compte du partenaire."
+msgstr "When exporting Entries to EBP, this suffix will be appended to the Account Number to make it a Partner Account."
 
 #. module: account_export_ebp
 #: help:account.account,ebp_code_no_tax:0
-msgid "When exporting Entries to EBP, this suffix will be appended to the Account Number to make it a new Account, if Export according to tax Codes is checked, and if no taxes is defined on the account move line."
-msgstr "Lors de l'export d'écriture vers EBP, ce suffixe sera ajouté au numéro de compte pour créer le numéro de compte, si l'export selon les taxes est activés et qu'aucune taxe n'est définie sur l'écriture comptable."
+msgid "When exporting Entries to EBP, this suffix will be appended to the Account Number to make it a new Account, if 'Export to EBP according to Tax Codes' is checked, and if no taxes is defined on the account move line."
+msgstr "When exporting Entries to EBP, this suffix will be appended to the Account Number to make it a new Account, if 'Export to EBP according to Tax Codes' is checked, and if no taxes is defined on the account move line."
 
 #. module: account_export_ebp
-#: help:account.tax.code,ref_nb:0
+#: help:account.tax.code,ebp_suffix:0
 msgid "When exporting Entries to EBP, this suffix will be appended to the Account Number to make it a new Account."
-msgstr "Lors de l'export d'écriture vers EBP, le suffixe sera ajouté au numéro de compte pour créer un nouveau numéro de compte."
-
-#. module: account_export_ebp
-#: help:account.export.ebp,company_suffix:0
-msgid "When this is checked, the company's code will be appended to the receivable and payable accounts' numbers in the exported files on every move line."
-msgstr "Si cette case est cochée, le code de la société sera ajouté au code du compte pour l'export."
-
-#. module: account_export_ebp
-#: help:account.export.ebp,partner_accounts:0
-msgid "When this is checked, the partner's special code will be appended to the receivable and payable accounts' numbers in the exported files on every move line where a partner has been specified."
-msgstr "Si cette case est cochée, le suffixe du partenaire sera ajouté au compte pour toutes les pièces associées à un partenaire."
+msgstr "When exporting Entries to EBP, this suffix will be appended to the Account Number to make it a new Account."
 
 #. module: account_export_ebp
 #: view:account.tax.code:account_export_ebp.view_account_tax_code_search
 #: view:res.partner:account_export_ebp.view_res_partner_search
-msgid "With moves"
-msgstr "Avec écritures"
+msgid "With Lines Moves exportable into EBP"
+msgstr "With Lines Moves exportable into EBP"
 
 #. module: account_export_ebp
 #: view:account.tax.code:account_export_ebp.view_account_tax_code_search
 #: view:res.partner:account_export_ebp.view_res_partner_search
-msgid "Without suffix"
-msgstr "Sans suffixe"
+msgid "Without EBP Suffix"
+msgstr "Without EBP Suffix"
 
 #. module: account_export_ebp
-#: code:addons/account_export_ebp/wizard/wizard_ebp.py:301
+#: view:account.tax.code:account_export_ebp.view_account_tax_code_search
+#: view:res.partner:account_export_ebp.view_res_partner_search
+msgid "Without Suffixes And with Exportable Move Lines into EBP"
+msgstr "Without Suffixes And with Exportable Move Lines into EBP"
+
+#. module: account_export_ebp
+#: field:wizard.res.partner.add.suffix.line,wizard_id:0
+msgid "Wizard id"
+msgstr "Wizard id"
+
+#. module: account_export_ebp
+#: code:addons/account_export_ebp/models/account_move.py:40
 #, python-format
-msgid "Wrong Object"
-msgstr "Objet incorrect"
+msgid "You cannot modify or delete exported moves: %s!"
+msgstr "You cannot modify or delete exported moves: %s!"
 
 #. module: account_export_ebp
-#: code:addons/account_export_ebp/model/account_move.py:56
-#, python-format
-msgid "You cannot delete exported moves: %s!"
-msgstr "Vous ne pouvez pas supprimer des pièces exportées: %s!"
+#: view:wizard.ebp.export:account_export_ebp.view_wizard_ebp_export_form
+msgid "You have selected"
+msgstr "Vous avez sélectionné"
 
 #. module: account_export_ebp
-#: code:addons/account_export_ebp/model/account_move.py:43
-#, python-format
-msgid "You cannot modify exported moves: %s!"
-msgstr "Vous ne pouvez pas modifier des pièces exportées: %s!"
+#: view:wizard.ebp.export:account_export_ebp.view_wizard_ebp_export_form
+msgid "draft moves."
+msgstr "pièces en brouillon."
 
 #. module: account_export_ebp
-#: view:account.export.ebp:account_export_ebp.view_account_export_ebp_form
-msgid "You may need to close and reopen the folder for EBP to detect the new data files."
-msgstr "Redémarrez EBP pour prendre en compte ces fichiers."
+#: view:wizard.ebp.export:account_export_ebp.view_wizard_ebp_export_form
+msgid "moves related to partners without EBP suffixes defined."
+msgstr "pièces liées à des partenaires sans suffixes EBP définis."
 
 #. module: account_export_ebp
-#: view:account.export.ebp:account_export_ebp.view_account_export_ebp_form
-msgid "You should run the wizard to populate them before exporting."
-msgstr "Vous devriez lancer l'utilitaire pour les remplir avant d'exporter."
+#: view:wizard.ebp.export:account_export_ebp.view_wizard_ebp_export_form
+msgid "moves that are marked as 'To check'."
+msgstr "pièces qui sont marquées \"à vérifier\"."
 
 #. module: account_export_ebp
-#: field:account.move,exported_ebp:0
-msgid "export id"
-msgstr "# export"
+#: view:wizard.ebp.export:account_export_ebp.view_wizard_ebp_export_form
+msgid "moves that belong to a journal that doesn't have a correct 'EBP code' set."
+msgstr "pièces qui appartiennent à un journal qui n'a pas de code EBP défini."
 
 #. module: account_export_ebp
-#: field:account.export.ebp,state:0
-#: field:ebp.export,name:0
-msgid "unknown"
-msgstr "Nom"
+#: view:wizard.ebp.export:account_export_ebp.view_wizard_ebp_export_form
+msgid "moves that doesn't belong to the selected fiscal year."
+msgstr "pièces qui n'appartiennent pas à l'année fiscale sélectionnée."
 
+#. module: account_export_ebp
+#: view:wizard.ebp.export:account_export_ebp.view_wizard_ebp_export_form
+msgid "moves that have already been exported in EBP."
+msgstr "pièces qui ont déjà été exportées dans EBP"
