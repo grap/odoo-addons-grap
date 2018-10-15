@@ -6,12 +6,13 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 
-from openerp import _, api, fields, models
-from openerp.exceptions import Warning as UserError
+from openerp import api, fields, models
 
 
 class ResPartner(models.Model):
     _inherit = 'res.partner'
+
+    _SEARCH_DATE_BEGIN = '01/12/2012'
 
     # Columns section
     ebp_suffix = fields.Char(
@@ -19,78 +20,42 @@ class ResPartner(models.Model):
         help="When exporting Entries to EBP, this suffix will be"
         " appended to the Account Number to make it a Partner Account.")
 
-    move_line_qty = fields.Integer(
-        compute='_compute_move_line_qty',
-        string='Quantity of Account Move Lines',
-        help="Number of account moves for this partner")
+    has_ebp_move_line = fields.Boolean(
+        compute='_compute_has_ebp_move_line',
+        search='_search_has_ebp_move_line',
+        string='Has Account Move Lines exportable in EBP')
+
+    # Constraints section
+    _sql_constraints = [
+        (
+            'ebp_suffix_company_id_uniq',
+            'unique (ebp_suffix, company_id)',
+            'The EBP suffix must be unique per company!')
+    ]
 
     # Columns section
     @api.multi
-    def _compute_move_line_qty(self):
+    def _compute_has_ebp_move_line(self):
         AccountMoveLine = self.env['account.move.line']
-        # for aId in ids:
-            # aml_ids = aml_obj.search(cr, uid, [
-                # ('partner_id', '=', aId), ('date', '>=', '01/12/2012')],
-                # context=context)
-            # res[aId] = len(aml_ids)
-        # return res
-        # TODO
-# 
-#    Search Section
-    # def _search_ean_duplicates_exist(self, operator, operand):
-        # products = self.search([])
-        # res = products._get_ean_duplicates()
-        # if operator == '=' and operand is True:
-            # product_ids = res.keys()
-        # elif operator == '=' and operand is False:
-            # product_ids = list(set(products.ids) - set(res.keys()))
-        # else:
-            # raise UserError(_(
-                # "Operator '%s' not implemented.") % (operator))
-        # return [('id', 'in', product_ids)]
-# 
-# 
-    # def _search_move_line_qty(self, cr, uid, obj, name, args, context=None):
-        # if not args:
-            # return []
-        # query, query_args = self._get_search_moves_query(
-            # cr, uid, args, overdue_only=False, context=context)
-        # cr.execute(query, query_args)
-        # res = cr.fetchall()
-        # if not res:
-            # return [('id', '=', '0')]
-        # return [('id', 'in', [x[0] for x in res])]
-# 
-    # _columns = {
-        # Partner's account number in EBP
-# 
-    # }
-# 
-    # Constraints section
-    # _sql_constraints = [
-        # (
-            # 'partner_suffix_uniq',
-            # 'unique (ref_nb, company_id)',
-            # 'The partner suffix must be unique per company!')
-    # ]
-# 
-    # Overloading section
-    # def write(self, cr, uid, ids, vals, context=None):
-        # ref_nb = vals.get('ref_nb', False)
-        # if ref_nb:
-            # vals['ref_nb'] = ref_nb.upper()
-        # return super(res_partner, self).write(
-            # cr, uid, ids, vals, context=context)
-# 
-    # Private section
-    # def _get_search_moves_query(
-            # self, cr, uid, args, overdue_only=False, context=None):
-        # having_where_clause = ' AND '.join(
-            # map(lambda x: '(COUNT(*) %s %%s)' % (x[1]), args))
-        # having_values = [x[2] for x in args]
-        # return """
-            # SELECT partner_id, count(*)
-            # FROM account_move_line
-            # WHERE date >= '01/12/2012'
-            # GROUP BY partner_id
-            # HAVING """ + having_where_clause, having_values
+        for partner in self:
+            partner.has_ebp_move_line = len(AccountMoveLine.search([
+                ('partner_id', '=', partner.id),
+                ('date', '>=', self._SEARCH_DATE_BEGIN)]))
+
+    @api.model
+    def _search_has_ebp_move_line(self, operator, value):
+        assert operator in ('=', '!='), 'Invalid domain operator'
+        assert value in (True, False), 'Invalid domain value'
+
+        with_line = (
+            (operator == '=' and value is True) or
+            (operator == '!=' and value is False))
+
+        self._cr.execute(
+            "SELECT partner_id, count(*)"
+            " FROM account_move_line"
+            " WHERE date >= '01/12/2012'"
+            " GROUP BY partner_id"
+            " HAVING  count(*) > 0")
+        res = self._cr.fetchall()
+        return [('id', with_line and 'in' or 'not in', [x[0] for x in res])]

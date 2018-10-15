@@ -33,9 +33,10 @@ class AccountMove(models.Model):
     # Custom section
     @api.multi
     def _check_exported_moves(self):
-        exported_moves =\
-            self.filtered(lambda x: x.ebp_export_id.id is not False)
-        if exported_moves:
-            raise UserError(_(
-                "You cannot modify or delete exported moves: %s!")
-                % ', '.join([m.name for m in exported_moves]))
+        if not self.env.context.get('force_write_ebp_exported', False):
+            exported_moves =\
+                self.filtered(lambda x: x.ebp_export_id.id is not False)
+            if exported_moves:
+                raise UserError(_(
+                    "You cannot modify or delete exported moves: %s!")
+                    % ', '.join([m.name for m in exported_moves]))

@@ -6,8 +6,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 
-from openerp import _, api, fields, models
-from openerp.exceptions import Warning as UserError
+from openerp import api, models
 
 
 class WizardEbpUnexport(models.TransientModel):
@@ -17,4 +16,5 @@ class WizardEbpUnexport(models.TransientModel):
     def button_unexport(self):
         AccountMove = self.env['account.move']
         moves = AccountMove.browse(self.env.context.get('active_ids', False))
-        moves.write({'ebp_export_id': False})
+        moves.with_context(force_write_ebp_exported=True).write(
+            {'ebp_export_id': False})

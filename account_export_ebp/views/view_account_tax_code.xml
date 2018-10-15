@@ -10,14 +10,16 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="model">account.tax.code</field>
         <field name="arch" type="xml">
             <search string="Search Tax Code">
-               <filter string="Without suffix" 
-                    name="no_suffix" 
-                    domain="[('ebp_suffix', '=', False)]"
-                    groups="account.group_account_manager"/>
-                <filter string="With moves" 
-                    name="with_moves" 
-                    domain="[('move_line_qty', '!=', 0)]"
-                    groups="account.group_account_manager"/>
+               <filter string="Without EBP Suffix"
+                        name="without_suffix"
+                        domain="[('ebp_suffix', '=', False)]"/>
+               <filter string="With Lines Moves exportable into EBP"
+                        name="with_move_line_ebp"
+                        domain="[('has_ebp_move_line', '=', True)]"/>
+               <filter string="Without Suffixes And with Exportable Move Lines into EBP" 
+                        name="without_suffix_with_move_line_ebp"
+                        domain="[('ebp_suffix', '=', False),
+                        ('has_ebp_move_line', '=', True)]"/>
             </search>
         </field>
     </record>
@@ -27,7 +29,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="inherit_id" ref="account.view_tax_code_form" />
         <field name="arch" type="xml">
             <field name="code" position="after">
-                <field name="ebp_suffix" groups="account.group_account_manager"/>
+                <field name="ebp_suffix"/>
             </field>
         </field>
     </record>
@@ -39,7 +41,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                 <field name="name" readonly="True"/>
                 <field name="code" readonly="True"/>
                 <field name="ebp_suffix"/>
-                <field name="move_line_qty" readonly="True"/>
+                <field name="has_ebp_move_line"/>
                 <field name="company_id"/>
             </tree>
         </field>
@@ -52,7 +54,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="view_type">form</field>
         <field name="view_mode">tree</field>
         <field name="view_id" ref="view_account_tax_code_tree"/>
-        <field name="context">{'search_default_with_moves': 1, 'search_default_no_suffix': 1}</field>
+        <field name="context">{'search_default_without_suffix_with_move_line_ebp': 1}</field>
     </record>
 
     <menuitem id="menu_account_tax_code"

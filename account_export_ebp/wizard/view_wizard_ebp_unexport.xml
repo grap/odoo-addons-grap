@@ -10,8 +10,9 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="model">wizard.ebp.unexport</field>
         <field name="arch" type="xml">
             <form>
-                <h1>The export will be canceled for the selected moves.</h1>
-                <h1>Be sure to delete the corresponding lines in EBP.</h1>
+                <p class="alert alert-warning">
+                    The export will be canceled for the selected moves. Be sure to delete the corresponding lines in EBP.
+                </p>
                 <footer>
                     <button string="Unexport" name="button_unexport" type="object" class="oe_highlight"/>
                     <button string="Cancel" class="oe_link" special="cancel"/>

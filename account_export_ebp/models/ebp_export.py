@@ -5,8 +5,19 @@
 # @author: Sylvain LE GAL (https://twitter.com/legalsylvain)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
+import base64
+import cStringIO
+import logging
+
 from openerp import _, api, fields, models
-from openerp.Exceptions import Warning as UserError
+from openerp.exceptions import Warning as UserError
+
+_logger = logging.getLogger(__name__)
+
+try:
+    from unidecode import unidecode
+except ImportError:
+    _logger.debug("account_export_ebp - 'unidecode' librairy not found")
 
 
 class EbpExport(models.Model):
@@ -25,7 +36,8 @@ class EbpExport(models.Model):
         readonly=True)
 
     date = fields.Datetime(
-        'Date', required=True, readonly=True)
+        string='Date', required=True, readonly=True,
+        default=lambda s: s._default_date())
 
     name = fields.Char(
         compute='_compute_name', string='Name', store=True, readonly=True)
@@ -69,6 +81,10 @@ class EbpExport(models.Model):
     def _default_company_id(self):
         return self.env.user.company_id.id
 
+    @api.model
+    def _default_date(self):
+        return fields.Datetime.now()
+
     # Compute Section
     @api.multi
     def _compute_name(self):
@@ -95,7 +111,7 @@ class EbpExport(models.Model):
 
     # Custom Section
     @api.model
-    def _ebp_normalize(self, text):
+    def _normalize(self, text):
         res = text
         for char in self._EBP_REMOVE_CHAR_LIST:
             res = res.replace(char, " ")
@@ -103,7 +119,7 @@ class EbpExport(models.Model):
 
     @api.multi
     def export(self, moves):
-        """Export moves into 3 files and mark th moves as exported"""
+        """Export moves into 3 files and mark the moves as exported"""
         self.ensure_one()
         # Create files
         moves_file = cStringIO.StringIO()
@@ -114,12 +130,12 @@ class EbpExport(models.Model):
         self._write_header_into_moves_file(moves_file)
         self._write_header_into_balance_file(balance_file)
 
-        self._export_to_files(moves, move_file, account_file, balance_file)
+        self._export_to_files(moves, moves_file, accounts_file, balance_file)
         data_moves = base64.encodestring(moves_file.getvalue())
-        data_accounts = base64.encodestring(account_file.getvalue())
+        data_accounts = base64.encodestring(accounts_file.getvalue())
         data_balance = base64.encodestring(balance_file.getvalue())
         moves_file.close()
-        account_file.close()
+        accounts_file.close()
         balance_file.close()
 
         # Save Datas
@@ -135,7 +151,8 @@ class EbpExport(models.Model):
         })
 
     @api.model
-    def _export_to_files(self, moves, move_file, account_file, balance_file):
+    def _export_to_files(
+            self, moves, moves_file, accounts_file, balance_file):
         # dictionary to store accounts while we loop through move lines
         accounts_data = {}
         # Line counter
@@ -175,10 +192,8 @@ class EbpExport(models.Model):
             self._write_into_moves_file(i, moves_data, moves_file)
             i += len(moves_data)
 
-
         # Write the accounts into the file
         self._write_into_accounts_file(i, accounts_data, accounts_file)
-
 
     #     # Write the balance of accounts into the file
         self._write_into_balance_file(i, accounts_data, balance_file)
@@ -286,7 +301,7 @@ class EbpExport(models.Model):
         }
 
     @api.model
-    def _write_into_moves_file(count, moves_data, moves_file):
+    def _write_into_moves_file(self, count, moves_data, moves_file):
         i = count
 
         for account_code, line in moves_data.iteritems():
@@ -393,11 +408,12 @@ class EbpExport(models.Model):
         else:
             # Normal account
             res.update({
-                'name':  self._normalize(line.account_id.name),
+                'name': self._normalize(line.account_id.name),
             })
+        return res
 
     @api.model
-    def _write_into_accounts_file(count, accounts_data, accounts_file):
+    def _write_into_accounts_file(self, count, accounts_data, accounts_file):
         for account_code, account_data in accounts_data.iteritems():
             data = [
                 account_code.replace(',', ''),
@@ -414,10 +430,10 @@ class EbpExport(models.Model):
             self._write_into_file(data, accounts_file)
 
     @api.model
-    def _write_into_balance_file(count, accounts_data, balance_file):
+    def _write_into_balance_file(self, count, accounts_data, balance_file):
         for account_code, account_data in accounts_data.iteritems():
-            credit = (account['credit'] or 0)
-            debit = (account['debit'] or 0)
+            credit = (account_data['credit'] or 0)
+            debit = (account_data['debit'] or 0)
             if credit > debit:
                 credit_balance = credit - debit
                 debit_balance = 0
@@ -426,7 +442,7 @@ class EbpExport(models.Model):
                 debit_balance = debit - credit
             data = [
                 account_code.replace(',', ''),
-                (account['name'] or '').replace(',', '')[:60],
+                (account_data['name'] or '').replace(',', '')[:60],
                 str(debit),
                 str(credit),
                 str(debit_balance),
@@ -436,7 +452,8 @@ class EbpExport(models.Model):
 
     @api.model
     def _write_into_file(self, data_list, file):
-        file.write(unidecode(','.join(data_list)))
+        tmp = ','.join(data_list)
+        file.write(tmp)
         file.write('\r\n')
 
     #     _logger.debug(
@@ -457,12 +474,6 @@ class EbpExport(models.Model):
     #         }, context=context)
     #     return export_id
 
-
-
-
-
-
-
 # FILE
 # FUCK ANALYTIC
 
@@ -473,8 +484,6 @@ class EbpExport(models.Model):
 
         # if is_analytic_column:
         #     move_line += ',Poste analytique'
-
-
 
     # AH BON ????
     #             if len(move.name) > 15:

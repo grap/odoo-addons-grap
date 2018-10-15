@@ -6,8 +6,6 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 -->
 <openerp><data>
 
-
-
     <record id="view_res_partner_form" model="ir.ui.view">
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form" />
@@ -24,14 +22,16 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="inherit_id" ref="base.view_res_partner_filter" />
         <field name="arch" type="xml">
             <filter help="My Partners" position="after">
-               <filter string="Without suffix" 
-                        name="no_suffix" 
-                        domain="[('ebp_suffix', '=', False)]"
-                        groups="account.group_account_manager"/>
-               <filter string="With moves" 
-                        name="with_moves" 
-                        domain="[('move_line_qty', '!=', 0)]"
-                        groups="account.group_account_manager"/>
+               <filter string="Without EBP Suffix"
+                        name="without_suffix"
+                        domain="[('ebp_suffix', '=', False)]"/>
+               <filter string="With Lines Moves exportable into EBP"
+                        name="with_move_line_ebp"
+                        domain="[('has_ebp_move_line', '=', True)]"/>
+               <filter string="Without Suffixes And with Exportable Move Lines into EBP" 
+                        name="without_suffix_with_move_line_ebp"
+                        domain="[('ebp_suffix', '=', False),
+                        ('has_ebp_move_line', '=', True)]"/>
             </filter>
         </field>
     </record>
@@ -42,7 +42,8 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
             <tree string="Partner" editable="bottom">
                 <field name="name" readonly="1"/>
                 <field name="ebp_suffix"/>
-                <field name="move_line_qty" readonly="1"/>
+                <field name="has_ebp_move_line"/>
+                <field name="journal_item_count" readonly="1"/>
                 <field name="customer" readonly="1"/>
                 <field name="supplier" readonly="1"/>
                 <field name="company_id" readonly="1" groups="base.group_multi_company"/>
@@ -57,7 +58,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="view_type">form</field>
         <field name="view_mode">tree</field>
         <field name="view_id" ref="view_res_partner_tree"/>
-        <field name="context">{'search_default_with_moves': 1,'search_default_no_suffix': 1}</field>
+        <field name="context">{'search_default_without_suffix_with_move_line_ebp': 1}</field>
     </record>
 
     <menuitem id="menu_partner_suffix"

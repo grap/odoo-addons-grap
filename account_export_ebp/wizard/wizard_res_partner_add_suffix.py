@@ -7,80 +7,75 @@
 
 import logging
 
-from openerp.osv.orm import TransientModel
-from openerp.osv import fields
+from openerp import api, fields, models
 
-logger = logging.getLogger(__name__)
+_logger = logging.getLogger(__name__)
 
 try:
     from unidecode import unidecode
 except ImportError:
     unidecode = False
-    logger.debug("account_export_ebp - 'unidecode' librairy not found")
+    _logger.debug("account_export_ebp - 'unidecode' librairy not found")
 
 
-class WizardResPartnerAddSuffix(TransientModel):
-    _name = "wizard.res.partner.add.suffix"
+class WizardResPartnerAddSuffix(models.TransientModel):
+    _name = 'wizard.res.partner.add.suffix'
 
-    _columns = {
-        'line_ids': fields.one2many(
-            'account.add.suffix.line', 'account_add_suffix_id',
-            'Add Suffix Lines'),
-    }
+    line_ids = fields.One2many(
+        comodel_name='wizard.res.partner.add.suffix.line',
+        inverse_name='wizard_id', string='Lines')
 
     # View Section
-    def affect_suffix(self, cr, uid, ids, context=None):
-        if context is None:
-            context = {}
-        rp_obj = self.pool.get('res.partner')
-
-        for suf in self.browse(cr, uid, ids, context=context):
-            for line in suf.line_ids:
-                if line.suffix:
-                    rp_obj.write(cr, uid, [line.partner_id.id], {
-                        'ebp_suffix': line.suffix,
-                    }, context=context)
-        return True
+    @api.multi
+    def button_affect_suffix(self):
+        for wizard in self:
+            for line in wizard.line_ids:
+                if line.ebp_suffix:
+                    line.partner_id.write({'ebp_suffix': line.ebp_suffix})
 
     # Overloading section
-    def default_get(self, cr, uid, pFields, context=None):
-        rp_obj = self.pool.get('res.partner')
-        line_ids = []
-        res = super(account_add_suffix, self).default_get(
-            cr, uid, pFields, context=context)
+    @api.model
+    def default_get(self, default_fields):
+        ResPartner = self.env['res.partner']
 
-        partner_ids = context.get('active_ids', False)
-        if not partner_ids:
+        res = super(
+            WizardResPartnerAddSuffix, self).default_get(default_fields)
+
+        line_ids = []
+
+        selected_partner_ids = self.env.context.get('active_ids', [])
+        if not selected_partner_ids:
             return res
         existing_suffixes = {}
         sql_req = """
             SELECT rp.company_id, rp.ebp_suffix from res_partner rp
             WHERE ebp_suffix is not Null """
-        cr.execute(sql_req)
-        result = cr.dictfetchall()
+        self.env.cr.execute(sql_req)
+        result = self.env.cr.dictfetchall()
         for item in result:
             existing_suffixes.setdefault(item['company_id'], [])
             existing_suffixes[item['company_id']] += [item['ebp_suffix']]
 
-        for partner in rp_obj.browse(cr, uid, partner_ids, context=context):
+        for partner in ResPartner.browse(selected_partner_ids):
             if partner.ebp_suffix:
-                suffix = partner.ebp_suffix
+                ebp_suffix = partner.ebp_suffix
             else:
-                suffix = self._get_suffix(
+                ebp_suffix = self._get_suffix(
                     partner.name, existing_suffixes.get(
                         partner.company_id.id, []))
-                if suffix:
+                if ebp_suffix:
                     existing_suffixes.setdefault(partner.company_id.id, [])
-                    existing_suffixes[partner.company_id.id] += [suffix]
+                    existing_suffixes[partner.company_id.id] += [ebp_suffix]
             line_ids.append((0, 0, {
                 'partner_id': partner.id,
                 'company_id': partner.company_id.id,
-                'suffix': suffix,
+                'ebp_suffix': ebp_suffix,
             }))
-            res.update({'line_ids': line_ids})
+        res.update({'line_ids': line_ids})
         return res
 
     # Private Section
+    @api.model
     def _get_suffix(self, name, existing_suffixes):
         # remove special caracters
         name2 = ''.join(e for e in name if e.isalnum())
@@ -127,18 +122,3 @@ class WizardResPartnerAddSuffix(TransientModel):
             if suffix and not(suffix in existing_suffixes):
                 return suffix
         return False
-
-
-class account_add_suffix_line(TransientModel):
-    _name = "account.add.suffix.line"
-
-    _columns = {
-        'account_add_suffix_id': fields.many2one(
-            'account.add.suffix', 'Add Suffix Id'),
-        'partner_id': fields.many2one(
-            'res.partner', 'Partner'),
-        'company_id': fields.many2one(
-            'res.company', 'Company', readonly=True),
-        'suffix': fields.char(
-            'Suggested EBP Suffix', size=4),
-    }

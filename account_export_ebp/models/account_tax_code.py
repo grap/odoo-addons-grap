@@ -18,12 +18,40 @@ class AccountTaxCode(models.Model):
         help="When exporting Entries to EBP, this suffix will be"
         " appended to the Account Number to make it a new Account.")
 
-    move_line_qty = fields.Integer(
-        compute='_compute_move_line_qty',
-        string='Quantity of Account Move Lines',
-        help="Number of account moves for this partner")
+    # TODO, check if usefull
+    # has_ebp_no_suffix = fields.Boolean(
+    #     string='No EBP Suffix', help="Check this box if you want to ignore"
+    #     " the warning, when exporting into EBP move lines that have this"
+    #     " tax code.")
 
+    has_ebp_move_line = fields.Boolean(
+        compute='_compute_has_ebp_move_line',
+        search='_search_has_ebp_move_line',
+        string='Has Account Move Lines exportable in EBP')
+
+    # Columns section
     @api.multi
-    def _compute_move_line_qty(self):
-        pass
-        # AccountMoveLine = self.env['account.move.line']
+    def _compute_has_ebp_move_line(self):
+        AccountMoveLine = self.env['account.move.line']
+        for tax_code in self:
+            tax_code.has_ebp_move_line = len(AccountMoveLine.search([
+                ('tax_code_id', '=', tax_code.id),
+                ('date', '>=', self._SEARCH_DATE_BEGIN)]))
+
+    @api.model
+    def _search_has_ebp_move_line(self, operator, value):
+        assert operator in ('=', '!='), 'Invalid domain operator'
+        assert value in (True, False), 'Invalid domain value'
+
+        with_line = (
+            (operator == '=' and value is True) or
+            (operator == '!=' and value is False))
+
+        self._cr.execute(
+            "SELECT tax_code_id, count(*)"
+            " FROM account_move_line"
+            " WHERE date >= '01/12/2012'"
+            " GROUP BY tax_code_id"
+            " HAVING  count(*) > 0")
+        res = self._cr.fetchall()
+        return [('id', with_line and 'in' or 'not in', [x[0] for x in res])]
