@@ -510,22 +510,22 @@ msgstr "Validé"
 #. module: account_export_ebp
 #: field:wizard.ebp.export,exported_move_qty:0
 msgid "Quantity of Exported Moves"
-msgstr "Quantity of Exported Moves"
+msgstr "Nombre de pièces exportées"
 
 #. module: account_export_ebp
 #: field:ebp.export,exported_move_qty:0
 msgid "Quantity of Moves Exported"
-msgstr "Quantity of Moves Exported"
+msgstr "Nombre de pièces exportées"
 
 #. module: account_export_ebp
 #: field:wizard.ebp.export,selected_move_qty:0
 msgid "Quantity of Selected Moves"
-msgstr "Quantity of Selected Moves"
+msgstr "Nombre de pièces sélectionnées"
 
 #. module: account_export_ebp
 #: field:ebp.export,exported_account_qty:0
 msgid "Quantity of accounts exported"
-msgstr "Quantity of accounts exported"
+msgstr "Nombre de comptes exportés"
 
 #. module: account_export_ebp
 #: view:wizard.ebp.export:account_export_ebp.view_wizard_ebp_export_form

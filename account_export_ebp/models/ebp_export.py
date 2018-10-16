@@ -14,6 +14,12 @@ from openerp.exceptions import Warning as UserError
 
 _logger = logging.getLogger(__name__)
 
+try:
+    from unidecode import unidecode
+except ImportError:
+    unidecode = False
+    _logger.debug("account_export_ebp - 'unidecode' librairy not found")
+
 
 class EbpExport(models.Model):
     _name = 'ebp.export'
@@ -495,7 +501,7 @@ class EbpExport(models.Model):
     @api.model
     def _write_into_file(self, data_list, file):
         tmp = ','.join(data_list)
-        file.write(tmp)
+        file.write(unidecode(tmp))
         file.write('\r\n')
 
     #     _logger.debug(
