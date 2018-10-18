@@ -12,17 +12,13 @@ from openerp import api, fields, models
 class AccountTaxCode(models.Model):
     _inherit = 'account.tax.code'
 
+    _SEARCH_DATE_BEGIN = '01/12/2012'
+
     # Columns section
     ebp_suffix = fields.Char(
         string="Suffix in EBP", oldname="ref_nb",
         help="When exporting Entries to EBP, this suffix will be"
         " appended to the Account Number to make it a new Account.")
-
-    # TODO, check if usefull
-    # has_ebp_no_suffix = fields.Boolean(
-    #     string='No EBP Suffix', help="Check this box if you want to ignore"
-    #     " the warning, when exporting into EBP move lines that have this"
-    #     " tax code.")
 
     has_ebp_move_line = fields.Boolean(
         compute='_compute_has_ebp_move_line',

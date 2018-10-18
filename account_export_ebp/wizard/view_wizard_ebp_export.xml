@@ -32,7 +32,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                 <group states="draft" string="Settings">
                   <field name="selected_move_qty"/>
                   <field name="fiscalyear_id"/>
-                  <field name="exported_move_qty"/>
+                  <field name="exported_move_qty" attrs="{'invisible': [('fiscalyear_id', '=', False)]}"/>
                   <field name="description"/>
                 </group>
 
