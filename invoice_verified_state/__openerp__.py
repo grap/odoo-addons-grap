@@ -5,9 +5,9 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 {
-    'name': "Account - Invoice 'Verified' state",
-    'version': '7.0.1.0.0',
-    'category': 'Accounting',
+    'name': "GRAP - Invoices 'Verified' / 'To Check' state",
+    'version': '8.0.1.0.0',
+    'category': 'Custom',
     'description': """
 Add a 'Verified' state on account.invoice
 =========================================
