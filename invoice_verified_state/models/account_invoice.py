@@ -17,7 +17,7 @@ class AccountInvoice(models.Model):
     state = fields.Selection(selection_add=[('verified', ('Verified'))])
 
     @api.multi
-    def button_move_checked(self):
+    def button_move_check(self):
         moves = self.mapped('move_id')
         moves.write({'to_check': False})
 
