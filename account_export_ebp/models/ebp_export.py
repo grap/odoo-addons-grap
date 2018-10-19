@@ -173,9 +173,7 @@ class EbpExport(models.Model):
         # Line counter
         i = 0
 
-        print "exporting %d moves" % (len(moves))
         for move in moves:
-            print "Move #%d" % (move.id)
             # dictionary to summarize the lines of the move by account
             moves_data = {}
             for line in move.line_id:

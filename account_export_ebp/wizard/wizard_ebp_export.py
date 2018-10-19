@@ -100,9 +100,6 @@ class WizardEbpExport(models.TransientModel):
         AccountMove = self.env['account.move']
         moves = AccountMove.browse(self.env.context.get('active_ids', []))
         fiscalyears = moves.mapped('period_id.fiscalyear_id')
-        print ">>>>>>>>>>>>>><"
-        print fiscalyears
-        print ">>>>>>>>>>>>>><"
         if len(fiscalyears) == 1:
             return fiscalyears[0].id
         else:
