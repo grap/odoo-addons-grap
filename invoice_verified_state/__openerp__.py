@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding: utf-8
 # Copyright (C) 2013-Today: GRAP (<http://www.grap.coop/>)
 # @author: Sylvain LE GAL (https://twitter.com/legalsylvain)
 # @author: Julien WESTE
@@ -8,32 +8,15 @@
     'name': "GRAP - Invoices 'Verified' / 'To Check' state",
     'version': '8.0.1.0.0',
     'category': 'Custom',
-    'description': """
-Add a 'Verified' state on account.invoice
-=========================================
-
-* Add a Verified state on account.invoice;
-* Only Account_manager can validate supplier account.invoice;
-* Modify the corresponding workflow;
-
-Copyright, Author and Licence
------------------------------
-
-* Copyright : 2013, Groupement Régional Alimentaire de Proximité;
-* Author :
-    * Julien WESTE;
-* Licence : AGPL-3 (http://www.gnu.org/licenses/)
-    """,
     'author': 'GRAP',
     'website': 'http://www.grap.coop',
     'license': 'AGPL-3',
     'depends': [
-        'account',
         'account_voucher',
     ],
     'data': [
-        'views/account_invoice_view.xml',
-        'views/account_journal_view.xml',
+        'views/view_account_invoice.xml',
+        'views/view_account_journal.xml',
         'data/workflow.xml',
     ],
     'demo': [
