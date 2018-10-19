@@ -3,27 +3,27 @@
    :alt: License: AGPL-3
 
 
-=====================================================================
-Easy Switch between VAT Excluded and VAT Included For Purchase Module
-=====================================================================
+=============================================
+GRAP - Invoices 'Verified' / 'To Check' state
+=============================================
 
-Possibility to switch between Price VAT Included and Price VAT Excluded
-when editing a Purchase Order.
+1. Add a 'Verified' state on account.invoice (supplier and supplier refund
+   invoices)
 
+* Only Accounting managers can validate supplier account invoices
+* the workflow is so modified
 
-* Possibility to switch between Price VAT Included and Price VAT Excluded
-  when editing a Purchase Order
+2. Add a 'To check' checkbox field on account move
 
-** Purchase Orders with Mixed Taxes**
+* The setting is done per journal
+* if a journal is set to 'To Check' all the accounting moves will be set as
+  'To Check'. this feature is usefull with the module to export to EBP, to
+  prevent import of moves that has not been controled by accounting managers.
 
-.. image:: /simple_tax_purchase/static/description/purchase_harmonized_taxes.png
+Roadmap / Known Issues
+======================
 
-** Purchase Orders with Harmonized Taxes**
-
-.. image:: /simple_tax_purchase/static/description/purchase_mixed_taxes.png
-
-
-See simple_tax_account for more detailled information.
+* rename the module into ```grap_invoice_state```
 
 Credits
 =======
@@ -32,3 +32,4 @@ Contributors
 ------------
 
 * Sylvain LE GAL <https://twitter.com/legalsylvain>
+* Julien WESTE
