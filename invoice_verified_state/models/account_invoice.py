@@ -12,7 +12,7 @@ class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
 
     move_to_check = fields.Boolean(
-        string='Move To Check', related='move_id.move_to_check', store=True)
+        string='Move To Check', related='move_id.to_check', store=True)
 
     state = fields.Selection(selection_add=[('verified', ('Verified'))])
 
