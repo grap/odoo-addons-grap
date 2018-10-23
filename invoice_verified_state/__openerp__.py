@@ -12,6 +12,7 @@
     'website': 'http://www.grap.coop',
     'license': 'AGPL-3',
     'depends': [
+        'account',
         'account_voucher',
     ],
     'data': [
