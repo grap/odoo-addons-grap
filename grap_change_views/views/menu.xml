@@ -27,6 +27,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
     <record model="ir.ui.menu" id="point_of_sale.menu_point_root">
         <field name="sequence">5</field>
+        <field name="action" ref="point_of_sale.action_pos_pos_form" />
     </record>
 
     <record model="ir.ui.menu" id="intercompany_trade_base.menu_intercompany_trade_root">
@@ -51,6 +52,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
     <record model="ir.ui.menu" id="mail.mail_feeds_main">
         <field name="sequence">201</field>
+        <field name="groups_id" eval="[(6,0, [ref('base.group_no_one')])]" />
     </record>
 
 
@@ -224,11 +226,6 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         name="Indicateurs Synthétiques"
         parent="menu_grap_dashboard"/>
 
-    <record id="mail.mail_feeds_main" model="ir.ui.menu">
-        <field name="groups_id" eval="[(6,0, [ref('base.group_no_one')])]" />
-    </record>
-
-
 <!-- Accounting Menu -->
     <menuitem id="menu_account_invoice_line_customer"
         name="Customer Invoices Lines"
@@ -323,10 +320,6 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="groups_id" eval="[(6, 0, [ref('base.group_no_one')])]" />
     </record>
 
-    <record model="ir.ui.menu" id="point_of_sale.menu_point_root">
-        <field name="action" ref="point_of_sale.action_pos_pos_form" />
-    </record>
-
     <record model="ir.ui.menu" id="point_of_sale.menu_pos_details">
         <field eval="[(6, 0, [ref('base.group_no_one')])]" name="groups_id"/>
     </record>
@@ -334,44 +327,5 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
     <record model="ir.ui.menu" id="point_of_sale.menu_report_pos_order_all">
         <field eval="[(6, 0, [ref('base.group_no_one')])]" name="groups_id"/>
     </record>
-
-
-
-<!-- Enable menu for standard User -->
-    <record model="ir.ui.menu" id="stock.menu_action_move_form2">
-        <field eval="[(6, 0, [])]" name="groups_id"/>
-    </record>
-
-    <record model="ir.ui.menu" id="stock.menu_stock_configuration">
-        <field eval="[(6, 0, [ref('base.group_no_one')])]" name="groups_id"/>
-    </record>
-
-    <record model="ir.ui.menu" id="stock.menu_action_location_form">
-        <field eval="[(6, 0, [ref('stock.group_stock_user')])]" name="groups_id"/>
-    </record>
-
-    <record model="ir.ui.menu" id="delivery.menu_action_delivery_carrier_form">
-        <field eval="[(6, 0, [ref('base.group_no_one')])]" name="groups_id"/>
-    </record>
-
-    <record model="ir.ui.menu" id="stock.menu_product_by_category_stock_form">
-        <field eval="[(6, 0, [ref('base.group_no_one')])]" name="groups_id"/>
-    </record>
-
-<!--_______________________Vues Reporting (Tableau de bord) ____________________________-->
-
-<!--    <record model="ir.ui.menu" id="stock.menu_board_warehouse">-->
-<!--        <field eval="[(6, 0, [ref('base.group_no_one')])]" name="groups_id"/>-->
-<!--    </record>-->
-
-<!--_______________________Vues Reporting (Entrepot) ____________________________-->
-
-<!--    <record model="ir.ui.menu" id="stock.menu_action_stock_move_report">-->
-<!--        <field eval="[(6, 0, [ref('base.group_no_one')])]" name="groups_id"/>-->
-<!--    </record>-->
-    
-<!--    <record model="ir.ui.menu" id="stock.menu_action_stock_inventory_report">-->
-<!--        <field eval="[(6, 0, [ref('base.group_no_one')])]" name="groups_id"/>-->
-<!--    </record>-->
 
 </data></openerp>

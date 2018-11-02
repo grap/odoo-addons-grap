@@ -9,7 +9,7 @@
     'version': '8.0.3.0.0',
     'author': 'Numérigraphe SARL,GRAP',
     'category': 'GRAP - Custom',
-    'licence': 'AGPL-3',
+    'license': 'AGPL-3',
     'depends': [
         'account_accountant',
         'base_fiscal_company',
