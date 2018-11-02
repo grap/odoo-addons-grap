@@ -21,6 +21,6 @@
         'data/workflow.xml',
     ],
     'demo': [
-        'demo/res_groups.yml',
+        'demo/res_groups.xml',
     ],
 }
