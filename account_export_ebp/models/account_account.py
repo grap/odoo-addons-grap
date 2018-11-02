@@ -13,6 +13,12 @@ from openerp.exceptions import Warning as UserError
 class AccountAccount(models.Model):
     _inherit = 'account.account'
 
+    _EBP_ANALYTIC_MODE_SELECTION = [
+        ('no', 'No Analytic'),
+        ('normal', 'Normal Analytic'),
+        ('fiscal_analytic', 'Fiscal analytic'),
+    ]
+
     # Columns section
     ebp_export_tax_code = fields.Boolean(
         oldname='export_tax_code',
@@ -26,6 +32,29 @@ class AccountAccount(models.Model):
         " appended to the Account Number to make it a new Account,"
         " if 'Export to EBP according to Tax Codes' is checked, and"
         " if no taxes is defined on the account move line.")
+
+    ebp_analytic_mode = fields.Selection(
+        string='EBP Analytic Mode',
+        compute='_compute_ebp_analytic_mode',
+        selection=_EBP_ANALYTIC_MODE_SELECTION)
+
+    # Compute Section
+    def _compute_ebp_analytic_mode(self):
+        analytic_user_type_ids = [
+            self.env.ref('account.data_account_type_income').id,
+            self.env.ref('account.data_account_type_expense').id,
+        ]
+        for account in self:
+            if account.company_id.fiscal_company.fiscal_type\
+                    == 'fiscal_mother':
+                account.ebp_analytic_mode = 'fiscal_analytic'
+            elif account.company_id.ebp_analytic_enabled:
+                if account.user_type.id in analytic_user_type_ids:
+                    account.ebp_analytic_mode = 'normal'
+                else:
+                    account.ebp_analytic_mode = 'no'
+            else:
+                account.ebp_analytic_mode = 'no'
 
     # Constraints section
     @api.constrains(

@@ -182,18 +182,21 @@ class EbpExport(models.Model):
                     continue
 
                 account_code = self._get_account_code(move, line)
+                analytic_code = self._get_analytic_code(move, line)
+
+                move_key = (account_code, analytic_code)
 
                 # Collect data for the file of move lines
-                if account_code not in moves_data.keys():
-                    moves_data[account_code] = self._prepare_move_line_dict(
+                if move_key not in moves_data.keys():
+                    moves_data[move_key] = self._prepare_move_line_dict(
                         move, line)
                 else:
-                    moves_data[account_code]['credit'] += line.credit
-                    moves_data[account_code]['debit'] += line.debit
+                    moves_data[move_key]['credit'] += line.credit
+                    moves_data[move_key]['debit'] += line.debit
                     # Keep the earliest maturity date
                     if (line.date_maturity <
-                            moves_data[account_code]['date_maturity']):
-                        moves_data[account_code]['date_maturity'] =\
+                            moves_data[move_key]['date_maturity']):
+                        moves_data[move_key]['date_maturity'] =\
                             line.date_maturity
 
                 # Collect data for the file of accounts
@@ -263,11 +266,21 @@ class EbpExport(models.Model):
         return res
 
     @api.model
+    def _get_analytic_code(self, move, line):
+        res = ''
+        if line.account_id.ebp_analytic_mode == 'fiscal_analytic':
+            res = line.company_id.code
+        elif line.account_id.ebp_analytic_mode == 'normal':
+            if line.analytic_account_id:
+                res = line.analytic_account_id.code
+            elif line.company_id.ebp_default_analytic_account_id:
+                res =\
+                    line.company_id.ebp_default_analytic_account_id.code
+        return res
+
+    @api.model
     def _prepare_move_line_dict(self, move, line):
-        analytic_user_type_ids = [
-            self.env.ref('account.data_account_type_income').id,
-            self.env.ref('account.data_account_type_expense').id,
-        ]
+
         if move.partner_id.intercompany_trade:
             ref = ' (' + move.partner_id.name + ')'
         else:
@@ -277,36 +290,20 @@ class EbpExport(models.Model):
                     if move.ref else ''))
 
         # Manage analytic cases
-        if line.company_id.fiscal_company.fiscal_type == 'fiscal_mother':
-            allow_analytic = True
-            analytic_code = line.company_id.code
+        if line.account_id.ebp_analytic_mode == 'fiscal_analytic':
             ref = line.company_id.code + ' ' + ref
-
-        elif line.company_id.ebp_analytic_enabled:
-            allow_analytic =\
-                line.account_id.user_type in analytic_user_type_ids
-            if allow_analytic:
-                if line.analytic_account_id:
-                    analytic_code = line.analytic_account_id.code
-                elif line.company_id.ebp_default_analytic_account_id:
-                    analytic_code =\
-                        line.company_id.ebp_default_analytic_account_id
-
-        else:
-            allow_analytic = False
-            analytic_code = ''
 
         return {
             'date': move.date,
             'journal': move.journal_id.ebp_code,
+            'account_code': self._get_account_code(move, line),
             'ref': self._normalize(ref),
             'name': self._normalize(move.name),
             'credit': line.credit,
             'debit': line.debit,
             'date_maturity': line.date_maturity,
             'currency_name': move.company_id.currency_id.name,
-            'analytic_code': analytic_code,
-            'allow_analytic': allow_analytic and '1' or '',
+            'analytic_code': self._get_analytic_code(move, line),
         }
 
     @api.model
@@ -324,9 +321,6 @@ class EbpExport(models.Model):
             _("Due Date"),
             _("Currency"),
             _("Analytic Account"),
-            _("Allow Analytic"),
-            _("Payment Mode"),
-            _("Allow Use of Personal Datas"),
         ]
         self._write_into_file(data, moves_file)
 
@@ -334,9 +328,8 @@ class EbpExport(models.Model):
     def _write_into_moves_file(self, count, moves_data, moves_file):
         i = count
 
-        for account_code, line in moves_data.iteritems():
+        for key, line in moves_data.iteritems():
             i += 1
-            # TODO SLG : refactorer le if / else
             data = [
                 # Line number
                 '%d' % i,
@@ -345,10 +338,10 @@ class EbpExport(models.Model):
                     line['date'][8:10], line['date'][5:7],
                     line['date'][2:4]),
                 # Journal
-                line['journal'].replace(',', '')[:4],
+                self._normalize(line['journal'])[:4],
                 # Account number
                 # (possibly with the partner code appended to it)
-                account_code.replace(',', ''),
+                line['account_code'],
                 # Manual title
                 '"%s"' % line['ref'][:40],
                 # Accountable receipt number
@@ -379,9 +372,6 @@ class EbpExport(models.Model):
             ]
             data += [
                 line['analytic_code'],
-                line['allow_analytic'],
-                "CH30",
-                "N",
             ]
             self._write_into_file(data, moves_file)
 
@@ -399,13 +389,13 @@ class EbpExport(models.Model):
             'fax': '',
             'credit': 0,
             'debit': 0,
-        }
-        # TODO CHECK Camille E
-        partner_accounts = True
-        tax_code_suffix = True
+            'allow_analytic': '',
+            'payment_mode': 'CH30',
+            'rgpd': 'N',
 
-        if (partner_accounts and
-                line.partner_id and line.partner_id.ebp_suffix and
+        }
+
+        if (line.partner_id and line.partner_id.ebp_suffix and
                 line.account_id.type in ('payable', 'receivable')):
             # Partner account
             if line.account_id.\
@@ -428,8 +418,7 @@ class EbpExport(models.Model):
                 'phone': partner.phone or partner.mobile or '',
                 'fax': partner.fax or '',
             })
-        elif (tax_code_suffix and
-                line.account_id.ebp_export_tax_code and
+        elif (line.account_id.ebp_export_tax_code and
                 line.tax_code_id.ebp_suffix):
             res.update({
                 'name': (
@@ -441,6 +430,12 @@ class EbpExport(models.Model):
             res.update({
                 'name': self._normalize(line.account_id.name),
             })
+
+        if line.account_id.ebp_analytic_mode in ['fiscal_analytic', 'normal']:
+            res.update({
+                'allow_analytic': '1',
+            })
+
         return res
 
     @api.model
@@ -451,16 +446,20 @@ class EbpExport(models.Model):
     def _write_into_accounts_file(self, count, accounts_data, accounts_file):
         for account_code, account_data in accounts_data.iteritems():
             data = [
-                account_code.replace(',', ''),
-                (account_data['name'] or '').replace(',', '')[:60],
-                (account_data['partner_name'] or '').replace(',', '')[:30],
-                (account_data['address'] or '').replace(',', '')[:100],
-                (account_data['zip'] or '').replace(',', '')[:5],
-                (account_data['city'] or '').replace(',', '')[:30],
-                (account_data['country'] or '').replace(',', '')[:35],
-                (account_data['contact'] or '').replace(',', '')[:35],
-                (account_data['phone'] or '').replace(',', '')[:20],
-                (account_data['fax'] or '').replace(',', '')[:20],
+                self._normalize(account_code),
+                self._normalize(account_data['name'])[:60],
+                self._normalize(account_data['partner_name'])[:30],
+                self._normalize(account_data['address'])[:100],
+                self._normalize(account_data['zip'])[:5],
+                self._normalize(account_data['city'])[:30],
+                self._normalize(account_data['country'])[:35],
+                self._normalize(account_data['contact'])[:35],
+                self._normalize(account_data['phone'])[:20],
+                self._normalize(account_data['fax'])[:20],
+                account_data['allow_analytic'],
+                account_data['payment_mode'],
+                account_data['rgpd'],
+
             ]
             self._write_into_file(data, accounts_file)
 

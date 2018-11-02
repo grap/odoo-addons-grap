@@ -237,6 +237,8 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                                     <field name="property_account_expense" 
                                             domain="[('type','=','other')]" 
                                             groups="account.group_account_manager"/>
+                                    <field name="expense_analytic_account_id"
+                                            groups="account.group_account_manager"/>
                                     <field name="consignor_partner_id"
                                             attrs="{'readonly':[('is_consignment', '=', True)]}"
                                             groups="recurring_consignment.group_consignment_user"/>
@@ -251,6 +253,8 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                                     <field name="property_account_income"
                                             domain="[('type','=','other')]"
                                         groups="account.group_account_manager"/>
+                                    <field name="income_analytic_account_id"
+                                            groups="account.group_account_manager"/>
                                     <field name="margin_classification_id"/>
                                     <label for="theoretical_price" attrs="{'invisible': [('margin_state', '=', 'ok')]}"/>
                                     <div attrs="{'invisible': [('margin_state', '=', 'ok')]}">

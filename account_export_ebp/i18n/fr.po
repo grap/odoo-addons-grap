@@ -38,7 +38,7 @@ msgstr "Pièce comptable"
 #: code:addons/account_export_ebp/models/ebp_export.py:465
 #, python-format
 msgid "Account Number"
-msgstr "N° Compte"
+msgstr "N. Compte"
 
 #. module: account_export_ebp
 #: code:addons/account_export_ebp/models/ebp_export.py:254
@@ -454,7 +454,7 @@ msgstr "ECRITURES"
 #: code:addons/account_export_ebp/models/ebp_export.py:315
 #, python-format
 msgid "Move Number"
-msgstr "N° Pièce"
+msgstr "N. Pièce"
 
 #. module: account_export_ebp
 #: field:ebp.export,data_moves:0 field:wizard.ebp.export,data_moves:0
