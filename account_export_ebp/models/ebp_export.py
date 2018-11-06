@@ -392,7 +392,6 @@ class EbpExport(models.Model):
             'allow_analytic': '',
             'payment_mode': 'CH30',
             'rgpd': 'N',
-
         }
 
         if (line.partner_id and line.partner_id.ebp_suffix and
