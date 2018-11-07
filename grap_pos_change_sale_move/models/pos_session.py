@@ -27,7 +27,8 @@ class PosSession(models.Model):
             if len(orders):
                 raise Warning(_(
                     "The following orders are not in a paid or invoiced"
-                    " status.") % ', '.join([order.name for order in orders]))
+                    " status: %s") % ', '.join(
+                        [order.name for order in orders]))
 
             # parse the orders to group the ids according to the key fields
             order_groups = {}
