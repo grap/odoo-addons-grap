@@ -32,6 +32,9 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
             <field name="account_id" position="attributes">
               <attribute name="groups">account.group_account_manager</attribute>
             </field>
+            <field name="date_invoice" position="attributes">
+              <attribute name="required">1</attribute>
+            </field>
             <xpath expr="//field[@name='invoice_line']/tree/field[@name='account_id']" position="attributes">
                 <attribute name="groups">account.group_account_manager</attribute>
              </xpath>

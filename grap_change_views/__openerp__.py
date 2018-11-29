@@ -99,6 +99,7 @@
         'views/view_sale_order.xml',
         'views/view_stock_inventory.xml',
         'views/view_stock_inventory_line.xml',
+        'views/view_stock_invoice_onshipping.xml',
         'views/view_stock_location.xml',
         'views/view_stock_move.xml',
         'views/view_stock_picking.xml',
