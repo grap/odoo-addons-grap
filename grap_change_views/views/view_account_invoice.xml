@@ -115,38 +115,42 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         </field>
     </record>
 
-<!--    <record id="view_account_invoice_form_supplier_update" model="ir.ui.view">-->
-<!--        <field name="model">account.invoice</field>-->
-<!--        <field name="inherit_id" ref="account_invoice_supplierinfo_update.view_account_invoice_form"/>-->
-<!--        <field name="arch" type="xml">-->
-
-<!--        </field>-->
-<!--    </record>-->
-
-<!--    <record id="view_account_invoice_form_supplier_discount" model="ir.ui.view">-->
-<!--        <field name="model">account.invoice</field>-->
-<!--        <field name="inherit_id" ref="account_invoice_triple_discount.invoice_supplier_triple_discount_form_view"/>-->
-<!--        <field name="arch" type="xml">-->
-
-<!--        </field>-->
-<!--    </record>-->
-
     <record id="view_account_invoice_tree" model="ir.ui.view">
         <field name="model">account.invoice</field>
         <field name="inherit_id" ref="account.invoice_tree"/>
+        <field name="priority">300</field>
         <field name="arch" type="xml">
             <xpath expr="//tree" position="attributes">
+                <attribute name="class">grap_change_views__view_account_invoice_tree</attribute>
                 <attribute name="colors">red: amount_total &lt; 0; blue:state == 'draft' ; black:state in ('proforma','proforma2','open') ; gray:state == 'cancel';</attribute>
             </xpath>
             <field name="user_id" position="attributes">
                 <attribute name="invisible">1</attribute>
             </field>
-            <field name="name" position="attributes">
-                <attribute name="invisible">0</attribute>
-                <attribute name="string">Partner Invoice Number</attribute>
+            <!-- Move Partner -->
+            <field name="partner_id" position="replace"/>
+            <field name="date_invoice" position="after">
+                <field name="partner_id"/>
             </field>
+            <!-- Move Number -->
+            <field name="number" position="replace"/>
+            <field name="date_invoice" position="before">
+                <field name="number"/>
+            </field>
+            <!-- Move Due Date -->
+            <field name="date_due" position="replace"/>
+            <field name="residual" position="after">
+                <field name="date_due"/>
+            </field>
+            <!-- Move company -->
+            <field name="company_id" position="replace"/>
+            <field name="state" position="after">
+                <field name="company_id" groups="base.group_multi_company"/>
+            </field>
+            <!-- Display supplier Invoice for out invoice and refund -->
             <field name="origin" position="after">
-                <field name="supplier_invoice_number"/>
+                <field name="supplier_invoice_number"
+                    invisible="context.get('type', '') in ['out_invoice', 'out_refund']"/>
             </field>
         </field>
     </record>

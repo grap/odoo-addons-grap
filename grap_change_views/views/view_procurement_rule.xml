@@ -11,7 +11,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="model">procurement.rule</field>
         <field name="arch" type="xml">
             <search>
-                <field name="company_id" />
+                <field name="company_id" groups="base.group_multi_company"/>
                 <field name="action" />
                 <field name="location_src_id" />
                 <field name="location_id" />

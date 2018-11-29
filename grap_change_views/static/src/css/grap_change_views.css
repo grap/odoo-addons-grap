@@ -136,7 +136,7 @@
 .grap_change_views__view_purchase_order_form [data-id="product_uom"]         {width: 6%;}
 .grap_change_views__view_purchase_order_form [data-id="price_unit"]          {width: 6%;}
 .grap_change_views__view_purchase_order_form [data-id="discount"]            {width: 6%;}
-.grap_change_views__view_purchase_order_form [data-id="tax_ids_description"] {width 12%;}
+.grap_change_views__view_purchase_order_form [data-id="tax_ids_description"] {width: 12%;}
 .grap_change_views__view_purchase_order_form [data-id="price_subtotal"]      {width: 6%;}
 
 
@@ -146,7 +146,7 @@
 .grap_change_views__view_sale_order_form [data-id="product_uom_qty"]     {width: 6%;}
 .grap_change_views__view_sale_order_form [data-id="product_uom"]         {width: 6%;}
 .grap_change_views__view_sale_order_form [data-id="price_unit"]          {width: 6%;}
-.grap_change_views__view_sale_order_form [data-id="tax_ids_description"] {width 12%;}
+.grap_change_views__view_sale_order_form [data-id="tax_ids_description"] {width: 12%;}
 .grap_change_views__view_sale_order_form [data-id="discount"]            {width: 6%;}
 .grap_change_views__view_sale_order_form [data-id="price_subtotal"]      {width: 6%;}
 
@@ -167,7 +167,7 @@
 .grap_change_views__view_account_invoice_customer_form [data-id="uos_id"]              {width: 6%;}
 .grap_change_views__view_account_invoice_customer_form [data-id="price_unit"]          {width: 6%;}
 .grap_change_views__view_account_invoice_customer_form [data-id="discount"]            {width: 5%;}
-.grap_change_views__view_account_invoice_customer_form [data-id="tax_ids_description"] {width 12%;}
+.grap_change_views__view_account_invoice_customer_form [data-id="tax_ids_description"] {width: 12%;}
 .grap_change_views__view_account_invoice_customer_form [data-id="price_subtotal"]      {width: 6%;}
 
 
@@ -179,9 +179,20 @@
 .grap_change_views__view_account_invoice_supplier_form [data-id="price_unit"]          {width: 5%;}
 .grap_change_views__view_account_invoice_supplier_form [data-id="discount"]            {width: 5%;}
 .grap_change_views__view_account_invoice_supplier_form [data-id="discount2"]           {width: 5%;}
-.grap_change_views__view_account_invoice_supplier_form [data-id="tax_ids_description"] {width 12%;}
+.grap_change_views__view_account_invoice_supplier_form [data-id="tax_ids_description"] {width: 12%;}
 .grap_change_views__view_account_invoice_supplier_form [data-id="price_subtotal"]      {width: 6%;}
 
+/* account - view_account_invoice_tree --------------------------------          ------------ */
+.grap_change_views__view_account_invoice_tree          [data-field="origin"]              {
+    width: 20%;
+    max-width: 200px; /*Weird value, but it works ;-)*/
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap !important;
+}
+
+
+/* account - view_account_invoice_supplierinfo_form ----------------------------------------- */
 .grap_change_views__view_wizard_update_invoice_supplierinfo_form [data-id="product_id"]                 {width: 52%;}
 .grap_change_views__view_wizard_update_invoice_supplierinfo_form [data-id="current_price"]              {width: 6%;}
 .grap_change_views__view_wizard_update_invoice_supplierinfo_form [data-id="new_price"]                  {width: 6%;}

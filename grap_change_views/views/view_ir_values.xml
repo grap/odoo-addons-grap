@@ -28,8 +28,8 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                 <field name="name" position="after">
                     <field name="model" />
                     <field name="value" />
-                    <field name="company_id" />
                     <field name="user_id" />
+                    <field name="company_id" groups="base.group_multi_company"/>
                 </field>
                 <field name="key2" position="before">
                     <field name="key" />
